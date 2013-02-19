@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<name>Tassyir Webapp</name>
+
+	<parent>
+		<artifactId>tassyir</artifactId>
+		<groupId>net.bbenarbia</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<groupId>net.bbenarbia</groupId>
+	<artifactId>tassyir-web</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<url>http://maven.apache.org</url>
+
+
+	<properties>
+		<spring.version>3.0.5.RELEASE</spring.version>
+	</properties>
+
+	<dependencies>
+
+		<!-- Spring 3 dependencies -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+
+		
+		<!-- Logs -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+			</dependency>
+		
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>log4j-over-slf4j</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+			</dependency>
+			
+			
+	</dependencies>
+
+	<build>
+		<finalName>SpringMVC</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

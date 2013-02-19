@@ -1,0 +1,18 @@
+K 13
+svn:mergeinfo
+V 1783
+/Dev/branches/Server-SupressionBus/server/common/data-access/src/main/resources/META-INF:224-274
+/Dev/branches/iris-project-2.0-STABLE/server/common/data-access/src/main/resources/META-INF:10338-11416,11418-12752,12755-13206,13208-13237,13240-15145,15149-15254*,15255-15569,15575,15580,15585-15593,15599-15607,15611-15616,15622,15809,15822,15830,16018,16040,16095,16119,16461,16717,16811,16813-16814,16874,16980,16996,17038,17050-17051,17069-17070,17107,17131,17153
+/Dev/branches/iris-project-2.0.27/server/common/data-access/src/main/resources/META-INF:8830-9122
+/Dev/branches/iris-project-2.0.29.2/server/common/data-access/src/main/resources/META-INF:12339-12877
+/Dev/branches/iris-project-2.1-STABLE/server/common/data-access/src/main/resources/META-INF:21151-24536
+/Dev/branches/iris-project-2.1-homologation/server/common/data-access/src/main/resources/META-INF:19710-20159
+/Dev/branches/iris-project-2.1-homologation-2/server/common/data-access/src/main/resources/META-INF:20160-20224
+/Dev/branches/iris-project-2.1.200-beta/server/common/data-access/src/main/resources/META-INF:24743
+/Dev/branches/iris-project-2.2-presse/server/common/data-access/src/main/resources/META-INF:25307-26937
+/Dev/branches/iris-project-2.2.100-prod/server/common/data-access/src/main/resources/META-INF:28944,29010
+/Dev/branches/iris-project-2.24.1/server/common/data-access/src/main/resources/META-INF:6662-6937
+/Dev/branches/iris-project-2.3-prod/server/common/data-access/src/main/resources/META-INF:27974,28414,28447,28459,28495,28832,28949,29023,29087,29221,29233,29245
+/Dev/branches/iris-project-2.4-prod/server/common/data-access/src/main/resources/META-INF:29873,29882,29888,29891,29928
+/Dev/branches/refactoring-grille-2.1/common/data-access/src/main/resources/META-INF:23523,23528,23632
+END
