@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping({ "/", "/welcome" })
+@RequestMapping({ "/" })
 public class IndexController {
 
 //	private Logger LOG = LoggerFactory.getLogger(IndexController.class);
@@ -14,10 +14,10 @@ public class IndexController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 
-		model.addAttribute("message", "Spring 3 MVC Hello World");
+		model.addAttribute("message", "Tassyir Home page");
 //		LOG.debug("Index Controller ");
 
-		return "hello";
+		return "index";
 
 	}
 
