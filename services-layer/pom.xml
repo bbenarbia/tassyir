@@ -142,8 +142,8 @@
 
 
 		<dependency> <!-- JDOM -->
-			<groupId>jdom</groupId>
-			<artifactId>jdom</artifactId>
+				<groupId>org.jdom</groupId>
+	<artifactId>jdom</artifactId>
 		</dependency>
 	</dependencies>
 	

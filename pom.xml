@@ -134,6 +134,12 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
 				<version>${spring.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>commons-logging</artifactId>
+						<groupId>commons-logging</groupId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 
 
@@ -324,6 +330,7 @@
 				<artifactId>slf4j-log4j12</artifactId>
 				<version>1.6.1</version>
 			</dependency>
+
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>log4j-over-slf4j</artifactId>
@@ -334,12 +341,11 @@
 				<artifactId>jcl-over-slf4j</artifactId>
 				<version>1.6.1</version>
 			</dependency>
-			<dependency>
+			 <dependency>
 				<groupId>log4j</groupId>
 				<artifactId>log4j</artifactId>
 				<version>1.2.15</version>
 				<exclusions>
-					<!-- Those are used by specific loggers that we don't use -->
 					<exclusion>
 						<groupId>javax.mail</groupId>
 						<artifactId>mail</artifactId>
@@ -520,7 +526,7 @@
 			</dependency>
 			<dependency>
 				<!-- JDOM -->
-				<groupId>jdom</groupId>
+				<groupId>org.jdom</groupId>
 				<artifactId>jdom</artifactId>
 				<version>${version.jdom}</version>
 			</dependency>
