@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.179" errors="0" skipped="0" tests="8" name="net.bbenarbia.service.GenericServiceTest">
+<testsuite failures="0" time="0.191" errors="0" skipped="0" tests="8" name="net.bbenarbia.service.GenericServiceTest">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-6-openjdk/jre/lib/i386"/>
@@ -19,7 +19,7 @@
     <property name="basedir" value="/opt/work/workspace/tassyir-app/tassyir/services-layer"/>
     <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-6-openjdk/jre/lib/endorsed"/>
     <property name="os.arch" value="i386"/>
-    <property name="surefire.real.class.path" value="/tmp/surefirebooter4270561962178318293.jar"/>
+    <property name="surefire.real.class.path" value="/tmp/surefirebooter4093664536898320012.jar"/>
     <property name="java.io.tmpdir" value="/tmp"/>
     <property name="line.separator" value="
 "/>
@@ -42,7 +42,7 @@
     <property name="java.vm.specification.version" value="1.0"/>
     <property name="sun.arch.data.model" value="32"/>
     <property name="java.home" value="/usr/lib/jvm/java-6-openjdk/jre"/>
-    <property name="sun.java.command" value="/tmp/surefirebooter4270561962178318293.jar /tmp/surefire4083677220147560298tmp /tmp/surefire4293470917719452400tmp"/>
+    <property name="sun.java.command" value="/tmp/surefirebooter4093664536898320012.jar /tmp/surefire1296849378136737669tmp /tmp/surefire1186123235497681572tmp"/>
     <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.language" value="en"/>
     <property name="java.vm.info" value="mixed mode"/>
@@ -58,12 +58,12 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.07" classname="net.bbenarbia.service.GenericServiceTest" name="testGet"/>
-  <testcase time="0.015" classname="net.bbenarbia.service.GenericServiceTest" name="testGetAll"/>
-  <testcase time="0.015" classname="net.bbenarbia.service.GenericServiceTest" name="testGetByGroupeId"/>
+  <testcase time="0.072" classname="net.bbenarbia.service.GenericServiceTest" name="testGet"/>
+  <testcase time="0.017" classname="net.bbenarbia.service.GenericServiceTest" name="testGetAll"/>
+  <testcase time="0.016" classname="net.bbenarbia.service.GenericServiceTest" name="testGetByGroupeId"/>
   <testcase time="0.015" classname="net.bbenarbia.service.GenericServiceTest" name="testSave"/>
-  <testcase time="0.014" classname="net.bbenarbia.service.GenericServiceTest" name="testSaveOrUpdate"/>
+  <testcase time="0.016" classname="net.bbenarbia.service.GenericServiceTest" name="testSaveOrUpdate"/>
   <testcase time="0.013" classname="net.bbenarbia.service.GenericServiceTest" name="testDelete"/>
-  <testcase time="0.013" classname="net.bbenarbia.service.GenericServiceTest" name="testDeleteById"/>
-  <testcase time="0.016" classname="net.bbenarbia.service.GenericServiceTest" name="testMerge"/>
+  <testcase time="0.014" classname="net.bbenarbia.service.GenericServiceTest" name="testDeleteById"/>
+  <testcase time="0.021" classname="net.bbenarbia.service.GenericServiceTest" name="testMerge"/>
 </testsuite>

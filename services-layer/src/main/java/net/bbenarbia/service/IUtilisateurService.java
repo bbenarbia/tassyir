@@ -20,6 +20,12 @@ public interface IUtilisateurService {
 	List<String> getUtilisateurAndGestionnaireListOfLogins(String filter);
 
 	/**
+	 * 
+	 * @return
+	 */
+	List<Utilisateur> getAllUtilisateurs() ;
+	
+	/**
 	 * gets the list of existent employees
 	 * 
 	 * @param groupeId
