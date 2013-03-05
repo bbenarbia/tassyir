@@ -36,6 +36,7 @@
           <string>WEB-INF/classes/messages.properties</string>
           <string>WEB-INF/classes/net/bbenarbia/controller/GestionController.class</string>
           <string>WEB-INF/classes/net/bbenarbia/controller/IndexController.class</string>
+          <string>WEB-INF/classes/log4j.properties</string>
           <string>WEB-INF/lib/spring-core-3.0.5.RELEASE.jar</string>
           <string>WEB-INF/lib/spring-asm-3.0.5.RELEASE.jar</string>
           <string>WEB-INF/lib/commons-logging-1.1.1.jar</string>
@@ -120,6 +121,23 @@
         <optional>false</optional>
       </dependency>
       <targetFileName>spring-webmvc-3.0.5.RELEASE.jar</targetFileName>
+    </org.apache.maven.plugin.war.util.DependencyInfo>
+    <org.apache.maven.plugin.war.util.DependencyInfo>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-beans</artifactId>
+        <version>3.0.5.RELEASE</version>
+        <type>jar</type>
+        <scope>compile</scope>
+        <exclusions>
+          <org.apache.maven.model.Exclusion>
+            <artifactId>commons-logging</artifactId>
+            <groupId>commons-logging</groupId>
+          </org.apache.maven.model.Exclusion>
+        </exclusions>
+        <optional>false</optional>
+      </dependency>
+      <targetFileName>spring-beans-3.0.5.RELEASE.jar</targetFileName>
     </org.apache.maven.plugin.war.util.DependencyInfo>
     <org.apache.maven.plugin.war.util.DependencyInfo>
       <dependency>

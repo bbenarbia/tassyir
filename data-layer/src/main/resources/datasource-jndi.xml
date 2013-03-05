@@ -30,23 +30,11 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan" value="net.bbenarbia.domain" />
 		
-		<!-- <property name="entityInterceptor">
-		    <bean class="com.strator.iris.common.dao.utils.StratorGeneriqueIntercerptor"/>
-  		</property>
-		 -->
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">net.sf.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
-				<!-- cache level 2 -->
-				<prop key="org.hibernate.cacheable">true</prop>
-				<prop key="hibernate.cache.use_second_level_cache">true</prop>
-				<prop key="hibernate.cache.use_query_cache">true</prop>
-				<prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.SingletonEhCacheProvider</prop>
-				<prop key="hibernate.jdbc.batch_size">300</prop>
-				<prop key="hibernate.order_inserts">true</prop>
-				<prop key="hibernate.order_updates">true</prop>
 			</props>
 		</property>
 	</bean>
