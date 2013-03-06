@@ -8,6 +8,8 @@
 
 	<!--  need for new schemas db -->
 
+	<context:annotation-config />
+	
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />

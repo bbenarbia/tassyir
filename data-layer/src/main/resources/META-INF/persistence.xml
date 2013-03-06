@@ -9,10 +9,10 @@
         <properties>
             <property name="hibernate.archive.autodetection" value="class, hbm"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-            <property name="hibernate.connection.password" value="tassyir"/>
+            <property name="hibernate.connection.password" value="hereagain"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/tassyir"/>
-            <property name="hibernate.connection.username" value="tassyir"/>
-            <property name="hibernate.dialect" value="net.sf.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
         </properties>
     </persistence-unit>
 </persistence>

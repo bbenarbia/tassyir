@@ -17,12 +17,6 @@ public class UtilisateurService implements IUtilisateurService {
 	@Autowired
 	private IUtilisateurDao utilisateurDao;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see net.bbenarbia.service.IUtilisateurService# getUtilisateurByCode(int,
-	 * int)
-	 */
 
 	public Utilisateur getUtilisateurByCode(int groupeId, int codeUtilisateur) {
 		Utilisateur utilisateur = utilisateurDao

@@ -2,4 +2,7 @@
 *.log
 *.classpath
 *.project
-target/
+target/*
+.settings/*
+.classpath
+.project
