@@ -2,51 +2,43 @@ package net.bbenarbia.service.impl;
 
 import java.util.List;
 
-import net.bbenarbia.dao.IUtilisateurDao;
-import net.bbenarbia.domain.Utilisateur;
+import net.bbenarbia.dao.IUserDao;
+import net.bbenarbia.dao.common.IGenericDao;
+import net.bbenarbia.domain.User;
 import net.bbenarbia.service.IUtilisateurService;
+import net.bbenarbia.service.generic.GenericService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class UtilisateurService implements IUtilisateurService {
+public class UtilisateurService extends GenericService<User> implements IUtilisateurService {
 
 	@Autowired
-	private IUtilisateurDao utilisateurDao;
+	private IUserDao utilisateurDao;
 
+    @Override
+    @Autowired
+    @Qualifier("utilisateurDao")
+    public void setGenericDao(IGenericDao<User> genericDao) {
+        this.genericDao = genericDao;
+    }
 
-	public Utilisateur getUtilisateurByCode(int groupeId, int codeUtilisateur) {
-		Utilisateur utilisateur = utilisateurDao
-				.getUtilisateurParGroupeIdAndCode(groupeId, codeUtilisateur);
+    
+	public User getUtilisateurByCode( int codeUtilisateur) {
+		User utilisateur = utilisateurDao
+				.getUtilisateurCode(codeUtilisateur);
 		return utilisateur;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see net.bbenarbia.service.IUtilisateurService#
-	 * getUtilisateurAndGestionnaireListOfLogins(java.lang.String)
-	 */
 
-	public List<String> getUtilisateurAndGestionnaireListOfLogins(String filter) {
-		return utilisateurDao.getFilteredLoginsOfUsers(filter);
+	@Override
+	public List<User> getUtilisateursByName(String name) {
+		
+		return utilisateurDao.getUtilisateursByName(name);
 	}
 
-	public List<Utilisateur> getAllUtilisateurs() {
-		return utilisateurDao.getAll();
-	}
-
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see net.bbenarbia.service.IUtilisateurService# getExistentEmployeeList
-	 *      (int)
-	 */
-	// @Override
-	// public List<UtilisateurDTO> getExistentEmployeeList(int groupeId) {
-	// return utilisateurDao.getExistentEmployeeList(groupeId);
-	// }
 }

@@ -1,13 +1,18 @@
 package net.bbenarbia.domain.base;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
 @MappedSuperclass
 public abstract class BaseEntity implements Comparable<BaseEntity> {
 
-    protected long id;
-
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
+	
     protected BaseEntity() {
     }
 
@@ -29,8 +34,8 @@ public abstract class BaseEntity implements Comparable<BaseEntity> {
         return Long.toString(id);
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public long getId() {
+        return id;
     }
 
     @Override
@@ -69,4 +74,11 @@ public abstract class BaseEntity implements Comparable<BaseEntity> {
     public int compareTo(BaseEntity o) {
         return id < o.id ? -1 : (id == o.id ? 0 : 1);
     }
+    
+    
+    public boolean isNew() {
+        return (this.id == null);
+    }
+    
+    
 }

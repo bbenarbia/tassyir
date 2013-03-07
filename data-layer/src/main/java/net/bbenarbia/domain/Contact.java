@@ -4,73 +4,68 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
-import net.bbenarbia.domain.base.BenEntity;
-import net.bbenarbia.domain.base.IDeletableEntity;
+import net.bbenarbia.domain.base.NamedEntity;
 import net.bbenarbia.domain.enums.EnumTypeContact;
-
-import org.hibernate.annotations.Type;
-import org.joda.time.LocalDateTime;
 
 @Entity
 @Table(name = "contact")
-public class Contact extends BenEntity implements IDeletableEntity {
-
-	private LocalDateTime dateSuppression;
-	private EnumTypeContact typeContact;
-	private String nomContact = "";
-	private String nomSocieteContact = "";
-	private String titreContact = "";
-	private String adresseContact1 = "";
-	private String adresseContact2 = "";
-	private Boolean alerteSurTelephone1 = false;
-	private Boolean alerteSurTelephone2 = false;
-	private Integer codePostalContact = 0;
-	private Boolean estContactPrincipal = false;
-	private String villeContact = "";
-	private String adresseMailContact = "";
-	private String faxContact = "";
-	private String siteWebContact = "";
-	private String telephoneContact1 = "";
-	private String telephoneContact2 = "";
-	private Boolean estSupprimable = false;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public long getId() {
-		return id;
-	}
-
-	@Column(name = "datesuppression")
-	@Type(type = "org.joda.time.contrib.hibernate.PersistentLocalDateTime")
-	public LocalDateTime getDateSuppression() {
-		return dateSuppression;
-	}
-
-	public void setDateSuppression(LocalDateTime dateSuppression) {
-		this.dateSuppression = dateSuppression;
-	}
+public class Contact extends NamedEntity {
 
 	@Column(nullable = false)
-	@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.ORDINAL)
+	private EnumTypeContact typeContact;
+
+	@Column(name = "nomSocieteContact")
+	private String nomSocieteContact = "";
+
+	@Column(name = "titreContact")
+	private String titreContact = "";
+
+	@Column(name = "adresseContact1")
+	private String adresseContact1 = "";
+
+	@Column(name = "adresseContact2")
+	private String adresseContact2 = "";
+
+	@Column(name = "alerteSurTelephone1")
+	private Boolean alerteSurTelephone1 = false;
+
+	@Column(name = "alerteSurTelephone2")
+	private Boolean alerteSurTelephone2 = false;
+
+	@Column(name = "codePostalContact")
+	private Integer codePostalContact = 0;
+
+	@Column(name = "estContactPrincipal")
+	private Boolean estContactPrincipal = false;
+
+	@Column(name = "villeContact")
+	private String villeContact = "";
+
+	@Column(name = "adresseMailContact")
+	private String adresseMailContact = "";
+
+	@Column(name = "faxContact")
+	private String faxContact = "";
+
+	@Column(name = "siteWebContact")
+	private String siteWebContact = "";
+
+	@Column(name = "telephoneContact1")
+	private String telephoneContact1 = "";
+
+	@Column(name = "telephoneContact2")
+	private String telephoneContact2 = "";
+
+
 	public EnumTypeContact getTypeContact() {
 		return typeContact;
 	}
 
 	public void setTypeContact(EnumTypeContact typeContact) {
 		this.typeContact = typeContact;
-	}
-
-	public String getNomContact() {
-		return nomContact;
-	}
-
-	public void setNomContact(String nomContact) {
-		this.nomContact = nomContact;
 	}
 
 	public String getNomSocieteContact() {
@@ -185,12 +180,5 @@ public class Contact extends BenEntity implements IDeletableEntity {
 		this.telephoneContact2 = telephoneContact2;
 	}
 
-	public Boolean getEstSupprimable() {
-		return estSupprimable;
-	}
-
-	public void setEstSupprimable(Boolean estSupprimable) {
-		this.estSupprimable = estSupprimable;
-	}
 
 }

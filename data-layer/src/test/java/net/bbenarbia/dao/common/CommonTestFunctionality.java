@@ -29,8 +29,8 @@ public abstract class CommonTestFunctionality extends AbstractTransactionalJUnit
 	    
 	protected Contact createContact(Integer groupeId, String nomContact, EnumTypeContact typeContact) {
         Contact contact = new Contact();
-        contact.setNomContact(nomContact);
-        contact.setGroupeId(groupeId);
+        contact.setName(nomContact);
+//        contact.setGroupeId(groupeId);
         contact.setTypeContact(typeContact);
         contactDao.save(contact);
         return contact;

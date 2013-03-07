@@ -19,13 +19,11 @@ public interface IGenericDao<T extends BaseEntity> extends IBaseDao {
 
     List<T> getAll();
 
-    List<T> getByGroupeId(Integer groupeId);
-
     void delete(T entity);
 
-    int delete(Long id);
+    long delete(Long id);
 
-    int executeHQLUpdate(String hql);
+    long executeHQLUpdate(String hql);
 
     long save(T entity);
 

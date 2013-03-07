@@ -2,34 +2,18 @@ package net.bbenarbia.service;
 
 import java.util.List;
 
-import net.bbenarbia.domain.Utilisateur;
+import net.bbenarbia.domain.User;
+import net.bbenarbia.service.generic.IGenericService;
 
 /**
  * The Interface IUtilisateurService.
  * 
  * @author moad
  */
-public interface IUtilisateurService {
+public interface IUtilisateurService extends IGenericService<User>{
 
-	Utilisateur getUtilisateurByCode(int groupeId, int codeUtilisateur);
+	User getUtilisateurByCode( int codeUtilisateur);
 
-	/**
-	 * @param filter
-	 * @return
-	 */
-	List<String> getUtilisateurAndGestionnaireListOfLogins(String filter);
 
-	/**
-	 * 
-	 * @return
-	 */
-	List<Utilisateur> getAllUtilisateurs() ;
-	
-	/**
-	 * gets the list of existent employees
-	 * 
-	 * @param groupeId
-	 * @return list of employees
-	 */
-//	List<UtilisateurDTO> getExistentEmployeeList(int groupeId);
+	List<User> getUtilisateursByName(String name);
 }

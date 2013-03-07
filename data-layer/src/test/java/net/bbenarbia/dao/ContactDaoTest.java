@@ -47,14 +47,14 @@ public class ContactDaoTest extends
 		Contact contact1 = contactDao.getByName(CATGEORY_ID, "Contact1", false);
 
 		Assert.assertNotNull(contact1);
-		Assert.assertEquals(contact1.getNomContact(), "Contact1");
+		Assert.assertEquals(contact1.getName(), "Contact1");
 	}
 
 	private Contact createContact(Integer groupeId, String nomContact,
 			EnumTypeContact typeContact) {
 		Contact contact = new Contact();
-		contact.setNomContact(nomContact);
-		contact.setGroupeId(groupeId);
+		contact.setName(nomContact);
+//		contact.setGroupeId(groupeId);
 		contact.setTypeContact(typeContact);
 		contactDao.save(contact);
 		return contact;

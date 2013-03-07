@@ -11,7 +11,7 @@ import org.hibernate.Query;
 
 public class GenericDao<T extends BaseEntity> extends BaseDao implements IGenericDao<T> {
 
-    /*
+    /* 
      * (non-Javadoc)
      * @see com.strator.iris.common.dao.IGenericDao#load(long)
      */
@@ -36,16 +36,6 @@ public class GenericDao<T extends BaseEntity> extends BaseDao implements IGeneri
     @SuppressWarnings("unchecked")
     public List<T> getAll() {
         Query query = getSession().createQuery("FROM " + getEntityClass().getName());
-        return query.list();
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<T> getByGroupeId(Integer groupeId) {
-        String queryString = "FROM " + getEntityClass().getName() + " WHERE groupeId = :groupeId";
-
-        Query query = getSession().createQuery(queryString);
-        query.setParameter("groupeId", groupeId);
-
         return query.list();
     }
 
@@ -80,7 +70,7 @@ public class GenericDao<T extends BaseEntity> extends BaseDao implements IGeneri
         getSession().delete(entity);
     }
 
-    public int delete(Long id) {
+    public long delete(Long id) {
         String queryString = " DELETE FROM " + getEntityClass().getName() + " WHERE id = :id ";
 
         Query query = getSession().createQuery(queryString);
@@ -90,7 +80,7 @@ public class GenericDao<T extends BaseEntity> extends BaseDao implements IGeneri
     }
 
     @Override
-    public int executeHQLUpdate(String hql) {
+    public long executeHQLUpdate(String hql) {
         return getSession().createQuery(hql).executeUpdate();
     }
 

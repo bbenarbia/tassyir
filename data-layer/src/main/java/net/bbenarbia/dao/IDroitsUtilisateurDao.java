@@ -1,7 +1,7 @@
 package net.bbenarbia.dao;
 
 import net.bbenarbia.dao.common.IGenericDao;
-import net.bbenarbia.domain.DroitsUtilisateur;
+import net.bbenarbia.domain.UserDroit;
 
 /**
  * IDroitsUtilisateurDao
@@ -9,6 +9,6 @@ import net.bbenarbia.domain.DroitsUtilisateur;
  * @date 26/04/2010 15:38:53
  * @version 1.0
  */
-public interface IDroitsUtilisateurDao extends IGenericDao<DroitsUtilisateur> {
+public interface IDroitsUtilisateurDao extends IGenericDao<UserDroit> {
 
 }

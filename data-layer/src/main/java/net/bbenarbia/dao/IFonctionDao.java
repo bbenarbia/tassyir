@@ -1,7 +1,5 @@
 package  net.bbenarbia.dao;
 
-import java.util.List;
-
 import net.bbenarbia.dao.common.IGenericDao;
 import net.bbenarbia.domain.Fonction;
 
@@ -19,7 +17,7 @@ public interface IFonctionDao extends IGenericDao<Fonction> {
      *            the groupd id
      * @return the fonctions.
      */
-    List<Fonction> getAllFonctionAssociable(int groupdID);
+//    List<Fonction> getAllFonctionAssociable(int groupdID);
 
     /**
      * Gets the function by name.

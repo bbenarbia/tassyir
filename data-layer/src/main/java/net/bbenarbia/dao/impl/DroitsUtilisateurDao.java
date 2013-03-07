@@ -2,7 +2,7 @@ package net.bbenarbia.dao.impl;
 
 import net.bbenarbia.dao.IDroitsUtilisateurDao;
 import net.bbenarbia.dao.common.GenericDao;
-import net.bbenarbia.domain.DroitsUtilisateur;
+import net.bbenarbia.domain.UserDroit;
 
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @version 1.0
  */
 @Repository
-public class DroitsUtilisateurDao extends GenericDao<DroitsUtilisateur> implements IDroitsUtilisateurDao {
+public class DroitsUtilisateurDao extends GenericDao<UserDroit> implements IDroitsUtilisateurDao {
 
 }

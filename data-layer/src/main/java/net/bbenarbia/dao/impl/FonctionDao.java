@@ -1,7 +1,5 @@
 package net.bbenarbia.dao.impl;
 
-import java.util.List;
-
 import net.bbenarbia.dao.IFonctionDao;
 import net.bbenarbia.dao.common.GenericDao;
 import net.bbenarbia.domain.Fonction;
@@ -23,18 +21,18 @@ public class FonctionDao extends GenericDao<Fonction> implements IFonctionDao {
      * (non-Javadoc)
      * @see com.strator.iris.common.dao.IFonctionDao#getAllFonctionAssociable(int)
      */
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<Fonction> getAllFonctionAssociable(int groupdID) {
-        String queryString = " FROM Fonction ";
-        queryString += " WHERE (groupeId = :groupeId or groupeid = 1) AND estassociableparraccourci = true ";
-        queryString += " ORDER BY libelleFonction ASC";
-
-        Query query = getSession().createQuery(queryString);
-        query.setInteger("groupeId", groupdID);
-
-        return query.list();
-    }
+//    @Override
+//    @SuppressWarnings("unchecked")
+//    public List<Fonction> getAllFonctionAssociable(int groupdID) {
+//        String queryString = " FROM Fonction ";
+//        queryString += " WHERE (groupeId = :groupeId or groupeid = 1) AND estassociableparraccourci = true ";
+//        queryString += " ORDER BY libelleFonction ASC";
+//
+//        Query query = getSession().createQuery(queryString);
+//        query.setInteger("groupeId", groupdID);
+//
+//        return query.list();
+//    }
 
     /*
      * (non-Javadoc)
@@ -43,11 +41,11 @@ public class FonctionDao extends GenericDao<Fonction> implements IFonctionDao {
     @Override
     public Fonction getByLabel(String label) {
         String queryString = " FROM Fonction ";
-        queryString += " WHERE groupeId = :groupeId and lower(libelleFonction) = lower(:label) ";
+        queryString += " WHERE lower(libelleFonction) = lower(:label) ";
 
         Query query = getSession().createQuery(queryString);
         query.setParameter("label", label);
-        query.setInteger("groupeId", 1);
+//        query.setInteger("groupeId", 1);
 
         return (Fonction) query.uniqueResult();
     }
