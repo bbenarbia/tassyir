@@ -9,18 +9,24 @@
           <string>imgs/arrow_left.gif</string>
           <string>imgs/arrow_right.gif</string>
           <string>imgs/l_cancel.gif</string>
+          <string>styles/images/pets.png</string>
+          <string>styles/images/springsource-logo.png</string>
           <string>styles/images/menu_left-ON.gif</string>
           <string>styles/images/menu_bg.gif</string>
           <string>styles/images/wrap_bg.jpg</string>
           <string>styles/images/Thumbs.db</string>
           <string>styles/images/logo.jpg</string>
           <string>styles/images/menu_right-ON.gif</string>
+          <string>styles/images/bullet-arrow.png</string>
           <string>styles/images/img.gif</string>
+          <string>styles/images/submit-bg.png</string>
           <string>styles/images/menu_bg-ON.gif</string>
           <string>styles/images/magnify.png</string>
           <string>styles/images/menu_bg-OVER.gif</string>
+          <string>styles/images/banner-graphic.png</string>
           <string>styles/calendar.css</string>
           <string>styles/style.css</string>
+          <string>styles/petclinic.css</string>
           <string>scripts/calendar.js</string>
           <string>scripts/graphics/arrow_down.gif</string>
           <string>scripts/graphics/calendar.jpg</string>
@@ -30,12 +36,18 @@
           <string>WEB-INF/tassyir-dispatcher-servlet.xml</string>
           <string>WEB-INF/tassyir-web-config.xml</string>
           <string>WEB-INF/web.xml</string>
+          <string>WEB-INF/tags/inputField.tag</string>
           <string>WEB-INF/pages/index.jsp</string>
-          <string>WEB-INF/pages/users/listusers.jsp</string>
+          <string>WEB-INF/pages/users/findUsers.jsp</string>
+          <string>WEB-INF/pages/users/usersList.jsp</string>
           <string>WEB-INF/pages/users/userindex.jsp</string>
+          <string>WEB-INF/pages/fragments/bodyHeader.jsp</string>
+          <string>WEB-INF/pages/fragments/footer.jsp</string>
+          <string>WEB-INF/pages/fragments/headTag.jsp</string>
+          <string>WEB-INF/pages/exception.jsp</string>
           <string>WEB-INF/classes/messages.properties</string>
-          <string>WEB-INF/classes/net/bbenarbia/controller/GestionController.class</string>
           <string>WEB-INF/classes/net/bbenarbia/controller/IndexController.class</string>
+          <string>WEB-INF/classes/net/bbenarbia/controller/UserController.class</string>
           <string>WEB-INF/classes/log4j.properties</string>
           <string>WEB-INF/lib/spring-core-3.0.5.RELEASE.jar</string>
           <string>WEB-INF/lib/spring-asm-3.0.5.RELEASE.jar</string>
@@ -48,6 +60,9 @@
           <string>WEB-INF/lib/spring-expression-3.0.5.RELEASE.jar</string>
           <string>WEB-INF/lib/spring-webmvc-3.0.5.RELEASE.jar</string>
           <string>WEB-INF/lib/spring-context-support-3.0.5.RELEASE.jar</string>
+          <string>WEB-INF/lib/hibernate-validator-4.3.0.Final.jar</string>
+          <string>WEB-INF/lib/validation-api-1.0.0.GA.jar</string>
+          <string>WEB-INF/lib/jboss-logging-3.1.0.CR2.jar</string>
           <string>WEB-INF/lib/slf4j-api-1.6.1.jar</string>
           <string>WEB-INF/lib/slf4j-log4j12-1.6.1.jar</string>
           <string>WEB-INF/lib/log4j-1.2.15.jar</string>
@@ -80,7 +95,10 @@
           <string>WEB-INF/lib/commons-httpclient-3.0.1.jar</string>
           <string>WEB-INF/lib/commons-codec-1.2.jar</string>
           <string>WEB-INF/lib/commons-io-1.3.2.jar</string>
-          <string>WEB-INF/lib/jdom-1.1.jar</string>
+          <string>WEB-INF/lib/jstl-1.2.jar</string>
+          <string>WEB-INF/lib/bootstrap-2.3.0.jar</string>
+          <string>WEB-INF/lib/jquery-1.9.0.jar</string>
+          <string>WEB-INF/lib/jquery-ui-1.9.2.jar</string>
         </pathsSet>
       </path-set>
     </entry>
@@ -138,6 +156,18 @@
         <optional>false</optional>
       </dependency>
       <targetFileName>spring-beans-3.0.5.RELEASE.jar</targetFileName>
+    </org.apache.maven.plugin.war.util.DependencyInfo>
+    <org.apache.maven.plugin.war.util.DependencyInfo>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-validator</artifactId>
+        <version>4.3.0.Final</version>
+        <type>jar</type>
+        <scope>compile</scope>
+        <exclusions/>
+        <optional>false</optional>
+      </dependency>
+      <targetFileName>hibernate-validator-4.3.0.Final.jar</targetFileName>
     </org.apache.maven.plugin.war.util.DependencyInfo>
     <org.apache.maven.plugin.war.util.DependencyInfo>
       <dependency>
@@ -239,6 +269,54 @@
         <optional>false</optional>
       </dependency>
       <targetFileName>data-layer-1.0-SNAPSHOT.jar</targetFileName>
+    </org.apache.maven.plugin.war.util.DependencyInfo>
+    <org.apache.maven.plugin.war.util.DependencyInfo>
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <version>1.2</version>
+        <type>jar</type>
+        <scope>compile</scope>
+        <exclusions/>
+        <optional>false</optional>
+      </dependency>
+      <targetFileName>jstl-1.2.jar</targetFileName>
+    </org.apache.maven.plugin.war.util.DependencyInfo>
+    <org.apache.maven.plugin.war.util.DependencyInfo>
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>bootstrap</artifactId>
+        <version>2.3.0</version>
+        <type>jar</type>
+        <scope>compile</scope>
+        <exclusions/>
+        <optional>false</optional>
+      </dependency>
+      <targetFileName>bootstrap-2.3.0.jar</targetFileName>
+    </org.apache.maven.plugin.war.util.DependencyInfo>
+    <org.apache.maven.plugin.war.util.DependencyInfo>
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>jquery-ui</artifactId>
+        <version>1.9.2</version>
+        <type>jar</type>
+        <scope>compile</scope>
+        <exclusions/>
+        <optional>false</optional>
+      </dependency>
+      <targetFileName>jquery-ui-1.9.2.jar</targetFileName>
+    </org.apache.maven.plugin.war.util.DependencyInfo>
+    <org.apache.maven.plugin.war.util.DependencyInfo>
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>jquery</artifactId>
+        <version>1.9.0</version>
+        <type>jar</type>
+        <scope>compile</scope>
+        <exclusions/>
+        <optional>false</optional>
+      </dependency>
+      <targetFileName>jquery-1.9.0.jar</targetFileName>
     </org.apache.maven.plugin.war.util.DependencyInfo>
   </dependenciesInfo>
 </webapp-structure>

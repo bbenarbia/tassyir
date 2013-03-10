@@ -1,8 +1,8 @@
-drop database IF EXISTS  petclinic;
-CREATE DATABASE IF NOT EXISTS petclinic;
-GRANT ALL PRIVILEGES ON petclinic.* TO pc@localhost IDENTIFIED BY 'pc';
+drop database IF EXISTS  tassyir;
+CREATE DATABASE IF NOT EXISTS tassyir;
+GRANT ALL PRIVILEGES ON tassyir.* TO pc@localhost IDENTIFIED BY 'pc';
 
-USE petclinic;
+USE tassyir;
 
 CREATE TABLE IF NOT EXISTS vets (
   id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,

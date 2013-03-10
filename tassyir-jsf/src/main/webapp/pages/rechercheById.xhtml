@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" 
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:c="http://java.sun.com/jsp/jstl/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<ui:include src="/WEB-INF/include/menu.xhtml"></ui:include>
+	
+	<h1>Recherche par Id</h1>
+	<h:form id="searchForm">
+	<h:panelGrid columns="2">
+		<h:outputLabel  for="idlivre" value="#{msg.idlivre}" />
+		<h:inputText id="idlivre" value="#{rechercheIdBean.idLivre}" /><br/>		
+		<h:commandButton action="#{rechercheIdBean.ChercherLivre}" value="#{msg.search}"></h:commandButton>
+	</h:panelGrid>
+	</h:form> 
+<!-- 	<h:outputText value="1 : #{rechercheIdBean.livreTrouve}"/> <br/>
+	<h:outputText value="2 : #{empty rechercheIdBean.livreTrouve}"/><br/>
+	<h:outputText value="3 : #{!empty rechercheIdBean.livreTrouve}"/><br/>
+	<h:outputText value="4 : #{not empty rechercheIdBean.livreTrouve}"/><br/> -->
+	
+<!-- <c:if test="${not empty rechercheIdBean.livreTrouve}"> -->
+	<h:form id="resultForm" rendered="#{!empty rechercheIdBean.livreTrouve}">
+	  <h:panelGrid columns="2">
+		<h:outputText value="titre:"/>
+		<h:outputText  value="#{rechercheIdBean.livreTrouve.titre}"/>
+		<h:outputText value="isbn:"/>  <h:outputText  value="#{rechercheIdBean.livreTrouve.isbn}"/>		
+		<h:outputText value="parution:"/><h:outputText  value="#{rechercheIdBean.livreTrouve.parution}"/>
+		
+	
+		<h:outputText value="Auteurs:"/>
+		<h:panelGroup>
+		<c:forEach var="auteur" items="${rechercheIdBean.livreTrouve.auteurs}" >
+			
+				${auteur.nom} : ${auteur.prenom} : ${auteur.pays} <br></br>
+			
+		</c:forEach>
+		</h:panelGroup> 
+		<h:outputText value="editeur:"/>
+		<h:selectOneMenu id="editeur" value="#{rechercheIdBean.livreTrouve.editeur.id}">
+			<f:selectItems value="#{rechercheIdBean.listEditeurs}"/>
+		</h:selectOneMenu>
+		<br/>
+	<h:commandButton action="#{rechercheIdBean.updateEditeur}" value="#{msg.update}"/>
+	</h:panelGrid>	
+	</h:form>
+<!-- </c:if> -->
+</body>
+</html>

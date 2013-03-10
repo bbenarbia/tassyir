@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
+@Service("utilisateurService")
 @Transactional
 public class UtilisateurService extends GenericService<User> implements IUtilisateurService {
 
@@ -41,4 +41,10 @@ public class UtilisateurService extends GenericService<User> implements IUtilisa
 		return utilisateurDao.getUtilisateursByName(name);
 	}
 
+	@Override
+	public String getMessage() {
+		 
+		return "JSF 2 + Spring Integration";
+ 
+	}
 }

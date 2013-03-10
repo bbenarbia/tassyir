@@ -16,4 +16,7 @@ public interface IUtilisateurService extends IGenericService<User>{
 
 
 	List<User> getUtilisateursByName(String name);
+	
+	String getMessage();
+		 
 }

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:f="http://java.sun.com/jsf/core" 
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:c="http://java.sun.com/jsp/jstl/core"
+xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Recherche multiple</title>
+	
+</head>
+<body>
+
+	<ui:include src="/WEB-INF/include/menu.xhtml"></ui:include>
+	<h1>Recherche multiple</h1>
+	<h:form id="searchFormMultiple">
+		<h:panelGrid columns="5">
+		  <h:outputLabel  for="titreInput" value="titre"/>
+		  <h:outputLabel for="auteurInput" value="auteur"/>
+		  <h:outputLabel for="editeurInput" value="editeur"/>
+		  <h:outputLabel for="parutionInput" value="parution"/><br/>
+
+		  
+		  <h:inputText id="titreInput"  value="#{rechercheMultipleBean.titre}"/>
+		  <h:inputText id="auteurInput"  value="#{rechercheMultipleBean.auteur}" />
+		  <h:inputText id="editeurInput"  value="#{rechercheMultipleBean.editeur}" />
+		  <h:inputText id="parutionInput"  value="#{rechercheMultipleBean.parution}"/>
+		   
+		   <h:commandButton value="search"  action="#{rechercheMultipleBean.search}"/>
+		</h:panelGrid>
+	</h:form>
+	
+	
+	<h:dataTable id="listLivreFound" value="#{rechercheMultipleBean.listLivreFounds}" var="livre" rendered="#{not empty rechercheMultipleBean.listLivreFounds}">
+	 
+	<h:column id="titreCol">
+		<f:facet name="header"><h:outputText value="titre"/> </f:facet>
+		<h:form>
+			<h:commandLink value="#{livre.titre}" action="#{rechercheIdBean.getDetailsLivre}">
+				<f:param name="idLivre" value="#{livre.id}" ></f:param>
+			</h:commandLink>
+		</h:form>
+			
+	</h:column>
+	
+	<h:column id="auteureCol">
+	<f:facet name="header"><h:outputText value="auteur"/> </f:facet>
+	
+		<h:panelGroup>
+			
+			<h:dataTable id="listauteurs" value="#{livre.auteurs}" var="auteur">
+				<h:column>
+					<!-- <f:facet name="header"><h:outputText value="nom"/> </f:facet> -->
+					<h:outputText value="#{auteur.nom}"/><br/>
+				</h:column>
+				<h:column>
+					<!-- <f:facet name="header"><h:outputText value="prenom"/> </f:facet> -->
+					<h:outputText value="#{auteur.prenom}"/><br/>
+				</h:column>
+				
+			</h:dataTable>			
+		</h:panelGroup>	
+	</h:column>
+	
+	<h:column id="editeurCol">
+	<f:facet name="header"><h:outputText value="editeur"/> </f:facet>
+		<h:outputText value="#{livre.editeur.nom}"/>	
+	</h:column>
+	
+	<h:column id="parutionCol">
+	<f:facet name="header"><h:outputText value="parution"/> </f:facet>
+		<h:outputText value="#{livre.parution}"/>	
+	</h:column>
+	
+	<h:column id="isbnCol">
+	<f:facet name="header"><h:outputText value="isbn"/> </f:facet>
+		<h:outputText value="#{livre.isbn}"/>	
+	</h:column>	
+	</h:dataTable>
+
+</body>
+</html>
