@@ -27,8 +27,8 @@ public class UtilisateurService extends GenericService<User> implements IUtilisa
         this.genericDao = genericDao;
     }
 
-    
-	public User getUtilisateurByCode( int codeUtilisateur) {
+    @Override
+	public User getUtilisateurByCode(Long codeUtilisateur) {
 		User utilisateur = utilisateurDao
 				.getUtilisateurCode(codeUtilisateur);
 		return utilisateur;
@@ -36,9 +36,16 @@ public class UtilisateurService extends GenericService<User> implements IUtilisa
 
 
 	@Override
-	public List<User> getUtilisateursByName(String name) {
+	public List<User> getUtilisateursByFirstName(String firstName) {
 		
-		return utilisateurDao.getUtilisateursByName(name);
+		return utilisateurDao.getUtilisateursByFirstName(firstName);
+	}
+	
+	
+	@Override
+	public List<User> getUtilisateursByLastName(String LastName) {
+		
+		return utilisateurDao.getUtilisateursByLastName(LastName);
 	}
 
 	@Override

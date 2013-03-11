@@ -69,7 +69,7 @@ public class UserController {
         	user.setLastName(""); // empty string signifies broadest possible search
         }
 
-        Collection<User> results = this.utilisateurService.getUtilisateursByName(user.getLastName());
+        Collection<User> results = this.utilisateurService.getUtilisateursByLastName(user.getLastName());
         if (results.size() < 1) {
             result.rejectValue("lastName", "notFound", "not found");
             return "users/findUsers";

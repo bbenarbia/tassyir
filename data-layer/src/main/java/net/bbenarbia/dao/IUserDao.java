@@ -31,26 +31,28 @@ public interface IUserDao extends IGenericDao<User>{
      * @param code
      * @return
      */
-    User getUtilisateurCode(Integer code);
+    User getUtilisateurCode(Long code);
 
     /**
      * @param code
      * @return
      */
-    boolean existUserWithCode(Integer code);
+    boolean existUserWithCode(Long code);
 
     /**
      * @param name
      * @return
      */
-    List<User> getUtilisateursByName(String name);
+    List<User> getUtilisateursByFirstName(String name);
 
+    
+    List<User> getUtilisateursByLastName(String name);
     
     /**
      * @param refUtilisateur
      * @return
      */
-    User getUtilisateurParRef(long refUtilisateur);
+    User getUtilisateurParRef(Long refUtilisateur);
 
     /**
      * @param login

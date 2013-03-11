@@ -6,12 +6,12 @@
  xmlns:c="http://java.sun.com/jsp/jstl/core">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
+<title></title>
 </head>
 <body>
 <ui:composition>
 	<f:loadBundle basename="messages" var="msg"/>
-    <h:graphicImage url="/images/fr.icon.gif" /><br/>
+    <!-- <h:graphicImage url="/images/fr.icon.gif" /><br/> -->
 	<h:outputText value="Welcome : #{loginBean.login}"> </h:outputText>
 	<h:outputText value="Welcome user :"/>
 	<h:outputText value="Nom: #{sessionScope.utilisateur.nom}:" />
@@ -21,9 +21,12 @@
 		<table>
 			<tr>
 			<td><h:commandLink  value="#{msg.accueil}" action="accueil"  /><br/></td>
+			<td><h:commandLink  value="#{msg.listuser}" action="/pages/users/listUsers.jsf"  /><br/></td>
+			<td><h:commandLink  value="#{msg.searchMulti}" action="/pages/users/searchUsers.jsf"  /></td>
+			
+			
 			<td><h:commandLink  value="#{msg.searchById}" action="recherche"  /><br/></td>
-			<td><h:commandLink  value="#{msg.searchMulti}" action="rechercheMulti"  /></td>
-			<td><h:link  value="#{msg.addBook}" outcome="addLivre"  /></td>
+			
 			<td><h:commandLink  value="#{msg.logout}" action="#{loginBean.deconnexion}"  /></td>
 			</tr>
 		</table>

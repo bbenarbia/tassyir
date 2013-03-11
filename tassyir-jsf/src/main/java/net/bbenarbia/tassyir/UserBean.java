@@ -6,6 +6,7 @@ import javax.faces.bean.SessionScoped;
 import net.bbenarbia.service.IUtilisateurService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class UserBean{
  
 	@Autowired
-//	@Qualifier("utilisateurService")
+	@Qualifier("utilisateurService")
 	private IUtilisateurService utilisateurService;;
  
 

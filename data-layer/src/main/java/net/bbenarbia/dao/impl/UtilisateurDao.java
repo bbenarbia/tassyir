@@ -27,7 +27,6 @@ public class UtilisateurDao extends  GenericDao<User> implements IUserDao {
         return super.save(utilisateur);
     }
 
-
     /**
      * Load user by it's login.
      * @param login
@@ -41,8 +40,8 @@ public class UtilisateurDao extends  GenericDao<User> implements IUserDao {
         return (User) query.uniqueResult();
     }
 
-    public User getUtilisateurCode(Integer code) {
-        String queryString = "FROM User WHERE codeUtilisateur = :code";
+    public User getUtilisateurCode(Long code) {
+        String queryString = "FROM User WHERE code = :code";
 
         Query query = getSession().createQuery(queryString);
         query.setParameter("code", code);
@@ -50,8 +49,8 @@ public class UtilisateurDao extends  GenericDao<User> implements IUserDao {
         return (User) query.uniqueResult();
     }
 
-    public boolean existUserWithCode(Integer code) {
-        String queryString = "SELECT id FROM User WHERE codeUtilisateur = :code";
+    public boolean existUserWithCode(Long code) {
+        String queryString = "SELECT id FROM User WHERE code = :code";
 
         Query query = getSession().createQuery(queryString);
         query.setParameter("code", code);
@@ -72,17 +71,29 @@ public class UtilisateurDao extends  GenericDao<User> implements IUserDao {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<User> getUtilisateursByName(String name) {
+    public List<User> getUtilisateursByFirstName(String firstName) {
         String queryString = "FROM User WHERE first_name = :name";
 
         Query query = getSession().createQuery(queryString);
-        query.setParameter("name", name);
+        query.setParameter("name", firstName);
+
+        return query.list();
+    }
+    
+    
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<User> getUtilisateursByLastName(String lastName) {
+        String queryString = "FROM User WHERE last_name = :name";
+
+        Query query = getSession().createQuery(queryString);
+        query.setParameter("name", lastName);
 
         return query.list();
     }
 
     @Override
-    public User getUtilisateurParRef(long refUtilisateur) {
+    public User getUtilisateurParRef(Long refUtilisateur) {
         String queryString = "FROM User WHERE refId.id = :ref";
 
         Query query = getSession().createQuery(queryString);
@@ -91,41 +102,5 @@ public class UtilisateurDao extends  GenericDao<User> implements IUserDao {
         return (User) query.uniqueResult();
     }
 
-
-//    @Override
-//    public void deleteWithSuppression(User utilisateur) {
-//        utilisateur.setDateSuppression(new LocalDateTime());
-//        saveOrUpdate(utilisateur);
-//    }
-
-//    @SuppressWarnings("unchecked")
-//    @Override
-//    public List<String> getFilteredLoginsOfUsers(String filter) {
-//        StringBuilder queryBuilder = new StringBuilder();
-//        queryBuilder.append(" SELECT user.login ");
-//        queryBuilder.append(" FROM Utilisateur user ");
-//        queryBuilder.append(" LEFT JOIN user.roles role ");
-//        queryBuilder.append(" WHERE role IN (:searchableRoles) AND user.login LIKE :expr ");
-//
-//        Query query = getSession().createQuery(queryBuilder.toString());
-//        query.setParameterList("searchableRoles", new EnumRole[] {EnumRole.GESTIONNAIRE, EnumRole.UTILISATEUR});
-//        query.setString("expr", filter + "%");
-//
-//        return (List<String>) query.list();
-//    }
-
-    
-
-//    @SuppressWarnings("unchecked")
-//    @Override
-//    public List<User> getUtilisateursByGroupeId(Integer groupeId) {
-//        StringBuilder queryBuilder = new StringBuilder();
-//        queryBuilder.append("FROM Utilisateur utilisateur");
-//        queryBuilder.append("WHERE  dateSuppression = null");
-//
-//        Query query = getSession().createQuery(queryBuilder.toString());
-//        query.setParameter("groupeId", groupeId);
-//        return (List<User>) query.list();
-//    }
 
 }

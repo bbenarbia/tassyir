@@ -12,10 +12,13 @@ import net.bbenarbia.service.generic.IGenericService;
  */
 public interface IUtilisateurService extends IGenericService<User>{
 
-	User getUtilisateurByCode( int codeUtilisateur);
+	User getUtilisateurByCode( Long codeUtilisateur);
 
 
-	List<User> getUtilisateursByName(String name);
+	List<User> getUtilisateursByFirstName(String firstName);
+	
+	
+	List<User> getUtilisateursByLastName(String lastName);
 	
 	String getMessage();
 		 

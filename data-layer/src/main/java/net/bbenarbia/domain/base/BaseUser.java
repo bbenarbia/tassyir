@@ -6,6 +6,9 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public class BaseUser extends BaseEntity {
 
+	@Column(name = "code")
+	protected Long code;
+
 	@Column(name = "first_name")
 	protected String firstName;
 
@@ -82,5 +85,15 @@ public class BaseUser extends BaseEntity {
 	public void setIsAdmin(Boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
+
+	public Long getCode() {
+		return code;
+	}
+
+	public void setCode(Long code) {
+		this.code = code;
+	}
+	
+	
 
 }

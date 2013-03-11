@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>tassyir-jsf</artifactId>
 	<packaging>war</packaging>
-	<name>tassyir-jsf Maven Webapp</name>
+	<name>tassyir-jsf Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 
