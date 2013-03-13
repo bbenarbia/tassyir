@@ -23,7 +23,7 @@ public class UtilisateurDao extends  GenericDao<User> implements IUserDao {
      * Override save method to increment the codeUtilisateur if it's not null
      */
     @Override
-    public long save(User utilisateur) {
+    public Long save(User utilisateur) {
         return super.save(utilisateur);
     }
 

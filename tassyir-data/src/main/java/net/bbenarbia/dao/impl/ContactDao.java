@@ -21,7 +21,7 @@ import org.springframework.stereotype.Repository;
 public class ContactDao extends GenericDao<Contact> implements IContactDao {
 
     public static final String TABLE_ALIAS = "contact";
-    public static final String FIELD_CONTACT_NOM = TABLE_ALIAS + ".nomContact";
+    public static final String FIELD_CONTACT_NOM = TABLE_ALIAS + ".name";
     public static final String FIELD_CONTACT_EMAIL = TABLE_ALIAS + ".adresseMailContact";
     public static final String FIELD_CONTACT_VILLE = TABLE_ALIAS + ".villeContact";
     public static final String FIELD_GROUPE_ID = TABLE_ALIAS + ".groupeId";
@@ -32,8 +32,7 @@ public class ContactDao extends GenericDao<Contact> implements IContactDao {
      */
     @Override
     public Contact getByName(Integer groupeId, String name, boolean ignoreCase) {
-        Criteria criteria = getSession().createCriteria(getEntityClass(), TABLE_ALIAS).add(
-                Restrictions.eq(FIELD_GROUPE_ID, groupeId));
+        Criteria criteria = getSession().createCriteria(getEntityClass(), TABLE_ALIAS);
         if (ignoreCase) {
             criteria.add(Restrictions.eq(FIELD_CONTACT_NOM, name).ignoreCase());
         } else {
@@ -43,37 +42,15 @@ public class ContactDao extends GenericDao<Contact> implements IContactDao {
         return (Contact) criteria.uniqueResult();
     }
 
-//    @Override
-//    public Contact getContact(Integer groupeId, EnumTypeFournisseur typeFournisseur, EnumTypeContact typeContact) {
-//        StringBuilder queryBuilder = new StringBuilder();
-//        queryBuilder.append(" SELECT contact ");
-//        queryBuilder.append(" FROM Contact contact ");
-//        queryBuilder.append(" JOIN contact.fournisseur fournisseur");
-//        queryBuilder.append(" WHERE contact.groupeId = :groupeId");
-//        queryBuilder.append(" AND contact.typeContact = :typeContact");
-//        queryBuilder.append(" AND contact.estContactPrincipal IS true");
-//        queryBuilder.append(" AND fournisseur.typeFournisseur = :typeFournisseur");
-//
-//        Query query = getSession().createQuery(queryBuilder.toString());
-//        query.setParameter("groupeId", groupeId);
-//        query.setParameter("typeContact", typeContact);
-//        query.setParameter("typeFournisseur", typeFournisseur);
-//        query.setMaxResults(1);
-//
-//        return (Contact) query.uniqueResult();
-//    }
-
     @Override
     public Contact getContact(Integer groupeId, EnumTypeContact typeContact) {
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append(" SELECT contact ");
         queryBuilder.append(" FROM Contact contact ");
-        queryBuilder.append(" WHERE contact.groupeId = :groupeId");
-        queryBuilder.append(" AND contact.typeContact = :typeContact");
+        queryBuilder.append(" WHERE contact.typeContact = :typeContact");
         queryBuilder.append(" AND contact.estContactPrincipal is true");
 
         Query query = getSession().createQuery(queryBuilder.toString());
-        query.setParameter("groupeId", groupeId);
         query.setParameter("typeContact", typeContact);
         query.setMaxResults(1);
         return (Contact) query.uniqueResult();

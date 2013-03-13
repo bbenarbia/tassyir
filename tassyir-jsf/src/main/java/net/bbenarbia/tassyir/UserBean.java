@@ -24,7 +24,7 @@ public class UserBean{
 	}
 
 	public String printMsgFromSpring() {
-		return utilisateurService.getMessage();
+		return "utilisateurService.getMessage()";
 	}
  
 }

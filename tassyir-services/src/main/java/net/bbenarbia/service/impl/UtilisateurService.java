@@ -48,10 +48,4 @@ public class UtilisateurService extends GenericService<User> implements IUtilisa
 		return utilisateurDao.getUtilisateursByLastName(LastName);
 	}
 
-	@Override
-	public String getMessage() {
-		 
-		return "JSF 2 + Spring Integration";
- 
-	}
 }

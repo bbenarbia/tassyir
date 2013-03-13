@@ -13,19 +13,19 @@ import net.bbenarbia.domain.base.BaseEntity;
  */
 public interface IGenericDao<T extends BaseEntity> extends IBaseDao {
 
-    T load(long id);
+    T load(Long id);
 
-    T get(long id);
+    T get(Long id);
 
     List<T> getAll();
 
     void delete(T entity);
 
-    long delete(Long id);
+    Long delete(Long id);
 
-    long executeHQLUpdate(String hql);
+    Long executeHQLUpdate(String hql);
 
-    long save(T entity);
+    Long save(T entity);
 
     void save(T... entities);
 

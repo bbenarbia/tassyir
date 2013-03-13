@@ -23,95 +23,101 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * @author benaissa
  */
+
+
 @Controller
-//@SessionAttributes(types = User.class)
+@SessionAttributes("user")
+@RequestMapping("/users")
 public class UserController {
 
-	
-    @Autowired
+	@Autowired
 	private IUtilisateurService utilisateurService;;
 
+	@InitBinder
+	public void setAllowedFields(WebDataBinder dataBinder) {
+		dataBinder.setDisallowedFields("id");
+	}
 
-    @InitBinder
-    public void setAllowedFields(WebDataBinder dataBinder) {
-        dataBinder.setDisallowedFields("id");
-    }
+	@RequestMapping("/{userId}")
+	public ModelAndView showUser(@PathVariable("userId") long userId) {
+		ModelAndView mav = new ModelAndView("users/userDetails");
+		mav.addObject(this.utilisateurService.get(userId));
+		return mav;
+	}
 
-    @RequestMapping(value = "/users/new", method = RequestMethod.GET)
-    public String initCreationForm(Model model) {
-        User user = new User();
-        model.addAttribute(user);
-        return "users/createOrUpdateUserForm";
-    }
+	@RequestMapping(value = "/new", method = RequestMethod.POST)
+	public String processCreationForm(@Valid User user, BindingResult result,
+			SessionStatus status) {
+		if (result.hasErrors()) {
+			return "users/createOrUpdateUserForm";
+		} else {
+			this.utilisateurService.save(user);
+			status.setComplete();
+			return "redirect:/users/" + user.getId();
+		}
+	}
 
-    @RequestMapping(value = "/users/new", method = RequestMethod.POST)
-    public String processCreationForm(@Valid User user, BindingResult result, SessionStatus status) {
-        if (result.hasErrors()) {
-            return "users/createOrUpdateUserForm";
-        } else {
-            this.utilisateurService.save(user);
-            status.setComplete();
-            return "redirect:/users/" + user.getId();
-        }
-    }
+	@RequestMapping(value = "/find", method = RequestMethod.GET)
+	public String initFindForm(Model model) {
+		model.addAttribute("user", new User());
+		return "users/findUsers";
+	}
 
-    @RequestMapping(value = "/users/find", method = RequestMethod.GET)
-    public String initFindForm(Model model) {
-        model.addAttribute("user", new User());
-        return "users/findUsers";
-    }
+	
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public String processFindForm(User user, BindingResult result, Model model) {
+	@RequestMapping(method = RequestMethod.GET)
+	public String processFindForm(Model model) {
 
-        // allow parameterless GET request for /owners to return all records
-        if (user.getLastName() == null) {
-        	user.setLastName(""); // empty string signifies broadest possible search
-        }
-
-        Collection<User> results = this.utilisateurService.getUtilisateursByLastName(user.getLastName());
-        if (results.size() < 1) {
-            result.rejectValue("lastName", "notFound", "not found");
-            return "users/findUsers";
-        }
-        if (results.size() > 1) {
-            model.addAttribute("selections", results);
-            return "users/usersList";
-        } else {
-            user = results.iterator().next();
-            return "redirect:/users/" + user.getId();
-        }
-    }
-
-    @RequestMapping(value = "/users/{userId}/edit", method = RequestMethod.GET)
-    public String initUpdateUserForm(@PathVariable("userId") int userId, Model model) {
-        User user = this.utilisateurService.get(userId);
-        model.addAttribute(user);
-        return "users/createOrUpdateUserForm";
-    }
-
-    @RequestMapping(value = "/users/{userId}/edit", method = RequestMethod.PUT)
-    public String processUpdateUserForm(@Valid User user, BindingResult result, SessionStatus status) {
-        if (result.hasErrors()) {
-            return "users/createOrUpdateUserForm";
-        } else {
-            this.utilisateurService.save(user);
-            status.setComplete();
-            return "redirect:/users/{userId}";
-        }
-    }
-
-    /**
-     * Custom handler for displaying an owner.
-     *
-     * @param ownerId the ID of the owner to display
-     * @return a ModelMap with the model attributes for the view
-     */
-    @RequestMapping("/users/{userId}")
-    public ModelAndView showOwner(@PathVariable("userId") int userId) {
-        ModelAndView mav = new ModelAndView("users/userDetails");
-        mav.addObject(this.utilisateurService.get(userId));
-        return mav;
-    }
+		Collection<User> results = this.utilisateurService.getAll();
+		model.addAttribute("selections", results);
+		return "users/usersList";
+	}
+	
+	
+	
+	@RequestMapping(value = "/{userId}", method = RequestMethod.POST)
+	public String update(User user, BindingResult bindingResult, Model uiModel) {
+		if (bindingResult.hasErrors()) {
+			uiModel.addAttribute("user", user);
+			return "users/createOrUpdateUserForm";
+		}
+		uiModel.asMap().clear();
+		if(user.getId() == null){
+			utilisateurService.save(user);
+		}
+		else {
+			utilisateurService.merge(user);
+		}
+		return "redirect:/userss/" + user.getId();
+	}
+	
+	
+	@RequestMapping(value = "/{userId}/edit", method = RequestMethod.GET)
+	public String initUpdateUserForm(@PathVariable("userId") Long userId,
+			Model model) {
+		User user = this.utilisateurService.get(userId);
+		model.addAttribute("user",user);
+		return "users/createOrUpdateUserForm";
+	}
+	
+	
+	@RequestMapping(value = "/{userId}/edit", method = RequestMethod.POST)
+	public String processUpdateUserForm(@Valid User user, BindingResult result,
+			SessionStatus status) {
+		if (result.hasErrors()) {
+			return "users/createOrUpdateUserForm";
+		} else {
+			if(user.getId() == null){
+				utilisateurService.save(user);
+			}
+			else {
+				utilisateurService.merge(user);
+			}
+			status.setComplete();
+			return "redirect:/users/"+user.getId();
+		}
+	}
 
 }
+
+

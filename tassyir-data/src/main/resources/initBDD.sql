@@ -1,4 +1,4 @@
-drop database IF EXISTS  tassyir;
+drop database IF EXISTS tassyir;
 CREATE DATABASE IF NOT EXISTS tassyir;
 GRANT ALL PRIVILEGES ON tassyir.* TO pc@localhost IDENTIFIED BY 'pc';
 

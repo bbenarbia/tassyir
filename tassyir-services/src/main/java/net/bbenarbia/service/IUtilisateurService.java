@@ -20,6 +20,5 @@ public interface IUtilisateurService extends IGenericService<User>{
 	
 	List<User> getUtilisateursByLastName(String lastName);
 	
-	String getMessage();
 		 
 }

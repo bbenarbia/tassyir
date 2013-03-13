@@ -20,7 +20,7 @@ public abstract class BaseEntity implements Comparable<BaseEntity> {
      * Constructor setting the id
      * @param id
      */
-    protected BaseEntity(long id) {
+    protected BaseEntity(Long id) {
         this.id = id;
     }
 
@@ -34,7 +34,7 @@ public abstract class BaseEntity implements Comparable<BaseEntity> {
         return Long.toString(id);
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

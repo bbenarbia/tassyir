@@ -13,19 +13,19 @@ public class GenericDao<T extends BaseEntity> extends BaseDao implements IGeneri
 
     /* 
      * (non-Javadoc)
-     * @see com.strator.iris.common.dao.IGenericDao#load(long)
+     * @see com.strator.iris.common.dao.IGenericDao#load(Long)
      */
     @SuppressWarnings("unchecked")
-    public T load(long id) {
+    public T load(Long id) {
         return (T) getSession().load(getEntityClass(), id);
     }
 
     /*
      * (non-Javadoc)
-     * @see com.strator.iris.common.dao.IGenericDao#get(long)
+     * @see com.strator.iris.common.dao.IGenericDao#get(Long)
      */
     @SuppressWarnings("unchecked")
-    public T get(long id) {
+    public T get(Long id) {
         return (T) getSession().get(getEntityClass(), id);
     }
 
@@ -48,7 +48,7 @@ public class GenericDao<T extends BaseEntity> extends BaseDao implements IGeneri
      * (non-Javadoc)
      * @see com.strator.iris.common.dao.IGenericDao#save(T)
      */
-    public long save(T entity) {
+    public Long save(T entity) {
         return (Long) getSession().save(entity);
     }
 
@@ -70,18 +70,18 @@ public class GenericDao<T extends BaseEntity> extends BaseDao implements IGeneri
         getSession().delete(entity);
     }
 
-    public long delete(Long id) {
+    public Long delete(Long id) {
         String queryString = " DELETE FROM " + getEntityClass().getName() + " WHERE id = :id ";
 
         Query query = getSession().createQuery(queryString);
         query.setParameter("id", id);
 
-        return query.executeUpdate();
+        return Long.valueOf(query.executeUpdate());
     }
 
     @Override
-    public long executeHQLUpdate(String hql) {
-        return getSession().createQuery(hql).executeUpdate();
+    public Long executeHQLUpdate(String hql) {
+        return Long.valueOf(getSession().createQuery(hql).executeUpdate());
     }
 
     @Override

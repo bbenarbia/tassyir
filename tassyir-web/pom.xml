@@ -14,6 +14,21 @@
 
 	<dependencies>
 
+
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time-hibernate</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time-jsptags</artifactId>
+		</dependency>
+
+
 		<!-- Spring 3 dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -80,14 +95,14 @@
 		</dependency>
 
 
-			<dependency>
-				<groupId>net.bbenarbia</groupId>
-				<artifactId>tassyir-data</artifactId>
-			</dependency>
-			<dependency>
-				<groupId>net.bbenarbia</groupId>
-				<artifactId>tassyir-services</artifactId>
-			</dependency>
+		<dependency>
+			<groupId>net.bbenarbia</groupId>
+			<artifactId>tassyir-data</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.bbenarbia</groupId>
+			<artifactId>tassyir-services</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -107,6 +122,47 @@
 			<artifactId>jquery</artifactId>
 		</dependency>
 
+
+		<!-- Spring security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-aop</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core-tiger</artifactId>
+			<version>${spring-security-core-tiger.version}</version>
+			<exclusions>
+				<!-- Exclude 2.0.x spring dependencies -->
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-support</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-acl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

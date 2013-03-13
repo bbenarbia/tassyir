@@ -15,7 +15,7 @@ public interface IGenericService<Entity extends BaseEntity>  {
      * @param id
      * @return
      */
-    Entity get(long id);
+    Entity get(Long id);
 
 
     /**
@@ -23,7 +23,7 @@ public interface IGenericService<Entity extends BaseEntity>  {
      * @param item
      * @return
      */
-    long save(Entity item);
+    Long save(Entity item);
 
     /**
      * Inserts or updates a CategorieFamille object.

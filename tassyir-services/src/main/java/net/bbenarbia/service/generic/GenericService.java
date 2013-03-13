@@ -18,7 +18,7 @@ public abstract class GenericService<Entity extends BaseEntity>
     protected IGenericDao<Entity> genericDao;
 
     
-    public Entity get(long id) {
+    public Entity get(Long id) {
         return genericDao.get(id);
     }
 
@@ -28,7 +28,7 @@ public abstract class GenericService<Entity extends BaseEntity>
     }
 
     
-    public long save(Entity item) {
+    public Long save(Entity item) {
         return genericDao.save(item);
     }
 
