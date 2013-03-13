@@ -297,13 +297,6 @@
 
 			<!-- Database connetions -->
 			<dependency>
-				<groupId>mysql</groupId>
-				<artifactId>mysql-connector-java</artifactId>
-				<version>5.1.6</version>
-				<scope>provided</scope>
-			</dependency>
-
-			<dependency>
 				<artifactId>hsqldb</artifactId>
 				<groupId>org.hsqldb</groupId>
 				<version>1.8.0.10</version>
@@ -571,7 +564,7 @@
 
 			<dependency>
 				<groupId>net.bbenarbia</groupId>
-				<artifactId>data-layer</artifactId>
+				<artifactId>tassyir-data</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -581,7 +574,7 @@
 			</dependency>
 			<dependency>
 				<groupId>net.bbenarbia</groupId>
-				<artifactId>services-layer</artifactId>
+				<artifactId>tassyir-services</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
@@ -691,8 +684,8 @@
 
 
 	<modules>
-		<module>data-layer</module>
-		<module>services-layer</module>
+		<module>tassyir-data</module>
+		<module>tassyir-services</module>
 		<module>tassyir-web</module>
  	   <module>tassyir-jsf</module>
   </modules>

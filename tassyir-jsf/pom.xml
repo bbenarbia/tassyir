@@ -14,16 +14,6 @@
 	<url>http://maven.apache.org</url>
 	<dependencies>
 
-		<dependency>
-			<groupId>net.bbenarbia</groupId>
-			<artifactId>services-layer</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>net.bbenarbia</groupId>
-			<artifactId>data-layer</artifactId>
-		</dependency>
-
 		<!-- Spring framework -->
 
 			<!-- Spring -->
@@ -122,6 +112,16 @@
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>el-impl</artifactId>
 		</dependency>
+		
+		
+		<dependency>
+				<groupId>net.bbenarbia</groupId>
+				<artifactId>tassyir-data</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>net.bbenarbia</groupId>
+				<artifactId>tassyir-services</artifactId>
+			</dependency>
 	</dependencies>
 
 

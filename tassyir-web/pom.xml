@@ -79,17 +79,15 @@
 			</exclusions>
 		</dependency>
 
-		<dependency>
-			<groupId>net.bbenarbia</groupId>
-			<artifactId>services-layer</artifactId>
-		</dependency>
 
-		<dependency>
-			<groupId>net.bbenarbia</groupId>
-			<artifactId>data-layer</artifactId>
-		</dependency>
-
-
+			<dependency>
+				<groupId>net.bbenarbia</groupId>
+				<artifactId>tassyir-data</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>net.bbenarbia</groupId>
+				<artifactId>tassyir-services</artifactId>
+			</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -112,7 +110,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>tassyir-web</finalName>
+		<finalName>tassyir-mvc</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

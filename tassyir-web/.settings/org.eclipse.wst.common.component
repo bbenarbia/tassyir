@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-modules id="moduleCoreId" project-version="1.5.0">
   <wb-module deploy-name="SpringMVC">
-        <dependent-module archiveName="services-layer-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/services-layer/services-layer">
+        <dependent-module archiveName="tassyir-data-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/tassyir-data/tassyir-data">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="data-layer-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/data-layer/data-layer">
+        <dependent-module archiveName="tassyir-services-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/tassyir-services/tassyir-services">
             <dependency-type>uses</dependency-type>
         </dependent-module>
     <property name="java-output-path" value="/target/classes"/>
-        <property name="context-root" value="SpringMVC"/>
+        <property name="context-root" value="tassyir-mvc"/>
     <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
     <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
