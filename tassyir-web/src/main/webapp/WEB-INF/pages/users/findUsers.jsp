@@ -5,11 +5,9 @@
 
 <html lang="en">
 
-<jsp:include page="../fragments/headTag.jsp"/>
 
 <body>
 <div class="container">
-    <jsp:include page="../fragments/bodyHeader.jsp"/>
 
     <h2>Find Users</h2>
 
@@ -31,7 +29,6 @@
     <br/>
     <a href='<spring:url value="/users/new" htmlEscape="true"/>'>Add User</a>
 
-    <jsp:include page="../fragments/footer.jsp"/>
 
 </div>
 </body>

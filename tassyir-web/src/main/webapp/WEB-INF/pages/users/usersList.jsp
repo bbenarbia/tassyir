@@ -6,14 +6,9 @@
 
 <html lang="en">
  
-<jsp:include page="../fragments/headTag.jsp"/>
-
-
-
 
 <body>
 <div class="container">
-    <jsp:include page="../fragments/bodyHeader.jsp"/>
     <h2>Users</h2>
 
     <table class="table table-striped">
@@ -35,7 +30,6 @@
             </tr>
         </c:forEach>
     </table>
-    <jsp:include page="../fragments/footer.jsp"/>
 
 </div>
 </body>
@@ -51,7 +45,6 @@
 
 
 <div class="container">
-    <jsp:include page="../fragments/bodyHeader.jsp"/>
     <h2>Users</h2>
 
     <table class="table table-striped">
@@ -85,7 +78,6 @@
             </tr>
         </c:forEach>
     </table>
-    <jsp:include page="../fragments/footer.jsp"/>
 
 </div>
 </body>
