@@ -42,7 +42,41 @@
 
 				</td>
 			</tr>
+			<tr>
+				<td>User group</td>
+				<td><c:out value="${user.userCategory.name}" /></td>
+			</tr>
+			<%-- <tr>
+				<td>User group</td>
+				<td>
+					<c:forEach items="${listAdBind.listGroup}" varStatus="listAdBindRow">
+					<spring:bind
+						path="listAdBind.listGroup[${listAdBindRow.index}].member">
+	
+						<input type="hidden" name="_<c:out value="${status.expression}"/>">
+						<input type="checkbox" name="<c:out value="${status.expression}"/>"
+							value="true" <c:if test="${status.value}">checked</c:if> />
+					</spring:bind>
+				
+			
+				</td>
+			</tr> --%>
 
+			<spring:bind
+					path="listAdBind.listGroup[${listAdBindRow.index}].member">
+
+					<input type="hidden" name="_<c:out value="${status.expression}"/>">
+					<input type="checkbox" name="<c:out value="${status.expression}"/>"
+						value="true" <c:if test="${status.value}">checked</c:if> />
+			</spring:bind>
+				
+				
+				
+				
+				
+				
+				
+				
 			<tr>
 				<td>Roles</td>
 				<td><c:forEach var="role" items="${user.roles}">
@@ -55,7 +89,6 @@
 				 <a href="users/${user.id}/addRoles">Add new Role</a>
 				</td>
 			</tr>
-			
 			 <tr>
                             <td> 
                             	<spring:url value="/users/{userId}/edit" var="userUrl">

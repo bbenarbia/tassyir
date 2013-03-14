@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.validation.Valid;
 
 import net.bbenarbia.domain.User;
+import net.bbenarbia.service.IUserCategoryService;
 import net.bbenarbia.service.IUtilisateurService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
 
 	@Autowired
-	private IUtilisateurService utilisateurService;;
+	private IUtilisateurService utilisateurService;
+	
+	@Autowired
+	private IUserCategoryService userCategoryService;;
 
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
