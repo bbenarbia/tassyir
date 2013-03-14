@@ -23,8 +23,11 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * @author benaissa
  */
+
+
 @Controller
-@SessionAttributes(types = Contact.class)
+@SessionAttributes("contact")
+@RequestMapping("/contacts")
 public class ContactController {
 
 	@Autowired
@@ -35,57 +38,69 @@ public class ContactController {
 		dataBinder.setDisallowedFields("id");
 	}
 
-	@RequestMapping("/contacts/{contactId}")
-	public ModelAndView showOwner(@PathVariable("contactId") Long contactId) {
+	@RequestMapping("/{contactId}")
+	public ModelAndView showContact(@PathVariable("contactId") long contactId) {
 		ModelAndView mav = new ModelAndView("contacts/contactDetails");
 		mav.addObject(this.contactService.get(contactId));
 		return mav;
 	}
 
-	@RequestMapping(value = "/contacts/new", method = RequestMethod.POST)
+	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String processCreationForm(@Valid Contact contact, BindingResult result,
 			SessionStatus status) {
 		if (result.hasErrors()) {
 			return "contacts/createOrUpdateContactForm";
 		} else {
-			this.contactService.save(contact);
+			this.contactService.saveOrUpdate(contact);
 			status.setComplete();
 			return "redirect:/contacts/" + contact.getId();
 		}
 	}
 
-	@RequestMapping(value = "/contacts/find", method = RequestMethod.GET)
+	@RequestMapping(value = "/find", method = RequestMethod.GET)
 	public String initFindForm(Model model) {
 		model.addAttribute("contact", new Contact());
 		return "contacts/findContacts";
 	}
 
-	@RequestMapping(value = "/contacts/{contactId}/edit", method = RequestMethod.GET)
-	public String initUpdateUserForm(@PathVariable("contactId") Long contactId,
-			Model model) {
-		Contact contact = this.contactService.get(contactId);
-		model.addAttribute(contact);
-		return "contacts/createOrUpdateContactForm";
-	}
-
-	@RequestMapping(value = "/contacts", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String processFindForm(Model model) {
 
 		Collection<Contact> results = this.contactService.getAll();
 		model.addAttribute("selections", results);
 		return "contacts/contactsList";
 	}
-
-	@RequestMapping(value = "/contacts/{contactId}/edit", method = RequestMethod.PUT)
-	public String processUpdateUserForm(@Valid Contact contact, BindingResult result,
+	
+	@RequestMapping(value = "/{contactId}", method = RequestMethod.POST)
+	public String update(Contact contact, BindingResult bindingResult, Model uiModel) {
+		if (bindingResult.hasErrors()) {
+			uiModel.addAttribute("contact", contact);
+			return "contacts/createOrUpdateContactForm";
+		}
+		uiModel.asMap().clear();
+		contactService.saveOrUpdate(contact);
+		return "redirect:/contactss/" + contact.getId();
+	}
+	
+	
+	@RequestMapping(value = "/{contactId}/edit", method = RequestMethod.GET)
+	public String initUpdateContactForm(@PathVariable("contactId") Long contactId,
+			Model model) {
+		Contact contact = this.contactService.get(contactId);
+		model.addAttribute("contact",contact);
+		return "contacts/createOrUpdateContactForm";
+	}
+	
+	@RequestMapping(value = "/{contactId}/edit", method = RequestMethod.POST)
+	public String processUpdateContactForm(@Valid Contact contact, BindingResult result,
 			SessionStatus status) {
 		if (result.hasErrors()) {
 			return "contacts/createOrUpdateContactForm";
 		} else {
-			this.contactService.save(contact);
+			contactService.saveOrUpdate(contact);
 			status.setComplete();
-			return "redirect:/contacts/{contactId}";
+			return "redirect:/contacts/"+contact.getId();
 		}
 	}
-
 }
+

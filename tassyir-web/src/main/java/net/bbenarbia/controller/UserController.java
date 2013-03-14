@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * @author benaissa
  */
-
 
 @Controller
 @SessionAttributes("user")
@@ -46,24 +46,22 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	public String processCreationForm(@Valid User user, BindingResult result,
+	public String processCreationForm(@ModelAttribute("user") @Valid User user, BindingResult result,
 			SessionStatus status) {
 		if (result.hasErrors()) {
 			return "users/createOrUpdateUserForm";
 		} else {
-			this.utilisateurService.save(user);
+			this.utilisateurService.saveOrUpdate(user);
 			status.setComplete();
 			return "redirect:/users/" + user.getId();
 		}
 	}
 
-	@RequestMapping(value = "/find", method = RequestMethod.GET)
+	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String initFindForm(Model model) {
 		model.addAttribute("user", new User());
-		return "users/findUsers";
+		return "users/createOrUpdateUserForm";
 	}
-
-	
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String processFindForm(Model model) {
@@ -73,8 +71,6 @@ public class UserController {
 		return "users/usersList";
 	}
 	
-	
-	
 	@RequestMapping(value = "/{userId}", method = RequestMethod.POST)
 	public String update(User user, BindingResult bindingResult, Model uiModel) {
 		if (bindingResult.hasErrors()) {
@@ -82,12 +78,7 @@ public class UserController {
 			return "users/createOrUpdateUserForm";
 		}
 		uiModel.asMap().clear();
-		if(user.getId() == null){
-			utilisateurService.save(user);
-		}
-		else {
-			utilisateurService.merge(user);
-		}
+		utilisateurService.saveOrUpdate(user);
 		return "redirect:/userss/" + user.getId();
 	}
 	
@@ -100,24 +91,17 @@ public class UserController {
 		return "users/createOrUpdateUserForm";
 	}
 	
-	
 	@RequestMapping(value = "/{userId}/edit", method = RequestMethod.POST)
 	public String processUpdateUserForm(@Valid User user, BindingResult result,
 			SessionStatus status) {
 		if (result.hasErrors()) {
 			return "users/createOrUpdateUserForm";
 		} else {
-			if(user.getId() == null){
-				utilisateurService.save(user);
-			}
-			else {
-				utilisateurService.merge(user);
-			}
+				utilisateurService.saveOrUpdate(user);
 			status.setComplete();
 			return "redirect:/users/"+user.getId();
 		}
 	}
-
 }
 
 

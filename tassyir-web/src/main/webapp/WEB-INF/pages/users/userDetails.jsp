@@ -49,7 +49,11 @@
 						<ol>
 							<li><c:out value="${role.name}" /></li>
 						</ol>
-					</c:forEach></td>
+						<a href="roles/${role.id}/delete">Delete</a>
+						<a href="roles/${role.id}/edit">Edit</a>
+					</c:forEach>
+				 <a href="users/${user.id}/addRoles">Add new Role</a>
+				</td>
 			</tr>
 			
 			 <tr>
@@ -62,6 +66,12 @@
 			                <td></td>
 
                	</tr>
+               	<tr>
+               	 <td> 
+                            	<spring:url value="/users/new" var="userUrl" />
+			                    <a href="${fn:escapeXml(userUrl)}">Add User</a>
+			                </td>
+			                </tr>
 		</table>
 
 	</div>

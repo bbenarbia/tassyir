@@ -17,7 +17,7 @@
 
 <body>
 	<jsp:include page="../common/menu.jsp" />
-	<div class="container">
+	<div class="CSS_Table_Example" style="width: 600px; height: 150px;">
 		<c:choose>
 			<c:when test="${user['new']}">
 				<c:set var="method" value="post" />
@@ -38,7 +38,7 @@
 			<tassyir:inputField label="Login" name="login" />
 			<tassyir:inputField label="Code" name="code" />
 			<tassyir:inputField label="Password" name="password" />
-
+			
 			<div class="form-actions">
 				<c:choose>
 					<c:when test="${user['new']}">
