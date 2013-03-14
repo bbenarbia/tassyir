@@ -23,9 +23,8 @@
 					<td style="width: 350px;">Name</td>
 					<td style="width: 350px;">Code</td>
 					<td style="width: 300px;">Login</td>
-					<td style="width: 150px;">Password</td>
-					<td style="width: 150px;">connected</td>
 					<td style="width: 150px;">locked</td>
+					<td style="width: 150px;">connected</td>
 					<td style="width: 150px;">Admin</td>
 				</tr>
 				<c:forEach var="user" items="${selections}">
@@ -37,10 +36,15 @@
 						</td>
 						<td><c:out value="${user.code}" /></td>
 						<td><c:out value="${user.login}" /></td>
-						<td><c:out value="${user.password}" /></td>
-						<td><c:out value="${user.connected}" /></td>
-						<td><c:out value="${user.locked}" /></td>
-						<td><c:out value="${user.isAdmin}" /></td>
+						<td>
+							<input type="checkbox"  name="locked" value="locked" disabled="disabled" <c:if test="${user.locked}">checked="checked"</c:if>> 
+						</td>
+						<td>
+							<input type="checkbox"  name="connected" value="connected" disabled="disabled" <c:if test="${user.connected}">checked="checked"</c:if>> 
+						</td>
+						<td>
+							<input type="checkbox"  name="isAdmin" value="isAdmin"  disabled="disabled" <c:if test="${user.isAdmin}">checked="checked"</c:if>>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>

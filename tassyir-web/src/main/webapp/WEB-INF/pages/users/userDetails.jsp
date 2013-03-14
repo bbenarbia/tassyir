@@ -63,10 +63,7 @@
 			                    </spring:url>
 			                    <a href="${fn:escapeXml(userUrl)}">Edit User</a>
 			                </td>
-			                <td></td>
-
-               	</tr>
-               	<tr>
+			             
                	 <td> 
                             	<spring:url value="/users/new" var="userUrl" />
 			                    <a href="${fn:escapeXml(userUrl)}">Add User</a>
