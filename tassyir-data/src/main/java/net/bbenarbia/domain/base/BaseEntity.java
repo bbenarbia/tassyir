@@ -79,6 +79,10 @@ public abstract class BaseEntity implements Comparable<BaseEntity> {
     public boolean isNew() {
         return (this.id == null);
     }
+
+	public void setId(Long id) {
+		this.id = id;
+	}
     
     
 }

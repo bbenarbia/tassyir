@@ -36,4 +36,6 @@ public interface IGenericDao<T extends BaseEntity> extends IBaseDao {
     void evict(T... entities);
 
     void saveOrUpdateAll(Collection<T> entities);
+    
+    List<T> getEntityByName(String name) ;
 }

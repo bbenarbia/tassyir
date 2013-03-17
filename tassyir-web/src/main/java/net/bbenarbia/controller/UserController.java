@@ -1,10 +1,15 @@
 package net.bbenarbia.controller;
 
 import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
 import net.bbenarbia.domain.User;
+import net.bbenarbia.domain.UserCategory;
+import net.bbenarbia.dto.UserDTO;
 import net.bbenarbia.service.IUserCategoryService;
 import net.bbenarbia.service.IUtilisateurService;
 
@@ -42,6 +47,19 @@ public class UserController {
 		dataBinder.setDisallowedFields("id");
 	}
 
+	@ModelAttribute("userGroupList")
+	public Map<String,String> populateuserGroupList() {
+		
+		List<UserCategory> listGroups = userCategoryService.getAll();
+		Map<String,String> userGroupList = new LinkedHashMap<String,String>();
+		
+		for (UserCategory userCategory : listGroups) {
+			userGroupList.put(userCategory.getId().toString(), userCategory.getName());
+		}
+		return userGroupList;
+	}
+	
+	
 	@RequestMapping("/{userId}")
 	public ModelAndView showUser(@PathVariable("userId") long userId) {
 		ModelAndView mav = new ModelAndView("users/userDetails");
@@ -50,10 +68,17 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	public String processCreationForm(@ModelAttribute("user") @Valid User user, BindingResult result,
+	public String processCreationForm(@ModelAttribute("user") @Valid UserDTO userDto, BindingResult result,
 			SessionStatus status) {
+		User user = userDto.getUser();
+		
+		
+		List<UserCategory> userCategoryList = userCategoryService.getUserCategroryByName(userDto.getUserCategory().getName());
+		if(!userCategoryList.isEmpty()){
+			user.setUserCategory(userCategoryList.get(0));
+		}
 		if (result.hasErrors()) {
-			return "users/createOrUpdateUserForm";
+			return "users/createUserForm";
 		} else {
 			this.utilisateurService.saveOrUpdate(user);
 			status.setComplete();
@@ -63,8 +88,11 @@ public class UserController {
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String initFindForm(Model model) {
-		model.addAttribute("user", new User());
-		return "users/createOrUpdateUserForm";
+		UserDTO userDTO = new UserDTO();
+		model.addAttribute("user", userDTO);
+		
+//		model.addAttribute("user", new User());
+		return "users/createUserForm";
 	}
 
 	@RequestMapping(method = RequestMethod.GET)

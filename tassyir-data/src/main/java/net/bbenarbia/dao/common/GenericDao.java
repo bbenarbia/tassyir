@@ -102,4 +102,15 @@ public class GenericDao<T extends BaseEntity> extends BaseDao implements IGeneri
     public void saveOrUpdateAll(Collection<T> entities) {
         getHibernateTemplate().saveOrUpdateAll(entities);
     }
+    
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<T> getEntityByName(String name) {
+		String queryString = "FROM "+  getEntityClass().getName() + " WHERE name = :name";
+
+		Query query = getSession().createQuery(queryString);
+		query.setParameter("name", name);
+
+		return query.list();
+	}
 }

@@ -17,22 +17,11 @@
 
 <body>
 	<jsp:include page="../common/menu.jsp" />
-
-	<c:choose>
-		<c:when test="${user['new']}">
-			<c:set var="method" value="post" />
-		</c:when>
-		<c:otherwise>
-			<c:set var="method" value="put" />
-		</c:otherwise>
-	</c:choose>
-
 	<h2>
-		<c:if test="${user['new']}">New </c:if>
 		User
 	</h2>
 
-	<form:form modelAttribute="user" method="${method}" id="add-user-form">
+	<form:form modelAttribute="user" method="post" id="add-user-form">
 
 		<table>
 
@@ -71,15 +60,15 @@
 								<td><form:label path="isAdmin">Admin</form:label></td>
 								<td><form:checkbox label="Admin" path="isAdmin" /></td>
 							</tr>
-						 <tr>
+						<%-- <tr>
 								<td><form:label path="userCategory">user group</form:label></td>
 								<td>
 									<form:select path="userCategory" items="${userGroupList}" />
-								<%-- <form:select  path="userCategory" >
+								 <form:select  path="userCategory" >
 										<form:options items="${userGroupList}" itemLabel="${userCategory.name}" itemValue="${userCategory.id}"/>
-								</form:select> --%>
+								</form:select> 
 								</td>
-							</tr> 
+							</tr> --%>
 							
 						</table>
 					</div>
@@ -183,9 +172,12 @@
 					</div>
 				</td>
 			</tr>
+			<tr>
+			<td> <button type="submit">Add user</button></td>
+			</tr>
 		</table>
 
-		<div class="CSS_Table_Example" style="text-align: right;">
+	<%-- 	<div class="CSS_Table_Example" style="text-align: right;">
 			<table>
 				<tr>
 					<td><c:choose>
@@ -198,7 +190,7 @@
 						</c:choose></td>
 				</tr>
 			</table>
-		</div>
+		</div> --%>
 
 
 	</form:form>

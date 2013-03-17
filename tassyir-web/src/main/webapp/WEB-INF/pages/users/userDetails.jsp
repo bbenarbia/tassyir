@@ -46,6 +46,7 @@
 				<td>User group</td>
 				<td><c:out value="${user.userCategory.name}" /></td>
 			</tr>
+			
 			<%-- <tr>
 				<td>User group</td>
 				<td>
@@ -62,19 +63,6 @@
 				</td>
 			</tr> --%>
 
-			<spring:bind
-					path="listAdBind.listGroup[${listAdBindRow.index}].member">
-
-					<input type="hidden" name="_<c:out value="${status.expression}"/>">
-					<input type="checkbox" name="<c:out value="${status.expression}"/>"
-						value="true" <c:if test="${status.value}">checked</c:if> />
-			</spring:bind>
-				
-				
-				
-				
-				
-				
 				
 				
 			<tr>

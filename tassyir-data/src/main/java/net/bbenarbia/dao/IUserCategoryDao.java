@@ -5,4 +5,5 @@ import net.bbenarbia.domain.UserCategory;
 
 public interface IUserCategoryDao extends IGenericDao<UserCategory> {
 
+//	List<UserCategory> getUserCategoryByName(String name);
 }
