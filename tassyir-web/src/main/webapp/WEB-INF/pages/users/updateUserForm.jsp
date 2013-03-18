@@ -17,22 +17,11 @@
 
 <body>
 	<jsp:include page="../common/menu.jsp" />
-
-	<c:choose>
-		<c:when test="${user['new']}">
-			<c:set var="method" value="post" />
-		</c:when>
-		<c:otherwise>
-			<c:set var="method" value="put" />
-		</c:otherwise>
-	</c:choose>
-
 	<h2>
-		<c:if test="${user['new']}">New </c:if>
 		User
 	</h2>
 
-	<form:form modelAttribute="user" method="${method}" id="add-user-form">
+	<form:form modelAttribute="user" method="put" id="add-user-form">
 
 		<table>
 
@@ -46,6 +35,11 @@
 							<tr>
 								<td><form:label path="firstName">firstName</form:label></td>
 								<td><form:input label="First Name" path="firstName" /></td>
+							</tr>
+							<tr>
+								<td><form:label path="id">id</form:label></td>
+								<td><form:input label="id" path="id" />
+									</td>
 							</tr>
 							<tr>
 								<td><form:label path="lastName">lastName</form:label></td>
@@ -64,6 +58,10 @@
 								<td><form:password label="Password" path="password" /></td>
 							</tr>
 							<tr>
+								<td><form:label path="passwordConfirmation">passwordConfirmation</form:label></td>
+								<td><form:password label="passwordConfirmation" path="passwordConfirmation" /></td>
+							</tr>
+							<tr>
 								<td><form:label path="locked">locked</form:label></td>
 								<td><form:checkbox label="Locked" path="locked" /></td>
 							</tr>
@@ -71,15 +69,15 @@
 								<td><form:label path="isAdmin">Admin</form:label></td>
 								<td><form:checkbox label="Admin" path="isAdmin" /></td>
 							</tr>
-						 <tr>
+						<%--  <tr>
 								<td><form:label path="userCategory">user group</form:label></td>
 								<td>
 									<form:select path="userCategory" items="${userGroupList}" />
-								<%-- <form:select  path="userCategory" >
+								<form:select  path="userCategory" >
 										<form:options items="${userGroupList}" itemLabel="${userCategory.name}" itemValue="${userCategory.id}"/>
-								</form:select> --%>
+								</form:select>
 								</td>
-							</tr> 
+							</tr>  --%>
 							
 						</table>
 					</div>
@@ -170,7 +168,7 @@
 								<td><form:input label="contact.telephoneContact2"
 										path="contact.telephoneContact2" /></td>
 							</tr>
-							<tr>
+							<%-- <tr>
 								<td><form:label path="userCategory.name">userCategory.name</form:label>
 								</td>
 								<td><form:input label="userCategory.name"
@@ -178,7 +176,7 @@
 								<td></td>
 								<td></td>
 
-							</tr>
+							</tr> --%>
 						</table>
 					</div>
 				</td>
@@ -188,14 +186,9 @@
 		<div class="CSS_Table_Example" style="text-align: right;">
 			<table>
 				<tr>
-					<td><c:choose>
-							<c:when test="${user['new']}">
-								<button type="submit">Add user</button>
-							</c:when>
-							<c:otherwise>
-								<button type="submit">Update user</button>
-							</c:otherwise>
-						</c:choose></td>
+					<td>
+						<button type="submit">Update user</button>
+					</td>
 				</tr>
 			</table>
 		</div>

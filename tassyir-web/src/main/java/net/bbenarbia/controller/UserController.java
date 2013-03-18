@@ -93,10 +93,7 @@ public class UserController {
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String initFindForm(Model model) {
-		UserDTO userDTO = new UserDTO();
-		model.addAttribute("user", userDTO);
-		
-//		model.addAttribute("user", new User());
+		model.addAttribute("user", new UserDTO());
 		return "users/createUserForm";
 	}
 
@@ -112,7 +109,7 @@ public class UserController {
 	public String update(User user, BindingResult bindingResult, Model uiModel) {
 		if (bindingResult.hasErrors()) {
 			uiModel.addAttribute("user", user);
-			return "users/createOrUpdateUserForm";
+			return "users/updateUserForm";
 		}
 		uiModel.asMap().clear();
 		utilisateurService.saveOrUpdate(user);
@@ -124,19 +121,26 @@ public class UserController {
 	public String initUpdateUserForm(@PathVariable("userId") Long userId,
 			Model model) {
 		User user = this.utilisateurService.get(userId);
-		model.addAttribute("user",user);
-		return "users/createOrUpdateUserForm";
+		UserDTO userDto = new UserDTO(user);
+		model.addAttribute("user",userDto);
+		return "users/updateUserForm";
 	}
 	
 	@RequestMapping(value = "/{userId}/edit", method = RequestMethod.POST)
-	public String processUpdateUserForm(@Valid User user, BindingResult result,
+	public String processUpdateUserForm(@Valid UserDTO user,  BindingResult result,
 			SessionStatus status) {
-		if (result.hasErrors()) {
-			return "users/createOrUpdateUserForm";
-		} else {
-				utilisateurService.saveOrUpdate(user);
-			status.setComplete();
-			return "redirect:/users/"+user.getId();
+		try {
+			User user1 = this.utilisateurService.get(user.getId());
+			user1 = user.updateUser(user1);
+			if (result.hasErrors()) {
+				return "users/updateUserForm";
+			} else {
+					utilisateurService.saveOrUpdate(user1);
+				status.setComplete();
+				return "redirect:/users/"+user.getId();
+			}
+		} catch (Exception e) {
+			return "users/updateUserForm";
 		}
 	}
 }

@@ -56,6 +56,24 @@ public class UserDTO {
 	}
 	
 	
+	public User updateUser(User user)throws Exception{
+		
+		user.setCode(code);
+		user.setConnected(connected);
+		user.setContact(contact.getContact());
+		user.setFirstName(firstName);
+		user.setIsAdmin(isAdmin);
+		user.setLastName(lastName);
+		user.setLocked(locked);
+		user.setLogin(login);
+		if(password.equals(passwordConfirmation)){
+			user.setPassword(password);
+		}else throw new Exception("Password not confirmed");
+		user.setContact(contact.getContact());
+		return user;
+	}
+	
+	
 	public UserDTO(Long id, Long code, String firstName, String lastName, String login,
 			String password, Boolean connected, Boolean locked,
 			Boolean isAdmin, String userCategoryName, ContactDTO contact, UserCategoryDTO userCategory) {
