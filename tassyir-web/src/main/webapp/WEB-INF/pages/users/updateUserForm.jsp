@@ -37,11 +37,6 @@
 								<td><form:input label="First Name" path="firstName" /></td>
 							</tr>
 							<tr>
-								<td><form:label path="id">id</form:label></td>
-								<td><form:input label="id" path="id" />
-									</td>
-							</tr>
-							<tr>
 								<td><form:label path="lastName">lastName</form:label></td>
 								<td><form:input label="Last Name" path="lastName" /></td>
 							</tr>
@@ -89,9 +84,9 @@
 								<td colspan="4">Informations Contact</td>
 							</tr>
 							<tr>
-								<td><form:label path="contact.name">contact name</form:label>
+								<td><form:label path="contact.nameContact">contact name</form:label>
 								</td>
-								<td><form:input label="contact.name" path="contact.name" />
+								<td><form:input label="contact.nameContact" path="contact.nameContact" />
 								</td>
 								<td><form:label path="contact.nomSocieteContact">contact.nomSocieteContact</form:label>
 								</td>

@@ -33,7 +33,7 @@
 		</h2>
 		<form:form modelAttribute="contact" method="${method}"
 			class="form-horizontal" id="add-contact-form">
-			<tassyir:inputField label="Name" name="name" />
+			<tassyir:inputField label="Name" name="nameContact" />
 			<tassyir:inputField label="nomSocieteContact" name="nomSocieteContact" />
 			<tassyir:inputField label="typeContact" name="typeContact" />
 			<tassyir:inputField label="titreContact" name="titreContact" />

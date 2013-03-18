@@ -1,6 +1,7 @@
 package net.bbenarbia.dto;
 
 import net.bbenarbia.domain.Contact;
+import net.bbenarbia.domain.enums.EnumTypeContact;
 
 
 public class ContactDTO {
@@ -8,7 +9,7 @@ public class ContactDTO {
 	private Long id;
 	private String typeContact;
 	private String nomSocieteContact = "";
-	private String name= "";
+	private String nameContact= "";
 	private String titreContact = "";
 	private String adresseContact1 = "";
 	private String adresseContact2 = "";
@@ -24,6 +25,7 @@ public class ContactDTO {
 	private String telephoneContact2 = "";
 
 	public ContactDTO() {
+		super();
 	}
 	
 	public Contact getContact(){
@@ -39,19 +41,19 @@ public class ContactDTO {
 		contact.setCodePostalContact(codePostalContact);
 		contact.setEstContactPrincipal(estContactPrincipal);
 		contact.setFaxContact(faxContact);
-		contact.setName(name);
+		contact.setName(nameContact);
 		contact.setNomSocieteContact(nomSocieteContact);
 		contact.setSiteWebContact(siteWebContact);
 		contact.setTelephoneContact1(telephoneContact1);
 		contact.setTelephoneContact2(telephoneContact2);
 		contact.setTitreContact(titreContact);
-//		contact.setTypeContact(typeContact.);
+		contact.setTypeContact(EnumTypeContact.getTypeContactFromName(typeContact));
 		contact.setVilleContact(villeContact);
 		
 		return contact;
 	}
 	
-	public ContactDTO(Long id, String typeContact, String nomSocieteContact,
+	public ContactDTO(Long id, String typeContact, String nameContact, String nomSocieteContact,
 			String titreContact, String adresseContact1,
 			String adresseContact2, Boolean alerteSurTelephone1,
 			Boolean alerteSurTelephone2, Integer codePostalContact,
@@ -63,6 +65,7 @@ public class ContactDTO {
 		this.id = id;
 		this.typeContact = typeContact;
 		this.nomSocieteContact = nomSocieteContact;
+		this.nameContact = nameContact;
 		this.titreContact = titreContact;
 		this.adresseContact1 = adresseContact1;
 		this.adresseContact2 = adresseContact2;
@@ -82,6 +85,7 @@ public class ContactDTO {
 		super();
 		this.id = contact.getId();
 		this.typeContact = contact.getTypeContact().toString();
+		this.nameContact = contact.getName();
 		this.nomSocieteContact = contact.getNomSocieteContact();
 		this.titreContact = contact.getTitreContact();
 		this.adresseContact1 = contact.getAdresseContact1();
@@ -218,20 +222,20 @@ public class ContactDTO {
 		this.telephoneContact2 = telephoneContact2;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getNameContact() {
+		return nameContact;
+	}
+
+	public void setNameContact(String nameContact) {
+		this.nameContact = nameContact;
 	}
 
 }

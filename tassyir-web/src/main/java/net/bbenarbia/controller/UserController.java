@@ -130,14 +130,14 @@ public class UserController {
 	public String processUpdateUserForm(@Valid UserDTO user,  BindingResult result,
 			SessionStatus status) {
 		try {
-			User user1 = this.utilisateurService.get(user.getId());
+			User user1 = this.utilisateurService.getUtilisateurByCode(user.getCode());
 			user1 = user.updateUser(user1);
 			if (result.hasErrors()) {
 				return "users/updateUserForm";
 			} else {
 					utilisateurService.saveOrUpdate(user1);
 				status.setComplete();
-				return "redirect:/users/"+user.getId();
+				return "redirect:/users/"+user1.getId();
 			}
 		} catch (Exception e) {
 			return "users/updateUserForm";

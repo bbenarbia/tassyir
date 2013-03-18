@@ -11,7 +11,6 @@ public class UserDTO {
 	private String login;
 	private String password;
 	private String passwordConfirmation;
-	private Boolean connected;
 	private Boolean locked;
 	private Boolean isAdmin;
 //	private String userCategoryName;
@@ -30,7 +29,6 @@ public class UserDTO {
 		this.lastName = user.getLastName();
 		this.login = user.getLogin();
 		this.password = user.getPassword();
-		this.connected = user.getConnected();
 		this.locked = user.getLocked();
 		this.isAdmin = user.getIsAdmin();
 		this.contact = new ContactDTO(user.getContact());
@@ -43,7 +41,6 @@ public class UserDTO {
 		
 		user.setId(id);
 		user.setCode(code);
-		user.setConnected(connected);
 		user.setContact(contact.getContact());
 		user.setFirstName(firstName);
 		user.setIsAdmin(isAdmin);
@@ -59,7 +56,6 @@ public class UserDTO {
 	public User updateUser(User user)throws Exception{
 		
 		user.setCode(code);
-		user.setConnected(connected);
 		user.setContact(contact.getContact());
 		user.setFirstName(firstName);
 		user.setIsAdmin(isAdmin);
@@ -84,7 +80,6 @@ public class UserDTO {
 		this.lastName = lastName;
 		this.login = login;
 		this.password = password;
-		this.connected = connected;
 		this.locked = locked;
 		this.isAdmin = isAdmin;
 		this.contact = contact;
@@ -129,14 +124,6 @@ public class UserDTO {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Boolean getConnected() {
-		return connected;
-	}
-
-	public void setConnected(Boolean connected) {
-		this.connected = connected;
 	}
 
 	public Boolean getLocked() {

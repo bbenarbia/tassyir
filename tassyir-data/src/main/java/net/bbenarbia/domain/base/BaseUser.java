@@ -21,9 +21,6 @@ public class BaseUser extends BaseEntity {
 	@Column(name = "password")
 	protected String password;
 
-	@Column(name = "connected")
-	protected Boolean connected;
-
 	@Column(name = "locked")
 	protected Boolean locked;
 
@@ -60,14 +57,6 @@ public class BaseUser extends BaseEntity {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Boolean getConnected() {
-		return connected;
-	}
-
-	public void setConnected(Boolean connected) {
-		this.connected = connected;
 	}
 
 	public Boolean getLocked() {
