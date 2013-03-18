@@ -49,6 +49,10 @@
 								<td><form:input label="Code" path="code" /></td>
 							</tr>
 							<tr>
+								<td><form:label path="passwordConfirmation">passwordConfirmation</form:label></td>
+								<td><form:password label="passwordConfirmation" path="passwordConfirmation" /></td>
+							</tr>
+							<tr>
 								<td><form:label path="password">password</form:label></td>
 								<td><form:password label="Password" path="password" /></td>
 							</tr>

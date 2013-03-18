@@ -10,6 +10,7 @@ public class UserDTO {
 	private String lastName;
 	private String login;
 	private String password;
+	private String passwordConfirmation;
 	private Boolean connected;
 	private Boolean locked;
 	private Boolean isAdmin;
@@ -158,6 +159,14 @@ public class UserDTO {
 
 	public void setUserCategory(UserCategoryDTO userCategory) {
 		this.userCategory = userCategory;
+	}
+
+	public String getPasswordConfirmation() {
+		return passwordConfirmation;
+	}
+
+	public void setPasswordConfirmation(String passwordConfirmation) {
+		this.passwordConfirmation = passwordConfirmation;
 	}
 
 }

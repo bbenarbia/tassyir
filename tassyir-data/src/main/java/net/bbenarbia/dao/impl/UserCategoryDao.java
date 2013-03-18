@@ -1,12 +1,9 @@
 package net.bbenarbia.dao.impl;
 
-import java.util.List;
-
 import net.bbenarbia.dao.IUserCategoryDao;
 import net.bbenarbia.dao.common.GenericDao;
 import net.bbenarbia.domain.UserCategory;
 
-import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
