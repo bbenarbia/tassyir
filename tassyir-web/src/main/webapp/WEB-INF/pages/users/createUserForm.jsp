@@ -34,46 +34,52 @@
 							</tr>
 							<tr>
 								<td><form:label path="firstName">firstName</form:label></td>
-								<td><form:input label="First Name" path="firstName" /></td>
+								<td><form:input label="First Name" path="firstName" />
+									<form:errors cssClass="error"  path="firstName" />
+								</td>
 							</tr>
 							<tr>
 								<td><form:label path="lastName">lastName</form:label></td>
-								<td><form:input label="Last Name" path="lastName" /></td>
+								<td><form:input label="Last Name" path="lastName" />
+									<form:errors cssClass="error"  path="lastName" />
+								</td>
 							</tr>
 							<tr>
 								<td><form:label path="login">login</form:label></td>
-								<td><form:input label="Login" path="login" /></td>
+								<td><form:input label="Login" path="login" />
+									<form:errors cssClass="error"  path="login" />
+								</td>
 							</tr>
 							<tr>
 								<td><form:label path="code">code</form:label></td>
-								<td><form:input label="Code" path="code" /></td>
+								<td><form:input label="Code" path="code" />
+									<form:errors cssClass="error"  path="code" />
+								</td>
 							</tr>
 							<tr>
 								<td><form:label path="passwordConfirmation">passwordConfirmation</form:label></td>
-								<td><form:password label="passwordConfirmation" path="passwordConfirmation" /></td>
+								<td><form:password label="passwordConfirmation" path="passwordConfirmation" />
+									<form:errors cssClass="error"  path="passwordConfirmation" />
+								</td>
 							</tr>
 							<tr>
 								<td><form:label path="password">password</form:label></td>
-								<td><form:password label="Password" path="password" /></td>
+								<td><form:password label="Password" path="password" />
+									<form:errors cssClass="error"  path="password" />
+								</td>
 							</tr>
 							<tr>
 								<td><form:label path="locked">locked</form:label></td>
-								<td><form:checkbox label="Locked" path="locked" /></td>
+								<td><form:checkbox label="Locked" path="locked" />
+									<form:errors cssClass="error"  path="locked" />
+								</td>
 							</tr>
 							<tr>
 								<td><form:label path="isAdmin">Admin</form:label></td>
-								<td><form:checkbox label="Admin" path="isAdmin" /></td>
-							</tr>
-						<%-- <tr>
-								<td><form:label path="userCategory">user group</form:label></td>
-								<td>
-									<form:select path="userCategory" items="${userGroupList}" />
-								 <form:select  path="userCategory" >
-										<form:options items="${userGroupList}" itemLabel="${userCategory.name}" itemValue="${userCategory.id}"/>
-								</form:select> 
+								<td><form:checkbox label="Admin" path="isAdmin" />
+									<form:errors cssClass="error"  path="isAdmin" />
 								</td>
-							</tr> --%>
-							
+							</tr>
 						</table>
 					</div>
 				</td>

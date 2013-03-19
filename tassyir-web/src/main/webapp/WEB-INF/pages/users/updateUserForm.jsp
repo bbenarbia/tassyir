@@ -50,11 +50,11 @@
 							</tr>
 							<tr>
 								<td><form:label path="password">password</form:label></td>
-								<td><form:password label="Password" path="password" /></td>
+								<td><form:password  path="password" /></td>
 							</tr>
 							<tr>
 								<td><form:label path="passwordConfirmation">passwordConfirmation</form:label></td>
-								<td><form:password label="passwordConfirmation" path="passwordConfirmation" /></td>
+								<td><form:password path="passwordConfirmation" /></td>
 							</tr>
 							<tr>
 								<td><form:label path="locked">locked</form:label></td>
@@ -130,7 +130,7 @@
 										path="contact.codePostalContact" /></td>
 								<td><form:label path="contact.estContactPrincipal">estContactPrincipal</form:label>
 								</td>
-								<td><form:checkbox label="contact.estContactPrincipal"
+								<td><form:checkbox label="estContactPrincipal"
 										path="contact.estContactPrincipal" /></td>
 							</tr>
 							<tr>

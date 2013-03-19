@@ -29,7 +29,7 @@
 	<mvc:resources mapping="/stylesheets/**" location="/stylesheets/" />
 	
     
-	<context:component-scan base-package="net.bbenarbia.controller" />
+	<context:component-scan base-package="net.bbenarbia.web" />
 
 	
 	 <bean id="messageSource"  
