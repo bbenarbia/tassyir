@@ -1,6 +1,8 @@
 package net.bbenarbia.web.dto;
 
 
+import javax.validation.Valid;
+
 import net.bbenarbia.domain.User;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -9,24 +11,23 @@ import org.springframework.format.annotation.NumberFormat.Style;
 
 public class UserDTO {
 	
-	@NotEmpty(message="Name field is mandatory.")
-	@NumberFormat(style= Style.NUMBER)
 	private String id;
-	@NotEmpty(message="Name field is mandatory.")
+	@NotEmpty(message="Code must not be empty.")
 	@NumberFormat(style= Style.NUMBER)
 	private String code;
-	@NotEmpty(message="Name field is mandatory.")
+	@NotEmpty(message="First name must not be empty.")
 	private String firstName;
-	@NotEmpty(message="Name field is mandatory.")
+	@NotEmpty(message="Last name must not be empty.")
 	private String lastName;
-	@NotEmpty(message="Name field is mandatory.")
+	@NotEmpty(message="login name must not be empty.")
 	private String login;
-	@NotEmpty(message="Name field is mandatory.")
+	@NotEmpty(message="password must not be empty.")
 	private String password;
-	@NotEmpty(message="Name field is mandatory.")
+	@NotEmpty(message="password must not be empty.")
 	private String passwordConfirmation;
 	private Boolean locked;
 	private Boolean isAdmin;
+	@Valid
 	private ContactDTO contact;
 	private UserCategoryDTO userCategory;
 

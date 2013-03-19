@@ -82,12 +82,7 @@ public class UserController {
 			return "users/createUserForm";
 		}
 		
-//		if(!userDto.getPassword().equals(userDto.getPasswordConfirmation())){
-//			result.addError(new ObjectError("password", "Passwor not match"));
-//		}
 		User user = userDto.getUser();
-		
-		
 		List<UserCategory> userCategoryList = userCategoryService.getUserCategroryByName(userDto.getUserCategory().getName());
 		if(!userCategoryList.isEmpty()){
 			user.setUserCategory(userCategoryList.get(0));

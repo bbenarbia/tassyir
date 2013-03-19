@@ -43,6 +43,13 @@
 						</td>
 					</tr>
 				</c:forEach>
+				<tr>
+				<td colspan="4" /> 
+				<td>
+                  	 <spring:url value="/users/new" var="userUrl" />
+			                    <a href="${fn:escapeXml(userUrl)}">Add User</a>
+			         </td>
+				</tr>
 			</table>
 		</div>
 

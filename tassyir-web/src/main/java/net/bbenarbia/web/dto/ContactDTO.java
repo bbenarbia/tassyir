@@ -1,24 +1,40 @@
 package net.bbenarbia.web.dto;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
+
 import net.bbenarbia.domain.Contact;
 import net.bbenarbia.domain.enums.EnumTypeContact;
 
 
 public class ContactDTO {
 
-	private Long id;
+	@NotEmpty(message="Id must not be empty.")
+	@NumberFormat(style= Style.NUMBER)
+	private String id;
+	@NotEmpty(message="Type de contact must not be empty.")	
 	private String typeContact;
+	@NotEmpty(message="nomSocieteContact must not be empty.")
 	private String nomSocieteContact = "";
+	@NotEmpty(message="nameContact must not be empty.")
 	private String nameContact= "";
+	@NotEmpty(message="titreContact must not be empty.")
 	private String titreContact = "";
+	@NotEmpty(message="adresseContact1 must not be empty.")
 	private String adresseContact1 = "";
+	@NotEmpty(message="adresseContact2 must not be empty.")
 	private String adresseContact2 = "";
 	private Boolean alerteSurTelephone1 = false;
 	private Boolean alerteSurTelephone2 = false;
-	private Integer codePostalContact = 0;
+	@NotEmpty(message="codePostalContact must not be empty.")
+	private String codePostalContact ="";
 	private Boolean estContactPrincipal = false;
+	@NotEmpty(message="villeContact must not be empty.")
 	private String villeContact = "";
+	@NotEmpty(message="adresseMailContact must not be empty.")
 	private String adresseMailContact = "";
+	@NotEmpty(message="faxContact must not be empty.")
 	private String faxContact = "";
 	private String siteWebContact = "";
 	private String telephoneContact1 = "";
@@ -32,13 +48,13 @@ public class ContactDTO {
 		
 		Contact contact = new Contact();
 		
-		contact.setId(id);
+		contact.setId(Long.valueOf(id));
 		contact.setAdresseContact1(adresseContact1);
 		contact.setAdresseContact2(adresseContact2);
 		contact.setAdresseMailContact(adresseMailContact);
 		contact.setAlerteSurTelephone1(alerteSurTelephone1);
 		contact.setAlerteSurTelephone2(alerteSurTelephone2);
-		contact.setCodePostalContact(codePostalContact);
+		contact.setCodePostalContact(Integer.valueOf(codePostalContact));
 		contact.setEstContactPrincipal(estContactPrincipal);
 		contact.setFaxContact(faxContact);
 		contact.setName(nameContact);
@@ -62,7 +78,7 @@ public class ContactDTO {
 			String siteWebContact, String telephoneContact1,
 			String telephoneContact2) {
 		super();
-		this.id = id;
+		this.id = String.valueOf(id);
 		this.typeContact = typeContact;
 		this.nomSocieteContact = nomSocieteContact;
 		this.nameContact = nameContact;
@@ -71,7 +87,7 @@ public class ContactDTO {
 		this.adresseContact2 = adresseContact2;
 		this.alerteSurTelephone1 = alerteSurTelephone1;
 		this.alerteSurTelephone2 = alerteSurTelephone2;
-		this.codePostalContact = codePostalContact;
+		this.codePostalContact = String.valueOf(codePostalContact);
 		this.estContactPrincipal = estContactPrincipal;
 		this.villeContact = villeContact;
 		this.adresseMailContact = adresseMailContact;
@@ -83,7 +99,7 @@ public class ContactDTO {
 
 	public ContactDTO(Contact contact) {
 		super();
-		this.id = contact.getId();
+		this.id = String.valueOf(contact.getId());
 		this.typeContact = contact.getTypeContact().toString();
 		this.nameContact = contact.getName();
 		this.nomSocieteContact = contact.getNomSocieteContact();
@@ -92,7 +108,7 @@ public class ContactDTO {
 		this.adresseContact2 = contact.getAdresseContact2();
 		this.alerteSurTelephone1 = contact.getAlerteSurTelephone1();
 		this.alerteSurTelephone2 = contact.getAlerteSurTelephone2();
-		this.codePostalContact = contact.getCodePostalContact();
+		this.codePostalContact = String.valueOf(contact.getCodePostalContact());
 		this.estContactPrincipal = contact.getEstContactPrincipal();
 		this.villeContact = contact.getVilleContact();
 		this.adresseMailContact = contact.getAdresseMailContact();
@@ -158,13 +174,7 @@ public class ContactDTO {
 		this.alerteSurTelephone2 = alerteSurTelephone2;
 	}
 
-	public Integer getCodePostalContact() {
-		return codePostalContact;
-	}
-
-	public void setCodePostalContact(Integer codePostalContact) {
-		this.codePostalContact = codePostalContact;
-	}
+	
 
 	public Boolean getEstContactPrincipal() {
 		return estContactPrincipal;
@@ -222,20 +232,28 @@ public class ContactDTO {
 		this.telephoneContact2 = telephoneContact2;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getNameContact() {
 		return nameContact;
 	}
 
 	public void setNameContact(String nameContact) {
 		this.nameContact = nameContact;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getCodePostalContact() {
+		return codePostalContact;
+	}
+
+	public void setCodePostalContact(String codePostalContact) {
+		this.codePostalContact = codePostalContact;
 	}
 
 }
