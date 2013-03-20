@@ -9,7 +9,9 @@
 <html lang="en">
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
 <title></title>
 <link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
 	type="text/css" />
@@ -91,10 +93,13 @@
 										cssClass="error" path="contact.nomSocieteContact" /></td>
 							</tr>
 							<tr>
-								<td><form:label path="contact.typeContact">contact.typeContact</form:label>
+								<td>
+									<form:label path="contact.typeContact">contact.typeContact</form:label>
 								</td>
-								<td><form:input path="contact.typeContact" /> <form:errors
-										cssClass="error" path="contact.typeContact" /></td>
+								<td>
+									<form:select path="contact.typeContact" items="${typeContactList}" />
+								</td> 
+								
 								<td><form:label path="contact.titreContact">contact.titreContact</form:label>
 								</td>
 								<td><form:input path="contact.titreContact" /> <form:errors
@@ -164,8 +169,9 @@
 							<tr>
 								<td><form:label path="userCategory.name">userCategory.name</form:label>
 								</td>
-								<td><form:input path="userCategory.name" /> <form:errors
-										cssClass="error" path="userCategory.name" /></td>
+								<td>
+									<form:select path="userCategory.name" items="${userGroupList}" />
+									</td>
 								<td></td>
 								<td></td>
 

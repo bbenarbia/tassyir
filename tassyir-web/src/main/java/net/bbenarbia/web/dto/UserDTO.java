@@ -54,7 +54,9 @@ public class UserDTO {
 	public User getUser(){
 		User user = new User();
 		
-		user.setId(Long.valueOf(id));
+		if(id!= null){
+			user.setId(Long.valueOf(id));
+		}
 		user.setCode(Long.valueOf(code));
 		user.setContact(contact.getContact());
 		user.setFirstName(firstName);

@@ -1,14 +1,14 @@
 package net.bbenarbia.web.controller;
 
 import java.util.Collection;
-import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import javax.validation.Valid;
 
 import net.bbenarbia.domain.User;
 import net.bbenarbia.domain.UserCategory;
+import net.bbenarbia.domain.enums.EnumTypeContact;
 import net.bbenarbia.service.IUserCategoryService;
 import net.bbenarbia.service.IUtilisateurService;
 import net.bbenarbia.web.dto.UserDTO;
@@ -54,15 +54,31 @@ public class UserController {
 	}
 
 	@ModelAttribute("userGroupList")
-	public Map<String,String> populateuserGroupList() {
+	public List<String> populateUserGroupList() {
 		
 		List<UserCategory> listGroups = userCategoryService.getAll();
-		Map<String,String> userGroupList = new LinkedHashMap<String,String>();
+		List<String> userGroupList = new LinkedList<String>();
 		
+		userGroupList.add("Select the category group");
 		for (UserCategory userCategory : listGroups) {
-			userGroupList.put(userCategory.getId().toString(), userCategory.getName());
+			userGroupList.add(userCategory.getName().toUpperCase());
 		}
 		return userGroupList;
+	}
+	
+	@ModelAttribute("typeContactList")
+	public List<String> populateContactTypeList() {
+		
+		List<String> listContactType = new LinkedList<String>();
+		
+		listContactType.add("Select the contact Type");
+		listContactType.add(EnumTypeContact.Client.toString().toUpperCase());
+		listContactType.add(EnumTypeContact.Employe.toString().toUpperCase());
+		listContactType.add(EnumTypeContact.Fournisseur.toString().toUpperCase());
+		listContactType.add(EnumTypeContact.Magasin.toString().toUpperCase());
+		listContactType.add(EnumTypeContact.Perso.toString().toUpperCase());
+		
+		return listContactType;
 	}
 	
 	
@@ -78,12 +94,13 @@ public class UserController {
 			SessionStatus status) {
 		
 		validator.validate(userDto, result);
+		List<UserCategory> userCategoryList = userCategoryService.getUserCategroryByName(userDto.getUserCategory().getName());
+		
 		if (result.hasErrors()) {
 			return "users/createUserForm";
 		}
 		
 		User user = userDto.getUser();
-		List<UserCategory> userCategoryList = userCategoryService.getUserCategroryByName(userDto.getUserCategory().getName());
 		if(!userCategoryList.isEmpty()){
 			user.setUserCategory(userCategoryList.get(0));
 		}

@@ -18,8 +18,14 @@ public class PasswordValidator implements Validator {
 	@Override
 	public void validate(Object command, Errors errors) {
 		UserDTO regBean = (UserDTO) command;
-		if (!regBean.getPassword().equals(regBean.getPasswordConfirmation()))
+		if (!regBean.getPassword().equals(regBean.getPasswordConfirmation())){
 			errors.rejectValue("passwordConfirmation", "passwordConfirmation.notmatch");
+		}
+//		if(regBean.getUserCategory().getName().contains("Select the ") ){
+//			errors.rejectValue("userCategory", "user category error");
+//		}
+//		if(regBean.getContact().getTypeContact().contains("Select the ") ){
+//			errors.rejectValue("typeContact", "typeContact error");
+//		}
 	}
-
 }

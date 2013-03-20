@@ -1,17 +1,13 @@
 package net.bbenarbia.web.dto;
 
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.NumberFormat;
-import org.springframework.format.annotation.NumberFormat.Style;
-
 import net.bbenarbia.domain.Contact;
 import net.bbenarbia.domain.enums.EnumTypeContact;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 
 public class ContactDTO {
 
-	@NotEmpty(message="Id must not be empty.")
-	@NumberFormat(style= Style.NUMBER)
 	private String id;
 	@NotEmpty(message="Type de contact must not be empty.")	
 	private String typeContact;
@@ -47,8 +43,9 @@ public class ContactDTO {
 	public Contact getContact(){
 		
 		Contact contact = new Contact();
-		
-		contact.setId(Long.valueOf(id));
+		if(id!= null){
+			contact.setId(Long.valueOf(id));
+		}
 		contact.setAdresseContact1(adresseContact1);
 		contact.setAdresseContact2(adresseContact2);
 		contact.setAdresseMailContact(adresseMailContact);
