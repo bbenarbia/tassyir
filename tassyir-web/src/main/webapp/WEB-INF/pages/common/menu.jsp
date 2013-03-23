@@ -7,7 +7,7 @@
 			<a href="${contextPath}/users" class="button big blue">Users</a>  
 		  </td>
 		  <td>
-				<a href="${contextPath}/roles" class="button big blue">  </a>			
+				<a href="${contextPath}/parameters" class="button big blue">Params</a>			
 		  </td>
 		  <td>
 				<a href="${contextPath}/groups" class="button big blue">Works</a>

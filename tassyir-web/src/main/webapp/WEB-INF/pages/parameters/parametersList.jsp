@@ -13,47 +13,40 @@
 </head>
 <body>
 
-	<jsp:include page="../common/menu.jsp" />
+	<jsp:include page="../common/menu.jsp"/>
 	<div class="container">
 		<h2>Parameters</h2>
 
-		
-
-			<form:form method="post" action="save.html"
-				modelAttribute="contactForm">
-				<div class="CSS_Table_Example" style="width: 600px; height: 150px;">
-				<table>
+		<div class="CSS_Table_Example" style="width: 600px; height: 150px;">
+			<table>
+				<tr>
+					<td style="width: 350px;">Name</td>
+					<td style="width: 350px;">Value</td>
+					<td style="width: 300px;">Description</td>
+					<td style="width: 150px;">Edit</td>
+					<td style="width: 150px;">Add</td>
+				</tr>
+				<c:forEach var="parameter" items="${selections}">
 					<tr>
-						<th>N°</th>
-						<th>Name</th>
-						<th>Value</th>
-						<th>Desc</th>
+						<td><b><c:out value="${parameter.name}" /></b></td>
+						<td><c:out value="${parameter.value}" /></td>
+						<td><c:out value="${parameter.description}" /></td>
+						
+						<td><a href="parameters/${parameter.id}/edit">Edit</a></td>
+						<td><a href="parameters/${parameter.id}/delete">Delete</a></td>
 					</tr>
-					<c:forEach items="${selections}" var="parameter" varStatus="status">
-						<tr>
-							<td align="center">${status.count}</td>
-							<td><input name="selections[${status.index}].name"
-								value="${parameter.name}" /></td>
-							<td><input name="selections[${status.index}].value"
-								value="${parameter.value}" /></td>
-							<td><input name="selections[${status.index}].description"
-								value="${parameter.description}" /></td>
-						</tr>
-					</c:forEach>
-				</table>
-				</div>
-				<br />
-				<input type="submit" value="Save" />
-				
-			</form:form>
-
+				</c:forEach>
+				<tr>
+				<td colspan="4" /> 
+				<td>
+                  	 <spring:url value="/parameters/new" var="parameterUrl" />
+			                    <a href="${fn:escapeXml(parameterUrl)}">Add parameter</a>
+			         </td>
+				</tr>
+			</table>
 		</div>
 
-	
+	</div>
 </body>
 
 </html>
-
-
-
-

@@ -135,7 +135,7 @@ public class UserController {
 		}
 		uiModel.asMap().clear();
 		utilisateurService.saveOrUpdate(user);
-		return "redirect:/userss/" + user.getId();
+		return "redirect:/users/" + user.getId();
 	}
 	
 	
