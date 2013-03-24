@@ -32,11 +32,6 @@ public class ParameterController {
 	@Autowired
 	private IParameterService parameterService;
 
-//	@Autowired
-//	private PasswordValidator validator;
-	  
-
-
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
@@ -106,13 +101,6 @@ public class ParameterController {
 			return "parameters/updateParameterForm";
 		}
 	}
-	
-	
-//
-//	public void setValidator(PasswordValidator validator) {
-//		this.validator = validator;
-//	}
-
 }
 
 

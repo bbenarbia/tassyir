@@ -6,11 +6,15 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import net.bbenarbia.domain.Role;
 import net.bbenarbia.domain.User;
 import net.bbenarbia.domain.UserCategory;
 import net.bbenarbia.domain.enums.EnumTypeContact;
+import net.bbenarbia.service.IRoleService;
 import net.bbenarbia.service.IUserCategoryService;
 import net.bbenarbia.service.IUtilisateurService;
+import net.bbenarbia.web.dto.RoleFormDTO;
+import net.bbenarbia.web.dto.RoleFormDTOList;
 import net.bbenarbia.web.dto.UserDTO;
 import net.bbenarbia.web.validator.PasswordValidator;
 
@@ -46,7 +50,8 @@ public class UserController {
 	@Autowired
 	private PasswordValidator validator;
 	  
-
+	@Autowired
+	private IRoleService roleService;
 
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
@@ -138,6 +143,48 @@ public class UserController {
 		return "redirect:/users/" + user.getId();
 	}
 	
+	@RequestMapping(value = "/{userId}/roles", method = RequestMethod.GET)
+	public String rolesUserForm(@PathVariable("userId") Long userId,
+			Model model) {
+		
+		
+		RoleFormDTOList listFormDto = new RoleFormDTOList();
+		
+		LinkedList<RoleFormDTO> roleFormList = new LinkedList<RoleFormDTO>();
+		User user = this.utilisateurService.get(userId);
+		List<Role> allRolesList = roleService.getAll();
+		
+		for (Role role : allRolesList) {
+			if(user.getRoles() != null && user.getRoles().contains(role)){
+				roleFormList.add(new RoleFormDTO(role, true));
+			}
+			else {
+				roleFormList.add(new RoleFormDTO(role, false));
+			}
+		}
+		listFormDto.setRoles(roleFormList);
+		model.addAttribute("roleFormList", listFormDto);
+		return "users/rolesList";
+	}
+	
+	
+	
+	@RequestMapping(value = "/{userId}/roles/save", method = RequestMethod.POST)
+    public String save(@ModelAttribute("roleFormList") RoleFormDTOList roleFormList, @PathVariable("userId") Long userId) {
+     
+		User user = this.utilisateurService.get(userId);
+		
+		user.getRoles().clear();
+		 if(null != roleFormList.getRoles() && roleFormList.getRoles().size() > 0) {
+	            for (RoleFormDTO roleDto : roleFormList.getRoles()) {
+	            	if(roleDto.isIncluded()){
+	            		user.addRole(roleDto.getRole());
+	            	}
+	            }
+	        }
+		 utilisateurService.saveOrUpdate(user);
+		 return "users/usersList";     
+	}
 	
 	@RequestMapping(value = "/{userId}/edit", method = RequestMethod.GET)
 	public String initUpdateUserForm(@PathVariable("userId") Long userId,
