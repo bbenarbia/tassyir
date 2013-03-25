@@ -45,13 +45,13 @@ public class UserController {
 
 	@Autowired
 	private IUtilisateurService utilisateurService;
-	
+
 	@Autowired
 	private IUserCategoryService userCategoryService;;
 
 	@Autowired
 	private PasswordValidator validator;
-	  
+
 	@Autowired
 	private IRoleService roleService;
 
@@ -62,33 +62,32 @@ public class UserController {
 
 	@ModelAttribute("userGroupList")
 	public List<String> populateUserGroupList() {
-		
+
 		List<UserCategory> listGroups = userCategoryService.getAll();
 		List<String> userGroupList = new LinkedList<String>();
-		
+
 		userGroupList.add("Select the category group");
 		for (UserCategory userCategory : listGroups) {
-			userGroupList.add(userCategory.getName().toUpperCase());
+			userGroupList.add(userCategory.getName());
 		}
 		return userGroupList;
 	}
-	
+
 	@ModelAttribute("typeContactList")
 	public List<String> populateContactTypeList() {
-		
+
 		List<String> listContactType = new LinkedList<String>();
-		
+
 		listContactType.add("Select the contact Type");
-		listContactType.add(EnumTypeContact.Client.toString().toUpperCase());
-		listContactType.add(EnumTypeContact.Employe.toString().toUpperCase());
-		listContactType.add(EnumTypeContact.Fournisseur.toString().toUpperCase());
-		listContactType.add(EnumTypeContact.Magasin.toString().toUpperCase());
-		listContactType.add(EnumTypeContact.Perso.toString().toUpperCase());
-		
+		listContactType.add(EnumTypeContact.Client.toString());
+		listContactType.add(EnumTypeContact.Employe.toString());
+		listContactType.add(EnumTypeContact.Fournisseur.toString());
+		listContactType.add(EnumTypeContact.Magasin.toString());
+		listContactType.add(EnumTypeContact.Perso.toString());
+
 		return listContactType;
 	}
-	
-	
+
 	@RequestMapping("/{userId}")
 	public ModelAndView showUser(@PathVariable("userId") long userId) {
 		ModelAndView mav = new ModelAndView("users/userDetails");
@@ -97,18 +96,20 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	public String processCreationForm(@ModelAttribute("user") @Valid UserDTO userDto, BindingResult result,
-			SessionStatus status) {
-		
+	public String processCreationForm(
+			@ModelAttribute("user") @Valid UserDTO userDto,
+			BindingResult result, SessionStatus status) {
+
 		validator.validate(userDto, result);
-		List<UserCategory> userCategoryList = userCategoryService.getUserCategroryByName(userDto.getUserCategory().getName());
-		
+		List<UserCategory> userCategoryList = userCategoryService
+				.getUserCategroryByName(userDto.getUserCategory().getName());
+
 		if (result.hasErrors()) {
 			return "users/createUserForm";
 		}
-		
+
 		User user = userDto.getUser();
-		if(!userCategoryList.isEmpty()){
+		if (!userCategoryList.isEmpty()) {
 			user.setUserCategory(userCategoryList.get(0));
 		}
 		if (result.hasErrors()) {
@@ -133,7 +134,7 @@ public class UserController {
 		model.addAttribute("selections", results);
 		return "users/usersList";
 	}
-	
+
 	@RequestMapping(value = "/{userId}", method = RequestMethod.POST)
 	public String update(User user, BindingResult bindingResult, Model uiModel) {
 		if (bindingResult.hasErrors()) {
@@ -144,22 +145,20 @@ public class UserController {
 		utilisateurService.saveOrUpdate(user);
 		return "redirect:/users/" + user.getId();
 	}
-	
+
 	@RequestMapping(value = "/{userId}/roles", method = RequestMethod.GET)
-	public String rolesUserForm(@PathVariable("userId") Long userId,
-			Model model) {
-		
+	public String rolesUserForm(@PathVariable("userId") Long userId, Model model) {
+
 		RoleFormDTOList listFormDto = new RoleFormDTOList();
-		
+
 		LinkedList<RoleFormDTO> roleFormList = new LinkedList<RoleFormDTO>();
 		User user = this.utilisateurService.get(userId);
 		List<Role> allRolesList = roleService.getAll();
-		
+
 		for (Role role : allRolesList) {
-			if(user.getRoles() != null && user.getRoles().contains(role)){
+			if (user.getRoles() != null && user.getRoles().contains(role)) {
 				roleFormList.add(new RoleFormDTO(role, true));
-			}
-			else {
+			} else {
 				roleFormList.add(new RoleFormDTO(role, false));
 			}
 		}
@@ -168,65 +167,65 @@ public class UserController {
 		model.addAttribute("roleFormList", listFormDto);
 		return "users/rolesList";
 	}
-	
-	
-	
+
 	@RequestMapping(value = "/{userId}/roles/save", method = RequestMethod.POST)
-    public String save(@ModelAttribute("roleFormList") RoleFormDTOList roleFormList, @PathVariable("userId") Long userId) {
-     
+	public String save(
+			@ModelAttribute("roleFormList") RoleFormDTOList roleFormList,
+			@PathVariable("userId") Long userId) {
+
 		User user = this.utilisateurService.get(userId);
 		Set<Role> rolesList = new HashSet<Role>();
-		 if(null != roleFormList.getRoles() && roleFormList.getRoles().size() > 0) {
-	            for (RoleFormDTO roleDto : roleFormList.getRoles()) {
-	            	if(roleDto.isIncluded()){
-	            		Role role = roleService.getRolesByName(roleDto.getRole().getName()).get(0);
-	            		rolesList.add(role);
-	            	}
-	            }
-	        }
-		 user.setRolesInternal(rolesList);
-		 utilisateurService.saveOrUpdate(user);
-		 return "users/" + userId;     
+		if (null != roleFormList.getRoles()
+				&& roleFormList.getRoles().size() > 0) {
+			for (RoleFormDTO roleDto : roleFormList.getRoles()) {
+				if (roleDto.isIncluded()) {
+					Role role = roleService.getRolesByName(
+							roleDto.getRole().getName()).get(0);
+					rolesList.add(role);
+				}
+			}
+		}
+		user.setRolesInternal(rolesList);
+		utilisateurService.saveOrUpdate(user);
+		// return "users/" + userId;
+		return "users/usersList";
 	}
-	
+
 	@RequestMapping(value = "/{userId}/edit", method = RequestMethod.GET)
 	public String initUpdateUserForm(@PathVariable("userId") Long userId,
 			Model model) {
 		User user = this.utilisateurService.get(userId);
 		UserDTO userDto = new UserDTO(user);
-		model.addAttribute("user",userDto);
+		model.addAttribute("user", userDto);
 		return "users/updateUserForm";
 	}
-	
+
 	@RequestMapping(value = "/{userId}/edit", method = RequestMethod.POST)
-	public String processUpdateUserForm(@Valid UserDTO userDto,  BindingResult result,
-			SessionStatus status) {
+	public String processUpdateUserForm(@Valid UserDTO userDto,
+			BindingResult result, SessionStatus status) {
 		try {
-			
+
 			if (result.hasErrors()) {
 				return "users/createUserForm";
 			}
-			
-			User user = this.utilisateurService.getUtilisateurByCode(Long.valueOf(userDto.getCode()));
+
+			User user = this.utilisateurService.getUtilisateurByCode(Long
+					.valueOf(userDto.getCode()));
 			user = userDto.updateUser(user);
 			if (result.hasErrors()) {
 				return "users/updateUserForm";
 			} else {
-					utilisateurService.saveOrUpdate(user);
+				utilisateurService.saveOrUpdate(user);
 				status.setComplete();
-				return "redirect:/users/"+user.getId();
+				return "redirect:/users/" + user.getId();
 			}
 		} catch (Exception e) {
 			return "users/updateUserForm";
 		}
 	}
-	
-	
 
 	public void setValidator(PasswordValidator validator) {
 		this.validator = validator;
 	}
 
 }
-
-

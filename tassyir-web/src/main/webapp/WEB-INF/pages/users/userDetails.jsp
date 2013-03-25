@@ -43,7 +43,12 @@
 							<li><c:out value="${role.name}" /></li>
 						</c:forEach>
 					</ol>
-				 <a href="${user.id}/roles.htm">Edit Roles</a>
+				<%--  <a href="/${user.id}/roles.htm">Edit Roles</a> --%>
+				 
+				 	<spring:url value="/users/{userId}/roles.htm" var="editRoleUrl">
+			             <spring:param name="userId" value="${user.id}"/>
+			        </spring:url>
+			        <a href="${fn:escapeXml(editRoleUrl)}">Edit Role</a>
 				</td>
 			</tr>
 			 <tr>

@@ -83,6 +83,7 @@ public class UserDTO {
 			user.setPassword(password);
 		}else throw new Exception("Password not confirmed");
 		user.setContact(contact.getContact());
+		user.setUserCategory(userCategory.getUserCategory());
 		return user;
 	}
 	

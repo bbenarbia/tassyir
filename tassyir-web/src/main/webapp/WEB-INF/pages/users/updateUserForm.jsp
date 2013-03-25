@@ -94,10 +94,28 @@
 										path="contact.nomSocieteContact" /></td>
 							</tr>
 							<tr>
-								<td><form:label path="contact.typeContact">contact.typeContact</form:label>
+								<td>
+									<form:label path="contact.typeContact">contact.typeContact</form:label>
 								</td>
-								<td><form:input label="contact.typeContact"
-										path="contact.typeContact" /></td>
+								<td>
+									<form:select path="contact.typeContact">
+									<c:forEach var="item" items="${typeContactList}">
+									    <c:choose>
+									        <c:when test="${user.contact.typeContact == item}">
+									            <form:option selected="true" value="${item}">
+									                ${item} 
+									            </form:option>
+									        </c:when>
+									
+									        <c:otherwise>
+									            <form:option value="${item}">
+									                   ${item}
+									            </form:option>
+									        </c:otherwise>
+									    </c:choose>
+									</c:forEach>
+									</form:select>
+								</td>
 								<td><form:label path="contact.titreContact">contact.titreContact</form:label>
 								</td>
 								<td><form:input label="contact.titreContact"
@@ -163,15 +181,32 @@
 								<td><form:input label="contact.telephoneContact2"
 										path="contact.telephoneContact2" /></td>
 							</tr>
-							<%-- <tr>
+							<tr>
 								<td><form:label path="userCategory.name">userCategory.name</form:label>
 								</td>
-								<td><form:input label="userCategory.name"
-										path="userCategory.name" /></td>
+								<td>
+									<form:select path="userCategory.name">
+									<c:forEach var="item" items="${userGroupList}">
+									    <c:choose>
+									        <c:when test="${user.userCategory.name == item}">
+									            <form:option selected="true" value="${item}">
+									                ${item} 
+									            </form:option>
+									        </c:when>
+									
+									        <c:otherwise>
+									            <form:option value="${item}">
+									                   ${item}
+									            </form:option>
+									        </c:otherwise>
+									    </c:choose>
+									</c:forEach>
+									</form:select>
+										</td>
 								<td></td>
 								<td></td>
 
-							</tr> --%>
+							</tr> 
 						</table>
 					</div>
 				</td>
