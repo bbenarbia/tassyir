@@ -36,14 +36,14 @@
 			</tr>
 			<tr>
 				<td><spring:message code="user.roles"/></td>
-				<td><c:forEach var="role" items="${user.roles}">
-						<ol>
+				<td>
+					<ol>
+						<c:forEach var="role" items="${user.roles}">
+						
 							<li><c:out value="${role.name}" /></li>
-						</ol>
-						<a href="roles/${role.id}/delete">Delete</a>
-						<a href="roles/${role.id}/edit">Edit</a>
-					</c:forEach>
-				 <a href="users/${user.id}/addRoles">Add new Role</a>
+						</c:forEach>
+					</ol>
+				 <a href="${user.id}/roles.htm">Edit Roles</a>
 				</td>
 			</tr>
 			 <tr>

@@ -186,7 +186,7 @@ public class UserController {
 	        }
 		 user.setRolesInternal(rolesList);
 		 utilisateurService.saveOrUpdate(user);
-		 return "users/usersList";     
+		 return "users/" + userId;     
 	}
 	
 	@RequestMapping(value = "/{userId}/edit", method = RequestMethod.GET)
