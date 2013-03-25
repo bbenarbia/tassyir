@@ -29,7 +29,7 @@ public class RoleService extends GenericService<Role> implements
 	}
 
 	@Override
-	public List<Role> getParameterName(String name) {
+	public List<Role> getRolesByName(String name) {
 		return roleDao.getEntityByName(name);
 	}
 

@@ -7,5 +7,5 @@ import net.bbenarbia.service.generic.IGenericService;
 
 public interface IRoleService extends IGenericService<Role>{
 
-	List<Role> getParameterName(String roleName);
+	List<Role> getRolesByName(String roleName);
 }

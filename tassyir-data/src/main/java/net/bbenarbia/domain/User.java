@@ -68,7 +68,7 @@ public class User extends BaseUser {
 		return roles;
 	}
 
-	protected void setRolesInternal(Set<Role> roles) {
+	public void setRolesInternal(Set<Role> roles) {
 		this.roles = roles;
 	}
 

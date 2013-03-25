@@ -20,7 +20,7 @@
 
 		<div class="CSS_Table_Example" style="width: 600px; height: 150px;">
 
-			<form:form method="post" action="save.html"
+			<form:form method="post" action="roles/save.html"
 				modelAttribute="roleFormList">
 				<table>
 					<tr>
@@ -33,14 +33,12 @@
 						varStatus="status">
 						<tr>
 							<td align="center">${status.count}</td>
-							<td><input name="roles[${status.index}].role.name"
-								value="${roleForm.role.name}" /></td>
-							<td><input name="roles[${status.index}].role.description"
-								value="${roleForm.role.description}" /></td>
-								
-							<td><input type="checkbox" name="roles[${status.index}].included" 
-								value="${roleForm.included}" <c:if test="${roleForm.included}">checked="checked"</c:if>/></td>
-								
+							<td><form:input path="roles[${status.index}].role.name"
+								 /></td>
+							<td><form:input path="roles[${status.index}].role.description"
+								 /></td>
+							<td><form:checkbox path="roles[${status.index}].included"
+								 /></td>
 						</tr>
 					</c:forEach>
 				</table>

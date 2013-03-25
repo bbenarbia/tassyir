@@ -1,8 +1,10 @@
 package net.bbenarbia.web.controller;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -147,7 +149,6 @@ public class UserController {
 	public String rolesUserForm(@PathVariable("userId") Long userId,
 			Model model) {
 		
-		
 		RoleFormDTOList listFormDto = new RoleFormDTOList();
 		
 		LinkedList<RoleFormDTO> roleFormList = new LinkedList<RoleFormDTO>();
@@ -163,6 +164,7 @@ public class UserController {
 			}
 		}
 		listFormDto.setRoles(roleFormList);
+		model.addAttribute("userId", userId);
 		model.addAttribute("roleFormList", listFormDto);
 		return "users/rolesList";
 	}
@@ -173,15 +175,16 @@ public class UserController {
     public String save(@ModelAttribute("roleFormList") RoleFormDTOList roleFormList, @PathVariable("userId") Long userId) {
      
 		User user = this.utilisateurService.get(userId);
-		
-		user.getRoles().clear();
+		Set<Role> rolesList = new HashSet<Role>();
 		 if(null != roleFormList.getRoles() && roleFormList.getRoles().size() > 0) {
 	            for (RoleFormDTO roleDto : roleFormList.getRoles()) {
 	            	if(roleDto.isIncluded()){
-	            		user.addRole(roleDto.getRole());
+	            		Role role = roleService.getRolesByName(roleDto.getRole().getName()).get(0);
+	            		rolesList.add(role);
 	            	}
 	            }
 	        }
+		 user.setRolesInternal(rolesList);
 		 utilisateurService.saveOrUpdate(user);
 		 return "users/usersList";     
 	}
