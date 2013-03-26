@@ -79,13 +79,10 @@ public class UserController {
 
 		List<String> listContactType = new LinkedList<String>();
 
-		listContactType.add("Select the contact Type");
-		listContactType.add(EnumTypeContact.Client.toString());
-		listContactType.add(EnumTypeContact.Employe.toString());
-		listContactType.add(EnumTypeContact.Fournisseur.toString());
-		listContactType.add(EnumTypeContact.Magasin.toString());
-		listContactType.add(EnumTypeContact.Perso.toString());
-
+		listContactType.add("Select the contact Type");		
+		for (EnumTypeContact elt : EnumTypeContact.values()) {
+			listContactType.add(elt.toString());
+		}
 		return listContactType;
 	}
 
@@ -139,11 +136,11 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.POST)
-	public String update(User user, BindingResult bindingResult, Model uiModel) {
+	public String update(User user, BindingResult bindingResult, @PathVariable("userId") Long userId, Model uiModel) {
 		if (bindingResult.hasErrors()) {
 			uiModel.addAttribute("user", user);
 			return "users/updateUserForm";
-		}
+		} 
 		uiModel.asMap().clear();
 		utilisateurService.saveOrUpdate(user);
 		return "redirect:/users/" + user.getId();
@@ -158,17 +155,17 @@ public class UserController {
 		return "users/updateUserForm";
 	}
 
+	
 	@RequestMapping(value = "/{userId}/edit", method = RequestMethod.POST)
 	public String processUpdateUserForm(@Valid UserDTO userDto,
-			BindingResult result, SessionStatus status) {
+			BindingResult result,  @PathVariable("userId") Long userId, SessionStatus status) {
 		try {
 
 			if (result.hasErrors()) {
 				return "users/createUserForm";
 			}
 
-			User user = this.utilisateurService.getUtilisateurByCode(Long
-					.valueOf(userDto.getCode()));
+			User user = this.utilisateurService.get(userId);
 			user = userDto.updateUser(user);
 			if (result.hasErrors()) {
 				return "users/updateUserForm";
@@ -223,7 +220,9 @@ public class UserController {
 		}
 		user.setRolesInternal(rolesList);
 		utilisateurService.saveOrUpdate(user);
-		return "users/usersList";
+		
+		return "redirect:/users/" + user.getId();
+//		return "users/usersList";
 	}
 
 	@RequestMapping(value = "/{userId}/editpassword", method = RequestMethod.GET)
