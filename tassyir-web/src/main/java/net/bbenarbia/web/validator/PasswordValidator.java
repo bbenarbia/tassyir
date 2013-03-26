@@ -1,5 +1,6 @@
 package net.bbenarbia.web.validator;
 
+import net.bbenarbia.web.dto.PasswordDTO;
 import net.bbenarbia.web.dto.UserDTO;
 
 import org.springframework.stereotype.Component;
@@ -17,7 +18,7 @@ public class PasswordValidator implements Validator {
 
 	@Override
 	public void validate(Object command, Errors errors) {
-		UserDTO regBean = (UserDTO) command;
+		PasswordDTO regBean = (PasswordDTO) command;
 		if (!regBean.getPassword().equals(regBean.getPasswordConfirmation())){
 			errors.rejectValue("passwordConfirmation", "passwordConfirmation.notmatch");
 		}

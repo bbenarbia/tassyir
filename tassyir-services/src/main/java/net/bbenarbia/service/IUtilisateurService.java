@@ -20,5 +20,6 @@ public interface IUtilisateurService extends IGenericService<User>{
 	
 	List<User> getUtilisateursByLastName(String lastName);
 	
+	boolean updatePassword(Long userId, String oldPassword , String newPassword);
 		 
 }

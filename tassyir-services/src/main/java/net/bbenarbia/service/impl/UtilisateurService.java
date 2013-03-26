@@ -48,4 +48,18 @@ public class UtilisateurService extends GenericService<User> implements IUtilisa
 		return utilisateurDao.getUtilisateursByLastName(LastName);
 	}
 
+	@Override
+	public boolean updatePassword(Long userId, String oldPassword , String newPassword) {
+		
+		User user = utilisateurDao.get(userId);
+		if(user.getPassword().equals(oldPassword)){
+			user.setPassword(newPassword);
+			utilisateurDao.save(user);
+			return true;
+		}
+		else return false;
+		
+		
+	}
+
 }

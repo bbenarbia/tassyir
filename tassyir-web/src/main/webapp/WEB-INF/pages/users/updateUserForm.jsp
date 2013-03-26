@@ -48,14 +48,14 @@
 								<td><form:label path="code">code</form:label></td>
 								<td><form:input label="Code" path="code" /></td>
 							</tr>
-							<tr>
+		<%-- 					<tr>
 								<td><form:label path="password">password</form:label></td>
 								<td><form:password  path="password" /></td>
 							</tr>
 							<tr>
 								<td><form:label path="passwordConfirmation">passwordConfirmation</form:label></td>
 								<td><form:password path="passwordConfirmation" /></td>
-							</tr>
+							</tr> --%>
 							<tr>
 								<td><form:label path="locked">locked</form:label></td>
 								<td><form:checkbox label="Locked" path="locked" /></td>

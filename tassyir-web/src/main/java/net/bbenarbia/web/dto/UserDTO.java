@@ -21,9 +21,9 @@ public class UserDTO {
 	private String lastName;
 	@NotEmpty(message="login name must not be empty.")
 	private String login;
-	@NotEmpty(message="password must not be empty.")
+//	@NotEmpty(message="password must not be empty.")
 	private String password;
-	@NotEmpty(message="password must not be empty.")
+//	@NotEmpty(message="password must not be empty.")
 	private String passwordConfirmation;
 	private Boolean locked;
 	private Boolean isAdmin;
@@ -51,7 +51,7 @@ public class UserDTO {
 	}
 
 	
-	public User getUser(){
+	public User getUserWithoutPassword(){
 		User user = new User();
 		
 		if(id!= null){
@@ -64,13 +64,19 @@ public class UserDTO {
 		user.setLastName(lastName);
 		user.setLocked(locked);
 		user.setLogin(login);
-		user.setPassword(password);
 		user.setUserCategory(userCategory.getUserCategory());
 		return user;
 	}
 	
 	
-	public User updateUser(User user)throws Exception{
+	public User getUser(){
+		User user = getUserWithoutPassword();
+		user.setPassword(password);
+		return user;
+	}
+	
+	
+	public User updateUser(User user){
 		
 		user.setCode(Long.valueOf(code));
 		user.setContact(contact.getContact());
@@ -79,9 +85,9 @@ public class UserDTO {
 		user.setLastName(lastName);
 		user.setLocked(locked);
 		user.setLogin(login);
-		if(password.equals(passwordConfirmation)){
-			user.setPassword(password);
-		}else throw new Exception("Password not confirmed");
+//		if(password.equals(passwordConfirmation)){
+//			user.setPassword(password);
+//		}else throw new Exception("Password not confirmed");
 		user.setContact(contact.getContact());
 		user.setUserCategory(userCategory.getUserCategory());
 		return user;
