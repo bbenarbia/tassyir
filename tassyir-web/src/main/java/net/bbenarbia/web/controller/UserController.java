@@ -48,7 +48,7 @@ public class UserController {
 	private IUtilisateurService utilisateurService;
 
 	@Autowired
-	private IUserCategoryService userCategoryService;;
+	private IUserCategoryService userCategoryService;
 
 	@Autowired
 	private PasswordValidator validator;
@@ -222,7 +222,6 @@ public class UserController {
 		utilisateurService.saveOrUpdate(user);
 		
 		return "redirect:/users/" + user.getId();
-//		return "users/usersList";
 	}
 
 	@RequestMapping(value = "/{userId}/editpassword", method = RequestMethod.GET)
