@@ -40,6 +40,33 @@ public class ContactDTO {
 		super();
 	}
 	
+	
+	
+	public Contact updateContact(Contact contact){
+		
+	if(id!= null){
+		contact.setId(Long.valueOf(id));
+	}
+	contact.setAdresseContact1(adresseContact1);
+	contact.setAdresseContact2(adresseContact2);
+	contact.setAdresseMailContact(adresseMailContact);
+	contact.setAlerteSurTelephone1(alerteSurTelephone1);
+	contact.setAlerteSurTelephone2(alerteSurTelephone2);
+	contact.setCodePostalContact(Integer.valueOf(codePostalContact));
+	contact.setEstContactPrincipal(estContactPrincipal);
+	contact.setFaxContact(faxContact);
+	contact.setName(nameContact);
+	contact.setNomSocieteContact(nomSocieteContact);
+	contact.setSiteWebContact(siteWebContact);
+	contact.setTelephoneContact1(telephoneContact1);
+	contact.setTelephoneContact2(telephoneContact2);
+	contact.setTitreContact(titreContact);
+	contact.setTypeContact(EnumTypeContact.getTypeContactFromName(typeContact));
+	contact.setVilleContact(villeContact);
+	
+	return contact;
+	}
+
 	public Contact getContact(){
 		
 		Contact contact = new Contact();
@@ -96,8 +123,12 @@ public class ContactDTO {
 
 	public ContactDTO(Contact contact) {
 		super();
-		this.id = String.valueOf(contact.getId());
-		this.typeContact = contact.getTypeContact().toString();
+		if(contact.getId() != null){
+			this.id = String.valueOf(contact.getId());
+		}
+		if(contact.getTypeContact() != null){
+			this.typeContact = contact.getTypeContact().toString();
+		}
 		this.nameContact = contact.getName();
 		this.nomSocieteContact = contact.getNomSocieteContact();
 		this.titreContact = contact.getTitreContact();

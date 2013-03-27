@@ -35,20 +35,20 @@
 
 									<li><c:out value="${role.name}" /></li>
 								</c:forEach>
-							</ol> <spring:url value="/groups/{groupId}/roles.html" var="editRoleUrl">
+							</ol>
+						</td>						
+						<td>
+							<spring:url value="groups/{groupId}/edit.html" var="groupUrl">
 								<spring:param name="groupId" value="${group.id}" />
-							</spring:url> <a href="${fn:escapeXml(editRoleUrl)}">Edit Role</a>
-						</td>
-						
-						<td><spring:url value="groups/{groupId}/edit.html" var="groupUrl">
-								<spring:param name="groupId" value="${group.id}" />
-							</spring:url> <a href="${groupUrl}">Edit group</a>
+							</spring:url> 
+							<a href="${groupUrl}">Edit group</a>
 						</td>
 
-						<td><spring:url value="groups/{groupId}/delete.html" var="groupUrl">
+						<td>
+							<spring:url value="groups/{groupId}/delete.html" var="groupUrl">
 								<spring:param name="groupId" value="${group.id}" />
-							</spring:url> <a href="${groupUrl}">delete</a></td>
-
+							</spring:url> 
+							<a href="${groupUrl}">delete</a></td>
 					</tr>
 				</c:forEach>
 				<tr>

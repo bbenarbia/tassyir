@@ -21,9 +21,7 @@ public class UserDTO {
 	private String lastName;
 	@NotEmpty(message="login name must not be empty.")
 	private String login;
-//	@NotEmpty(message="password must not be empty.")
 	private String password;
-//	@NotEmpty(message="password must not be empty.")
 	private String passwordConfirmation;
 	private Boolean locked;
 	private Boolean isAdmin;
@@ -31,6 +29,8 @@ public class UserDTO {
 	private ContactDTO contact;
 	private UserCategoryDTO userCategory;
 
+	private RoleFormDTOList roleFormList;
+	
 	public UserDTO() {
 		super();
 	}
@@ -79,7 +79,7 @@ public class UserDTO {
 	public User updateUser(User user){
 		
 		user.setCode(Long.valueOf(code));
-		user.setContact(contact.getContact());
+//		user.setContact(contact.getContact());
 		user.setFirstName(firstName);
 		user.setIsAdmin(isAdmin);
 		user.setLastName(lastName);
@@ -88,7 +88,7 @@ public class UserDTO {
 //		if(password.equals(passwordConfirmation)){
 //			user.setPassword(password);
 //		}else throw new Exception("Password not confirmed");
-		user.setContact(contact.getContact());
+		user.setContact(contact.updateContact(user.getContact()));
 		user.setUserCategory(userCategory.getUserCategory());
 		return user;
 	}
@@ -200,4 +200,13 @@ public class UserDTO {
 		this.passwordConfirmation = passwordConfirmation;
 	}
 
+	public RoleFormDTOList getRoleFormList() {
+		return roleFormList;
+	}
+
+	public void setRoleFormList(RoleFormDTOList roleFormList) {
+		this.roleFormList = roleFormList;
+	}
+
+	
 }

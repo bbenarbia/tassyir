@@ -151,6 +151,22 @@ public class UserController {
 			Model model) {
 		User user = this.utilisateurService.get(userId);
 		UserDTO userDto = new UserDTO(user);
+		
+		RoleFormDTOList listFormDto = new RoleFormDTOList();
+
+		LinkedList<RoleFormDTO> roleFormList = new LinkedList<RoleFormDTO>();
+		List<Role> allRolesList = roleService.getAll();
+
+		for (Role role : allRolesList) {
+			if (user.getRoles() != null && user.getRoles().contains(role)) {
+				roleFormList.add(new RoleFormDTO(role, true));
+			} else {
+				roleFormList.add(new RoleFormDTO(role, false));
+			}
+		}
+		listFormDto.setRoles(roleFormList);
+		userDto.setRoleFormList(listFormDto);
+		
 		model.addAttribute("user", userDto);
 		return "users/updateUserForm";
 	}
@@ -167,62 +183,73 @@ public class UserController {
 
 			User user = this.utilisateurService.get(userId);
 			user = userDto.updateUser(user);
-			if (result.hasErrors()) {
-				return "users/updateUserForm";
-			} else {
-				utilisateurService.merge(user);
-				status.setComplete();
-				return "redirect:/users/" + user.getId();
+			
+			
+			Set<Role> rolesList = new HashSet<Role>();
+			if (null != userDto.getRoleFormList().getRoles()
+					&& userDto.getRoleFormList().getRoles().size() > 0) {
+				for (RoleFormDTO roleDto : userDto.getRoleFormList().getRoles()) {
+					if (roleDto.isIncluded()) {
+						Role role = roleService.getRolesByName(
+								roleDto.getRole().getName()).get(0);
+						rolesList.add(role);
+					}
+				}
 			}
+			user.setRolesInternal(rolesList);
+			
+			utilisateurService.merge(user);
+			status.setComplete();
+			return "redirect:/users/" + user.getId();
 		} catch (Exception e) {
 			return "users/updateUserForm";
 		}
 	}
 
-	@RequestMapping(value = "/{userId}/roles", method = RequestMethod.GET)
-	public String rolesUserForm(@PathVariable("userId") Long userId, Model model) {
-
-		RoleFormDTOList listFormDto = new RoleFormDTOList();
-
-		LinkedList<RoleFormDTO> roleFormList = new LinkedList<RoleFormDTO>();
-		User user = this.utilisateurService.get(userId);
-		List<Role> allRolesList = roleService.getAll();
-
-		for (Role role : allRolesList) {
-			if (user.getRoles() != null && user.getRoles().contains(role)) {
-				roleFormList.add(new RoleFormDTO(role, true));
-			} else {
-				roleFormList.add(new RoleFormDTO(role, false));
-			}
-		}
-		listFormDto.setRoles(roleFormList);
-		model.addAttribute("userId", userId);
-		model.addAttribute("roleFormList", listFormDto);
-		return "users/rolesList";
-	}
-
-	@RequestMapping(value = "/{userId}/roles/save", method = RequestMethod.POST)
-	public String saveRoles(
-			@ModelAttribute("roleFormList") RoleFormDTOList roleFormList,
-			@PathVariable("userId") Long userId) {
-
-		User user = this.utilisateurService.get(userId);
-		Set<Role> rolesList = new HashSet<Role>();
-		if (null != roleFormList.getRoles()
-				&& roleFormList.getRoles().size() > 0) {
-			for (RoleFormDTO roleDto : roleFormList.getRoles()) {
-				if (roleDto.isIncluded()) {
-					Role role = roleService.getRolesByName(
-							roleDto.getRole().getName()).get(0);
-					rolesList.add(role);
-				}
-			}
-		}
-		user.setRolesInternal(rolesList);
-		utilisateurService.merge(user);
-		
-		return "redirect:/users/" + user.getId();
-	}
+//	@RequestMapping(value = "/{userId}/roles", method = RequestMethod.GET)
+//	public String rolesUserForm(@PathVariable("userId") Long userId, Model model) {
+//
+//		RoleFormDTOList listFormDto = new RoleFormDTOList();
+//
+//		LinkedList<RoleFormDTO> roleFormList = new LinkedList<RoleFormDTO>();
+//		User user = this.utilisateurService.get(userId);
+//		List<Role> allRolesList = roleService.getAll();
+//
+//		for (Role role : allRolesList) {
+//			if (user.getRoles() != null && user.getRoles().contains(role)) {
+//				roleFormList.add(new RoleFormDTO(role, true));
+//			} else {
+//				roleFormList.add(new RoleFormDTO(role, false));
+//			}
+//		}
+//		listFormDto.setRoles(roleFormList);
+//		model.addAttribute("userId", userId);
+//		model.addAttribute("roleFormList", listFormDto);
+//		return "users/rolesList";
+//	}
+//
+//	@RequestMapping(value = "/{userId}/roles/save", method = RequestMethod.POST)
+//	public String saveRoles(
+//			@ModelAttribute("roleFormList") RoleFormDTOList roleFormList,
+//			@PathVariable("userId") Long userId) {
+//
+//		User user = this.utilisateurService.get(userId);
+//		Set<Role> rolesList = new HashSet<Role>();
+//		if (null != roleFormList.getRoles()
+//				&& roleFormList.getRoles().size() > 0) {
+//			for (RoleFormDTO roleDto : roleFormList.getRoles()) {
+//				if (roleDto.isIncluded()) {
+//					Role role = roleService.getRolesByName(
+//							roleDto.getRole().getName()).get(0);
+//					rolesList.add(role);
+//				}
+//			}
+//		}
+//		user.setRolesInternal(rolesList);
+//		utilisateurService.merge(user);
+//		
+//		return "redirect:/users/" + user.getId();
+//	}
 
 	@RequestMapping(value = "/{userId}/editpassword", method = RequestMethod.GET)
 	public String updatePasswordForm(@PathVariable("userId") Long userId,

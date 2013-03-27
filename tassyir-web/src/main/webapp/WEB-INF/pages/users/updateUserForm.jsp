@@ -17,9 +17,7 @@
 
 <body>
 	<jsp:include page="../common/menu.jsp" />
-	<h2>
-		User
-	</h2>
+	<h2>User</h2>
 
 	<form:form modelAttribute="user" method="put" id="add-user-form">
 
@@ -48,14 +46,6 @@
 								<td><form:label path="code">code</form:label></td>
 								<td><form:input label="Code" path="code" /></td>
 							</tr>
-		<%-- 					<tr>
-								<td><form:label path="password">password</form:label></td>
-								<td><form:password  path="password" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="passwordConfirmation">passwordConfirmation</form:label></td>
-								<td><form:password path="passwordConfirmation" /></td>
-							</tr> --%>
 							<tr>
 								<td><form:label path="locked">locked</form:label></td>
 								<td><form:checkbox label="Locked" path="locked" /></td>
@@ -64,16 +54,33 @@
 								<td><form:label path="isAdmin">Admin</form:label></td>
 								<td><form:checkbox label="Admin" path="isAdmin" /></td>
 							</tr>
-						<%--  <tr>
-								<td><form:label path="userCategory">user group</form:label></td>
+							<tr>
+								<td>Roles</td>
 								<td>
-									<form:select path="userCategory" items="${userGroupList}" />
-								<form:select  path="userCategory" >
-										<form:options items="${userGroupList}" itemLabel="${userCategory.name}" itemValue="${userCategory.id}"/>
-								</form:select>
+									<table>
+										<tr>
+											<td style="width: 50px;">N°</td>
+											<td style="width: 150px;">Name</td>
+											<td style="width: 150px;">description</td>
+											<td style="width: 150px;">Included</td>
+										</tr>
+										<c:forEach items="${user.roleFormList.roles}" var="roleForm"
+											varStatus="status">
+											<tr>
+												<td align="center">${status.count}</td>
+												<td>
+													<c:out value="${roleForm.role.name}"></c:out> <form:hidden
+														path="roleFormList.roles[${status.index}].role.name" /></td>
+												<td>
+													<c:out value="${roleForm.role.description}"></c:out></td>
+												<td>
+													<form:checkbox
+														path="roleFormList.roles[${status.index}].included" /></td>
+											</tr>
+										</c:forEach>
+									</table>
 								</td>
-							</tr>  --%>
-							
+							</tr>
 						</table>
 					</div>
 				</td>
@@ -86,36 +93,33 @@
 							<tr>
 								<td><form:label path="contact.nameContact">contact name</form:label>
 								</td>
-								<td><form:input label="contact.nameContact" path="contact.nameContact" />
-								</td>
+								<td><form:input label="contact.nameContact"
+										path="contact.nameContact" /></td>
 								<td><form:label path="contact.nomSocieteContact">contact.nomSocieteContact</form:label>
 								</td>
 								<td><form:input label="contact.nomSocieteContact"
 										path="contact.nomSocieteContact" /></td>
 							</tr>
 							<tr>
-								<td>
-									<form:label path="contact.typeContact">contact.typeContact</form:label>
+								<td><form:label path="contact.typeContact">contact.typeContact</form:label>
 								</td>
-								<td>
-									<form:select path="contact.typeContact">
-									<c:forEach var="item" items="${typeContactList}">
-									    <c:choose>
-									        <c:when test="${user.contact.typeContact == item}">
-									            <form:option selected="true" value="${item}">
+								<td><form:select path="contact.typeContact">
+										<c:forEach var="item" items="${typeContactList}">
+											<c:choose>
+												<c:when test="${user.contact.typeContact == item}">
+													<form:option selected="true" value="${item}">
 									                ${item} 
 									            </form:option>
-									        </c:when>
-									
-									        <c:otherwise>
-									            <form:option value="${item}">
+												</c:when>
+
+												<c:otherwise>
+													<form:option value="${item}">
 									                   ${item}
 									            </form:option>
-									        </c:otherwise>
-									    </c:choose>
-									</c:forEach>
-									</form:select>
-								</td>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</form:select></td>
 								<td><form:label path="contact.titreContact">contact.titreContact</form:label>
 								</td>
 								<td><form:input label="contact.titreContact"
@@ -184,29 +188,27 @@
 							<tr>
 								<td><form:label path="userCategory.name">userCategory.name</form:label>
 								</td>
-								<td>
-									<form:select path="userCategory.name">
-									<c:forEach var="item" items="${userGroupList}">
-									    <c:choose>
-									        <c:when test="${user.userCategory.name == item}">
-									            <form:option selected="true" value="${item}">
+								<td><form:select path="userCategory.name">
+										<c:forEach var="item" items="${userGroupList}">
+											<c:choose>
+												<c:when test="${user.userCategory.name == item}">
+													<form:option selected="true" value="${item}">
 									                ${item} 
 									            </form:option>
-									        </c:when>
-									
-									        <c:otherwise>
-									            <form:option value="${item}">
+												</c:when>
+
+												<c:otherwise>
+													<form:option value="${item}">
 									                   ${item}
 									            </form:option>
-									        </c:otherwise>
-									    </c:choose>
-									</c:forEach>
-									</form:select>
-										</td>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</form:select></td>
 								<td></td>
 								<td></td>
 
-							</tr> 
+							</tr>
 						</table>
 					</div>
 				</td>
