@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
-public class UserDTO {
+public class UserDTO { 
 	
 	private String id;
 	@NotEmpty(message="Code must not be empty.")

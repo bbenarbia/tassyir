@@ -187,22 +187,6 @@
 			</tr>
 		</table>
 
-		<%-- 	<div class="CSS_Table_Example" style="text-align: right;">
-			<table>
-				<tr>
-					<td><c:choose>
-							<c:when test="${user['new']}">
-								<button type="submit">Add user</button>
-							</c:when>
-							<c:otherwise>
-								<button type="submit">Update user</button>
-							</c:otherwise>
-						</c:choose></td>
-				</tr>
-			</table>
-		</div> --%>
-
-
 	</form:form>
 
 

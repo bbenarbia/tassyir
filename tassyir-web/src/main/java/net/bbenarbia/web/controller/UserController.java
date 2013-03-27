@@ -135,16 +135,16 @@ public class UserController {
 		return "users/usersList";
 	}
 
-	@RequestMapping(value = "/{userId}", method = RequestMethod.POST)
-	public String update(User user, BindingResult bindingResult, @PathVariable("userId") Long userId, Model uiModel) {
-		if (bindingResult.hasErrors()) {
-			uiModel.addAttribute("user", user);
-			return "users/updateUserForm";
-		} 
-		uiModel.asMap().clear();
-		utilisateurService.saveOrUpdate(user);
-		return "redirect:/users/" + user.getId();
-	}
+//	@RequestMapping(value = "/{userId}", method = RequestMethod.POST)
+//	public String update(User user, BindingResult bindingResult, @PathVariable("userId") Long userId, Model uiModel) {
+//		if (bindingResult.hasErrors()) {
+//			uiModel.addAttribute("user", user);
+//			return "users/updateUserForm";
+//		} 
+//		uiModel.asMap().clear();
+//		utilisateurService.saveOrUpdate(user);
+//		return "redirect:/users/" + user.getId();
+//	}
 
 	@RequestMapping(value = "/{userId}/edit", method = RequestMethod.GET)
 	public String initUpdateUserForm(@PathVariable("userId") Long userId,
@@ -170,7 +170,7 @@ public class UserController {
 			if (result.hasErrors()) {
 				return "users/updateUserForm";
 			} else {
-				utilisateurService.saveOrUpdate(user);
+				utilisateurService.merge(user);
 				status.setComplete();
 				return "redirect:/users/" + user.getId();
 			}
@@ -219,7 +219,7 @@ public class UserController {
 			}
 		}
 		user.setRolesInternal(rolesList);
-		utilisateurService.saveOrUpdate(user);
+		utilisateurService.merge(user);
 		
 		return "redirect:/users/" + user.getId();
 	}
