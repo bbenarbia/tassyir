@@ -87,7 +87,6 @@ CREATE TABLE IF NOT EXISTS users (
   last_name VARCHAR(30),
   login VARCHAR(30),
   password VARCHAR(30),
-  connected tinyint(1),
   locked  tinyint (1),
   is_admin  tinyint (1),
   fk_contact INT(5) UNSIGNED NOT NULL,

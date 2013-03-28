@@ -34,9 +34,9 @@ insert into contact values (3, 1, 'Contact3', 'Company 3', 'pro', 'adresse1', 'a
 'www.bbenarbia.fr', '01010101', '0202020202');
 
 
-insert into users VALUES (1, 1, 'kadour', 'Yahia','kyahia','kyahia',false, false, false, 1, 2);
-insert into users VALUES (2, 2, 'said', 'med','smed','smed',true, false, false, 2, 1);
-insert into users VALUES (3, 3, 'lakhdar', 'omar','lomar','lomar',true, true, false, 3 , 2);
+insert into users VALUES (1, 1, 'kadour', 'Yahia','kyahia','kyahia',false, false, 1, 2);
+insert into users VALUES (2, 2, 'said', 'med','smed','smed',true, false, 2, 1);
+insert into users VALUES (3, 3, 'lakhdar', 'omar','lomar','lomar',true, false, 3 , 2);
 
 
 insert into user_role values (1,1);
