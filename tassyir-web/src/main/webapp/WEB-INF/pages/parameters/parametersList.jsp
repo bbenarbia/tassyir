@@ -8,13 +8,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
-<link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
-	type="text/css" />
+<link rel="stylesheet" href="<c:url value="/stylesheets/screen.css"/>"
+	type="text/css" media="screen" />
 </head>
 <body>
-
-	<jsp:include page="../common/menu.jsp"/>
-	<div class="container">
+	<div id="container">
+		<jsp:include page="../common/menu.jsp" />
+		<jsp:include page="../common/menu-users.jsp" />
 		<h2>Parameters</h2>
 
 		<div class="CSS_Table_Example" style="width: 600px; height: 150px;">

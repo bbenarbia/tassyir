@@ -14,6 +14,7 @@
 
 <body>
 	<jsp:include page="../common/menu.jsp" />
+	<jsp:include page="../common/menu-users.jsp" />
 	<h2>
 		<spring:message code="user.information" />
 	</h2>
@@ -44,6 +45,9 @@
 
 				<td><spring:url value="/groups/new" var="groupUrl" /> <a
 					href="${fn:escapeXml(groupUrl)}">Add group</a></td>
+			</tr>
+			<tr>
+			  <td colspan="2"><a href="javascript: history.go(-1)">Back</a></td>
 			</tr>
 		</table>
 	</div>

@@ -13,31 +13,36 @@
 <title></title>
 <link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
 	type="text/css" />
+<link rel="stylesheet" href="<c:url value="/stylesheets/screen.css"/>"
+	type="text/css" media="screen" />
 </head>
 
 <body>
-	<jsp:include page="../common/menu.jsp" />
-	<h2>User</h2>
+	<div id="container">
+		<jsp:include page="../common/menu.jsp" />
+		<jsp:include page="../common/menu-users.jsp" />
 
-	<form:form modelAttribute="group" method="post" id="add-user-form">
-		<div class="CSS_Table_Example">
-			<table>
-				<tr>
-					<td colspan="2">Informations group</td>
-				</tr>
-				<tr>
-					<td><form:label path="name">group Name</form:label></td>
-					<td><form:input label="Group Name" path="name" /></td>
-				</tr>
-				<tr>
-				<td></td>
-				<td>
+		<h2>User</h2>
+
+		<form:form modelAttribute="group" method="post" id="form1">
+			<fieldset>
+				<legend>Informations group</legend>
+
+				<p class="first">
+					<label for="name">Name</label>
+					<form:input label="Group Name" path="name" />
+					<form:errors cssClass="error" path="name" />
+				</p>
+				<p>
+				<div class="CSS_Table_Example" style="width: 80px;">
+					<label for="value">value</label>
+
 					<table>
 						<tr>
-							<td style="width: 350px;">N°</td>
-							<td style="width: 350px;">Name</td>
-							<td style="width: 350px;">description</td>
-							<td style="width: 350px;">Included</td>
+							<td style="width: 20px;">N°</td>
+							<td>Name</td>
+							<td>description</td>
+							<td>Included</td>
 						</tr>
 						<c:forEach items="${group.roleFormList.roles}" var="roleForm"
 							varStatus="status">
@@ -46,25 +51,21 @@
 								<td><c:out value="${roleForm.role.name}"></c:out></td>
 								<td><c:out value="${roleForm.role.description}"></c:out></td>
 								<%-- <td><form:input path="roleFormList.roles[${status.index}].role.description" /></td> --%>
-								<td><form:checkbox path="roleFormList.roles[${status.index}].included" /></td>
+								<td><form:checkbox
+										path="roleFormList.roles[${status.index}].included" /></td>
 							</tr>
 						</c:forEach>
 					</table>
-					</td>
-				</tr>
-			</table>
-		</div>
+				</div>
+				</p>
+			</fieldset>
 
-		<div class="CSS_Table_Example" style="text-align: right;">
-			<table>
-				<tr>
-					<td>
-						<button type="submit">Create group</button>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</form:form>
+			<p class="submit">
+				<button type="submit">Create group</button>
+				<a href="javascript: history.go(-1)">Back</a>
+			</p>
+		</form:form>
+	</div>
 </body>
 
 </html>

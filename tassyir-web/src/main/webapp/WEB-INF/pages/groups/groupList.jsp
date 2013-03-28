@@ -14,6 +14,7 @@
 <body>
 
 	<jsp:include page="../common/menu.jsp" />
+	<jsp:include page="../common/menu-users.jsp" />
 	<div class="container">
 		<h2>groups</h2>
 

@@ -11,42 +11,46 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
-<link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
-	type="text/css" />
+<link rel="stylesheet" href="<c:url value="/stylesheets/screen.css"/>"
+	type="text/css" media="screen" />
 </head>
 
 <body>
-	<jsp:include page="../common/menu.jsp" />
+	<div id="container">
+		<jsp:include page="../common/menu.jsp" />
+		<jsp:include page="../common/menu-users.jsp" />
+		
 	<h2>Parameter</h2>
 
-	<form:form modelAttribute="parameter" method="put"
-		id="add-parameter-form">
-		<div class="CSS_Table_Example" style="text-align: right;">
-			<table>
-				<tr>
-					<td colspan="2">Informations Parameters</td>
-				</tr>
-				<tr>
-					<td><form:label path="name">name</form:label></td>
-					<td><form:input label="name" path="name" /></td>
-				</tr>
-				<tr>
-					<td><form:label path="value">value</form:label></td>
-					<td><form:input label="value" path="value" /></td>
-				</tr>
-				<tr>
-					<td><form:label path="description">description</form:label></td>
-					<td><form:input label="description" path="description" /></td>
-				</tr>
-				<tr>
-					<td>
-						<button type="submit">Update user</button>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</form:form>
+	<form:form modelAttribute="parameter" method="put" id="form1">
 
+			<fieldset>
+				<legend>Informations Parameter</legend>
+
+				<p class="first">
+					<label for="name">Name</label>
+					<form:input label="name" path="name" />
+					<form:errors cssClass="error" path="name" />
+				</p>
+				<p>
+					<label for="value">value</label>
+					<form:input label="value" path="value" />
+					<form:errors cssClass="error" path="value" />
+				</p>
+			</fieldset>
+			<fieldset>
+				<p>
+					<label for="description">Description</label>
+					<form:textarea label="description" path="description" cols="30"
+						rows="10" />
+					<form:errors cssClass="error" path="description" />
+				</p>
+			</fieldset>
+			<p class="submit">
+				<button type="submit">Update user</button>
+			</p>
+		</form:form>
+</div>
 </body>
 
 </html>

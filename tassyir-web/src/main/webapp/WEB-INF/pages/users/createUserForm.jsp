@@ -15,22 +15,24 @@
 <title></title>
 <link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
 	type="text/css" />
+<link rel="stylesheet" href="<c:url value="/stylesheets/screen.css"/>"
+	type="text/css" media="screen" />
 </head>
 
 <body>
-	<jsp:include page="../common/menu.jsp" />
-	<h2>User</h2>
+	<div id="container">
+		<jsp:include page="../common/menu.jsp" />
+		<jsp:include page="../common/menu-users.jsp" />
+		<h2>User</h2>
 
-	<form:form modelAttribute="user" method="post" id="add-user-form">
-
+	<form:form modelAttribute="user" method="post" id="form1">
 		<table>
-
 			<tr>
 				<td>
-					<div class="CSS_Table_Example">
-						<table>
+					<div class="CSS_Table_Example" >
+						<table >
 							<tr>
-								<td colspan="2">Informations Utilisateur</td>
+								<td colspan="2" >Informations Utilisateur</td>
 							</tr>
 							<tr>
 								<td><form:label path="firstName">firstName</form:label></td>
@@ -103,37 +105,39 @@
 						</table>
 					</div>
 				</td>
+				</tr>
+				<tr>
 				<td>
 					<div class="CSS_Table_Example">
 						<table>
 							<tr>
-								<td colspan="4">Informations Contact</td>
+								<td colspan="4" width="80%;">Informations Contact</td>
 							</tr>
 							<tr>
-								<td><form:label path="contact.nameContact">contact name</form:label>
+								<td ><form:label path="contact.nameContact">contact name</form:label>
 								</td>
 								<td><form:input path="contact.nameContact" /> <form:errors
 										cssClass="error" path="contact.nameContact" /></td>
-								<td><form:label path="contact.nomSocieteContact">contact.nomSocieteContact</form:label>
+								<td><form:label path="contact.nomSocieteContact">nomSocieteContact</form:label>
 								</td>
 								<td><form:input path="contact.nomSocieteContact" /> <form:errors
 										cssClass="error" path="contact.nomSocieteContact" /></td>
 							</tr>
 							<tr>
 								<td>
-									<form:label path="contact.typeContact">contact.typeContact</form:label>
+									<form:label path="contact.typeContact">typeContact</form:label>
 								</td>
 								<td>
 									<form:select path="contact.typeContact" items="${typeContactList}" />
 								</td> 
 								
-								<td><form:label path="contact.titreContact">contact.titreContact</form:label>
+								<td><form:label path="contact.titreContact">titreContact</form:label>
 								</td>
 								<td><form:input path="contact.titreContact" /> <form:errors
 										cssClass="error" path="contact.titreContact" /></td>
 							</tr>
 							<tr>
-								<td><form:label path="contact.adresseContact1">contact adresseContact1</form:label>
+								<td><form:label path="contact.adresseContact1">adresseContact1</form:label>
 								</td>
 								<td><form:input path="contact.adresseContact1" /> <form:errors
 										cssClass="error" path="contact.adresseContact1" /></td>
@@ -207,16 +211,15 @@
 					</div>
 				</td>
 			</tr>
-			<tr>
-				<td>
-					<button type="submit">Add user</button>
-				</td>
-			</tr>
 		</table>
 
+		<p class="submit">
+				<a class="cancelButton" href="javascript: history.go(-1)"> Back </a>
+				<button type="submit">Add user</button>
+		</p>
 	</form:form>
 
-
+</div>
 </body>
 
 </html>

@@ -17,6 +17,7 @@
 
 <body>
 	<jsp:include page="../common/menu.jsp" />
+	<jsp:include page="../common/menu-users.jsp" />
 	<h2>User</h2>
 
 	<form:form modelAttribute="user" method="put" id="add-user-form">
