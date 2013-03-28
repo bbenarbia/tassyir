@@ -29,7 +29,7 @@ import org.springframework.beans.support.PropertyComparator;
 public class User extends BaseUser {
 
 	@OneToOne
-	@Cascade(CascadeType.SAVE_UPDATE)
+	@Cascade(CascadeType.ALL)
 	@JoinColumn(name = "fk_contact")
 	private Contact contact;
 

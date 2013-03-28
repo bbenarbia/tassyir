@@ -73,6 +73,33 @@
 								<td><form:checkbox label="Admin" path="isAdmin" /> <form:errors
 										cssClass="error" path="isAdmin" /></td>
 							</tr>
+							<tr>
+								<td>Roles</td>
+								<td>
+									<table>
+										<tr>
+											<td style="width: 50px;">N°</td>
+											<td style="width: 150px;">Name</td>
+											<td style="width: 150px;">description</td>
+											<td style="width: 150px;">Included</td>
+										</tr>
+										<c:forEach items="${user.roleFormList.roles}" var="roleForm"
+											varStatus="status">
+											<tr>
+												<td align="center">${status.count}</td>
+												<td>
+													<c:out value="${roleForm.role.name}"></c:out> <form:hidden
+														path="roleFormList.roles[${status.index}].role.name" /></td>
+												<td>
+													<c:out value="${roleForm.role.description}"></c:out></td>
+												<td>
+													<form:checkbox
+														path="roleFormList.roles[${status.index}].included" /></td>
+											</tr>
+										</c:forEach>
+									</table>
+								</td>
+							</tr>
 						</table>
 					</div>
 				</td>

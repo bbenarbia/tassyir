@@ -17,6 +17,18 @@ public class UserCategoryDTO {
 		return userCategory;
 		
 	}
+	
+	
+	public UserCategory updateUserCategory(UserCategory userCategory){
+		
+		if(id!= null){
+			userCategory.setId(Long.valueOf(id));
+		}
+		userCategory.setName(name);		
+		return userCategory;
+		}
+	
+	
 	public UserCategoryDTO() {
 		super();
 	}

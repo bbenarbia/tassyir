@@ -33,7 +33,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author benaissa
@@ -87,10 +86,17 @@ public class UserController {
 	}
 
 	@RequestMapping("/{userId}")
-	public ModelAndView showUser(@PathVariable("userId") long userId) {
-		ModelAndView mav = new ModelAndView("users/userDetails");
-		mav.addObject(this.utilisateurService.get(userId));
-		return mav;
+	public String showUserDetails(@PathVariable("userId") long userId, Model model) {
+		User user = this.utilisateurService.get(userId);
+		model.addAttribute("user",user);
+		List<String> userRolesOfGroup = new LinkedList<String>();
+		if(user != null && user.getUserCategory()!= null ){
+			for (Role role : user.getUserCategory().getRoles()) {
+				userRolesOfGroup.add(role.getName());
+			}
+		}
+		model.addAttribute("groupRoles",userRolesOfGroup);
+		return "users/userDetails";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
@@ -104,18 +110,29 @@ public class UserController {
 		List<UserCategory> userCategoryList = userCategoryService
 				.getUserCategroryByName(userDto.getUserCategory().getName());
 
-		if (result.hasErrors()) {
-			return "users/createUserForm";
-		}
-
 		User user = userDto.getUser();
 		if (!userCategoryList.isEmpty()) {
 			user.setUserCategory(userCategoryList.get(0));
 		}
+		this.utilisateurService.saveOrUpdate(user);
+		
+		Set<Role> rolesList = new HashSet<Role>();
+		if (null != userDto.getRoleFormList().getRoles()
+				&& userDto.getRoleFormList().getRoles().size() > 0) {
+			for (RoleFormDTO roleDto : userDto.getRoleFormList().getRoles()) {
+				if (roleDto.isIncluded()) {
+					Role role = roleService.getRolesByName(
+							roleDto.getRole().getName()).get(0);
+					rolesList.add(role);
+				}
+			}
+		}
+		user.setRolesInternal(rolesList);
+		
 		if (result.hasErrors()) {
 			return "users/createUserForm";
 		} else {
-			this.utilisateurService.saveOrUpdate(user);
+			this.utilisateurService.merge(user);
 			status.setComplete();
 			return "redirect:/users/" + user.getId();
 		}
@@ -123,7 +140,21 @@ public class UserController {
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String initFindForm(Model model) {
-		model.addAttribute("user", new UserDTO());
+		
+		
+		UserDTO  userDto = new UserDTO();
+		RoleFormDTOList listFormDto = new RoleFormDTOList();
+
+		LinkedList<RoleFormDTO> roleFormList = new LinkedList<RoleFormDTO>();
+		List<Role> allRolesList = roleService.getAll();
+
+		for (Role role : allRolesList) {
+				roleFormList.add(new RoleFormDTO(role, false));
+		}
+		listFormDto.setRoles(roleFormList);
+		userDto.setRoleFormList(listFormDto);
+		
+		model.addAttribute("user", userDto);
 		return "users/createUserForm";
 	}
 
@@ -181,10 +212,11 @@ public class UserController {
 				return "users/createUserForm";
 			}
 
+			UserCategory group = userCategoryService.getUserCategroryByName(userDto.getUserCategory().getName()).get(0);
 			User user = this.utilisateurService.get(userId);
 			user = userDto.updateUser(user);
-			
-			
+			user.setUserCategory(group);
+
 			Set<Role> rolesList = new HashSet<Role>();
 			if (null != userDto.getRoleFormList().getRoles()
 					&& userDto.getRoleFormList().getRoles().size() > 0) {

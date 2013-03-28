@@ -45,6 +45,14 @@
 							<li><c:out value="${role.name}" /></li>
 						</c:forEach>
 					</ol>
+					<spring:message code="group.roles" />
+					<ol>
+						<c:forEach var="role" items="${groupRoles}">
+
+							<li><c:out value="${role}" /></li>
+						</c:forEach>
+					</ol>
+					
 				</td>
 			</tr>
 			<tr>
