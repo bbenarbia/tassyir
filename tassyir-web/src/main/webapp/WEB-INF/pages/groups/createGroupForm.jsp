@@ -30,6 +30,8 @@
 					<td><form:input label="Group Name" path="name" /></td>
 				</tr>
 				<tr>
+				<td></td>
+				<td>
 					<table>
 						<tr>
 							<td style="width: 350px;">N°</td>
@@ -48,6 +50,7 @@
 							</tr>
 						</c:forEach>
 					</table>
+					</td>
 				</tr>
 			</table>
 		</div>
