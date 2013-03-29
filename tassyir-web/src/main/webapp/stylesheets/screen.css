@@ -129,12 +129,12 @@ li{
 		}		
 		
 	#form1 a{
-		width:150px;
+		width:100px;
 		height:37px;
 		line-height:37px;		
 		border:none;
 		margin:0;
-		padding:20px;
+/* 		padding:20px; */
 		background:url(images/form1/form_button.gif) no-repeat 0 0;
 		color:#fff;
 		cursor:pointer;
