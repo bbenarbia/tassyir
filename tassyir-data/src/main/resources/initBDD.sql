@@ -104,3 +104,47 @@ CREATE TABLE IF NOT EXISTS users (
   FOREIGN KEY (id_role) REFERENCES roles(id),
   UNIQUE(id_user,  id_role)
   ) engine=InnoDB;
+  
+  
+  
+  CREATE TABLE IF NOT EXISTS biens (
+  id INT(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  ref VARCHAR(80),
+  name VARCHAR(30),
+  typeBien VARCHAR(3),
+--  APT appartement 
+--  STD studio 
+--  TRN Terrain
+--  CMR Commerce
+--  MSN MAISON
+--  ETP ENTREPOT  
+  
+  adresse VARCHAR(120),
+  description VARCHAR(300),
+  superficie DECIMAL(5,2),
+  status INT(5) DEFAULT 0,
+  prixVente DECIMAL(5,2),
+  prixMinVente DECIMAL(5,2),
+  loyerMensuel DECIMAL(5,2),
+  chargesMensuel DECIMAL(5,2),
+  typeOperation  INT(5) DEFAULT 0,
+  etatBien INT(5) DEFAULT 0,
+  etage  INT(5) DEFAULT 0,
+  nbPieces  INT(5) DEFAULT 0,
+  ascenseur tinyint (1),
+  cuisineEquipee tinyint (1),
+  age  INT(5) DEFAULT 0, 
+  jardin  tinyint (1),
+  INDEX(ref, name)
+) engine=InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS photos (
+  id INT(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(30),
+  bien INT(5) UNSIGNED NOT NULL,
+  path VARCHAR(300),
+  FOREIGN KEY (bien) REFERENCES biens(id),
+  INDEX(name)
+) engine=InnoDB;
+

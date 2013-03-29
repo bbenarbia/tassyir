@@ -1,11 +1,29 @@
 package net.bbenarbia.domain.immobilier;
 
-public class Maison extends ImmovableProperty{
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "biens")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorValue("MSN")
+public class Maison extends BienImmobilier{
+	
+	@Column(name = "nbPieces")
 	private int nbPieces;
+	
+	@Column(name = "cuisineEquipee")
 	private boolean cuisineEquipee;
+	
+	@Column(name = "jardin")
 	private boolean jardin;
 	
+	@Column(name = "age")
+	private int age;
 	
 	public int getNbPieces() {
 		return nbPieces;
@@ -24,6 +42,12 @@ public class Maison extends ImmovableProperty{
 	}
 	public void setJardin(boolean jardin) {
 		this.jardin = jardin;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
 	}
 	
 	

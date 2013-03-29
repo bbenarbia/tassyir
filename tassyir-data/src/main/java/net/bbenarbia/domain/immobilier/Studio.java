@@ -1,9 +1,26 @@
 package net.bbenarbia.domain.immobilier;
 
-public class Studio extends ImmovableProperty{
-	private int etage;
-	private boolean ascensseur;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "biens")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorValue("STD")
+public class Studio extends BienImmobilier{
 	
+	@Column(name = "etage")
+	private int etage;
+	
+	@Column(name = "ascenseur")
+	private boolean ascenseur;
+	
+	@Column(name = "age")
+	private int age;
 	
 	public int getEtage() {
 		return etage;
@@ -11,11 +28,17 @@ public class Studio extends ImmovableProperty{
 	public void setEtage(int etage) {
 		this.etage = etage;
 	}
-	public boolean isAscensseur() {
-		return ascensseur;
+	public int getAge() {
+		return age;
 	}
-	public void setAscensseur(boolean ascensseur) {
-		this.ascensseur = ascensseur;
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public boolean isAscenseur() {
+		return ascenseur;
+	}
+	public void setAscenseur(boolean ascenseur) {
+		this.ascenseur = ascenseur;
 	}
 	
 }
