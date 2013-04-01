@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS users (
   id INT(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   ref VARCHAR(80),
   name VARCHAR(30),
-  typeBien VARCHAR(3),
+  typeBien VARCHAR(15),
 --  APT appartement 
 --  STD studio 
 --  TRN Terrain

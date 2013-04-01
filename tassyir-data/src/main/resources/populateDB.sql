@@ -44,18 +44,18 @@ insert into user_role values (1,2);
 insert into user_role values (2,1);
 insert into user_role values (3,1);
 
-insert into biens values(1, '1', 'appartement1','APT','adresse 1', 'description de location',24.4, 1, 700, 
+insert into biens values(1, '1', 'appartement1','APPARTEMENT','adresse 1', 'description de location',24.4, 1, 700, 
 500,100, 100, 1, 1, 2, 2, false, false, 1967, false);   
 
 
-insert into biens values(2, '2', 'appartement2','APT','adresse 1', 'description de location',24.4, 1, 700, 
+insert into biens values(2, '2', 'appartement2','APPARTEMENT','adresse 1', 'description de location',24.4, 1, 700, 
 500,100, 100, 1, 1, 2, 2, false, false, 2001, false);   
 
 
-insert into biens values(3, '3', 'Studio','STS','adresse 1', 'description de location',24.4, 1, 700, 
+insert into biens values(3, '3', 'Studio','STUDIO','adresse 1', 'description de location',24.4, 1, 700, 
 500,100, 100, 1, 1, 2, 2, false, false, 2011, false);   
 
-insert into biens values(4, '4', 'terrain','TRN','adresse 1', 'description de location',24.4, 1, 700, 
+insert into biens values(4, '4', 'terrain','TERRAIN','adresse 1', 'description de location',24.4, 1, 700, 
 500,100, 100, 1, 1, 2, 2, false, false, 2011, false);   
 
 

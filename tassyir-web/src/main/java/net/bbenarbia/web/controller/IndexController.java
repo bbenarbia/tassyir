@@ -1,8 +1,12 @@
 package net.bbenarbia.web.controller;
 
+import java.util.List;
+
+import net.bbenarbia.constants.Constants;
 import net.bbenarbia.domain.enums.EnumEtatBien;
 import net.bbenarbia.domain.enums.EnumStatutProperty;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
+import net.bbenarbia.domain.immobilier.BienImmobilier;
 import net.bbenarbia.domain.immobilier.Studio;
 import net.bbenarbia.service.immobilier.IBienService;
 
@@ -22,6 +26,11 @@ public class IndexController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 
+		List<BienImmobilier> results1 = this.bienService.getEntityByType(Constants.APPARTEMENT);
+		
+		model.addAttribute("selections", results1);
+		
+		
 		model.addAttribute("message", "Tassyir Home page");
 //		LOG.debug("Index Controller ");
 		

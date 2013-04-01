@@ -7,6 +7,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import net.bbenarbia.constants.Constants;
+
 /**
  * @author moad
  * 
@@ -14,7 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "biens")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorValue("APT")
+@DiscriminatorValue(Constants.APPARTEMENT)
 public class Appartement extends BienImmobilier {
 
 	@Column(name = "etage")
@@ -71,5 +73,6 @@ public class Appartement extends BienImmobilier {
 	public void setAscenseur(boolean ascenseur) {
 		this.ascenseur = ascenseur;
 	}
+
 
 }

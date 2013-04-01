@@ -7,10 +7,12 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import net.bbenarbia.constants.Constants;
+
 @Entity
 @Table(name = "biens")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorValue("CMR")
+@DiscriminatorValue(Constants.COMMERCE)
 public class Commerce extends BienImmobilier{
 
 	@Column(name = "age")

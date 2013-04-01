@@ -32,7 +32,7 @@
 						<td><spring:url value="users/{userId}.html" var="userUrl">
 								<spring:param name="userId" value="${user.id}" />
 							</spring:url> <a href="${userUrl}"><c:out
-									value="${user.firstName} ${user.lastName}" /></a> <%-- <a href="${fn:escapeXml(userUrl)}"><c:out value="${user.firstName} ${user.lastName}"/></a> --%>
+									value="${user.firstName} ${user.lastName}" /></a> 
 						</td>
 						<td><c:out value="${user.code}" /></td>
 						<td><c:out value="${user.login}" /></td>

@@ -1,13 +1,18 @@
 package net.bbenarbia.domain.immobilier;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import net.bbenarbia.domain.base.NamedEntity;
@@ -44,9 +49,9 @@ public class BienImmobilier extends NamedEntity {
 	@Column(name = "prixMinVente")
 	private double prixMinVente;
 //	
-//	@OneToMany(mappedBy="bien",fetch = FetchType.EAGER, cascade ={ CascadeType.PERSIST,
-//			CascadeType.MERGE })
-//	private List<Photo> photos;
+	@OneToMany(mappedBy = "bien", fetch = FetchType.EAGER, cascade = {
+			CascadeType.PERSIST, CascadeType.MERGE })
+	private List<Photo> photos;
 	
 	@Column(name = "loyerMensuel")
 	private double loyerMensuel;
@@ -118,14 +123,6 @@ public class BienImmobilier extends NamedEntity {
 		this.prixMinVente = prixMinVente;
 	}
 
-//	public List<Photo> getPhotos() {
-//		return photos;
-//	}
-//
-//	public void setPhotos(List<Photo> photos) {
-//		this.photos = photos;
-//	}
-
 	public double getLoyerMensuel() {
 		return loyerMensuel;
 	}
@@ -158,4 +155,11 @@ public class BienImmobilier extends NamedEntity {
 		this.etatBien = etatBien;
 	}
 
+	public List<Photo> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<Photo> photos) {
+		this.photos = photos;
+	}
 }

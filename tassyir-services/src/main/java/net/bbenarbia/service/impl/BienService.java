@@ -1,5 +1,8 @@
 package net.bbenarbia.service.impl;
 
+import java.util.List;
+
+import net.bbenarbia.constants.Constants;
 import net.bbenarbia.dao.common.IGenericDao;
 import net.bbenarbia.dao.immobilier.IBienDao;
 import net.bbenarbia.domain.immobilier.BienImmobilier;
@@ -25,4 +28,40 @@ public class BienService extends GenericService<BienImmobilier> implements
     public void setGenericDao(IGenericDao<BienImmobilier> genericDao) {
         this.genericDao = bienDao;
     }
+
+	@Override
+	public List<BienImmobilier> getEntityByType(String type) {
+		return bienDao.getEntityByType(type);
+	}
+
+	@Override
+	public List<BienImmobilier> getAllAppartement() {
+		return getEntityByType(Constants.APPARTEMENT);
+	}
+
+	@Override
+	public List<BienImmobilier> getAllStudio() {
+		return getEntityByType(Constants.STUDIO);
+	}
+
+	@Override
+	public List<BienImmobilier> getAllTerrain() {
+		return getEntityByType(Constants.TERRAIN);
+	}
+
+	@Override
+	public List<BienImmobilier> getAllEntreport() {
+		return getEntityByType(Constants.ENTREPOT);
+	}
+
+	@Override
+	public List<BienImmobilier> getAllMaison() {
+		return getEntityByType(Constants.MAISON);
+	}
+
+	@Override
+	public List<BienImmobilier> getAllCommerce() {
+		return getEntityByType(Constants.COMMERCE);
+	}
+
 }
