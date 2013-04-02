@@ -47,16 +47,11 @@ public class BienController {
 	}
 	
 	@ModelAttribute("departementsList")
-	public List<String> populateDepartementList() {
+	public List<Departement> populateDepartementList() {
 		
 		List<Departement> listDepartements = departementservice.getAll();
 		
-		List<String> departementsList = new LinkedList<String>();
-		
-		for (Departement departement : listDepartements) {
-			departementsList.add(departement.getName());
-		}
-		return departementsList;
+		return new LinkedList<Departement>(listDepartements);
 	}
 	
 

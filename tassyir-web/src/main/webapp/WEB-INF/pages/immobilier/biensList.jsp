@@ -26,7 +26,7 @@
 					<td>département</td>
 					<td><select name="departements">
 							<c:forEach var="item" items="${departementsList}">
-									<option value="${item}">${item}</option>
+									<option value="${item.reference}">${item.name}</option>
 							</c:forEach>
 					</select></td>
 				</tr>
