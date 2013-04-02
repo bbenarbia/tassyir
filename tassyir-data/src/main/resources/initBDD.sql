@@ -148,3 +148,12 @@ CREATE TABLE IF NOT EXISTS photos (
   INDEX(name)
 ) engine=InnoDB;
 
+CREATE TABLE IF NOT EXISTS departements (
+ id INT(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  ref VARCHAR(80),
+ name VARCHAR(80),
+ region VARCHAR(80),
+ prefecture VARCHAR(80),
+  INDEX(name)
+) engine=InnoDB;
+
