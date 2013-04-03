@@ -12,9 +12,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import net.bbenarbia.domain.Departement;
 import net.bbenarbia.domain.base.NamedEntity;
 import net.bbenarbia.domain.enums.EnumEtatBien;
 import net.bbenarbia.domain.enums.EnumStatutProperty;
@@ -32,6 +35,10 @@ public class BienImmobilier extends NamedEntity {
 	
 	@Column(name = "adresse")
 	private String adresse;
+	
+	@ManyToOne
+	@JoinColumn(name = "idDepartement")
+	private Departement departement;
 	
 	@Column(name = "description")
 	private String description;
@@ -162,4 +169,13 @@ public class BienImmobilier extends NamedEntity {
 	public void setPhotos(List<Photo> photos) {
 		this.photos = photos;
 	}
+
+	public Departement getDepartement() {
+		return departement;
+	}
+
+	public void setDepartement(Departement departement) {
+		this.departement = departement;
+	}
+	
 }

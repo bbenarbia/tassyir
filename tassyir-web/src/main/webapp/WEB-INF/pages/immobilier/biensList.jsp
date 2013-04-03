@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html lang="fr">
 <head>
@@ -16,31 +16,35 @@
 		<jsp:include page="../common/menu.jsp" />
 		<jsp:include page="../common/menu-users.jsp" />
 		<h2>Biens disponibles</h2>
-		
-		<div class="CSS_Table_Example" style="width: 600px; ">
+	<form:form modelAttribute="findBiens" method="post" id="form1">
+	
+	<div class="CSS_Table_Example" style="width: 600px; ">
 			<table>
 				<tr>
 					<td colspan="2">rechercher un logement</td>
 				</tr>
 				<tr>
 					<td>département</td>
-					<td><select name="departements">
+					<td>
+					<form:select path="departementBien">
 							<c:forEach var="item" items="${departementsList}">
 									<option value="${item.reference}">${item.name}</option>
 							</c:forEach>
-					</select></td>
+					</form:select></td>
 				</tr>
+				
 				<tr>
 					<td>Type d'appartement</td>
-					<td><select name="typesLogement">
+					<td><form:select path="typeBien">
 							<c:forEach var="item" items="${typesLogementList}">
-									<option value="${item}">${item}</option>
+									<option value="${item.index}">${item}</option>
 							</c:forEach>
-					</select></td>
+					</form:select></td>
 				</tr>
+				
 				<tr>
 					<td>Nombres de pièces</td>
-					<td>Min:<select name="nbPiecesMin">
+					<td>Min:<form:select path="nbPiecesMin">
 							<option value="-1">indifferent</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -48,8 +52,8 @@
 							<option value="4">4</option>
 							<option value="5">5</option>
 							<option value="6">6</option>
-						</select>
-						Max:<select name="nbPiecesMax">
+						</form:select>
+						Max:<form:select path="nbPiecesMax">
 							<option value="-1">indifferent</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -57,12 +61,12 @@
 							<option value="4">4</option>
 							<option value="5">5</option>
 							<option value="6">6</option>
-						</select>
+						</form:select>
 					</td>
 				</tr>
 				<tr>
 					<td>Superficie</td>
-					<td>Min:<select name="superficieMin">
+					<td>Min:<form:select path="surfaceMin">
 							<option value="-1">indifferent</option>
 							<option value="10">10</option>
 							<option value="20">20</option>
@@ -74,8 +78,8 @@
 							<option value="80">80</option>
 							<option value="90">90</option>
 							<option value="100">100</option>
-						</select>
-						Max:<select name="superficieMax">
+						</form:select>
+						Max:<form:select path="surfaceMax">
 							<option value="-1">indifferent</option>
 							<option value="10">10</option>
 							<option value="20">20</option>
@@ -87,12 +91,12 @@
 							<option value="80">80</option>
 							<option value="90">90</option>
 							<option value="100">100</option>
-						</select>
+						</form:select>
 					</td>
 				</tr>
 				<tr>
 					<td>Loyer</td>
-					<td>Min:<select name="loyerMin">
+					<td>Min:<form:select path="loyerMin">
 							<option value="-1">indifferent</option>
 							<option value="100">100</option>
 							<option value="200">200</option>
@@ -104,8 +108,8 @@
 							<option value="800">800</option>
 							<option value="900">900</option>
 							<option value="1000">1000</option>
-						</select>
-						Max:<select name="loyerMax">
+						</form:select>
+						Max:<form:select path="loyerMax">
 							<option value="-1">indifferent</option>
 								<option value="100">100</option>
 							<option value="200">200</option>
@@ -117,13 +121,17 @@
 							<option value="800">800</option>
 							<option value="900">900</option>
 							<option value="1000">1000</option>
-						</select>
+						</form:select>
 					</td>
 				</tr>
 			</table>
-		</div>
-		
-		<div class="CSS_Table_Example" style="width: 600px; height: 150px;">
+			
+			<p class="submit">
+				<a class="cancelButton" href="javascript: history.go(-1)"> Back </a>
+				<button type="submit">Search</button>
+			</p>
+	</div>
+	<div class="CSS_Table_Example" style="width: 600px; height: 150px;">
 			<table>
 				<tr>
 					<td style="width: 350px;">Name</td>
@@ -136,7 +144,7 @@
 					<td style="width: 150px;">Delete</td>
 					
 				</tr>
-				<c:forEach var="appartement" items="${selections}">
+				<c:forEach var="appartement" items="${findBiens.listBiens}">
 					<tr>
 						<td>
 							<spring:url value="biens/{appartementId}.html" var="appartementUrl">
@@ -164,6 +172,8 @@
 				</tr>
 			</table>
 		</div>
+	</form:form>
+
 
 	</div>
 </body>

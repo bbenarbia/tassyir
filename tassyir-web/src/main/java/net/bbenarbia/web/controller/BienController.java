@@ -3,6 +3,8 @@ package net.bbenarbia.web.controller;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import net.bbenarbia.domain.Departement;
 import net.bbenarbia.domain.enums.EnumTypeBien;
 import net.bbenarbia.domain.immobilier.Appartement;
@@ -10,16 +12,19 @@ import net.bbenarbia.domain.immobilier.BienImmobilier;
 import net.bbenarbia.service.IDepartementService;
 import net.bbenarbia.service.immobilier.IBienService;
 import net.bbenarbia.web.dto.BienDTO;
+import net.bbenarbia.web.dto.FindBienDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @SessionAttributes("bien")
@@ -28,7 +33,7 @@ public class BienController {
 
 	@Autowired
 	private IBienService bienService;
-	
+
 	@Autowired
 	private IDepartementService departementservice;
 
@@ -38,22 +43,50 @@ public class BienController {
 	}
 
 	@ModelAttribute("typesLogementList")
-	public List<String> populateLogementTypeList() {
-		List<String> typesLogementList = new LinkedList<String>();
+	public List<EnumTypeBien> populateLogementTypeList() {
+		List<EnumTypeBien> typesLogementList = new LinkedList<EnumTypeBien>();
 		for (EnumTypeBien typeBien : EnumTypeBien.values()) {
-			typesLogementList.add(typeBien.toString());
+			typesLogementList.add(typeBien);
 		}
 		return typesLogementList;
 	}
-	
+
 	@ModelAttribute("departementsList")
 	public List<Departement> populateDepartementList() {
-		
+
 		List<Departement> listDepartements = departementservice.getAll();
-		
+
 		return new LinkedList<Departement>(listDepartements);
 	}
+
+	@RequestMapping(value = "/find-biens", method = RequestMethod.GET)
+	public String initSearchBiens( Model model) {
+		List<BienImmobilier> listBiens = bienService.getAll();
+		
+		FindBienDTO findBienDto = new FindBienDTO();
+		findBienDto.setListBiens(listBiens);
+
+		model.addAttribute("findBiens", findBienDto);
+		return "immobilier/biensList";
+	}
 	
+	
+	@RequestMapping(value = "/find-biens", method = RequestMethod.POST)
+	public String searchBiens(
+			@ModelAttribute("findBiens") @Valid FindBienDTO findBienDto,
+			BindingResult result, SessionStatus status, Model model) {
+
+//		findBienDto.getTypeBien()
+//		a voir 
+		findBienDto.setListBiens(bienService.searchBiens(
+				EnumTypeBien.APPARTEMENT,
+				findBienDto.getRefBien(), findBienDto.getDepartementBien(),
+				findBienDto.getSurfaceMin(), findBienDto.getSurfaceMax(), null,
+				null, findBienDto.getLoyerMin(), findBienDto.getLoyerMax()));
+
+		model.addAttribute("findBiens", findBienDto);
+		return "immobilier/biensList";
+	}
 
 	@RequestMapping(value = "/appartements", method = RequestMethod.GET)
 	public String showAppartementList(Model model) {
@@ -73,7 +106,7 @@ public class BienController {
 		List<BienImmobilier> results = this.bienService.getAllStudio();
 
 		model.addAttribute("selections", results);
-		return "biens/biensList";
+		return "immobilier/biensList";
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import net.bbenarbia.constants.Constants;
 import net.bbenarbia.dao.common.IGenericDao;
 import net.bbenarbia.dao.immobilier.IBienDao;
+import net.bbenarbia.domain.enums.EnumTypeBien;
 import net.bbenarbia.domain.immobilier.BienImmobilier;
 import net.bbenarbia.service.generic.GenericService;
 import net.bbenarbia.service.immobilier.IBienService;
@@ -62,6 +63,20 @@ public class BienService extends GenericService<BienImmobilier> implements
 	@Override
 	public List<BienImmobilier> getAllCommerce() {
 		return getEntityByType(Constants.COMMERCE);
+	}
+
+	@Override
+	public List<BienImmobilier> searchBiens(EnumTypeBien typeBien, String reference, Long departement,
+			Double superficieMin, Double superficieMax, Integer NbPiecesMin,
+			Integer NbPiecesMax, Double loyerMin, Double loyerMax) {
+		
+		
+		return bienDao.searchBiens(typeBien, reference, departement,
+			 superficieMin,  superficieMax,  NbPiecesMin,
+			 NbPiecesMax,  loyerMin,  loyerMax);
+		
+		
+		
 	}
 
 }

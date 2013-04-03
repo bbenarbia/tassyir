@@ -105,21 +105,22 @@ CREATE TABLE IF NOT EXISTS users (
   UNIQUE(id_user,  id_role)
   ) engine=InnoDB;
   
-  
-  
-  CREATE TABLE IF NOT EXISTS biens (
+  CREATE TABLE IF NOT EXISTS departements (
+ id INT(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ ref VARCHAR(80),
+ name VARCHAR(80),
+ region VARCHAR(80),
+ prefecture VARCHAR(80),
+  INDEX(name)
+) engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS biens (
   id INT(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   ref VARCHAR(80),
   name VARCHAR(30),
   typeBien VARCHAR(15),
---  APT appartement 
---  STD studio 
---  TRN Terrain
---  CMR Commerce
---  MSN MAISON
---  ETP ENTREPOT  
-  
   adresse VARCHAR(120),
+  idDepartement INT(5) DEFAULT 0,
   description VARCHAR(300),
   superficie DECIMAL(5,2),
   status INT(5) DEFAULT 0,
@@ -135,8 +136,10 @@ CREATE TABLE IF NOT EXISTS users (
   cuisineEquipee tinyint (1),
   age  INT(5) DEFAULT 0, 
   jardin  tinyint (1),
+ 
   INDEX(ref, name)
 ) engine=InnoDB;
+
 
 
 CREATE TABLE IF NOT EXISTS photos (
@@ -144,16 +147,10 @@ CREATE TABLE IF NOT EXISTS photos (
   name VARCHAR(30),
   bien INT(5) UNSIGNED NOT NULL,
   path VARCHAR(300),
-  FOREIGN KEY (bien) REFERENCES biens(id),
+
   INDEX(name)
 ) engine=InnoDB;
 
-CREATE TABLE IF NOT EXISTS departements (
- id INT(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  ref VARCHAR(80),
- name VARCHAR(80),
- region VARCHAR(80),
- prefecture VARCHAR(80),
-  INDEX(name)
-) engine=InnoDB;
 
+--FOREIGN KEY (idDepartement) REFERENCES departements(id),
+--  FOREIGN KEY (bien) REFERENCES biens(id),
