@@ -32,33 +32,90 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			Double superficieMax, Integer NbPiecesMin, Integer NbPiecesMax,
 			Double loyerMin, Double loyerMax) {
 
+		boolean withAnd = false; 
+		String and = " AND ";
+		String where = " WHERE ";
+		
 		StringBuilder sb = new StringBuilder();
 		sb.append("FROM " + getEntityClass().getName());
-		sb.append(" WHERE typeBien = :type ");
+		
+		if(withAnd){
+			
+		}
+		
+		if (typeBien != null) {
+			sb.append(where);
+			sb.append(" typeBien = :type ");
+			withAnd = true;
+		}
+		
 		if (departement != null) {
-			sb.append(" AND departement.reference = :departement ");
+			if(withAnd){
+				sb.append(and);
+			}
+			else {
+				sb.append(where);
+			}
+			withAnd = true;
+			sb.append(" departement.reference = :departement ");
 		}
 		if (reference != null) {
-			sb.append(" AND reference = :reference ");
+			if(withAnd){
+				sb.append(and);
+			}
+			else {
+				sb.append(where);
+			}
+			withAnd = true;
+			sb.append(" reference = :reference ");
 		}
 		if (superficieMin != null) {
-			sb.append(" AND superficie >= :superficieMin ");
+			if(withAnd){
+				sb.append(and);
+			}
+			else {
+				sb.append(where);
+			}
+			withAnd = true;
+			sb.append(" superficie >= :superficieMin ");
 		}
 		if (superficieMax != null) {
-			sb.append(" AND superficie <= :superficieMax ");
+			if(withAnd){
+				sb.append(and);
+			}
+			else {
+				sb.append(where);
+			}
+			withAnd = true;
+			sb.append(" superficie <= :superficieMax ");
 		}
 
 		if (loyerMin != null) {
-			sb.append(" AND loyerMensuel >= :loyerMin ");
+			if(withAnd){
+				sb.append(and);
+			}
+			else {
+				sb.append(where);
+			}
+			withAnd = true;
+			sb.append(" loyerMensuel >= :loyerMin ");
 		}
 
 		if (loyerMax != null) {
-			sb.append(" AND loyerMensuel <= :loyerMax ");
+			if(withAnd){
+				sb.append(and);
+			}
+			else {
+				sb.append(where);
+			}
+			withAnd = true;
+			sb.append(" loyerMensuel <= :loyerMax ");
 		}
 
 		Query query = getSession().createQuery(sb.toString());
-		query.setParameter("type", typeBien.toString());
-
+		if (typeBien != null) {
+			query.setParameter("type", typeBien.toString());
+		}
 		if (departement != null) {
 			query.setParameter("departement", departement.toString());
 		}

@@ -9,6 +9,7 @@ import net.bbenarbia.domain.Departement;
 import net.bbenarbia.domain.enums.EnumTypeBien;
 import net.bbenarbia.domain.immobilier.Appartement;
 import net.bbenarbia.domain.immobilier.BienImmobilier;
+import net.bbenarbia.domain.immobilier.Studio;
 import net.bbenarbia.service.IDepartementService;
 import net.bbenarbia.service.immobilier.IBienService;
 import net.bbenarbia.web.dto.BienDTO;
@@ -21,6 +22,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -60,30 +62,35 @@ public class BienController {
 	}
 
 	@RequestMapping(value = "/find-biens", method = RequestMethod.GET)
-	public String initSearchBiens( Model model) {
+	public String initSearchBiens(Model model) {
 		List<BienImmobilier> listBiens = bienService.getAll();
-		
+
 		FindBienDTO findBienDto = new FindBienDTO();
 		findBienDto.setListBiens(listBiens);
 
 		model.addAttribute("findBiens", findBienDto);
 		return "immobilier/biensList";
 	}
-	
-	
+
 	@RequestMapping(value = "/find-biens", method = RequestMethod.POST)
 	public String searchBiens(
 			@ModelAttribute("findBiens") @Valid FindBienDTO findBienDto,
 			BindingResult result, SessionStatus status, Model model) {
 
+		EnumTypeBien typeBien = null;
+		try {
+			typeBien = EnumTypeBien.fromIndex(Integer.valueOf(findBienDto
+					.getTypeBien()));
+		} catch (NumberFormatException e) {
+		}
 
-		EnumTypeBien typeBien = EnumTypeBien.fromIndex(Integer.valueOf(findBienDto.getTypeBien()));
-		findBienDto.setListBiens(bienService.searchBiens(
-				typeBien,
+		List<BienImmobilier> listBiensFound = bienService.searchBiens(typeBien,
 				findBienDto.getRefBien(), findBienDto.getDepartementBien(),
-				findBienDto.getSurfaceMin(), findBienDto.getSurfaceMax(), null,
-				null, findBienDto.getLoyerMin(), findBienDto.getLoyerMax()));
+				findBienDto.getSurfaceMin(), findBienDto.getSurfaceMax(),
+				findBienDto.getNbPiecesMin(), findBienDto.getNbPiecesMax(),
+				findBienDto.getLoyerMin(), findBienDto.getLoyerMax());
 
+		findBienDto.setListBiens(listBiensFound);
 		model.addAttribute("findBiens", findBienDto);
 		return "immobilier/biensList";
 	}
@@ -108,5 +115,55 @@ public class BienController {
 		model.addAttribute("selections", results);
 		return "immobilier/biensList";
 	}
+	
+	
+	@RequestMapping("/{bienId}")
+	public String showBienDetails(@PathVariable("bienId") long bienId, Model model) {
+		BienImmobilier bien = this.bienService.get(bienId);
+		model.addAttribute("bien",bien);
+		return "immobilier/bienDetails";
+	}
 
+	
+	@RequestMapping(value = "/{bienId}/edit", method = RequestMethod.GET)
+	public String initUpdateBienForm(@PathVariable("bienId") Long bienId,
+			Model model) {
+		BienImmobilier bien = this.bienService.get(bienId);
+		BienDTO bienDto = null;
+		if(bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())){
+			 bienDto = new BienDTO((Appartement)bien);
+		}
+//		else if(bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())){
+//			 bienDto = new BienDTO((Maison)bien);
+//		}
+		else if(bien.getTypeBien().equals(EnumTypeBien.STUDIO.toString())){
+			 bienDto = new BienDTO((Studio)bien);
+		}
+//		else if(bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())){
+//			 bienDto = new BienDTO((Terrain)bien);
+//		}
+		
+		model.addAttribute("bien", bienDto);
+		return "immobilier/updateBienForm";
+	}
+
+	
+	@RequestMapping(value = "/{bienId}/edit", method = RequestMethod.POST)
+	public String processUpdateBienForm(@Valid BienDTO bienDto,
+			BindingResult result,  @PathVariable("bienId") Long bienId, SessionStatus status) {
+		try {
+
+			if (result.hasErrors()) {
+				return "immobilier/createBienForm";
+			}
+			
+			BienImmobilier bien = new BienImmobilier();
+
+			bienService.merge(bien);
+			status.setComplete();
+			return "redirect:/immobilier/" + bien.getId();
+		} catch (Exception e) {
+			return "immobilier/updateBienForm";
+		}
+	}
 }

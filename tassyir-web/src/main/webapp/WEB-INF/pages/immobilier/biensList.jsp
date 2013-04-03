@@ -27,6 +27,7 @@
 					<td>département</td>
 					<td>
 					<form:select path="departementBien">
+							<option>indifferent</option>
 							<c:forEach var="item" items="${departementsList}">
 									<option value="${item.reference}">${item.name}</option>
 							</c:forEach>
@@ -36,6 +37,7 @@
 				<tr>
 					<td>Type d'appartement</td>
 					<td><form:select path="typeBien">
+							<option>indifferent</option>
 							<c:forEach var="item" items="${typesLogementList}">
 									<option value="${item.index}">${item}</option>
 							</c:forEach>
@@ -45,7 +47,7 @@
 				<tr>
 					<td>Nombres de pièces</td>
 					<td>Min:<form:select path="nbPiecesMin">
-							<option value="-1">indifferent</option>
+							<option>indifferent</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -54,7 +56,7 @@
 							<option value="6">6</option>
 						</form:select>
 						Max:<form:select path="nbPiecesMax">
-							<option value="-1">indifferent</option>
+							<option>indifferent</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -67,7 +69,7 @@
 				<tr>
 					<td>Superficie</td>
 					<td>Min:<form:select path="surfaceMin">
-							<option value="-1">indifferent</option>
+							<option>indifferent</option>
 							<option value="10">10</option>
 							<option value="20">20</option>
 							<option value="30">30</option>
@@ -80,7 +82,7 @@
 							<option value="100">100</option>
 						</form:select>
 						Max:<form:select path="surfaceMax">
-							<option value="-1">indifferent</option>
+							<option>indifferent</option>
 							<option value="10">10</option>
 							<option value="20">20</option>
 							<option value="30">30</option>
@@ -97,7 +99,7 @@
 				<tr>
 					<td>Loyer</td>
 					<td>Min:<form:select path="loyerMin">
-							<option value="-1">indifferent</option>
+							<option>indifferent</option>
 							<option value="100">100</option>
 							<option value="200">200</option>
 							<option value="300">300</option>
@@ -110,8 +112,8 @@
 							<option value="1000">1000</option>
 						</form:select>
 						Max:<form:select path="loyerMax">
-							<option value="-1">indifferent</option>
-								<option value="100">100</option>
+							<option>indifferent</option>
+							<option value="100">100</option>
 							<option value="200">200</option>
 							<option value="300">300</option>
 							<option value="400">400</option>
@@ -135,7 +137,7 @@
 			<table>
 				<tr>
 					<td style="width: 350px;">Name</td>
-					<td style="width: 300px;">adresse</td>
+					<td style="width: 300px;">département</td>
 					<td style="width: 150px;">superficie</td>
 					<td style="width: 150px;">prixVente</td>
 					<td style="width: 150px;">loyerMensuel</td>
@@ -144,29 +146,41 @@
 					<td style="width: 150px;">Delete</td>
 					
 				</tr>
-				<c:forEach var="appartement" items="${findBiens.listBiens}">
+				<c:forEach var="bien" items="${findBiens.listBiens}">
 					<tr>
 						<td>
-							<spring:url value="biens/{appartementId}.html" var="appartementUrl">
-								<spring:param name="appartementId" value="${appartement.id}" />
-							</spring:url> <a href="${appartementUrl}"><c:out
-									value="${appartement.name}" /></a>
+							<spring:url value="{bienId}.html" var="bienUrl">
+								<spring:param name="bienId" value="${bien.id}" />
+							</spring:url> 
+							<a href="${bienUrl}"><c:out		value="${bien.name}" /></a>
 						</td>			
-						<td><b><c:out value="${appartement.adresse}" /></b></td>
-						<td><b><c:out value="${appartement.superficie}" /></b></td>
-						<td><b><c:out value="${appartement.prixVente}" /></b></td>
-						<td><b><c:out value="${appartement.loyerMensuel}" /></b></td>
-						<td><b><c:out value="${appartement.chargesMensuel}" /></b></td>
+						<td><b><c:out value="${bien.departement.name}" /></b></td>
+						<td><b><c:out value="${bien.superficie}" /></b></td>
+						<td><b><c:out value="${bien.prixVente}" /></b></td>
+						<td><b><c:out value="${bien.loyerMensuel}" /></b></td>
+						<td><b><c:out value="${bien.chargesMensuel}" /></b></td>
+						<td>
+							<spring:url value="{bienId}.html" var="bienUrl">
+								<spring:param name="bienId" value="${bien.id}" />
+							</spring:url> 
+							<a href="${bienUrl}">Edit</a>
+							
+						</td>
 						
+						<td>
+							<spring:url value="{bienId}.html" var="bienUrl">
+								<spring:param name="bienId" value="${bien.id}" />
+							</spring:url> 
+							<a href="${bienUrl}">Delete</a>
+							
+						</td>
 						
-						<td><a href="appartements/${appartement.id}/edit">Edit</a></td>
-						<td><a href="appartements/${appartement.id}/delete">Delete</a></td>
 					</tr>
 				</c:forEach>
 				<tr>
 				<td colspan="4" /> 
 				<td>
-                  	 <spring:url value="/appartements/new" var="appartementUrl" />
+                  	 <spring:url value="/biens/newAppartement" var="appartementUrl" />
 			                    <a href="${fn:escapeXml(appartementUrl)}">Add appartement</a>
 			         </td>
 				</tr>

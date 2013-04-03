@@ -74,6 +74,10 @@ public class BienImmobilier extends NamedEntity {
 	@Enumerated(EnumType.ORDINAL)
 	private EnumEtatBien etatBien;
 	
+	@Column(nullable = false, updatable = false, insertable = false)
+	private String typeBien;
+	
+	
 	public String getReference() {
 		return reference;
 	}
@@ -176,6 +180,14 @@ public class BienImmobilier extends NamedEntity {
 
 	public void setDepartement(Departement departement) {
 		this.departement = departement;
+	}
+
+	public String getTypeBien() {
+		return typeBien;
+	}
+
+	public void setTypeBien(String typeBien) {
+		this.typeBien = typeBien;
 	}
 	
 }
