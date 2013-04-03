@@ -76,10 +76,10 @@ public class BienController {
 			@ModelAttribute("findBiens") @Valid FindBienDTO findBienDto,
 			BindingResult result, SessionStatus status, Model model) {
 
-//		findBienDto.getTypeBien()
-//		a voir 
+
+		EnumTypeBien typeBien = EnumTypeBien.fromIndex(Integer.valueOf(findBienDto.getTypeBien()));
 		findBienDto.setListBiens(bienService.searchBiens(
-				EnumTypeBien.APPARTEMENT,
+				typeBien,
 				findBienDto.getRefBien(), findBienDto.getDepartementBien(),
 				findBienDto.getSurfaceMin(), findBienDto.getSurfaceMax(), null,
 				null, findBienDto.getLoyerMin(), findBienDto.getLoyerMax()));
