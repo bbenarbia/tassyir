@@ -9,7 +9,6 @@
 <title></title>
 <link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
 	type="text/css" />
-
 <link rel="stylesheet" href="<c:url value="/stylesheets/carroussel.css"/>"
 	type="text/css" />
 		

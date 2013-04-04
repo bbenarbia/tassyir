@@ -38,6 +38,13 @@
     	<property name="basename" value="messages"/>  
   	</bean> 
   
+  
+  <!-- Pour le téléchargement des fichiers avec une limitation de taille -->
+	<bean id="multipartResolver"    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+   		 <!-- one of the properties available; the maximum file size in bytes   -1 sans limite-->
+    	<property name="maxUploadSize" value="-1"/>
+	</bean>
+	
 	 
 	 <!-- <bean id="commonUtilisateurService" class="net.bbenarbia.service.UtilisateurService" /> -->
 	 
