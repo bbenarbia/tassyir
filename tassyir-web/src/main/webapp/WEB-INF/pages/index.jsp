@@ -10,10 +10,17 @@
 <title></title>
 <link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
 	type="text/css" />
+
+<link rel="stylesheet" href="<c:url value="/stylesheets/carroussel.css"/>"
+	type="text/css" />
+		
+<script type="text/javascript" src="scripts/jquery-1.9.1.js"> </script>
+<script type="text/javascript" src="scripts/carroussel.js"> </script>
 </head>
 <body>
 
 	<jsp:include page="common/menu.jsp"/>
+	<jsp:include page="common/carroussel.jsp"/>
 	
 </body>
 </html>
