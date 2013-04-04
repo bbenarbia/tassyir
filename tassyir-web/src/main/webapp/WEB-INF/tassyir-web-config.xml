@@ -27,7 +27,8 @@
 	<mvc:resources mapping="/scripts/**" location="/scripts/" />
 	<mvc:resources mapping="/styles/**" location="/styles/" />
 	<mvc:resources mapping="/stylesheets/**" location="/stylesheets/" />
-	
+	<mvc:resources mapping="/graphics/**" location="/graphics/" />
+	<mvc:resources mapping="/graphics/maisons/**" location="/graphics/maisons/" />
     
 	<context:component-scan base-package="net.bbenarbia.web" />
 

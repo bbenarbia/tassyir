@@ -28,7 +28,7 @@ var carroussel={
 			
 			//On crée le timer			
 //			carroussel.play();
-			this.timer = window.setInterval('carroussel.next()', 5000);
+//			this.timer = window.setInterval('carroussel.next()', 5000);
 			
 			//Stop quand on passe dessus			
 //			elem.mouseover(carroussel.stop);
@@ -39,32 +39,10 @@ var carroussel={
 			if(num==this.nbCurrent) {return false;}
 			
 			//Animation en fadeIn fadeOut
-			/*
+			
 			this.elemCurrent.fadeOut();
 			this.elem.find('#slide'+num).fadeIn();
-			*/
-//			Animation en Slide
 		
-//			var sens = 1;
-//			if(num<this.nbCurrent){sens = -1;}
-			var cssDeb = {'left':/*sens**/this.elem.width()};
-			var cssFin = {'left':/*-sens**/this.elem.width()};
-			this.elem.find('#slide'+num).show().css(cssDeb);
-			
-			this.elem.find('#slide'+num).animate({'top':0,'left':0},500);
-			this.elemCurrent.animate(cssFin, 500);
-			
-		
-//			this.elemCurrent.find('.visu').fadeOut();
-//			this.elem.find('#slide'+num).show();
-//			this.elem.find('#slide'+num + '.visu').hide().fadeIn();
-//			
-//			var titleHeight = this.elemCurrent.find('.title').height();
-//				
-//			this.elemCurrent.find('.title').animate({'bottom':-titleHeight},500);
-//			this.elem.find('#slide'+num + '.title').css('bottom',titleHeight).animate({'bottom':0},500);
-//			
-			
 			this.elem.find('.navigation span').removeClass('active');			
 			this.elem.find('.navigation span:eq('+(num-1)+')').addClass('active');
 			this.nbCurrent = num;

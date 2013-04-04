@@ -1,7 +1,8 @@
 #carrousel{
-	border: :solid 10px #ff55ff;
-	width: 712px;
-	height: 264px;
+	border: :solid 10px red;
+	/* ff55ff; */
+	width: 500px;
+	height: 300px;
 	margin: 0 auto;
 	position: relative;
 	overflow: hidden;
@@ -10,23 +11,23 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 712px;
-	height: 264px;
+	width: 500px;
+	height: 300px;
 }
 .title{
 	position: absolute;
 	padding-left:12px;
-	line-height:35px;
-	width: 712px;
-	height: 35px;
+	line-height:25px;
+	width: 500px;
+	height: 25px;
 	bottom: 0;
 	left: 0;
 	background-color: #89a1bc;
 }
 .navigation{
 	position: absolute;
-	bottom: 38px;
-	right: 5px;
+	bottom: 10px;
+	right: 0px;
 }
 
 .navigation span{

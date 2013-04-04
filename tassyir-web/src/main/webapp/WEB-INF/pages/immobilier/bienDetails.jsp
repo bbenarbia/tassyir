@@ -6,10 +6,17 @@
 
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<%-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
 <link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
 	type="text/css" />
+<link rel="stylesheet" href="<c:url value="/stylesheets/carroussel.css"/>"
+	type="text/css" />
+		
+<script type="text/javascript" src="/scripts/jquery-1.9.1.js"> </script>
+<script type="text/javascript" src="/scripts/carroussel.js"> </script>
+ --%>
+<jsp:include page="../common/head.jsp" />
 </head>
 
 <body>
@@ -18,6 +25,19 @@
 	<h2>
 		<spring:message code="bien.information" />
 	</h2>
+	<div id="carrousel">
+		<c:forEach var="photo" items="${bien.photos}" varStatus="status">
+			<div id="slide${status.count}" class="slide">
+				<div class="visu">
+					<img  width="500" height="300" src="${photo.photoPath}">
+					<div class="title">
+						${photo.name}
+					</div> 
+				</div>
+			</div>
+		</c:forEach> 
+	</div>	
+	
 	<div class="CSS_Table_Example" style="width: 600px;">
 		<table>
 			<tr>
