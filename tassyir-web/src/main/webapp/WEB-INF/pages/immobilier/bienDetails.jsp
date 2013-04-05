@@ -25,39 +25,40 @@
 	<h2>
 		<spring:message code="bien.information" />
 	</h2>
+	<spring:url value="/biens/photo" var="photoUrl"/>
+	<spring:url value="/biens/upload/{bienId}/show" var="addPhotoUrl">
+		<spring:param name="bienId" value="${bien.id}" />
+	</spring:url> 
+	
 	<div id="carrousel">
-		<%-- <c:forEach var="photo" items="${bien.photos}" varStatus="status">
-			<div id="slide${status.count}" class="slide">
-				<div class="visu">
-					<img  width="500" height="300" src="${photo.photoPath}">
-					<div class="title">
-						${photo.name}
-					</div> 
+		<c:if test="${fn:length(bien.photos) == 0 }">
+			<img  width="500" height="300" src="../graphics/no-photos.jpg">
+		</c:if>
+		<c:if test="${fn:length(bien.photos) > 0 }">
+		    <c:forEach var="photo" items="${bien.photos}" varStatus="status">
+				<div id="slide${status.count}" class="slide">
+					<div class="visu">
+						<img  width="500" height="300" src="${photoUrl}/${bien.id}/${status.count}">
+						<div class="title">
+							<spring:url value="/biens/{bienId}/photo/delete/{photoId}" var="deletePhotoUrl">
+								<spring:param name="photoId" value="${photo.id}" />
+								<spring:param name="bienId" value="${bien.id}" />
+							</spring:url>
+							${photo.name} <a href="${fn:escapeXml(deletePhotoUrl)}">Delete photo</a>
+						</div> 
+					</div>
 				</div>
-			</div>
-		</c:forEach>  --%>
-		
-		<spring:url value="/biens/photo" var="photoUrl"/>
-		
-	    <c:forEach var="photo" items="${bien.photos}" varStatus="status">
-			<div id="slide${status.count}" class="slide">
-				<div class="visu">
-					<img  width="500" height="300" src="${photoUrl}/${bien.id}/${status.count}">
-					<div class="title">
-						${photo.name}
-					</div> 
-				</div>
-			</div>
-		</c:forEach>  
+			</c:forEach>  
+		</c:if>
 	</div>	
 	
-	
 	<div class="CSS_Table_Example" style="width: 600px;">
-		<table>
-		<%-- 	<tr>
-				
-				<td><img src="${photoUrl}/${bien.id}"></img></td>				
-			</tr> --%>
+		<table>		
+			<c:if test="${fn:length(bien.photos) < 5 }">
+				<tr>
+				<td><a href="${fn:escapeXml(addPhotoUrl)}">Add photo</a></td>
+				</tr>					
+			</c:if>				
 			<tr>
 				<td><spring:message code="bien.name" /></td>
 				<td><b><c:out value="${bien.name}" /></b></td>

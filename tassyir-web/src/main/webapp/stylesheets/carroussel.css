@@ -17,16 +17,16 @@
 .title{
 	position: absolute;
 	padding-left:12px;
-	line-height:25px;
+	line-height:20px;
 	width: 500px;
-	height: 25px;
+	height: 22px;
 	bottom: 0;
 	left: 0;
 	background-color: #89a1bc;
 }
 .navigation{
 	position: absolute;
-	bottom: 10px;
+	bottom: 1px;
 	right: 0px;
 }
 

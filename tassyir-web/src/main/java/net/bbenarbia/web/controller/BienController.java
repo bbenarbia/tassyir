@@ -1,5 +1,6 @@
 package net.bbenarbia.web.controller;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,13 +14,18 @@ import javax.validation.Valid;
 
 import net.bbenarbia.domain.Departement;
 import net.bbenarbia.domain.enums.EnumTypeBien;
+import net.bbenarbia.domain.enums.ParameterCode;
 import net.bbenarbia.domain.immobilier.Appartement;
 import net.bbenarbia.domain.immobilier.BienImmobilier;
+import net.bbenarbia.domain.immobilier.Photo;
 import net.bbenarbia.domain.immobilier.Studio;
 import net.bbenarbia.service.IDepartementService;
+import net.bbenarbia.service.IParameterService;
+import net.bbenarbia.service.IPhotoService;
 import net.bbenarbia.service.immobilier.IBienService;
 import net.bbenarbia.web.dto.BienDTO;
 import net.bbenarbia.web.dto.FindBienDTO;
+import net.bbenarbia.web.dto.UploadItem;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +41,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @SessionAttributes("bien")
@@ -46,6 +53,13 @@ public class BienController {
 
 	@Autowired
 	private IDepartementService departementservice;
+
+	@Autowired
+	IParameterService parameterService;
+	
+	@Autowired
+	IPhotoService photoService;
+	
 
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
@@ -144,7 +158,14 @@ public class BienController {
 
 		return "immobilier/bienDetails";
 	}
-
+	@RequestMapping(value = "{bienId}/photo/delete/{photoId}", method = RequestMethod.GET)
+	public String deletePhoto(@PathVariable("photoId") Long photoId,@PathVariable("bienId") long bienId,
+			Model model) {
+		photoService.delete(photoId);
+		return "redirect:/biens/"+bienId;
+	}
+	
+	
 	@RequestMapping(value = "/{bienId}/edit", method = RequestMethod.GET)
 	public String initUpdateBienForm(@PathVariable("bienId") Long bienId,
 			Model model) {
@@ -176,14 +197,55 @@ public class BienController {
 			if (result.hasErrors()) {
 				return "immobilier/createBienForm";
 			}
-
 			BienImmobilier bien = new BienImmobilier();
-
 			bienService.merge(bien);
 			status.setComplete();
 			return "redirect:/immobilier/" + bien.getId();
 		} catch (Exception e) {
 			return "immobilier/updateBienForm";
 		}
+	}
+
+	@RequestMapping(value = "/upload/{bienId}/show", method = RequestMethod.GET)
+	public String getUploadForm(@PathVariable("bienId") Long bienId, Model model) {
+		BienImmobilier bien = this.bienService.get(bienId);
+		model.addAttribute(new UploadItem());
+		model.addAttribute("bienId", bienId);
+		model.addAttribute("nbFiles", 5-bien.getPhotos().size());
+		return "upload/uploadForm";
+	}
+
+	@RequestMapping(value = "/upload/{bienId}/save", method = RequestMethod.POST)
+	public String uploadAndSavePhotos(
+			@ModelAttribute("uploadForm") UploadItem uploadForm,
+			@PathVariable("bienId") long bienId, Model map) {
+
+		BienImmobilier bien = this.bienService.get(bienId);
+		List<MultipartFile> files = uploadForm.getFiles();
+
+		if (null != files && files.size() > 0) {
+			String TEMP_DIR = parameterService
+					.getParameterName(ParameterCode.TEMP_DIRECTORY.toString())
+					.get(0).getValue();
+
+			for (MultipartFile multipartFile : files) {
+				if (multipartFile.getSize() != 0) {
+					try {
+						File destFile = new File(new File(TEMP_DIR),
+								multipartFile.getOriginalFilename());
+						multipartFile.transferTo(destFile);
+					} catch (IOException e) {
+						return "upload/uploadForm";
+					}
+					Photo photo = new Photo();
+					photo.setName(multipartFile.getOriginalFilename());
+					photo.setPhotoPath(TEMP_DIR + multipartFile.getOriginalFilename());
+					photo.setBien(bien);
+					bien.getPhotos().add(photo);
+				}
+			}
+			bienService.merge(bien);
+		}
+		return "redirect:/biens/"+bienId;
 	}
 }

@@ -1,5 +1,8 @@
 insert into parameters values (1,"LANGUAGE", "FRANCAIS", "La langue du systeme");
 insert into parameters values (2,"EMAIL_ADMIN", "benaissa@bbenarbia.fr", "L""email de l""admin");
+insert into parameters values (3,"TEMP_DIRECTORY", "/home/moad/tempfile/", "Temp directory");
+
+
 
 insert into departements values (1,"1","Ain","Rhone-Alpes","Bourg");
 insert into departements values (2,"2","Aisne","Picardie","Laon");
