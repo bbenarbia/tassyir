@@ -167,13 +167,13 @@ insert into biens values(4, "4", "terrain","TERRAIN","adresse 1",1, "description
 500,100, 100, 1, 1, 2, 2, false, false, 2011, false);   
 
 
-insert into photos values(1,"photos1", 2,"file://home/moad/tempfile/maisons/app1.jpg");
-insert into photos values(2,"photos2", 2,"file://home/moad/tempfile/maisons/app2.jpg");
-insert into photos values(3,"photos3", 2,"file://home/moad/tempfile/maisons/app3.jpg");
+insert into photos values(1,"photos1", 2,"/home/moad/tempfile/maisons/app1.jpg");
+insert into photos values(2,"photos2", 2,"/home/moad/tempfile/maisons/app2.jpg");
+insert into photos values(3,"photos3", 2,"/home/moad/tempfile/maisons/app3.jpg");
 
-insert into photos values(4,"photos4", 3,"file://home/moad/tempfile/maisons/m1.jpg");
-insert into photos values(5,"photos5", 3,"file://home/moad/tempfile/maisons/m2.jpg");
-insert into photos values(6,"photos6", 3,"file://home/moad/tempfile/maisons/m3.jpg");
-insert into photos values(7,"photos7", 3,"file://home/moad/tempfile/maisons/m4.jpg");
+insert into photos values(4,"photos4", 3,"/home/moad/tempfile/maisons/m1.jpg");
+insert into photos values(5,"photos5", 3,"/home/moad/tempfile/maisons/m2.jpg");
+insert into photos values(6,"photos6", 3,"/home/moad/tempfile/maisons/m3.jpg");
+insert into photos values(7,"photos7", 3,"/home/moad/tempfile/maisons/m4.jpg");
 
 

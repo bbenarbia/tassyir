@@ -57,7 +57,9 @@
 						</c:forEach>
 					</table>
 				</div>
-				</p>
+				
+				
+				
 			</fieldset>
 
 			<p class="submit">

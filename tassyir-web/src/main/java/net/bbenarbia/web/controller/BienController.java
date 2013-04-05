@@ -1,8 +1,14 @@
 package net.bbenarbia.web.controller;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import net.bbenarbia.domain.Departement;
@@ -15,6 +21,7 @@ import net.bbenarbia.service.immobilier.IBienService;
 import net.bbenarbia.web.dto.BienDTO;
 import net.bbenarbia.web.dto.FindBienDTO;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +32,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -115,48 +123,60 @@ public class BienController {
 		model.addAttribute("selections", results);
 		return "immobilier/biensList";
 	}
-	
-	
+
+	@RequestMapping(value = "/photo/{idBien}/{idPhoto}", method = RequestMethod.GET)
+	@ResponseBody
+	public byte[] downloadPhoto(@PathVariable("idBien") Long idBien,
+			@PathVariable("idPhoto") Integer idPhoto) throws IOException {
+		BienImmobilier bien = this.bienService.get(idBien);
+		InputStream inputStream = new FileInputStream(bien.getPhotos()
+				.get(idPhoto - 1).getPhotoPath());
+		byte[] fileContent = IOUtils.toByteArray(inputStream);
+		return fileContent;
+	}
+
 	@RequestMapping("/{bienId}")
-	public String showBienDetails(@PathVariable("bienId") long bienId, Model model) {
+	public String showBienDetails(@PathVariable("bienId") long bienId,
+			Model model, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) {
 		BienImmobilier bien = this.bienService.get(bienId);
-		model.addAttribute("bien",bien);
+		model.addAttribute("bien", bien);
+
 		return "immobilier/bienDetails";
 	}
 
-	
 	@RequestMapping(value = "/{bienId}/edit", method = RequestMethod.GET)
 	public String initUpdateBienForm(@PathVariable("bienId") Long bienId,
 			Model model) {
 		BienImmobilier bien = this.bienService.get(bienId);
 		BienDTO bienDto = null;
-		if(bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())){
-			 bienDto = new BienDTO((Appartement)bien);
+		if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
+			bienDto = new BienDTO((Appartement) bien);
 		}
-//		else if(bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())){
-//			 bienDto = new BienDTO((Maison)bien);
-//		}
-		else if(bien.getTypeBien().equals(EnumTypeBien.STUDIO.toString())){
-			 bienDto = new BienDTO((Studio)bien);
+		// else if(bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())){
+		// bienDto = new BienDTO((Maison)bien);
+		// }
+		else if (bien.getTypeBien().equals(EnumTypeBien.STUDIO.toString())) {
+			bienDto = new BienDTO((Studio) bien);
 		}
-//		else if(bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())){
-//			 bienDto = new BienDTO((Terrain)bien);
-//		}
-		
+		// else if(bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())){
+		// bienDto = new BienDTO((Terrain)bien);
+		// }
+
 		model.addAttribute("bien", bienDto);
 		return "immobilier/updateBienForm";
 	}
 
-	
 	@RequestMapping(value = "/{bienId}/edit", method = RequestMethod.POST)
 	public String processUpdateBienForm(@Valid BienDTO bienDto,
-			BindingResult result,  @PathVariable("bienId") Long bienId, SessionStatus status) {
+			BindingResult result, @PathVariable("bienId") Long bienId,
+			SessionStatus status) {
 		try {
 
 			if (result.hasErrors()) {
 				return "immobilier/createBienForm";
 			}
-			
+
 			BienImmobilier bien = new BienImmobilier();
 
 			bienService.merge(bien);

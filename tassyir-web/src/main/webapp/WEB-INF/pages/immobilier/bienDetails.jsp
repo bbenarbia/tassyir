@@ -26,7 +26,7 @@
 		<spring:message code="bien.information" />
 	</h2>
 	<div id="carrousel">
-		<c:forEach var="photo" items="${bien.photos}" varStatus="status">
+		<%-- <c:forEach var="photo" items="${bien.photos}" varStatus="status">
 			<div id="slide${status.count}" class="slide">
 				<div class="visu">
 					<img  width="500" height="300" src="${photo.photoPath}">
@@ -35,11 +35,29 @@
 					</div> 
 				</div>
 			</div>
-		</c:forEach> 
+		</c:forEach>  --%>
+		
+		<spring:url value="/biens/photo" var="photoUrl"/>
+		
+	    <c:forEach var="photo" items="${bien.photos}" varStatus="status">
+			<div id="slide${status.count}" class="slide">
+				<div class="visu">
+					<img  width="500" height="300" src="${photoUrl}/${bien.id}/${status.count}">
+					<div class="title">
+						${photo.name}
+					</div> 
+				</div>
+			</div>
+		</c:forEach>  
 	</div>	
+	
 	
 	<div class="CSS_Table_Example" style="width: 600px;">
 		<table>
+		<%-- 	<tr>
+				
+				<td><img src="${photoUrl}/${bien.id}"></img></td>				
+			</tr> --%>
 			<tr>
 				<td><spring:message code="bien.name" /></td>
 				<td><b><c:out value="${bien.name}" /></b></td>

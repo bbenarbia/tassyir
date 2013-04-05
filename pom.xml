@@ -739,6 +739,12 @@
 				<artifactId>commons-io</artifactId>
 				<version>1.4</version>
 			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-lgpl</artifactId>
+				<version>1.9.2</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
