@@ -14,7 +14,6 @@
 
 <body>
 	<jsp:include page="../common/menu.jsp" />
-	<jsp:include page="../common/menu-users.jsp" />
 	<h2>
 		<spring:message code="user.information" />
 	</h2>

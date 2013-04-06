@@ -17,7 +17,6 @@
 
 <body>
 	<jsp:include page="../common/menu.jsp" />
-	<jsp:include page="../common/menu-users.jsp" />
 	<h2>Update User password</h2>
 
 	<form:form modelAttribute="userPassword" method="put" id="add-user-form">

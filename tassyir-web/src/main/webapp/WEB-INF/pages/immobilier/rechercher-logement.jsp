@@ -14,7 +14,6 @@
 <body>
 	<div id="container">
 		<jsp:include page="../common/menu.jsp" />
-		<jsp:include page="../common/menu-users.jsp" />
 		<h2>rechercher logements</h2>
 
 		<div class="CSS_Table_Example" style="width: 600px; height: 150px;">

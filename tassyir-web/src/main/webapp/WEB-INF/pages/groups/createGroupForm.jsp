@@ -20,7 +20,6 @@
 <body>
 	<div id="container">
 		<jsp:include page="../common/menu.jsp" />
-		<jsp:include page="../common/menu-users.jsp" />
 
 		<h2>User</h2>
 

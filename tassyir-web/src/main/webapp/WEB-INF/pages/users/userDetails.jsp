@@ -1,150 +1,190 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<html lang="en">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
 <link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
 	type="text/css" />
+
+<link rel="stylesheet"
+	href="<c:url value="/stylesheets/carroussel.css"/>" type="text/css" />
+<script type="text/javascript" src="scripts/jquery-1.9.1.js">
+	
+</script>
+<script type="text/javascript" src="scripts/carroussel.js">
+	
+</script>
 </head>
-
 <body>
-	<jsp:include page="../common/menu.jsp" />
-	<jsp:include page="../common/menu-users.jsp" />
-	<h2>
-		<spring:message code="user.information" />
-	</h2>
-	<div class="CSS_Table_Example" style="width: 600px;">
-		<table>
-			<tr>
-				<td><spring:message code="user.name" /></td>
-				<td><b><c:out value="${user.firstName} ${user.lastName}" /></b></td>
-			</tr>
-			<tr>
-				<td><spring:message code="user.code" /></td>
-				<td><c:out value="${user.code}" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="user.login" /></td>
-				<td><c:out value="${user.login}" /></td>
-			</tr>
+	<div id="wrap">
+		<jsp:include page="../common/menu.jsp" />
+		<div id="content">
+			<jsp:include page="../common/sub-menu.jsp" />
+			<div id="main">
+				<h1>
+					<spring:message code="user.information" />
+				</h1>
+				<div id="single_item_details">
+					<div id="leftcolumn">
+						<img src="../graphics/imageholder_detailspage.jpg" alt="Image"
+							width="220" height="220" class="previewimg" />
+					</div>
+					<div id="rightcolumn">
+						<h2>${user.firstName} ${user.lastName}</h2>
+						<p class="user">
+							<img src="../graphics/usericon.gif" alt="user" />
+							<spring:message code="user.login" />
+							${user.login}
+						</p>
+						<p>
+							<spring:message code="user.code" />
+							# :${user.code} <br /> Created On : put the date here
+						</p>
+						<p>&nbsp;</p>
+						<p class="price">
+							<spring:message code="user.group" />
+							: ${user.userCategory.name}
+						</p>
 
-			<tr>
-				<td><spring:message code="user.group" /></td>
-				<td><c:out value="${user.userCategory.name}" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="user.roles" /></td>
-				<td>
-					<ol>
-						<c:forEach var="role" items="${user.roles}">
+						<p>
+							<spring:message code="user.roles" />
+							: <br />
+							<c:forEach var="role" items="${user.roles}">
+								<c:out value="${role.name}" />
+								<br />
+							</c:forEach>
+						</p>
+						<div id="tabs">
+							<ul>
+								<li><a href="#tabs-1">Save This</a></li>
+								<li><a href="#tabs-2">Send This</a></li>
 
-							<li><c:out value="${role.name}" /></li>
-						</c:forEach>
-					</ol>
-					<spring:message code="group.roles" />
-					<ol>
-						<c:forEach var="role" items="${groupRoles}">
+								<li><a href="#tabs-3">Report This</a></li>
+							</ul>
+							<div id="tabs-1" class="hiddentab">
+								<p>
+									<img src="../graphics/fav.gif" alt="FAv" width="18" height="13" />&nbsp;<a
+										href="#">To My Favorites</a>
+								</p>
+								<p>
+									<img src="../graphics/emailalert.gif" alt="email" width="18"
+										height="15" />&nbsp;<a href="#">To Email Alerts</a>
+								</p>
+								<p>
+									<img src="../graphics/sms.gif" alt="sms" width="18" height="16" />&nbsp;<a
+										href="#">To SMS Alerts</a>
+								</p>
+							</div>
+							<div id="tabs-2" class="hiddentab">
+								<p>
+									<img src="../graphics/emailalert.gif" alt="email" width="18"
+										height="15" />&nbsp;<a href="#">By Email</a>
+								</p>
+								<p>
+									<img src="../graphics/sms.gif" alt="sms" width="18" height="16" />&nbsp;<a
+										href="#">By SMS</a>
+								</p>
+							</div>
+							<div id="tabs-3" class="hiddentab">
+								<p>
+									<img src="../graphics/emailalert.gif" alt="email" width="18"
+										height="15" />&nbsp;<a href="#">Report Spam</a>
+								</p>
+							</div>
+						</div>
 
-							<li><c:out value="${role}" /></li>
-						</c:forEach>
-					</ol>
-					
-				</td>
-			</tr>
-			<tr>
-				<td><spring:url value="/users/{userId}/edit" var="userUrl">
-						<spring:param name="userId" value="${user.id}" />
-					</spring:url> <a href="${fn:escapeXml(userUrl)}">Edit User</a></td>
+					</div>
+					<div class="clear">&nbsp;</div>
+				</div>
+				<div id="midraw_details">
+					<div class="listingbtns">
+						<span class="listbuttons"> <spring:url
+								value="/users/{userId}/edit" var="userUrl">
+								<spring:param name="userId" value="${user.id}" />
+							</spring:url> <a href="${fn:escapeXml(userUrl)}">Edit User</a>
+						</span> <span class="listbuttons"> <spring:url value="/users/new"
+								var="userUrl" /> <a href="${fn:escapeXml(userUrl)}">Add
+								User</a></span> <span class="listbuttons"> <spring:url
+								value="/users/{userId}/delete" var="userUrl">
+								<spring:param name="userId" value="${user.id}" />
+							</spring:url> <a href="${fn:escapeXml(userUrl)}">Delete User</a></span> <span
+							class="listbuttons"> <spring:url
+								value="/users/{userId}/editpassword" var="editPasswordUrl">
+								<spring:param name="userId" value="${user.id}" />
+							</spring:url> <a href="${fn:escapeXml(editPasswordUrl)}">Edit password</a></span>
+					</div>
 
-				<td><spring:url value="/users/new" var="userUrl" /> <a
-					href="${fn:escapeXml(userUrl)}">Add User</a></td>
-			</tr>
+					<div id="imagesgallerylisting">
+						<div class="imagegallink">
+							<a href="#">view Image Gallery</a> <span>12 Images
+								Submitted</span>
+						</div>
+					</div>
+					<div class="clear">&nbsp;</div>
+				</div>
 
-			<tr>
-				<td><spring:url value="/users/{userId}/editpassword"
-						var="editPasswordUrl">
-						<spring:param name="userId" value="${user.id}" />
-					</spring:url> <a href="${fn:escapeXml(editPasswordUrl)}">Edit password</a></td>
 
-				<td></td>
-			</tr>
-		</table>
 
-		<table>
-			<tr>
-				<td><spring:message code="contact.name" /></td>
-				<td><b><c:out value="${user.contact.name}" /></b></td>
-			</tr>
+				<div id="moredetails">
+					<div id="listing_details">
+						<table cellspacing="0" cellpadding="0">
+							<tr>
+								<td><h3>Details Contact</h3></td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td><ul>
+										<li><spring:message code="contact.name" /> : <c:out
+												value="${user.contact.name}" /></li>
+										<li><spring:message code="contact.nomSocieteContact" />
+											: <c:out value="${user.contact.nomSocieteContact}" /></li>
+										<li><spring:message code="contact.typeContact" />:<c:out
+												value="${user.contact.typeContact}" /></li>
+										<li><spring:message code="contact.titreContact" />:<c:out
+												value="${user.contact.titreContact}" /></li>
+										<li><spring:message code="contact.adresseContact1" />:<c:out
+												value="${user.contact.adresseContact1}" /></li>
+										<li><spring:message code="contact.adresseContact2" />:<c:out
+												value="${user.contact.adresseContact2}" /></li>
+										<li><spring:message code="contact.alerteSurTelephone1" />:<c:out
+												value="${user.contact.alerteSurTelephone1}" /></li>
+										<li><spring:message code="contact.alerteSurTelephone2" />:<c:out
+												value="${user.contact.alerteSurTelephone2}" /></li>
+									</ul></td>
+								<td><ul>
+										<li><spring:message code="contact.codePostal" />:<c:out
+												value="${user.contact.codePostalContact}" /></li>
+										<li><spring:message code="contact.estContactPrincipal" />:<c:out
+												value="${user.contact.estContactPrincipal}" /></li>
+										<li><spring:message code="contact.ville" />:<c:out
+												value="${user.contact.villeContact}" /></li>
+										<li><spring:message code="contact.adresseMailContact" />:<c:out
+												value="${user.contact.adresseMailContact}" /></li>
+										<li><spring:message code="contact.fax" />:<c:out
+												value="${user.contact.faxContact}" /></li>
+										<li><spring:message code="contact.siteWebContact" />:<c:out
+												value="${user.contact.siteWebContact}" /></li>
+										<li><spring:message code="contact.telephone1" />:<c:out
+												value="${user.contact.telephoneContact1}" /></li>
+										<li><spring:message code="contact.telephone2" />:<c:out
+												value="${user.contact.telephoneContact2}" /></li>
+									</ul></td>
+							</tr>
+						</table>
+					</div>
 
-			<tr>
-				<td><spring:message code="contact.nomSocieteContact" /></td>
-				<td><b><c:out value="${user.contact.nomSocieteContact}" /></b></td>
-			</tr>
-			<tr>
-				<td><spring:message code="contact.typeContact" /></td>
-				<td><b><c:out value="${user.contact.typeContact}" /></b></td>
-			</tr>
-			<tr>
-				<td><spring:message code="contact.titreContact" /></td>
-				<td><b><c:out value="${user.contact.titreContact}" /></b></td>
-			</tr>
-			<tr>
-				<td><spring:message code="contact.adresseContact1" /></td>
-				<td><b><c:out value="${user.contact.adresseContact1}" /></b></td>
-			</tr>
-			<tr>
-				<td><spring:message code="contact.adresseContact2" /></td>
-				<td><b><c:out value="${user.contact.adresseContact2}" /></b></td>
-			</tr>
-			<tr>
-				<td><spring:message code="contact.alerteSurTelephone1" /></td>
-				<td><b><c:out value="${user.contact.alerteSurTelephone1}" /></b></td>
-			</tr>
-			<tr>
-				<td><spring:message code="contact.alerteSurTelephone2" /></td>
-				<td><b><c:out value="${user.contact.alerteSurTelephone2}" /></b></td>
-			</tr>
-			<tr>
-				<td><spring:message code="contact.codePostal" /></td>
-				<td><b><c:out value="${user.contact.codePostalContact}" /></b></td>
-			</tr>
-			<tr>
-				<td><spring:message code="contact.estContactPrincipal" /></td>
-				<td><b><c:out value="${user.contact.estContactPrincipal}" /></b></td>
-			</tr>
-			<tr>
-				<td><spring:message code="contact.ville" /></td>
-				<td><b><c:out value="${user.contact.villeContact}" /></b></td>
-			</tr>
-			<tr>
-				<td><spring:message code="contact.adresseMailContact" /></td>
-				<td><b><c:out value="${user.contact.adresseMailContact}" /></b></td>
-			</tr>
-			<tr>
-				<td><spring:message code="contact.fax" /></td>
-				<td><b><c:out value="${user.contact.faxContact}" /></b></td>
-			</tr>
-			<tr>
-				<td><spring:message code="contact.siteWebContact" /></td>
-				<td><b><c:out value="${user.contact.siteWebContact}" /></b></td>
-			</tr>
-			<tr>
-				<td><spring:message code="contact.telephone1" /></td>
-				<td><b><c:out value="${user.contact.telephoneContact1}" /></b></td>
-			</tr>
-			<tr>
-				<td><spring:message code="contact.telephone2" /></td>
-				<td><b><c:out value="${user.contact.telephoneContact2}" /></b></td>
-			</tr>
+				</div>
 
-		</table>
+			</div>
+		</div>
+
+		<div class="clear">&nbsp;</div>
+		<div class="clear">&nbsp;</div>
+		<jsp:include page="../common/footer.jsp" />
 	</div>
-
 </body>
-
 </html>

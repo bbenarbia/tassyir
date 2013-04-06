@@ -21,7 +21,6 @@
 <body>
 	<div id="container">
 		<jsp:include page="../common/menu.jsp" />
-		<jsp:include page="../common/menu-users.jsp" />
 		<h2>Parameter</h2>
 
 		<form:form modelAttribute="parameter" method="post" id="form1">

@@ -3,58 +3,80 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-
-<html lang="en">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
 <link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
 	type="text/css" />
+
+<link rel="stylesheet"
+	href="<c:url value="/stylesheets/carroussel.css"/>" type="text/css" />
+<script type="text/javascript" src="scripts/jquery-1.9.1.js">
+	
+</script>
+<script type="text/javascript" src="scripts/carroussel.js">
+	
+</script>
 </head>
 <body>
+	<div id="wrap">
+		<jsp:include page="../common/menu.jsp" />
+			<div id="content">
+				<jsp:include page="../common/sub-menu.jsp" />
 
-	<jsp:include page="../common/menu.jsp"/>
-	<jsp:include page="../common/menu-users.jsp" />
-	<div class="container">
-		<h2>Users</h2>
+				<div id="main">
+					<h1>Users Listing</h1>
+					<ul class="listing">
+						<c:forEach var="user" items="${selections}">
+							<li>
+								<div class="listinfo">
+									<img src="graphics/imageholder.jpg" alt="Listing Image"
+										class="listingimage" />
+									<h3>${user.firstName} ${user.lastName}</h3>
+									<p>${user.login}</p>
+									<span class="price">${user.contact.nomSocieteContact}</span> 
+									<span class="price">${user.contact.adresseContact1}</span> 
+									<span class="price">${user.contact.telephoneContact1}</span>
+								</div>
+								<div class="listingbtns">
+									<span class="listbuttons"> <spring:url
+											value="users/{userId}.html" var="userUrl">
+											<spring:param name="userId" value="${user.id}" />
+										</spring:url> <a href="${userUrl}">View Details</a>
+									</span> <span class="listbuttons"> <spring:url
+											value="/users/new" var="userUrl" /><a
+										href="${fn:escapeXml(userUrl)}">Add New User</a></span> <span
+										class="listbuttons"> <spring:url
+											value="users/{userId}.html" var="deleteUserUrl">
+											<spring:param name="userId" value="${user.id}" />
+										</spring:url> <a href="${deleteUserUrl}">Contact Seller</a></span>
+								</div>
+								<div class="clear">&nbsp;</div>
+							</li>
+						</c:forEach>
+					</ul>
+					<div id="paginations">
+						<ul>
+							<li><a href="#">&laquo;</a></li>
 
-		<div class="CSS_Table_Example" style="width: 600px; height: 150px;">
-			<table>
-				<tr>
-					<td style="width: 350px;">Name</td>
-					<td style="width: 350px;">Code</td>
-					<td style="width: 300px;">Login</td>
-					<td style="width: 150px;">locked</td>
-					<td style="width: 150px;">Admin</td>
-				</tr>
-				<c:forEach var="user" items="${selections}">
-					<tr>
-						<td><spring:url value="users/{userId}.html" var="userUrl">
-								<spring:param name="userId" value="${user.id}" />
-							</spring:url> <a href="${userUrl}"><c:out
-									value="${user.firstName} ${user.lastName}" /></a> 
-						</td>
-						<td><c:out value="${user.code}" /></td>
-						<td><c:out value="${user.login}" /></td>
-						<td>
-							<input type="checkbox"  name="locked" value="locked" disabled="disabled" <c:if test="${user.locked}">checked="checked"</c:if>> 
-						</td>
-						<td>
-							<input type="checkbox"  name="isAdmin" value="isAdmin"  disabled="disabled" <c:if test="${user.isAdmin}">checked="checked"</c:if>>
-						</td>
-					</tr>
-				</c:forEach>
-				<tr>
-				<td colspan="4" /> 
-				<td>
-                  	 <spring:url value="/users/new" var="userUrl" />
-			                    <a href="${fn:escapeXml(userUrl)}">Add User</a>
-			         </td>
-				</tr>
-			</table>
+							<li class="current"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#">&raquo;</a></li>
+
+						</ul>
+						<div class="clear">&nbsp;</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="clear">&nbsp;</div>
+			<div class="clear">&nbsp;</div>
+			<jsp:include page="../common/footer.jsp" />
 		</div>
-
-	</div>
 </body>
-
 </html>
