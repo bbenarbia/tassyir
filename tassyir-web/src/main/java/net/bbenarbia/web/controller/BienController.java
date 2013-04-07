@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import net.bbenarbia.domain.Departement;
+import net.bbenarbia.domain.enums.EnumStatutProperty;
 import net.bbenarbia.domain.enums.EnumTypeBien;
 import net.bbenarbia.domain.enums.ParameterCode;
 import net.bbenarbia.domain.immobilier.Appartement;
@@ -56,10 +57,9 @@ public class BienController {
 
 	@Autowired
 	IParameterService parameterService;
-	
+
 	@Autowired
 	IPhotoService photoService;
-	
 
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
@@ -81,6 +81,17 @@ public class BienController {
 		List<Departement> listDepartements = departementservice.getAll();
 
 		return new LinkedList<Departement>(listDepartements);
+	}
+
+	@ModelAttribute("statusList")
+	public List<String> populateStatusList() {
+
+		List<String> statusList = new LinkedList<String>();
+
+		for (EnumStatutProperty status : EnumStatutProperty.values()) {
+			statusList.add(status.toString());
+		}
+		return statusList;
 	}
 
 	@RequestMapping(value = "/find-biens", method = RequestMethod.GET)
@@ -158,14 +169,14 @@ public class BienController {
 
 		return "immobilier/bienDetails";
 	}
+
 	@RequestMapping(value = "{bienId}/photo/delete/{photoId}", method = RequestMethod.GET)
-	public String deletePhoto(@PathVariable("photoId") Long photoId,@PathVariable("bienId") long bienId,
-			Model model) {
+	public String deletePhoto(@PathVariable("photoId") Long photoId,
+			@PathVariable("bienId") long bienId, Model model) {
 		photoService.delete(photoId);
-		return "redirect:/biens/"+bienId;
+		return "redirect:/biens/" + bienId;
 	}
-	
-	
+
 	@RequestMapping(value = "/{bienId}/edit", method = RequestMethod.GET)
 	public String initUpdateBienForm(@PathVariable("bienId") Long bienId,
 			Model model) {
@@ -211,7 +222,7 @@ public class BienController {
 		BienImmobilier bien = this.bienService.get(bienId);
 		model.addAttribute(new UploadItem());
 		model.addAttribute("bienId", bienId);
-		model.addAttribute("nbFiles", 5-bien.getPhotos().size());
+		model.addAttribute("nbFiles", 5 - bien.getPhotos().size());
 		return "upload/uploadForm";
 	}
 
@@ -239,13 +250,14 @@ public class BienController {
 					}
 					Photo photo = new Photo();
 					photo.setName(multipartFile.getOriginalFilename());
-					photo.setPhotoPath(TEMP_DIR + multipartFile.getOriginalFilename());
+					photo.setPhotoPath(TEMP_DIR
+							+ multipartFile.getOriginalFilename());
 					photo.setBien(bien);
 					bien.getPhotos().add(photo);
 				}
 			}
 			bienService.merge(bien);
 		}
-		return "redirect:/biens/"+bienId;
+		return "redirect:/biens/" + bienId;
 	}
 }

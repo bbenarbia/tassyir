@@ -56,10 +56,14 @@
 									<td><label> <form:input label="superficie"
 												path="superficie" class="text smalltextarea" />
 									</label></td>
+								</tr>
+								<tr>
 									<td class="label"><form:label path="status">status</form:label></td>
-									<td><label> <form:input label="status"
-												path="status" class="text smalltextarea" />
-									</label></td>
+									<td colspan="3">
+										<label> 
+											<form:radiobuttons path="status" items="${statusList}"  delimiter=" "/>										
+										</label>
+									</td>									
 								</tr>
 
 								<tr>
