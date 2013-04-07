@@ -75,6 +75,21 @@ public class GroupController {
 		model.addAttribute("roleFormList", listFormDto);
 		return "groups/rolesList";
 	}
+	
+	@RequestMapping("/{groupId}")
+	public String showGroupDetails(@PathVariable("groupId") long groupId, Model model) {
+		UserCategory group = this.userCategoryService.get(groupId);
+		model.addAttribute("group",group);
+//		List<String> userRolesOfGroup = new LinkedList<String>();
+//		if(user != null && user.getUserCategory()!= null ){
+//			for (Role role : user.getUserCategory().getRoles()) {
+//				userRolesOfGroup.add(role.getName());
+//			}
+//		}
+//		model.addAttribute("groupRoles",userRolesOfGroup);
+		return "groups/groupDetails";
+	}
+	
 
 	@RequestMapping(value = "/{groupId}/roles/save", method = RequestMethod.POST)
 	public String saveRoles(

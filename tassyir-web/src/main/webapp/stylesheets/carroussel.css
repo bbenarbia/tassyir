@@ -1,8 +1,8 @@
 #carrousel{
 	border: :solid 10px red;
 	/* ff55ff; */
-	width: 500px;
-	height: 300px;
+	width: 220px;
+	height: 220px;
 	margin: 0 auto;
 	position: relative;
 	overflow: hidden;
@@ -11,14 +11,14 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 500px;
-	height: 300px;
+	width: 220px;
+	height: 220px;
 }
 .title{
 	position: absolute;
 	padding-left:12px;
 	line-height:20px;
-	width: 500px;
+	width: 220px;
 	height: 22px;
 	bottom: 0;
 	left: 0;

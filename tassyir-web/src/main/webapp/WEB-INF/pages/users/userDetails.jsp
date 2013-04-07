@@ -12,11 +12,34 @@
 
 <link rel="stylesheet"
 	href="<c:url value="/stylesheets/carroussel.css"/>" type="text/css" />
-<script type="text/javascript" src="scripts/jquery-1.9.1.js">
+<script type="text/javascript" src="../scripts/jquery-1.9.1.js">
 	
 </script>
-<script type="text/javascript" src="scripts/carroussel.js">
+<script type="text/javascript" src="../scripts/carroussel.js">
 	
+</script>
+<script type="text/javascript">
+$(function(){
+    $('img').hover(
+    function(){
+        
+        $(this).css('z-index','10').stop().animate({
+            marginTop: '-20px', 
+            marginLeft: '-20px', 
+            width: '100px', 
+            height: '100px',
+        }, 500); 
+    },
+    function() {
+        $(this).stop().animate({
+            marginTop: '5px', 
+            marginLeft: '5px',
+            width: '50px', 
+            height: '50px', 
+        }, 400).css('z-index','0');
+   });
+});
+
 </script>
 </head>
 <body>
@@ -50,19 +73,10 @@
 							: ${user.userCategory.name}
 						</p>
 
-						<p>
-							<spring:message code="user.roles" />
-							: <br />
-							<c:forEach var="role" items="${user.roles}">
-								<c:out value="${role.name}" />
-								<br />
-							</c:forEach>
-						</p>
 						<div id="tabs">
 							<ul>
 								<li><a href="#tabs-1">Save This</a></li>
 								<li><a href="#tabs-2">Send This</a></li>
-
 								<li><a href="#tabs-3">Report This</a></li>
 							</ul>
 							<div id="tabs-1" class="hiddentab">
@@ -127,51 +141,68 @@
 					<div class="clear">&nbsp;</div>
 				</div>
 
-
-
 				<div id="moredetails">
 					<div id="listing_details">
-						<table cellspacing="0" cellpadding="0">
+						<table>
 							<tr>
 								<td><h3>Details Contact</h3></td>
 								<td>&nbsp;</td>
 							</tr>
 							<tr>
 								<td><ul>
-										<li><spring:message code="contact.name" /> : <c:out
-												value="${user.contact.name}" /></li>
+										<li><spring:message code="contact.name" />:<c:out value="${user.contact.name}" /></li>
 										<li><spring:message code="contact.nomSocieteContact" />
 											: <c:out value="${user.contact.nomSocieteContact}" /></li>
-										<li><spring:message code="contact.typeContact" />:<c:out
+										<li><spring:message code="contact.typeContact" /> <c:out
 												value="${user.contact.typeContact}" /></li>
-										<li><spring:message code="contact.titreContact" />:<c:out
+										<li><spring:message code="contact.titreContact" />  <c:out
 												value="${user.contact.titreContact}" /></li>
-										<li><spring:message code="contact.adresseContact1" />:<c:out
+										<li><spring:message code="contact.adresseContact1" /> <c:out
 												value="${user.contact.adresseContact1}" /></li>
-										<li><spring:message code="contact.adresseContact2" />:<c:out
+										<li><spring:message code="contact.adresseContact2" /> <c:out
 												value="${user.contact.adresseContact2}" /></li>
-										<li><spring:message code="contact.alerteSurTelephone1" />:<c:out
+										<li><spring:message code="contact.alerteSurTelephone1" /> <c:out
 												value="${user.contact.alerteSurTelephone1}" /></li>
-										<li><spring:message code="contact.alerteSurTelephone2" />:<c:out
+										<li><spring:message code="contact.alerteSurTelephone2" /> <c:out
 												value="${user.contact.alerteSurTelephone2}" /></li>
 									</ul></td>
+									<td></td>
 								<td><ul>
-										<li><spring:message code="contact.codePostal" />:<c:out
+										<li><spring:message code="contact.codePostal" /> <c:out
 												value="${user.contact.codePostalContact}" /></li>
-										<li><spring:message code="contact.estContactPrincipal" />:<c:out
+										<li><spring:message code="contact.estContactPrincipal" /> <c:out
 												value="${user.contact.estContactPrincipal}" /></li>
-										<li><spring:message code="contact.ville" />:<c:out
+										<li><spring:message code="contact.ville" /> <c:out
 												value="${user.contact.villeContact}" /></li>
-										<li><spring:message code="contact.adresseMailContact" />:<c:out
+										<li><spring:message code="contact.adresseMailContact" /> <c:out
 												value="${user.contact.adresseMailContact}" /></li>
 										<li><spring:message code="contact.fax" />:<c:out
 												value="${user.contact.faxContact}" /></li>
-										<li><spring:message code="contact.siteWebContact" />:<c:out
+										<li><spring:message code="contact.siteWebContact" /> <c:out
 												value="${user.contact.siteWebContact}" /></li>
-										<li><spring:message code="contact.telephone1" />:<c:out
+										<li><spring:message code="contact.telephone1" /> <c:out
 												value="${user.contact.telephoneContact1}" /></li>
-										<li><spring:message code="contact.telephone2" />:<c:out
+										<li><spring:message code="contact.telephone2" /> <c:out
 												value="${user.contact.telephoneContact2}" /></li>
+									</ul></td>
+							</tr>
+						</table>
+					</div>
+
+				</div>
+				
+				<div id="moredetails">
+					<div id="listing_details">
+						<table>
+							<tr>
+								<td><h3><spring:message code="user.roles" /></h3></td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td><ul>
+									<c:forEach var="role" items="${user.roles}" varStatus="status">
+										<li>${status.count} : <c:out value="${role.name}" /></li>
+									</c:forEach>
 									</ul></td>
 							</tr>
 						</table>

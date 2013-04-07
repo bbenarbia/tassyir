@@ -40,6 +40,11 @@
 								</div>
 								<div class="listingbtns">
 									<span class="listbuttons"> <spring:url
+											value="groups/{groupId}.html" var="groupUrl">
+											<spring:param name="groupId" value="${group.id}" />
+										</spring:url> <a href="${groupUrl}">View Details</a>
+									</span>
+									<span class="listbuttons"> <spring:url
 											value="groups/{groupId}/edit.html" var="groupUrl">
 											<spring:param name="groupId" value="${group.id}" />
 										</spring:url> <a href="${groupUrl}">Edit group</a>

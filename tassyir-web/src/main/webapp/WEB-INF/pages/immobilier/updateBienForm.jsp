@@ -3,117 +3,163 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="tassyir" tagdir="/WEB-INF/tags"%>
-
-
-<html lang="en">
-
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
 <link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
 	type="text/css" />
+<link rel="stylesheet" href="<c:url value="/stylesheets/forms.css"/>"
+	type="text/css" />
+
+<link rel="stylesheet"
+	href="<c:url value="/stylesheets/carroussel.css"/>" type="text/css" />
+<script type="text/javascript" src="scripts/jquery-1.9.1.js">
+	
+</script>
+<script type="text/javascript" src="scripts/carroussel.js">
+	
+</script>
 </head>
-
 <body>
-	<jsp:include page="../common/menu.jsp" />
-	<h2>Biens</h2>
+	<div id="wrap">
+		<jsp:include page="../common/menu.jsp" />
+		<div id="content">
+			<jsp:include page="../common/sub-menu.jsp" />
 
-	<form:form modelAttribute="bien" method="put" id="add-user-form">
-		<div class="CSS_Table_Example">
-						<table>
-							<tr>
-								<td colspan="2">Informations Bien</td>
-							</tr>
-							<tr>
-								<td><form:label path="name">name</form:label></td>
-								<td><form:input label="name" path="name" /><form:errors
-										cssClass="error" path="name" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="reference">reference</form:label></td>
-								<td><form:input label="reference" path="reference" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="adresse">adresse</form:label></td>
-								<td><form:input label="adresse" path="adresse" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="superficie">superficie</form:label></td>
-								<td><form:input label="superficie" path="superficie" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="status">status</form:label></td>
-								<td><form:input label="status" path="status" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="prixVente">prixVente</form:label></td>
-								<td><form:input label="prixVente" path="prixVente" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="prixMinVente">prixMinVente</form:label></td>
-								<td><form:input label="prixMinVente" path="prixMinVente" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="loyerMensuel">loyerMensuel</form:label></td>
-								<td><form:input label="loyerMensuel" path="loyerMensuel" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="chargesMensuel">chargesMensuel</form:label></td>
-								<td><form:input label="chargesMensuel" path="chargesMensuel" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="typeOperation">typeOperation</form:label></td>
-								<td><form:input label="typeOperation" path="typeOperation" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="etatBien">etatBien</form:label></td>
-								<td><form:input label="etatBien" path="etatBien" /></td>
-							</tr>						
-							<c:if test="${typeBien=='APPARTEMENT' || typeBien=='STUDIO' }">	
+			<div id="home_main">
+				<div id="search">
+					<div class="tab">
+						<h2>Edit bien</h2>
+					</div>
+					<div class="container">
+						<form:form modelAttribute="bien" method="put" id="form1">
+							<table class="search_form" style="width: 100%; border: none;">
 								<tr>
-									<td><form:label path="etage">etage</form:label></td>
-									<td><form:input label="etage" path="etage" /></td>
-								</tr>							
+									<td class="label"><form:label path="name">name</form:label></td>
+									<td><label> <form:input label="name" path="name"
+												class="text" />
+									</label></td>
+									<td class="label"><form:label path="reference">reference</form:label></td>
+									<td><label> <form:input label="reference"
+												path="reference" class="text smalltextarea" />
+									</label></td>
+								</tr>
 								<tr>
-									<td><form:label path="ascenseur">ascenseur</form:label></td>
-									<td><form:input label="ascenseur" path="ascenseur" /></td>
-								</tr>			
-							</c:if>
-							<c:if test="${typeBien=='APPARTEMENT' || typeBien=='STUDIO' || typeBien=='COMMERCE'  || typeBien=='MAISON' }">				
+									<td class="label"><form:label path="adresse">adresse</form:label></td>
+									<td colspan="3"><label> <form:input
+												label="adresse" path="adresse" class="text longfield" />
+									</label></td>
+								</tr>
 								<tr>
-									<td><form:label path="age">age</form:label></td>
-									<td><form:input label="age" path="age" /></td>
-								</tr>							
-							</c:if>
-							<c:if test="${typeBien=='APPARTEMENT' || typeBien=='MAISON'}">	
+									<td class="label"><form:label path="superficie">superficie</form:label></td>
+									<td><label> <form:input label="superficie"
+												path="superficie" class="text smalltextarea" />
+									</label></td>
+									<td class="label"><form:label path="status">status</form:label></td>
+									<td><label> <form:input label="status"
+												path="status" class="text smalltextarea" />
+									</label></td>
+								</tr>
+
 								<tr>
-									<td><form:label path="nbPieces">nbPieces</form:label></td>
-									<td><form:input label="nbPieces" path="nbPieces" /></td>
-								</tr>									
+									<td class="label"><form:label path="prixVente">prixVente</form:label></td>
+									<td><label> <form:input label="prixVente"
+												path="prixVente" class="text" />
+									</label></td>
+
+									<td class="label"><form:label path="prixMinVente">prixMinVente</form:label></td>
+									<td><label> <form:input label="prixMinVente"
+												path="prixMinVente" class="text smalltextarea" />
+									</label></td>
+
+								</tr>
+
 								<tr>
-									<td><form:label path="cuisineEquipee">cuisineEquipee</form:label></td>
-									<td><form:input label="cuisineEquipee" path="cuisineEquipee" /></td>
-								</tr>		
-							</c:if>
-							<c:if test="${typeBien=='MAISON'}">
+									<td class="label"><form:label path="loyerMensuel">loyerMensuel</form:label></td>
+									<td><label> <form:input label="loyerMensuel"
+												path="loyerMensuel" class="text smalltextarea" />
+									</label></td>
+
+									<td class="label"><form:label path="chargesMensuel">chargesMensuel</form:label></td>
+									<td><label> <form:input label="chargesMensuel"
+												path="chargesMensuel" class="text smalltextarea" />
+									</label></td>
+								</tr>
+
+
+								<c:if test="${typeBien=='APPARTEMENT' || typeBien=='STUDIO' }">
+									<tr>
+										<td class="label"><form:label path="etage">etage</form:label></td>
+										<td><label> <form:input label="etage"
+													path="etage" class="text smalltextarea" />
+										</label></td>
+										<td class="label"><form:label path="ascenseur">ascenseur</form:label></td>
+										<td><label> <form:input label="ascenseur"
+													path="ascenseur" class="text smalltextarea" />
+										</label></td>
+									</tr>
+								</c:if>
+
+								<c:if test="${typeBien=='APPARTEMENT' || typeBien=='MAISON'}">
+									<tr>
+										<td class="label"><form:label path="nbPieces">nbPieces</form:label></td>
+										<td><label> <form:input label="nbPieces"
+													path="nbPieces" class="text smalltextarea" />
+										</label></td>
+									</tr>
+									<tr>
+										<td class="label"><form:label path="cuisineEquipee">cuisineEquipee</form:label></td>
+										<td><label> <form:input label="cuisineEquipee"
+													path="cuisineEquipee" class="text smalltextarea" />
+										</label></td>
+									</tr>
+								</c:if>
+								<c:if
+									test="${typeBien=='APPARTEMENT' || typeBien=='STUDIO' || typeBien=='COMMERCE'  || typeBien=='MAISON' }">
+									<tr>
+										<td class="label"><form:label path="age">age</form:label></td>
+										<td><label> <form:input label="age" path="age"
+													class="text smalltextarea" />
+										</label></td>
+									</tr>
+								</c:if>
+								<c:if test="${typeBien=='MAISON'}">
+									<tr>
+										<td class="label"><form:label path="jardin">jardin</form:label></td>
+										<td><label> <form:input label="jardin"
+													path="jardin" class="text longfield" />
+										</label></td>
+									</tr>
+								</c:if>
+
 								<tr>
-									<td><form:label path="jardin">jardin</form:label></td>
-									<td><form:input label="jardin" path="jardin" /></td>
-								</tr>								
-							</c:if>
-						</table>
+									<td class="label"><form:label path="typeOperation">typeOperation</form:label></td>
+									<td><label> <form:input label="typeOperation"
+												path="typeOperation" class="text smalltextarea" />
+									</label></td>
+
+								</tr>
+								<tr>
+									<td class="label">&nbsp;</td>
+									<td>&nbsp;</td>
+									<td colspan="2" class="label"><label> <input
+											type="image" src="../../graphics/searchbtn.gif" alt="search"
+											name="button2" id="button2" value="Submit" />
+									</label></td>
+								</tr>
+							</table>
+						</form:form>
+
+					</div>
+				</div>
 			</div>
-		<div class="CSS_Table_Example" style="text-align: right;">
-			<table>
-				<tr>
-					<td>
-						<button type="submit">Update Bien</button>
-					</td>
-				</tr>
-			</table>
+			<div class="clear">&nbsp;</div>
+			<div class="clear">&nbsp;</div>
+			<jsp:include page="../common/footer.jsp" />
 		</div>
-	</form:form>
+	</div>
 </body>
-
 </html>
+
+

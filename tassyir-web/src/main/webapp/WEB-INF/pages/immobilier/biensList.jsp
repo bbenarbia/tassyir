@@ -169,8 +169,6 @@
 					</div>
 				</div>
 			</div>
-			
-
 				<div id="main">
 					<h1>Users Listing</h1>
 					<ul class="listing">
@@ -178,8 +176,16 @@
 					<c:forEach var="bien" items="${findBiens.listBiens}">
 							<li>
 								<div class="listinfo">
-									<img src="graphics/imageholder.jpg" alt="Listing Image"
+									
+									<c:if test="${fn:length(bien.photos) == 0 }">
+										<img src="../graphics/imageholder.jpg" alt="Listing Image"
 										class="listingimage" />
+									</c:if>
+									<c:if test="${fn:length(bien.photos) > 0 }">
+										<spring:url value="/biens/photo" var="photoUrl" />
+										<img width="70" height="70"
+												src="${photoUrl}/${bien.id}/${1}" class="listingimage">
+									</c:if>
 									<h3>${bien.name}</h3>
 									<p>${bien.departement.name}</p>
 									<span class="price">${bien.superficie}</span> 
