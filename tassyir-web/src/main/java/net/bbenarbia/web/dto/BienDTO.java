@@ -19,6 +19,8 @@ public class BienDTO {
 	private double superficie;
 
 	private String status;
+	
+	private String typeBien;
 
 	private double prixVente;
 
@@ -56,7 +58,7 @@ public class BienDTO {
 				appartement.getPrixVente(),  appartement.getPrixMinVente(),  appartement.getLoyerMensuel(),
 				appartement.getChargesMensuel(),  appartement.getTypeOperation().toString(), appartement.getEtatBien().toString(),
 				appartement.getEtage(),  appartement.getNbPieces(),  appartement.isAscenseur(),  appartement.isCuisineEquipee(),
-				null,  appartement.getAge()) ;
+				null,  appartement.getAge(), appartement.getTypeBien()) ;
 	}
 	
 	
@@ -66,7 +68,7 @@ public class BienDTO {
 				studio.getPrixVente(),  studio.getPrixMinVente(),  studio.getLoyerMensuel(),
 				studio.getChargesMensuel(),  studio.getTypeOperation().toString(), studio.getEtatBien().toString(),
 				studio.getEtage(),  0,  studio.isAscenseur(),  null,
-				null,  studio.getAge()) ;
+				null,  studio.getAge(), studio.getTypeBien()) ;
 	}
 	
 	public BienDTO(Commerce commerce) {
@@ -75,7 +77,7 @@ public class BienDTO {
 				commerce.getPrixVente(),  commerce.getPrixMinVente(),  commerce.getLoyerMensuel(),
 				commerce.getChargesMensuel(),  commerce.getTypeOperation().toString(), commerce.getEtatBien().toString(),
 				0,  0,  null,  null,
-				null,  commerce.getAge()) ;
+				null,  commerce.getAge(), commerce.getTypeBien()) ;
 	}
 	
 	
@@ -84,7 +86,7 @@ public class BienDTO {
 			double prixVente, double prixMinVente, double loyerMensuel,
 			double chargesMensuel, String typeOperation, String etatBien,
 			int etage, int nbPieces, Boolean ascenseur, Boolean cuisineEquipee,
-			Boolean jardin, int age) {
+			Boolean jardin, int age, String typeBien) {
 		super();
 		this.name = name;
 		this.id = id;
@@ -105,6 +107,7 @@ public class BienDTO {
 		this.cuisineEquipee = cuisineEquipee;
 		this.jardin = jardin;
 		this.age = age;
+		this.typeBien = typeBien;
 	}
 
 	public String getName() {
@@ -257,6 +260,14 @@ public class BienDTO {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getTypeBien() {
+		return typeBien;
+	}
+
+	public void setTypeBien(String typeBien) {
+		this.typeBien = typeBien;
 	}
 
 	

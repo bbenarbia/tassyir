@@ -1,6 +1,6 @@
 insert into parameters values (1,"LANGUAGE", "FRANCAIS", "La langue du systeme");
 insert into parameters values (2,"EMAIL_ADMIN", "benaissa@bbenarbia.fr", "L""email de l""admin");
-insert into parameters values (3,"TEMP_DIRECTORY", "/home/moad/tempfile/", "Temp directory");
+insert into parameters values (3,"TEMP_DIRECTORY", "c://Benaissa//temp//", "Temp directory");
 
 
 
@@ -170,13 +170,13 @@ insert into biens values(4, "4", "terrain","TERRAIN","adresse 1",1, "description
 500,100, 100, 1, 1, 2, 2, false, false, 2011, false);   
 
 
-insert into photos values(1,"photos1", 2,"/home/moad/tempfile/maisons/app1.jpg");
-insert into photos values(2,"photos2", 2,"/home/moad/tempfile/maisons/app2.jpg");
-insert into photos values(3,"photos3", 2,"/home/moad/tempfile/maisons/app3.jpg");
+insert into photos values(1,"photos1", 2,"c://Benaissa//temp//maisons/app1.jpg");
+insert into photos values(2,"photos2", 2,"c://Benaissa//temp//maisons/app2.jpg");
+insert into photos values(3,"photos3", 2,"c://Benaissa//temp//maisons/app3.jpg");
 
-insert into photos values(4,"photos4", 3,"/home/moad/tempfile/maisons/m1.jpg");
-insert into photos values(5,"photos5", 3,"/home/moad/tempfile/maisons/m2.jpg");
-insert into photos values(6,"photos6", 3,"/home/moad/tempfile/maisons/m3.jpg");
-insert into photos values(7,"photos7", 3,"/home/moad/tempfile/maisons/m4.jpg");
+insert into photos values(4,"photos4", 3,"c://Benaissa//temp//maisons/m1.jpg");
+insert into photos values(5,"photos5", 3,"c://Benaissa//temp//maisons/m2.jpg");
+insert into photos values(6,"photos6", 3,"c://Benaissa//temp//maisons/m3.jpg");
+insert into photos values(7,"photos7", 3,"c://Benaissa//temp//maisons/m4.jpg");
 
 

@@ -46,36 +46,20 @@
 									</label></td>
 								</tr>
 								<tr>
-									<td class="label"><form:label path="adresse">adresse</form:label></td>
-									<td colspan="3"><label> <form:input
-												label="adresse" path="adresse" class="text longfield" />
+									<td rowspan="2" class="label"><form:label path="adresse">adresse</form:label></td>
+									<td  rowspan="2"><label> <form:textarea cols="20" rows="10"
+												label="adresse" path="adresse" class="text textBoxfield" />
 									</label></td>
-								</tr>
-								<tr>
 									<td class="label"><form:label path="superficie">superficie</form:label></td>
 									<td><label> <form:input label="superficie"
 												path="superficie" class="text smalltextarea" />
 									</label></td>
-									<td class="label"><form:label path="typeBien">typeBien</form:label></td>
-									<td><label> <form:input label="typeBien"
-												path="typeBien" class="text smalltextarea" />
-									</label></td>
 								</tr>
 								<tr>
-									<td class="label"><form:label path="status">status</form:label></td>
-									<td colspan="4">
-										<table>
-										 <tr>
-										<c:forEach var="statusBien" items="${statusList}">
-										<td>
-											<label> 
-													<form:radiobutton path="status" value="${statusBien}"  label="${statusBien}" />
-											</label>
-										</td>		
-										</c:forEach>
-										</tr>
-										</table>
-									</td>						
+									<td class="label"><form:label path="age">age</form:label></td>
+										<td><label> <form:input label="age" path="age"
+													class="text smalltextarea" />
+									</label></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label path="prixVente">prixVente</form:label></td>
@@ -101,68 +85,55 @@
 												path="chargesMensuel" class="text smalltextarea" />
 									</label></td>
 								</tr>
-
-
-								<c:if test="${typeBien=='APPARTEMENT' || typeBien=='STUDIO' }"> 
-									<tr>
-										<td class="label"><form:label path="etage">etage</form:label></td>
-										<td><label> <form:input label="etage"
-													path="etage" class="text smalltextarea" />
-										</label></td>
-										<td class="label"><form:label path="ascenseur">ascenseur</form:label></td>
-										<td><label> <form:input label="ascenseur"
-													path="ascenseur" class="text smalltextarea" />
-										</label></td>
-									</tr>
-								</c:if> 
-
-								<c:if test="${typeBien=='APPARTEMENT' || typeBien=='MAISON'}">
-									<tr>
-										<td class="label"><form:label path="nbPieces">nbPieces</form:label></td>
-										<td><label> <form:input label="nbPieces"
-													path="nbPieces" class="text smalltextarea" />
-										</label></td>
-									</tr>
-									<tr>
-										<td class="label"><form:label path="cuisineEquipee">cuisineEquipee</form:label></td>
-										<td><label> <form:input label="cuisineEquipee"
-													path="cuisineEquipee" class="text smalltextarea" />
-										</label></td>
-									</tr>
-								</c:if>
-								<c:if
-									test="${typeBien=='APPARTEMENT' || typeBien=='STUDIO' || typeBien=='COMMERCE'  || typeBien=='MAISON' }">
-									<tr>
-										<td class="label"><form:label path="age">age</form:label></td>
-										<td><label> <form:input label="age" path="age"
-													class="text smalltextarea" />
-										</label></td>
-									</tr>
-								</c:if>
-								<c:if test="${typeBien=='MAISON'}">
-									<tr>
-										<td class="label"><form:label path="jardin">jardin</form:label></td>
-										<td><label> <form:input label="jardin"
-													path="jardin" class="text longfield" />
-										</label></td>
-									</tr>
-								</c:if>
+								
+								<tr>
+									<td class="label"><form:label path="nbPieces">nbPieces</form:label></td>
+									<td><label> <form:input label="nbPieces"
+												path="nbPieces" class="text smalltextarea" />
+									</label></td>
+									<td class="label"><form:label path="ascenseur" for="ascenseur">ascenseur</form:label></td>
+									<td><label> 
+										<form:checkbox path="ascenseur" />		
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label path="cuisineEquipee">cuisineEquipee</form:label></td>
+									<td><label> 
+										<form:checkbox path="cuisineEquipee" />									
+									</label></td>
+									
+								</tr>
+								<tr>
+									<td class="label"><form:label path="status">status</form:label></td>
+									<td colspan="4">
+										<table>
+											<tr>
+												<c:forEach var="statusBien" items="${statusList}">
+													<td class="tdsmall"><label> <form:radiobutton path="status"
+																value="${statusBien}" /> ${statusBien}
+													</label></td>
+												</c:forEach>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								
 								<tr>
 									<td class="label"><form:label path="typeOperation">Operation</form:label></td>
 									<td colspan="4">
 										<table>
-										 <tr>
-										<c:forEach var="typeOperationBien" items="${typeOperationList}">
-										<td>
-											<label> 
-													<form:radiobutton path="typeOperation" value="${typeOperationBien}"  label="${typeOperationBien}" />
-											</label>
-										</td>		
-										</c:forEach>
-										</tr>
+											<tr>
+												<c:forEach var="typeOperationBien"
+													items="${typeOperationList}">
+													<td class="tdsmall"><label> <form:radiobutton
+																path="typeOperation" value="${typeOperationBien}"
+																 /> ${typeOperationBien}
+													</label></td>
+												</c:forEach>
+											</tr>
 										</table>
-									</td>						
-								</tr>					
+									</td>
+								</tr>
 								<tr>
 									<td class="label">&nbsp;</td>
 									<td>&nbsp;</td>
@@ -174,6 +145,8 @@
 							</table>
 						</form:form>
 
+					</div>
+					<div class="bottom">
 					</div>
 				</div>
 			</div>

@@ -17,6 +17,7 @@ import javax.validation.Valid;
 import net.bbenarbia.domain.Departement;
 import net.bbenarbia.domain.enums.EnumStatutProperty;
 import net.bbenarbia.domain.enums.EnumTypeBien;
+import net.bbenarbia.domain.enums.EnumTypeOperation;
 import net.bbenarbia.domain.enums.ParameterCode;
 import net.bbenarbia.domain.immobilier.Appartement;
 import net.bbenarbia.domain.immobilier.BienImmobilier;
@@ -96,7 +97,16 @@ public class BienController {
 		}
 		return statusList;
 	}
+	@ModelAttribute("typeOperationList")
+	public List<String> populateTypeOperationList() {
 
+		List<String> statusList = new LinkedList<String>();
+
+		for (EnumTypeOperation typeOperation : EnumTypeOperation.values()) {
+			statusList.add(typeOperation.toString());
+		}
+		return statusList;
+	}
 	@RequestMapping(value = "/find-biens", method = RequestMethod.GET)
 	public String initSearchBiens(Model model) {
 		List<BienImmobilier> listBiens = bienService.getAll();
@@ -187,19 +197,24 @@ public class BienController {
 		BienDTO bienDto = null;
 		if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
 			bienDto = new BienDTO((Appartement) bien);
+			model.addAttribute("bien", bienDto);
+			return "immobilier/updateAppartementForm";
 		}
 		// else if(bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())){
 		// bienDto = new BienDTO((Maison)bien);
 		// }
 		else if (bien.getTypeBien().equals(EnumTypeBien.STUDIO.toString())) {
 			bienDto = new BienDTO((Studio) bien);
+			model.addAttribute("bien", bienDto);
+			return "immobilier/updateStudioForm";
 		}
-		// else if(bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())){
-		// bienDto = new BienDTO((Terrain)bien);
-		// }
+		 else if(bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())){
+//		 bienDto = new BienDTO((Terrain)bien);
+			 model.addAttribute("bien", bienDto);
+			 return "immobilier/updateTerrainForm";
+		 }
 
-		model.addAttribute("bien", bienDto);
-		return "immobilier/updateBienForm";
+		else return "immobilier/updateBienForm";
 	}
 
 	@RequestMapping(value = "/{bienId}/edit", method = RequestMethod.POST)

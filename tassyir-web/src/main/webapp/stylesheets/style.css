@@ -24,19 +24,23 @@ h1#logo { font: bold 48px Tahoma, Geneva, sans-serif; color:#368291;}
 	background: url(../graphics/hotbg.jpg) repeat;
 }
 
-#search {background:url(../graphics/searchbg.jpg); height:301px;}
-.hot {background:url(../graphics/hotbg.jpg); height:301px;}
+#search {background:url(../graphics/searchbg.jpg);}
+.hot {background:url(../graphics/hotbg.jpg);}
 
 #topcategorieslink {background:url(../graphics/categoriesbg.jpg); height:44px; margin-bottom:8px;}
 #search .container {
-	background:#E3F6FC url(../graphics/searchbottom.jpg) left bottom no-repeat;
-	height:255px;
+	background:#E3F6FC  bottom no-repeat;
+	height:365px;
 	width: 530px;
 	margin-right: auto;
 	margin-left: auto;
 }
 #search .tab {
 	height:30px;
+	padding:5px 20px 0 10px;
+}
+#search .bottom {
+	height:20px;
 	padding:5px 20px 0 10px;
 }
 .tab h2 {
