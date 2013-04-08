@@ -2,34 +2,66 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
-
-<html lang="fr">
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
+<link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
+	type="text/css" />
+<link rel="stylesheet" href="<c:url value="/stylesheets/forms.css"/>"
+	type="text/css" />
+
+<link rel="stylesheet"
+	href="<c:url value="/stylesheets/carroussel.css"/>" type="text/css" />
+<script type="text/javascript" src="scripts/jquery-1.9.1.js">
+	
+</script>
+<script type="text/javascript" src="scripts/carroussel.js">
+	
+</script>
 </head>
 <body>
+	<div id="wrap">
+		<jsp:include page="../common/menu.jsp" />
+		<div id="content">
+			<jsp:include page="../common/sub-menu.jsp" />
 
-	<form:form method="post" action="save.html" modelAttribute="uploadForm"
-		enctype="multipart/form-data">
-		<div class="CSS_Table_Example" style="width: 600px; height: 150px;">
-			<table style="width: 600px; height: 150px;">
-				<tr>
-					<td>Photos  </td>
-					<td style="width: 350px;">Select photo(s)</td>
-				</tr>
-				<c:forEach varStatus="status" begin="1" end="${nbFiles}">
-					<tr>
-						<td>Photo  : ${status.count}</td> <td style="width: 350px;"> <input name="files[${status.count-1}]" type="file" accept="image/*" /></td>
-					</tr>
-				</c:forEach>
-				<tr>
-					<td><input type="submit" value="Upload" /></td>
-				</tr>
-			</table>
+			<div id="home_main">
+				<div id="search">
+					<div class="tab">
+						<h2>Add Photos</h2>
+					</div>
+					<div class="container">
+
+						<form:form method="post" action="save.html"
+							modelAttribute="uploadForm" enctype="multipart/form-data"
+							id="form1">
+							
+							<table class="search_form" style="width: 100%; border: none;">
+								<c:forEach varStatus="status" begin="1" end="${nbFiles}">
+									<tr>
+										<td class="label">Photo: ${status.count}</td>
+										<td><label><input
+												name="files[${status.count-1}]" type="file" accept="image/*" />
+										</label></td>
+									</tr>
+								</c:forEach>
+								<tr>
+									<td colspan="2" align="right"><input type="submit" value="Upload" /></td>
+								</tr>
+								</table>
+						</form:form>
+					</div>
+					<div class="bottom"></div>
+				</div>
+			</div>
+			<div class="clear">&nbsp;</div>
+			<div class="clear">&nbsp;</div>
+			<jsp:include page="../common/footer.jsp" />
 		</div>
-	</form:form>
+	</div>
 </body>
 </html>
+
+
