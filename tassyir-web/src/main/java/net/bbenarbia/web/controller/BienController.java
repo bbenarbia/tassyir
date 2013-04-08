@@ -1,5 +1,6 @@
 package net.bbenarbia.web.controller;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -7,6 +8,7 @@ import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,6 +26,7 @@ import net.bbenarbia.service.IDepartementService;
 import net.bbenarbia.service.IParameterService;
 import net.bbenarbia.service.IPhotoService;
 import net.bbenarbia.service.immobilier.IBienService;
+import net.bbenarbia.utils.ImageService;
 import net.bbenarbia.web.dto.BienDTO;
 import net.bbenarbia.web.dto.FindBienDTO;
 import net.bbenarbia.web.dto.UploadItem;
@@ -245,9 +248,18 @@ public class BienController {
 						File destFile = new File(new File(TEMP_DIR),
 								multipartFile.getOriginalFilename());
 						multipartFile.transferTo(destFile);
+						BufferedImage bimg = ImageIO.read(destFile);
+						BufferedImage bimgResized =  ImageService.createResizedCopy(bimg, 300, 300, true);
+						File destFile1 = new File(new File(TEMP_DIR),
+								"small_"+ multipartFile.getOriginalFilename());
+						ImageIO.write(bimgResized, "jpeg", destFile1) ;
+						
 					} catch (IOException e) {
 						return "upload/uploadForm";
 					}
+					
+					
+					
 					Photo photo = new Photo();
 					photo.setName(multipartFile.getOriginalFilename());
 					photo.setPhotoPath(TEMP_DIR
