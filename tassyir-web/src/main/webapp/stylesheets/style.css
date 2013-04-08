@@ -18,6 +18,8 @@ body {background:#fff; font:11px Verdana, Arial, Helvetica, sans-serif; color:#3
 #header {background:url(../graphics/headerbg.jpg) repeat-x; height:128px; margin:0 2px 0 2px;}
 #content {padding:0 2px 0 2px;}
 #home_main, #main {width:545px; float:left; margin-bottom:8px;}
+#home_main_edit, #main_edit {width:645px; float:left; margin-bottom:8px;}
+#home_main_edit_user, #main_edit_user {width:645px; float:left; margin-bottom:8px;}
 #home_sidebar, #sidebar { width:390px; float:right; margin-bottom:8px;}
 h1#logo { font: bold 48px Tahoma, Geneva, sans-serif; color:#368291;}
 #content #sidebar {
@@ -25,12 +27,13 @@ h1#logo { font: bold 48px Tahoma, Geneva, sans-serif; color:#368291;}
 }
 
 #search {background:url(../graphics/searchbg.jpg);}
+#edit {background:url(../graphics/searchbg.jpg);}
 .hot {background:url(../graphics/hotbg.jpg);}
 
 #topcategorieslink {background:url(../graphics/categoriesbg.jpg); height:44px; margin-bottom:8px;}
 #search .container {
 	background:#E3F6FC  bottom no-repeat;
-	height:365px;
+	height:240px;
 	width: 530px;
 	margin-right: auto;
 	margin-left: auto;
@@ -43,6 +46,39 @@ h1#logo { font: bold 48px Tahoma, Geneva, sans-serif; color:#368291;}
 	height:20px;
 	padding:5px 20px 0 10px;
 }
+
+#edit .container {
+	background:#E3F6FC  bottom no-repeat;
+	height:365px;
+	width: 630px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#edit_user .container {
+	background:#E3F6FC  bottom no-repeat;
+	height:665px;
+	width: 630px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#edit_user .tab {
+	height:30px;
+	padding:5px 20px 0 10px;
+}
+#edit_user .bottom {
+	height:20px;
+	padding:5px 20px 0 10px;
+}
+#edit .tab {
+	height:30px;
+	padding:5px 20px 0 10px;
+}
+#edit .bottom {
+	height:20px;
+	padding:5px 20px 0 10px;
+}
+
+
 .tab h2 {
 	font: bold 18px "Trebuchet MS", Verdana, Arial, sans-serif;
 	text-transform: uppercase;
@@ -331,6 +367,10 @@ h3 a:hover {
 #search .tab h2 {
 	color: #33779B;
 }
+#edit .tab h2 {
+	color: #33779B;
+}
+
 #topcategorieslink ul {
 	display: block;
 	float: left;

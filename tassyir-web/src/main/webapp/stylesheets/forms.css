@@ -38,3 +38,89 @@
 	width: 140px;
 	ALIGN="left"
 }
+
+.edit_form td {
+	padding: 5px 3px 3px;
+}
+.edit_form .text {
+	display: block;
+	border: 1px solid #4F8B9D;
+	padding: 2px;
+}
+.edit_form .select_field {
+	padding: 2px;
+	display: block;
+	border: 1px solid #4F8B9D;
+}
+.edit_form .smalltextarea {
+	width: 45px;
+}
+.edit_form .mediumtext {
+	width: 90px;
+}
+.edit_form .longfield {
+	width: 394px;
+}
+
+
+.edit_form .textBoxfield {
+	width: 200px;
+	height: 75px;
+}
+
+#tabs.text {
+	border: 1px solid #666666!important;
+	margin-bottom: 5px!important;
+	display: block;
+}
+
+.edit_form td.tdsmall {
+	padding: 5px 3px 3px;
+	width: 140px;
+	ALIGN="left"
+}
+
+
+
+
+
+edit_form_user td {
+	padding: 5px 3px 3px;
+}
+.edit_form_user .text {
+	display: block;
+	border: 1px solid #4F8B9D;
+	padding: 2px;
+}
+.edit_form_user .select_field {
+	padding: 2px;
+	display: block;
+	border: 1px solid #4F8B9D;
+}
+.edit_form_user .smalltextarea {
+	width: 45px;
+}
+.edit_form_user .mediumtext {
+	width: 90px;
+}
+.edit_form_user .longfield {
+	width: 394px;
+}
+
+
+.edit_form_user .textBoxfield {
+	width: 200px;
+	height: 75px;
+}
+
+#tabs.text {
+	border: 1px solid #666666!important;
+	margin-bottom: 5px!important;
+	display: block;
+}
+
+.edit_form_user td.tdsmall {
+	padding: 5px 3px 3px;
+	width: 140px;
+	ALIGN="left"
+}
