@@ -18,12 +18,16 @@
 	width: 75px;
 }
 .search_form .longfield {
-	width: 394px;
+	width: 304px;
 }
-
 
 .search_form .textBoxfield {
 	width: 150px;
+	height: 75px;
+}
+
+.search_form .textBoxfieldlong {
+	width: 250px;
 	height: 75px;
 }
 

@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -28,6 +29,10 @@ import org.springframework.beans.support.PropertyComparator;
 @Table(name = "users")
 public class User extends BaseUser {
 
+	
+	@Column(name = "photo")
+	private String photo;
+	
 	@OneToOne
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name = "fk_contact")
@@ -93,6 +98,14 @@ public class User extends BaseUser {
 
 	public void addRole(Role role) {
 		getRolesInternal().add(role);
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 }

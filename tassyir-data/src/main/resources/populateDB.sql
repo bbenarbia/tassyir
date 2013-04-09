@@ -111,15 +111,12 @@ insert into departements values (103,"977","Polynesie francaise","Polynesie fran
 insert into departements values (104,"978","Nouvelle Caledonie","Nouvelle Caledonie","Noumea");
 insert into departements values (105,"979","Wallis et Futura","Wallis et Futura","Mta-Utu");
 
-
-
-
 --Table user_categories
 
-insert into user_categories values (1,"Administrateurs");
-insert into user_categories values (2,"Utilisateurs");
-insert into user_categories values (3,"SAV");
-insert into user_categories values (4,"Invites");
+insert into user_categories values (1,"Administrateurs", "c://Benaissa//temp//persons//p1.jpg");
+insert into user_categories values (2,"Utilisateurs", "c://Benaissa//temp//persons//p2.jpg");
+insert into user_categories values (3,"SAV", "c://Benaissa//temp//persons//p3.jpg");
+insert into user_categories values (4,"Invites","c://Benaissa//temp//persons//p4.jpg");
 
 --Roles
 insert into roles VALUES (1, "UTILISATION", "");
@@ -146,9 +143,9 @@ insert into contact values (3, 1, "Contact3", "Company 3",  "adresse1",  false, 
 "www.bbenarbia.fr", "01010101", "0202020202");
 
 
-insert into users VALUES (1, 1, "kadour", "Yahia","kyahia","kyahia",false, false, 1, 2);
-insert into users VALUES (2, 2, "said", "med","smed","smed",true, false, 2, 1);
-insert into users VALUES (3, 3, "lakhdar", "omar","lomar","lomar",true, false, 3 , 2);
+insert into users VALUES (1, 1, "c://Benaissa//temp//persons//p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, 1, 2);
+insert into users VALUES (2, 2, "c://Benaissa//temp//persons//p2.jpg", "said", "med","smed","smed",true, false, 2, 1);
+insert into users VALUES (3, 3, "c://Benaissa//temp//persons//p3.jpg", "lakhdar", "omar","lomar","lomar",true, false, 3 , 2);
 
 
 insert into user_role values (1,1);
@@ -156,7 +153,7 @@ insert into user_role values (1,2);
 insert into user_role values (2,1);
 insert into user_role values (3,1);
 
-insert into biens values(1, "1", "appartement1","APPARTEMENT","adresse 1", 1,"description de location",24.4, 1, 700, 
+insert into biens values(1, "1",  "appartement1","APPARTEMENT","adresse 1", 1,"description de location",24.4, 1, 700, 
 500,100, 100, 1, 1, 2, 2, false, false, 1967, false);   
 
 
@@ -167,7 +164,7 @@ insert into biens values(2, "2", "appartement2","APPARTEMENT","adresse 1",2, "de
 insert into biens values(3, "3", "Studio","STUDIO","adresse 1",2, "description de location",24.4, 1, 700, 
 500,100, 100, 1, 1, 2, 2, false, false, 2011, false);   
 
-insert into biens values(4, "4", "terrain","TERRAIN","adresse 1",1, "description de location",24.4, 1, 700, 
+insert into biens values(4, "4",  "terrain","TERRAIN","adresse 1",1, "description de location",24.4, 1, 700, 
 500,100, 100, 1, 1, 2, 2, false, false, 2011, false);   
 
 

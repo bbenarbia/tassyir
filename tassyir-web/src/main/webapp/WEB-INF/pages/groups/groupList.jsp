@@ -20,6 +20,10 @@
 </script>
 </head>
 <body>
+	<spring:url value="/groups/photo" var="photoUrl" />
+		<spring:url value="/groups/upload/{groupId}/show" var="addPhotoUrl">
+		<spring:param name="groupId" value="${group.id}" />
+	</spring:url>
 	<div id="wrap">
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">
@@ -33,6 +37,13 @@
 						<c:forEach var="group" items="${selections}">
 							<li>
 								<div class="listinfo">
+									<c:if test="${empty group.photo }">
+										<img src="graphics/imageholder.jpg" alt="Listing Image"
+										class="listingimage" />
+									</c:if>
+									<c:if test="${not empty group.photo }">
+										<img width="70" height="70" src="${photoUrl}/${group.id}" class="listingimage" />
+									</c:if>									
 									<h3>${group.name}</h3>
 									<c:forEach var="role" items="${group.roles}">
 										<span class="price">${role.name}</span>

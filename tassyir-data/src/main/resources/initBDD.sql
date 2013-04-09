@@ -23,8 +23,6 @@ CREATE TABLE IF NOT EXISTS fonction (
 )engine=InnoDB;
 
 
-
-
  CREATE TABLE IF NOT EXISTS parameters (
   id INT(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(30),
@@ -37,6 +35,7 @@ CREATE TABLE IF NOT EXISTS fonction (
  CREATE TABLE IF NOT EXISTS user_categories (
   id INT(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(30),
+  photo VARCHAR(300),
   INDEX(name)
 ) engine=InnoDB;
 
@@ -79,6 +78,7 @@ CREATE TABLE IF NOT EXISTS user_categories_roles (
 CREATE TABLE IF NOT EXISTS users (
   id INT(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   code INT(5) UNSIGNED NOT NULL default 0,
+  photo VARCHAR(300),
   first_name VARCHAR(30),
   last_name VARCHAR(30),
   login VARCHAR(30),

@@ -20,6 +20,11 @@
 </script>
 </head>
 <body>
+	<spring:url value="/groups/photo" var="photoUrl" />
+		<spring:url value="/groups/upload/{groupId}/show" var="addPhotoUrl">
+		<spring:param name="groupId" value="${group.id}" />
+	</spring:url>
+	
 	<div id="wrap">
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">
@@ -30,8 +35,15 @@
 				</h1>
 				<div id="single_item_details">
 					<div id="leftcolumn">
-						<img src="../graphics/imageholder_detailspage.jpg" alt="Image"
-							width="220" height="220" class="previewimg" />
+						<div id="carrousel">
+							<c:if test="${empty group.photo }">
+								<img width="220" height="220" src="../graphics/no-photos.jpg" class="previewimg">
+							</c:if>
+							<c:if test="${not empty group.photo }">
+								<img width="220" height="220" src="${photoUrl}/${group.id}" class="previewimg">
+							</c:if>
+						</div>
+					
 					</div>
 					<div id="rightcolumn">
 						<h2>${group.name}</h2>
@@ -94,6 +106,9 @@
 								value="/groups/{groupId}/delete" var="groupUrl">
 								<spring:param name="groupId" value="${group.id}" />
 							</spring:url> <a href="${fn:escapeXml(groupUrl)}">Delete Group</a></span> 
+							<span class="listbuttons"> <a
+									href="${fn:escapeXml(addPhotoUrl)}">Select/modify photo</a>
+							</span>
 					</div>
 					<div id="imagesgallerylisting">
 						<div class="imagegallink">

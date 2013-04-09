@@ -20,6 +20,10 @@
 </script>
 </head>
 <body>
+	<spring:url value="/users/photo" var="photoUrl" />
+		<spring:url value="/users/upload/{userId}/show" var="addPhotoUrl">
+		<spring:param name="userId" value="${user.id}" />
+	</spring:url>
 	<div id="wrap">
 		<jsp:include page="../common/menu.jsp" />
 			<div id="content">
@@ -31,8 +35,14 @@
 						<c:forEach var="user" items="${selections}">
 							<li>
 								<div class="listinfo">
-									<img src="graphics/imageholder.jpg" alt="Listing Image"
+										
+									<c:if test="${empty user.photo }">
+										<img src="graphics/imageholder.jpg" alt="Listing Image"
 										class="listingimage" />
+									</c:if>
+									<c:if test="${not empty user.photo }">
+										<img width="70" height="70" src="${photoUrl}/${user.id}" class="listingimage" />
+									</c:if>
 									<h3>${user.firstName} ${user.lastName}</h3>
 									<p>${user.login}</p>
 									<span class="price">${user.contact.nomSocieteContact}</span> 

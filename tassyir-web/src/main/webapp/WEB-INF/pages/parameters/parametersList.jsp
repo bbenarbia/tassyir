@@ -30,7 +30,6 @@
 				<div id="main">
 					<h1>Parameters Listing</h1>
 					<ul class="listing">
-
 						<c:forEach var="parameter" items="${selections}">
 							<li>
 								<div class="listinfo">
@@ -42,15 +41,11 @@
 								<div class="listingbtns">
 									<span class="listbuttons"> <a
 										href="parameters/${parameter.id}/edit">Edit parameter</a>
-									</span> <span class="listbuttons"> <a
-										href="parameters/${parameter.id}/add">Add parameter</a></span> <span
-										class="listbuttons"> <a
-										href="parameters/${parameter.id}/delete">Delete</a></span>
+									</span> 
 								</div>
 								<div class="clear">&nbsp;</div>
 							</li>
 						</c:forEach>
-
 					</ul>
 					<div id="paginations">
 						<ul>

@@ -3,6 +3,7 @@ package net.bbenarbia.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -20,6 +21,10 @@ import org.hibernate.annotations.CascadeType;
 public class UserCategory extends NamedEntity {
 
 
+	@Column(name = "photo")
+	private String photo;
+
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_categories_roles", 
 	joinColumns = @JoinColumn(name = "id_catgory"), 
@@ -60,6 +65,14 @@ public class UserCategory extends NamedEntity {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 

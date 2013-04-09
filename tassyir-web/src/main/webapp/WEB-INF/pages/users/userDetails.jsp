@@ -18,31 +18,15 @@
 <script type="text/javascript" src="../scripts/carroussel.js">
 	
 </script>
-<script type="text/javascript">
-$(function(){
-    $('img').hover(
-    function(){
-        
-        $(this).css('z-index','10').stop().animate({
-            marginTop: '-20px', 
-            marginLeft: '-20px', 
-            width: '100px', 
-            height: '100px',
-        }, 500); 
-    },
-    function() {
-        $(this).stop().animate({
-            marginTop: '5px', 
-            marginLeft: '5px',
-            width: '50px', 
-            height: '50px', 
-        }, 400).css('z-index','0');
-   });
-});
 
-</script>
 </head>
 <body>
+	<spring:url value="/users/photo" var="photoUrl" />
+	<spring:url value="/users/upload/{userId}/show" var="addPhotoUrl">
+		<spring:param name="userId" value="${user.id}" />
+	</spring:url>
+	
+	
 	<div id="wrap">
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">
@@ -53,8 +37,14 @@ $(function(){
 				</h1>
 				<div id="single_item_details">
 					<div id="leftcolumn">
-						<img src="../graphics/imageholder_detailspage.jpg" alt="Image"
-							width="220" height="220" class="previewimg" />
+						<div id="carrousel">
+							<c:if test="${empty user.photo }">
+								<img width="220" height="220" src="../graphics/no-photos.jpg" class="previewimg">
+							</c:if>
+							<c:if test="${not empty user.photo }">
+								<img width="220" height="220" src="${photoUrl}/${user.id}" class="previewimg">
+							</c:if>
+						</div>
 					</div>
 					<div id="rightcolumn">
 						<h2>${user.firstName} ${user.lastName}</h2>
@@ -130,6 +120,10 @@ $(function(){
 								value="/users/{userId}/editpassword" var="editPasswordUrl">
 								<spring:param name="userId" value="${user.id}" />
 							</spring:url> <a href="${fn:escapeXml(editPasswordUrl)}">Edit password</a></span>
+							
+								<span class="listbuttons"> <a
+									href="${fn:escapeXml(addPhotoUrl)}">Select/modify photo</a>
+								</span>
 					</div>
 
 					<div id="imagesgallerylisting">

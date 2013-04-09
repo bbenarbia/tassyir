@@ -48,7 +48,7 @@
 														</label></td>
 												</tr>
 												<tr>
-														<td class="label">Type d'appartement</td>
+														<td class="label">Type</td>
 														<td colspan="3"><label> 
 															<form:select path="typeBien" class="select_field">
 																<option>indifferent</option>
@@ -59,28 +59,22 @@
 														</label></td>
 												</tr>	
 												<tr>
-														<td class="label">Nombres pièces Min:</td>
+														<td class="label">Pièces Min:</td>
 														<td><label> 
 															<form:select path="nbPiecesMin" class="select_field">
 																<option>indifferent</option>
-																<option value="1">1</option>
-																<option value="2">2</option>
-																<option value="3">3</option>
-																<option value="4">4</option>
-																<option value="5">5</option>
-																<option value="6">6</option>
+																<c:forEach varStatus="status" begin="1" end="6">
+																	<option value="${status.count}">${status.count}</option>
+																</c:forEach>
 															</form:select>
 															</label></td>
-															<td class="label">Nombres pièces Max:</td>
+															<td class="label">Pièces Max:</td>
 															<td><label>
 															<form:select path="nbPiecesMax" class="select_field">
 																<option>indifferent</option>
-																<option value="1">1</option>
-																<option value="2">2</option>
-																<option value="3">3</option>
-																<option value="4">4</option>
-																<option value="5">5</option>
-																<option value="6">6</option>
+																<c:forEach varStatus="status" begin="1" end="6">
+																	<option value="${status.count}">${status.count}</option>
+																</c:forEach>
 															</form:select>
 														</label></td>
 												</tr>	
@@ -89,66 +83,38 @@
 														<td><label> 
 															<form:select path="surfaceMin"  class="select_field">
 																<option>indifferent</option>
-																<option value="10">10</option>
-																<option value="20">20</option>
-																<option value="30">30</option>
-																<option value="40">40</option>
-																<option value="50">50</option>
-																<option value="60">60</option>
-																<option value="70">70</option>
-																<option value="80">80</option>
-																<option value="90">90</option>
-																<option value="100">100</option>
+																<c:forEach varStatus="status" begin="1" end="10" >
+																	<option value="${status.count*10}">${status.count*10}</option>
+																</c:forEach>
 															</form:select>
 															</label></td>
 															<td class="label">Superficie Max</td>
 															<td><label>
 															<form:select path="surfaceMax"  class="select_field">
 																<option>indifferent</option>
-																<option value="10">10</option>
-																<option value="20">20</option>
-																<option value="30">30</option>
-																<option value="40">40</option>
-																<option value="50">50</option>
-																<option value="60">60</option>
-																<option value="70">70</option>
-																<option value="80">80</option>
-																<option value="90">90</option>
-																<option value="100">100</option>
+																<c:forEach varStatus="status" begin="1" end="10" >
+																	<option value="${status.count*10}">${status.count*10}</option>
+																</c:forEach>
 															</form:select>
 														</label></td>
 												</tr>	
 												<tr>
-														<td class="label">Loyer Min</td>
+														<td class="label">Budget Min</td>
 														<td><label> 
 															<form:select path="loyerMin"  class="select_field">
 																<option>indifferent</option>
-																<option value="100">100</option>
-																<option value="200">200</option>
-																<option value="300">300</option>
-																<option value="400">400</option>
-																<option value="500">500</option>
-																<option value="600">600</option>
-																<option value="700">700</option>
-																<option value="800">800</option>
-																<option value="900">900</option>
-																<option value="1000">1000</option>
+																<c:forEach varStatus="status" begin="1" end="15" >
+																	<option value="${status.count*100}">${status.count*100}</option>
+																</c:forEach>
 															</form:select>
 															</label></td>
-															<td class="label">Loyer Max:</td>
+															<td class="label">Budget Max:</td>
 															<td><label>
 															<form:select path="loyerMax"  class="select_field">
 																<option>indifferent</option>
-																<option value="100">100</option>
-																<option value="200">200</option>
-																<option value="300">300</option>
-																<option value="400">400</option>
-																<option value="500">500</option>
-																<option value="600">600</option>
-																<option value="700">700</option>
-																<option value="800">800</option>
-																<option value="900">900</option>
-																<option value="1000">1000</option>
+																<c:forEach varStatus="status" begin="1" end="15" >
+																	<option value="${status.count*100}">${status.count*100}</option>
+																</c:forEach>
 															</form:select>
 														</label></td>
 												</tr>
