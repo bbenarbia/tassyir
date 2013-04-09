@@ -36,6 +36,19 @@ public class BienImmobilier extends NamedEntity {
 	@Column(name = "adresse")
 	private String adresse;
 	
+	 
+	@Column(name = "adapteHandicape")
+	private boolean adapteHandicape;
+	
+	
+	@Column(name = "transport")
+	private String transport;
+	
+	@Column(name = "proximite")
+	private String proximite;
+	
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "idDepartement")
 	private Departement departement;
@@ -53,6 +66,12 @@ public class BienImmobilier extends NamedEntity {
 	@Column(name = "prixVente")
 	private double prixVente;
 	
+	@Column(name = "honoraires")
+	private double honoraires;
+	
+	@Column(name = "depot_garantie")
+	private double depotGarantie;
+	
 	@Column(name = "prixMinVente")
 	private double prixMinVente;
 //	
@@ -66,6 +85,15 @@ public class BienImmobilier extends NamedEntity {
 	@Column(name = "chargesMensuel")
 	private double chargesMensuel;
 	
+	@Column(name = "nbSalleBains")
+	private int nbSalleBains;
+	
+	
+	@Column(name = "nbCaves")
+	private int nbCaves;
+	
+	
+	 
 	@Column(nullable = false)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumTypeOperation typeOperation;
@@ -189,5 +217,62 @@ public class BienImmobilier extends NamedEntity {
 	public void setTypeBien(String typeBien) {
 		this.typeBien = typeBien;
 	}
+
+	public int getNbSalleBains() {
+		return nbSalleBains;
+	}
+
+	public void setNbSalleBains(int nbSalleBains) {
+		this.nbSalleBains = nbSalleBains;
+	}
+
+	public boolean isAdapteHandicape() {
+		return adapteHandicape;
+	}
+
+	public void setAdapteHandicape(boolean adapteHandicape) {
+		this.adapteHandicape = adapteHandicape;
+	}
+
+	public String getTransport() {
+		return transport;
+	}
+
+	public void setTransport(String transport) {
+		this.transport = transport;
+	}
+
+	public String getProximite() {
+		return proximite;
+	}
+
+	public void setProximite(String proximite) {
+		this.proximite = proximite;
+	}
+
+	public double getHonoraires() {
+		return honoraires;
+	}
+
+	public void setHonoraires(double honoraires) {
+		this.honoraires = honoraires;
+	}
+
+	public double getDepotGarantie() {
+		return depotGarantie;
+	}
+
+	public void setDepotGarantie(double depotGarantie) {
+		this.depotGarantie = depotGarantie;
+	}
+
+	public int getNbCaves() {
+		return nbCaves;
+	}
+
+	public void setNbCaves(int nbCaves) {
+		this.nbCaves = nbCaves;
+	}
+
 	
 }
