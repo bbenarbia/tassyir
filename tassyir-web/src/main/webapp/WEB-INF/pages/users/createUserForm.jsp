@@ -130,20 +130,12 @@
 									<form:select path="contact.typeContact" items="${typeContactList}" />
 								</td> 
 								
-								<td><form:label path="contact.titreContact">titreContact</form:label>
-								</td>
-								<td><form:input path="contact.titreContact" /> <form:errors
-										cssClass="error" path="contact.titreContact" /></td>
 							</tr>
 							<tr>
 								<td><form:label path="contact.adresseContact1">adresseContact1</form:label>
 								</td>
 								<td><form:input path="contact.adresseContact1" /> <form:errors
 										cssClass="error" path="contact.adresseContact1" /></td>
-								<td><form:label path="contact.adresseContact2">adresseContact2</form:label>
-								</td>
-								<td><form:input path="contact.adresseContact2" /> <form:errors
-										cssClass="error" path="contact.adresseContact2" /></td>
 							</tr>
 							<tr>
 								<td><form:label path="contact.alerteSurTelephone1">alerteSurTelephone1</form:label>
@@ -161,10 +153,6 @@
 								</td>
 								<td><form:input path="contact.codePostalContact" /> <form:errors
 										cssClass="error" path="contact.codePostalContact" /></td>
-								<td><form:label path="contact.estContactPrincipal">estContactPrincipal</form:label>
-								</td>
-								<td><form:checkbox path="contact.estContactPrincipal" /> <form:errors
-										cssClass="error" path="contact.estContactPrincipal" /></td>
 							</tr>
 							<tr>
 								<td><form:label path="contact.villeContact">villeContact</form:label>
@@ -177,10 +165,6 @@
 										cssClass="error" path="contact.adresseMailContact" /></td>
 							</tr>
 							<tr>
-								<td><form:label path="contact.faxContact">faxContact</form:label>
-								</td>
-								<td><form:input path="contact.faxContact" /> <form:errors
-										cssClass="error" path="contact.faxContact" /></td>
 								<td><form:label path="contact.siteWebContact">siteWebContact</form:label>
 								</td>
 								<td><form:input path="contact.siteWebContact" /> <form:errors

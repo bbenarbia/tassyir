@@ -61,17 +61,20 @@
 												path="locked" />
 									</label></td>
 									<td class="label"><form:label path="isAdmin">isAdmin</form:label></td>
-									<td><label><form:checkbox label="Admin"
+									<td><label><form:checkbox 
 												path="isAdmin" /> </label></td>
 								</tr>
 								<tr>
-									<td style="font-weight: bold;">Roles</td>
-									<td>
+								<td colspan="4" align="center" style="font: bold;">Roles list</td>
+								</tr>
+								<tr>
+									<td colspan="4">
+									
 										<table>
 											<tr>
-												<td style="font-weight: bold;">N°</td>
+												<td style="font-weight: bold;width: 20px;">N°</td>
 												<td style="font-weight: bold; width: 150px;">Name</td>
-												<td style="font-weight: bold; width: 450px;">description</td>
+												<td style="font-weight: bold; width: 300px;">description</td>
 												<td style="font-weight: bold;">Included</td>
 											</tr>
 											<c:forEach items="${user.roleFormList.roles}" var="roleForm"
@@ -91,7 +94,9 @@
 							</table>
 
 							<table class="edit_form" style="width: 100%; border: none;">
-
+								<tr>
+								<td colspan="4" align="center">Contact infos</td>
+								</tr>
 								<tr>
 									<td class="label"><form:label path="contact.nameContact">nameContact</form:label></td>
 									<td><label> <form:input
@@ -99,14 +104,77 @@
 												class="text" />
 									</label></td>
 									<td class="label"><form:label
-											path="contact.nomSocieteContact">nomSocieteContact</form:label></td>
+											path="contact.nomSocieteContact">nom Societe</form:label></td>
 									<td><label> <form:input
 												label="contact.nomSocieteContact"
-												path="contact.nomSocieteContact" class="text mediumtext" />
+												path="contact.nomSocieteContact" class="text" />
 									</label></td>
 								</tr>
 								<tr>
-									<td class="label"><form:label path="contact.typeContact">typeContact</form:label></td>
+									<td rowspan="2"  class="label"><form:label
+											path="contact.adresseContact1">adresse</form:label></td>
+									<td  rowspan="2"><label>
+									 <form:textarea cols="20" rows="10"
+												label="contact.adresseContact1"
+												path="contact.adresseContact1" class="text textBoxfield" />
+									</label></td>
+									<td class="label"><form:label
+											path="contact.codePostalContact">code Postal</form:label></td>
+									<td><label> <form:input
+												label="contact.codePostalContact"
+												path="contact.codePostalContact" class="text" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label path="contact.villeContact">ville</form:label></td>
+									<td><label> <form:input
+												label="contact.villeContact" path="contact.villeContact"
+												class="text" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label
+											path="contact.telephoneContact1">telephone 1</form:label></td>
+									<td><label> <form:input
+												label="contact.telephoneContact1"
+												path="contact.telephoneContact1" class="text"  />
+									</label></td>
+									<td class="label"><form:label
+											path="contact.alerteSurTelephone1">alerte Telephone1</form:label></td>
+									<td><label> <form:checkbox
+												
+												path="contact.alerteSurTelephone1" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label
+											path="contact.telephoneContact2">telephone 2</form:label></td>
+									<td><label> <form:input
+												label="contact.telephoneContact2"
+												path="contact.telephoneContact2" class="text" />
+									</label></td>
+									<td class="label"><form:label
+											path="contact.alerteSurTelephone1">alerte  Telephone2</form:label></td>
+									<td><label> <form:checkbox
+												path="contact.alerteSurTelephone2" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label
+											path="contact.adresseMailContact">EMail</form:label></td>
+									<td><label> <form:input
+												label="contact.adresseMailContact"
+												path="contact.adresseMailContact" class="text" />
+									</label></td>
+									<td class="label"><form:label
+											path="contact.siteWebContact">site Web</form:label></td>
+									<td><label> <form:input
+												label="contact.siteWebContact" path="contact.siteWebContact"
+												class="text" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label path="contact.typeContact">type Contact</form:label></td>
 									<td><label> <form:select
 												path="contact.typeContact">
 												<c:forEach var="item" items="${typeContactList}">
@@ -118,104 +186,14 @@
 														</c:when>
 														<c:otherwise>
 															<form:option value="${item}">
-										                   ${item}
-										            </form:option>
+										                	   ${item}
+										            		</form:option>
 														</c:otherwise>
 													</c:choose>
 												</c:forEach>
 											</form:select>
 									</label></td>
-									<td class="label"><form:label path="contact.titreContact">titreContact</form:label></td>
-									<td><label> <form:input
-												label="contact.titreContact" path="contact.titreContact"
-												class="text mediumtext" />
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><form:label
-											path="contact.adresseContact1">adresseContact1</form:label></td>
-									<td><label> <form:input
-												label="contact.adresseContact1"
-												path="contact.adresseContact1" class="text" />
-									</label></td>
-									<td class="label"><form:label
-											path="contact.adresseContact2">adresseContact2</form:label></td>
-									<td><label> <form:input
-												label="contact.adresseContact2"
-												path="contact.adresseContact2" class="text mediumtext" />
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><form:label
-											path="contact.alerteSurTelephone1">alerteSurTelephone1</form:label></td>
-									<td><label> <form:checkbox
-												label="alerteSurTelephone1"
-												path="contact.alerteSurTelephone1" />
-									</label></td>
-									<td class="label"><form:label
-											path="contact.alerteSurTelephone1">alerteSurTelephone1</form:label></td>
-									<td><label> <form:checkbox
-												label="alerteSurTelephone2"
-												path="contact.alerteSurTelephone2" />
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><form:label
-											path="contact.codePostalContact">codePostalContact</form:label></td>
-									<td><label> <form:input
-												label="contact.codePostalContact"
-												path="contact.codePostalContact" class="text" />
-									</label></td>
-									<td class="label"><form:label
-											path="contact.estContactPrincipal">estContactPrincipal</form:label></td>
-									<td><label> <form:checkbox
-												label="estContactPrincipal"
-												path="contact.estContactPrincipal" />
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><form:label path="contact.villeContact">villeContact</form:label></td>
-									<td><label> <form:input
-												label="contact.villeContact" path="contact.villeContact"
-												class="text" />
-									</label></td>
-									<td class="label"><form:label
-											path="contact.adresseMailContact">adresseMailContact</form:label></td>
-									<td><label> <form:input
-												label="contact.adresseMailContact"
-												path="contact.adresseMailContact" class="text mediumtext" />
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><form:label path="contact.faxContact">faxContact</form:label></td>
-									<td><label> <form:input label="contact.faxContact"
-												path="contact.faxContact" class="text" />
-									</label></td>
-									<td class="label"><form:label
-											path="contact.siteWebContact">siteWebContact</form:label></td>
-									<td><label> <form:input
-												label="contact.siteWebContact" path="contact.siteWebContact"
-												class="text mediumtext" />
-									</label></td>
-								</tr>
-
-								<tr>
-									<td class="label"><form:label
-											path="contact.telephoneContact1">telephoneContact1</form:label></td>
-									<td><label> <form:input
-												label="contact.telephoneContact1"
-												path="contact.telephoneContact1" class="text" />
-									</label></td>
-									<td class="label"><form:label
-											path="contact.telephoneContact2">telephoneContact2</form:label></td>
-									<td><label> <form:input
-												label="contact.telephoneContact2"
-												path="contact.telephoneContact2" class="text mediumtext" />
-									</label></td>
-								</tr>
-
-								<tr>
-									<td class="label"><form:label path="userCategory.name">userCategory </form:label></td>
+									<td class="label"><form:label path="userCategory.name">group </form:label></td>
 									<td><label> <form:select path="userCategory.name">
 												<c:forEach var="item" items="${userGroupList}">
 													<c:choose>

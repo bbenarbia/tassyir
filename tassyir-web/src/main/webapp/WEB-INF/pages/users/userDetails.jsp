@@ -155,12 +155,8 @@ $(function(){
 											: <c:out value="${user.contact.nomSocieteContact}" /></li>
 										<li><spring:message code="contact.typeContact" /> <c:out
 												value="${user.contact.typeContact}" /></li>
-										<li><spring:message code="contact.titreContact" />  <c:out
-												value="${user.contact.titreContact}" /></li>
 										<li><spring:message code="contact.adresseContact1" /> <c:out
 												value="${user.contact.adresseContact1}" /></li>
-										<li><spring:message code="contact.adresseContact2" /> <c:out
-												value="${user.contact.adresseContact2}" /></li>
 										<li><spring:message code="contact.alerteSurTelephone1" /> <c:out
 												value="${user.contact.alerteSurTelephone1}" /></li>
 										<li><spring:message code="contact.alerteSurTelephone2" /> <c:out
@@ -170,14 +166,11 @@ $(function(){
 								<td><ul>
 										<li><spring:message code="contact.codePostal" /> <c:out
 												value="${user.contact.codePostalContact}" /></li>
-										<li><spring:message code="contact.estContactPrincipal" /> <c:out
-												value="${user.contact.estContactPrincipal}" /></li>
 										<li><spring:message code="contact.ville" /> <c:out
 												value="${user.contact.villeContact}" /></li>
 										<li><spring:message code="contact.adresseMailContact" /> <c:out
 												value="${user.contact.adresseMailContact}" /></li>
-										<li><spring:message code="contact.fax" />:<c:out
-												value="${user.contact.faxContact}" /></li>
+										
 										<li><spring:message code="contact.siteWebContact" /> <c:out
 												value="${user.contact.siteWebContact}" /></li>
 										<li><spring:message code="contact.telephone1" /> <c:out

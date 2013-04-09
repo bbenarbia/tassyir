@@ -28,6 +28,7 @@ h1#logo { font: bold 48px Tahoma, Geneva, sans-serif; color:#368291;}
 
 #search {background:url(../graphics/searchbg.jpg);}
 #edit {background:url(../graphics/searchbg.jpg);}
+#edit_user {background:url(../graphics/searchbg.jpg);}
 .hot {background:url(../graphics/hotbg.jpg);}
 
 #topcategorieslink {background:url(../graphics/categoriesbg.jpg); height:44px; margin-bottom:8px;}

@@ -20,14 +20,8 @@ public class Contact extends NamedEntity {
 	@Column(name = "nomSocieteContact")
 	private String nomSocieteContact = "";
 
-	@Column(name = "titreContact")
-	private String titreContact = "";
-
 	@Column(name = "adresseContact1")
 	private String adresseContact1 = "";
-
-	@Column(name = "adresseContact2")
-	private String adresseContact2 = "";
 
 	@Column(name = "alerteSurTelephone1")
 	private Boolean alerteSurTelephone1 = false;
@@ -38,17 +32,11 @@ public class Contact extends NamedEntity {
 	@Column(name = "codePostalContact")
 	private Integer codePostalContact = 0;
 
-	@Column(name = "estContactPrincipal")
-	private Boolean estContactPrincipal = false;
-
 	@Column(name = "villeContact")
 	private String villeContact = "";
 
 	@Column(name = "adresseMailContact")
 	private String adresseMailContact = "";
-
-	@Column(name = "faxContact")
-	private String faxContact = "";
 
 	@Column(name = "siteWebContact")
 	private String siteWebContact = "";
@@ -76,28 +64,12 @@ public class Contact extends NamedEntity {
 		this.nomSocieteContact = nomSocieteContact;
 	}
 
-	public String getTitreContact() {
-		return titreContact;
-	}
-
-	public void setTitreContact(String titreContact) {
-		this.titreContact = titreContact;
-	}
-
 	public String getAdresseContact1() {
 		return adresseContact1;
 	}
 
 	public void setAdresseContact1(String adresseContact1) {
 		this.adresseContact1 = adresseContact1;
-	}
-
-	public String getAdresseContact2() {
-		return adresseContact2;
-	}
-
-	public void setAdresseContact2(String adresseContact2) {
-		this.adresseContact2 = adresseContact2;
 	}
 
 	public Boolean getAlerteSurTelephone1() {
@@ -124,14 +96,6 @@ public class Contact extends NamedEntity {
 		this.codePostalContact = codePostalContact;
 	}
 
-	public Boolean getEstContactPrincipal() {
-		return estContactPrincipal;
-	}
-
-	public void setEstContactPrincipal(Boolean estContactPrincipal) {
-		this.estContactPrincipal = estContactPrincipal;
-	}
-
 	public String getVilleContact() {
 		return villeContact;
 	}
@@ -146,14 +110,6 @@ public class Contact extends NamedEntity {
 
 	public void setAdresseMailContact(String adresseMailContact) {
 		this.adresseMailContact = adresseMailContact;
-	}
-
-	public String getFaxContact() {
-		return faxContact;
-	}
-
-	public void setFaxContact(String faxContact) {
-		this.faxContact = faxContact;
 	}
 
 	public String getSiteWebContact() {
