@@ -36,7 +36,7 @@ public class BienDTO {
 
 	private String etatBien;
 
-	private int etage;
+	private String etage;
 
 	private int nbPieces;
 
@@ -76,7 +76,7 @@ public class BienDTO {
 				commerce.getDescription(),  commerce.getSuperficie(), commerce.getStatus().toString(),
 				commerce.getPrixVente(),  commerce.getPrixMinVente(),  commerce.getLoyerMensuel(),
 				commerce.getChargesMensuel(),  commerce.getTypeOperation().toString(), commerce.getEtatBien().toString(),
-				0,  0,  null,  null,
+				"0/3",  0,  null,  null,
 				null,  commerce.getAge(), commerce.getTypeBien()) ;
 	}
 	
@@ -85,7 +85,7 @@ public class BienDTO {
 			String description, double superficie, String status,
 			double prixVente, double prixMinVente, double loyerMensuel,
 			double chargesMensuel, String typeOperation, String etatBien,
-			int etage, int nbPieces, Boolean ascenseur, Boolean cuisineEquipee,
+			String etage, int nbPieces, Boolean ascenseur, Boolean cuisineEquipee,
 			Boolean jardin, int age, String typeBien) {
 		super();
 		this.name = name;
@@ -206,11 +206,11 @@ public class BienDTO {
 		this.etatBien = etatBien;
 	}
 
-	public int getEtage() {
+	public String getEtage() {
 		return etage;
 	}
 
-	public void setEtage(int etage) {
+	public void setEtage(String etage) {
 		this.etage = etage;
 	}
 

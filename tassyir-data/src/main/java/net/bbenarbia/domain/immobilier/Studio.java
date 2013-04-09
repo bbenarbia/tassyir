@@ -22,13 +22,37 @@ import net.bbenarbia.domain.enums.EnumTypeChauffage;
 public class Studio extends BienImmobilier{
 	
 	@Column(name = "etage")
-	private int etage;
+	private String etage;
 	
 	@Column(name = "ascenseur")
 	private boolean ascenseur;
 	
 	@Column(name = "age")
 	private int age;
+	
+	@Column(name = "nbTerrasses")
+	private int nbTerrasses;
+	
+	@Column(name = "nbBalcons")
+	private int nbBalcons;
+	
+	@Column(name = "nbParkingInt")
+	private int nbParkingInt;
+	
+	@Column(name = "nbParkingExt")
+	private int nbParkingExt;
+
+	@Column(name = "cuisineEquipee")
+	private boolean cuisineEquipee;
+
+	@Column(name = "interphone")
+	private boolean interphone;
+	
+	@Column(name = "digicode")
+	private boolean digicode;
+	
+	@Column(name = "gardien")
+	private boolean gardien	;
 	
 	@Column(nullable = false)
 	@Enumerated(EnumType.ORDINAL)
@@ -51,10 +75,10 @@ public class Studio extends BienImmobilier{
 	
 	
 	
-	public int getEtage() {
+	public String getEtage() {
 		return etage;
 	}
-	public void setEtage(int etage) {
+	public void setEtage(String etage) {
 		this.etage = etage;
 	}
 	public int getAge() {
@@ -98,6 +122,54 @@ public class Studio extends BienImmobilier{
 	}
 	public void setTypeChauffage(EnumTypeChauffage typeChauffage) {
 		this.typeChauffage = typeChauffage;
+	}
+	public int getNbTerrasses() {
+		return nbTerrasses;
+	}
+	public void setNbTerrasses(int nbTerrasses) {
+		this.nbTerrasses = nbTerrasses;
+	}
+	public int getNbBalcons() {
+		return nbBalcons;
+	}
+	public void setNbBalcons(int nbBalcons) {
+		this.nbBalcons = nbBalcons;
+	}
+	public int getNbParkingInt() {
+		return nbParkingInt;
+	}
+	public void setNbParkingInt(int nbParkingInt) {
+		this.nbParkingInt = nbParkingInt;
+	}
+	public int getNbParkingExt() {
+		return nbParkingExt;
+	}
+	public void setNbParkingExt(int nbParkingExt) {
+		this.nbParkingExt = nbParkingExt;
+	}
+	public boolean isCuisineEquipee() {
+		return cuisineEquipee;
+	}
+	public void setCuisineEquipee(boolean cuisineEquipee) {
+		this.cuisineEquipee = cuisineEquipee;
+	}
+	public boolean isInterphone() {
+		return interphone;
+	}
+	public void setInterphone(boolean interphone) {
+		this.interphone = interphone;
+	}
+	public boolean isDigicode() {
+		return digicode;
+	}
+	public void setDigicode(boolean digicode) {
+		this.digicode = digicode;
+	}
+	public boolean isGardien() {
+		return gardien;
+	}
+	public void setGardien(boolean gardien) {
+		this.gardien = gardien;
 	}
 	
 }

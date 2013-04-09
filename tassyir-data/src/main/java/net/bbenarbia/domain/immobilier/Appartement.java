@@ -27,10 +27,13 @@ import net.bbenarbia.domain.enums.EnumTypeEauChaude;
 public class Appartement extends BienImmobilier {
 
 	@Column(name = "etage")
-	private int etage;
+	private String etage;
 
 	@Column(name = "nbPieces")
 	private int nbPieces;
+	
+	@Column(name = "ascenseur")
+	private boolean ascenseur;
 	
 	@Column(name = "nbTerrasses")
 	private int nbTerrasses;
@@ -43,9 +46,6 @@ public class Appartement extends BienImmobilier {
 	
 	@Column(name = "nbParkingExt")
 	private int nbParkingExt;
-	
-	@Column(name = "ascenseur")
-	private boolean ascenseur;
 
 	@Column(name = "cuisineEquipee")
 	private boolean cuisineEquipee;
@@ -58,10 +58,6 @@ public class Appartement extends BienImmobilier {
 	
 	@Column(name = "gardien")
 	private boolean gardien	;
-	
-	@Column(name = "piscine")
-	private boolean piscine	;
-	
 	
 	@Column(name = "age")
 	private int age;
@@ -93,11 +89,11 @@ public class Appartement extends BienImmobilier {
 	private boolean meuble;
 	
 	
-	public int getEtage() {
+	public String getEtage() {
 		return etage;
 	}
 
-	public void setEtage(int etage) {
+	public void setEtage(String etage) {
 		this.etage = etage;
 	}
 
@@ -229,14 +225,6 @@ public class Appartement extends BienImmobilier {
 		this.gardien = gardien;
 	}
 
-	public boolean isPiscine() {
-		return piscine;
-	}
-
-	public void setPiscine(boolean piscine) {
-		this.piscine = piscine;
-	}
-
 	public EnumTypeEauChaude getTypeEauChaude() {
 		return typeEauChaude;
 	}
@@ -245,5 +233,5 @@ public class Appartement extends BienImmobilier {
 		this.typeEauChaude = typeEauChaude;
 	}
 
-
+	
 }

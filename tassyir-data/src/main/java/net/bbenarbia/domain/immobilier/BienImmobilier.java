@@ -25,87 +25,79 @@ import net.bbenarbia.domain.enums.EnumTypeOperation;
 
 @Entity
 @Table(name = "biens")
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="typeBien",discriminatorType = DiscriminatorType.STRING)
-//@DiscriminatorValue("GENERIC")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "typeBien", discriminatorType = DiscriminatorType.STRING)
+// @DiscriminatorValue("GENERIC")
 public class BienImmobilier extends NamedEntity {
 
 	@Column(name = "ref")
 	private String reference;
-	
+
 	@Column(name = "adresse")
 	private String adresse;
-	
-	 
-	@Column(name = "adapteHandicape")
-	private boolean adapteHandicape;
-	
-	
+
 	@Column(name = "transport")
 	private String transport;
-	
+
+	@Column(name = "adapteHandicape")
+	private boolean adapteHandicape;
+
 	@Column(name = "proximite")
 	private String proximite;
-	
-	
-	
+
 	@ManyToOne
 	@JoinColumn(name = "idDepartement")
 	private Departement departement;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "superficie")
 	private double superficie;
-	
+
 	@Column(nullable = false)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumStatutProperty status;
-	
+
 	@Column(name = "prixVente")
 	private double prixVente;
-	
+
 	@Column(name = "honoraires")
 	private double honoraires;
-	
-	@Column(name = "depot_garantie")
+
+	@Column(name = "depotGarantie")
 	private double depotGarantie;
-	
+
 	@Column(name = "prixMinVente")
 	private double prixMinVente;
-//	
+
 	@OneToMany(mappedBy = "bien", fetch = FetchType.EAGER, cascade = {
 			CascadeType.PERSIST, CascadeType.MERGE })
 	private List<Photo> photos;
-	
+
 	@Column(name = "loyerMensuel")
 	private double loyerMensuel;
-	
+
 	@Column(name = "chargesMensuel")
 	private double chargesMensuel;
-	
-	@Column(name = "nbSalleBains")
-	private int nbSalleBains;
-	
-	
+
+	@Column(name = "nbSallesBains")
+	private int nbSallesBains;
+
 	@Column(name = "nbCaves")
 	private int nbCaves;
-	
-	
-	 
+
 	@Column(nullable = false)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumTypeOperation typeOperation;
-	
+
 	@Column(nullable = false)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumEtatBien etatBien;
-	
+
 	@Column(nullable = false, updatable = false, insertable = false)
 	private String typeBien;
-	
-	
+
 	public String getReference() {
 		return reference;
 	}
@@ -218,14 +210,6 @@ public class BienImmobilier extends NamedEntity {
 		this.typeBien = typeBien;
 	}
 
-	public int getNbSalleBains() {
-		return nbSalleBains;
-	}
-
-	public void setNbSalleBains(int nbSalleBains) {
-		this.nbSalleBains = nbSalleBains;
-	}
-
 	public boolean isAdapteHandicape() {
 		return adapteHandicape;
 	}
@@ -274,5 +258,12 @@ public class BienImmobilier extends NamedEntity {
 		this.nbCaves = nbCaves;
 	}
 
-	
+	public int getNbSallesBains() {
+		return nbSallesBains;
+	}
+
+	public void setNbSallesBains(int nbSallesBains) {
+		this.nbSallesBains = nbSallesBains;
+	}
+
 }
