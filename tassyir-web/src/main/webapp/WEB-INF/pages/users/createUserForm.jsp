@@ -3,206 +3,248 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="tassyir" tagdir="/WEB-INF/tags"%>
-
-
-<html lang="en">
-
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
 <link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
 	type="text/css" />
-<link rel="stylesheet" href="<c:url value="/stylesheets/screen.css"/>"
-	type="text/css" media="screen" />
+<link rel="stylesheet" href="<c:url value="/stylesheets/forms.css"/>"
+	type="text/css" />
+
+<link rel="stylesheet"
+	href="<c:url value="/stylesheets/carroussel.css"/>" type="text/css" />
+<script type="text/javascript" src="scripts/jquery-1.9.1.js">
+	
+</script>
+<script type="text/javascript" src="scripts/carroussel.js">
+	
+</script>
 </head>
-
 <body>
-	<div id="container">
+	<div id="wrap">
 		<jsp:include page="../common/menu.jsp" />
-		<h2>User</h2>
+		<div id="content">
+			<jsp:include page="../common/sub-menu.jsp" />
 
-	<form:form modelAttribute="user" method="post" id="form1">
-		<table>
-			<tr>
-				<td>
-					<div class="CSS_Table_Example" >
-						<table >
-							<tr>
-								<td colspan="2" >Informations Utilisateur</td>
-							</tr>
-							<tr>
-								<td><form:label path="firstName">firstName</form:label></td>
-								<td><form:input label="First Name" path="firstName" /> <form:errors
-										cssClass="error" path="firstName" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="lastName">lastName</form:label></td>
-								<td><form:input label="Last Name" path="lastName" /> <form:errors
-										cssClass="error" path="lastName" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="login">login</form:label></td>
-								<td><form:input label="Login" path="login" /> <form:errors
-										cssClass="error" path="login" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="code">code</form:label></td>
-								<td><form:input label="Code" path="code" /> <form:errors
-										cssClass="error" path="code" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="passwordConfirmation">passwordConfirmation</form:label></td>
-								<td><form:password label="passwordConfirmation"
-										path="passwordConfirmation" /> <form:errors cssClass="error"
-										path="passwordConfirmation" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="password">password</form:label></td>
-								<td><form:password label="Password" path="password" /> <form:errors
-										cssClass="error" path="password" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="locked">locked</form:label></td>
-								<td><form:checkbox label="Locked" path="locked" /> <form:errors
-										cssClass="error" path="locked" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="isAdmin">Admin</form:label></td>
-								<td><form:checkbox label="Admin" path="isAdmin" /> <form:errors
-										cssClass="error" path="isAdmin" /></td>
-							</tr>
-							<tr>
-								<td>Roles</td>
-								<td>
-									<table>
-										<tr>
-											<td style="width: 50px;">N°</td>
-											<td style="width: 150px;">Name</td>
-											<td style="width: 150px;">description</td>
-											<td style="width: 150px;">Included</td>
-										</tr>
-										<c:forEach items="${user.roleFormList.roles}" var="roleForm"
-											varStatus="status">
+			<div id="home_main_edit_user">
+				<div id="edit_user">
+					<div class="tab">
+						<h2>Create new user </h2>
+					</div>
+					<div class="container">
+						<form:form modelAttribute="user" method="post" id="form1">
+							<table class="edit_form_user" style="width: 100%; border: none;">
+
+								<tr>
+									<td class="label"><form:label path="firstName">firstName</form:label></td>
+									<td><label> <form:input label="firstName"
+												path="firstName" class="text" />
+									</label></td>
+									<td class="label"><form:label path="lastName">lastName</form:label></td>
+									<td><label> <form:input label="lastName"
+												path="lastName" class="text mediumtext" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label path="login">login</form:label></td>
+									<td><label> <form:input label="login" path="login"
+												class="text" />
+									</label></td>
+									<td class="label"><form:label path="code">code</form:label></td>
+									<td><label> <form:input label="code" path="code"
+												class="text mediumtext" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label path="locked">locked</form:label></td>
+									<td><label> <form:checkbox label="Locked"
+												path="locked" />
+									</label></td>
+									<td class="label"><form:label path="isAdmin">isAdmin</form:label></td>
+									<td><label><form:checkbox path="isAdmin" /> </label></td>
+								</tr>
+
+								<tr>
+									<td class="label"><form:label path="password">password</form:label></td>
+									<td><label> <form:password label="password"
+												path="password" class="text" />
+									</label></td>
+									<td class="label"><form:label path="code">passwordConfirmation</form:label></td>
+									<td><label> <form:password
+												label="passwordConfirmation" path="passwordConfirmation"
+												class="text mediumtext" />
+									</label></td>
+								</tr>
+
+								<tr>
+									<td colspan="4" align="center" style="font: bold;">Roles
+										list</td>
+								</tr>
+								<tr>
+									<td colspan="4">
+
+										<table>
 											<tr>
-												<td align="center">${status.count}</td>
-												<td>
-													<c:out value="${roleForm.role.name}"></c:out> <form:hidden
-														path="roleFormList.roles[${status.index}].role.name" /></td>
-												<td>
-													<c:out value="${roleForm.role.description}"></c:out></td>
-												<td>
-													<form:checkbox
-														path="roleFormList.roles[${status.index}].included" /></td>
+												<td style="font-weight: bold; width: 20px;">N°</td>
+												<td style="font-weight: bold; width: 150px;">Name</td>
+												<td style="font-weight: bold; width: 300px;">description</td>
+												<td style="font-weight: bold;">Included</td>
 											</tr>
-										</c:forEach>
-									</table>
-								</td>
-							</tr>
-						</table>
-					</div>
-				</td>
-				</tr>
-				<tr>
-				<td>
-					<div class="CSS_Table_Example">
-						<table>
-							<tr>
-								<td colspan="4" width="80%;">Informations Contact</td>
-							</tr>
-							<tr>
-								<td ><form:label path="contact.nameContact">contact name</form:label>
-								</td>
-								<td><form:input path="contact.nameContact" /> <form:errors
-										cssClass="error" path="contact.nameContact" /></td>
-								<td><form:label path="contact.nomSocieteContact">nomSocieteContact</form:label>
-								</td>
-								<td><form:input path="contact.nomSocieteContact" /> <form:errors
-										cssClass="error" path="contact.nomSocieteContact" /></td>
-							</tr>
-							<tr>
-								<td>
-									<form:label path="contact.typeContact">typeContact</form:label>
-								</td>
-								<td>
-									<form:select path="contact.typeContact" items="${typeContactList}" />
-								</td> 
-								
-							</tr>
-							<tr>
-								<td><form:label path="contact.adresseContact1">adresseContact1</form:label>
-								</td>
-								<td><form:input path="contact.adresseContact1" /> <form:errors
-										cssClass="error" path="contact.adresseContact1" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="contact.alerteSurTelephone1">alerteSurTelephone1</form:label>
-								</td>
-								<td><form:checkbox label="alerteSurTelephone1"
-										path="contact.alerteSurTelephone1" /> <form:errors
-										cssClass="error" path="contact.alerteSurTelephone1" /></td>
-								<td><form:label path="contact.alerteSurTelephone2">alerteSurTelephone2</form:label>
-								</td>
-								<td><form:checkbox path="contact.alerteSurTelephone2" /> <form:errors
-										cssClass="error" path="contact.alerteSurTelephone2" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="contact.codePostalContact">codePostalContact</form:label>
-								</td>
-								<td><form:input path="contact.codePostalContact" /> <form:errors
-										cssClass="error" path="contact.codePostalContact" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="contact.villeContact">villeContact</form:label>
-								</td>
-								<td><form:input path="contact.villeContact" /> <form:errors
-										cssClass="error" path="contact.villeContact" /></td>
-								<td><form:label path="contact.adresseMailContact">adresseMailContact</form:label>
-								</td>
-								<td><form:input path="contact.adresseMailContact" /> <form:errors
-										cssClass="error" path="contact.adresseMailContact" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="contact.siteWebContact">siteWebContact</form:label>
-								</td>
-								<td><form:input path="contact.siteWebContact" /> <form:errors
-										cssClass="error" path="contact.siteWebContact" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="contact.telephoneContact1">telephoneContact1</form:label>
-								</td>
-								<td><form:input path="contact.telephoneContact1" /> <form:errors
-										cssClass="error" path="contact.telephoneContact1" /></td>
-								<td><form:label path="contact.telephoneContact2">telephoneContact2</form:label>
-								</td>
-								<td><form:input path="contact.telephoneContact2" /> <form:errors
-										cssClass="error" path="contact.telephoneContact2" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="userCategory.name">userCategory.name</form:label>
-								</td>
-								<td>
-									<form:select path="userCategory.name" items="${userGroupList}" />
+											<c:forEach items="${user.roleFormList.roles}" var="roleForm"
+												varStatus="status">
+												<tr>
+													<td><label> ${status.count}</label></td>
+													<td><label>${roleForm.role.name}</label> <label><form:hidden
+																path="roleFormList.roles[${status.index}].role.name" /></label></td>
+													<td><label>${roleForm.role.description}</label></td>
+													<td><label><form:checkbox
+																path="roleFormList.roles[${status.index}].included" /></label></td>
+												</tr>
+											</c:forEach>
+										</table>
 									</td>
-								<td></td>
-								<td></td>
+								</tr>
+							</table>
 
-							</tr>
-						</table>
+							<table class="edit_form" style="width: 100%; border: none;">
+								<tr>
+									<td colspan="4" align="center">Contact infos</td>
+								</tr>
+								<tr>
+									<td class="label"><form:label path="contact.nameContact">nameContact</form:label></td>
+									<td><label> <form:input
+												label="contact.nameContact" path="contact.nameContact"
+												class="text" />
+									</label></td>
+									<td class="label"><form:label
+											path="contact.nomSocieteContact">nom Societe</form:label></td>
+									<td><label> <form:input
+												label="contact.nomSocieteContact"
+												path="contact.nomSocieteContact" class="text" />
+									</label></td>
+								</tr>
+								<tr>
+									<td rowspan="2" class="label"><form:label
+											path="contact.adresseContact1">adresse</form:label></td>
+									<td rowspan="2"><label> <form:textarea cols="20"
+												rows="10" label="contact.adresseContact1"
+												path="contact.adresseContact1" class="text textBoxfield" />
+									</label></td>
+									<td class="label"><form:label
+											path="contact.codePostalContact">code Postal</form:label></td>
+									<td><label> <form:input
+												label="contact.codePostalContact"
+												path="contact.codePostalContact" class="text" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label path="contact.villeContact">ville</form:label></td>
+									<td><label> <form:input
+												label="contact.villeContact" path="contact.villeContact"
+												class="text" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label
+											path="contact.telephoneContact1">telephone 1</form:label></td>
+									<td><label> <form:input
+												label="contact.telephoneContact1"
+												path="contact.telephoneContact1" class="text" />
+									</label></td>
+									<td class="label"><form:label
+											path="contact.alerteSurTelephone1">alerte Telephone1</form:label></td>
+									<td><label> <form:checkbox
+												path="contact.alerteSurTelephone1" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label
+											path="contact.telephoneContact2">telephone 2</form:label></td>
+									<td><label> <form:input
+												label="contact.telephoneContact2"
+												path="contact.telephoneContact2" class="text" />
+									</label></td>
+									<td class="label"><form:label
+											path="contact.alerteSurTelephone1">alerte  Telephone2</form:label></td>
+									<td><label> <form:checkbox
+												path="contact.alerteSurTelephone2" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label
+											path="contact.adresseMailContact">EMail</form:label></td>
+									<td><label> <form:input
+												label="contact.adresseMailContact"
+												path="contact.adresseMailContact" class="text" />
+									</label></td>
+									<td class="label"><form:label
+											path="contact.siteWebContact">site Web</form:label></td>
+									<td><label> <form:input
+												label="contact.siteWebContact" path="contact.siteWebContact"
+												class="text" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label path="contact.typeContact">type Contact</form:label></td>
+									<td><label> <form:select
+												path="contact.typeContact">
+												<c:forEach var="item" items="${typeContactList}">
+													<c:choose>
+														<c:when test="${user.contact.typeContact == item}">
+															<form:option selected="true" value="${item}">
+										                ${item} 
+										            </form:option>
+														</c:when>
+														<c:otherwise>
+															<form:option value="${item}">
+										                	   ${item}
+										            		</form:option>
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+											</form:select>
+									</label></td>
+									<td class="label"><form:label path="userCategory.name">group </form:label></td>
+									<td><label> <form:select path="userCategory.name">
+												<c:forEach var="item" items="${userGroupList}">
+													<c:choose>
+														<c:when test="${user.userCategory.name == item}">
+															<form:option selected="true" value="${item}">
+									                ${item} 
+									            </form:option>
+														</c:when>
+
+														<c:otherwise>
+															<form:option value="${item}">
+									                   ${item}
+									            </form:option>
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+											</form:select>
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label">&nbsp;</td>
+									<td>&nbsp;</td>
+									<td colspan="2" class="label"><label> <input
+											type="image" src=".../../graphics/searchbtn.gif" alt="search"
+											name="button2" id="button2" value="Submit" />
+									</label></td>
+								</tr>
+							</table>
+						</form:form>
 					</div>
-				</td>
-			</tr>
-		</table>
-
-		<p class="submit">
-				<a class="cancelButton" href="javascript: history.go(-1)"> Back </a>
-				<button type="submit">Add user</button>
-		</p>
-	</form:form>
-
-</div>
+					<div class="bottom"></div>
+				</div>
+			</div>
+			<div class="clear">&nbsp;</div>
+			<div class="clear">&nbsp;</div>
+			<jsp:include page="../common/footer.jsp" />
+		</div>
+	</div>
 </body>
-
 </html>
+
+
