@@ -71,7 +71,6 @@ public class Appartement extends BienImmobilier {
 	private EnumTypeEauChaude  typeEauChaude;
 	
 	
-	
 	@Column(nullable = false)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumImpactConso impactConso;

@@ -14,6 +14,7 @@ import net.bbenarbia.domain.enums.EnumConsEnergie;
 import net.bbenarbia.domain.enums.EnumImpactConso;
 import net.bbenarbia.domain.enums.EnumNatureChauffage;
 import net.bbenarbia.domain.enums.EnumTypeChauffage;
+import net.bbenarbia.domain.enums.EnumTypeEauChaude;
 
 @Entity
 @Table(name = "biens")
@@ -73,6 +74,9 @@ public class Studio extends BienImmobilier{
 	@Enumerated(EnumType.ORDINAL)
 	private EnumTypeChauffage typeChauffage;
 	
+	@Column(nullable = false)
+	@Enumerated(EnumType.ORDINAL)
+	private EnumTypeEauChaude  typeEauChaude;
 	
 	
 	public String getEtage() {
@@ -170,6 +174,12 @@ public class Studio extends BienImmobilier{
 	}
 	public void setGardien(boolean gardien) {
 		this.gardien = gardien;
+	}
+	public EnumTypeEauChaude getTypeEauChaude() {
+		return typeEauChaude;
+	}
+	public void setTypeEauChaude(EnumTypeEauChaude typeEauChaude) {
+		this.typeEauChaude = typeEauChaude;
 	}
 	
 }

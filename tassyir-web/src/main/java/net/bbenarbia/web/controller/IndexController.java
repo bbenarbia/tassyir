@@ -40,7 +40,7 @@ public class IndexController {
 		studio.setAscenseur(false);
 		studio.setChargesMensuel(100);
 		studio.setDescription("Studio 1 save");
-		studio.setEtage(1);
+		studio.setEtage("1/3");
 		studio.setEtatBien(EnumEtatBien.CORRECT);
 		studio.setLoyerMensuel(200);
 		studio.setName("Studio ben");

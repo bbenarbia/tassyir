@@ -1,7 +1,7 @@
 
 insert into parameters values (1,"LANGUAGE", "FRANCAIS", "La langue du systeme");
 insert into parameters values (2,"EMAIL_ADMIN", "benaissa@bbenarbia.fr", "L""email de l""admin");
-insert into parameters values (3,"TEMP_DIRECTORY", "/home/moad/tempfile/", "Temp directory");
+insert into parameters values (3,"TEMP_DIRECTORY", "c://Benaissa//temp//", "Temp directory");
 
 
 
@@ -113,10 +113,10 @@ insert into departements values (105,"979","Wallis et Futura","Wallis et Futura"
 
 --Table user_categories
 
-insert into user_categories values (1,"Administrateurs", "/home/moad/tempfile/persons//p1.jpg");
-insert into user_categories values (2,"Utilisateurs", "/home/moad/tempfile/persons//p2.jpg");
-insert into user_categories values (3,"SAV", "/home/moad/tempfile/persons//p3.jpg");
-insert into user_categories values (4,"Invites","/home/moad/tempfile/persons//p4.jpg");
+insert into user_categories values (1,"Administrateurs", "c://Benaissa//temp//persons//p1.jpg");
+insert into user_categories values (2,"Utilisateurs", "c://Benaissa//temp//persons//p2.jpg");
+insert into user_categories values (3,"SAV", "c://Benaissa//temp//persons//p3.jpg");
+insert into user_categories values (4,"Invites","c://Benaissa//temp//persons//p4.jpg");
 
 --Roles
 insert into roles VALUES (1, "UTILISATION", "");
@@ -143,9 +143,9 @@ insert into contact values (3, 1, "Contact3", "Company 3",  "adresse1",  false, 
 "www.bbenarbia.fr", "01010101", "0202020202");
 
 
-insert into users VALUES (1, 1, "/home/moad/tempfile/persons//p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, 1, 2);
-insert into users VALUES (2, 2, "/home/moad/tempfile/persons//p2.jpg", "said", "med","smed","smed",true, false, 2, 1);
-insert into users VALUES (3, 3, "/home/moad/tempfile/persons//p3.jpg", "lakhdar", "omar","lomar","lomar",true, false, 3 , 2);
+insert into users VALUES (1, 1, "c://Benaissa//temp//persons//p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, 1, 2);
+insert into users VALUES (2, 2, "c://Benaissa//temp//persons//p2.jpg", "said", "med","smed","smed",true, false, 2, 1);
+insert into users VALUES (3, 3, "c://Benaissa//temp//persons//p3.jpg", "lakhdar", "omar","lomar","lomar",true, false, 3 , 2);
 
 
 insert into user_role values (1,1);
@@ -190,14 +190,14 @@ insert into biens (
 
  
   
-insert into photos values(1,"photos1", 2,"/home/moad/tempfile/maisons//app1.jpg");
-insert into photos values(2,"photos2", 2,"/home/moad/tempfile/maisons//app2.jpg");
-insert into photos values(3,"photos3", 2,"/home/moad/tempfile/maisons//app3.jpg");
+insert into photos values(1,"photos1", 2,"c://Benaissa//temp//maisons//app1.jpg");
+insert into photos values(2,"photos2", 2,"c://Benaissa//temp//maisons//app2.jpg");
+insert into photos values(3,"photos3", 2,"c://Benaissa//temp//maisons//app3.jpg");
 
-insert into photos values(4,"photos4", 3,"/home/moad/tempfile/maisons//m1.jpg");
-insert into photos values(5,"photos5", 3,"/home/moad/tempfile/maisons//m2.jpg");
-insert into photos values(6,"photos6", 3,"/home/moad/tempfile/maisons//m3.jpg");
-insert into photos values(7,"photos7", 3,"/home/moad/tempfile/maisons//m4.jpg");
+insert into photos values(4,"photos4", 3,"c://Benaissa//temp//maisons//m1.jpg");
+insert into photos values(5,"photos5", 3,"c://Benaissa//temp//maisons//m2.jpg");
+insert into photos values(6,"photos6", 3,"c://Benaissa//temp//maisons//m3.jpg");
+insert into photos values(7,"photos7", 3,"c://Benaissa//temp//maisons//m4.jpg");
 
 
 --c://Benaissa//temp//
