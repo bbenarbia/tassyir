@@ -38,7 +38,7 @@
 					<div id="leftcolumn">
 						<div id="carrousel">
 							<c:if test="${fn:length(bien.photos) == 0 }">
-								<img width="220" height="220" src="../graphics/no-photos.jpg" class="previewimg">
+								<img width="220" height="220" src="${contextPath}/no-photos.jpg" class="previewimg">
 							</c:if>
 							<c:if test="${fn:length(bien.photos) > 0 }">
 								<c:forEach var="photo" items="${bien.photos}" varStatus="status">
@@ -67,7 +67,7 @@
 					<div id="rightcolumn">
 						<h2>${bien.name}</h2>
 						<p class="user">
-							<img src="../graphics/usericon.gif" alt="user" />
+							<img src="${contextPath}/usericon.gif" alt="user" />
 							<spring:message code="bien.reference" />
 							: ${bien.reference}
 						</p>
@@ -89,31 +89,31 @@
 							</ul>
 							<div id="tabs-1" class="hiddentab">
 								<p>
-									<img src="../graphics/fav.gif" alt="FAv" width="18" height="13" />&nbsp;<a
+									<img src="${contextPath}/fav.gif" alt="FAv" width="18" height="13" />&nbsp;<a
 										href="#">To My Favorites</a>
 								</p>
 								<p>
-									<img src="../graphics/emailalert.gif" alt="email" width="18"
+									<img src="${contextPath}/emailalert.gif" alt="email" width="18"
 										height="15" />&nbsp;<a href="#">To Email Alerts</a>
 								</p>
 								<p>
-									<img src="../graphics/sms.gif" alt="sms" width="18" height="16" />&nbsp;<a
+									<img src="${contextPath}/sms.gif" alt="sms" width="18" height="16" />&nbsp;<a
 										href="#">To SMS Alerts</a>
 								</p>
 							</div>
 							<div id="tabs-2" class="hiddentab">
 								<p>
-									<img src="../graphics/emailalert.gif" alt="email" width="18"
+									<img src="${contextPath}/emailalert.gif" alt="email" width="18"
 										height="15" />&nbsp;<a href="#">By Email</a>
 								</p>
 								<p>
-									<img src="../graphics/sms.gif" alt="sms" width="18" height="16" />&nbsp;<a
+									<img src="${contextPath}/sms.gif" alt="sms" width="18" height="16" />&nbsp;<a
 										href="#">By SMS</a>
 								</p>
 							</div>
 							<div id="tabs-3" class="hiddentab">
 								<p>
-									<img src="../graphics/emailalert.gif" alt="email" width="18"
+									<img src="${contextPath}/graphics/emailalert.gif" alt="email" width="18"
 										height="15" />&nbsp;<a href="#">Report Spam</a>
 								</p>
 							</div>
@@ -164,8 +164,7 @@
 										<li><spring:message code="bien.adresse" />: <c:out
 												value="${bien.adresse}" /></li>
 										<li><spring:message code="bien.superficie" />: <c:out
-												value="${bien.superficie} m²" />
-										<li>
+												value="${bien.superficie} m²" /></li>
 										<li><spring:message code="bien.status" /> : <c:out
 												value="${bien.status}" /></li>
 										<li><spring:message code="bien.prixMinVente" />: <c:out
@@ -178,47 +177,130 @@
 												value="${bien.typeOperation}" /></li>
 										<li><spring:message code="bien.etatBien" />: <c:out
 												value="${bien.etatBien}" /></li>
-									</ul></td>
-								<td></td>
-								<td><ul>
-										<c:if
-											test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' }">
+									<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' }">
 											<li><spring:message code="bien.etage" />: <c:out
 													value="${bien.etage}" /></li>
+											<c:choose>
+													<c:when test="${bien.gardien}">
+														<li> <spring:message code="bien.gardien" />:Oui </li>
+													</c:when>
+											</c:choose>													
 											<li><spring:message code="bien.ascenseur" />: <c:choose>
 													<c:when test="${bien.ascenseur==false}">Oui </c:when>
 													<c:otherwise>Non </c:otherwise>
 												</c:choose></li>
-										</c:if>
-
-										<li></li>
-										<c:if
-											test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' || bien.typeBien=='COMMERCE'  || bien.typeBien=='MAISON' }">
-											<li><spring:message code="bien.age" />: <c:out
-													value="${bien.age}" /></li>
-										</c:if>
-										<c:if
-											test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='MAISON'}">
+									</c:if>		
+									</ul></td>
+								<td></td>
+								<td><ul>
+										<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='MAISON'}">
 											<li><spring:message code="bien.nbPieces" />: <c:out
-													value="${bien.nbPieces}" />
-											<li>
-											<li><spring:message code="bien.cuisineEquipee" />: <c:choose>
-													<c:when test="${bien.cuisineEquipee==false}">Oui </c:when>
-													<c:otherwise>Non </c:otherwise>
-												</c:choose></li>
+													value="${bien.nbPieces}" /><li>
+											<c:choose>
+													<c:when test="${bien.cuisineEquipee}">
+														<li> <spring:message code="bien.cuisineEquipee" />:Oui </li>
+													</c:when>
+											</c:choose>
 										</c:if>
 										<c:if test="${bien.typeBien=='MAISON'}">
-											<li><spring:message code="bien.jardin" /> <c:choose>
-													<c:when test="${bien.jardin==false}">Oui </c:when>
-													<c:otherwise>Non </c:otherwise>
-												</c:choose></li>
+											<c:choose>
+													<c:when test="${bien.jardin}">
+														<li> <spring:message code="bien.jardin" />:Oui </li>
+													</c:when>
+											</c:choose>
+											<c:choose>
+													<c:when test="${bien.piscine}">
+														<li> <spring:message code="bien.piscine" />:Oui </li>
+													</c:when>
+											</c:choose>
 										</c:if>
+										<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' || bien.typeBien=='COMMERCE'  || bien.typeBien=='MAISON' }">
+											<li><spring:message code="bien.age" />: <c:out
+													value="${bien.age}" /></li>
+											<c:choose>
+													<c:when test="${bien.nbTerrasses != 0 }">
+														<li><spring:message code="bien.nbTerrasses" />:
+															<c:out value="${bien.nbTerrasses}" />
+														</li>
+													</c:when>
+											</c:choose>
+											<c:choose>
+													<c:when test="${bien.nbBalcons != 0 }">
+														<li><spring:message code="bien.nbBalcons" />:
+															<c:out value="${bien.nbBalcons}" />
+														</li>
+													</c:when>
+											</c:choose>
+											<c:choose>
+													<c:when test="${bien.nbParkingInt != 0 }">
+														<li><spring:message code="bien.nbParkingInt" />:
+															<c:out value="${bien.nbParkingInt}" />
+														</li>
+													</c:when>
+											</c:choose>
+											<c:choose>
+													<c:when test="${bien.nbParkingExt != 0 }">
+														<li><spring:message code="bien.nbParkingExt" />:
+															<c:out value="${bien.nbParkingExt}" />
+														</li>
+													</c:when>
+											</c:choose>
+											<c:choose>
+													<c:when test="${bien.interphone}">
+														<li> <spring:message code="bien.interphone" />:Oui </li>
+													</c:when>
+											</c:choose>
+											<c:choose>
+													<c:when test="${bien.digicode}">
+														<li> <spring:message code="bien.digicode" />:Oui </li>
+													</c:when>
+											</c:choose>
+											<c:choose>
+													<c:when test="${bien.meuble}">
+														<li> <spring:message code="bien.meuble" />:Oui </li>
+													</c:when>
+											</c:choose>
+											<li><spring:message code="bien.typeEauChaude" />: <c:out
+												value="${bien.typeEauChaude}" /></li>
+											<li><spring:message code="bien.natureChauffage" />: <c:out
+												value="${bien.natureChauffage}" /></li>			
+											
+											<li><spring:message code="bien.typeChauffage" />: <c:out
+												value="${bien.typeChauffage}" /></li>
+											<li><spring:message code="bien.consoEnergie" />: <c:out
+												value="${bien.consoEnergie}" /></li>	
+											
+											<li><spring:message code="bien.impactConso" />: <c:out
+												value="${bien.impactConso}" /></li>
+														
+										</c:if>			
 									</ul></td>
 							</tr>
 						</table>
 					</div>
 
 				</div>
+				
+				<div id="moredetails">
+					<div id="listing_details">
+						<table>
+							<tr>
+								<td><h3>Details Bien</h3></td>
+							</tr>
+							<tr>
+								<td>
+									<img width="220" height="220" src="${contextPath}/graphics/dpe1.jpg" class="previewimg">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<img width="220" height="220" src="${contextPath}/graphics/dpe2.jpg" class="previewimg">
+								</td>
+							</tr>
+						</table>
+					</div>
+					</div>
+							
 			</div>
 		</div>
 
