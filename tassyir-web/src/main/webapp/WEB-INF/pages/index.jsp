@@ -7,21 +7,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
-<link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
-	type="text/css" />
-
-<link rel="stylesheet" href="<c:url value="/stylesheets/carroussel.css"/>"
-	type="text/css" />		
-<script type="text/javascript" src="scripts/jquery-1.9.1.js"> </script>
-<script type="text/javascript" src="scripts/carroussel.js"> </script>
+	<jsp:include page="./common/head.jsp"/>
 </head>
 <body>
 	<div id="wrap">
-		<jsp:include page="common/menu.jsp"/>
+		<jsp:include page="./common/menu.jsp"/>
 		<div id="content">
-		
-		<div id="content">
-				<jsp:include page="common/sub-menu.jsp"/>
+				<jsp:include page="./common/sub-menu.jsp"/>
 
 			<div id="home_main">
 				<div id="search">
@@ -29,7 +21,7 @@
 						<h2>Search Property To Buy / Rent</h2>
 					</div>
 					<div class="container">
-						<jsp:include page="common/carroussel.jsp"/>
+						<jsp:include page="./common/carroussel.jsp"/>
 					</div>
 				</div>
 			</div>
@@ -39,12 +31,9 @@
 			<div class="clear">&nbsp;</div>
 		</div>
 		
-			
-		</div>
-		
 		<div class="clear">&nbsp;</div>
 		<div class="clear">&nbsp;</div>
-		<jsp:include page="common/footer.jsp"/>
+		<jsp:include page="./common/footer.jsp"/>
 	</div>
 </body>
 </html>

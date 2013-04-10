@@ -5,21 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title></title>
-<link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
-	type="text/css" />
-<link rel="stylesheet" href="<c:url value="/stylesheets/forms.css"/>"
-	type="text/css" />
-
-<link rel="stylesheet"
-	href="<c:url value="/stylesheets/carroussel.css"/>" type="text/css" />
-<script type="text/javascript" src="scripts/jquery-1.9.1.js">
-	
-</script>
-<script type="text/javascript" src="scripts/carroussel.js">
-	
-</script>
+<jsp:include page="./../common/head.jsp"/>
 </head>
 <body>
 	<div id="wrap">

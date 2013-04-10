@@ -5,19 +5,7 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title></title>
-<link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
-	type="text/css" />
-
-<link rel="stylesheet"
-	href="<c:url value="/stylesheets/carroussel.css"/>" type="text/css" />
-<script type="text/javascript" src="../scripts/jquery-1.9.1.js">
-	
-</script>
-<script type="text/javascript" src="../scripts/carroussel.js">
-	
-</script>
+<jsp:include page="./../common/head.jsp"/>
 </head>
 <body>
 
@@ -25,7 +13,7 @@
 	<spring:url value="/biens/upload/{bienId}/show" var="addPhotoUrl">
 		<spring:param name="bienId" value="${bien.id}" />
 	</spring:url>
-
+	${fn:length(bien.photos) == 0 }
 	<div id="wrap">
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">
@@ -38,7 +26,7 @@
 					<div id="leftcolumn">
 						<div id="carrousel">
 							<c:if test="${fn:length(bien.photos) == 0 }">
-								<img width="220" height="220" src="${contextPath}/no-photos.jpg" class="previewimg">
+								<img width="220" height="220" src='<c:url value="/resources/graphics/no-photos.jpg"/>'  class="previewimg">
 							</c:if>
 							<c:if test="${fn:length(bien.photos) > 0 }">
 								<c:forEach var="photo" items="${bien.photos}" varStatus="status">
@@ -67,7 +55,7 @@
 					<div id="rightcolumn">
 						<h2>${bien.name}</h2>
 						<p class="user">
-							<img src="${contextPath}/usericon.gif" alt="user" />
+							<img src='<c:url value="/resources/graphics/usericon.gif"/>'  alt="user" />
 							<spring:message code="bien.reference" />
 							: ${bien.reference}
 						</p>
@@ -89,31 +77,31 @@
 							</ul>
 							<div id="tabs-1" class="hiddentab">
 								<p>
-									<img src="${contextPath}/fav.gif" alt="FAv" width="18" height="13" />&nbsp;<a
+									<img src='<c:url value="/resources/graphics/fav.jpg"/>'  alt="FAv" width="18" height="13" />&nbsp;<a
 										href="#">To My Favorites</a>
 								</p>
 								<p>
-									<img src="${contextPath}/emailalert.gif" alt="email" width="18"
+									<img src='<c:url value="/resources/graphics/emailalart.gif"/>'  alt="email" width="18"
 										height="15" />&nbsp;<a href="#">To Email Alerts</a>
 								</p>
 								<p>
-									<img src="${contextPath}/sms.gif" alt="sms" width="18" height="16" />&nbsp;<a
+									<img src='<c:url value="/resources/graphics/sms.gif"/>' alt="sms" width="18" height="16" />&nbsp;<a
 										href="#">To SMS Alerts</a>
 								</p>
 							</div>
 							<div id="tabs-2" class="hiddentab">
 								<p>
-									<img src="${contextPath}/emailalert.gif" alt="email" width="18"
+									<img src='<c:url value="/resources/graphics/emailalart.gif"/>' alt="email" width="18"
 										height="15" />&nbsp;<a href="#">By Email</a>
 								</p>
 								<p>
-									<img src="${contextPath}/sms.gif" alt="sms" width="18" height="16" />&nbsp;<a
+									<img src='<c:url value="/resources/graphics/sms.gif"/>' alt="sms" width="18" height="16" />&nbsp;<a
 										href="#">By SMS</a>
 								</p>
 							</div>
 							<div id="tabs-3" class="hiddentab">
 								<p>
-									<img src="${contextPath}/graphics/emailalert.gif" alt="email" width="18"
+									<img src='<c:url value="/resources/graphics/emailalart.gif"/>' alt="email" width="18"
 										height="15" />&nbsp;<a href="#">Report Spam</a>
 								</p>
 							</div>
@@ -267,12 +255,6 @@
 											
 											<li><spring:message code="bien.typeChauffage" />: <c:out
 												value="${bien.typeChauffage}" /></li>
-											<li><spring:message code="bien.consoEnergie" />: <c:out
-												value="${bien.consoEnergie}" /></li>	
-											
-											<li><spring:message code="bien.impactConso" />: <c:out
-												value="${bien.impactConso}" /></li>
-														
 										</c:if>			
 									</ul></td>
 							</tr>
@@ -280,27 +262,27 @@
 					</div>
 
 				</div>
-				
+				<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' || bien.typeBien=='COMMERCE'  || bien.typeBien=='MAISON' }">
 				<div id="moredetails">
 					<div id="listing_details">
 						<table>
+							
 							<tr>
-								<td><h3>Details Bien</h3></td>
+								<td> <spring:message code="bien.consoEnergie" />: <c:out value="${bien.consoEnergie}" /></td>
+								<td> <spring:message code="bien.impactConso" />: <c:out value="${bien.impactConso}" /></td>
 							</tr>
 							<tr>
 								<td>
-									<img width="220" height="220" src="${contextPath}/graphics/dpe1.jpg" class="previewimg">
+									<img width="220" height="220" src='<c:url value="/resources/graphics/dpe/DPE_${bien.consoEnergie}.jpg"/>' class="previewimg">
 								</td>
-							</tr>
-							<tr>
 								<td>
-									<img width="220" height="220" src="${contextPath}/graphics/dpe2.jpg" class="previewimg">
+									<img width="220" height="220" src='<c:url value="/resources/graphics/dpe/GES_${bien.consoEnergie}.jpg"/>' class="previewimg">
 								</td>
 							</tr>
 						</table>
 					</div>
 					</div>
-							
+			</c:if>
 			</div>
 		</div>
 

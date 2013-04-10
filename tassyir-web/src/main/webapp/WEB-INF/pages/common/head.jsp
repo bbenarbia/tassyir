@@ -7,10 +7,8 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
-<link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
-	type="text/css" />
-<link rel="stylesheet" href="<c:url value="/stylesheets/carroussel.css"/>"
-	type="text/css" />
-		
-<script type="text/javascript" src="../scripts/jquery-1.9.1.js"> </script>
-<script type="text/javascript" src="../scripts/carroussel.js"> </script>
+<link rel="stylesheet" type="text/css" media="screen" href='<c:url value="/resources/stylesheets/style.css"/>' />
+<link rel="stylesheet" type="text/css" media="screen" href='<c:url value="/resources/stylesheets/carroussel.css"/>' />
+
+<script type='text/javascript' src='<c:url value="/resources/scripts/jquery-1.9.1.js"/>'></script>
+<script type='text/javascript' src='<c:url value="/resources/scripts/carroussel.js"/>'></script>

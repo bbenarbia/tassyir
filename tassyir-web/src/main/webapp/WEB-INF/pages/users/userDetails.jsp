@@ -5,20 +5,7 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title></title>
-<link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
-	type="text/css" />
-
-<link rel="stylesheet"
-	href="<c:url value="/stylesheets/carroussel.css"/>" type="text/css" />
-<script type="text/javascript" src="../scripts/jquery-1.9.1.js">
-	
-</script>
-<script type="text/javascript" src="../scripts/carroussel.js">
-	
-</script>
-
+<jsp:include page="./../common/head.jsp"/>
 </head>
 <body>
 	<spring:url value="/users/photo" var="photoUrl" />
@@ -39,7 +26,7 @@
 					<div id="leftcolumn">
 						<div id="carrousel">
 							<c:if test="${empty user.photo }">
-								<img width="220" height="220" src="../graphics/no-photos.jpg" class="previewimg">
+								<img width="220" height="220"  src='<c:url value="/resources/graphics/no-photo.jpg"/>' class="previewimg">
 							</c:if>
 							<c:if test="${not empty user.photo }">
 								<img width="220" height="220" src="${photoUrl}/${user.id}" class="previewimg">
@@ -49,7 +36,7 @@
 					<div id="rightcolumn">
 						<h2>${user.firstName} ${user.lastName}</h2>
 						<p class="user">
-							<img src="../graphics/usericon.gif" alt="user" />
+							<img  src='<c:url value="/resources/graphics/usericon.gif"/>' alt="user" />
 							<spring:message code="user.login" />
 							${user.login}
 						</p>
@@ -71,31 +58,31 @@
 							</ul>
 							<div id="tabs-1" class="hiddentab">
 								<p>
-									<img src="../graphics/fav.gif" alt="FAv" width="18" height="13" />&nbsp;<a
+									<img  src='<c:url value="/resources/graphics/fav.gif"/>' alt="FAv" width="18" height="13" />&nbsp;<a
 										href="#">To My Favorites</a>
 								</p>
 								<p>
-									<img src="../graphics/emailalert.gif" alt="email" width="18"
+									<img src='<c:url value="/resources/graphics/emailalert.gif"/>' alt="email" width="18"
 										height="15" />&nbsp;<a href="#">To Email Alerts</a>
 								</p>
 								<p>
-									<img src="../graphics/sms.gif" alt="sms" width="18" height="16" />&nbsp;<a
+									<img src='<c:url value="/resources/graphics/sms.gif"/>' alt="sms" width="18" height="16" />&nbsp;<a
 										href="#">To SMS Alerts</a>
 								</p>
 							</div>
 							<div id="tabs-2" class="hiddentab">
 								<p>
-									<img src="../graphics/emailalert.gif" alt="email" width="18"
+									<img src='<c:url value="/resources/graphics/emailalert.gif"/>' alt="email" width="18"
 										height="15" />&nbsp;<a href="#">By Email</a>
 								</p>
 								<p>
-									<img src="../graphics/sms.gif" alt="sms" width="18" height="16" />&nbsp;<a
+									<img  src='<c:url value="/resources/graphics/sms.gif"/>' alt="sms" width="18" height="16" />&nbsp;<a
 										href="#">By SMS</a>
 								</p>
 							</div>
 							<div id="tabs-3" class="hiddentab">
 								<p>
-									<img src="../graphics/emailalert.gif" alt="email" width="18"
+									<img  src='<c:url value="/resources/graphics/emailalert.gif"/>' alt="email" width="18"
 										height="15" />&nbsp;<a href="#">Report Spam</a>
 								</p>
 							</div>

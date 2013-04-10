@@ -5,19 +5,7 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title></title>
-<link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
-	type="text/css" />
-
-<link rel="stylesheet"
-	href="<c:url value="/stylesheets/carroussel.css"/>" type="text/css" />
-<script type="text/javascript" src="scripts/jquery-1.9.1.js">
-	
-</script>
-<script type="text/javascript" src="scripts/carroussel.js">
-	
-</script>
+<jsp:include page="./../common/head.jsp"/>
 </head>
 <body>
 	<spring:url value="/users/photo" var="photoUrl" />
@@ -37,7 +25,7 @@
 								<div class="listinfo">
 										
 									<c:if test="${empty user.photo }">
-										<img src="graphics/imageholder.jpg" alt="Listing Image"
+										<img  src='<c:url value="/resources/graphics/imageholder.jpg"/>' alt="Listing Image"
 										class="listingimage" />
 									</c:if>
 									<c:if test="${not empty user.photo }">

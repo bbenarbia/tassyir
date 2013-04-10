@@ -2,22 +2,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
-<link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
-	type="text/css" />
-
-<link rel="stylesheet"
-	href="<c:url value="/stylesheets/carroussel.css"/>" type="text/css" />
-<script type="text/javascript" src="scripts/jquery-1.9.1.js">
-	
-</script>
-<script type="text/javascript" src="scripts/carroussel.js">
-	
-</script>
+	<jsp:include page="./../common/head.jsp"/>
 </head>
 <body>
 	<spring:url value="/groups/photo" var="photoUrl" />
@@ -38,7 +27,7 @@
 							<li>
 								<div class="listinfo">
 									<c:if test="${empty group.photo }">
-										<img src="graphics/imageholder.jpg" alt="Listing Image"
+										<img src='<c:url value="/resources/graphics/imageholder.jpg"/>' alt="Listing Image"
 										class="listingimage" />
 									</c:if>
 									<c:if test="${not empty group.photo }">

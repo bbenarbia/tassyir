@@ -21,9 +21,11 @@
 	
     
 	
-	<mvc:resources mapping="/scripts/**" location="/scripts/" />
+	<!-- <mvc:resources mapping="/scripts/**" location="/scripts/" />
 	<mvc:resources mapping="/stylesheets/**" location="/stylesheets/" />
-	<mvc:resources mapping="/graphics/**" location="/graphics/" />
+	<mvc:resources mapping="/graphics/**" location="/graphics/" /> -->
+    
+    <mvc:resources mapping="/resources/**" location="/resources/" />
     
 	 <mvc:annotation-driven/>   
     

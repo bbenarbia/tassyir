@@ -6,10 +6,7 @@
 
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title></title>
-<link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
-	type="text/css" />
+<jsp:include page="./../common/head.jsp"/>
 </head>
 <body>
 	<div id="container">

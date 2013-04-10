@@ -15,18 +15,18 @@
 				<h1 id="logo">Tassyir</h1>
 			</div>
 			<div id="shoutout">
-				<img src="graphics/joinnow_shoutout.jpg" alt="Join Now! It's Free"
+				<img  src='<c:url value="/resources/graphics/joinnow_shoutout.jpg"/>'  alt="Join Now! It's Free"
 					width="168" height="126" />
 			</div>
 			<div id="useractions">
 				<div id="headings">
 					<h2>
-						<img src="graphics/create_indi_usr.jpg" alt="Individual User"
+						<img  src='<c:url value="/resources/graphics/create_indi_usr.jpg"/>' alt="Individual User"
 							width="25" height="22" /> <a href="#">Create Individual
 							Account</a>
 					</h2>
 					<h2>
-						<img src="graphics/create_agent_icon.jpg" alt="Agent Account"
+						<img src='<c:url value="/resources/graphics/create_agent_icon.jpg"/>'  alt="Agent Account"
 							width="27" height="22" /> <a href="#">Create Agent Accoun</a>t
 					</h2>
 				</div>
@@ -48,7 +48,7 @@
 									class="textfields" />
 							</div>
 							<div class="formblock">
-								<input type="image" src="graphics/loginbutton.jpg" name="button"
+								<input type="image" src='<c:url value="/resources/graphics/loginbutton.jpg"/>'  name="button"
 									id="button" value="Submit" />
 							</div>
 

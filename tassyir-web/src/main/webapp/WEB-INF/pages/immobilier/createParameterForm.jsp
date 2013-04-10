@@ -9,12 +9,7 @@
 <html lang="en">
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-<link rel="stylesheet" href="<c:url value="/stylesheets/screen.css"/>"
-	type="text/css" media="screen" />
-
-<title></title>
+<jsp:include page="./../common/head.jsp"/>
 
 </head>
 

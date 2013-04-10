@@ -5,21 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title></title>
-<link rel="stylesheet" href="<c:url value="/stylesheets/style.css"/>"
-	type="text/css" />
-<link rel="stylesheet" href="<c:url value="/stylesheets/forms.css"/>"
-	type="text/css" />
-	
-<link rel="stylesheet"
-	href="<c:url value="/stylesheets/carroussel.css"/>" type="text/css" />
-<script type="text/javascript" src="scripts/jquery-1.9.1.js">
-	
-</script>
-<script type="text/javascript" src="scripts/carroussel.js">
-	
-</script>
+<jsp:include page="./../common/head.jsp"/>
 </head>
 <body>
 	<div id="wrap">
@@ -122,7 +108,7 @@
 									<td class="label">&nbsp;</td>
 									<td>&nbsp;</td>
 									<td colspan="2" class="label"><label> <input
-											type="image" src="../graphics/searchbtn.gif" alt="search
+											type="image" src='<c:url value="/resources/graphics/searchbtn.gif"/>'  alt="search
       "
 											name="button2" id="button2" value="Submit" />
 									</label></td>
@@ -147,7 +133,7 @@
 								<div class="listinfo">
 									
 									<c:if test="${fn:length(bien.photos) == 0 }">
-										<img src="../graphics/imageholder.jpg" alt="Listing Image"
+										<img  src='<c:url value="/resources/graphics/imageholder.jpg"/>'  alt="Listing Image"
 										class="listingimage" />
 									</c:if>
 									<c:if test="${fn:length(bien.photos) > 0 }">
