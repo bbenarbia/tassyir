@@ -44,7 +44,6 @@ public class IndexController {
 		studio.setEtatBien(EnumEtatBien.CORRECT);
 		studio.setLoyerMensuel(200);
 		studio.setName("Studio ben");
-		studio.setPrixMinVente(200);
 		studio.setPrixVente(300);
 		studio.setReference("ref1111");
 		studio.setStatus(EnumStatutProperty.DISPONIBLE);

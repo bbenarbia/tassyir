@@ -149,16 +149,16 @@
 									<span class="price">${bien.chargesMensuel}</span>
 								</div>
 								<div class="listingbtns">
-								<span class="listbuttons"> <spring:url value="{bienId}.html" var="DetailbienUrl">
+								<span class="listbuttons"> <spring:url value="{bienId}.htm" var="DetailbienUrl">
 									<spring:param name="bienId" value="${bien.id}" />
 									</spring:url> 
 									<a href="${DetailbienUrl}">Details Bien</a>
 									</span> 
-									<span class="listbuttons"> <spring:url value="{bienId}.html" var="EditbienUrl">
+									<span class="listbuttons"> <spring:url value="{bienId}.htm" var="EditbienUrl">
 								<spring:param name="bienId" value="${bien.id}" />
 							</spring:url> 
 							<a href="${EditbienUrl}">Edit Bien</a>
-									</span> <span class="listbuttons"> <spring:url value="{bienId}.html" var="deleteBienUrl">
+									</span> <span class="listbuttons"> <spring:url value="{bienId}.htm" var="deleteBienUrl">
 								<spring:param name="bienId" value="${bien.id}" />
 							</spring:url> 
 							<a href="${deleteBienUrl}">Delete</a></span> 

@@ -5,7 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-<jsp:include page="./../common/head.jsp"/>
+<jsp:include page="./../common/head.jsp" />
 </head>
 <body>
 	<div id="wrap">
@@ -16,7 +16,7 @@
 			<div id="home_main_edit_user">
 				<div id="edit_user">
 					<div class="tab">
-						<h2>Create new user </h2>
+						<h2>Create new user</h2>
 					</div>
 					<div class="container">
 						<form:form modelAttribute="user" method="post" id="form1">
@@ -50,7 +50,6 @@
 									<td class="label"><form:label path="isAdmin">isAdmin</form:label></td>
 									<td><label><form:checkbox path="isAdmin" /> </label></td>
 								</tr>
-
 								<tr>
 									<td class="label"><form:label path="password">password</form:label></td>
 									<td><label> <form:password label="password"
@@ -62,14 +61,12 @@
 												class="text mediumtext" />
 									</label></td>
 								</tr>
-
 								<tr>
 									<td colspan="4" align="center" style="font: bold;">Roles
 										list</td>
 								</tr>
 								<tr>
 									<td colspan="4">
-
 										<table>
 											<tr>
 												<td style="font-weight: bold; width: 20px;">N°</td>
@@ -92,7 +89,6 @@
 									</td>
 								</tr>
 							</table>
-
 							<table class="edit_form" style="width: 100%; border: none;">
 								<tr>
 									<td colspan="4" align="center">Contact infos</td>
@@ -197,14 +193,13 @@
 													<c:choose>
 														<c:when test="${user.userCategory.name == item}">
 															<form:option selected="true" value="${item}">
-									                ${item} 
-									            </form:option>
+									               				 ${item} 
+									           				 </form:option>
 														</c:when>
-
 														<c:otherwise>
 															<form:option value="${item}">
-									                   ${item}
-									            </form:option>
+									              			     ${item}
+									            			</form:option>
 														</c:otherwise>
 													</c:choose>
 												</c:forEach>
@@ -214,9 +209,10 @@
 								<tr>
 									<td class="label">&nbsp;</td>
 									<td>&nbsp;</td>
-									<td colspan="2" class="label"><label> <input
-											type="image"  src='<c:url value="/resources/graphics/searchbtn.gif"/>' alt="search"
-											name="button2" id="button2" value="Submit" />
+									<td>&nbsp;</td>
+									<td class="label"><label> <input type="image"
+											src='<c:url value="/resources/graphics/searchbtn.gif"/>'
+											alt="search" name="button2" id="button2" value="Submit" />
 									</label></td>
 								</tr>
 							</table>

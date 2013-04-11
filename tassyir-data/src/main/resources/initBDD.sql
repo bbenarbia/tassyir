@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS types (
   id INT(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(80),
   INDEX(name)
-) engine=InnoDB;
+) engine=InnoDB  DEFAULT CHARSET=utf8;
 
 
 
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS fonction (
 --    fk_categorieutilisateur_fonction INT(5),  
   	INDEX(name)
 --    FOREIGN KEY (fk_categorieutilisateur_fonction) REFERENCES user_categories(id)
-)engine=InnoDB;
+)engine=InnoDB  DEFAULT CHARSET=utf8;
 
 
  CREATE TABLE IF NOT EXISTS parameters (
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS fonction (
   parameter_value VARCHAR(80),
   parameter_description VARCHAR(255),
   INDEX(name)
-) engine=InnoDB;
+) engine=InnoDB  DEFAULT CHARSET=utf8;
 
 
  CREATE TABLE IF NOT EXISTS user_categories (
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS fonction (
   name VARCHAR(30),
   photo VARCHAR(300),
   INDEX(name)
-) engine=InnoDB;
+) engine=InnoDB  DEFAULT CHARSET=utf8;
 
 
 
@@ -57,14 +57,14 @@ CREATE TABLE IF NOT EXISTS contact (
   telephonecontact2 VARCHAR(80),
   PRIMARY KEY (id),
   INDEX(name)
-)engine=InnoDB;
+)engine=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS roles (
   id INT(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255),
   description VARCHAR(255),
   index(name)
-  ) engine=InnoDB;
+  ) engine=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS user_categories_roles (
   id_catgory INT(5) UNSIGNED NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS user_categories_roles (
   FOREIGN KEY (id_catgory) REFERENCES user_categories(id),
   FOREIGN KEY (id_role) REFERENCES roles(id),
   UNIQUE(id_catgory,  id_role)
-) engine=InnoDB;
+) engine=InnoDB  DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE IF NOT EXISTS users (
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS users (
   FOREIGN KEY (fk_contact) REFERENCES  contact(id),
   FOREIGN KEY (fk_categorieutilisateur) REFERENCES  user_categories(id),
   INDEX(last_name)
-) engine=InnoDB;
+) engine=InnoDB  DEFAULT CHARSET=utf8;
 
 
  CREATE TABLE IF NOT EXISTS user_role (
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS users (
   FOREIGN KEY (id_user) REFERENCES users(id),
   FOREIGN KEY (id_role) REFERENCES roles(id),
   UNIQUE(id_user,  id_role)
-  ) engine=InnoDB;
+  ) engine=InnoDB  DEFAULT CHARSET=utf8;
   
   CREATE TABLE IF NOT EXISTS departements (
  id INT(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS users (
  region VARCHAR(80),
  prefecture VARCHAR(80),
   INDEX(name)
-) engine=InnoDB;
+) engine=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS biens (
   id INT(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS biens (
   jardin  tinyint (1),
  
   INDEX(ref, name)
-) engine=InnoDB;
+) engine=InnoDB  DEFAULT CHARSET=utf8;
 
 
 
@@ -166,7 +166,7 @@ CREATE TABLE IF NOT EXISTS photos (
   path VARCHAR(300),
 
   INDEX(name)
-) engine=InnoDB;
+) engine=InnoDB  DEFAULT CHARSET=utf8;
 
 
 --FOREIGN KEY (idDepartement) REFERENCES departements(id),

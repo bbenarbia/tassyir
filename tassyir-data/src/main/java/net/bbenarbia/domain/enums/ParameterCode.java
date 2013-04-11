@@ -42,8 +42,11 @@ public enum ParameterCode {
 	 * Parametre pour specifier le chemin du repertoire temp pour transferer les fichiers à traiter
 	 * il faut que le chemin se termine par / exemple (/home/user/tempfile/)
 	 */
-	TEMP_DIRECTORY("TEMP_DIRECTORY");
+	TEMP_DIRECTORY("TEMP_DIRECTORY"),
 
+	MAIN_CURRENCY("MAIN_CURRENCY"),
+	
+	SECOND_CURRENCY("SECOND_CURRENCY");
 	/**
 	 * le nom du parametres
 	 */

@@ -8,9 +8,8 @@
 <jsp:include page="./../common/head.jsp"/>
 </head>
 <body>
-
 	<spring:url value="/biens/photo" var="photoUrl" />
-	<spring:url value="/biens/upload/{bienId}/show" var="addPhotoUrl">
+	<spring:url value="/biens/upload/{bienId}/show.htm" var="addPhotoUrl">
 		<spring:param name="bienId" value="${bien.id}" />
 	</spring:url>
 	${fn:length(bien.photos) == 0 }
@@ -40,7 +39,7 @@
 													<spring:param name="photoId" value="${photo.id}" />
 													<spring:param name="bienId" value="${bien.id}" />
 												</spring:url>
-												<span class="listbuttons"><spring:url value="/biens/new"
+												<span class="listbuttons"><spring:url value="/biens/new.htm"
 													var="bienUrl" /><a href="${fn:escapeXml(deletePhotoUrl)}">Delete the 
 													photo</a> 
 												</span>
@@ -51,7 +50,6 @@
 							</c:if>
 						</div>
 					</div>
-
 					<div id="rightcolumn">
 						<h2>${bien.name}</h2>
 						<p class="user">
@@ -63,12 +61,27 @@
 							<spring:message code="bien.departement" />
 							:${bien.departement.name}(${bien.departement.reference})
 						</p>
-						<p>&nbsp;</p>
-						<p class="price">
-							<spring:message code="bien.prixVente" />
-							: ${bien.prixVente}
-						</p>
-
+						<c:if test="${bien.typeOperation =='A_LOUER'}">
+							<p class="price">
+								<spring:message code="bien.loyerMensuel" />
+								: ${bien.loyerMensuel} ${currency}
+							</p>
+							<p class="price">
+							<spring:message code="bien.chargesMensuel" />
+								: ${bien.chargesMensuel} ${currency}
+							</p>
+						</c:if>
+						<c:if test="${bien.typeOperation =='A_VENDRE'}">
+							<p class="price">
+								<spring:message code="bien.prixVente" />
+								: ${bien.prixVente} ${currency}
+							</p>
+							<p class="price">
+								<spring:message code="bien.honoraires" />
+								: ${bien.honoraires} ${currency}
+							</p>
+						</c:if>
+						
 						<div id="tabs">
 							<ul>
 								<li><a href="#tabs-1">Save This</a></li>
@@ -77,11 +90,11 @@
 							</ul>
 							<div id="tabs-1" class="hiddentab">
 								<p>
-									<img src='<c:url value="/resources/graphics/fav.jpg"/>'  alt="FAv" width="18" height="13" />&nbsp;<a
+									<img src='<c:url value="/resources/graphics/fav.gif"/>'  alt="FAv" width="18" height="13" />&nbsp;<a
 										href="#">To My Favorites</a>
 								</p>
 								<p>
-									<img src='<c:url value="/resources/graphics/emailalart.gif"/>'  alt="email" width="18"
+									<img src='<c:url value="/resources/graphics/emailalert.gif"/>'  alt="email" width="18"
 										height="15" />&nbsp;<a href="#">To Email Alerts</a>
 								</p>
 								<p>
@@ -91,7 +104,7 @@
 							</div>
 							<div id="tabs-2" class="hiddentab">
 								<p>
-									<img src='<c:url value="/resources/graphics/emailalart.gif"/>' alt="email" width="18"
+									<img src='<c:url value="/resources/graphics/emailalert.gif"/>' alt="email" width="18"
 										height="15" />&nbsp;<a href="#">By Email</a>
 								</p>
 								<p>
@@ -101,33 +114,31 @@
 							</div>
 							<div id="tabs-3" class="hiddentab">
 								<p>
-									<img src='<c:url value="/resources/graphics/emailalart.gif"/>' alt="email" width="18"
+									<img src='<c:url value="/resources/graphics/emailalert.gif"/>' alt="email" width="18"
 										height="15" />&nbsp;<a href="#">Report Spam</a>
 								</p>
 							</div>
 						</div>
-
 					</div>
 					<div class="clear">&nbsp;</div>
 				</div>
 				<div id="midraw_details">
 					<div class="listingbtns">
 						<span class="listbuttons"> <spring:url
-								value="/biens/{bienId}/edit" var="bienUrl">
+								value="/biens/{bienId}/edit.htm" var="bienUrl">
 								<spring:param name="bienId" value="${bien.id}" />
 							</spring:url> <a href="${fn:escapeXml(bienUrl)}">Edit Bien</a>
 						</span>
-
 						<c:if test="${fn:length(bien.photos) < 5 }">
 							<span class="listbuttons"> <a
 								href="${fn:escapeXml(addPhotoUrl)}">Add photo</a>
 							</span>
 						</c:if>
 
-						<span class="listbuttons"><spring:url value="/biens/new"
+						<span class="listbuttons"><spring:url value="/biens/new.htm"
 								var="bienUrl" /> <a href="${fn:escapeXml(bienUrl)}">Add
 								Bien</a> </span> <span class="listbuttons"> <spring:url
-								value="/biens/{bienId}/delete" var="bienUrl">
+								value="/biens/{bienId}/delete.htm" var="bienUrl">
 								<spring:param name="bienId" value="${bien.id}" />
 							</spring:url> <a href="${fn:escapeXml(bienUrl)}">Delete bien</a></span>
 					</div>
@@ -155,14 +166,6 @@
 												value="${bien.superficie} m²" /></li>
 										<li><spring:message code="bien.status" /> : <c:out
 												value="${bien.status}" /></li>
-										<li><spring:message code="bien.prixMinVente" />: <c:out
-												value="${bien.prixMinVente}" /></li>
-										<li><spring:message code="bien.loyerMensuel" />: <c:out
-												value="${bien.loyerMensuel}" /></li>
-										<li><spring:message code="bien.chargesMensuel" />: <c:out
-												value="${bien.chargesMensuel}" /></li>
-										<li><spring:message code="bien.typeOperation" />: <c:out
-												value="${bien.typeOperation}" /></li>
 										<li><spring:message code="bien.etatBien" />: <c:out
 												value="${bien.etatBien}" /></li>
 									<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' }">

@@ -23,10 +23,6 @@ public class BienDTO {
 
 	private double prixVente;
 
-	private double prixMinVente;
-
-	// private List<Photo> photos;
-
 	private double loyerMensuel;
 
 	private double chargesMensuel;
@@ -98,7 +94,7 @@ public class BienDTO {
 				.getReference(), appartement.getAdresse(), appartement
 				.getDescription(), appartement.getSuperficie(), appartement
 				.getStatus().toString(), appartement.getPrixVente(),
-				appartement.getPrixMinVente(), appartement.getLoyerMensuel(),
+				appartement.getLoyerMensuel(),
 				appartement.getChargesMensuel(), appartement.getTypeOperation()
 						.toString(), appartement.getEtatBien().toString(),
 				appartement.getEtage(), appartement.getNbPieces(), appartement
@@ -121,8 +117,7 @@ public class BienDTO {
 	public BienDTO(Studio studio) {
 		this(studio.getId(), studio.getName(), studio.getReference(), studio
 				.getAdresse(), studio.getDescription(), studio.getSuperficie(),
-				studio.getStatus().toString(), studio.getPrixVente(), studio
-						.getPrixMinVente(), studio.getLoyerMensuel(), studio
+				studio.getStatus().toString(), studio.getPrixVente(), studio.getLoyerMensuel(), studio
 						.getChargesMensuel(), studio.getTypeOperation()
 						.toString(), studio.getEtatBien().toString(), studio
 						.getEtage(), 0, studio.isAscenseur(), null, null,
@@ -153,7 +148,7 @@ public class BienDTO {
 
 	public BienDTO(Long id, String name, String reference, String adresse,
 			String description, double superficie, String status,
-			double prixVente, double prixMinVente, double loyerMensuel,
+			double prixVente, double loyerMensuel,
 			double chargesMensuel, String typeOperation, String etatBien,
 			String etage, int nbPieces, Boolean ascenseur,
 			Boolean cuisineEquipee, Boolean jardin, int age, String typeBien,
@@ -173,7 +168,6 @@ public class BienDTO {
 		this.superficie = superficie;
 		this.status = status;
 		this.prixVente = prixVente;
-		this.prixMinVente = prixMinVente;
 		this.loyerMensuel = loyerMensuel;
 		this.chargesMensuel = chargesMensuel;
 		this.typeOperation = typeOperation;
@@ -262,14 +256,6 @@ public class BienDTO {
 
 	public void setPrixVente(double prixVente) {
 		this.prixVente = prixVente;
-	}
-
-	public double getPrixMinVente() {
-		return prixMinVente;
-	}
-
-	public void setPrixMinVente(double prixMinVente) {
-		this.prixMinVente = prixMinVente;
 	}
 
 	public double getLoyerMensuel() {

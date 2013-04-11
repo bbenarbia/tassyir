@@ -68,12 +68,6 @@
 									<td><label> <form:input label="prixVente"
 												path="prixVente" class="text" />
 									</label></td>
-
-									<td class="label"><form:label path="prixMinVente">prixMinVente</form:label></td>
-									<td><label> <form:input label="prixMinVente"
-												path="prixMinVente" class="text mediumtext" />
-									</label></td>
-
 								</tr>
 
 								<tr>

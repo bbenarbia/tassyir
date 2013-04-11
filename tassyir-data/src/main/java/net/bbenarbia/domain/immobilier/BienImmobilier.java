@@ -68,9 +68,6 @@ public class BienImmobilier extends NamedEntity {
 	@Column(name = "depotGarantie")
 	private double depotGarantie;
 
-	@Column(name = "prixMinVente")
-	private double prixMinVente;
-
 	@OneToMany(mappedBy = "bien", fetch = FetchType.EAGER, cascade = {
 			CascadeType.PERSIST, CascadeType.MERGE })
 	private List<Photo> photos;
@@ -144,14 +141,6 @@ public class BienImmobilier extends NamedEntity {
 
 	public void setPrixVente(double prixVente) {
 		this.prixVente = prixVente;
-	}
-
-	public double getPrixMinVente() {
-		return prixMinVente;
-	}
-
-	public void setPrixMinVente(double prixMinVente) {
-		this.prixMinVente = prixMinVente;
 	}
 
 	public double getLoyerMensuel() {

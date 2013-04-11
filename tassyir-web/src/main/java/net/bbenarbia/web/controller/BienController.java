@@ -97,6 +97,7 @@ public class BienController {
 		}
 		return statusList;
 	}
+
 	@ModelAttribute("typeOperationList")
 	public List<String> populateTypeOperationList() {
 
@@ -107,6 +108,7 @@ public class BienController {
 		}
 		return statusList;
 	}
+
 	@RequestMapping(value = "/find-biens", method = RequestMethod.GET)
 	public String initSearchBiens(Model model) {
 		List<BienImmobilier> listBiens = bienService.getAll();
@@ -178,6 +180,12 @@ public class BienController {
 			Model model, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) {
 		BienImmobilier bien = this.bienService.get(bienId);
+
+		String currency = parameterService
+				.getParameterName(ParameterCode.MAIN_CURRENCY.toString())
+				.get(0).getValue();
+
+		model.addAttribute("currency", currency);
 		model.addAttribute("bien", bien);
 
 		return "immobilier/bienDetails";
@@ -190,6 +198,37 @@ public class BienController {
 		return "redirect:/biens/" + bienId;
 	}
 
+	@RequestMapping(value = "/studio/new", method = RequestMethod.GET)
+	public String initCreateStudioForm(Model model) {
+
+		BienDTO studio = new BienDTO();
+		model.addAttribute("studio", studio);
+		return "immobilier/createStudioForm";
+	}
+
+	@RequestMapping(value = "/appartement/new", method = RequestMethod.GET)
+	public String initCreateAppartementForm(Model model) {
+
+		BienDTO appartement = new BienDTO();
+		model.addAttribute("appartement", appartement);
+		return "immobilier/createAppartementForm";
+	}
+
+	@RequestMapping(value = "/appartement/new", method = RequestMethod.POST)
+	public String processCreationAppartementForm(
+			@ModelAttribute("appartement") @Valid BienDTO bienDto,
+			BindingResult result, SessionStatus status) {
+
+		if (result.hasErrors()) {
+			return "immobilier/createAppartementForm";
+		} else {
+			BienDTO studio = new BienDTO();
+
+			status.setComplete();
+			return "redirect:/groups";
+		}
+	}
+
 	@RequestMapping(value = "/{bienId}/edit", method = RequestMethod.GET)
 	public String initUpdateBienForm(@PathVariable("bienId") Long bienId,
 			Model model) {
@@ -199,22 +238,15 @@ public class BienController {
 			bienDto = new BienDTO((Appartement) bien);
 			model.addAttribute("bien", bienDto);
 			return "immobilier/updateAppartementForm";
-		}
-		// else if(bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())){
-		// bienDto = new BienDTO((Maison)bien);
-		// }
-		else if (bien.getTypeBien().equals(EnumTypeBien.STUDIO.toString())) {
+		} else if (bien.getTypeBien().equals(EnumTypeBien.STUDIO.toString())) {
 			bienDto = new BienDTO((Studio) bien);
 			model.addAttribute("bien", bienDto);
 			return "immobilier/updateStudioForm";
-		}
-		 else if(bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())){
-//		 bienDto = new BienDTO((Terrain)bien);
-			 model.addAttribute("bien", bienDto);
-			 return "immobilier/updateTerrainForm";
-		 }
-
-		else return "immobilier/updateBienForm";
+		} else if (bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())) {
+			model.addAttribute("bien", bienDto);
+			return "immobilier/updateTerrainForm";
+		} else
+			return "immobilier/updateBienForm";
 	}
 
 	@RequestMapping(value = "/{bienId}/edit", method = RequestMethod.POST)
@@ -222,9 +254,8 @@ public class BienController {
 			BindingResult result, @PathVariable("bienId") Long bienId,
 			SessionStatus status) {
 		try {
-
 			if (result.hasErrors()) {
-				return "immobilier/createBienForm";
+				return "immobilier/updateBienForm";
 			}
 			BienImmobilier bien = new BienImmobilier();
 			bienService.merge(bien);
@@ -264,17 +295,15 @@ public class BienController {
 								multipartFile.getOriginalFilename());
 						multipartFile.transferTo(destFile);
 						BufferedImage bimg = ImageIO.read(destFile);
-						BufferedImage bimgResized =  ImageService.createResizedCopy(bimg, 300, 300, true);
-						File destFile1 = new File(new File(TEMP_DIR),
-								"small_"+ multipartFile.getOriginalFilename());
-						ImageIO.write(bimgResized, "jpeg", destFile1) ;
-						
+						BufferedImage bimgResized = ImageService
+								.createResizedCopy(bimg, 300, 300, true);
+						File destFile1 = new File(new File(TEMP_DIR), "small_"
+								+ multipartFile.getOriginalFilename());
+						ImageIO.write(bimgResized, "jpeg", destFile1);
+
 					} catch (IOException e) {
 						return "upload/uploadForm";
 					}
-					
-					
-					
 					Photo photo = new Photo();
 					photo.setName(multipartFile.getOriginalFilename());
 					photo.setPhotoPath(TEMP_DIR
