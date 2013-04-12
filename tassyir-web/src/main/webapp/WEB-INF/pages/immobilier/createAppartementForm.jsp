@@ -12,14 +12,14 @@
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">
 			<jsp:include page="../common/sub-menu.jsp" />
-			<div id="home_main_edit">
-				<div id="edit">
+			<div id="home_main_edit_user">
+				<div id="edit_user">
 					<div class="tab">
 						<h2>Create Appartement</h2>
 					</div>
 					<div class="container">
 						<form:form modelAttribute="appartement" method="post" id="form1">
-							<table class="edit_form" style="width: 100%; border: none;">
+							<table class="edit_form_user" style="width: 100%; border: none;">
 								<tr>
 									<td class="label"><form:label path="name">name</form:label></td>
 									<td><label> <form:input label="name" path="name"
@@ -98,15 +98,22 @@
 									</td>
 								</tr>
 								<tr>
-									<td rowspan="2" class="label"><form:label path="adresse">adresse</form:label></td>
-									<td  rowspan="2"><label> <form:textarea cols="20" rows="10"
+									<td rowspan="3" class="label"><form:label path="adresse">adresse</form:label></td>
+									<td  rowspan="3"><label> <form:textarea cols="10" rows="10"
 												label="adresse" path="adresse" class="text textBoxfield" />
-									</label></td>
+									</label>
+									</td>
 									<td class="label"><form:label path="superficie">superficie</form:label></td>
 									<td><label> <form:input label="superficie"
 												path="superficie" class="text mediumtext" />
 									</label></td>
-								</tr>
+								</tr>								
+								<tr>
+									<td class="label"><form:label path="departement">departement</form:label></td>
+										<td><label> <form:input label="departement" path="departement"
+													class="text mediumtext" />
+									</label></td>
+								</tr>								
 								<tr>
 									<td class="label"><form:label path="age">age</form:label></td>
 										<td><label> <form:input label="age" path="age"
@@ -126,20 +133,6 @@
 								<tr>
 									<td class="label"><form:label path="gardien">gardien</form:label></td>
 										<td><label> <form:input label="gardien" path="gardien"
-													class="text mediumtext" />
-									</label></td>
-									<td class="label"><form:label path="ascenseur">ascenseur</form:label></td>
-										<td><label> <form:input label="ascenseur" path="ascenseur"
-													class="text mediumtext" />
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><form:label path="nbPieces">nbPieces</form:label></td>
-										<td><label> <form:input label="nbPieces" path="nbPieces"
-													class="text mediumtext" />
-									</label></td>
-									<td class="label"><form:label path="cuisineEquipee">cuisineEquipee</form:label></td>
-										<td><label> <form:input label="cuisineEquipee" path="cuisineEquipee"
 													class="text mediumtext" />
 									</label></td>
 								</tr>

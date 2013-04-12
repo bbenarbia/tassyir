@@ -12,7 +12,6 @@
 	<spring:url value="/biens/upload/{bienId}/show.htm" var="addPhotoUrl">
 		<spring:param name="bienId" value="${bien.id}" />
 	</spring:url>
-	${fn:length(bien.photos) == 0 }
 	<div id="wrap">
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">

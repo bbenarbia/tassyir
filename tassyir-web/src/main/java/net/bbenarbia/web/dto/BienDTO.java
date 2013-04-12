@@ -12,6 +12,8 @@ public class BienDTO {
 	private String reference;
 
 	private String adresse;
+	
+	private String departement;
 
 	private String description;
 
@@ -91,7 +93,7 @@ public class BienDTO {
 
 	public BienDTO(Appartement appartement) {
 		this(appartement.getId(), appartement.getName(), appartement
-				.getReference(), appartement.getAdresse(), appartement
+				.getReference(), appartement.getAdresse(), appartement.getDepartement().getReference(), appartement
 				.getDescription(), appartement.getSuperficie(), appartement
 				.getStatus().toString(), appartement.getPrixVente(),
 				appartement.getLoyerMensuel(),
@@ -116,7 +118,7 @@ public class BienDTO {
 
 	public BienDTO(Studio studio) {
 		this(studio.getId(), studio.getName(), studio.getReference(), studio
-				.getAdresse(), studio.getDescription(), studio.getSuperficie(),
+				.getAdresse(), studio.getDepartement().getReference(), studio.getDescription(), studio.getSuperficie(),
 				studio.getStatus().toString(), studio.getPrixVente(), studio.getLoyerMensuel(), studio
 						.getChargesMensuel(), studio.getTypeOperation()
 						.toString(), studio.getEtatBien().toString(), studio
@@ -146,7 +148,7 @@ public class BienDTO {
 	// commerce.getAge(), commerce.getTypeBien());
 	// }
 
-	public BienDTO(Long id, String name, String reference, String adresse,
+	public BienDTO(Long id, String name, String reference, String adresse, String departement, 
 			String description, double superficie, String status,
 			double prixVente, double loyerMensuel,
 			double chargesMensuel, String typeOperation, String etatBien,
@@ -163,6 +165,7 @@ public class BienDTO {
 		this.name = name;
 		this.id = id;
 		this.reference = reference;
+		this.departement = departement;
 		this.adresse = adresse;
 		this.description = description;
 		this.superficie = superficie;
@@ -522,4 +525,13 @@ public class BienDTO {
 		this.piscine = piscine;
 	}
 
+	public String getDepartement() {
+		return departement;
+	}
+
+	public void setDepartement(String departement) {
+		this.departement = departement;
+	}
+
+	
 }

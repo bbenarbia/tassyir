@@ -206,6 +206,14 @@ public class BienController {
 		return "immobilier/createStudioForm";
 	}
 
+	
+	@RequestMapping(value = "/new", method = RequestMethod.GET)
+	public String initCreateBienForm(Model model) {
+
+		return "immobilier/createBienForm";
+	}
+	
+	
 	@RequestMapping(value = "/appartement/new", method = RequestMethod.GET)
 	public String initCreateAppartementForm(Model model) {
 
