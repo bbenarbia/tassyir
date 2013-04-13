@@ -1,7 +1,7 @@
 
 insert into parameters values (1,"LANGUAGE", "FRANCAIS", "La langue du systeme");
 insert into parameters values (2,"EMAIL_ADMIN", "benaissa@bbenarbia.fr", "L""email de l""admin");
-insert into parameters values (3,"TEMP_DIRECTORY", "c:\\Benaissa\\temp\\", "Temp directory");
+insert into parameters values (3,"TEMP_DIRECTORY", "/home/moad/tempfile/", "Temp directory");
 insert into parameters values (4,"MAIN_CURRENCY", '&euro;', "Main currency");
 insert into parameters values (5,"SECOND_CURRENCY", "$", "Second currency");
 
@@ -112,12 +112,12 @@ insert into departements values (103,"977","Polynesie francaise","Polynesie fran
 insert into departements values (104,"978","Nouvelle Caledonie","Nouvelle Caledonie","Noumea");
 insert into departements values (105,"979","Wallis et Futura","Wallis et Futura","Mta-Utu");
 
---Table user_categories
+---Table user_categories
 
-insert into user_categories values (1,"Administrateurs", "c:\\Benaissa\\temp\\persons\\p1.jpg");
-insert into user_categories values (2,"Utilisateurs", "c:\\Benaissa\\temp\\persons//p2.jpg");
-insert into user_categories values (3,"SAV", "c:\\Benaissa\\temp\\persons//p3.jpg");
-insert into user_categories values (4,"Invites","c:\\Benaissa\\temp\\persons//p4.jpg");
+insert into user_categories values (1,"Administrateurs", "/home/moad/tempfile/p1.jpg");
+insert into user_categories values (2,"Utilisateurs", "/home/moad/tempfile/p2.jpg");
+insert into user_categories values (3,"SAV", "/home/moad/tempfile/p3.jpg");
+insert into user_categories values (4,"Invites","/home/moad/tempfile/p4.jpg");
 
 --Roles
 insert into roles VALUES (1, "UTILISATION", "");
@@ -134,6 +134,7 @@ insert into user_categories_roles VALUES (3, 1);
 insert into user_categories_roles VALUES (4, 2);
 
 
+
 insert into contact values (1, 1, "Contact1", "Company 1",  "adresse1",  false, true, 75001, "Paris", "adresse@yahoo.fr", 
 "www.bbenarbia.fr", "01010101", "0202020202");
 
@@ -144,9 +145,9 @@ insert into contact values (3, 1, "Contact3", "Company 3",  "adresse1",  false, 
 "www.bbenarbia.fr", "01010101", "0202020202");
 
 
-insert into users VALUES (1, 1, "c:\\Benaissa\\temp\\persons//p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, 1, 2);
-insert into users VALUES (2, 2, "c:\\Benaissa\\temp\\persons//p2.jpg", "said", "med","smed","smed",true, false, 2, 1);
-insert into users VALUES (3, 3, "c:\\Benaissa\\temp\\persons//p3.jpg", "lakhdar", "omar","lomar","lomar",true, false, 3 , 2);
+insert into users VALUES (1, 1, "/home/moad/tempfile/p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, 1, 2);
+insert into users VALUES (2, 2, "/home/moad/tempfile/p2.jpg", "said", "med","smed","smed",true, false, 2, 1);
+insert into users VALUES (3, 3, "/home/moad/tempfile/p3.jpg", "lakhdar", "omar","lomar","lomar",true, false, 3 , 2);
 
 
 insert into user_role values (1,1);
@@ -155,51 +156,50 @@ insert into user_role values (2,1);
 insert into user_role values (3,1);
 
 insert into biens (
-  id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
-  ,etatBien,etage,nbPieces,nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
   ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin
 ) values(1, "1",  "appartement1","APPARTEMENT","adresse 1", 1,"description de location",24.4, 1, 700, 
-500,100, 100, 1, 1, "2/5", 2,0,1,1,0,true,false,true,false, "10 min de RER A", "Proche tout commerce et centre ville",false,100.0,200,2,0,1,1,1,1,1,false, false, false, 1967, false);   
+500,100, 100, 1, 1, "2/5", 2,1, 0,1,1,0,true,false,true,false, "10 min de RER A", "Proche tout commerce et centre ville",false,100.0,200,2,0,1,1,1,1,1,false, false, false, 1967, false);   
 
 
 insert into biens (
-  id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
-  ,etatBien,etage,nbPieces,nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
-  ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
+ id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin
 ) values(2, "2", "appartement2","APPARTEMENT","adresse 1",2, "description de location",24.4, 1, 700, 
-500,100, 100, 1, 1, "2/2", 2,0,1,1,0,true,false,true,false, "10 min de RER A", "Proche tout commerce et centre ville",false,100.0,200,2,0,1,1,1,1,1,false, false, false, 2001, false);   
+-500,100, 100, 1, 1, "2/2", 2,1,0,1,1,0,true,false,true,false, "10 min de RER A", "Proche tout commerce et centre ville",false,100.0,200,2,0,1,1,1,1,1,false, false, false, 2001, false);   
 
 
 insert into biens (
   id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
-  ,etatBien,etage,nbPieces,nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+  ,etatBien,etage,nbPieces,nbChambres,nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
   ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin
 ) values(3, "3", "Studio","STUDIO","adresse 1",2, "description de location",24.4, 1, 700, 
-500,100, 100, 1, 1,"2/6", 2,0,1,1,0,true,false,true,false, "10 min de RER A", "Proche tout commerce et centre ville",false,100.0,200,2,0,1,1,1,1,1,false, false, false, 2011, false);   
+500,100, 100, 1, 1,"2/6", 2,2,0,1,1,0,true,false,true,false, "10 min de RER A", "Proche tout commerce et centre ville",false,100.0,200,2,0,1,1,1,1,1,false, false, false, 2011, false);   
 
 insert into biens (
   id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
-  ,etatBien,etage,nbPieces,nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+  ,etatBien,etage,nbPieces,nbChambres,nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
   ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin
 ) values(4, "4",  "maison 1","MAISON","adresse 1",1, "description de location",24.4, 1, 700, 
-500,100, 100, 1, 1, "1/3", 2,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2011, true);   
+500,100, 100, 1, 1, "1/3", 2,2,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2011, true);   
 
 
- 
-  
-insert into photos values(1,"photos1", 2,"c:\\Benaissa\\temp\\maisons//app1.jpg");
-insert into photos values(2,"photos2", 2,"c:\\Benaissa\\temp\\maisons//app2.jpg");
-insert into photos values(3,"photos3", 2,"c:\\Benaissa\\temp\\maisons//app3.jpg");
 
-insert into photos values(4,"photos4", 3,"c:\\Benaissa\\temp\\maisons//m1.jpg");
-insert into photos values(5,"photos5", 3,"c:\\Benaissa\\temp\\maisons//m2.jpg");
-insert into photos values(6,"photos6", 3,"c:\\Benaissa\\temp\\maisons//m3.jpg");
-insert into photos values(7,"photos7", 3,"c:\\Benaissa\\temp\\maisons//m4.jpg");
+insert into photos values(1,"photos1", 2,"/home/moad/tempfile/app1.jpg");
+insert into photos values(2,"photos2", 2,"/home/moad/tempfile/app2.jpg");
+insert into photos values(3,"photos3", 2,"/home/moad/tempfile/app3.jpg");
+
+insert into photos values(4,"photos4", 3,"/home/moad/tempfile/m1.jpg");
+insert into photos values(5,"photos5", 3,"/home/moad/tempfile/m2.jpg");
+insert into photos values(6,"photos6", 3,"/home/moad/tempfile/m3.jpg");
+insert into photos values(7,"photos7", 3,"/home/moad/tempfile/m4.jpg");
 
 
---c:\\Benaissa\\temp\\
---/home/moad/tempfile/
+---c:\\Benaissa\\temp\\
+---/home/moad/tempfile/

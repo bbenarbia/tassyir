@@ -33,10 +33,12 @@ public class BienDTO {
 
 	private String etatBien;
 
-	private String etage;
+	private String etage = "0 sur 0";
 
 	private int nbPieces;
 
+	private int nbChambres;
+	
 	private Boolean ascenseur;
 
 	private Boolean cuisineEquipee;
@@ -99,7 +101,7 @@ public class BienDTO {
 				appartement.getLoyerMensuel(),
 				appartement.getChargesMensuel(), appartement.getTypeOperation()
 						.toString(), appartement.getEtatBien().toString(),
-				appartement.getEtage(), appartement.getNbPieces(), appartement
+				appartement.getEtage(), appartement.getNbPieces(),appartement.getNbChambres(),  appartement
 						.isAscenseur(), appartement.isCuisineEquipee(), null,
 				appartement.getAge(), appartement.getTypeBien(), appartement
 						.getNbTerrasses(), appartement.getNbBalcons(),
@@ -122,7 +124,7 @@ public class BienDTO {
 				studio.getStatus().toString(), studio.getPrixVente(), studio.getLoyerMensuel(), studio
 						.getChargesMensuel(), studio.getTypeOperation()
 						.toString(), studio.getEtatBien().toString(), studio
-						.getEtage(), 0, studio.isAscenseur(), null, null,
+						.getEtage(), 0, 0, studio.isAscenseur(), null, null,
 				studio.getAge(), studio.getTypeBien(), studio.getNbTerrasses(),
 				studio.getNbBalcons(), studio.getNbParkingInt(), studio
 						.getNbParkingExt(), studio.isInterphone(), studio
@@ -152,7 +154,7 @@ public class BienDTO {
 			String description, double superficie, String status,
 			double prixVente, double loyerMensuel,
 			double chargesMensuel, String typeOperation, String etatBien,
-			String etage, int nbPieces, Boolean ascenseur,
+			String etage, int nbPieces, int nbChambres, Boolean ascenseur,
 			Boolean cuisineEquipee, Boolean jardin, int age, String typeBien,
 			int nbTerrasses, int nbBalcons, int nbParkingInt, int nbParkingExt,
 			boolean interphone, boolean digicode, boolean gardien,
@@ -177,6 +179,7 @@ public class BienDTO {
 		this.etatBien = etatBien;
 		this.etage = etage;
 		this.nbPieces = nbPieces;
+		this.nbChambres = nbChambres;
 		this.ascenseur = ascenseur;
 		this.cuisineEquipee = cuisineEquipee;
 		this.jardin = jardin;
@@ -532,6 +535,15 @@ public class BienDTO {
 	public void setDepartement(String departement) {
 		this.departement = departement;
 	}
+
+	public int getNbChambres() {
+		return nbChambres;
+	}
+
+	public void setNbChambres(int nbChambres) {
+		this.nbChambres = nbChambres;
+	}
+
 
 	
 }

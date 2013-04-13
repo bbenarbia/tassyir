@@ -21,43 +21,106 @@
 						<form:form modelAttribute="appartement" method="post" id="form1">
 							<table class="edit_form_user" style="width: 100%; border: none;">
 								<tr>
-									<td class="label"><form:label path="name">name</form:label></td>
+									<td class="label" style="width: 30px; "><form:label path="name">name</form:label></td>
 									<td><label> <form:input label="name" path="name"
 												class="text" />
 									</label></td>
 									<td class="label"><form:label path="reference">reference</form:label></td>
 									<td><label> <form:input label="reference"
-												path="reference" class="text mediumtext" />
+												path="reference" class="text smalltext" />
 									</label></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label path="prixVente">prixVente</form:label></td>
 									<td><label> <form:input label="prixVente"
-												path="prixVente" class="text" />
+												path="prixVente" class="smalltext" />
 									</label></td>
-
+									<td class="label"><form:label path="superficie">superficie</form:label></td>
+									<td><label> <form:input label="superficie"
+												path="superficie" class="text smalltext" />
+									</label></td>
 								</tr>
 
 								<tr>
 									<td class="label"><form:label path="loyerMensuel">loyerMensuel</form:label></td>
 									<td><label> <form:input label="loyerMensuel"
-												path="loyerMensuel" class="text mediumtext" />
+												path="loyerMensuel" class="text smalltext" />
 									</label></td>
 
 									<td class="label"><form:label path="chargesMensuel">chargesMensuel</form:label></td>
 									<td><label> <form:input label="chargesMensuel"
-												path="chargesMensuel" class="text mediumtext" />
+												path="chargesMensuel" class="text smalltext" />
 									</label></td>
 								</tr>
 								
 								<tr>
 									<td class="label"><form:label path="nbPieces">nbPieces</form:label></td>
 									<td><label> <form:input label="nbPieces"
-												path="nbPieces" class="text mediumtext" />
+												path="nbPieces" class="text smalltext" />
 									</label></td>
-									<td class="label"><form:label path="ascenseur" for="ascenseur">ascenseur</form:label></td>
-									<td><label> 
-										<form:checkbox path="ascenseur" />		
+									<td class="label"><form:label path="nbChambres">nbChambres</form:label></td>
+									<td><label> <form:input label="nbChambres"
+												path="nbChambres" class="text smalltext" />
+									</label></td>
+									
+								</tr>
+								<tr>
+									<td rowspan="8" class="label"><form:label path="adresse">adresse</form:label></td>
+									<td  rowspan="8"><label> <form:textarea cols="22" rows="10"
+												label="adresse" path="adresse" class="text textBoxfieldlong" />
+									</label>
+									</td>
+								</tr>								
+								<tr>
+									<td class="label"><form:label path="departement">departement</form:label></td>
+										<td><label> <form:input label="departement" path="departement"
+													class="text smalltext" />
+									</label></td>
+								</tr>								
+								<tr>
+									<td class="label"><form:label path="age">age</form:label></td>
+										<td><label> <form:input label="age" path="age"
+													class="text smalltext" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label path="etage">etage</form:label></td>
+										<td><label> <form:input label="etage" path="etage"
+													class="text smalltext" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label path="nbTerrasses">nbTerrasses</form:label></td>
+										<td><label> <form:input label="nbTerrasses" path="nbTerrasses"
+													class="text smalltext" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label path="nbBalcons">nbBalcons</form:label></td>
+										<td><label> <form:input label="nbBalcons" path="nbBalcons"
+													class="text smalltext" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label path="nbParkingInt">nbParkingInt</form:label></td>
+										<td><label> <form:input label="nbParkingInt" path="nbParkingInt"
+													class="text smalltext" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label path="nbParkingExt">nbParkingExt</form:label></td>
+										<td><label> <form:input label="nbParkingExt" path="nbParkingExt"
+													class="text smalltext" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label path="interphone">interphone</form:label></td>
+										<td><label> 
+											<form:checkbox path="interphone" />		
+									</label></td>
+									<td class="label"><form:label path="digicode">digicode</form:label></td>
+										<td><label> 
+											<form:checkbox path="digicode" />	
 									</label></td>
 								</tr>
 								<tr>
@@ -65,137 +128,129 @@
 									<td><label> 
 										<form:checkbox path="cuisineEquipee" />									
 									</label></td>
-									
-								</tr>
-								<tr>
-									<td class="label"><form:label path="status">status</form:label></td>
-									<td colspan="4">
-										<table>
-											<tr>
-												<c:forEach var="statusBien" items="${statusList}">
-													<td class="tdsmall"><label> <form:radiobutton path="status"
-																value="${statusBien}" /> ${statusBien}
-													</label></td>
-												</c:forEach>
-											</tr>
-										</table>
-									</td>
-								</tr>								
-								<tr>
-									<td class="label"><form:label path="typeOperation">Operation</form:label></td>
-									<td colspan="4">
-										<table>
-											<tr>
-												<c:forEach var="typeOperationBien"
-													items="${typeOperationList}">
-													<td class="tdsmall"><label> <form:radiobutton
-																path="typeOperation" value="${typeOperationBien}"
-																 /> ${typeOperationBien}
-													</label></td>
-												</c:forEach>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								<tr>
-									<td rowspan="3" class="label"><form:label path="adresse">adresse</form:label></td>
-									<td  rowspan="3"><label> <form:textarea cols="10" rows="10"
-												label="adresse" path="adresse" class="text textBoxfield" />
-									</label>
-									</td>
-									<td class="label"><form:label path="superficie">superficie</form:label></td>
-									<td><label> <form:input label="superficie"
-												path="superficie" class="text mediumtext" />
-									</label></td>
-								</tr>								
-								<tr>
-									<td class="label"><form:label path="departement">departement</form:label></td>
-										<td><label> <form:input label="departement" path="departement"
-													class="text mediumtext" />
-									</label></td>
-								</tr>								
-								<tr>
-									<td class="label"><form:label path="age">age</form:label></td>
-										<td><label> <form:input label="age" path="age"
-													class="text mediumtext" />
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><form:label path="etatBien">etatBien</form:label></td>
-										<td><label> <form:input label="etatBien" path="etatBien"
-													class="text mediumtext" />
-									</label></td>
-									<td class="label"><form:label path="etage">etage</form:label></td>
-										<td><label> <form:input label="etage" path="etage"
-													class="text mediumtext" />
-									</label></td>
-								</tr>
-								<tr>
 									<td class="label"><form:label path="gardien">gardien</form:label></td>
-										<td><label> <form:input label="gardien" path="gardien"
-													class="text mediumtext" />
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><form:label path="nbTerrasses">nbTerrasses</form:label></td>
-										<td><label> <form:input label="nbTerrasses" path="nbTerrasses"
-													class="text mediumtext" />
-									</label></td>
-									<td class="label"><form:label path="nbBalcons">nbBalcons</form:label></td>
-										<td><label> <form:input label="nbBalcons" path="nbBalcons"
-													class="text mediumtext" />
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><form:label path="nbParkingInt">nbParkingInt</form:label></td>
-										<td><label> <form:input label="nbParkingInt" path="nbParkingInt"
-													class="text mediumtext" />
-									</label></td>
-									<td class="label"><form:label path="nbParkingExt">nbParkingExt</form:label></td>
-										<td><label> <form:input label="nbParkingExt" path="nbParkingExt"
-													class="text mediumtext" />
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><form:label path="interphone">interphone</form:label></td>
-										<td><label> <form:input label="interphone" path="interphone"
-													class="text mediumtext" />
-									</label></td>
-									<td class="label"><form:label path="digicode">digicode</form:label></td>
-										<td><label> <form:input label="digicode" path="digicode"
-													class="text mediumtext" />
+										<td><label> 
+											<form:checkbox path="gardien" />		
 									</label></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label path="meuble">meuble</form:label></td>
-										<td><label> <form:input label="meuble" path="meuble"
-													class="text mediumtext" />
+										<td><label> <form:checkbox path="meuble" />
+													
 									</label></td>
-									<td class="label"><form:label path="typeEauChaude">typeEauChaude</form:label></td>
-										<td><label> <form:input label="typeEauChaude" path="typeEauChaude"
-													class="text mediumtext" />
+										<td class="label"><form:label path="ascenseur" for="ascenseur">ascenseur</form:label></td>
+									<td><label> 
+										<form:checkbox path="ascenseur" />		
 									</label></td>
 								</tr>
+								
+								<tr>
+									<td class="label"><form:label path="etatBien">etatBien</form:label></td>
+									<td>
+										<table>
+											<tr>
+											
+												<form:select path="etatBien"  class="select_field">
+																			<c:forEach var="etatBien" items="${etatBienList}">
+																					<option value="${etatBien}">${etatBien}</option>
+																			</c:forEach>
+												</form:select>
+											</tr>
+										</table>
+									</td>
+									<td class="label"><form:label path="typeEauChaude">typeEauChaude</form:label></td>
+									<td>
+										<table>
+											<tr>
+												<form:select path="typeEauChaude"  class="select_field">
+																			<c:forEach var="typeEauChaude" items="${typeEauChaudeList}">
+																					<option value="${typeEauChaude}">${typeEauChaude}</option>
+																			</c:forEach>
+												</form:select>
+											</tr>
+										</table>
+									</td>
+								</tr>
+
 								<tr>
 									<td class="label"><form:label path="natureChauffage">natureChauffage</form:label></td>
-										<td><label> <form:input label="natureChauffage" path="natureChauffage"
-													class="text mediumtext" />
-									</label></td>
+									<td>
+										<table>
+											<tr>
+											   <form:select path="natureChauffage"  class="select_field">
+																			<c:forEach var="natureChauffage" items="${typeNatureChauffageList}">
+																					<option value="${natureChauffage}">${natureChauffage}</option>
+																			</c:forEach>
+												</form:select>
+											</tr>
+										</table>
+									</td>
 									<td class="label"><form:label path="typeChauffage">typeChauffage</form:label></td>
-										<td><label> <form:input label="typeChauffage" path="typeChauffage"
-													class="text mediumtext" />
-									</label></td>
+									<td>
+										<table>
+											<tr>
+												<form:select path="typeChauffage"  class="select_field">
+																			<c:forEach var="natureChauffage" items="${typeTypeChauffageList}">
+																					<option value="${natureChauffage}">${natureChauffage}</option>
+																			</c:forEach>
+												</form:select>
+											</tr>
+										</table>
+									</td>
 								</tr>
+								
 								<tr>
 									<td class="label"><form:label path="consoEnergie">consoEnergie</form:label></td>
-										<td><label> <form:input label="consoEnergie" path="consoEnergie"
-													class="text mediumtext" />
-									</label></td>
+									<td>
+										<table>
+											<tr>
+												<form:select path="consoEnergie"  class="select_field">
+																			<c:forEach var="consoEnergie" items="${typeConsoEnergieList}">
+																					<option value="${consoEnergie}">${consoEnergie}</option>
+																			</c:forEach>
+												</form:select>
+											</tr>
+										</table>
+									</td>
 									<td class="label"><form:label path="impactConso">impactConso</form:label></td>
-										<td><label> <form:input label="impactConso" path="impactConso"
-													class="text mediumtext" />
-									</label></td>
-								</tr>								
+									<td>
+										<table>
+											<tr>
+												<form:select path="impactConso"  class="select_field">
+																			<c:forEach var="impactConso" items="${typeImpactConsoList}">
+																					<option value="${impactConso}">${impactConso}</option>
+																			</c:forEach>
+												</form:select>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td class="label"><form:label path="status">status</form:label></td>
+									<td>
+										<table>
+											<tr>
+												<form:select path="status"  class="select_field">
+																			<c:forEach var="status" items="${statusList}">
+																					<option value="${status}">${status}</option>
+																			</c:forEach>
+												</form:select>
+											</tr>
+										</table>
+									</td>
+									<td class="label"><form:label path="typeOperation">Operation</form:label></td>
+									<td>
+										<table>
+											<tr>
+												<form:select path="typeOperation"  class="select_field">
+																			<c:forEach var="typeOperation" items="${typeOperationList}">
+																					<option value="${typeOperation}">${typeOperation}</option>
+																			</c:forEach>
+												</form:select>
+											</tr>
+										</table>
+									</td>
+								</tr>							
 								<tr>
 									<td class="label">&nbsp;</td>
 									<td>&nbsp;</td>

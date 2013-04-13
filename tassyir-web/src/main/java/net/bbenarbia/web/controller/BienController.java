@@ -15,8 +15,14 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import net.bbenarbia.domain.Departement;
+import net.bbenarbia.domain.enums.EnumConsEnergie;
+import net.bbenarbia.domain.enums.EnumEtatBien;
+import net.bbenarbia.domain.enums.EnumImpactConso;
+import net.bbenarbia.domain.enums.EnumNatureChauffage;
 import net.bbenarbia.domain.enums.EnumStatutProperty;
 import net.bbenarbia.domain.enums.EnumTypeBien;
+import net.bbenarbia.domain.enums.EnumTypeChauffage;
+import net.bbenarbia.domain.enums.EnumTypeEauChaude;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
 import net.bbenarbia.domain.enums.ParameterCode;
 import net.bbenarbia.domain.immobilier.Appartement;
@@ -108,6 +114,75 @@ public class BienController {
 		}
 		return statusList;
 	}
+	
+	
+	@ModelAttribute("typeEauChaudeList")
+	public List<String> populateTypeEauChaudeList() {
+
+		List<String> typeEauChaudeList = new LinkedList<String>();
+
+		for (EnumTypeEauChaude typeOperation : EnumTypeEauChaude.values()) {
+			typeEauChaudeList.add(typeOperation.toString());
+		}
+		return typeEauChaudeList;
+	}
+	
+	@ModelAttribute("typeNatureChauffageList")
+	public List<String> populateNatureChauffageList() {
+
+		List<String> typeNatureChauffageList = new LinkedList<String>();
+
+		for (EnumNatureChauffage typeOperation : EnumNatureChauffage.values()) {
+			typeNatureChauffageList.add(typeOperation.toString());
+		}
+		return typeNatureChauffageList;
+	}
+	
+	@ModelAttribute("typeTypeChauffageList")
+	public List<String> populateTypeChauffageList() {
+
+		List<String> typeTypeChauffageList = new LinkedList<String>();
+
+		for (EnumTypeChauffage typeOperation : EnumTypeChauffage.values()) {
+			typeTypeChauffageList.add(typeOperation.toString());
+		}
+		return typeTypeChauffageList;
+	}
+	
+	@ModelAttribute("etatBienList")
+	public List<String> populatEetatBienList() {
+
+		List<String> etatBienList = new LinkedList<String>();
+
+		for (EnumEtatBien etatBien : EnumEtatBien.values()) {
+			etatBienList.add(etatBien.toString());
+		}
+		return etatBienList;
+	}
+	
+	
+	@ModelAttribute("typeConsoEnergieList")
+	public List<String> populateConsoEnergieList() {
+
+		List<String> typeConsoEnergieList = new LinkedList<String>();
+
+		for (EnumConsEnergie typeOperation : EnumConsEnergie.values()) {
+			typeConsoEnergieList.add(typeOperation.toString());
+		}
+		return typeConsoEnergieList;
+	}
+	
+	@ModelAttribute("typeImpactConsoList")
+	public List<String> populateTypeImpactConsoListList() {
+
+		List<String> typeImpactConsoList = new LinkedList<String>();
+
+		for (EnumImpactConso typeOperation : EnumImpactConso.values()) {
+			typeImpactConsoList.add(typeOperation.toString());
+		}
+		return typeImpactConsoList;
+	}
+	
 
 	@RequestMapping(value = "/find-biens", method = RequestMethod.GET)
 	public String initSearchBiens(Model model) {

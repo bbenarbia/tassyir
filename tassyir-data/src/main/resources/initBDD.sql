@@ -128,6 +128,7 @@ CREATE TABLE IF NOT EXISTS biens (
   etatBien INT(5) DEFAULT 0,
   etage  varchar(15),
   nbPieces  INT(5) DEFAULT 0,
+  nbChambres INT(5) DEFAULT 0,
   nbTerrasses INT(5) DEFAULT 0,
   nbBalcons INT(5) DEFAULT 0,
   nbParkingInt   INT(5) DEFAULT 0,

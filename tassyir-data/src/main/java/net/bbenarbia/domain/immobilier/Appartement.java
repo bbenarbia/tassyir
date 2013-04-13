@@ -32,6 +32,9 @@ public class Appartement extends BienImmobilier {
 	@Column(name = "nbPieces")
 	private int nbPieces;
 	
+	@Column(name = "nbChambres")
+	private int nbChambres;
+	
 	@Column(name = "ascenseur")
 	private boolean ascenseur;
 	
@@ -230,6 +233,14 @@ public class Appartement extends BienImmobilier {
 
 	public void setTypeEauChaude(EnumTypeEauChaude typeEauChaude) {
 		this.typeEauChaude = typeEauChaude;
+	}
+
+	public int getNbChambres() {
+		return nbChambres;
+	}
+
+	public void setNbChambres(int nbChambres) {
+		this.nbChambres = nbChambres;
 	}
 
 	

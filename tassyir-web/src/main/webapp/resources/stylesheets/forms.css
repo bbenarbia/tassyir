@@ -14,6 +14,9 @@
 .search_form .smalltextarea {
 	width: 45px;
 }
+.search_form .smalltext {
+	width: 55px;
+}
 .search_form .mediumtext {
 	width: 75px;
 }
@@ -27,7 +30,7 @@
 }
 
 .search_form .textBoxfieldlong {
-	width: 250px;
+	width: 280px;
 	height: 75px;
 }
 
@@ -95,6 +98,9 @@ edit_form_user td {
 	display: block;
 	border: 1px solid #4F8B9D;
 	padding: 2px;
+}
+.search_form .smalltext {
+	width: 45px;
 }
 .edit_form_user .select_field {
 	padding: 2px;

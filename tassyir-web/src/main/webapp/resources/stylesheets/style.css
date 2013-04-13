@@ -19,7 +19,7 @@ body {background:#fff; font:11px Verdana, Arial, Helvetica, sans-serif; color:#3
 #content {padding:0 2px 0 2px;}
 #home_main, #main {width:545px; float:left; margin-bottom:8px;}
 #home_main_edit, #main_edit {width:645px; float:left; margin-bottom:8px;}
-#home_main_edit_user, #main_edit_user {width:645px; float:left; margin-bottom:8px;}
+#home_main_edit_user, #main_edit_user {width:745px; float:left; margin-bottom:8px;}
 #home_sidebar, #sidebar { width:390px; float:right; margin-bottom:8px;}
 h1#logo { font: bold 48px Tahoma, Geneva, sans-serif; color:#368291;}
 #content #sidebar {
@@ -57,8 +57,8 @@ h1#logo { font: bold 48px Tahoma, Geneva, sans-serif; color:#368291;}
 }
 #edit_user .container {
 	background:#E3F6FC  bottom no-repeat;
-	height:665px;
-	width: 630px;
+	height:765px;
+	width: 700px;
 	margin-right: auto;
 	margin-left: auto;
 }

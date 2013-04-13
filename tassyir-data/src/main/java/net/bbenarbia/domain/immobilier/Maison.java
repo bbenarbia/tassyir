@@ -24,6 +24,9 @@ public class Maison extends BienImmobilier {
 
 	@Column(name = "nbPieces")
 	private int nbPieces;
+	
+	@Column(name = "nbChambres")
+	private int nbChambres;
 
 	@Column(name = "cuisineEquipee")
 	private boolean cuisineEquipee;
@@ -212,6 +215,14 @@ public class Maison extends BienImmobilier {
 
 	public void setTypeEauChaude(EnumTypeEauChaude typeEauChaude) {
 		this.typeEauChaude = typeEauChaude;
+	}
+
+	public int getNbChambres() {
+		return nbChambres;
+	}
+
+	public void setNbChambres(int nbChambres) {
+		this.nbChambres = nbChambres;
 	}
 
 }

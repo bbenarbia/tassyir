@@ -55,7 +55,7 @@
 									<td><label> <form:password label="password"
 												path="password" class="text" />
 									</label></td>
-									<td class="label"><form:label path="code">passwordConfirmation</form:label></td>
+									<td class="label"><form:label path="code">Confirmation</form:label></td>
 									<td><label> <form:password
 												label="passwordConfirmation" path="passwordConfirmation"
 												class="text mediumtext" />
@@ -109,9 +109,9 @@
 								<tr>
 									<td rowspan="2" class="label"><form:label
 											path="contact.adresseContact1">adresse</form:label></td>
-									<td rowspan="2"><label> <form:textarea cols="20"
+									<td rowspan="2"><label> <form:textarea cols="26"
 												rows="10" label="contact.adresseContact1"
-												path="contact.adresseContact1" class="text textBoxfield" />
+												path="contact.adresseContact1" class="text textBoxfieldlong" />
 									</label></td>
 									<td class="label"><form:label
 											path="contact.codePostalContact">code Postal</form:label></td>
