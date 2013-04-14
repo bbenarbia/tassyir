@@ -27,8 +27,12 @@
 							</spring:url> <a href="${fn:escapeXml(createAppartUrl)}">Create appartement</a>
 						</span> 
 						<span class="listbuttons"> <spring:url
-								value="/biens/studio/new.htm" var="createStudiotUrl">
-							</spring:url> <a href="${fn:escapeXml(createStudiotUrl)}">Create Studio</a>
+								value="/biens/studio/new.htm" var="createStudioUrl">
+							</spring:url> <a href="${fn:escapeXml(createStudioUrl)}">Create Studio</a>
+						</span> 
+						<span class="listbuttons"> <spring:url
+								value="/biens/maison/new.htm" var="createMaisonUrl">
+							</spring:url> <a href="${fn:escapeXml(createMaisonUrl)}">Create Maison</a>
 						</span> 
 					</div>
 

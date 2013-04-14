@@ -155,38 +155,40 @@ insert into user_role values (1,2);
 insert into user_role values (2,1);
 insert into user_role values (3,1);
 
+  
+  
 insert into biens (
- id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+ id, ref ,name, typeBien, adresse,codePostal, ville,  idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
   ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
   ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin
-) values(1, "1",  "appartement1","APPARTEMENT","adresse 1", 1,"description de location",24.4, 1, 700, 
+) values(1, "1",  "appartement1","APPARTEMENT","adresse 1",'93800','Epinay sur seine', 1,"description de location",24.4, 1, 700, 
 500,100, 100, 1, 1, "2/5", 2,1, 0,1,1,0,true,false,true,false, "10 min de RER A", "Proche tout commerce et centre ville",false,100.0,200,2,0,1,1,1,1,1,false, false, false, 1967, false);   
 
 
 insert into biens (
- id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+ id, ref ,name, typeBien, adresse,codePostal, ville, idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
   ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
  ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin
-) values(2, "2", "appartement2","APPARTEMENT","adresse 1",2, "description de location",24.4, 1, 700, 
+) values(2, "2", "appartement2","APPARTEMENT","adresse 1",'95800','Argenteuil', 2, "description de location",24.4, 1, 700, 
 -500,100, 100, 1, 1, "2/2", 2,1,0,1,1,0,true,false,true,false, "10 min de RER A", "Proche tout commerce et centre ville",false,100.0,200,2,0,1,1,1,1,1,false, false, false, 2001, false);   
 
 
 insert into biens (
-  id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  id, ref ,name, typeBien, adresse,codePostal, ville, idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
   ,etatBien,etage,nbPieces,nbChambres,nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
   ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin
-) values(3, "3", "Studio","STUDIO","adresse 1",2, "description de location",24.4, 1, 700, 
+) values(3, "3", "Studio","STUDIO","adresse 1",'93800','Epinay sur seine', 2, "description de location",24.4, 1, 700, 
 500,100, 100, 1, 1,"2/6", 2,2,0,1,1,0,true,false,true,false, "10 min de RER A", "Proche tout commerce et centre ville",false,100.0,200,2,0,1,1,1,1,1,false, false, false, 2011, false);   
 
 insert into biens (
-  id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  id, ref ,name, typeBien, adresse,codePostal, ville, idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
   ,etatBien,etage,nbPieces,nbChambres,nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
   ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin
-) values(4, "4",  "maison 1","MAISON","adresse 1",1, "description de location",24.4, 1, 700, 
+) values(4, "4",  "maison 1","MAISON","adresse 1",'93800','Epinay sur seine',1, "description de location",24.4, 1, 700, 
 500,100, 100, 1, 1, "1/3", 2,2,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2011, true);   
 
 

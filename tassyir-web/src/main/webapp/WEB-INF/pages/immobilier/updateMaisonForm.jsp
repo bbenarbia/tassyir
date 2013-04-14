@@ -6,18 +6,16 @@
 <html>
 <head>
 	<jsp:include page="./../common/head.jsp"/>
-	<!-- <script type="text/javascript">
+	<script type="text/javascript">
  
         $(document).ready(function() {
-            $('#spn1').spinit({width: 80 });
-            $('#spn2').spinit({width: 80 });
-            $('#spn3').spinit({width: 80 });
-            $('#spn4').spinit({width: 80 });
-            $('#spn5').spinit({width: 80 });
-            $('#spn6').spinit({width: 80 });
-            $('#spn7').spinit({width: 80 });
+            $('#spn1').spinit({min:0,max:200,stepInc:1,pageInc:10,  width: 80 });
+            $('#spn2').spinit({min:0,max:200,stepInc:1,pageInc:10,  width: 80 });
+            $('#spn3').spinit({min:0,max:200,stepInc:1,pageInc:10,  width: 80 });
+            $('#spn4').spinit({min:0,max:200,stepInc:1,pageInc:10,  width: 80 });
+            $('#spn5').spinit({min:0,max:3000,stepInc:1,pageInc:10,  width: 80 });
         });
-    </script> -->
+    </script>
 </head>
 <body>
 	<div id="wrap">
@@ -28,7 +26,7 @@
 			<div id="home_main_edit_user">
 				<div id="edit_user">
 					<div class="tab">
-						<h2>Edit Appartement</h2>
+						<h2>Edit Maison</h2>
 					</div>
 					<div class="container">
 						<form:form modelAttribute="bien" method="put" id="form1">
@@ -65,24 +63,15 @@
 												path="chargesMensuel" class="text smalltext" />
 									</label></td>
 								</tr>
-								
 								<tr>
 									<td class="label"><form:label path="age">age</form:label></td>
-										<td><label> <form:input label="age" path="age"
+										<td><label> 
+												<form:input label="age" path="age"
 													class="text smalltext" />
 									</label></td>
-									
-									<td class="label"><form:label path="etage">etage</form:label></td>
-										<td><label> 
-											<form:input label="etage" path="etage"
-													class="text smalltext" />										
-									</label></td>
-									
-								</tr>
-								<tr>
 									<td class="label"><form:label path="departement">departement</form:label></td>
-										<td><label> 	
-												<form:select path="departement"  class="select_field">
+										<td><label> 										
+													<form:select path="departement"  class="select_field">
 													<c:forEach var="item" items="${departementsList}">
 														<c:choose>
 															<c:when test="${departement == item.reference}">
@@ -99,13 +88,13 @@
 												</c:forEach>
 												</form:select>
 									</label></td>
+								</tr>
+								<tr>
 								<td class="label"><form:label path="codePostal">code postal</form:label></td>
 										<td><label> 
 											<form:input label="codePostal" path="codePostal"
 													class="text smalltext" />										
 									</label></td>
-								</tr>	
-								<tr>
 								<td class="label"><form:label path="ville">Ville</form:label></td>
 										<td><label> 
 											<form:input label="ville" path="ville"
@@ -124,49 +113,19 @@
 									</label>
 									</td>
 								</tr>
-														
-								<tr>
+									
+									<tr>
 									<td class="label"><form:label path="nbPieces">nbPieces</form:label></td>
 									<td><label> 
-										<%-- <form:input type="text" path="nbPieces" id="spn1" class="text smartspinner"/> --%>
 										<form:input label="name" path="nbPieces"
 												class="text" />										
 									</label></td>
 									<td class="label"><form:label path="nbChambres">nbChambres</form:label></td>
 									<td><label> 
-											<%-- <form:input type="text" path="nbChambres" id="spn2" class="smartspinner"/> --%>
 											<form:input label="name" path="nbChambres"
 												class="text" />		
 									</label></td>
 									
-								</tr>
-								<tr>
-									<td class="label"><form:label path="nbTerrasses">nbTerrasses</form:label></td>
-										<td><label> 
-											<%-- <form:input type="text" path="nbTerrasses" id="spn4" class="smartspinner"/> --%>
-											<form:input label="name" path="nbTerrasses"
-												class="text" />		
-									</label></td>
-									<td class="label"><form:label path="nbBalcons">nbBalcons</form:label></td>
-										<td><label> 
-											<%-- <form:input type="text" path="nbBalcons" id="spn5" class="smartspinner"/> --%>
-											<form:input label="name" path="nbBalcons"
-												class="text" />	
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><form:label path="nbParkingInt">nbParkingInt</form:label></td>
-										<td><label> 
-												<%-- <form:input type="text" path="nbParkingInt" id="spn6" class="smartspinner"/> --%>
-												<form:input label="name" path="nbParkingInt"
-												class="text" />	
-									</label></td>
-									<td class="label"><form:label path="nbParkingExt">nbParkingExt</form:label></td>
-										<td><label> 
-											<%-- <form:input type="text" path="nbParkingExt" id="spn7" class="smartspinner"/> --%>
-											<form:input label="name" path="nbParkingExt"
-												class="text" />												
-									</label></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label path="nbCaves">nbCaves</form:label></td>
@@ -175,7 +134,30 @@
 												class="text" />												
 									</label></td>
 								</tr>
-								
+								<tr>
+									<td class="label"><form:label path="nbTerrasses">nbTerrasses</form:label></td>
+										<td><label> 
+											<form:input label="name" path="nbTerrasses"
+												class="text" />		
+									</label></td>
+									<td class="label"><form:label path="nbBalcons">nbBalcons</form:label></td>
+										<td><label> 
+											<form:input label="name" path="nbBalcons"
+												class="text" />	
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label path="nbParkingInt">nbParkingInt</form:label></td>
+										<td><label> 
+												<form:input label="name" path="nbParkingInt"
+												class="text" />	
+									</label></td>
+									<td class="label"><form:label path="nbParkingExt">nbParkingExt</form:label></td>
+										<td><label> 
+											<form:input label="name" path="nbParkingExt"
+												class="text" />												
+									</label></td>
+								</tr>
 								<tr>
 									<td class="label"><form:label path="interphone">interphone</form:label></td>
 										<td><label> 
@@ -187,25 +169,23 @@
 									</label></td>
 								</tr>
 								<tr>
-									<td class="label"><form:label path="cuisineEquipee">cuisineEquipee</form:label></td>
-									<td><label> 
-										<form:checkbox path="cuisineEquipee" />									
-									</label></td>
-									<td class="label"><form:label path="gardien">gardien</form:label></td>
-										<td><label> 
-											<form:checkbox path="gardien" />		
-									</label></td>
-								</tr>
-								<tr>
 									<td class="label"><form:label path="meuble">meuble</form:label></td>
 										<td><label> <form:checkbox path="meuble" />
 													
 									</label></td>
-										<td class="label"><form:label path="ascenseur" for="ascenseur">ascenseur</form:label></td>
-									<td><label> 
-										<form:checkbox path="ascenseur" />		
-									</label></td>
 								</tr>
+								<tr>
+									<td class="label"><form:label path="jardin" for="jardin">jardin</form:label></td>
+									<td><label> 
+										<form:checkbox path="jardin" />		
+									</label></td>
+									<td class="label"><form:label path="piscine" for="piscine">piscine</form:label></td>
+									<td><label> 
+										<form:checkbox path="piscine" />		
+									</label></td>
+									
+								</tr>
+								
 								
 								<tr>
 									<td class="label"><form:label path="etatBien">etatBien</form:label></td>
@@ -400,7 +380,7 @@
 											</tr>
 										</table>
 									</td>
-								</tr>							
+								</tr>								
 								<tr>
 									<td class="label">&nbsp;</td>
 									<td>&nbsp;</td>
@@ -411,10 +391,11 @@
 								</tr>
 							</table>
 						</form:form>
+
 					</div>
-					<div class="bottom">
-					</div>
+				<div class="bottom">
 				</div>
+			</div>
 			</div>
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>

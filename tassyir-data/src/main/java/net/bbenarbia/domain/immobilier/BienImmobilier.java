@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -18,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import net.bbenarbia.domain.Departement;
+import net.bbenarbia.domain.base.Adresse;
 import net.bbenarbia.domain.base.NamedEntity;
 import net.bbenarbia.domain.enums.EnumEtatBien;
 import net.bbenarbia.domain.enums.EnumStatutProperty;
@@ -33,9 +35,9 @@ public class BienImmobilier extends NamedEntity {
 	@Column(name = "ref")
 	private String reference;
 
-	@Column(name = "adresse")
-	private String adresse;
-
+	@Embedded
+	private Adresse adresse;
+	
 	@Column(name = "transport")
 	private String transport;
 
@@ -103,12 +105,17 @@ public class BienImmobilier extends NamedEntity {
 		this.reference = reference;
 	}
 
-	public String getAdresse() {
+	public Adresse getAdresse() {
 		return adresse;
 	}
 
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
+	public void setAdresse(Adresse adresse) {
+		if(adresse != null){
+			this.adresse = adresse;
+		}
+		else {
+			this.adresse = new Adresse();
+		}
 	}
 
 	public String getDescription() {

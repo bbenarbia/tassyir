@@ -180,19 +180,19 @@
 											</form:select>
 									</label></td>
 									<td class="label"><form:label path="userCategory.name">group </form:label></td>
-									<td><label> <form:select path="userCategory.name">
+									<td><label> 
+											<form:select path="userCategory.name">
 												<c:forEach var="item" items="${userGroupList}">
 													<c:choose>
 														<c:when test="${user.userCategory.name == item}">
 															<form:option selected="true" value="${item}">
-									                ${item} 
-									            </form:option>
+									               				 ${item} 
+									            			</form:option>
 														</c:when>
-
 														<c:otherwise>
 															<form:option value="${item}">
-									                   ${item}
-									            </form:option>
+									                  			 ${item}
+									            			</form:option>
 														</c:otherwise>
 													</c:choose>
 												</c:forEach>

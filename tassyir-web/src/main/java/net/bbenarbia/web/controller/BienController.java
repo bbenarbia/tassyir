@@ -27,6 +27,7 @@ import net.bbenarbia.domain.enums.EnumTypeOperation;
 import net.bbenarbia.domain.enums.ParameterCode;
 import net.bbenarbia.domain.immobilier.Appartement;
 import net.bbenarbia.domain.immobilier.BienImmobilier;
+import net.bbenarbia.domain.immobilier.Maison;
 import net.bbenarbia.domain.immobilier.Photo;
 import net.bbenarbia.domain.immobilier.Studio;
 import net.bbenarbia.service.IDepartementService;
@@ -281,6 +282,15 @@ public class BienController {
 		return "immobilier/createStudioForm";
 	}
 
+	@RequestMapping(value = "/maison/new", method = RequestMethod.GET)
+	public String initCreateMaisonForm(Model model) {
+
+		BienDTO maison = new BienDTO();
+		model.addAttribute("maison", maison);
+		return "immobilier/createMaisonForm";
+	}
+
+	
 	
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String initCreateBienForm(Model model) {
@@ -325,6 +335,10 @@ public class BienController {
 			bienDto = new BienDTO((Studio) bien);
 			model.addAttribute("bien", bienDto);
 			return "immobilier/updateStudioForm";
+		} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
+			bienDto = new BienDTO((Maison) bien); 
+			model.addAttribute("bien", bienDto);
+			return "immobilier/updateMaisonForm";
 		} else if (bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())) {
 			model.addAttribute("bien", bienDto);
 			return "immobilier/updateTerrainForm";

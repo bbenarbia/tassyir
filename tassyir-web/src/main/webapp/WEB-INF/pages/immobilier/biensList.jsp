@@ -23,7 +23,7 @@
 						
 						<table class="search_form" style="width: 100%; border: none;">
 												<tr>
-														<td class="label">Département</td>
+														<td class="label">Departement</td>
 														<td colspan="3"><label> 
 															<form:select path="departementBien"  class="select_field">
 																		<option>indifferent</option>

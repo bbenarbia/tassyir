@@ -35,7 +35,7 @@ public class IndexController {
 //		LOG.debug("Index Controller ");
 		
 		Studio studio = new Studio();
-		studio.setAdresse("adresse");
+//		studio.setAdresse("adresse");
 		studio.setAge(10);
 		studio.setAscenseur(false);
 		studio.setChargesMensuel(100);

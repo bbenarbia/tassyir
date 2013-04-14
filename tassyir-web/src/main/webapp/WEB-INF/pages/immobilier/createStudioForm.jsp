@@ -6,6 +6,18 @@
 <html>
 <head>
 <jsp:include page="./../common/head.jsp"/>
+
+   <script type="text/javascript">
+ 
+        $(document).ready(function() {
+            $('#spn1').spinit({min:0,max:200,stepInc:1,pageInc:10,  width: 80 });
+            $('#spn2').spinit({min:0,max:200,stepInc:1,pageInc:10,  width: 80 });
+            $('#spn3').spinit({min:0,max:200,stepInc:1,pageInc:10,  width: 80 });
+            $('#spn4').spinit({min:0,max:200,stepInc:1,pageInc:10,  width: 80 });
+            $('#spn5').spinit({min:0,max:3000,stepInc:1,pageInc:10,  width: 80 });
+        });
+    </script>
+ 
 </head>
 <body>
 	<div id="wrap">
@@ -54,52 +66,64 @@
 									</label></td>
 								</tr>
 								<tr>
-									<td rowspan="8" class="label"><form:label path="adresse">adresse</form:label></td>
-									<td  rowspan="8"><label> <form:textarea cols="22" rows="10"
+									<td class="label"><form:label path="age">age</form:label></td>
+										<td><label> 
+												<form:input label="age" path="age"
+													class="text smalltext" />
+									</label></td>
+									<td class="label"><form:label path="departement">departement</form:label></td>
+										<td><label> 										
+													<form:select path="departement"  class="select_field">
+																		<option>indifferent</option>
+																		<c:forEach var="item" items="${departementsList}">
+																				<option value="${item.reference}">${item.name}</option>
+																		</c:forEach>
+													</form:select>
+									</label></td>
+								</tr>
+								<tr>
+								<td class="label"><form:label path="codePostal">code postal</form:label></td>
+										<td><label> 
+											<form:input label="codePostal" path="codePostal"
+													class="text smalltext" />										
+									</label></td>
+								<td class="label"><form:label path="ville">Ville</form:label></td>
+										<td><label> 
+											<form:input label="ville" path="ville"
+													class="text smalltext" />										
+									</label></td>
+								</tr>	
+								<tr>
+									<td class="label"><form:label path="adresse">adresse</form:label></td>
+									<td ><label> <form:textarea cols="22" rows="10"
 												label="adresse" path="adresse" class="text textBoxfieldlong" />
 									</label>
 									</td>
-								</tr>								
-								<tr>
-									<td class="label"><form:label path="departement">departement</form:label></td>
-										<td><label> <form:input label="departement" path="departement"
-													class="text smalltext" />
-									</label></td>
-								</tr>								
-								<tr>
-									<td class="label"><form:label path="age">age</form:label></td>
-										<td><label> <form:input label="age" path="age"
-													class="text smalltext" />
-									</label></td>
+									<td  class="label"><form:label path="description">description</form:label></td>
+									<td ><label> <form:textarea cols="22" rows="10"
+												label="description" path="description" class="text textBoxfieldlong" />
+									</label>
+									</td>
 								</tr>
-								<tr>
-									<td class="label"><form:label path="etage">etage</form:label></td>
-										<td><label> <form:input label="etage" path="etage"
-													class="text smalltext" />
-									</label></td>
-								</tr>
+									
 								<tr>
 									<td class="label"><form:label path="nbTerrasses">nbTerrasses</form:label></td>
-										<td><label> <form:input label="nbTerrasses" path="nbTerrasses"
-													class="text smalltext" />
+										<td><label>
+											<form:input type="text" path="nbTerrasses" id="spn1" class="smartspinner"/>
 									</label></td>
-								</tr>
-								<tr>
 									<td class="label"><form:label path="nbBalcons">nbBalcons</form:label></td>
-										<td><label> <form:input label="nbBalcons" path="nbBalcons"
-													class="text smalltext" />
+										<td><label> 
+											<form:input type="text" path="nbBalcons" id="spn2" class="smartspinner"/>
 									</label></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label path="nbParkingInt">nbParkingInt</form:label></td>
-										<td><label> <form:input label="nbParkingInt" path="nbParkingInt"
-													class="text smalltext" />
+										<td><label> 
+											<form:input type="text" path="nbParkingInt" id="spn3" class="smartspinner"/>
 									</label></td>
-								</tr>
-								<tr>
 									<td class="label"><form:label path="nbParkingExt">nbParkingExt</form:label></td>
-										<td><label> <form:input label="nbParkingExt" path="nbParkingExt"
-													class="text smalltext" />
+										<td><label>
+											<form:input type="text" path="nbParkingExt" id="spn4" class="smartspinner"/>
 									</label></td>
 								</tr>
 								<tr>
@@ -113,20 +137,17 @@
 									</label></td>
 								</tr>
 								<tr>
-									<td class="label"><form:label path="cuisineEquipee">cuisineEquipee</form:label></td>
-									<td><label> 
-										<form:checkbox path="cuisineEquipee" />									
-									</label></td>
 									<td class="label"><form:label path="gardien">gardien</form:label></td>
 										<td><label> 
 											<form:checkbox path="gardien" />		
 									</label></td>
-								</tr>
-								<tr>
+							
 									<td class="label"><form:label path="meuble">meuble</form:label></td>
 										<td><label> <form:checkbox path="meuble" />
 													
 									</label></td>
+								</tr>
+								<tr>
 										<td class="label"><form:label path="ascenseur" for="ascenseur">ascenseur</form:label></td>
 									<td><label> 
 										<form:checkbox path="ascenseur" />		

@@ -1,6 +1,8 @@
 package net.bbenarbia.web.dto;
 
+import net.bbenarbia.domain.enums.EnumStatutProperty;
 import net.bbenarbia.domain.immobilier.Appartement;
+import net.bbenarbia.domain.immobilier.Maison;
 import net.bbenarbia.domain.immobilier.Studio;
 
 public class BienDTO {
@@ -12,7 +14,11 @@ public class BienDTO {
 	private String reference;
 
 	private String adresse;
-	
+
+	private String ville;
+
+	private String codePostal;
+
 	private String departement;
 
 	private String description;
@@ -38,7 +44,7 @@ public class BienDTO {
 	private int nbPieces;
 
 	private int nbChambres;
-	
+
 	private Boolean ascenseur;
 
 	private Boolean cuisineEquipee;
@@ -55,11 +61,11 @@ public class BienDTO {
 
 	private int nbParkingExt;
 
-	private boolean interphone;
+	private Boolean interphone;
 
-	private boolean digicode;
+	private Boolean digicode;
 
-	private boolean gardien;
+	private Boolean gardien;
 
 	private String consoEnergie;
 
@@ -71,11 +77,11 @@ public class BienDTO {
 
 	private String typeChauffage;
 
-	private boolean meuble;
+	private Boolean meuble;
 
 	private String transport;
 
-	private boolean adapteHandicape;
+	private Boolean adapteHandicape;
 
 	private String proximite;
 
@@ -87,7 +93,7 @@ public class BienDTO {
 
 	private int nbCaves;
 
-	private boolean piscine;
+	private Boolean piscine;
 
 	public BienDTO() {
 		super();
@@ -95,16 +101,19 @@ public class BienDTO {
 
 	public BienDTO(Appartement appartement) {
 		this(appartement.getId(), appartement.getName(), appartement
-				.getReference(), appartement.getAdresse(), appartement.getDepartement().getReference(), appartement
-				.getDescription(), appartement.getSuperficie(), appartement
-				.getStatus().toString(), appartement.getPrixVente(),
-				appartement.getLoyerMensuel(),
-				appartement.getChargesMensuel(), appartement.getTypeOperation()
-						.toString(), appartement.getEtatBien().toString(),
-				appartement.getEtage(), appartement.getNbPieces(),appartement.getNbChambres(),  appartement
-						.isAscenseur(), appartement.isCuisineEquipee(), null,
-				appartement.getAge(), appartement.getTypeBien(), appartement
-						.getNbTerrasses(), appartement.getNbBalcons(),
+				.getReference(), appartement.getAdresse().getAdresse(),
+				appartement.getAdresse().getCodePostal(), appartement
+						.getAdresse().getVille(), appartement.getDepartement()
+						.getReference(), appartement.getDescription(),
+				appartement.getSuperficie(),
+				appartement.getStatus().toString(), appartement.getPrixVente(),
+				appartement.getLoyerMensuel(), appartement.getChargesMensuel(),
+				appartement.getTypeOperation().toString(), appartement
+						.getEtatBien().toString(), appartement.getEtage(),
+				appartement.getNbPieces(), appartement.getNbChambres(),
+				appartement.isAscenseur(), appartement.isCuisineEquipee(),
+				null, appartement.getAge(), appartement.getTypeBien(),
+				appartement.getNbTerrasses(), appartement.getNbBalcons(),
 				appartement.getNbParkingInt(), appartement.getNbParkingExt(),
 				appartement.isInterphone(), appartement.isDigicode(),
 				appartement.isGardien(), appartement.getConsoEnergie()
@@ -117,16 +126,48 @@ public class BienDTO {
 				appartement.getDepotGarantie(), appartement.getNbSallesBains(),
 				appartement.getNbCaves(), false);
 	}
-
+	
+	public BienDTO(Maison maison) {
+		this(maison.getId(), maison.getName(), maison
+				.getReference(), maison.getAdresse().getAdresse(),
+				maison.getAdresse().getCodePostal(), maison
+						.getAdresse().getVille(), maison.getDepartement()
+						.getReference(), maison.getDescription(),
+						maison.getSuperficie(),
+						maison.getStatus().toString(), maison.getPrixVente(),
+						maison.getLoyerMensuel(), maison.getChargesMensuel(),
+						maison.getTypeOperation().toString(), maison
+						.getEtatBien().toString(), null,
+						maison.getNbPieces(), maison.getNbChambres(),
+						null, maison.isCuisineEquipee(),
+						maison.isJardin(), maison.getAge(), maison.getTypeBien(),
+				maison.getNbTerrasses(), maison.getNbBalcons(),
+				maison.getNbParkingInt(), maison.getNbParkingExt(),
+				maison.isInterphone(), maison.isDigicode(),
+				null, maison.getConsoEnergie()
+						.toString(), maison.getTypeEauChaude().toString(),
+						maison.getImpactConso().toString(), maison
+						.getNatureChauffage().toString(), maison
+						.getTypeChauffage().toString(), maison.isMeuble(),
+						maison.getTransport(), maison.isAdapteHandicape(),
+						maison.getProximite(), maison.getHonoraires(),
+						maison.getDepotGarantie(), maison.getNbSallesBains(),
+						maison.getNbCaves(), maison.isPiscine());
+	}
+			
 	public BienDTO(Studio studio) {
 		this(studio.getId(), studio.getName(), studio.getReference(), studio
-				.getAdresse(), studio.getDepartement().getReference(), studio.getDescription(), studio.getSuperficie(),
-				studio.getStatus().toString(), studio.getPrixVente(), studio.getLoyerMensuel(), studio
-						.getChargesMensuel(), studio.getTypeOperation()
-						.toString(), studio.getEtatBien().toString(), studio
-						.getEtage(), 0, 0, studio.isAscenseur(), null, null,
-				studio.getAge(), studio.getTypeBien(), studio.getNbTerrasses(),
-				studio.getNbBalcons(), studio.getNbParkingInt(), studio
+				.getAdresse().getAdresse(),
+				studio.getAdresse().getCodePostal(), studio.getAdresse()
+						.getVille(), studio.getDepartement().getReference(),
+				studio.getDescription(), studio.getSuperficie(), studio
+						.getStatus().toString(), studio.getPrixVente(), studio
+						.getLoyerMensuel(), studio.getChargesMensuel(), studio
+						.getTypeOperation().toString(), studio.getEtatBien()
+						.toString(), studio.getEtage(), 0, 0, studio
+						.isAscenseur(), null, null, studio.getAge(), studio
+						.getTypeBien(), studio.getNbTerrasses(), studio
+						.getNbBalcons(), studio.getNbParkingInt(), studio
 						.getNbParkingExt(), studio.isInterphone(), studio
 						.isDigicode(), studio.isGardien(), studio
 						.getConsoEnergie().toString(), studio
@@ -150,25 +191,28 @@ public class BienDTO {
 	// commerce.getAge(), commerce.getTypeBien());
 	// }
 
-	public BienDTO(Long id, String name, String reference, String adresse, String departement, 
+	public BienDTO(Long id, String name, String reference, String adresse, String codePostal, String ville, String departement, 
 			String description, double superficie, String status,
 			double prixVente, double loyerMensuel,
 			double chargesMensuel, String typeOperation, String etatBien,
 			String etage, int nbPieces, int nbChambres, Boolean ascenseur,
 			Boolean cuisineEquipee, Boolean jardin, int age, String typeBien,
 			int nbTerrasses, int nbBalcons, int nbParkingInt, int nbParkingExt,
-			boolean interphone, boolean digicode, boolean gardien,
+			Boolean interphone, Boolean digicode, Boolean gardien,
 			String consoEnergie, String typeEauChaude, String impactConso,
-			String natureChauffage, String typeChauffage, boolean meuble,
-			String transport, boolean adapteHandicape, String proximite,
+			String natureChauffage, String typeChauffage, Boolean meuble,
+			String transport, Boolean adapteHandicape, String proximite,
 			double honoraires, double depotGarantie, int nbSallesBains,
-			int nbCaves, boolean piscine) {
+			int nbCaves, Boolean piscine) {
+		
 		super();
 		this.name = name;
 		this.id = id;
 		this.reference = reference;
 		this.departement = departement;
 		this.adresse = adresse;
+		this.codePostal = codePostal;
+		this.ville = ville;
 		this.description = description;
 		this.superficie = superficie;
 		this.status = status;
@@ -207,6 +251,55 @@ public class BienDTO {
 		this.nbCaves = nbCaves;
 		this.piscine = piscine;
 	}
+	
+	
+	public Maison getMaison() {
+		
+		Maison maison = new Maison();
+		maison.setName(name);
+		maison.setId(id);
+		maison.setReference(reference);
+//		maison.setDepartement(departement) ;
+		maison.getAdresse().setAdresse(adresse);
+		maison.getAdresse().setCodePostal(codePostal);
+		maison.getAdresse().setVille(ville);
+		maison.setDescription(description);
+		maison.setSuperficie(superficie) ;
+		EnumStatutProperty status;
+		maison.setStatus(status);
+		maison.setPrixVente(prixVente) ;
+		maison.setLoyerMensuel(loyerMensuel) = loyerMensuel;
+		maison.setChargesMensuel(chargesMensuel) = chargesMensuel;
+		maison.setTypeOperation(typeOperation) = typeOperation;
+		maison.setEtatBien(etatBien) = etatBien;
+		maison.setNbPieces(nbPieces) = nbPieces;
+		maison.setNbChambres(nbChambres) = nbChambres;
+		maison.setCuisineEquipee(cuisineEquipee) = cuisineEquipee;
+		maison.setJardin(jardin) = jardin;
+		maison.setAge(age) = age;
+		maison.setTypeBien(typeBien) = typeBien;
+		maison.setNbTerrasses(nbTerrasses) = nbTerrasses;
+		maison.setNbBalcons(nbBalcons) = nbBalcons;
+		maison.setNbParkingInt(nbParkingInt) = nbParkingInt;
+		maison.setNbParkingExt(nbParkingExt) = nbParkingExt;
+		maison.setInterphone(interphone) = interphone;
+		maison.setDigicode(digicode) = digicode;
+		maison.setConsoEnergie(consoEnergie) = consoEnergie;
+		maison.setTypeEauChaude(typeEauChaude) = typeEauChaude;
+		maison.setImpactConso(impactConso) = impactConso;
+		maison.setNatureChauffage(natureChauffage) = natureChauffage;
+		maison.setTypeChauffage(typeChauffage) = typeChauffage;
+		maison.setMeuble(meuble) = meuble;
+		maison.setTransport(transport) = transport;
+		maison.setAdapteHandicape(adapteHandicape) = adapteHandicape;
+		maison.setProximite(proximite) = proximite;
+		maison.setHonoraires(honoraires) = honoraires;
+		maison.setDepotGarantie(depotGarantie) = depotGarantie;
+		maison.setNbSallesBains(nbSallesBains) = nbSallesBains;
+		maison.setNbCaves(nbCaves) = nbCaves;
+		maison.setPiscine(piscine) = piscine;
+	}
+	
 
 	public String getName() {
 		return name;
@@ -214,6 +307,14 @@ public class BienDTO {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getReference() {
@@ -230,6 +331,30 @@ public class BienDTO {
 
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
+	}
+
+	public String getVille() {
+		return ville;
+	}
+
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+
+	public String getCodePostal() {
+		return codePostal;
+	}
+
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
+	}
+
+	public String getDepartement() {
+		return departement;
+	}
+
+	public void setDepartement(String departement) {
+		this.departement = departement;
 	}
 
 	public String getDescription() {
@@ -254,6 +379,14 @@ public class BienDTO {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getTypeBien() {
+		return typeBien;
+	}
+
+	public void setTypeBien(String typeBien) {
+		this.typeBien = typeBien;
 	}
 
 	public double getPrixVente() {
@@ -312,6 +445,14 @@ public class BienDTO {
 		this.nbPieces = nbPieces;
 	}
 
+	public int getNbChambres() {
+		return nbChambres;
+	}
+
+	public void setNbChambres(int nbChambres) {
+		this.nbChambres = nbChambres;
+	}
+
 	public Boolean getAscenseur() {
 		return ascenseur;
 	}
@@ -342,22 +483,6 @@ public class BienDTO {
 
 	public void setAge(int age) {
 		this.age = age;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getTypeBien() {
-		return typeBien;
-	}
-
-	public void setTypeBien(String typeBien) {
-		this.typeBien = typeBien;
 	}
 
 	public int getNbTerrasses() {
@@ -392,27 +517,27 @@ public class BienDTO {
 		this.nbParkingExt = nbParkingExt;
 	}
 
-	public boolean isInterphone() {
+	public Boolean getInterphone() {
 		return interphone;
 	}
 
-	public void setInterphone(boolean interphone) {
+	public void setInterphone(Boolean interphone) {
 		this.interphone = interphone;
 	}
 
-	public boolean isDigicode() {
+	public Boolean getDigicode() {
 		return digicode;
 	}
 
-	public void setDigicode(boolean digicode) {
+	public void setDigicode(Boolean digicode) {
 		this.digicode = digicode;
 	}
 
-	public boolean isGardien() {
+	public Boolean getGardien() {
 		return gardien;
 	}
 
-	public void setGardien(boolean gardien) {
+	public void setGardien(Boolean gardien) {
 		this.gardien = gardien;
 	}
 
@@ -456,11 +581,11 @@ public class BienDTO {
 		this.typeChauffage = typeChauffage;
 	}
 
-	public boolean isMeuble() {
+	public Boolean getMeuble() {
 		return meuble;
 	}
 
-	public void setMeuble(boolean meuble) {
+	public void setMeuble(Boolean meuble) {
 		this.meuble = meuble;
 	}
 
@@ -472,11 +597,11 @@ public class BienDTO {
 		this.transport = transport;
 	}
 
-	public boolean isAdapteHandicape() {
+	public Boolean getAdapteHandicape() {
 		return adapteHandicape;
 	}
 
-	public void setAdapteHandicape(boolean adapteHandicape) {
+	public void setAdapteHandicape(Boolean adapteHandicape) {
 		this.adapteHandicape = adapteHandicape;
 	}
 
@@ -520,30 +645,13 @@ public class BienDTO {
 		this.nbCaves = nbCaves;
 	}
 
-	public boolean isPiscine() {
+	public Boolean getPiscine() {
 		return piscine;
 	}
 
-	public void setPiscine(boolean piscine) {
+	public void setPiscine(Boolean piscine) {
 		this.piscine = piscine;
 	}
-
-	public String getDepartement() {
-		return departement;
-	}
-
-	public void setDepartement(String departement) {
-		this.departement = departement;
-	}
-
-	public int getNbChambres() {
-		return nbChambres;
-	}
-
-	public void setNbChambres(int nbChambres) {
-		this.nbChambres = nbChambres;
-	}
-
 
 	
 }

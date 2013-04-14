@@ -46,4 +46,25 @@ public enum EnumConsEnergie {
 		}
 		return null;
 	}
+	
+	 public static EnumConsEnergie getEnumConsEnergieName(String name){
+	    	
+		 	if(name.equalsIgnoreCase("A")){
+	    		return EnumConsEnergie.A;
+	    	}
+	    	else if(name.equalsIgnoreCase("B")){
+	    		return EnumConsEnergie.B;
+	    	}else if(name.equalsIgnoreCase("C")){
+	    		return EnumConsEnergie.C;
+	    	}else if(name.equalsIgnoreCase("D")){
+	    		return EnumConsEnergie.D;
+	    	}else if(name.equalsIgnoreCase("E")){
+	    		return EnumConsEnergie.E;
+	    	}else if(name.equalsIgnoreCase("F")){
+	    		return EnumConsEnergie.F;
+	    	}else 
+	    		return EnumConsEnergie.G;
+	    	
+	    }
+	 
 }

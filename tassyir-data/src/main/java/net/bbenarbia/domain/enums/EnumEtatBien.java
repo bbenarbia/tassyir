@@ -22,4 +22,15 @@ public enum EnumEtatBien {
 		}
 		return null;
 	}
+	 public static EnumEtatBien getEnumEtatBienByName(String name){
+	    	
+		 	if(name.equalsIgnoreCase("A_RESTAURER")){
+	    		return EnumEtatBien.A_RESTAURER;
+	    	}
+	    	else if(name.equalsIgnoreCase("CORRECT")){
+	    		return EnumEtatBien.CORRECT;
+	    	}else 
+	    		return EnumEtatBien.IMPECCABLE;
+	    	
+	    }
 }

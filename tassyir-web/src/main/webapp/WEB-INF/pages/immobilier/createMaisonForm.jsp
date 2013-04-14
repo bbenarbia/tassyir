@@ -6,32 +6,31 @@
 <html>
 <head>
 	<jsp:include page="./../common/head.jsp"/>
-	<!-- <script type="text/javascript">
+	<script type="text/javascript">
  
         $(document).ready(function() {
-            $('#spn1').spinit({width: 80 });
-            $('#spn2').spinit({width: 80 });
-            $('#spn3').spinit({width: 80 });
-            $('#spn4').spinit({width: 80 });
-            $('#spn5').spinit({width: 80 });
-            $('#spn6').spinit({width: 80 });
-            $('#spn7').spinit({width: 80 });
+            $('#spn1').spinit({min:0,max:200,stepInc:1,pageInc:10,  width: 80 });
+            $('#spn2').spinit({min:0,max:200,stepInc:1,pageInc:10,  width: 80 });
+            $('#spn3').spinit({min:0,max:200,stepInc:1,pageInc:10,  width: 80 });
+            $('#spn4').spinit({min:0,max:200,stepInc:1,pageInc:10,  width: 80 });
+            $('#spn5').spinit({min:0,max:3000,stepInc:1,pageInc:10,  width: 80 });
+            $('#spn6').spinit({min:0,max:3000,stepInc:1,pageInc:10,  width: 80 });
         });
-    </script> -->
+    </script>
+    
 </head>
 <body>
 	<div id="wrap">
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">
 			<jsp:include page="../common/sub-menu.jsp" />
-
 			<div id="home_main_edit_user">
 				<div id="edit_user">
 					<div class="tab">
-						<h2>Edit Appartement</h2>
+						<h2>Create Maison</h2>
 					</div>
 					<div class="container">
-						<form:form modelAttribute="bien" method="put" id="form1">
+						<form:form modelAttribute="maison" method="post" id="form1">
 							<table class="edit_form_user" style="width: 100%; border: none;">
 								<tr>
 									<td class="label" style="width: 30px; "><form:label path="name">name</form:label></td>
@@ -65,39 +64,25 @@
 												path="chargesMensuel" class="text smalltext" />
 									</label></td>
 								</tr>
-								
 								<tr>
 									<td class="label"><form:label path="age">age</form:label></td>
 										<td><label> <form:input label="age" path="age"
 													class="text smalltext" />
 									</label></td>
-									
 									<td class="label"><form:label path="etage">etage</form:label></td>
-										<td><label> 
-											<form:input label="etage" path="etage"
-													class="text smalltext" />										
+										<td><label> <form:input label="etage" path="etage"
+													class="text smalltext" />
 									</label></td>
-									
 								</tr>
 								<tr>
 									<td class="label"><form:label path="departement">departement</form:label></td>
-										<td><label> 	
-												<form:select path="departement"  class="select_field">
-													<c:forEach var="item" items="${departementsList}">
-														<c:choose>
-															<c:when test="${departement == item.reference}">
-																<form:option selected="true" value="${item.reference}">
-										               				 ${item.name} 
-										            			</form:option>
-															</c:when>
-															<c:otherwise>
-																<form:option value="${item.reference}">
-										                  			 ${item.name}
-										            			</form:option>
-															</c:otherwise>
-														</c:choose>
-												</c:forEach>
-												</form:select>
+										<td><label> 										
+													<form:select path="departement"  class="select_field">
+																		<option>indifferent</option>
+																		<c:forEach var="item" items="${departementsList}">
+																				<option value="${item.reference}">${item.name}</option>
+																		</c:forEach>
+													</form:select>
 									</label></td>
 								<td class="label"><form:label path="codePostal">code postal</form:label></td>
 										<td><label> 
@@ -124,58 +109,37 @@
 									</label>
 									</td>
 								</tr>
-														
+								
 								<tr>
 									<td class="label"><form:label path="nbPieces">nbPieces</form:label></td>
 									<td><label> 
-										<%-- <form:input type="text" path="nbPieces" id="spn1" class="text smartspinner"/> --%>
-										<form:input label="name" path="nbPieces"
-												class="text" />										
+											<form:input type="text" path="nbPieces" id="spn1" class="smartspinner"/>
 									</label></td>
 									<td class="label"><form:label path="nbChambres">nbChambres</form:label></td>
 									<td><label> 
-											<%-- <form:input type="text" path="nbChambres" id="spn2" class="smartspinner"/> --%>
-											<form:input label="name" path="nbChambres"
-												class="text" />		
+											<form:input type="text" path="nbChambres" id="spn2" class="smartspinner"/>
 									</label></td>
-									
 								</tr>
 								<tr>
 									<td class="label"><form:label path="nbTerrasses">nbTerrasses</form:label></td>
 										<td><label> 
-											<%-- <form:input type="text" path="nbTerrasses" id="spn4" class="smartspinner"/> --%>
-											<form:input label="name" path="nbTerrasses"
-												class="text" />		
+												<form:input type="text" path="nbTerrasses" id="spn3" class="smartspinner"/>
 									</label></td>
 									<td class="label"><form:label path="nbBalcons">nbBalcons</form:label></td>
 										<td><label> 
-											<%-- <form:input type="text" path="nbBalcons" id="spn5" class="smartspinner"/> --%>
-											<form:input label="name" path="nbBalcons"
-												class="text" />	
+												<form:input type="text" path="nbBalcons" id="spn4" class="smartspinner"/>
 									</label></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label path="nbParkingInt">nbParkingInt</form:label></td>
 										<td><label> 
-												<%-- <form:input type="text" path="nbParkingInt" id="spn6" class="smartspinner"/> --%>
-												<form:input label="name" path="nbParkingInt"
-												class="text" />	
+												<form:input type="text" path="nbParkingInt" id="spn5" class="smartspinner"/>
 									</label></td>
 									<td class="label"><form:label path="nbParkingExt">nbParkingExt</form:label></td>
 										<td><label> 
-											<%-- <form:input type="text" path="nbParkingExt" id="spn7" class="smartspinner"/> --%>
-											<form:input label="name" path="nbParkingExt"
-												class="text" />												
+												<form:input type="text" path="nbParkingExt" id="spn6" class="smartspinner"/>
 									</label></td>
 								</tr>
-								<tr>
-									<td class="label"><form:label path="nbCaves">nbCaves</form:label></td>
-										<td><label> 
-											<form:input label="name" path="nbCaves"
-												class="text" />												
-									</label></td>
-								</tr>
-								
 								<tr>
 									<td class="label"><form:label path="interphone">interphone</form:label></td>
 										<td><label> 
@@ -191,9 +155,10 @@
 									<td><label> 
 										<form:checkbox path="cuisineEquipee" />									
 									</label></td>
-									<td class="label"><form:label path="gardien">gardien</form:label></td>
+									
+									<td class="label"><form:label path="jardin">jardin</form:label></td>
 										<td><label> 
-											<form:checkbox path="gardien" />		
+											<form:checkbox path="jardin" />		
 									</label></td>
 								</tr>
 								<tr>
@@ -201,9 +166,9 @@
 										<td><label> <form:checkbox path="meuble" />
 													
 									</label></td>
-										<td class="label"><form:label path="ascenseur" for="ascenseur">ascenseur</form:label></td>
-									<td><label> 
-										<form:checkbox path="ascenseur" />		
+									<td class="label"><form:label path="piscine">piscine</form:label></td>
+										<td><label> 
+											<form:checkbox path="piscine" />		
 									</label></td>
 								</tr>
 								
@@ -212,21 +177,11 @@
 									<td>
 										<table>
 											<tr>
+											
 												<form:select path="etatBien"  class="select_field">
-													<c:forEach var="item" items="${etatBienList}">
-														<c:choose>
-															<c:when test="${etatBien == item}">
-																<form:option selected="true" value="${item}">
-										               				 ${item} 
-										            			</form:option>
-															</c:when>
-															<c:otherwise>
-																<form:option value="${item}">
-										                  			 ${item}
-										            			</form:option>
-															</c:otherwise>
-														</c:choose>
-												</c:forEach>
+																			<c:forEach var="etatBien" items="${etatBienList}">
+																					<option value="${etatBien}">${etatBien}</option>
+																			</c:forEach>
 												</form:select>
 											</tr>
 										</table>
@@ -236,20 +191,9 @@
 										<table>
 											<tr>
 												<form:select path="typeEauChaude"  class="select_field">
-													<c:forEach var="item" items="${typeEauChaudeList}">
-														<c:choose>
-															<c:when test="${typeEauChaude == item}">
-																<form:option selected="true" value="${item}">
-										               				 ${item} 
-										            			</form:option>
-															</c:when>
-															<c:otherwise>
-																<form:option value="${item}">
-										                  			 ${item}
-										            			</form:option>
-															</c:otherwise>
-														</c:choose>
-												</c:forEach>
+																			<c:forEach var="typeEauChaude" items="${typeEauChaudeList}">
+																					<option value="${typeEauChaude}">${typeEauChaude}</option>
+																			</c:forEach>
 												</form:select>
 											</tr>
 										</table>
@@ -261,21 +205,10 @@
 									<td>
 										<table>
 											<tr>
-												<form:select path="natureChauffage"  class="select_field">
-													<c:forEach var="item" items="${typeNatureChauffageList}">
-														<c:choose>
-															<c:when test="${natureChauffage == item}">
-																<form:option selected="true" value="${item}">
-										               				 ${item} 
-										            			</form:option>
-															</c:when>
-															<c:otherwise>
-																<form:option value="${item}">
-										                  			 ${item}
-										            			</form:option>
-															</c:otherwise>
-														</c:choose>
-												</c:forEach>
+											   <form:select path="natureChauffage"  class="select_field">
+																			<c:forEach var="natureChauffage" items="${typeNatureChauffageList}">
+																					<option value="${natureChauffage}">${natureChauffage}</option>
+																			</c:forEach>
 												</form:select>
 											</tr>
 										</table>
@@ -285,20 +218,9 @@
 										<table>
 											<tr>
 												<form:select path="typeChauffage"  class="select_field">
-													<c:forEach var="item" items="${typeTypeChauffageList}">
-														<c:choose>
-															<c:when test="${typeChauffage == item}">
-																<form:option selected="true" value="${item}">
-										               				 ${item} 
-										            			</form:option>
-															</c:when>
-															<c:otherwise>
-																<form:option value="${item}">
-										                  			 ${item}
-										            			</form:option>
-															</c:otherwise>
-														</c:choose>
-												</c:forEach>
+																			<c:forEach var="natureChauffage" items="${typeTypeChauffageList}">
+																					<option value="${natureChauffage}">${natureChauffage}</option>
+																			</c:forEach>
 												</form:select>
 											</tr>
 										</table>
@@ -311,20 +233,9 @@
 										<table>
 											<tr>
 												<form:select path="consoEnergie"  class="select_field">
-													<c:forEach var="item" items="${typeConsoEnergieList}">
-														<c:choose>
-															<c:when test="${consoEnergie == item}">
-																<form:option selected="true" value="${item}">
-										               				 ${item} 
-										            			</form:option>
-															</c:when>
-															<c:otherwise>
-																<form:option value="${item}">
-										                  			 ${item}
-										            			</form:option>
-															</c:otherwise>
-														</c:choose>
-												</c:forEach>
+																			<c:forEach var="consoEnergie" items="${typeConsoEnergieList}">
+																					<option value="${consoEnergie}">${consoEnergie}</option>
+																			</c:forEach>
 												</form:select>
 											</tr>
 										</table>
@@ -334,20 +245,9 @@
 										<table>
 											<tr>
 												<form:select path="impactConso"  class="select_field">
-													<c:forEach var="item" items="${typeImpactConsoList}">
-														<c:choose>
-															<c:when test="${impactConso == item}">
-																<form:option selected="true" value="${item}">
-										               				 ${item} 
-										            			</form:option>
-															</c:when>
-															<c:otherwise>
-																<form:option value="${item}">
-										                  			 ${item}
-										            			</form:option>
-															</c:otherwise>
-														</c:choose>
-												</c:forEach>
+																			<c:forEach var="impactConso" items="${typeImpactConsoList}">
+																					<option value="${impactConso}">${impactConso}</option>
+																			</c:forEach>
 												</form:select>
 											</tr>
 										</table>
@@ -359,20 +259,9 @@
 										<table>
 											<tr>
 												<form:select path="status"  class="select_field">
-													<c:forEach var="item" items="${statusList}">
-														<c:choose>
-															<c:when test="${status == item}">
-																<form:option selected="true" value="${item}">
-										               				 ${item} 
-										            			</form:option>
-															</c:when>
-															<c:otherwise>
-																<form:option value="${item}">
-										                  			 ${item}
-										            			</form:option>
-															</c:otherwise>
-														</c:choose>
-												</c:forEach>
+																			<c:forEach var="status" items="${statusList}">
+																					<option value="${status}">${status}</option>
+																			</c:forEach>
 												</form:select>
 											</tr>
 										</table>
@@ -382,20 +271,9 @@
 										<table>
 											<tr>
 												<form:select path="typeOperation"  class="select_field">
-													<c:forEach var="item" items="${typeOperationList}">
-														<c:choose>
-															<c:when test="${typeOperation == item}">
-																<form:option selected="true" value="${item}">
-										               				 ${item} 
-										            			</form:option>
-															</c:when>
-															<c:otherwise>
-																<form:option value="${item}">
-										                  			 ${item}
-										            			</form:option>
-															</c:otherwise>
-														</c:choose>
-												</c:forEach>
+																			<c:forEach var="typeOperation" items="${typeOperationList}">
+																					<option value="${typeOperation}">${typeOperation}</option>
+																			</c:forEach>
 												</form:select>
 											</tr>
 										</table>
@@ -411,6 +289,7 @@
 								</tr>
 							</table>
 						</form:form>
+
 					</div>
 					<div class="bottom">
 					</div>

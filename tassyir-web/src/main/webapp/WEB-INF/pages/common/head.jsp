@@ -10,5 +10,12 @@
 <link rel="stylesheet" type="text/css" media="screen" href='<c:url value="/resources/stylesheets/style.css"/>' />
 <link rel="stylesheet" type="text/css" media="screen" href='<c:url value="/resources/stylesheets/carroussel.css"/>' />
 
+<link rel="stylesheet" type="text/css" media="screen" href='<c:url value="/resources/stylesheets/smartspinner.css"/>' />
+
+
 <script type='text/javascript' src='<c:url value="/resources/scripts/jquery-1.9.1.js"/>'></script>
 <script type='text/javascript' src='<c:url value="/resources/scripts/carroussel.js"/>'></script>
+
+
+<script type='text/javascript' src='<c:url value="/resources/scripts/smartspinner.js"/>'></script>
+

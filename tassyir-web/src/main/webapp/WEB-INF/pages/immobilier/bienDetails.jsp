@@ -57,6 +57,11 @@
 							: ${bien.reference}
 						</p>
 						<p>
+							${bien.adresse.adresse} <br/> 
+							${bien.adresse.codePostal} <br/>
+							${bien.adresse.ville}
+						</p>
+						<p>
 							<spring:message code="bien.departement" />
 							:${bien.departement.name}(${bien.departement.reference})
 						</p>
@@ -82,11 +87,6 @@
 						</c:if>
 						
 						<div id="tabs">
-							<ul>
-								<li><a href="#tabs-1">Save This</a></li>
-								<li><a href="#tabs-2">Send This</a></li>
-								<li><a href="#tabs-3">Report This</a></li>
-							</ul>
 							<div id="tabs-1" class="hiddentab">
 								<p>
 									<img src='<c:url value="/resources/graphics/fav.gif"/>'  alt="FAv" width="18" height="13" />&nbsp;<a
@@ -101,22 +101,7 @@
 										href="#">To SMS Alerts</a>
 								</p>
 							</div>
-							<div id="tabs-2" class="hiddentab">
-								<p>
-									<img src='<c:url value="/resources/graphics/emailalert.gif"/>' alt="email" width="18"
-										height="15" />&nbsp;<a href="#">By Email</a>
-								</p>
-								<p>
-									<img src='<c:url value="/resources/graphics/sms.gif"/>' alt="sms" width="18" height="16" />&nbsp;<a
-										href="#">By SMS</a>
-								</p>
-							</div>
-							<div id="tabs-3" class="hiddentab">
-								<p>
-									<img src='<c:url value="/resources/graphics/emailalert.gif"/>' alt="email" width="18"
-										height="15" />&nbsp;<a href="#">Report Spam</a>
-								</p>
-							</div>
+							
 						</div>
 					</div>
 					<div class="clear">&nbsp;</div>
@@ -159,8 +144,6 @@
 							</tr>
 							<tr>
 								<td><ul>
-										<li><spring:message code="bien.adresse" />: <c:out
-												value="${bien.adresse}" /></li>
 										<li><spring:message code="bien.superficie" />: <c:out
 												value="${bien.superficie} m²" /></li>
 										<li><spring:message code="bien.status" /> : <c:out
@@ -186,6 +169,8 @@
 										<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='MAISON'}">
 											<li><spring:message code="bien.nbPieces" />: <c:out
 													value="${bien.nbPieces}" /><li>
+											<li><spring:message code="bien.nbChambres" />: <c:out
+													value="${bien.nbChambres}" /><li>
 											<c:choose>
 													<c:when test="${bien.cuisineEquipee}">
 														<li> <spring:message code="bien.cuisineEquipee" />:Oui </li>
