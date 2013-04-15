@@ -40,7 +40,6 @@ CREATE TABLE IF NOT EXISTS fonction (
 ) engine=InnoDB  DEFAULT CHARSET=utf8;
 
 
-
 CREATE TABLE IF NOT EXISTS contact (
   id INT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
   typecontact INT(5) DEFAULT 0,
@@ -84,10 +83,18 @@ CREATE TABLE IF NOT EXISTS users (
   login VARCHAR(30),
   password VARCHAR(30),
   locked  tinyint (1),
-  is_admin  tinyint (1),
-  fk_contact INT(5) UNSIGNED NOT NULL,
+  is_admin  tinyint (1),  
+  adresse VARCHAR(300),
+  codePostal VARCHAR(10),
+  ville VARCHAR(30),
+  alertesurtelephone1  tinyint (1),
+  alertesurtelephone2  tinyint (1),
+  adresseMail VARCHAR(80),
+  siteWeb	VARCHAR(80),
+  telephonePerso  VARCHAR(80),
+  telephoneProf VARCHAR(80),
+  mobile  VARCHAR(80),
   fk_categorieutilisateur INT(5) UNSIGNED NOT NULL,  
-  FOREIGN KEY (fk_contact) REFERENCES  contact(id),
   FOREIGN KEY (fk_categorieutilisateur) REFERENCES  user_categories(id),
   INDEX(last_name)
 ) engine=InnoDB  DEFAULT CHARSET=utf8;

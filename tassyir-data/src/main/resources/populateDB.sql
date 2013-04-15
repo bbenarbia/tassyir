@@ -144,12 +144,15 @@ insert into contact values (2, 1, "Contact2", "Company 2",  "adresse1",  false, 
 insert into contact values (3, 1, "Contact3", "Company 3",  "adresse1",  false, true, 75001, "Paris", "adresse@yahoo.fr", 
 "www.bbenarbia.fr", "01010101", "0202020202");
 
+insert into users VALUES (1, 1, "c:\\Benaissa\\temp\\p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, "adresse1","93800",
+"Epinay sur seine", false, false, "ben@gmail.com","www.bbenaissa.fr","01010101","","0625252525",2);
+insert into users VALUES (2, 2, "c:\\Benaissa\\temp\\p2.jpg", "said", "med","smed","smed",true, false, "adresse2","65800",
+"Epinay sur seine", false, false, "ben@gmail.com","www.bbenarbia.fr","01010101","","0625252525", 1);
+insert into users VALUES (3, 3, "c:\\Benaissa\\temp\\p3.jpg", "lakhdar", "omar","lomar","lomar",true, false,"adresse3","95800",
+"Epinay sur seine", false, false, "ben@gmail.com","","01010101","","0625252525",  2);
 
-insert into users VALUES (1, 1, "c:\\Benaissa\\temp\\p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, 1, 2);
-insert into users VALUES (2, 2, "c:\\Benaissa\\temp\\p2.jpg", "said", "med","smed","smed",true, false, 2, 1);
-insert into users VALUES (3, 3, "c:\\Benaissa\\temp\\p3.jpg", "lakhdar", "omar","lomar","lomar",true, false, 3 , 2);
-
-
+  
+  
 insert into user_role values (1,1);
 insert into user_role values (1,2);
 insert into user_role values (2,1);

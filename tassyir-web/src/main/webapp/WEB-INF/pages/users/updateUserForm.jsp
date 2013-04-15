@@ -84,100 +84,74 @@
 								<td colspan="4" align="center">Contact infos</td>
 								</tr>
 								<tr>
-									<td class="label"><form:label path="contact.nameContact">nameContact</form:label></td>
-									<td><label> <form:input
-												label="contact.nameContact" path="contact.nameContact"
-												class="text" />
-									</label></td>
-									<td class="label"><form:label
-											path="contact.nomSocieteContact">nom Societe</form:label></td>
-									<td><label> <form:input
-												label="contact.nomSocieteContact"
-												path="contact.nomSocieteContact" class="text" />
+									<td rowspan="3" class="label"><form:label
+											path="adresse">adresse</form:label></td>
+									<td rowspan="3"><label> <form:textarea cols="26"
+												rows="10" label="adresse"
+												path="adresse" class="text textBoxfieldlong" />
 									</label></td>
 								</tr>
 								<tr>
-									<td rowspan="2"  class="label"><form:label
-											path="contact.adresseContact1">adresse</form:label></td>
-									<td  rowspan="2"><label>
-									 <form:textarea cols="20" rows="10"
-												label="contact.adresseContact1"
-												path="contact.adresseContact1" class="text textBoxfield" />
-									</label></td>
-									<td class="label"><form:label
-											path="contact.codePostalContact">code Postal</form:label></td>
+									<td class="label"><form:label path="ville">ville</form:label></td>
 									<td><label> <form:input
-												label="contact.codePostalContact"
-												path="contact.codePostalContact" class="text" />
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><form:label path="contact.villeContact">ville</form:label></td>
-									<td><label> <form:input
-												label="contact.villeContact" path="contact.villeContact"
+												label="ville" path="ville"
 												class="text" />
 									</label></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label
-											path="contact.telephoneContact1">telephone 1</form:label></td>
+											path="codePostal">codePostal</form:label></td>
 									<td><label> <form:input
-												label="contact.telephoneContact1"
-												path="contact.telephoneContact1" class="text"  />
+												label="codePostal"
+												path="codePostal" class="text" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label
+											path="telephonePerso">telephonePerso</form:label></td>
+									<td><label> <form:input
+												label="telephonePerso"
+												path="telephonePerso" class="text" />
 									</label></td>
 									<td class="label"><form:label
-											path="contact.alerteSurTelephone1">alerte Telephone1</form:label></td>
+											path="alerteSurTelephone1">alerte Telephone1</form:label></td>
 									<td><label> <form:checkbox
-												
-												path="contact.alerteSurTelephone1" />
+												path="alerteSurTelephone1" />
 									</label></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label
-											path="contact.telephoneContact2">telephone 2</form:label></td>
+											path="telephoneProf">telephoneProf</form:label></td>
 									<td><label> <form:input
-												label="contact.telephoneContact2"
-												path="contact.telephoneContact2" class="text" />
+												label="telephoneProf"
+												path="telephoneProf" class="text" />
 									</label></td>
 									<td class="label"><form:label
-											path="contact.alerteSurTelephone1">alerte  Telephone2</form:label></td>
+											path="alerteSurTelephone2">alerte  Telephone2</form:label></td>
 									<td><label> <form:checkbox
-												path="contact.alerteSurTelephone2" />
+												path="alerteSurTelephone2" />
 									</label></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label
-											path="contact.adresseMailContact">EMail</form:label></td>
+											path="adresseMail">EMail</form:label></td>
 									<td><label> <form:input
-												label="contact.adresseMailContact"
-												path="contact.adresseMailContact" class="text" />
+												label="adresseMail"
+												path="adresseMail" class="text" />
 									</label></td>
 									<td class="label"><form:label
-											path="contact.siteWebContact">site Web</form:label></td>
+											path="siteWeb">site Web</form:label></td>
 									<td><label> <form:input
-												label="contact.siteWebContact" path="contact.siteWebContact"
+												label="siteWeb" path="siteWeb"
 												class="text" />
 									</label></td>
 								</tr>
 								<tr>
-									<td class="label"><form:label path="contact.typeContact">type Contact</form:label></td>
-									<td><label> <form:select
-												path="contact.typeContact">
-												<c:forEach var="item" items="${typeContactList}">
-													<c:choose>
-														<c:when test="${user.contact.typeContact == item}">
-															<form:option selected="true" value="${item}">
-										                ${item} 
-										            </form:option>
-														</c:when>
-														<c:otherwise>
-															<form:option value="${item}">
-										                	   ${item}
-										            		</form:option>
-														</c:otherwise>
-													</c:choose>
-												</c:forEach>
-											</form:select>
+									<td class="label"><form:label
+											path="telephoneMobile">telephoneMobile</form:label></td>
+									<td><label> <form:input
+												label="telephoneMobile"
+												path="telephoneMobile" class="text" />
 									</label></td>
 									<td class="label"><form:label path="userCategory.name">group </form:label></td>
 									<td><label> 

@@ -1,40 +1,54 @@
 package net.bbenarbia.web.dto;
 
-
-import javax.validation.Valid;
-
 import net.bbenarbia.domain.User;
+import net.bbenarbia.domain.base.Contact;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
-public class UserDTO { 
-	
+public class UserDTO {
+
 	private String id;
-	@NotEmpty(message="Code must not be empty.")
-	@NumberFormat(style= Style.NUMBER)
+	@NotEmpty(message = "Code must not be empty.")
+	@NumberFormat(style = Style.NUMBER)
 	private String code;
-	@NotEmpty(message="First name must not be empty.")
+	@NotEmpty(message = "First name must not be empty.")
 	private String firstName;
-	@NotEmpty(message="Last name must not be empty.")
+	@NotEmpty(message = "Last name must not be empty.")
 	private String lastName;
-	@NotEmpty(message="login name must not be empty.")
+	@NotEmpty(message = "login name must not be empty.")
 	private String login;
 	private String password;
 	private String passwordConfirmation;
 	private Boolean locked;
 	private Boolean isAdmin;
-	@Valid
-	private ContactDTO contact;
+	@NotEmpty(message = "adresse must not be empty.")
+	private String adresse;
+	@NotEmpty(message = "code postal must not be empty.")
+	private String codePostal;
+	@NotEmpty(message = "ville must not be empty.")
+	private String ville;
+	private Boolean alerteSurTelephone1;
+	private Boolean alerteSurTelephone2;
+	@NotEmpty(message = "mail must not be empty.")
+	private String adresseMail;
+	private String siteWeb;
+	@NotEmpty(message = "telephone must not be empty.")
+	private String telephonePerso;
+	@NotEmpty(message = "telephone must not be empty.")
+	private String telephoneProf;
+	@NotEmpty(message = "telephone must not be empty.")
+	private String telephoneMobile;
+
 	private UserCategoryDTO userCategory;
 
 	private RoleFormDTOList roleFormList;
-	
+
 	public UserDTO() {
 		super();
 	}
-	
+
 	public UserDTO(User user) {
 		super();
 		this.id = String.valueOf(user.getId());
@@ -46,58 +60,90 @@ public class UserDTO {
 		this.passwordConfirmation = user.getPassword();
 		this.locked = user.getLocked();
 		this.isAdmin = user.getIsAdmin();
-		this.contact = new ContactDTO(user.getContact());
+		this.adresse = user.getContact().getAdresse();
+		this.codePostal = user.getContact().getCodePostal();
+		this.ville = user.getContact().getVille();
+		this.alerteSurTelephone1 = user.getContact().getAlerteSurTelephone1();
+		this.alerteSurTelephone2 = user.getContact().getAlerteSurTelephone2();
+		this.adresseMail = user.getContact().getAdresseMail();
+		this.siteWeb = user.getContact().getSiteWeb();
+		this.telephonePerso = user.getContact().getTelephonePerso();
+		this.telephoneProf = user.getContact().getTelephoneProf();
+		this.telephoneMobile = user.getContact().getTelephoneMobile();
 		this.userCategory = new UserCategoryDTO(user.getUserCategory());
 	}
 
-	
-	public User getUserWithoutPassword(){
+	public User getUserWithoutPassword() {
 		User user = new User();
-		
-		if(id!= null){
+
+		if (id != null) {
 			user.setId(Long.valueOf(id));
 		}
 		user.setCode(Long.valueOf(code));
-		user.setContact(contact.getContact());
-		user.setFirstName(firstName);
-		user.setIsAdmin(isAdmin);
-		user.setLastName(lastName);
-		user.setLocked(locked);
-		user.setLogin(login);
-		user.setUserCategory(userCategory.getUserCategory());
+
+		Contact contact = new Contact();
+		contact.setAdresse(this.adresse);
+		contact.setAdresseMail(this.adresseMail);
+		contact.setAlerteSurTelephone1(this.alerteSurTelephone1);
+		contact.setAlerteSurTelephone2(this.alerteSurTelephone2);
+		contact.setCodePostal(this.codePostal);
+		contact.setSiteWeb(this.siteWeb);
+		contact.setTelephoneMobile(this.telephoneMobile);
+		contact.setTelephonePerso(this.telephonePerso);
+		contact.setTelephoneProf(this.telephoneProf);
+		contact.setVille(this.ville);
+		contact.setAdresse(this.adresse);
+		user.setContact(contact);
+		user.setFirstName(this.firstName);
+		user.setIsAdmin(this.isAdmin);
+		user.setLastName(this.lastName);
+		user.setLocked(this.locked);
+		user.setLogin(this.login);
+		user.setUserCategory(this.userCategory.getUserCategory());
 		return user;
 	}
-	
-	
-	public User getUser(){
+
+	public User getUser() {
 		User user = getUserWithoutPassword();
 		user.setPassword(password);
 		return user;
 	}
-	
-	
-	public User updateUser(User user){
-		
+
+	public User updateUser(User user) {
+
 		user.setCode(Long.valueOf(code));
-//		user.setContact(contact.getContact());
+		// user.setContact(contact.getContact());
 		user.setFirstName(firstName);
 		user.setIsAdmin(isAdmin);
 		user.setLastName(lastName);
 		user.setLocked(locked);
 		user.setLogin(login);
-//		if(password.equals(passwordConfirmation)){
-//			user.setPassword(password);
-//		}else throw new Exception("Password not confirmed");
-		user.setContact(contact.updateContact(user.getContact()));
-		
-		user.setUserCategory(userCategory.updateUserCategory(user.getUserCategory()));
+		// if(password.equals(passwordConfirmation)){
+		// user.setPassword(password);
+		// }else throw new Exception("Password not confirmed");
+		user.getContact().setAdresse(adresse);
+		user.getContact().setCodePostal(codePostal);
+		user.getContact().setVille(ville);
+		user.getContact().setAlerteSurTelephone1(alerteSurTelephone1);
+		user.getContact().setAlerteSurTelephone2(alerteSurTelephone2);
+		user.getContact().setAdresseMail(adresseMail);
+		user.getContact().setSiteWeb(siteWeb);
+		user.getContact().setTelephonePerso(telephonePerso);
+		user.getContact().setTelephoneProf(telephoneProf);
+		user.getContact().setTelephoneMobile(telephoneMobile);
+
+		user.setUserCategory(userCategory.updateUserCategory(user
+				.getUserCategory()));
 		return user;
 	}
-	
-	
-	public UserDTO(Long id, Long code, String firstName, String lastName, String login,
-			String password, Boolean connected, Boolean locked,
-			Boolean isAdmin, String userCategoryName, ContactDTO contact, UserCategoryDTO userCategory) {
+
+	public UserDTO(Long id, Long code, String firstName, String lastName,
+			String login, String password, Boolean connected, Boolean locked,
+			Boolean isAdmin, String userCategoryName,
+			UserCategoryDTO userCategory, String adresse, String codePostal,
+			String ville, Boolean alerteSurTelephone1,
+			Boolean alerteSurTelephone2, String adresseMail, String siteWeb,
+			String telephonePerso, String telephoneProf, String telephoneMobile) {
 		super();
 		this.id = String.valueOf(id);
 		this.code = String.valueOf(code);
@@ -107,10 +153,19 @@ public class UserDTO {
 		this.password = password;
 		this.locked = locked;
 		this.isAdmin = isAdmin;
-		this.contact = contact;
+		this.adresse = adresse;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.alerteSurTelephone1 = alerteSurTelephone1;
+		this.alerteSurTelephone2 = alerteSurTelephone2;
+		this.adresseMail = adresseMail;
+		this.siteWeb = siteWeb;
+		this.telephonePerso = telephonePerso;
+		this.telephoneProf = telephoneProf;
+		this.telephoneMobile = telephoneMobile;
+
 		this.userCategory = userCategory;
 	}
-
 
 	public String getFirstName() {
 		return firstName;
@@ -160,15 +215,6 @@ public class UserDTO {
 		this.isAdmin = isAdmin;
 	}
 
-	public ContactDTO getContact() {
-		return contact;
-	}
-
-	public void setContact(ContactDTO contact) {
-		this.contact = contact;
-	}
-
-
 	public String getId() {
 		return id;
 	}
@@ -209,5 +255,84 @@ public class UserDTO {
 		this.roleFormList = roleFormList;
 	}
 
-	
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	public String getCodePostal() {
+		return codePostal;
+	}
+
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
+	}
+
+	public String getVille() {
+		return ville;
+	}
+
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+
+	public Boolean getAlerteSurTelephone1() {
+		return alerteSurTelephone1;
+	}
+
+	public void setAlerteSurTelephone1(Boolean alerteSurTelephone1) {
+		this.alerteSurTelephone1 = alerteSurTelephone1;
+	}
+
+	public Boolean getAlerteSurTelephone2() {
+		return alerteSurTelephone2;
+	}
+
+	public void setAlerteSurTelephone2(Boolean alerteSurTelephone2) {
+		this.alerteSurTelephone2 = alerteSurTelephone2;
+	}
+
+	public String getAdresseMail() {
+		return adresseMail;
+	}
+
+	public void setAdresseMail(String adresseMail) {
+		this.adresseMail = adresseMail;
+	}
+
+	public String getSiteWeb() {
+		return siteWeb;
+	}
+
+	public void setSiteWeb(String siteWeb) {
+		this.siteWeb = siteWeb;
+	}
+
+	public String getTelephonePerso() {
+		return telephonePerso;
+	}
+
+	public void setTelephonePerso(String telephonePerso) {
+		this.telephonePerso = telephonePerso;
+	}
+
+	public String getTelephoneProf() {
+		return telephoneProf;
+	}
+
+	public void setTelephoneProf(String telephoneProf) {
+		this.telephoneProf = telephoneProf;
+	}
+
+	public String getTelephoneMobile() {
+		return telephoneMobile;
+	}
+
+	public void setTelephoneMobile(String telephoneMobile) {
+		this.telephoneMobile = telephoneMobile;
+	}
+
 }

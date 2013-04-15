@@ -14,13 +14,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlElement;
 
-import net.bbenarbia.domain.base.Adresse;
 import net.bbenarbia.domain.base.BaseUser;
+import net.bbenarbia.domain.base.Contact;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -33,28 +32,16 @@ public class User extends BaseUser {
 
 	
 	@Embedded
-	private Adresse adresse;
+	private Contact contact;
 	
 	@Column(name = "photo")
 	private String photo;
 	
-	@OneToOne
-	@Cascade(CascadeType.ALL)
-	@JoinColumn(name = "fk_contact")
-	private Contact contact;
-
 	@ManyToOne
 	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name = "fk_categorieutilisateur")
 	private UserCategory userCategory;
 
-	public Contact getContact() {
-		return contact;
-	}
-
-	public void setContact(Contact contact) {
-		this.contact = contact;
-	}
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_role"))
@@ -88,7 +75,6 @@ public class User extends BaseUser {
 		}
 		return this.roles;
 	}
-
 	@XmlElement
 	public List<Role> getRoles() {
 		List<Role> sortedSpecs = new ArrayList<Role>(getRolesInternal());
@@ -113,12 +99,13 @@ public class User extends BaseUser {
 		this.photo = photo;
 	}
 
-	public Adresse getAdresse() {
-		return adresse;
+	public Contact getContact() {
+		return contact;
 	}
 
-	public void setAdresse(Adresse adresse) {
-		this.adresse = adresse;
+	public void setContact(Contact contact) {
+		this.contact = contact;
 	}
+
 
 }

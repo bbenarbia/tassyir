@@ -33,9 +33,8 @@
 									</c:if>
 									<h3>${user.firstName} ${user.lastName}</h3>
 									<p>${user.login}</p>
-									<span class="price">${user.contact.nomSocieteContact}</span> 
-									<span class="price">${user.contact.adresseContact1}</span> 
-									<span class="price">${user.contact.telephoneContact1}</span>
+									<span class="price">${user.contact.adresse}</span> 
+									<span class="price">${user.contact.telephonePerso}</span>
 								</div>
 								<div class="listingbtns">
 									<span class="listbuttons"> <spring:url

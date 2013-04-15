@@ -17,7 +17,6 @@ import javax.validation.Valid;
 import net.bbenarbia.domain.Role;
 import net.bbenarbia.domain.User;
 import net.bbenarbia.domain.UserCategory;
-import net.bbenarbia.domain.enums.EnumTypeContact;
 import net.bbenarbia.domain.enums.ParameterCode;
 import net.bbenarbia.service.IParameterService;
 import net.bbenarbia.service.IRoleService;
@@ -87,18 +86,6 @@ public class UserController {
 			userGroupList.add(userCategory.getName());
 		}
 		return userGroupList;
-	}
-
-	@ModelAttribute("typeContactList")
-	public List<String> populateContactTypeList() {
-
-		List<String> listContactType = new LinkedList<String>();
-
-		listContactType.add("Select the contact Type");
-		for (EnumTypeContact elt : EnumTypeContact.values()) {
-			listContactType.add(elt.toString());
-		}
-		return listContactType;
 	}
 
 	@RequestMapping(value = "/photo/{idUser}", method = RequestMethod.GET)

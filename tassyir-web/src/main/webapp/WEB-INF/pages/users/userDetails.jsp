@@ -131,33 +131,18 @@
 							</tr>
 							<tr>
 								<td><ul>
-										<li><spring:message code="contact.name" />:<c:out value="${user.contact.name}" /></li>
-										<li><spring:message code="contact.nomSocieteContact" />
-											: <c:out value="${user.contact.nomSocieteContact}" /></li>
-										<li><spring:message code="contact.typeContact" /> <c:out
-												value="${user.contact.typeContact}" /></li>
-										<li><spring:message code="contact.adresseContact1" /> <c:out
-												value="${user.contact.adresseContact1}" /></li>
-										<li><spring:message code="contact.alerteSurTelephone1" /> <c:out
-												value="${user.contact.alerteSurTelephone1}" /></li>
-										<li><spring:message code="contact.alerteSurTelephone2" /> <c:out
-												value="${user.contact.alerteSurTelephone2}" /></li>
+										<li><spring:message code="adresse" /> ${user.contact.adresse}</li>
+										<li><spring:message code="codePostal" /> ${user.contact.codePostal}</li>
+										<li><spring:message code="ville" /> ${user.contact.ville}</li>
+										<li><spring:message code="adresseMailContact" /> ${user.contact.adresseMail}</li>
 									</ul></td>
 									<td></td>
 								<td><ul>
-										<li><spring:message code="contact.codePostal" /> <c:out
-												value="${user.contact.codePostalContact}" /></li>
-										<li><spring:message code="contact.ville" /> <c:out
-												value="${user.contact.villeContact}" /></li>
-										<li><spring:message code="contact.adresseMailContact" /> <c:out
-												value="${user.contact.adresseMailContact}" /></li>
-										
-										<li><spring:message code="contact.siteWebContact" /> <c:out
-												value="${user.contact.siteWebContact}" /></li>
-										<li><spring:message code="contact.telephone1" /> <c:out
-												value="${user.contact.telephoneContact1}" /></li>
-										<li><spring:message code="contact.telephone2" /> <c:out
-												value="${user.contact.telephoneContact2}" /></li>
+										<li><spring:message code="telephonePerso" /> ${user.contact.telephonePerso}</li>		
+										<li><spring:message code="telephoneProf" /> ${user.contact.telephoneProf}</li>
+										<li><spring:message code="telephoneMobile" /> ${user.contact.telephoneMobile}</li>												
+										<li><spring:message code="alerteSurTelephone1" /> ${user.contact.alerteSurTelephone1}</li>
+										<li><spring:message code="alerteSurTelephone2" /> ${user.contact.alerteSurTelephone2}</li>
 									</ul></td>
 							</tr>
 						</table>
