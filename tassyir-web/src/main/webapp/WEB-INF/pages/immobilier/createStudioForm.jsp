@@ -31,7 +31,7 @@
 						<h2>Create Studio</h2>
 					</div>
 					<div class="container">
-						<form:form modelAttribute="studio" method="post" id="form1">
+						<form:form modelAttribute="studio" method="post" id="form1" enctype="multipart/form-data">
 							<table class="edit_form_user" style="width: 100%; border: none;">
 								<tr>
 									<td class="label" style="width: 30px; "><form:label path="name">name</form:label></td>
@@ -277,7 +277,21 @@
 											</tr>
 										</table>
 									</td>
-								</tr>							
+								</tr>	
+								<tr>
+								<td colspan="4">
+									<table class="search_form" style="width: 100%; border: none;">
+										<c:forEach varStatus="status" begin="1" end="${5}">
+											<tr>
+												<td  class="label">Photo: ${status.count}</td>
+												<td><label><input
+														name="files[${status.count-1}]" type="file" accept="image/*" />
+												</label></td>
+											</tr>
+										</c:forEach>
+									</table>
+								</td>
+								</tr>						
 								<tr>
 									<td class="label">&nbsp;</td>
 									<td>&nbsp;</td>

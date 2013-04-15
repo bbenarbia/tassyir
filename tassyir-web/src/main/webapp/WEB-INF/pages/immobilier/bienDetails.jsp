@@ -5,7 +5,7 @@
 
 <html>
 <head>
-<jsp:include page="./../common/head.jsp"/>
+	<jsp:include page="./../common/head.jsp"/>
 </head>
 <body>
 	<spring:url value="/biens/photo" var="photoUrl" />
@@ -39,8 +39,9 @@
 													<spring:param name="bienId" value="${bien.id}" />
 												</spring:url>
 												<span class="listbuttons"><spring:url value="/biens/new.htm"
-													var="bienUrl" /><a href="${fn:escapeXml(deletePhotoUrl)}">Delete the 
-													photo</a> 
+													var="bienUrl" />
+													<a href="delete.html" >Delete the 
+													photo</a>
 												</span>
 											</div>
 										</div>

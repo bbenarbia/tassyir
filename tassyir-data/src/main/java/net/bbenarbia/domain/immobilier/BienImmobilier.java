@@ -1,5 +1,6 @@
 package net.bbenarbia.domain.immobilier;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -72,7 +73,7 @@ public class BienImmobilier extends NamedEntity {
 
 	@OneToMany(mappedBy = "bien", fetch = FetchType.EAGER, cascade = {
 			CascadeType.PERSIST, CascadeType.MERGE })
-	private List<Photo> photos;
+	private List<Photo> photos = new ArrayList<Photo>(0);
 
 	@Column(name = "loyerMensuel")
 	private double loyerMensuel;

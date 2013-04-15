@@ -1,5 +1,9 @@
 package net.bbenarbia.web.dto;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import net.bbenarbia.domain.base.Adresse;
 import net.bbenarbia.domain.enums.EnumConsEnergie;
 import net.bbenarbia.domain.enums.EnumEtatBien;
@@ -106,6 +110,8 @@ public class BienDTO {
 	private int nbCaves;
 
 	private Boolean piscine;
+	
+	private List<MultipartFile> files;
 
 	public BienDTO() {
 		super();
@@ -756,4 +762,13 @@ public class BienDTO {
 		this.piscine = piscine;
 	}
 
+	public List<MultipartFile> getFiles() {
+		return files;
+	}
+
+	public void setFiles(List<MultipartFile> files) {
+		this.files = files;
+	}
+
+	
 }

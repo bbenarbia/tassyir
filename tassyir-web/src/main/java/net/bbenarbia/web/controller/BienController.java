@@ -301,10 +301,21 @@ public class BienController {
 			studio = bienDto.updateStudio(studio);
 			studio.setDepartement(departement);
 			bienService.save(studio);
+
+			List<MultipartFile> files = bienDto.getFiles();
+			if (null != files && files.size() > 0) {
+				String TEMP_DIR = parameterService
+						.getParameterName(ParameterCode.TEMP_DIRECTORY.toString())
+						.get(0).getValue();
+
+				studio = (Studio)uploadFiles (files, studio, TEMP_DIR);
+				
+			bienService.merge(studio);
 			status.setComplete();
-			return "redirect:/biens/" + studio.getId();
 			
-		}
+			}
+			return "redirect:/biens/" + studio.getId();
+	}
 	}
 	
 	@RequestMapping(value = "/maison/new", method = RequestMethod.GET)
@@ -334,7 +345,20 @@ public class BienController {
 			maison = bienDto.updateMaison(maison);
 			maison.setDepartement(departement);
 			bienService.save(maison);
+
+			List<MultipartFile> files = bienDto.getFiles();
+			if (null != files && files.size() > 0) {
+				String TEMP_DIR = parameterService
+						.getParameterName(ParameterCode.TEMP_DIRECTORY.toString())
+						.get(0).getValue();
+
+				maison = (Maison)uploadFiles (files, maison, TEMP_DIR);
+				
+			bienService.merge(maison);
 			status.setComplete();
+			
+			}
+			
 			return "redirect:/biens/" + maison.getId();
 			
 		}
@@ -374,9 +398,20 @@ public class BienController {
 			appartement = bienDto.updateAppartement(appartement);
 			appartement.setDepartement(departement);
 			bienService.save(appartement);
-			status.setComplete();
-			return "redirect:/biens/" + appartement.getId();
 			
+			List<MultipartFile> files = bienDto.getFiles();
+			if (null != files && files.size() > 0) {
+				String TEMP_DIR = parameterService
+						.getParameterName(ParameterCode.TEMP_DIRECTORY.toString())
+						.get(0).getValue();
+
+				appartement = (Appartement)uploadFiles (files, appartement, TEMP_DIR);
+				
+			bienService.merge(appartement);
+			status.setComplete();
+			}
+			
+			return "redirect:/biens/" + appartement.getId();
 		}
 	}
 
@@ -455,33 +490,40 @@ public class BienController {
 			String TEMP_DIR = parameterService
 					.getParameterName(ParameterCode.TEMP_DIRECTORY.toString())
 					.get(0).getValue();
-
-			for (MultipartFile multipartFile : files) {
-				if (multipartFile.getSize() != 0) {
-					try {
-						File destFile = new File(new File(TEMP_DIR),
-								multipartFile.getOriginalFilename());
-						multipartFile.transferTo(destFile);
-						BufferedImage bimg = ImageIO.read(destFile);
-						BufferedImage bimgResized = ImageService
-								.createResizedCopy(bimg, 300, 300, true);
-						File destFile1 = new File(new File(TEMP_DIR), "small_"
-								+ multipartFile.getOriginalFilename());
-						ImageIO.write(bimgResized, "jpeg", destFile1);
-
-					} catch (IOException e) {
-						return "upload/uploadForm";
-					}
-					Photo photo = new Photo();
-					photo.setName(multipartFile.getOriginalFilename());
-					photo.setPhotoPath(TEMP_DIR
-							+ multipartFile.getOriginalFilename());
-					photo.setBien(bien);
-					bien.getPhotos().add(photo);
-				}
-			}
+			bien = uploadFiles (files, bien, TEMP_DIR);
 			bienService.merge(bien);
 		}
 		return "redirect:/biens/" + bienId;
+	}
+	
+	public BienImmobilier uploadFiles(List<MultipartFile> files, BienImmobilier bien,
+			String tempDir) {
+
+		for (MultipartFile multipartFile : files) {
+			if (multipartFile.getSize() != 0) {
+				File destFile = new File(new File(tempDir),
+						multipartFile.getOriginalFilename());
+				try {
+					multipartFile.transferTo(destFile);
+					BufferedImage bimg = ImageIO.read(destFile);
+					BufferedImage bimgResized = ImageService.createResizedCopy(
+							bimg, 300, 300, true);
+					File destFile1 = new File(new File(tempDir), "small_"
+							+ multipartFile.getOriginalFilename());
+					ImageIO.write(bimgResized, "jpeg", destFile1);
+				} catch (IllegalStateException e) {
+					continue;
+				} catch (IOException e) {
+					continue;
+				}
+				Photo photo = new Photo();
+				photo.setName(multipartFile.getOriginalFilename());
+				photo.setPhotoPath(tempDir
+						+ multipartFile.getOriginalFilename());
+				photo.setBien(bien);
+				bien.getPhotos().add(photo);
+			}
+		}
+		return bien;
 	}
 }

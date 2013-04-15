@@ -6,7 +6,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class UploadItem {
 	private String name;
-//	private CommonsMultipartFile fileData;
 	private List<MultipartFile> files;
 	public String getName() {
 		return name;
