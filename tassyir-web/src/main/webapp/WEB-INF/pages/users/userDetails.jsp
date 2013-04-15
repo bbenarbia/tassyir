@@ -13,7 +13,6 @@
 		<spring:param name="userId" value="${user.id}" />
 	</spring:url>
 	
-	
 	<div id="wrap">
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">
@@ -26,7 +25,7 @@
 					<div id="leftcolumn">
 						<div id="carrousel">
 							<c:if test="${empty user.photo }">
-								<img width="220" height="220"  src='<c:url value="/resources/graphics/no-photo.jpg"/>' class="previewimg">
+								<img width="220" height="220"  src='<c:url value="/resources/graphics/no-photos.jpg"/>' class="previewimg">
 							</c:if>
 							<c:if test="${not empty user.photo }">
 								<img width="220" height="220" src="${photoUrl}/${user.id}" class="previewimg">
