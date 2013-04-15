@@ -1,5 +1,7 @@
 package net.bbenarbia.service.impl;
 
+import java.util.List;
+
 import net.bbenarbia.dao.IDepartementDao;
 import net.bbenarbia.dao.common.IGenericDao;
 import net.bbenarbia.domain.Departement;
@@ -24,6 +26,13 @@ public class DepartementService extends GenericService<Departement> implements
 	@Qualifier("departementDao")
 	public void setGenericDao(IGenericDao<Departement> genericDao) {
 		this.genericDao = genericDao;
+	}
+
+	
+	@Override
+	public List<Departement> getDepartementByReference(String reference) {
+		
+		return departementDao.getDepartementByReference(reference);
 	}
 
 }

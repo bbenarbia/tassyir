@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" 
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:c="http://java.sun.com/jsp/jstl/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<ui:include src="/WEB-INF/include/menu.xhtml"></ui:include>
+	
+	<h1>Detail user </h1>
+	<h:form id="resultForm" rendered="#{!empty userManagedBean.foundUser}">
+	  <h:panelGrid columns="2">
+		<h:outputText value="Login:"/>
+		<h:outputText  value="#{userManagedBean.foundUser.login}"/>
+		<h:outputText value="First name:"/>  <h:outputText  value="#{userManagedBean.foundUser.firstName}"/>		
+		<h:outputText value="Last name:"/><h:outputText  value="#{userManagedBean.foundUser.lastName}"/>
+	<h:commandButton action="#{userManagedBean.updateEditeur}" value="#{msg.update}"/>
+	</h:panelGrid>	
+	</h:form>
+</body>
+</html>

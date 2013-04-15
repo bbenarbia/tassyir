@@ -52,7 +52,7 @@
 												path="superficie" class="text smalltext" />
 									</label></td>
 								</tr>
-
+								
 								<tr>
 									<td class="label"><form:label path="loyerMensuel">loyerMensuel</form:label></td>
 									<td><label> <form:input label="loyerMensuel"
@@ -109,7 +109,18 @@
 									</label>
 									</td>
 								</tr>
-								
+								<tr>
+									<td class="label"><form:label path="transport">transport</form:label></td>
+										<td><label> 
+											<form:input label="name" path="transport"
+												class="text" />												
+									</label></td>
+									<td class="label"><form:label path="proximite">proximite</form:label></td>
+										<td><label> 
+											<form:input label="name" path="proximite"
+												class="text" />												
+									</label></td>
+								</tr>
 								<tr>
 									<td class="label"><form:label path="nbPieces">nbPieces</form:label></td>
 									<td><label> 
@@ -171,7 +182,12 @@
 											<form:checkbox path="piscine" />		
 									</label></td>
 								</tr>
-								
+								<tr>
+								<td class="label"><form:label path="adapteHandicape" for="adapteHandicape">adapteHandicape</form:label></td>
+									<td><label> 
+										<form:checkbox path="adapteHandicape" />		
+									</label></td>
+								</tr>
 								<tr>
 									<td class="label"><form:label path="etatBien">etatBien</form:label></td>
 									<td>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:f="http://java.sun.com/jsf/core" 
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:c="http://java.sun.com/jsp/jstl/core"
+xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Recherche multiple</title>
+
+</head>
+<body>
+
+	<ui:include src="/WEB-INF/include/menu.xhtml"></ui:include>
+
+	<h1>List users</h1>
+
+	<h:dataTable id="listAllUsers" value="#{userManagedBean.userList}"
+		var="user" rendered="#{not empty userManagedBean.userList}">
+
+		<h:column id="codeCol">
+			<f:facet name="header">
+				<h:outputText value="code" />
+			</f:facet>
+			<h:outputText value="#{user.code}" />
+		</h:column>
+		
+		<h:column id="titreCol">
+			<f:facet name="header"><h:outputText value="titre"/> </f:facet>
+			<h:form>
+				<h:commandLink value="#{user.login}" action="#{userManagedBean.getDetailsUser}">
+					<f:param name="codeUser" value="#{user.code}" ></f:param>
+				</h:commandLink>
+			</h:form>
+				
+		</h:column>
+		
+		<h:column id="firstNameCol">
+			<f:facet name="header">
+				<h:outputText value="firstName" />
+			</f:facet>
+			<h:outputText value="#{user.firstName}" />
+		</h:column>
+
+		<h:column id="lastNameCol">
+			<f:facet name="header">
+				<h:outputText value="lastName" />
+			</f:facet>
+			<h:outputText value="#{user.lastName}" />
+		</h:column>
+
+	</h:dataTable>
+
+
+</body>
+</html>

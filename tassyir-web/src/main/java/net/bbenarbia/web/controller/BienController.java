@@ -282,6 +282,31 @@ public class BienController {
 		return "immobilier/createStudioForm";
 	}
 
+	@RequestMapping(value = "/studio/new", method = RequestMethod.POST)
+	public String processCreationStudioForm(
+			@ModelAttribute("studio") @Valid BienDTO bienDto,
+			BindingResult result, SessionStatus status) {
+
+		if (result.hasErrors()) {
+			return "immobilier/createStudioForm";
+		} else {
+			String refDepartement = bienDto.getDepartement();
+			Departement departement = null;
+			List<Departement> listDepartement =  departementservice.getDepartementByReference(refDepartement);
+			if(listDepartement != null && listDepartement.size() != 0 ){
+				departement = listDepartement.get(0);
+			}
+			
+			Studio studio = new Studio();
+			studio = bienDto.updateStudio(studio);
+			studio.setDepartement(departement);
+			bienService.save(studio);
+			status.setComplete();
+			return "redirect:/biens/" + studio.getId();
+			
+		}
+	}
+	
 	@RequestMapping(value = "/maison/new", method = RequestMethod.GET)
 	public String initCreateMaisonForm(Model model) {
 
@@ -291,6 +316,29 @@ public class BienController {
 	}
 
 	
+	@RequestMapping(value = "/maison/new", method = RequestMethod.POST)
+	public String processCreationMaisonForm(
+			@ModelAttribute("maison") @Valid BienDTO bienDto,
+			BindingResult result, SessionStatus status) {
+
+		if (result.hasErrors()) {
+			return "immobilier/createMaisonForm";
+		} else {
+			String refDepartement = bienDto.getDepartement();
+			Departement departement = null;
+			List<Departement> listDepartement =  departementservice.getDepartementByReference(refDepartement);
+			if(listDepartement != null && listDepartement.size() != 0 ){
+				departement = listDepartement.get(0);
+			}
+			Maison maison = new Maison();
+			maison = bienDto.updateMaison(maison);
+			maison.setDepartement(departement);
+			bienService.save(maison);
+			status.setComplete();
+			return "redirect:/biens/" + maison.getId();
+			
+		}
+	}
 	
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String initCreateBienForm(Model model) {
@@ -315,10 +363,20 @@ public class BienController {
 		if (result.hasErrors()) {
 			return "immobilier/createAppartementForm";
 		} else {
-			BienDTO studio = new BienDTO();
-
+			String refDepartement = bienDto.getDepartement();
+			Departement departement = null;
+			List<Departement> listDepartement =  departementservice.getDepartementByReference(refDepartement);
+			if(listDepartement != null && listDepartement.size() != 0 ){
+				departement = listDepartement.get(0);
+			}
+			
+			Appartement appartement = new Appartement();
+			appartement = bienDto.updateAppartement(appartement);
+			appartement.setDepartement(departement);
+			bienService.save(appartement);
 			status.setComplete();
-			return "redirect:/groups";
+			return "redirect:/biens/" + appartement.getId();
+			
 		}
 	}
 
@@ -354,10 +412,23 @@ public class BienController {
 			if (result.hasErrors()) {
 				return "immobilier/updateBienForm";
 			}
-			BienImmobilier bien = new BienImmobilier();
+			
+			BienImmobilier bien = bienService.get(bienId);
+			
+			if(bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())){
+				bien = bienDto.updateAppartement((Appartement)bien);
+			}
+			else if(bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())){
+				bien = bienDto.updateMaison((Maison)bien);
+			}
+			else if(bien.getTypeBien().equals(EnumTypeBien.STUDIO.toString())){
+				bien = bienDto.updateStudio((Studio)bien);
+			}
+			
 			bienService.merge(bien);
 			status.setComplete();
-			return "redirect:/immobilier/" + bien.getId();
+			return "redirect:/biens/" + bienId;
+			
 		} catch (Exception e) {
 			return "immobilier/updateBienForm";
 		}

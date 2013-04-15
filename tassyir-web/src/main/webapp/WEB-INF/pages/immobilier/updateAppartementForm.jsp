@@ -175,6 +175,18 @@
 												class="text" />												
 									</label></td>
 								</tr>
+								<tr>
+									<td class="label"><form:label path="transport">transport</form:label></td>
+										<td><label> 
+											<form:input label="name" path="transport"
+												class="text" />												
+									</label></td>
+									<td class="label"><form:label path="proximite">proximite</form:label></td>
+										<td><label> 
+											<form:input label="name" path="proximite"
+												class="text" />												
+									</label></td>
+								</tr>
 								
 								<tr>
 									<td class="label"><form:label path="interphone">interphone</form:label></td>
@@ -206,7 +218,12 @@
 										<form:checkbox path="ascenseur" />		
 									</label></td>
 								</tr>
-								
+								<tr>
+								<td class="label"><form:label path="adapteHandicape" for="adapteHandicape">adapteHandicape</form:label></td>
+									<td><label> 
+										<form:checkbox path="adapteHandicape" />		
+									</label></td>
+								</tr>
 								<tr>
 									<td class="label"><form:label path="etatBien">etatBien</form:label></td>
 									<td>

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -18,6 +19,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlElement;
 
+import net.bbenarbia.domain.base.Adresse;
 import net.bbenarbia.domain.base.BaseUser;
 
 import org.hibernate.annotations.Cascade;
@@ -29,6 +31,9 @@ import org.springframework.beans.support.PropertyComparator;
 @Table(name = "users")
 public class User extends BaseUser {
 
+	
+	@Embedded
+	private Adresse adresse;
 	
 	@Column(name = "photo")
 	private String photo;
@@ -106,6 +111,14 @@ public class User extends BaseUser {
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+
+	public Adresse getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
 	}
 
 }
