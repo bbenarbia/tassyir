@@ -51,6 +51,26 @@
 												path="isAdmin" /> </label></td>
 								</tr>
 								<tr>
+									<td class="label"><form:label path="userCategory.name">group </form:label></td>
+									<td><label> <form:select path="userCategory.name">
+												<c:forEach var="item" items="${userGroupList}">
+													<c:choose>
+														<c:when test="${user.userCategory.name == item}">
+															<form:option selected="true" value="${item}">
+									               				 ${item} 
+									           				 </form:option>
+														</c:when>
+														<c:otherwise>
+															<form:option value="${item}">
+									              			     ${item}
+									            			</form:option>
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+											</form:select>
+									</label></td>
+								</tr>
+								<tr>
 								<td colspan="4" align="center" style="font: bold;">Roles list</td>
 								</tr>
 								<tr>
@@ -84,9 +104,9 @@
 								<td colspan="4" align="center">Contact infos</td>
 								</tr>
 								<tr>
-									<td rowspan="3" class="label"><form:label
+									<td rowspan="10" class="label"><form:label
 											path="adresse">adresse</form:label></td>
-									<td rowspan="3"><label> <form:textarea cols="26"
+									<td rowspan="10"><label> <form:textarea cols="26"
 												rows="10" label="adresse"
 												path="adresse" class="text textBoxfieldlong" />
 									</label></td>
@@ -113,6 +133,8 @@
 												label="telephonePerso"
 												path="telephonePerso" class="text" />
 									</label></td>
+								</tr>
+								<tr>
 									<td class="label"><form:label
 											path="alerteSurTelephone1">alerte Telephone1</form:label></td>
 									<td><label> <form:checkbox
@@ -126,24 +148,12 @@
 												label="telephoneProf"
 												path="telephoneProf" class="text" />
 									</label></td>
+								</tr>
+								<tr>
 									<td class="label"><form:label
 											path="alerteSurTelephone2">alerte  Telephone2</form:label></td>
 									<td><label> <form:checkbox
 												path="alerteSurTelephone2" />
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><form:label
-											path="adresseMail">EMail</form:label></td>
-									<td><label> <form:input
-												label="adresseMail"
-												path="adresseMail" class="text" />
-									</label></td>
-									<td class="label"><form:label
-											path="siteWeb">site Web</form:label></td>
-									<td><label> <form:input
-												label="siteWeb" path="siteWeb"
-												class="text" />
 									</label></td>
 								</tr>
 								<tr>
@@ -153,24 +163,21 @@
 												label="telephoneMobile"
 												path="telephoneMobile" class="text" />
 									</label></td>
-									<td class="label"><form:label path="userCategory.name">group </form:label></td>
-									<td><label> 
-											<form:select path="userCategory.name">
-												<c:forEach var="item" items="${userGroupList}">
-													<c:choose>
-														<c:when test="${user.userCategory.name == item}">
-															<form:option selected="true" value="${item}">
-									               				 ${item} 
-									            			</form:option>
-														</c:when>
-														<c:otherwise>
-															<form:option value="${item}">
-									                  			 ${item}
-									            			</form:option>
-														</c:otherwise>
-													</c:choose>
-												</c:forEach>
-											</form:select>
+								</tr>
+								<tr>
+									<td class="label"><form:label
+											path="adresseMail">EMail</form:label></td>
+									<td><label> <form:input
+												label="adresseMail"
+												path="adresseMail" class="text" />
+									</label></td>
+								</tr>
+								<tr>
+									<td class="label"><form:label
+											path="siteWeb">site Web</form:label></td>
+									<td><label> <form:input
+												label="siteWeb" path="siteWeb"
+												class="text" />
 									</label></td>
 								</tr>
 								<tr>
