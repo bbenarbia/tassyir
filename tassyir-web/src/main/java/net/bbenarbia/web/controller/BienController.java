@@ -456,16 +456,15 @@ public class BienController {
 			model.addAttribute("bien", bienDto);
 			return "immobilier/updateTerrainForm";
 		} else
-			return "immobilier/updateBienForm";
+			return "immobilier/updateTerrainForm";
 	}
 
 	@RequestMapping(value = "/{bienId}/edit", method = RequestMethod.POST)
 	public String processUpdateBienForm(@Valid BienDTO bienDto,
 			BindingResult result, @PathVariable("bienId") Long bienId,
 			SessionStatus status) {
-		try {
 			if (result.hasErrors()) {
-				return "immobilier/updateBienForm";
+				return "immobilier/updateTerrainForm";
 			}
 
 			BienImmobilier bien = bienService.get(bienId);
@@ -479,14 +478,18 @@ public class BienController {
 					.equals(EnumTypeBien.STUDIO.toString())) {
 				bien = bienDto.updateStudio((Studio) bien);
 			}
+			
+			List<Departement> listDepartFound = departementservice.getDepartementByReference(bienDto.getDepartement()); 
+			if(listDepartFound != null && listDepartFound.size() != 0){
+				bien.setDepartement(listDepartFound.get(0));
+			}
+			else {
+				return "immobilier/updateTerrainForm";
+			}
 
 			bienService.merge(bien);
 			status.setComplete();
 			return "redirect:/biens/" + bienId;
-
-		} catch (Exception e) {
-			return "immobilier/updateBienForm";
-		}
 	}
 
 	@RequestMapping(value = "/upload/{bienId}/show", method = RequestMethod.GET)

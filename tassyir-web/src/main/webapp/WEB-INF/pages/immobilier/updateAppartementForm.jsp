@@ -399,7 +399,7 @@
 										<table>
 											<tr>
 												<form:select path="typeOperation"  class="select_field">
-													<c:forEach var="item" items="${typeOperationList}">
+													<c:forEach var="item" items="${typesOperationsList}">
 														<c:choose>
 															<c:when test="${typeOperation == item}">
 																<form:option selected="true" value="${item}">

@@ -294,7 +294,7 @@
 										<table>
 											<tr>
 												<form:select path="typeOperation"  class="select_field">
-																			<c:forEach var="typeOperation" items="${typeOperationList}">
+																			<c:forEach var="typeOperation" items="${typesOperationsList}">
 																					<option value="${typeOperation}">${typeOperation}</option>
 																			</c:forEach>
 												</form:select>

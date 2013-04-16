@@ -24,7 +24,7 @@
 						<table class="search_form" style="width: 100%; border: none;">
 												<tr>
 														<td class="label">Recherche</td>
-														<td colspan="3"><label> 
+														<td ><label> 
 															<form:select path="typeOperationBien"  class="select_field">
 																		<c:forEach var="item" items="${typesOperationsList}">
 																				<c:choose>
@@ -40,6 +40,26 @@
 																					</c:otherwise>
 																				</c:choose>
 																		</c:forEach>
+															</form:select>
+														</label></td>
+														<td class="label">Type</td>
+														<td ><label> 
+															<form:select path="typeBien" class="select_field">
+																<option>indifferent</option>
+																<c:forEach var="item" items="${typesLogementList}">
+																		<c:choose>
+																					<c:when test="${typeBien == item}">
+																						<form:option selected="true" value="${item.index}">
+																               				 ${item} 
+																            			</form:option>
+																					</c:when>
+																					<c:otherwise>
+																						<form:option value="${item.index}">
+																                  			 ${item}
+																            			</form:option>
+																					</c:otherwise>
+																		</c:choose>
+																</c:forEach>
 															</form:select>
 														</label></td>
 												</tr>			
@@ -72,28 +92,6 @@
 															</form:select>
 														</label></td>
 												</tr>
-												<tr>
-														<td class="label">Type</td>
-														<td colspan="3"><label> 
-															<form:select path="typeBien" class="select_field">
-																<option>indifferent</option>
-																<c:forEach var="item" items="${typesLogementList}">
-																		<c:choose>
-																					<c:when test="${typeBien == item}">
-																						<form:option selected="true" value="${item.index}">
-																               				 ${item} 
-																            			</form:option>
-																					</c:when>
-																					<c:otherwise>
-																						<form:option value="${item.index}">
-																                  			 ${item}
-																            			</form:option>
-																					</c:otherwise>
-																		</c:choose>
-																</c:forEach>
-															</form:select>
-														</label></td>
-												</tr>	
 												<tr>
 														<td class="label">Pièces Min:</td>
 														<td><label> 
