@@ -20,7 +20,7 @@
 					</div>
 					<div class="container">
 						
-					<form:form modelAttribute="group" method="post" id="form1">
+					<form:form modelAttribute="group" method="post" id="form1" enctype="multipart/form-data">
 
 						<table class="edit_form" style="width: 100%; border: none;">
 								<tr>
@@ -52,6 +52,19 @@
 									 </table>
 									</td>
 								</tr>
+								<tr>
+								<td colspan="4">
+									<table class="search_form" style="width: 100%; border: none;">
+											<tr>
+												<td  class="label">User Photo: </td>
+												<td><label><input
+														name="photoFile" type="file" accept="image/*" />
+												</label></td>
+											</tr>
+									</table>
+								</td>
+								</tr>	
+								
 								<tr>
 									<td class="label">&nbsp;</td>
 									<td>&nbsp;</td>

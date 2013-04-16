@@ -6,6 +6,7 @@ import net.bbenarbia.domain.base.Contact;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
+import org.springframework.web.multipart.MultipartFile;
 
 public class UserDTO {
 
@@ -44,6 +45,8 @@ public class UserDTO {
 	private UserCategoryDTO userCategory;
 
 	private RoleFormDTOList roleFormList;
+	
+	private MultipartFile photoFile;
 
 	public UserDTO() {
 		super();
@@ -333,6 +336,14 @@ public class UserDTO {
 
 	public void setTelephoneMobile(String telephoneMobile) {
 		this.telephoneMobile = telephoneMobile;
+	}
+
+	public MultipartFile getPhotoFile() {
+		return photoFile;
+	}
+
+	public void setPhotoFile(MultipartFile photoFile) {
+		this.photoFile = photoFile;
 	}
 
 }

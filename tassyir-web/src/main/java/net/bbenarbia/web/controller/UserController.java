@@ -128,8 +128,6 @@ public class UserController {
 		if (!userCategoryList.isEmpty()) {
 			user.setUserCategory(userCategoryList.get(0));
 		}
-		this.utilisateurService.saveOrUpdate(user);
-
 		Set<Role> rolesList = new HashSet<Role>();
 		if (null != userDto.getRoleFormList().getRoles()
 				&& userDto.getRoleFormList().getRoles().size() > 0) {
@@ -142,14 +140,34 @@ public class UserController {
 			}
 		}
 		user.setRolesInternal(rolesList);
+		MultipartFile photo= userDto.getPhotoFile();
+		
+		if (null != photo ) {
+			String TEMP_DIR = parameterService
+					.getParameterName(ParameterCode.TEMP_DIRECTORY.toString())
+					.get(0).getValue();
 
-		if (result.hasErrors()) {
-			return "users/createUserForm";
-		} else {
-			this.utilisateurService.merge(user);
+				if (photo.getSize() != 0) {
+					try {
+						File destFile = new File(new File(TEMP_DIR),
+								photo.getOriginalFilename());
+						photo.transferTo(destFile);
+						BufferedImage bimg = ImageIO.read(destFile);
+						BufferedImage bimgResized = ImageService
+								.createResizedCopy(bimg, 300, 300, true);
+						File destFile1 = new File(new File(TEMP_DIR), "small_"
+								+ photo.getOriginalFilename());
+						ImageIO.write(bimgResized, "jpeg", destFile1);
+						user.setPhoto(TEMP_DIR
+								+ photo.getOriginalFilename());
+					} catch (IOException e) {
+						return "users/createUserForm";
+					}
+				}
+		}
+			this.utilisateurService.save(user);
 			status.setComplete();
 			return "redirect:/users/" + user.getId();
-		}
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)

@@ -30,7 +30,7 @@
 								<c:forEach var="photo" items="${bien.photos}" varStatus="status">
 									<div id="slide${status.count}" class="slide">
 										<div class="visu">
-											<img width="220" height="220"
+											<img width="210" height="195"
 												src="${photoUrl}/${bien.id}/${status.count}" class="previewimg">
 											<div class="title">
 												<spring:url value="/biens/{bienId}/photo/delete/{photoId}"

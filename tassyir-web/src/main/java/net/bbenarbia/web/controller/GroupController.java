@@ -224,6 +224,31 @@ public class GroupController {
 			}
 			group.setRoles(rolesList);
 			group.setName(groupDto.getName());
+			MultipartFile photo= groupDto.getPhotoFile();
+			
+			if (null != photo ) {
+				String TEMP_DIR = parameterService
+						.getParameterName(ParameterCode.TEMP_DIRECTORY.toString())
+						.get(0).getValue();
+
+					if (photo.getSize() != 0) {
+						try {
+							File destFile = new File(new File(TEMP_DIR),
+									photo.getOriginalFilename());
+							photo.transferTo(destFile);
+							BufferedImage bimg = ImageIO.read(destFile);
+							BufferedImage bimgResized = ImageService
+									.createResizedCopy(bimg, 300, 300, true);
+							File destFile1 = new File(new File(TEMP_DIR), "small_"
+									+ photo.getOriginalFilename());
+							ImageIO.write(bimgResized, "jpeg", destFile1);
+							group.setPhoto(TEMP_DIR
+									+ photo.getOriginalFilename());
+						} catch (IOException e) {
+							return "groups/createGroupForm";
+						}
+					}
+			}
 			this.userCategoryService.saveOrUpdate(group);
 			status.setComplete();
 			return "redirect:/groups";

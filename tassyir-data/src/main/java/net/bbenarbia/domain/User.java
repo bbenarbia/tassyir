@@ -45,7 +45,7 @@ public class User extends BaseUser {
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_role"))
-	@Cascade(CascadeType.SAVE_UPDATE)
+	@Cascade(CascadeType.PERSIST)
 	private Set<Role> roles = new HashSet<Role>();
 
 	public UserCategory getUserCategory() {
