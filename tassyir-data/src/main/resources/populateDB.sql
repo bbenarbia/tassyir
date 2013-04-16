@@ -195,6 +195,15 @@ insert into biens (
 500,100, 100, 1, 1, "1/3", 2,2,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2011, true);   
 
 
+insert into biens (
+ id, ref ,name, typeBien, adresse,codePostal, ville, idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
+  ,cuisineEquipee,age,jardin
+) values(5, "5", "appartement5","APPARTEMENT","adresse 5",'95800','Argenteuil', 1, "description de location",24.4, 1, 700, 
+-500,100, 100, 1, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true);   
+
+
 
 insert into photos values(1,"photos1", 2,"c:\\Benaissa\\temp\\app1.jpg");
 insert into photos values(2,"photos2", 2,"c:\\Benaissa\\temp\\app2.jpg");

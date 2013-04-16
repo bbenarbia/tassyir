@@ -66,16 +66,38 @@ public class BienService extends GenericService<BienImmobilier> implements
 	}
 
 	@Override
-	public List<BienImmobilier> searchBiens(EnumTypeBien typeBien, String reference, Long departement,
+	public List<BienImmobilier> searchBiens(EnumTypeBien typeBien, String departement,
 			Double superficieMin, Double superficieMax, Integer NbPiecesMin,
 			Integer NbPiecesMax, Double loyerMin, Double loyerMax) {
 		
 		
-		return bienDao.searchBiens(typeBien, reference, departement,
+		return bienDao.searchBiens(typeBien, departement,
 			 superficieMin,  superficieMax,  NbPiecesMin,
 			 NbPiecesMax,  loyerMin,  loyerMax);
-		
-		
+	}
+	
+	@Override
+	public BienImmobilier getBienByRef(String refBien) {
+		return bienDao.getBienByRef(refBien);
+	}
+	
+	@Override
+	public List<BienImmobilier> searchBiens(EnumTypeBien typeBien,
+			String departement, Double superficieMin,
+			Double superficieMax, Integer NbPiecesMin, Integer NbPiecesMax,
+			Double loyerMin, Double loyerMax, Boolean ascenseur,
+			Boolean cuisineEquipee, Boolean jardin, Boolean interphone,
+			Boolean digicode, Boolean gardien, Boolean meuble,
+			Boolean adapteHandicape, Boolean piscine, Boolean caves,
+			Boolean parking, Boolean terrassesBalcons) {
+	
+		return bienDao.searchBiens(typeBien, departement,
+				 superficieMin,  superficieMax,  NbPiecesMin,
+				 NbPiecesMax,  loyerMin,  loyerMax,  ascenseur,
+					 cuisineEquipee,  jardin,  interphone,
+					 digicode,  gardien,  meuble,
+					 adapteHandicape,  piscine,  caves,
+					 parking,  terrassesBalcons);
 		
 	}
 

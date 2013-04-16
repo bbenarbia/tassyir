@@ -8,15 +8,34 @@ import net.bbenarbia.service.generic.IGenericService;
 
 public interface IBienService extends IGenericService<BienImmobilier> {
 
-	List<BienImmobilier> getEntityByType(String type) ;
+	List<BienImmobilier> getEntityByType(String type);
+
+	List<BienImmobilier> getAllAppartement();
+
+	List<BienImmobilier> getAllStudio();
+
+	List<BienImmobilier> getAllTerrain();
+
+	List<BienImmobilier> getAllEntreport();
+
+	List<BienImmobilier> getAllMaison();
+
+	List<BienImmobilier> getAllCommerce();
 	
-	List<BienImmobilier> getAllAppartement() ;
-	List<BienImmobilier> getAllStudio() ;
-	List<BienImmobilier> getAllTerrain() ;
-	List<BienImmobilier> getAllEntreport() ;
-	List<BienImmobilier> getAllMaison() ;
-	List<BienImmobilier> getAllCommerce() ;
-	
-	List<BienImmobilier> searchBiens(EnumTypeBien typeBien, String reference, Long departement, Double superficieMin , Double superficieMax , 
-			Integer NbPiecesMin, Integer NbPiecesMax, Double loyerMin, Double loyerMax);
+	BienImmobilier getBienByRef(String refBien);
+
+	List<BienImmobilier> searchBiens(EnumTypeBien typeBien, 
+			String departement, Double superficieMin, Double superficieMax,
+			Integer NbPiecesMin, Integer NbPiecesMax, Double loyerMin,
+			Double loyerMax);
+
+	List<BienImmobilier> searchBiens(EnumTypeBien typeBien, 
+			String departement, Double superficieMin, Double superficieMax,
+			Integer NbPiecesMin, Integer NbPiecesMax, Double loyerMin,
+			Double loyerMax, Boolean ascenseur, Boolean cuisineEquipee,
+			Boolean jardin, Boolean interphone, Boolean digicode,
+			Boolean gardien, Boolean meuble, Boolean adapteHandicape,
+			Boolean piscine, Boolean caves, Boolean parking,
+			Boolean terrassesBalcons);
+
 }

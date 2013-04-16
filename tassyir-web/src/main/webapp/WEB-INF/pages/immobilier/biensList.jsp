@@ -23,12 +23,51 @@
 						
 						<table class="search_form" style="width: 100%; border: none;">
 												<tr>
-														<td class="label">Departement</td>
+														<td class="label">Recherche</td>
+														<td colspan="3"><label> 
+															<form:select path="typeOperationBien"  class="select_field">
+																		<c:forEach var="item" items="${typesOperationsList}">
+																				<c:choose>
+																					<c:when test="${typeOperationBien == item}">
+																						<form:option selected="true" value="${item}">
+																               				 ${item} 
+																            			</form:option>
+																					</c:when>
+																					<c:otherwise>
+																						<form:option value="${item}">
+																                  			 ${item}
+																            			</form:option>
+																					</c:otherwise>
+																				</c:choose>
+																		</c:forEach>
+															</form:select>
+														</label></td>
+												</tr>			
+												<tr>
+														<td class="label">reference</td>
+														<td><label> 
+															<form:input label="refBien" path="refBien"
+																	class="text" />
+														</label></td>
+												</tr>									
+												<tr>
+														<td class="label">Departement ${departementBien}</td>
 														<td colspan="3"><label> 
 															<form:select path="departementBien"  class="select_field">
-																		<option>indifferent</option>
+																		<option value="-1">indifferent</option>
 																		<c:forEach var="item" items="${departementsList}">
-																				<option value="${item.reference}">${item.name}</option>
+																			<c:choose>
+																					<c:when test="${departementBien == item.reference}">
+																						<form:option selected="true" value="${item.reference}">
+																               				 ${item.name} 
+																            			</form:option>
+																					</c:when>
+																					<c:otherwise>
+																						<form:option value="${item.reference}">
+																                  			 ${item.name}
+																            			</form:option>
+																					</c:otherwise>
+																				</c:choose>
 																		</c:forEach>
 															</form:select>
 														</label></td>
@@ -39,7 +78,18 @@
 															<form:select path="typeBien" class="select_field">
 																<option>indifferent</option>
 																<c:forEach var="item" items="${typesLogementList}">
-																		<option value="${item.index}">${item}</option>
+																		<c:choose>
+																					<c:when test="${typeBien == item}">
+																						<form:option selected="true" value="${item.index}">
+																               				 ${item} 
+																            			</form:option>
+																					</c:when>
+																					<c:otherwise>
+																						<form:option value="${item.index}">
+																                  			 ${item}
+																            			</form:option>
+																					</c:otherwise>
+																		</c:choose>
 																</c:forEach>
 															</form:select>
 														</label></td>
@@ -47,63 +97,108 @@
 												<tr>
 														<td class="label">Pièces Min:</td>
 														<td><label> 
-															<form:select path="nbPiecesMin" class="select_field">
-																<option>indifferent</option>
-																<c:forEach varStatus="status" begin="1" end="6">
-																	<option value="${status.count}">${status.count}</option>
-																</c:forEach>
-															</form:select>
+																<form:input label="nbPiecesMin" path="nbPiecesMin"
+																	class="text" />
 															</label></td>
-															<td class="label">Pièces Max:</td>
+															<td class="label">Max:</td>
 															<td><label>
-															<form:select path="nbPiecesMax" class="select_field">
-																<option>indifferent</option>
-																<c:forEach varStatus="status" begin="1" end="6">
-																	<option value="${status.count}">${status.count}</option>
-																</c:forEach>
-															</form:select>
+																<form:input label="nbPiecesMax" path="nbPiecesMax"
+																	class="text" />
 														</label></td>
 												</tr>	
 												<tr>
 														<td class="label">Superficie Min</td>
 														<td><label> 
-															<form:select path="surfaceMin"  class="select_field">
-																<option>indifferent</option>
-																<c:forEach varStatus="status" begin="1" end="10" >
-																	<option value="${status.count*10}">${status.count*10}</option>
-																</c:forEach>
-															</form:select>
+															<form:input label="surfaceMin" path="surfaceMin"
+																	class="text" />
 															</label></td>
-															<td class="label">Superficie Max</td>
+															<td class="label">Max</td>
 															<td><label>
-															<form:select path="surfaceMax"  class="select_field">
-																<option>indifferent</option>
-																<c:forEach varStatus="status" begin="1" end="10" >
-																	<option value="${status.count*10}">${status.count*10}</option>
-																</c:forEach>
-															</form:select>
+															<form:input label="surfaceMax" path="surfaceMax"
+																	class="text" />
 														</label></td>
 												</tr>	
 												<tr>
 														<td class="label">Budget Min</td>
 														<td><label> 
-															<form:select path="loyerMin"  class="select_field">
-																<option>indifferent</option>
-																<c:forEach varStatus="status" begin="1" end="15" >
-																	<option value="${status.count*100}">${status.count*100}</option>
-																</c:forEach>
-															</form:select>
+																<form:input label="loyerMin" path="loyerMin"
+																	class="text" />
 															</label></td>
-															<td class="label">Budget Max:</td>
+															<td class="label">Max:</td>
 															<td><label>
-															<form:select path="loyerMax"  class="select_field">
-																<option>indifferent</option>
-																<c:forEach varStatus="status" begin="1" end="15" >
-																	<option value="${status.count*100}">${status.count*100}</option>
-																</c:forEach>
-															</form:select>
+																<form:input label="loyerMax" path="loyerMax"
+																	class="text" />
 														</label></td>
 												</tr>
+												
+												<tr>
+													<td class="label" colspan="4">
+													<table class="search_form">
+													<tr>
+															<td><label> 
+																<form:checkbox path="ascenseur" />		
+															</label></td>
+															<td class="label"><form:label path="ascenseur" for="ascenseur">ascenseur</form:label></td>
+															
+															<td><label> 
+																<form:checkbox path="cuisineEquipee" />		
+															</label></td>
+															<td class="label"><form:label path="cuisineEquipee" for="cuisineEquipee">cuisineEquipee</form:label></td>
+													
+															<td><label> 
+																<form:checkbox path="jardin" />		
+															</label></td>
+															<td class="label"><form:label path="jardin" for="jardin">jardin</form:label></td>
+														
+															
+															<td><label> 
+																<form:checkbox path="interphone" />		
+															</label></td>
+															<td class="label"><form:label path="interphone" for="interphone">interphone	</form:label></td>
+													</tr>	
+													<tr>		
+															<td><label> 
+																<form:checkbox path="digicode" />		
+															</label></td>
+															<td class="label"><form:label path="digicode" for="digicode">digicode</form:label></td>
+															
+															<td><label> 
+																<form:checkbox path="gardien" />		
+															</label></td>
+															<td class="label"><form:label path="gardien" for="gardien">gardien</form:label></td>
+															
+															<td><label> 
+																<form:checkbox path="adapteHandicape" />		
+															</label></td>
+															<td class="label"><form:label path="adapteHandicape" for="adapteHandicape">adapté</form:label></td>
+															
+															<td><label> 
+																<form:checkbox path="meuble" />		
+															</label></td>
+															<td class="label"><form:label path="meuble" for="meuble">meublé</form:label></td>
+													</tr>
+													<tr>		
+															<td><label> 
+																<form:checkbox path="piscine" />		
+															</label></td>
+															<td class="label"><form:label path="piscine" for="piscine">piscine</form:label></td>
+															<td><label> 
+																<form:checkbox path="caves" />		
+															</label></td>
+															<td class="label"><form:label path="caves" for="caves">caves</form:label></td>
+															
+															<td><label> 
+																<form:checkbox path="parking" />		
+															</label></td>
+															<td class="label"><form:label path="parking" for="parking">parking</form:label></td>
+															<td><label> 
+																<form:checkbox path="terrassesBalcons" />		
+															</label></td>
+															<td class="label"><form:label path="terrassesBalcons" for="terrassesBalcons">terrassesBalcons</form:label></td>
+													</tr>
+													</table>
+													</td>
+													</tr>
 												<tr>
 									<td class="label">&nbsp;</td>
 									<td>&nbsp;</td>
@@ -125,7 +220,7 @@
 				</div>
 			</div>
 				<div id="main">
-					<h1>Users Listing</h1>
+					<h1>Biens Listing</h1>
 					<ul class="listing">
 					
 					<c:forEach var="bien" items="${findBiens.listBiens}">
