@@ -61,4 +61,7 @@ public interface IUserDao extends IGenericDao<User>{
     List<User> getUtilisateursByLogin(String login);
 
     
+	boolean existeLogin(String login);
+
+	boolean userCodeExists(Long code);
 }

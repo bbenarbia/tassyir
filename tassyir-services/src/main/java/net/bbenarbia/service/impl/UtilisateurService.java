@@ -20,7 +20,7 @@ public class UtilisateurService extends GenericService<User> implements IUtilisa
 	@Autowired
 	private IUserDao utilisateurDao;
 
-    @Override
+    @Override 
     @Autowired
     @Qualifier("utilisateurDao")
     public void setGenericDao(IGenericDao<User> genericDao) {
@@ -60,6 +60,16 @@ public class UtilisateurService extends GenericService<User> implements IUtilisa
 		else return false;
 		
 		
+	}
+
+	@Override
+	public boolean existeLogin(String login) {
+		return utilisateurDao.existeLogin(login);
+	}
+	
+	@Override
+	public boolean userCodeExists(Long code) {
+		return utilisateurDao.userCodeExists(code);
 	}
 
 }

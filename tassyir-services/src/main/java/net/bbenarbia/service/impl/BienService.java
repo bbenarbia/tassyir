@@ -6,6 +6,7 @@ import net.bbenarbia.constants.Constants;
 import net.bbenarbia.dao.common.IGenericDao;
 import net.bbenarbia.dao.immobilier.IBienDao;
 import net.bbenarbia.domain.enums.EnumTypeBien;
+import net.bbenarbia.domain.enums.EnumTypeOperation;
 import net.bbenarbia.domain.immobilier.BienImmobilier;
 import net.bbenarbia.service.generic.GenericService;
 import net.bbenarbia.service.immobilier.IBienService;
@@ -68,12 +69,12 @@ public class BienService extends GenericService<BienImmobilier> implements
 	@Override
 	public List<BienImmobilier> searchBiens(EnumTypeBien typeBien, String departement,
 			Double superficieMin, Double superficieMax, Integer NbPiecesMin,
-			Integer NbPiecesMax, Double loyerMin, Double loyerMax) {
+			Integer NbPiecesMax, Double loyerMin, Double loyerMax,  EnumTypeOperation typeOperation) {
 		
 		
 		return bienDao.searchBiens(typeBien, departement,
 			 superficieMin,  superficieMax,  NbPiecesMin,
-			 NbPiecesMax,  loyerMin,  loyerMax);
+			 NbPiecesMax,  loyerMin,  loyerMax,  typeOperation);
 	}
 	
 	@Override
@@ -89,7 +90,7 @@ public class BienService extends GenericService<BienImmobilier> implements
 			Boolean cuisineEquipee, Boolean jardin, Boolean interphone,
 			Boolean digicode, Boolean gardien, Boolean meuble,
 			Boolean adapteHandicape, Boolean piscine, Boolean caves,
-			Boolean parking, Boolean terrassesBalcons) {
+			Boolean parking, Boolean terrassesBalcons, EnumTypeOperation typeOperation) {
 	
 		return bienDao.searchBiens(typeBien, departement,
 				 superficieMin,  superficieMax,  NbPiecesMin,
@@ -97,7 +98,7 @@ public class BienService extends GenericService<BienImmobilier> implements
 					 cuisineEquipee,  jardin,  interphone,
 					 digicode,  gardien,  meuble,
 					 adapteHandicape,  piscine,  caves,
-					 parking,  terrassesBalcons);
+					 parking,  terrassesBalcons , typeOperation);
 		
 	}
 

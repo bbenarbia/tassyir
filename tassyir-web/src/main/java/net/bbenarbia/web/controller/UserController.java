@@ -28,7 +28,7 @@ import net.bbenarbia.web.dto.RoleFormDTO;
 import net.bbenarbia.web.dto.RoleFormDTOList;
 import net.bbenarbia.web.dto.UploadItem;
 import net.bbenarbia.web.dto.UserDTO;
-import net.bbenarbia.web.validator.PasswordValidator;
+import net.bbenarbia.web.validator.UserValidator;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +62,7 @@ public class UserController {
 	private IUserCategoryService userCategoryService;
 
 	@Autowired
-	private PasswordValidator validator;
+	private UserValidator userValidator;
 
 	@Autowired
 	private IRoleService roleService;
@@ -118,15 +118,23 @@ public class UserController {
 			@ModelAttribute("user") @Valid UserDTO userDto,
 			BindingResult result, SessionStatus status) {
 
-		PasswordDTO passDTO = new PasswordDTO(userDto.getPassword(),
-				userDto.getPasswordConfirmation());
-		validator.validate(passDTO, result);
+		if (result.hasErrors()) {
+			return "users/createUserForm";
+		}
+		userValidator.validate(userDto, result);
+		if (result.hasErrors()) {
+			return "users/createUserForm";
+		}
 		List<UserCategory> userCategoryList = userCategoryService
 				.getUserCategroryByName(userDto.getUserCategory().getName());
 
 		User user = userDto.getUser();
 		if (!userCategoryList.isEmpty()) {
 			user.setUserCategory(userCategoryList.get(0));
+		}
+		else {
+			result.rejectValue("userCategory.name", "usergroup.notmatch");
+			return "users/createUserForm";
 		}
 		Set<Role> rolesList = new HashSet<Role>();
 		if (null != userDto.getRoleFormList().getRoles()
@@ -161,6 +169,7 @@ public class UserController {
 						user.setPhoto(TEMP_DIR
 								+ photo.getOriginalFilename());
 					} catch (IOException e) {
+						result.rejectValue("photoFile", "photoFile.error");
 						return "users/createUserForm";
 					}
 				}
@@ -273,7 +282,7 @@ public class UserController {
 			BindingResult result, @PathVariable("userId") Long userId,
 
 			SessionStatus status) {
-		validator.validate(userPassword, result);
+		userValidator.validate(userPassword, result);
 		if (result.hasErrors()) {
 			return "users/updatePasswordUserForm";
 		}

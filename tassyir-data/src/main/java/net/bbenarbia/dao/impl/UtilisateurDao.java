@@ -102,5 +102,23 @@ public class UtilisateurDao extends  GenericDao<User> implements IUserDao {
         return (User) query.uniqueResult();
     }
 
+	@Override
+	public boolean existeLogin(String login) {
+		String queryString = "FROM User WHERE login = :login";
 
+        Query query = getSession().createQuery(queryString);
+        query.setParameter("login", login);
+
+        return !query.list().isEmpty();
+	}
+	
+	@Override
+	public boolean userCodeExists(Long code) {
+		String queryString = "FROM User WHERE code = :code";
+
+        Query query = getSession().createQuery(queryString);
+        query.setParameter("code", code);
+
+        return !query.list().isEmpty();
+	}
 }

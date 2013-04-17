@@ -5,6 +5,7 @@ import java.util.List;
 import net.bbenarbia.dao.common.GenericDao;
 import net.bbenarbia.dao.immobilier.IBienDao;
 import net.bbenarbia.domain.enums.EnumTypeBien;
+import net.bbenarbia.domain.enums.EnumTypeOperation;
 import net.bbenarbia.domain.immobilier.BienImmobilier;
 
 import org.hibernate.Query;
@@ -30,7 +31,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 	public List<BienImmobilier> searchBiens(EnumTypeBien typeBien,
 			String departement, Double superficieMin, Double superficieMax,
 			Integer NbPiecesMin, Integer NbPiecesMax, Double loyerMin,
-			Double loyerMax) {
+			Double loyerMax,  EnumTypeOperation typeOperation) {
 
 		boolean withAnd = false;
 		String and = " AND ";
@@ -46,6 +47,12 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 		if (typeBien != null) {
 			sb.append(where);
 			sb.append(" typeBien = :type ");
+			withAnd = true;
+		}
+		
+		if (typeOperation != null) {
+			sb.append(where);
+			sb.append(" typeOperation = :typeOperation ");
 			withAnd = true;
 		}
 
@@ -102,6 +109,10 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 		if (typeBien != null) {
 			query.setParameter("type", typeBien.toString());
 		}
+		if (typeOperation != null) {
+			query.setParameter("typeOperation", typeOperation);
+		}
+		
 		if (departement != null) {
 			query.setParameter("departement", departement.toString());
 		}
@@ -130,7 +141,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			Boolean jardin, Boolean interphone, Boolean digicode,
 			Boolean gardien, Boolean meuble, Boolean adapteHandicape,
 			Boolean piscine, Boolean caves, Boolean parking,
-			Boolean terrassesBalcons) {
+			Boolean terrassesBalcons, EnumTypeOperation typeOperation) {
 
 		boolean withAnd = false;
 		String and = " AND ";
@@ -148,7 +159,11 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			sb.append(" typeBien = :type ");
 			withAnd = true;
 		}
-
+		if (typeOperation != null) {
+			sb.append(where);
+			sb.append(" typeOperation = :typeOperation ");
+			withAnd = true;
+		}
 		if (departement != null) {
 			if (withAnd) {
 				sb.append(and);
@@ -318,6 +333,11 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 		if (typeBien != null) {
 			query.setParameter("type", typeBien.toString());
 		}
+		if (typeOperation != null) {
+			query.setParameter("typeOperation", typeOperation);
+		}
+		
+		
 		if (departement != null) {
 			query.setParameter("departement", departement.toString());
 		}

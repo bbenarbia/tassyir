@@ -206,11 +206,16 @@ public class BienController {
 			}
 		} else {
 			EnumTypeBien typeBien = null;
+			EnumTypeOperation typeOperation = null;
 			try {
 				typeBien = EnumTypeBien.fromIndex(Integer.valueOf(findBienDto
 						.getTypeBien()));
-			} catch (NumberFormatException e) {
+				} catch (NumberFormatException e) {
 			}
+			
+			typeOperation = EnumTypeOperation.valueOf(findBienDto
+					.getTypeOperationBien());
+			
 			if(findBienDto.getDepartementBien().equals("-1")){
 				findBienDto.setDepartementBien(null);
 			}
@@ -226,7 +231,7 @@ public class BienController {
 					findBienDto.getGardien(), findBienDto.getMeuble(),
 					findBienDto.getAdapteHandicape(), findBienDto.getPiscine(),
 					findBienDto.getCaves(), findBienDto.getParking(),
-					findBienDto.getTerrassesBalcons());
+					findBienDto.getTerrassesBalcons(), typeOperation);
 
 			findBienDto.setListBiens(listBiensFound);
 		}

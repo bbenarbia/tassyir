@@ -1,8 +1,13 @@
 package net.bbenarbia.web.dto;
 
+import javax.validation.constraints.Pattern;
+
 import net.bbenarbia.domain.User;
 import net.bbenarbia.domain.base.Contact;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Length.List;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
@@ -14,32 +19,55 @@ public class UserDTO {
 	@NotEmpty(message = "Code must not be empty.")
 	@NumberFormat(style = Style.NUMBER)
 	private String code;
-	@NotEmpty(message = "First name must not be empty.")
+	@List({
+	    @Length(min = 2, message = "The first name must be at least 5 characters"),
+	    @Length(max = 50, message = "The first name must be less than 50 characters")
+	})
 	private String firstName;
-	@NotEmpty(message = "Last name must not be empty.")
+	@List({
+	    @Length(min = 2, message = "The lastName must be at least 5 characters"),
+	    @Length(max = 50, message = "The lastName must be less than 50 characters")
+	})
 	private String lastName;
-	@NotEmpty(message = "login name must not be empty.")
+	@List({
+	    @Length(min = 2, message = "The login must be at least 5 characters"),
+	    @Length(max = 50, message = "The login must be less than 50 characters")
+	})
 	private String login;
+	@List({
+	    @Length(min = 2, message = "The password must be at least 5 characters"),
+	    @Length(max = 50, message = "The password must be less than 50 characters")
+	})
 	private String password;
 	private String passwordConfirmation;
 	private Boolean locked;
 	private Boolean isAdmin;
-	@NotEmpty(message = "adresse must not be empty.")
+	@List({
+	    @Length(min = 2, message = "The adresse must be at least 5 characters"),
+	    @Length(max = 50, message = "The adresse must be less than 50 characters")
+	})
 	private String adresse;
 	@NotEmpty(message = "code postal must not be empty.")
 	private String codePostal;
-	@NotEmpty(message = "ville must not be empty.")
+	@List({
+	    @Length(min = 2, message = "ville must be at least 5 characters"),
+	    @Length(max = 50, message = "ville must be less than 50 characters")
+	})
 	private String ville;
 	private Boolean alerteSurTelephone1;
 	private Boolean alerteSurTelephone2;
 	@NotEmpty(message = "mail must not be empty.")
+	@Email
 	private String adresseMail;
 	private String siteWeb;
 	@NotEmpty(message = "telephone must not be empty.")
+	@Pattern(regexp="(^$|[0-9]*)")
 	private String telephonePerso;
 	@NotEmpty(message = "telephone must not be empty.")
+	@Pattern(regexp="(^$|[0-9]*)")
 	private String telephoneProf;
 	@NotEmpty(message = "telephone must not be empty.")
+	@Pattern(regexp="(^$|[0-9]*)")
 	private String telephoneMobile;
 
 	private UserCategoryDTO userCategory;

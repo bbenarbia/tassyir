@@ -88,9 +88,6 @@
 }
 
 
-
-
-
 edit_form_user td {
 	padding: 5px 3px 3px;
 }
@@ -128,9 +125,18 @@ edit_form_user td {
 	margin-bottom: 5px!important;
 	display: block;
 }
-
+ 
 .edit_form_user td.tdsmall {
 	padding: 5px 3px 3px;
 	width: 140px;
 	ALIGN="left"
+}
+
+.error{
+	display: block;
+	border: 1px solid red;
+	padding: 2px;
+}
+.error_code{
+	color: red;
 }

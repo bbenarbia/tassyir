@@ -21,25 +21,27 @@
 					<div class="container">
 						<form:form modelAttribute="user" method="post" id="form1" enctype="multipart/form-data">
 							<table class="edit_form_user" style="width: 100%; border: none;">
-
+							 
 								<tr>
 									<td class="label"><form:label path="firstName">firstName</form:label></td>
 									<td><label> <form:input label="firstName"
-												path="firstName" class="text" />
+												path="firstName" class="text" cssErrorClass="error"/>
 									</label></td>
 									<td class="label"><form:label path="lastName">lastName</form:label></td>
 									<td><label> <form:input label="lastName"
-												path="lastName" class="text mediumtext" />
+												path="lastName" class="text mediumtext" cssErrorClass="error"/>
 									</label></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label path="login">login</form:label></td>
 									<td><label> <form:input label="login" path="login"
-												class="text" />
+												class="text" cssErrorClass="error"/>
+												<form:errors path="login" cssClass="error_code"/>
 									</label></td>
 									<td class="label"><form:label path="code">code</form:label></td>
 									<td><label> <form:input label="code" path="code"
-												class="text mediumtext" />
+												class="text mediumtext" cssErrorClass="error"/>
+												<form:errors path="code" cssClass="error_code"/>
 									</label></td>
 								</tr>
 								<tr>
@@ -53,17 +55,17 @@
 								<tr>
 									<td class="label"><form:label path="password">password</form:label></td>
 									<td><label> <form:password label="password"
-												path="password" class="text" />
+												path="password" class="text" cssErrorClass="error"/>
 									</label></td>
 									<td class="label"><form:label path="code">Confirmation</form:label></td>
 									<td><label> <form:password
 												label="passwordConfirmation" path="passwordConfirmation"
-												class="text mediumtext" />
+												class="text mediumtext" cssErrorClass="error"/>
 									</label></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label path="userCategory.name">group </form:label></td>
-									<td><label> <form:select path="userCategory.name">
+									<td><label> <form:select path="userCategory.name" cssErrorClass="error">
 												<c:forEach var="item" items="${userGroupList}">
 													<c:choose>
 														<c:when test="${user.userCategory.name == item}">
@@ -118,14 +120,14 @@
 											path="adresse">adresse</form:label></td>
 									<td rowspan="10"><label> <form:textarea cols="26"
 												rows="10" label="adresse"
-												path="adresse" class="text textBoxfieldlong" />
+												path="adresse" class="text textBoxfieldlong" cssErrorClass="error"/>
 									</label></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label path="ville">ville</form:label></td>
 									<td><label> <form:input
 												label="ville" path="ville"
-												class="text" />
+												class="text" cssErrorClass="error"/>
 									</label></td>
 								</tr>
 								<tr>
@@ -133,7 +135,7 @@
 											path="codePostal">codePostal</form:label></td>
 									<td><label> <form:input
 												label="codePostal"
-												path="codePostal" class="text" />
+												path="codePostal" class="text" cssErrorClass="error"/>
 									</label></td>
 								</tr>
 								<tr>
@@ -141,7 +143,7 @@
 											path="telephonePerso">telephonePerso</form:label></td>
 									<td><label> <form:input
 												label="telephonePerso"
-												path="telephonePerso" class="text" />
+												path="telephonePerso" class="text" cssErrorClass="error"/>
 									</label></td>
 								</tr>
 								<tr>
@@ -156,7 +158,7 @@
 											path="telephoneProf">telephoneProf</form:label></td>
 									<td><label> <form:input
 												label="telephoneProf"
-												path="telephoneProf" class="text" />
+												path="telephoneProf" class="text" cssErrorClass="error"/>
 									</label></td>
 								</tr>
 								<tr>
@@ -171,7 +173,7 @@
 											path="telephoneMobile">telephoneMobile</form:label></td>
 									<td><label> <form:input
 												label="telephoneMobile"
-												path="telephoneMobile" class="text" />
+												path="telephoneMobile" class="text" cssErrorClass="error"/>
 									</label></td>
 								</tr>
 								<tr>
@@ -179,7 +181,7 @@
 											path="adresseMail">EMail</form:label></td>
 									<td><label> <form:input
 												label="adresseMail"
-												path="adresseMail" class="text" />
+												path="adresseMail" class="text" cssErrorClass="error"/>
 									</label></td>
 								</tr>
 								<tr>
@@ -187,7 +189,7 @@
 											path="siteWeb">site Web</form:label></td>
 									<td><label> <form:input
 												label="siteWeb" path="siteWeb"
-												class="text" />
+												class="text" cssErrorClass="error"/>
 									</label></td>
 								</tr>
 								<tr>
@@ -195,8 +197,8 @@
 									<table class="search_form" style="width: 100%; border: none;">
 											<tr>
 												<td  class="label">User Photo: </td>
-												<td><label><input
-														name="photoFile" type="file" accept="image/*" />
+												<td><label><form:input
+														path="photoFile" type="file" accept="image/*" cssErrorClass="error"/>
 												</label></td>
 											</tr>
 									</table>

@@ -14,12 +14,13 @@ public interface IUtilisateurService extends IGenericService<User>{
 
 	User getUtilisateurByCode( Long codeUtilisateur);
 
-
-	List<User> getUtilisateursByFirstName(String firstName);
+	boolean existeLogin(String login);
 	
+	List<User> getUtilisateursByFirstName(String firstName);
 	
 	List<User> getUtilisateursByLastName(String lastName);
 	
 	boolean updatePassword(Long userId, String oldPassword , String newPassword);
-		 
+	
+	boolean userCodeExists(Long code) ;		 
 }
