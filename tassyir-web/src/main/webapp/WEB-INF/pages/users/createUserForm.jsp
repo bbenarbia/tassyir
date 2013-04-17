@@ -6,6 +6,7 @@
 <html>
 <head>
 <jsp:include page="./../common/head.jsp" />
+<title>Tassyir: Create a new user</title>
 </head>
 <body>
 	<div id="wrap">
@@ -20,51 +21,50 @@
 					</div>
 					<div class="container">
 						<form:form modelAttribute="user" method="post" id="form1" enctype="multipart/form-data">
-							<table class="edit_form_user" style="width: 100%; border: none;">
-							 
+							<table class="edit_form_user" style="width: 100%; border: none;">							 
 								<tr>
-									<td class="label"><form:label path="firstName">firstName</form:label></td>
+									<td class="label"><form:label path="firstName"><spring:message code="user.firstName" /></form:label></td>
 									<td><label> <form:input label="firstName"
 												path="firstName" class="text" cssErrorClass="error"/>
 									</label></td>
-									<td class="label"><form:label path="lastName">lastName</form:label></td>
+									<td class="label"><form:label path="lastName"><spring:message code="user.lastName" /></form:label></td>
 									<td><label> <form:input label="lastName"
 												path="lastName" class="text mediumtext" cssErrorClass="error"/>
 									</label></td>
 								</tr>
 								<tr>
-									<td class="label"><form:label path="login">login</form:label></td>
+									<td class="label"><form:label path="login"><spring:message code="user.login" /></form:label></td>
 									<td><label> <form:input label="login" path="login"
 												class="text" cssErrorClass="error"/>
 												<form:errors path="login" cssClass="error_code"/>
 									</label></td>
-									<td class="label"><form:label path="code">code</form:label></td>
+									<td class="label"><form:label path="code"><spring:message code="user.code" /></form:label></td>
 									<td><label> <form:input label="code" path="code"
 												class="text mediumtext" cssErrorClass="error"/>
 												<form:errors path="code" cssClass="error_code"/>
 									</label></td>
 								</tr>
 								<tr>
-									<td class="label"><form:label path="locked">locked</form:label></td>
-									<td><label> <form:checkbox label="Locked"
+									<td class="label"><form:label path="locked"><spring:message code="user.locked" /></form:label></td>
+									<td><label> <form:checkbox
 												path="locked" />
 									</label></td>
-									<td class="label"><form:label path="isAdmin">isAdmin</form:label></td>
+									<td class="label"><form:label path="isAdmin"><spring:message code="user.isAdmin" /></form:label></td>
 									<td><label><form:checkbox path="isAdmin" /> </label></td>
 								</tr>
 								<tr>
-									<td class="label"><form:label path="password">password</form:label></td>
+									<td class="label"><form:label path="password"><spring:message code="user.password" /></form:label></td>
 									<td><label> <form:password label="password"
 												path="password" class="text" cssErrorClass="error"/>
 									</label></td>
-									<td class="label"><form:label path="code">Confirmation</form:label></td>
+									<td class="label"><form:label path="code"><spring:message code="user.confirmation" /></form:label></td>
 									<td><label> <form:password
 												label="passwordConfirmation" path="passwordConfirmation"
 												class="text mediumtext" cssErrorClass="error"/>
 									</label></td>
 								</tr>
 								<tr>
-									<td class="label"><form:label path="userCategory.name">group </form:label></td>
+									<td class="label"><form:label path="userCategory.name"><spring:message code="user.group" /> </form:label></td>
 									<td><label> <form:select path="userCategory.name" cssErrorClass="error">
 												<c:forEach var="item" items="${userGroupList}">
 													<c:choose>
@@ -84,20 +84,19 @@
 									</label></td>
 								</tr>
 								<tr>
-									<td colspan="4" align="center" style="font: bold;">Roles
-										list</td>
+									<td colspan="4" align="center" style="font: bold;"><spring:message code="user.roles" />
+									</td>
 								</tr>
 								<tr>
 									<td colspan="4">
 										<table>
 											<tr>
-												<td style="font-weight: bold; width: 20px;">N°</td>
-												<td style="font-weight: bold; width: 150px;">Name</td>
-												<td style="font-weight: bold; width: 300px;">description</td>
-												<td style="font-weight: bold;">Included</td>
+												<td style="font-weight: bold; width: 20px;"><spring:message code="user.num" /></td>
+												<td style="font-weight: bold; width: 150px;"><spring:message code="user.rolename" /></td>
+												<td style="font-weight: bold; width: 300px;"><spring:message code="user.roledescription" /></td>
+												<td style="font-weight: bold;"><spring:message code="user.included" /></td>
 											</tr>
-											<c:forEach items="${user.roleFormList.roles}" var="roleForm"
-												varStatus="status">
+											<c:forEach items="${user.roleFormList.roles}" var="roleForm" varStatus="status">
 												<tr>
 													<td><label> ${status.count}</label></td>
 													<td><label>${roleForm.role.name}</label> <label><form:hidden
@@ -113,81 +112,69 @@
 							</table>
 							<table class="edit_form" style="width: 100%; border: none;">
 								<tr>
-									<td colspan="4" align="center">Contact infos</td>
+									<td colspan="4" align="center"><spring:message code="user.contact" /></td>
 								</tr>
 								<tr>
-									<td rowspan="10" class="label"><form:label
-											path="adresse">adresse</form:label></td>
-									<td rowspan="10"><label> <form:textarea cols="26"
+									<td rowspan="8" class="label"><form:label
+											path="adresse"><spring:message code="user.adresse" /></form:label></td>
+									<td rowspan="8"><label> <form:textarea cols="26"
 												rows="10" label="adresse"
 												path="adresse" class="text textBoxfieldlong" cssErrorClass="error"/>
 									</label></td>
 								</tr>
 								<tr>
-									<td class="label"><form:label path="ville">ville</form:label></td>
-									<td><label> <form:input
+									<td class="label"><form:label path="ville"><spring:message code="user.ville" /></form:label></td>
+									<td colspan="2"><label> <form:input
 												label="ville" path="ville"
 												class="text" cssErrorClass="error"/>
 									</label></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label
-											path="codePostal">codePostal</form:label></td>
-									<td><label> <form:input
+											path="codePostal"><spring:message code="user.codePostal" /></form:label></td>
+									<td colspan="2"><label> <form:input
 												label="codePostal"
 												path="codePostal" class="text" cssErrorClass="error"/>
 									</label></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label
-											path="telephonePerso">telephonePerso</form:label></td>
+											path="telephonePerso"><spring:message code="user.telephonePerso" /></form:label></td>
 									<td><label> <form:input
 												label="telephonePerso"
 												path="telephonePerso" class="text" cssErrorClass="error"/>
 									</label></td>
+									<td><form:checkbox path="alerteSurTelephone1" /><spring:message code="user.acceptalert" /></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label
-											path="alerteSurTelephone1">alerte Telephone1</form:label></td>
-									<td><label> <form:checkbox
-												path="alerteSurTelephone1" />
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><form:label
-											path="telephoneProf">telephoneProf</form:label></td>
+											path="telephoneProf"><spring:message code="user.telephoneProf" /></form:label></td>
 									<td><label> <form:input
 												label="telephoneProf"
 												path="telephoneProf" class="text" cssErrorClass="error"/>
 									</label></td>
+									<td><form:checkbox path="alerteSurTelephone2" /><spring:message code="user.acceptalert" /></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label
-											path="alerteSurTelephone2">alerte  Telephone2</form:label></td>
-									<td><label> <form:checkbox
-												path="alerteSurTelephone2" />
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><form:label
-											path="telephoneMobile">telephoneMobile</form:label></td>
-									<td><label> <form:input
+											path="telephoneMobile"><spring:message code="user.mobile" /></form:label></td>
+									<td colspan="2"><label> <form:input
 												label="telephoneMobile"
 												path="telephoneMobile" class="text" cssErrorClass="error"/>
 									</label></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label
-											path="adresseMail">EMail</form:label></td>
-									<td><label> <form:input
+											path="adresseMail"><spring:message code="user.email" /></form:label></td>
+									<td colspan="2"><label> <form:input
 												label="adresseMail"
 												path="adresseMail" class="text" cssErrorClass="error"/>
 									</label></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label
-											path="siteWeb">site Web</form:label></td>
-									<td><label> <form:input
+											path="siteWeb"><spring:message code="user.website" /></form:label></td>
+									<td colspan="2"><label> <form:input
 												label="siteWeb" path="siteWeb"
 												class="text" cssErrorClass="error"/>
 									</label></td>
@@ -196,7 +183,7 @@
 								<td colspan="4">
 									<table class="search_form" style="width: 100%; border: none;">
 											<tr>
-												<td  class="label">User Photo: </td>
+												<td  class="label"><spring:message code="user.photo" /></td>
 												<td><label><form:input
 														path="photoFile" type="file" accept="image/*" cssErrorClass="error"/>
 												</label></td>

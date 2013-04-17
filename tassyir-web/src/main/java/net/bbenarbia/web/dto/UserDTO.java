@@ -60,13 +60,11 @@ public class UserDTO {
 	@Email
 	private String adresseMail;
 	private String siteWeb;
-	@NotEmpty(message = "telephone must not be empty.")
 	@Pattern(regexp="(^$|[0-9]*)")
 	private String telephonePerso;
-	@NotEmpty(message = "telephone must not be empty.")
 	@Pattern(regexp="(^$|[0-9]*)")
 	private String telephoneProf;
-	@NotEmpty(message = "telephone must not be empty.")
+	@NotEmpty(message = "mobile must not be empty.")
 	@Pattern(regexp="(^$|[0-9]*)")
 	private String telephoneMobile;
 
@@ -127,7 +125,7 @@ public class UserDTO {
 		user.setContact(contact);
 		user.setFirstName(this.firstName);
 		user.setIsAdmin(this.isAdmin);
-		user.setLastName(this.lastName);
+		user.setLastName(this.lastName.toUpperCase());
 		user.setLocked(this.locked);
 		user.setLogin(this.login);
 		user.setUserCategory(this.userCategory.getUserCategory());

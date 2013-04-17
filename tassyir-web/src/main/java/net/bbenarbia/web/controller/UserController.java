@@ -154,7 +154,6 @@ public class UserController {
 			String TEMP_DIR = parameterService
 					.getParameterName(ParameterCode.TEMP_DIRECTORY.toString())
 					.get(0).getValue();
-
 				if (photo.getSize() != 0) {
 					try {
 						File destFile = new File(new File(TEMP_DIR),
