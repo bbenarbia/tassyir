@@ -234,10 +234,8 @@ public class UserController {
 	public String processUpdateUserForm(@Valid UserDTO userDto,
 			BindingResult result, @PathVariable("userId") Long userId,
 			SessionStatus status) {
-		try {
-
-			if (result.hasErrors()) {
-				return "users/createUserForm";
+			if (result.hasErrors()) {				
+				return "users/updateUserForm";
 			}
 
 			UserCategory group = userCategoryService.getUserCategroryByName(
@@ -262,9 +260,6 @@ public class UserController {
 			utilisateurService.merge(user);
 			status.setComplete();
 			return "redirect:/users/" + user.getId();
-		} catch (Exception e) {
-			return "users/updateUserForm";
-		}
 	}
 
 	@RequestMapping(value = "/{userId}/editpassword", method = RequestMethod.GET)

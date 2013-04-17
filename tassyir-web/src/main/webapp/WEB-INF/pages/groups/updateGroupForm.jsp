@@ -5,7 +5,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-<jsp:include page="./../common/head.jsp"/>
+	<jsp:include page="./../common/head.jsp"/>
+	<title>Tassyir: update group</title>
 </head>
 <body>
 	<div id="wrap">
@@ -22,22 +23,23 @@
 						
 					<form:form modelAttribute="group" method="put" id="form1">
 
-						<table class="edit_form" style="width: 100%; border: none;">
+							<table class="edit_form" style="width: 100%; border: none;">
 								<tr>
-									<td class="label"><form:label path="name">Name</form:label></td>
-									<td><label> <form:input label="Group Name" path="name"  class="text" />
+									<td class="label"><form:label path="name"><spring:message code="group.name" /></form:label></td>
+									<td><label> <form:input path="name"  class="text" cssErrorClass="error"/>
 										</label>
+										<form:errors path="name" cssClass="error_code"/>
 									</td>
 								</tr>
 								<tr>
-									<td  style="font-weight: bold;">Roles</td>
+									<td  style="font-weight: bold;"><spring:message code="user.roles" /></td>
 									<td>
 									 <table>
 										<tr>
-											<td style="font-weight: bold;">N°</td>
-											<td style="font-weight: bold; width: 150px;">Name</td>
-											<td style="font-weight: bold; width: 450px;">description</td>
-											<td style="font-weight: bold;">Included</td>
+											<td style="font-weight: bold;"><spring:message code="user.num" /></td>
+											<td style="font-weight: bold; width: 150px;"><spring:message code="user.rolename" /></td>
+											<td style="font-weight: bold; width: 450px;"><spring:message code="user.roledescription" /></td>
+											<td style="font-weight: bold;"><spring:message code="user.included" /></td>
 										</tr>
 										<c:forEach items="${group.roleFormList.roles}" var="roleForm"
 											varStatus="status">
@@ -52,6 +54,19 @@
 									 </table>
 									</td>
 								</tr>
+								<tr>
+								<td colspan="4">
+									<table class="search_form" style="width: 100%; border: none;">
+											<tr>
+												<td  class="label"><spring:message code="user.photo" /> </td>
+												<td><label><input
+														name="photoFile" type="file" accept="image/*" />
+												</label></td>
+											</tr>
+									</table>
+								</td>
+								</tr>	
+								
 								<tr>
 									<td class="label">&nbsp;</td>
 									<td>&nbsp;</td>

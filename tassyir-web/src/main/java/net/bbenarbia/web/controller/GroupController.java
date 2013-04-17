@@ -175,7 +175,7 @@ public class GroupController {
 		try {
 
 			if (result.hasErrors()) {
-				return "groups/createGroupForm";
+				return "groups/updateGroupForm";
 			}
 			
 			Set<Role> rolesList = new HashSet<Role>();
@@ -208,6 +208,14 @@ public class GroupController {
 		if (result.hasErrors()) {
 			return "groups/createGroupForm";
 		} else {
+			
+			List<UserCategory> userGroupList =  userCategoryService.getUserCategroryByName(groupDto.getName());
+			
+			if(userGroupList != null && !userGroupList.isEmpty()){
+				result.rejectValue("name", "groupname.exists");
+				return "groups/createGroupForm";
+			}
+			
 			UserCategory group = new UserCategory();
 
 			Set<Role> rolesList = new HashSet<Role>();
