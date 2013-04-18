@@ -41,18 +41,35 @@
 											value="users/{userId}.html" var="userUrl">
 											<spring:param name="userId" value="${user.id}" />
 										</spring:url> <a href="${userUrl}">View Details</a>
-									</span> <span class="listbuttons"> <spring:url
-											value="/users/new" var="userUrl" /><a
-										href="${fn:escapeXml(userUrl)}">Add New User</a></span> <span
-										class="listbuttons"> <spring:url
-											value="users/{userId}.html" var="deleteUserUrl">
-											<spring:param name="userId" value="${user.id}" />
-										</spring:url> <a href="${deleteUserUrl}">Contact Seller</a></span>
+									</span> 
+									<span class="listbuttons"> <spring:url
+												value="/users/{userId}/edit.htm" var="userUrl">
+												<spring:param name="userId" value="${user.id}" />
+											</spring:url> <a href="${fn:escapeXml(userUrl)}"><spring:message code="user.action.edit" /></a>
+										</span> 
+										 
+										<span class="listbuttons"> <spring:url
+												value="/users/{userId}/delete.htm" var="userUrl">
+												<spring:param name="userId" value="${user.id}" />
+											</spring:url> <a href="${fn:escapeXml(userUrl)}"><spring:message code="user.action.delete" /></a>
+										</span>
 								</div>
 								<div class="clear">&nbsp;</div>
 							</li>
 						</c:forEach>
+						<li>
+								<span class="listbuttons">
+										<a class="buttonmenu" href="/users/new.htm"><spring:message code="user.action.add" /></a>
+								</span> 
+								<span class="listbuttons"> <spring:url
+										value="/users.htm" var="userListUrl">
+									</spring:url>
+										<a class="buttonmenu"  href="${fn:escapeXml(userListUrl)}"><spring:message code="user.action.userlist" /></a>
+								</span>
+						<div class="clear">&nbsp;</div>
+						</li>						
 					</ul>
+					
 					<div id="paginations">
 						<ul>
 							<li><a href="#">&laquo;</a></li>

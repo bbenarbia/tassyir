@@ -22,31 +22,28 @@
 						<form:form modelAttribute="userPassword" method="put" id="form1">
 							<table class="search_form" style="width: 100%; border: none;">
 								<tr>
-									<td class="label"><form:label path="oldPassword">Old password</form:label></td>
+									<td class="label"><form:label path="oldPassword"><spring:message code="user.password" /></form:label></td>
 									<td><label> <form:password label="oldPassword"
-												path="oldPassword" class="text" />
+												path="oldPassword" class="text" cssErrorClass="error"/>
 									</label></td>
 									<td><label>
-												<form:errors
-															cssClass="error" path="oldPassword" />
+													<form:errors path="oldPassword" cssClass="error_code"/>
 									</label></td>
 								</tr>
 								<tr>
-									<td class="label"><form:label path="password">new password</form:label></td>
+									<td class="label"><form:label path="password"><spring:message code="user.newpassword" /></form:label></td>
 									<td><label> <form:password label="password"
-												path="password" class="text" /></label></td>
+												path="password" class="text" cssErrorClass="error"/></label></td>
 									<td><label>
-												<form:errors
-															cssClass="error" path="password" />
+													<form:errors path="password" cssClass="error_code"/>
 									</label></td>
 								</tr>
 								<tr>
-									<td class="label"><form:label path="passwordConfirmation">Confirm password</form:label></td>
+									<td class="label"><form:label path="passwordConfirmation"><spring:message code="user.confirmation" /></form:label></td>
 									<td><label> <form:password label="passwordConfirmation"
-												path="passwordConfirmation" class="text" /></label></td>
+												path="passwordConfirmation" class="text" cssErrorClass="error"/></label></td>
 									<td><label>
-												<form:errors
-															cssClass="error" path="passwordConfirmation" />
+													<form:errors path="passwordConfirmation" cssClass="error_code"/>
 									</label></td>
 								</tr>
 								

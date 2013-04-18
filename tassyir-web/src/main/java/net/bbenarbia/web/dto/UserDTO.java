@@ -20,7 +20,7 @@ public class UserDTO {
 	@NumberFormat(style = Style.NUMBER)
 	private String code;
 	@List({
-	    @Length(min = 2, message = "The first name must be at least 5 characters"),
+	    @Length(min = 2, message = "The first name must be at least 2 characters"),
 	    @Length(max = 50, message = "The first name must be less than 50 characters")
 	})
 	private String firstName;
@@ -30,12 +30,12 @@ public class UserDTO {
 	})
 	private String lastName;
 	@List({
-	    @Length(min = 2, message = "The login must be at least 5 characters"),
+	    @Length(min = 2, message = "The login must be at least 2 characters"),
 	    @Length(max = 50, message = "The login must be less than 50 characters")
 	})
 	private String login;
 	@List({
-	    @Length(min = 2, message = "The password must be at least 5 characters"),
+	    @Length(min = 2, message = "The password must be at least 2 characters"),
 	    @Length(max = 50, message = "The password must be less than 50 characters")
 	})
 	private String password;
@@ -43,14 +43,14 @@ public class UserDTO {
 	private Boolean locked;
 	private Boolean isAdmin;
 	@List({
-	    @Length(min = 2, message = "The adresse must be at least 5 characters"),
+	    @Length(min = 2, message = "The adresse must be at least 2 characters"),
 	    @Length(max = 50, message = "The adresse must be less than 50 characters")
 	})
 	private String adresse;
 	@NotEmpty(message = "code postal must not be empty.")
 	private String codePostal;
 	@List({
-	    @Length(min = 2, message = "ville must be at least 5 characters"),
+	    @Length(min = 2, message = "ville must be at least 2 characters"),
 	    @Length(max = 50, message = "ville must be less than 50 characters")
 	})
 	private String ville;

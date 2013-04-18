@@ -17,9 +17,9 @@ body {background:#fff; font:11px Verdana, Arial, Helvetica, sans-serif; color:#3
 #topbar {background:url(../graphics/topbar.jpg) no-repeat; height:37px;}
 #header {background:url(../graphics/headerbg.jpg) repeat-x; height:128px; margin:0 2px 0 2px;}
 #content {padding:0 2px 0 2px;}
-#home_main, #main {width:545px; float:left; margin-bottom:8px;}
-#home_main_edit, #main_edit {width:645px; float:left; margin-bottom:8px;}
-#home_main_edit_user, #main_edit_user {width:745px; float:left; margin-bottom:8px;}
+#home_main, #main {width:645px; float:left; margin-bottom:8px;}
+#home_main_edit, #main_edit {width:845px; float:left; margin-bottom:8px;}
+#home_main_edit_user, #main_edit_user {width:945px; float:left; margin-bottom:8px;}
 #home_sidebar, #sidebar { width:390px; float:right; margin-bottom:8px;}
 h1#logo { font: bold 48px Tahoma, Geneva, sans-serif; color:#368291;}
 #content #sidebar {
@@ -35,7 +35,7 @@ h1#logo { font: bold 48px Tahoma, Geneva, sans-serif; color:#368291;}
 #search .container {
 	background:#E3F6FC  bottom no-repeat;
 	height:240px;
-	width: 530px;
+	width: 630px;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -51,14 +51,14 @@ h1#logo { font: bold 48px Tahoma, Geneva, sans-serif; color:#368291;}
 #edit .container {
 	background:#E3F6FC  bottom no-repeat;
 	height:365px;
-	width: 630px;
+	width: 730px;
 	margin-right: auto;
 	margin-left: auto;
 }
 #edit_user .container {
 	background:#E3F6FC  bottom no-repeat;
 	height:765px;
-	width: 700px;
+	width: 800px;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -488,8 +488,14 @@ a.highlight {
 #rightcolumn {
 	float: right;
 	padding: 5px;
-	width: 280px;
+	width: 380px;
 }
+#rightcolumn .leftpart{
+	float: left;
+	padding: 5px;
+	width: 200px;
+}
+
 #rightcolumn .price {
 	font: bold 14px "Trebuchet MS", Verdana, Arial, sans-serif;
 	color: #FF0000;
@@ -537,6 +543,17 @@ a.highlight {
 	background: #E3F0F4;
 	padding: 5px;
 }
+#main_action {
+	margin-top: 8px;
+	background: #E3F0F4;
+	padding: 5px;
+	float: right;
+	width:635px; 
+	padding-bottom: 15px;
+    padding-top: 13px;
+}
+
+
 #listing_details {
 	padding: 5px;
 }
@@ -565,3 +582,35 @@ a.highlight {
 .hiddentab a {display:inline!important;}
 .hiddentab a:hover {color:#000!important;}
 
+.buttonmenu {
+   margin: 5px;
+   border-top: 1px solid #96d1f8;
+   background: #65a9d7;
+   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+   background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+   background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+   background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+   background: -o-linear-gradient(top, #3e779d, #65a9d7);
+   padding: 5px 10px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 14px;
+   font-family: Georgia, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.buttonmenu:hover {
+   border-top-color: #28597a;
+   background: #28597a;
+   color: #ccc;
+   }
+.buttonmenu:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }

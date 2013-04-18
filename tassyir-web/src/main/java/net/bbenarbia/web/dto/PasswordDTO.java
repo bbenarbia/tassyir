@@ -1,14 +1,25 @@
 package net.bbenarbia.web.dto;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Length.List;
 
 public class PasswordDTO {
 
+	@List({
+	    @Length(min = 2, message = "The password must be at least 2 characters"),
+	    @Length(max = 50, message = "The password must be less than 50 characters")
+	})
 	private String oldPassword;
 
-	@NotEmpty(message = "password must not be empty.")
+	@List({
+	    @Length(min = 2, message = "The password must be at least 2 characters"),
+	    @Length(max = 50, message = "The password must be less than 50 characters")
+	})
 	private String password;
-	@NotEmpty(message = "password must not be empty.")
+	@List({
+	    @Length(min = 2, message = "The password must be at least 2 characters"),
+	    @Length(max = 50, message = "The password must be less than 50 characters")
+	})
 	private String passwordConfirmation;
 
 	public String getPassword() {

@@ -5,7 +5,8 @@
 
 <html>
 <head>
-<jsp:include page="./../common/head.jsp"/>
+	<jsp:include page="./../common/head.jsp"/>
+	<title>Tassyir: User details</title>
 </head>
 <body>
 	<spring:url value="/users/photo" var="photoUrl" />
@@ -33,90 +34,100 @@
 						</div>
 					</div>
 					<div id="rightcolumn">
+						<div class="leftpart">
 						<h2>${user.firstName} ${user.lastName}</h2>
 						<p class="user">
 							<img  src='<c:url value="/resources/graphics/usericon.gif"/>' alt="user" />
-							<spring:message code="user.login" />
-							${user.login}
+							<spring:message code="user.login" />: ${user.login}
 						</p>
 						<p>
-							<spring:message code="user.code" />
-							# :${user.code} <br /> Created On : put the date here
+							<spring:message code="user.code" /> :${user.code} 
+							<br /> <spring:message code="user.createdon" />: put the date here
 						</p>
 						<p>&nbsp;</p>
 						<p class="price">
-							<spring:message code="user.group" />
-							: ${user.userCategory.name}
+							<spring:message code="user.group" />: ${user.userCategory.name}
 						</p>
-
 						<div id="tabs">
-							<ul>
-								<li><a href="#tabs-1">Save This</a></li>
-								<li><a href="#tabs-2">Send This</a></li>
-								<li><a href="#tabs-3">Report This</a></li>
-							</ul>
-							<div id="tabs-1" class="hiddentab">
-								<p>
-									<img  src='<c:url value="/resources/graphics/fav.gif"/>' alt="FAv" width="18" height="13" />&nbsp;<a
-										href="#">To My Favorites</a>
-								</p>
 								<p>
 									<img src='<c:url value="/resources/graphics/emailalert.gif"/>' alt="email" width="18"
-										height="15" />&nbsp;<a href="#">To Email Alerts</a>
+										height="15" />&nbsp;
+											<spring:url
+											value="/users/{userId}/send-email.htm" var="sendemailUrl">
+											<spring:param name="userId" value="${user.id}" />
+											</spring:url> 
+											<a href="${fn:escapeXml(sendemailUrl)}"><spring:message code="user.action.sendemail" /></a>
 								</p>
 								<p>
-									<img src='<c:url value="/resources/graphics/sms.gif"/>' alt="sms" width="18" height="16" />&nbsp;<a
-										href="#">To SMS Alerts</a>
+									<img src='<c:url value="/resources/graphics/sms.gif"/>' alt="sms" width="18" height="16" />&nbsp;
+									<spring:url
+											value="/users/{userId}/send-sms.htm" var="sendSmsUrl">
+											<spring:param name="userId" value="${user.id}" />
+									</spring:url> <a href="${fn:escapeXml(sendSmsUrl)}"><spring:message code="user.action.sendsms" /></a>
 								</p>
-							</div>
-							<div id="tabs-2" class="hiddentab">
-								<p>
-									<img src='<c:url value="/resources/graphics/emailalert.gif"/>' alt="email" width="18"
-										height="15" />&nbsp;<a href="#">By Email</a>
-								</p>
-								<p>
-									<img  src='<c:url value="/resources/graphics/sms.gif"/>' alt="sms" width="18" height="16" />&nbsp;<a
-										href="#">By SMS</a>
-								</p>
-							</div>
-							<div id="tabs-3" class="hiddentab">
 								<p>
 									<img  src='<c:url value="/resources/graphics/emailalert.gif"/>' alt="email" width="18"
-										height="15" />&nbsp;<a href="#">Report Spam</a>
-								</p>
-							</div>
+										height="15" />&nbsp;
+									<spring:url
+											value="/users/{userId}/add-mailing-list.htm" var="addmailinglistUrl">
+											<spring:param name="userId" value="${user.id}" />
+									</spring:url> <a href="${fn:escapeXml(addmailinglistUrl)}"><spring:message code="user.action.addmailinglist" /></a>
+								</p>							
 						</div>
-
-					</div>
-					<div class="clear">&nbsp;</div>
-				</div>
-				<div id="midraw_details">
+						</div>
 					<div class="listingbtns">
 						<span class="listbuttons"> <spring:url
-								value="/users/{userId}/edit" var="userUrl">
+								value="/users/{userId}/edit.htm" var="userUrl">
 								<spring:param name="userId" value="${user.id}" />
-							</spring:url> <a href="${fn:escapeXml(userUrl)}">Edit User</a>
-						</span> <span class="listbuttons"> <spring:url value="/users/new"
-								var="userUrl" /> <a href="${fn:escapeXml(userUrl)}">Add
-								User</a></span> <span class="listbuttons"> <spring:url
-								value="/users/{userId}/delete" var="userUrl">
+							</spring:url> <a href="${fn:escapeXml(userUrl)}"><spring:message code="user.action.edit" /></a>
+						</span> 
+						<span class="listbuttons"> <spring:url value="/users/new.htm"
+								var="userUrl" /> <a href="${fn:escapeXml(userUrl)}"><spring:message code="user.action.add" /></a>
+						</span> 
+						<span class="listbuttons"> <spring:url
+								value="/users/{userId}/delete.htm" var="userUrl">
 								<spring:param name="userId" value="${user.id}" />
-							</spring:url> <a href="${fn:escapeXml(userUrl)}">Delete User</a></span> <span
-							class="listbuttons"> <spring:url
-								value="/users/{userId}/editpassword" var="editPasswordUrl">
+							</spring:url> <a href="${fn:escapeXml(userUrl)}"><spring:message code="user.action.delete" /></a>
+						</span>
+						<span class="listbuttons"> <spring:url
+								value="/users/{userId}/editpassword.htm" var="editPasswordUrl">
 								<spring:param name="userId" value="${user.id}" />
-							</spring:url> <a href="${fn:escapeXml(editPasswordUrl)}">Edit password</a></span>
-							
-								<span class="listbuttons"> <a
-									href="${fn:escapeXml(addPhotoUrl)}">Select/modify photo</a>
-								</span>
-					</div>
-
-					<div id="imagesgallerylisting">
-						<div class="imagegallink">
-							<a href="#">view Image Gallery</a> <span>12 Images
-								Submitted</span>
-						</div>
+							</spring:url> <a href="${fn:escapeXml(editPasswordUrl)}"><spring:message code="user.action.editpassword" /></a>
+						</span>
+						<span class="listbuttons"> <spring:url
+												value="/users/{userId}/reset-password.htm" var="resetPasswordUrl">
+												<spring:param name="userId" value="${user.id}" />
+											</spring:url> <a href="${fn:escapeXml(resetPasswordUrl)}"><spring:message code="user.action.resetpassword" /></a>
+										</span>
+						<span class="listbuttons"> 
+							<a href="${fn:escapeXml(addPhotoUrl)}"><spring:message code="user.action.editphoto" /></a>
+						</span>
+						
+						<c:choose>
+							<c:when test="${!user.locked }">
+									<span class="listbuttons"> <spring:url
+											value="/users/{userId}/lock-user.htm" var="lockUrl">
+											<spring:param name="userId" value="${user.id}" />
+										</spring:url> <a href="${fn:escapeXml(lockUrl)}"><spring:message code="user.action.lockuser" /></a>
+									</span>						
+							</c:when>
+							<c:otherwise>
+									<span class="listbuttons"> <spring:url
+										value="/users/{userId}/activate-user.htm" var="activateUrl">
+										<spring:param name="userId" value="${user.id}" />
+									</spring:url> <a href="${fn:escapeXml(activateUrl)}"><spring:message code="user.action.activateuser" /></a>
+									</span>
+							</c:otherwise>
+						</c:choose>
+													
+						
+						
+						<span class="listbuttons"> <spring:url
+								value="/users/{userId}/biens-list.htm" var="bienslistUrl">
+								<spring:param name="userId" value="${user.id}" />
+							</spring:url> <a href="${fn:escapeXml(bienslistUrl)}"><spring:message code="user.action.showbienlist" /></a>
+						</span>
+				</div>
 					</div>
 					<div class="clear">&nbsp;</div>
 				</div>
@@ -125,24 +136,57 @@
 					<div id="listing_details">
 						<table>
 							<tr>
-								<td><h3>Details Contact</h3></td>
-								<td>&nbsp;</td>
+								<td> <spring:message code="user.adresse" /></td>
+								<td colspan="2"> ${user.contact.adresse}</td>
 							</tr>
 							<tr>
-								<td><ul>
-										<li><spring:message code="adresse" /> ${user.contact.adresse}</li>
-										<li><spring:message code="codePostal" /> ${user.contact.codePostal}</li>
-										<li><spring:message code="ville" /> ${user.contact.ville}</li>
-										<li><spring:message code="adresseMailContact" /> ${user.contact.adresseMail}</li>
-									</ul></td>
-									<td></td>
-								<td><ul>
-										<li><spring:message code="telephonePerso" /> ${user.contact.telephonePerso}</li>		
-										<li><spring:message code="telephoneProf" /> ${user.contact.telephoneProf}</li>
-										<li><spring:message code="telephoneMobile" /> ${user.contact.telephoneMobile}</li>												
-										<li><spring:message code="alerteSurTelephone1" /> ${user.contact.alerteSurTelephone1}</li>
-										<li><spring:message code="alerteSurTelephone2" /> ${user.contact.alerteSurTelephone2}</li>
-									</ul></td>
+								<td><spring:message code="user.codePostal" /></td>
+								<td colspan="2">${user.contact.codePostal}</td>
+							</tr>
+							<tr>	
+								<td><spring:message code="user.ville" /></td>
+								<td colspan="2">${user.contact.ville}</td>
+							</tr>
+							<tr>	
+								<td><spring:message code="user.email" /></td>
+								<td colspan="2">${user.contact.adresseMail}</td>
+							</tr>
+							<tr>	
+								<td><spring:message code="user.website" /></td>
+								<td colspan="2">${user.contact.siteWeb}</td>
+							</tr>
+							<tr>	
+								<td><spring:message code="user.telephonePerso" /></td>
+								<td >${user.contact.telephonePerso}</td>
+								<td >
+											<c:choose>
+													<c:when test="${user.contact.alerteSurTelephone1}">
+														<img width="30" height="30"  src='<c:url value="/resources/graphics/phone_accept.png"/>' class="previewimg">
+													</c:when>
+													<c:otherwise>
+														<img width="30" height="30"  src='<c:url value="/resources/graphics/phone_delete.png"/>' class="previewimg">
+													</c:otherwise>
+											</c:choose>	
+								</td>
+							</tr>
+							<tr>	
+								<td><spring:message code="user.telephoneProf" />	</td>
+								<td >${user.contact.telephoneProf}</td>
+								<td >
+											<c:choose>
+													<c:when test="${user.contact.alerteSurTelephone2}">
+														<img width="30" height="30"  src='<c:url value="/resources/graphics/phone_accept.png"/>' class="previewimg">
+													</c:when>
+													<c:otherwise>
+														<img width="30" height="30"  src='<c:url value="/resources/graphics/phone_delete.png"/>' class="previewimg">
+													</c:otherwise>
+											</c:choose>	
+								</td>
+							</tr>
+							<tr>	
+								<td> <spring:message code="user.mobile" /></td>
+								<td >${user.contact.telephoneMobile}</td>
+								<td ></td>
 							</tr>
 						</table>
 					</div>
@@ -150,7 +194,7 @@
 				</div>
 				
 				<div id="moredetails">
-					<div id="listing_details">
+					<div id="listing_detail">
 						<table>
 							<tr>
 								<td><h3><spring:message code="user.roles" /></h3></td>
@@ -165,9 +209,18 @@
 							</tr>
 						</table>
 					</div>
-
 				</div>
-
+				<div id="main_action">
+								<span class="listbuttons">
+										<a class="buttonmenu" href="/users/new.htm"><spring:message code="user.action.add" /></a>
+								</span> 
+								<span class="listbuttons"> <spring:url
+										value="/users.htm" var="userListUrl">
+									</spring:url>
+										<a class="buttonmenu"  href="${fn:escapeXml(userListUrl)}"><spring:message code="user.action.userlist" /></a>
+								</span>
+				</div>
+				
 			</div>
 		</div>
 

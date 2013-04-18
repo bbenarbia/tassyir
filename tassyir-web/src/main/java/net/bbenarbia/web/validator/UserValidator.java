@@ -1,7 +1,6 @@
 package net.bbenarbia.web.validator;
 
 import net.bbenarbia.service.IUtilisateurService;
-import net.bbenarbia.web.dto.GroupDTO;
 import net.bbenarbia.web.dto.PasswordDTO;
 import net.bbenarbia.web.dto.UserDTO;
 

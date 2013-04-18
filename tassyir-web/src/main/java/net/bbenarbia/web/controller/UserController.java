@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -32,6 +34,7 @@ import net.bbenarbia.web.validator.UserValidator;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -73,6 +76,9 @@ public class UserController {
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+		dateFormat.setLenient(false);
+		dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 
 	@ModelAttribute("userGroupList")
@@ -100,8 +106,9 @@ public class UserController {
 
 	@RequestMapping("/{userId}")
 	public String showUserDetails(@PathVariable("userId") long userId,
-			Model model) {
+			Model model) throws Exception {
 		User user = this.utilisateurService.get(userId);
+		if(user != null){
 		model.addAttribute("user", user);
 		List<String> userRolesOfGroup = new LinkedList<String>();
 		if (user != null && user.getUserCategory() != null) {
@@ -111,6 +118,10 @@ public class UserController {
 		}
 		model.addAttribute("groupRoles", userRolesOfGroup);
 		return "users/userDetails";
+		}
+		else {
+			throw new Exception("User id not found");
+		}
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
@@ -207,8 +218,10 @@ public class UserController {
 
 	@RequestMapping(value = "/{userId}/edit", method = RequestMethod.GET)
 	public String initUpdateUserForm(@PathVariable("userId") Long userId,
-			Model model) {
+			Model model) throws Exception {
 		User user = this.utilisateurService.get(userId);
+		if(user != null){
+		
 		UserDTO userDto = new UserDTO(user);
 
 		RoleFormDTOList listFormDto = new RoleFormDTOList();
@@ -228,6 +241,10 @@ public class UserController {
 
 		model.addAttribute("user", userDto);
 		return "users/updateUserForm";
+		}
+		else {
+			throw new Exception("User id not found");
+		}
 	}
 
 	@RequestMapping(value = "/{userId}/edit", method = RequestMethod.POST)
@@ -264,15 +281,21 @@ public class UserController {
 
 	@RequestMapping(value = "/{userId}/editpassword", method = RequestMethod.GET)
 	public String updatePasswordForm(@PathVariable("userId") Long userId,
-			Model model) {
+			Model model) throws Exception {
+		User user = utilisateurService.get(userId);
+		if(user != null){
 		PasswordDTO userPassword = new PasswordDTO();
 		model.addAttribute("userPassword", userPassword);
 		return "users/updatePasswordUserForm";
 	}
+		else {
+			throw new Exception("User id not found");
+		}
+	}
 
 	@RequestMapping(value = "/{userId}/editpassword", method = RequestMethod.POST)
 	public String processUpdatePasswordForm(
-			@ModelAttribute("userPassword") PasswordDTO userPassword,
+			@ModelAttribute("userPassword") @Valid PasswordDTO userPassword,
 			BindingResult result, @PathVariable("userId") Long userId,
 
 			SessionStatus status) {
