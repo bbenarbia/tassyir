@@ -9,19 +9,30 @@
 	<title>Tassyir: Create a new user</title>
 </head>
 <body>
+	<spring:url value="/users.htm" var="userListUrl"> </spring:url>
+	<spring:url value="/" var="homeUrl"> </spring:url>
+	<spring:url value="/users/new.htm" var="userUrl" />
+	<spring:url value="/users/{userId}.htm" var="detailuserUrl">
+				<spring:param name="userId" value="${user.id}" />
+	</spring:url> 
 	<div id="wrap">
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">
 			<jsp:include page="../common/sub-menu.jsp" />
 
 			<div id="home_main_edit_user">
+				<div class="navig">
+					<a href="${fn:escapeXml(homeUrl)}"><spring:message code="home" /></a>
+						&laquo;
+					<a href="${fn:escapeXml(userListUrl)}"><spring:message code="user.gotolistuser" /></a>
+				</div>
+				
 				<div id="edit_user">
 					<div class="tab">
-						<h2>Update user infos</h2>
+						<h2>Update user infos</h2>	
 					</div>
 					<div class="container">
 						<form:form modelAttribute="user" method="put" id="form1">
-							
 							<table class="edit_form_user" style="width: 100%; border: none;">							 
 								<tr>
 									<td class="label"><form:label path="firstName"><spring:message code="user.firstName" /></form:label></td>
@@ -30,7 +41,7 @@
 									</label></td>
 									<td class="label"><form:label path="lastName"><spring:message code="user.lastName" /></form:label></td>
 									<td><label> <form:input label="lastName"
-												path="lastName" class="text mediumtext" cssErrorClass="error"/>
+												path="lastName" class="text" cssErrorClass="error"/>
 									</label></td> 
 								</tr>
 								<tr>
@@ -105,8 +116,10 @@
 									<td colspan="4" align="center"><spring:message code="user.contact" /></td>
 								</tr>
 								<tr>
-									<td rowspan="8" class="label"><form:label
+									<td  class="label"><form:label
 											path="adresse"><spring:message code="user.adresse" /></form:label></td>
+								</tr>
+								<tr>
 									<td rowspan="8"><label> <form:textarea cols="26"
 												rows="10" label="adresse"
 												path="adresse" class="text textBoxfieldlong" cssErrorClass="error"/>
@@ -169,11 +182,13 @@
 												class="text" cssErrorClass="error"/>
 									</label></td>
 								</tr>
-								
 								<tr>
 									<td class="label">&nbsp;</td>
 									<td>&nbsp;</td>
-									<td>&nbsp;</td>
+									<td><span class="listbuttons">
+										<a class="buttonmenured"  href="${fn:escapeXml(detailuserUrl)}"><spring:message code="user.action.cancel" /></a>
+										</span>
+									</td>
 									<td class="label"><label> <input type="image"
 											src='<c:url value="/resources/graphics/searchbtn.gif"/>'
 											alt="search" name="button2" id="button2" value="Submit" />
@@ -182,7 +197,16 @@
 							</table>
 						</form:form>
 					</div>
+					<div class="clear">&nbsp;</div>
 					<div class="bottom"></div>
+				</div>
+				<div id="main_action_edit">
+								<span class="listbuttons">
+									 <a class="buttonmenu"  href="${fn:escapeXml(userUrl)}"><spring:message code="user.action.add" /></a>
+								</span> 
+								<span class="listbuttons"> 
+										<a class="buttonmenu"  href="${fn:escapeXml(userListUrl)}"><spring:message code="user.action.userlist" /></a>
+								</span>
 				</div>
 			</div>
 			<div class="clear">&nbsp;</div>

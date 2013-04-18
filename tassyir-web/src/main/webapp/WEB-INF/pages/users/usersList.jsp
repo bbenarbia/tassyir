@@ -12,12 +12,16 @@
 		<spring:url value="/users/upload/{userId}/show" var="addPhotoUrl">
 		<spring:param name="userId" value="${user.id}" />
 	</spring:url>
+	<spring:url value="/users.htm" var="userListUrl"> </spring:url>
+	<spring:url value="/" var="homeUrl"> </spring:url>
 	<div id="wrap">
 		<jsp:include page="../common/menu.jsp" />
 			<div id="content">
 				<jsp:include page="../common/sub-menu.jsp" />
-
 				<div id="main">
+					<div class="navig">
+						<a href="${fn:escapeXml(homeUrl)}"><spring:message code="home" /></a>
+					</div>
 					<h1>Users Listing</h1>
 					<ul class="listing">
 						<c:forEach var="user" items="${selections}">

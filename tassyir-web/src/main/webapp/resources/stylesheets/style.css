@@ -17,9 +17,9 @@ body {background:#fff; font:11px Verdana, Arial, Helvetica, sans-serif; color:#3
 #topbar {background:url(../graphics/topbar.jpg) no-repeat; height:37px;}
 #header {background:url(../graphics/headerbg.jpg) repeat-x; height:128px; margin:0 2px 0 2px;}
 #content {padding:0 2px 0 2px;}
-#home_main, #main {width:645px; float:left; margin-bottom:8px;}
-#home_main_edit, #main_edit {width:845px; float:left; margin-bottom:8px;}
-#home_main_edit_user, #main_edit_user {width:945px; float:left; margin-bottom:8px;}
+#home_main, #main {width:650px; float:left; margin-bottom:8px;}
+#home_main_edit, #main_edit {width:645px; float:left; margin-bottom:8px;}
+#home_main_edit_user, #main_edit_user {width:745px; float:left; margin-bottom:8px;}
 #home_sidebar, #sidebar { width:390px; float:right; margin-bottom:8px;}
 h1#logo { font: bold 48px Tahoma, Geneva, sans-serif; color:#368291;}
 #content #sidebar {
@@ -40,7 +40,7 @@ h1#logo { font: bold 48px Tahoma, Geneva, sans-serif; color:#368291;}
 	margin-left: auto;
 }
 #search .tab {
-	height:30px;
+	height:20px;
 	padding:5px 20px 0 10px;
 }
 #search .bottom {
@@ -51,19 +51,19 @@ h1#logo { font: bold 48px Tahoma, Geneva, sans-serif; color:#368291;}
 #edit .container {
 	background:#E3F6FC  bottom no-repeat;
 	height:365px;
-	width: 730px;
+	width: 530px;
 	margin-right: auto;
 	margin-left: auto;
 }
 #edit_user .container {
 	background:#E3F6FC  bottom no-repeat;
-	height:765px;
-	width: 800px;
+	height:630px;
+	width: 690px;
 	margin-right: auto;
 	margin-left: auto;
 }
 #edit_user .tab {
-	height:30px;
+	height:25px;
 	padding:5px 20px 0 10px;
 }
 #edit_user .bottom {
@@ -168,13 +168,21 @@ h1#logo { font: bold 48px Tahoma, Geneva, sans-serif; color:#368291;}
 	float: left;
 	font: bold 18px "Trebuchet MS", Arial, sans-serif;
 }
-#main h1 {
+ h1 {
 	background: url(../graphics/mainh2bg.jpg);
 	font: bold 18px "Trebuchet MS", Arial, sans-serif;
 	color: #000000;
 	padding: 5px;
 	margin-bottom: 5px;
 }
+.navig  {
+	background: url(../graphics/mainh2bg.jpg);
+	font: bold 12px "Trebuchet MS", Arial, sans-serif;
+	color: #000000;
+	padding: 5px;
+	margin-bottom: 5px;
+}
+
 .listing {
 	
 }
@@ -535,6 +543,12 @@ a.highlight {
 }
 #listing_details td {
 	padding: 3px;
+	vertical-align: middle;
+}
+
+#listing_details tr {
+	padding: 3px;
+	height:30px;
 	vertical-align: top;
 }
 
@@ -545,12 +559,24 @@ a.highlight {
 }
 #main_action {
 	margin-top: 8px;
-	background: #E3F0F4;
+	/* background: #E3F0F4; */
+	background: none repeat scroll 0 0 #F8F8F8;
 	padding: 5px;
 	float: right;
 	width:635px; 
-	padding-bottom: 15px;
-    padding-top: 13px;
+	padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+#main_action_edit {
+	margin-top: 8px;
+	/* background: #E3F0F4; */
+	background: none repeat scroll 0 0 #F8F8F8;
+	padding: 5px;
+	float: right;
+	width:735px; 
+	padding-bottom: 5px;
+    padding-top: 5px;
 }
 
 
@@ -604,6 +630,7 @@ a.highlight {
    font-family: Georgia, serif;
    text-decoration: none;
    vertical-align: middle;
+   float: right;
    }
 .buttonmenu:hover {
    border-top-color: #28597a;
@@ -614,3 +641,37 @@ a.highlight {
    border-top-color: #1b435e;
    background: #1b435e;
    }
+   
+  .buttonmenured {
+   margin: 5px;
+   border-top: 1px solid #FA5858;
+   background: #FF0000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#F79F81), to(#DF0101));
+   background: -webkit-linear-gradient(top, #F79F81, #DF0101);
+   background: -moz-linear-gradient(top, #F79F81, #DF0101);
+   background: -ms-linear-gradient(top, #F79F81, #DF0101);
+   background: -o-linear-gradient(top, #F79F81, #DF0101);
+   padding: 5px 10px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 14px;
+   font-family: Georgia, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   float: right;
+   }
+.buttonmenured:hover {
+   border-top-color: #8A0808;
+   background: #610B0B;
+   color: #ccc;
+   }
+.buttonmenured:active {
+   border-top-color: #B40404;
+   background: #610B0B;
+   } 

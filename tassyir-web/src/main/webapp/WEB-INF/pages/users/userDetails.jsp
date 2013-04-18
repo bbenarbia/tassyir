@@ -13,15 +13,19 @@
 	<spring:url value="/users/upload/{userId}/show" var="addPhotoUrl">
 		<spring:param name="userId" value="${user.id}" />
 	</spring:url>
-	
+	<spring:url value="/users.htm" var="userListUrl"> </spring:url>
+	<spring:url value="/" var="homeUrl"> </spring:url>
 	<div id="wrap">
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">
 			<jsp:include page="../common/sub-menu.jsp" />
 			<div id="main">
-				<h1>
-					<spring:message code="user.information" />
-				</h1>
+				<div class="navig">
+					<a href="${fn:escapeXml(homeUrl)}"><spring:message code="home" /></a>
+					&laquo;
+					<a href="${fn:escapeXml(userListUrl)}"><spring:message code="user.gotolistuser" /></a>
+				</div>
+				<h1>User detail</h1>
 				<div id="single_item_details">
 					<div id="leftcolumn">
 						<div id="carrousel">
@@ -135,59 +139,83 @@
 				<div id="moredetails">
 					<div id="listing_details">
 						<table>
-							<tr>
-								<td> <spring:message code="user.adresse" /></td>
-								<td colspan="2"> ${user.contact.adresse}</td>
-							</tr>
-							<tr>
-								<td><spring:message code="user.codePostal" /></td>
-								<td colspan="2">${user.contact.codePostal}</td>
-							</tr>
-							<tr>	
-								<td><spring:message code="user.ville" /></td>
-								<td colspan="2">${user.contact.ville}</td>
-							</tr>
-							<tr>	
-								<td><spring:message code="user.email" /></td>
-								<td colspan="2">${user.contact.adresseMail}</td>
-							</tr>
-							<tr>	
-								<td><spring:message code="user.website" /></td>
-								<td colspan="2">${user.contact.siteWeb}</td>
-							</tr>
-							<tr>	
-								<td><spring:message code="user.telephonePerso" /></td>
-								<td >${user.contact.telephonePerso}</td>
-								<td >
-											<c:choose>
-													<c:when test="${user.contact.alerteSurTelephone1}">
-														<img width="30" height="30"  src='<c:url value="/resources/graphics/phone_accept.png"/>' class="previewimg">
-													</c:when>
-													<c:otherwise>
-														<img width="30" height="30"  src='<c:url value="/resources/graphics/phone_delete.png"/>' class="previewimg">
-													</c:otherwise>
-											</c:choose>	
-								</td>
-							</tr>
-							<tr>	
-								<td><spring:message code="user.telephoneProf" />	</td>
-								<td >${user.contact.telephoneProf}</td>
-								<td >
-											<c:choose>
-													<c:when test="${user.contact.alerteSurTelephone2}">
-														<img width="30" height="30"  src='<c:url value="/resources/graphics/phone_accept.png"/>' class="previewimg">
-													</c:when>
-													<c:otherwise>
-														<img width="30" height="30"  src='<c:url value="/resources/graphics/phone_delete.png"/>' class="previewimg">
-													</c:otherwise>
-											</c:choose>	
-								</td>
-							</tr>
-							<tr>	
-								<td> <spring:message code="user.mobile" /></td>
-								<td >${user.contact.telephoneMobile}</td>
-								<td ></td>
-							</tr>
+							<c:if test="${!empty user.contact.adresse }">
+								<tr>
+									<td> <spring:message code="user.adresse" /></td>
+									<td>:</td>
+									<td colspan="2"> ${user.contact.adresse}</td>
+								</tr>
+							</c:if>
+							<c:if test="${!empty user.contact.codePostal }">
+								<tr>
+									<td><spring:message code="user.codePostal" /></td>
+									<td>:</td>
+									<td colspan="2">${user.contact.codePostal}</td>
+								</tr>
+							</c:if>
+							<c:if test="${!empty user.contact.ville }">
+								<tr>	
+									<td><spring:message code="user.ville" /></td>
+									<td>:</td>
+									<td colspan="2">${user.contact.ville}</td>
+								</tr>
+							</c:if>
+							<c:if test="${!empty user.contact.adresseMail }">
+								<tr>	
+									<td><spring:message code="user.email" /></td>
+									<td>:</td>
+									<td colspan="2">${user.contact.adresseMail}</td>
+								</tr>
+							</c:if>
+							<c:if test="${!empty user.contact.siteWeb }">
+								<tr>	
+									<td><spring:message code="user.website" /></td>
+									<td>:</td>
+									<td colspan="2">${user.contact.siteWeb}</td>
+								</tr>
+							</c:if>
+							<c:if test="${!empty user.contact.telephonePerso }">
+								<tr>	
+									<td><spring:message code="user.telephonePerso" /></td>
+									<td>:</td>
+									<td >${user.contact.telephonePerso}</td>
+									<td >
+												<c:choose>
+														<c:when test="${user.contact.alerteSurTelephone1}">
+															<img width="30" height="30"  src='<c:url value="/resources/graphics/phone_accept.png"/>' >
+														</c:when>
+														<c:otherwise>
+															<img width="30" height="30"  src='<c:url value="/resources/graphics/phone_delete.png"/>' >
+														</c:otherwise>
+												</c:choose>	
+									</td>
+								</tr>
+							</c:if>
+							<c:if test="${!empty user.contact.telephoneProf }">
+								<tr>	
+									<td><spring:message code="user.telephoneProf" />	</td>
+									<td>:</td>
+									<td >${user.contact.telephoneProf}</td>
+									<td >
+												<c:choose>
+														<c:when test="${user.contact.alerteSurTelephone2}">
+															<img width="30" height="30"  src='<c:url value="/resources/graphics/phone_accept.png"/>'>
+														</c:when>
+														<c:otherwise>
+															<img width="30" height="30"  src='<c:url value="/resources/graphics/phone_delete.png"/>'>
+														</c:otherwise>
+												</c:choose>	
+									</td>
+								</tr>
+							</c:if>
+							<c:if test="${!empty user.contact.telephoneMobile }">
+								<tr>	
+									<td> <spring:message code="user.mobile" /></td>
+									<td>:</td>
+									<td >${user.contact.telephoneMobile}</td>
+									<td ></td>
+								</tr>
+							</c:if>
 						</table>
 					</div>
 
@@ -214,9 +242,7 @@
 								<span class="listbuttons">
 										<a class="buttonmenu" href="/users/new.htm"><spring:message code="user.action.add" /></a>
 								</span> 
-								<span class="listbuttons"> <spring:url
-										value="/users.htm" var="userListUrl">
-									</spring:url>
+								<span class="listbuttons"> 
 										<a class="buttonmenu"  href="${fn:escapeXml(userListUrl)}"><spring:message code="user.action.userlist" /></a>
 								</span>
 				</div>
