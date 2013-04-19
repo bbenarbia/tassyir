@@ -65,11 +65,7 @@
 									 </table>
 									</td>
 								</tr>
-								<tr>
-								<td  class="label"><spring:message code="user.photo" /> </td>
-								<td><label><input	name="photoFile" type="file" accept="image/*" />
-									</label></td>
-								</tr>	
+							
 								<tr>
 									<td class="label">&nbsp;</td>
 									<td><span class="listbuttons">

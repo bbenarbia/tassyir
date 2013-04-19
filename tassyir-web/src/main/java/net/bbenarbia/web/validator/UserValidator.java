@@ -1,5 +1,6 @@
 package net.bbenarbia.web.validator;
 
+import net.bbenarbia.domain.Parameter;
 import net.bbenarbia.service.IUtilisateurService;
 import net.bbenarbia.web.dto.PasswordDTO;
 import net.bbenarbia.web.dto.UserDTO;
@@ -14,7 +15,7 @@ public class UserValidator implements Validator {
 
 	@Autowired
 	private IUtilisateurService utilisateurService;
-	
+
 	@SuppressWarnings("rawtypes")
 	@Override
 	public boolean supports(Class c) {
@@ -23,30 +24,40 @@ public class UserValidator implements Validator {
 
 	@Override
 	public void validate(Object command, Errors errors) {
-		if(command.getClass().equals(UserDTO.class)){
-		UserDTO userBean = (UserDTO) command;
-		if (!userBean.getPassword().equals(userBean.getPasswordConfirmation())){
-			errors.rejectValue("passwordConfirmation", "passwordConfirmation.notmatch");
-		}
-		
-		if(utilisateurService.existeLogin(userBean.getLogin())){
-			errors.rejectValue("login", "login.exists");
-		}
-		try {
-			if(utilisateurService.userCodeExists(Long.valueOf(userBean.getCode()))){
-				errors.rejectValue("code", "code.exists");
+		if (command.getClass().equals(UserDTO.class)) {
+			UserDTO userBean = (UserDTO) command;
+			if (!userBean.getPassword().equals(
+					userBean.getPasswordConfirmation())) {
+				errors.rejectValue("passwordConfirmation",
+						"passwordConfirmation.notmatch");
 			}
-		} catch (NumberFormatException e) {
-			errors.rejectValue("code", "code.error");
-		}
-		
-	}
-		else if(command.getClass().equals(PasswordDTO.class)){
+
+			if (utilisateurService.existeLogin(userBean.getLogin())) {
+				errors.rejectValue("login", "login.exists");
+			}
+			try {
+				if (utilisateurService.userCodeExists(Long.valueOf(userBean
+						.getCode()))) {
+					errors.rejectValue("code", "code.exists");
+				}
+			} catch (NumberFormatException e) {
+				errors.rejectValue("code", "code.error");
+			}
+
+		} else if (command.getClass().equals(PasswordDTO.class)) {
 			PasswordDTO passwordBean = (PasswordDTO) command;
-			if (!passwordBean.getPassword().equals(passwordBean.getPasswordConfirmation())){
-				errors.rejectValue("passwordConfirmation", "passwordConfirmation.notmatch");
+			if (!passwordBean.getPassword().equals(
+					passwordBean.getPasswordConfirmation())) {
+				errors.rejectValue("passwordConfirmation",
+						"passwordConfirmation.notmatch");
+			}
+		} else if (command.getClass().equals(Parameter.class)) {
+			Parameter paramBean = (Parameter) command;
+			if (paramBean.getName() == null || paramBean.getName().isEmpty()){
+				errors.rejectValue("name", "parameter.name.notempty");
 			}
 		}
+
 	}
-		
+
 }

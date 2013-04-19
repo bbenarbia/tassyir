@@ -87,9 +87,6 @@
 								 <a href="${fn:escapeXml(editGroupUrl)}"><spring:message code="group.action.edit" /></a>
 							</span> 
 							<span class="listbuttons"> 
-								<a href="${fn:escapeXml(addGroupUrl)}"><spring:message code="group.action.add" /></a>
-							</span> 
-							<span class="listbuttons"> 
 									 <a href="${fn:escapeXml(deleteGroupUrl)}"><spring:message code="group.action.deletegroup" /></a>
 							</span> 
 							<span class="listbuttons"> <a

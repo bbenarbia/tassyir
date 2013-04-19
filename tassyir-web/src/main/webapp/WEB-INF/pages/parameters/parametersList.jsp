@@ -2,20 +2,32 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-<jsp:include page="./../common/head.jsp"/>
+<title></title>
+	<jsp:include page="./../common/head.jsp"/>
 </head>
 <body>
+	<spring:url value="/parameters/{paramId}.htm" var="cancelParamUrl">
+					<spring:param name="paramId" value="${parameter.id}" />
+		</spring:url>
+	
+	<spring:url value="/parameters.htm" var="paramListUrl" />
+	<spring:url value="/parameters/new.htm" var="addParamUrl" /> 
+	
 	<div id="wrap">
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">
-
-			<div id="content">
 				<jsp:include page="../common/sub-menu.jsp" />
-
 				<div id="main">
+					<div class="navig">
+						<c:forEach var="navig" items="${navigations}" varStatus="status">
+							&laquo;
+							<spring:url value="${navig.url}" var="navigs" />
+							<a href="${navigs}"><spring:message code="${navig.name}" /></a>
+						</c:forEach>
+					</div>
 					<h1>Parameters Listing</h1>
 					<ul class="listing">
 						<c:forEach var="parameter" items="${selections}">
@@ -27,13 +39,17 @@
 										class="price">${parameter.description}</span>
 								</div>
 								<div class="listingbtns">
-									<span class="listbuttons"> <a
-										href="parameters/${parameter.id}/edit">Edit parameter</a>
+									<span class="listbuttons"> 
+										<spring:url value="/parameters/{paramId}/edit.htm" var="editParamUrl">
+												<spring:param name="paramId" value="${parameter.id}" />
+										</spring:url>
+										<a href="${fn:escapeXml(editParamUrl)}"><spring:message code="param.action.edit" /></a>
 									</span> 
 								</div>
 								<div class="clear">&nbsp;</div>
 							</li>
 						</c:forEach>
+							
 					</ul>
 					<div id="paginations">
 						<ul>
@@ -56,7 +72,6 @@
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>
 			<jsp:include page="../common/footer.jsp" />
-		</div>
 	</div>
 </body>
 </html>

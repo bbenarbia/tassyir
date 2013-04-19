@@ -16,6 +16,11 @@
 <body>
 	<div id="container">
 		<jsp:include page="../common/menu.jsp" />
+		<c:forEach var="navig" items="${navigations}" varStatus="status">
+							&laquo;
+							<spring:url value="${navig.url}" var="navigs" />
+							<a href="${navigs}"><spring:message code="${navig.name}" /></a>
+		</c:forEach>
 		<h2>Parameter</h2>
 
 		<form:form modelAttribute="parameter" method="post" id="form1">
