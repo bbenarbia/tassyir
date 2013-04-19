@@ -17,9 +17,9 @@ body {background:#fff; font:11px Verdana, Arial, Helvetica, sans-serif; color:#3
 #topbar {background:url(../graphics/topbar.jpg) no-repeat; height:37px;}
 #header {background:url(../graphics/headerbg.jpg) repeat-x; height:128px; margin:0 2px 0 2px;}
 #content {padding:0 2px 0 2px;}
-#home_main, #main {width:650px; float:left; margin-bottom:8px;}
-#home_main_edit, #main_edit {width:645px; float:left; margin-bottom:8px;}
-#home_main_edit_user, #main_edit_user {width:745px; float:left; margin-bottom:8px;}
+#home_main, #main, #main_bien {width:750px; float:left; margin-bottom:8px;}
+#home_main_edit, #main_edit,#main_edit_bien  {width:645px; float:left; margin-bottom:8px;}
+#home_main_edit_user, #main_edit_user,#main_edit_user_bien {width:745px; float:left; margin-bottom:8px;}
 #home_sidebar, #sidebar { width:390px; float:right; margin-bottom:8px;}
 h1#logo { font: bold 48px Tahoma, Geneva, sans-serif; color:#368291;}
 #content #sidebar {
@@ -29,13 +29,14 @@ h1#logo { font: bold 48px Tahoma, Geneva, sans-serif; color:#368291;}
 #search {background:url(../graphics/searchbg.jpg);}
 #edit {background:url(../graphics/searchbg.jpg);}
 #edit_user {background:url(../graphics/searchbg.jpg);}
+#search_bien {background:url(../graphics/searchbg.jpg);}
 .hot {background:url(../graphics/hotbg.jpg);}
 
 #topcategorieslink {background:url(../graphics/categoriesbg.jpg); height:44px; margin-bottom:8px;}
 #search .container {
 	background:#E3F6FC  bottom no-repeat;
 	height:240px;
-	width: 630px;
+	width: 700px;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -48,20 +49,52 @@ h1#logo { font: bold 48px Tahoma, Geneva, sans-serif; color:#368291;}
 	padding:5px 20px 0 10px;
 }
 
+#search_bien .container {
+	background:#E3F6FC  bottom no-repeat;
+	height:240px;
+	width: 700px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#search_bien .tab {
+	height:20px;
+	padding:5px 20px 0 10px;
+}
+#search_bien .bottom {
+	height:20px;
+	padding:5px 20px 0 10px;
+}
+
 #edit .container {
 	background:#E3F6FC  bottom no-repeat;
 	height:365px;
-	width: 600px;
+	width: 700px;
 	margin-right: auto;
 	margin-left: auto;
 }
 #edit_user .container {
 	background:#E3F6FC  bottom no-repeat;
 	height:650px;
-	width: 690px;
+	width: 700px;
 	margin-right: auto;
 	margin-left: auto;
 }
+#search_bien .container {
+	background:#E3F6FC  bottom no-repeat;
+	height:350px;
+	width: 700px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#search_bien .tab {
+	height:25px;
+	padding:5px 20px 0 10px;
+}
+#search_bien .bottom {
+	height:20px;
+	padding:5px 20px 0 10px;
+}
+
 #edit_user .tab {
 	height:25px;
 	padding:5px 20px 0 10px;

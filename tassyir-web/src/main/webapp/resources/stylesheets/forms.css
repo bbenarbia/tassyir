@@ -1,5 +1,5 @@
 .search_form td {
-	padding: 5px 3px 3px;
+	padding: 5px 10px 3px;
 }
 .search_form .text {
 	display: block;
@@ -18,7 +18,7 @@
 	width: 55px;
 }
 .search_form .mediumtext {
-	width: 75px;
+	width: 90px;
 }
 .search_form .longfield {
 	width: 304px;

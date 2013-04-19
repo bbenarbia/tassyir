@@ -38,6 +38,7 @@ import net.bbenarbia.service.immobilier.IBienService;
 import net.bbenarbia.utils.ImageService;
 import net.bbenarbia.web.dto.BienDTO;
 import net.bbenarbia.web.dto.FindBienDTO;
+import net.bbenarbia.web.dto.NavigationDTO;
 import net.bbenarbia.web.dto.UploadItem;
 
 import org.apache.commons.io.IOUtils;
@@ -187,6 +188,10 @@ public class BienController {
 
 		FindBienDTO findBienDto = new FindBienDTO();
 		findBienDto.setListBiens(listBiens);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
+		model.addAttribute("navigations", navigations);
 
 		model.addAttribute("findBiens", findBienDto);
 		return "immobilier/biensList";
@@ -236,6 +241,10 @@ public class BienController {
 			findBienDto.setListBiens(listBiensFound);
 		}
 		model.addAttribute("findBiens", findBienDto);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
+		model.addAttribute("navigations", navigations);
 		return "immobilier/biensList";
 	}
 

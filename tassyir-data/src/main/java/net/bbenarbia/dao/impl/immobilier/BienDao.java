@@ -40,9 +40,6 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 		StringBuilder sb = new StringBuilder();
 		sb.append("FROM " + getEntityClass().getName());
 
-		if (withAnd) {
-
-		}
 
 		if (typeBien != null) {
 			sb.append(where);
@@ -51,7 +48,11 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 		}
 		
 		if (typeOperation != null) {
-			sb.append(where);
+			if (withAnd) {
+				sb.append(and);
+			} else {
+				sb.append(where);
+			}
 			sb.append(" typeOperation = :typeOperation ");
 			withAnd = true;
 		}
@@ -150,9 +151,6 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 		StringBuilder sb = new StringBuilder();
 		sb.append("FROM " + getEntityClass().getName());
 
-		if (withAnd) {
-
-		}
 
 		if (typeBien != null) {
 			sb.append(where);
@@ -160,7 +158,11 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			withAnd = true;
 		}
 		if (typeOperation != null) {
-			sb.append(where);
+			if (withAnd) {
+				sb.append(and);
+			} else {
+				sb.append(where);
+			}
 			sb.append(" typeOperation = :typeOperation ");
 			withAnd = true;
 		}
