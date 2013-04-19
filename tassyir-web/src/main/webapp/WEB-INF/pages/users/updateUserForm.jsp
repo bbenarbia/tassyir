@@ -22,9 +22,11 @@
 
 			<div id="home_main_edit_user">
 				<div class="navig">
-					<a href="${fn:escapeXml(homeUrl)}"><spring:message code="home" /></a>
+					<c:forEach var="navig" items="${navigations}" varStatus="status">
 						&laquo;
-					<a href="${fn:escapeXml(userListUrl)}"><spring:message code="user.gotolistuser" /></a>
+						<spring:url value="${navig.url}" var="navigs" />
+						<a href="${navigs}"><spring:message code="${navig.name}" /></a>
+					</c:forEach>
 				</div>
 				
 				<div id="edit_user">

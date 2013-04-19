@@ -22,5 +22,6 @@ public interface IUtilisateurService extends IGenericService<User>{
 	
 	boolean updatePassword(Long userId, String oldPassword , String newPassword);
 	
-	boolean userCodeExists(Long code) ;		 
+	boolean userCodeExists(Long code) ;		
+	
 }

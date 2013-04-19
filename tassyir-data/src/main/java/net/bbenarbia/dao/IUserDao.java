@@ -64,4 +64,5 @@ public interface IUserDao extends IGenericDao<User>{
 	boolean existeLogin(String login);
 
 	boolean userCodeExists(Long code);
+	
 }

@@ -12,6 +12,7 @@
 		<spring:url value="/users/upload/{userId}/show" var="addPhotoUrl">
 		<spring:param name="userId" value="${user.id}" />
 	</spring:url>
+	<spring:url value="/users/new.htm"  var="addUserUrl" />
 	<spring:url value="/users.htm" var="userListUrl"> </spring:url>
 	<spring:url value="/" var="homeUrl"> </spring:url>
 	<div id="wrap">
@@ -20,7 +21,11 @@
 				<jsp:include page="../common/sub-menu.jsp" />
 				<div id="main">
 					<div class="navig">
-						<a href="${fn:escapeXml(homeUrl)}"><spring:message code="home" /></a>
+						<c:forEach var="navig" items="${navigations}" varStatus="status">
+							&laquo;
+							<spring:url value="${navig.url}" var="navigs" />
+							<a href="${navigs}"><spring:message code="${navig.name}" /></a>
+						</c:forEach>
 					</div>
 					<h1>Users Listing</h1>
 					<ul class="listing">
@@ -63,13 +68,8 @@
 						</c:forEach>
 						<li>
 								<span class="listbuttons">
-										<a class="buttonmenu" href="/users/new.htm"><spring:message code="user.action.add" /></a>
+										<a class="buttonmenu" href="${fn:escapeXml(addUserUrl)}"><spring:message code="user.action.add" /></a>
 								</span> 
-								<span class="listbuttons"> <spring:url
-										value="/users.htm" var="userListUrl">
-									</spring:url>
-										<a class="buttonmenu"  href="${fn:escapeXml(userListUrl)}"><spring:message code="user.action.userlist" /></a>
-								</span>
 						<div class="clear">&nbsp;</div>
 						</li>						
 					</ul>

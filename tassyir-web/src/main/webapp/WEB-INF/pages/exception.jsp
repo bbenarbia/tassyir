@@ -18,12 +18,10 @@
 		<img width="220" height="220" src='<c:url value="/resources/graphics/error.png"/>'  class="previewimg">
     <p>${exception.message}</p>
 
-    <!-- Exception: ${exception.message}.
+     Exception: ${exception.message}.
 		  	<c:forEach items="${exception.stackTrace}" var="stackTrace"> 
 				${stackTrace} 
 			</c:forEach>
-	  	-->
-
 
 		<div class="clear">&nbsp;</div>
 		<div class="clear">&nbsp;</div>

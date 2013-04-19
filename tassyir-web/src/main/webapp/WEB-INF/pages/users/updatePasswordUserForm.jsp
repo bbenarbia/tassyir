@@ -20,13 +20,13 @@
 			<jsp:include page="../common/sub-menu.jsp" />
 
 			<div id="home_main">
-					<div class="navig">
-						<a href="${fn:escapeXml(homeUrl)}"><spring:message code="home" /></a>
+				<div class="navig">
+					<c:forEach var="navig" items="${navigations}" varStatus="status">
 						&laquo;
-						<a href="${fn:escapeXml(userListUrl)}"><spring:message code="user.gotolistuser" /></a>
-						&laquo;
-						<a href="${fn:escapeXml(detailuserUrl)}"><spring:message code="user.action.details" /></a>
-					</div>
+						<spring:url value="${navig.url}" var="navigs" />
+						<a href="${navigs}"><spring:message code="${navig.name}" /></a>
+					</c:forEach>
+				</div>
 				<div id="search">
 					
 					<div class="tab">
@@ -64,7 +64,7 @@
 								<tr>
 									<td class="label">&nbsp;</td>
 									<td><span class="listbuttons">
-										<a class="buttonmenured"  href="${fn:escapeXml(detailuserUrl)}"><spring:message code="user.action.cancel" /></a>
+											<a class="buttonmenured"  href="${fn:escapeXml(detailuserUrl)}"><spring:message code="user.action.cancel" /></a>
 										</span>
 									</td>
 									<td  class="label"><label> <input
@@ -76,6 +76,14 @@
 						</form:form>
 					</div>
 					<div class="bottom"></div>
+				</div>
+				<div id="main_action_edit">
+								<span class="listbuttons">
+									 <a class="buttonmenu"  href="${fn:escapeXml(userUrl)}"><spring:message code="user.action.add" /></a>
+								</span> 
+								<span class="listbuttons"> 
+										<a class="buttonmenu"  href="${fn:escapeXml(userListUrl)}"><spring:message code="user.action.userlist" /></a>
+								</span>
 				</div>
 			</div>
 			<div class="clear">&nbsp;</div>

@@ -10,20 +10,45 @@
 </head>
 <body>
 	<spring:url value="/users/photo" var="photoUrl" />
+	 <spring:url value="/users/{userId}/edit.htm" var="editUserUrl">
+		<spring:param name="userId" value="${user.id}" />
+	</spring:url>
 	<spring:url value="/users/upload/{userId}/show" var="addPhotoUrl">
 		<spring:param name="userId" value="${user.id}" />
 	</spring:url>
+	<spring:url value="/users/{userId}/delete.htm" var="userDeleteUrl">
+		<spring:param name="userId" value="${user.id}" />
+	</spring:url>
+	<spring:url value="/users/new.htm"  var="addUserUrl" /> 
 	<spring:url value="/users.htm" var="userListUrl"> </spring:url>
 	<spring:url value="/" var="homeUrl"> </spring:url>
+	<spring:url	value="/users/{userId}/editpassword.htm" var="editPasswordUrl">
+			<spring:param name="userId" value="${user.id}" />
+	</spring:url> 
+	<spring:url	value="/users/{userId}/reset-password.htm" var="resetPasswordUrl">
+			<spring:param name="userId" value="${user.id}" />
+	</spring:url> 
+	<spring:url	value="/users/{userId}/lock-user.htm" var="lockUrl">
+			<spring:param name="userId" value="${user.id}" />
+	</spring:url> 
+	<spring:url	value="/users/{userId}/activate-user.htm" var="activateUrl">
+			<spring:param name="userId" value="${user.id}" />
+	</spring:url> 
+	<spring:url value="/users/{userId}/biens-list.htm" var="bienslistUrl">
+			<spring:param name="userId" value="${user.id}" />
+	</spring:url>
+																										
 	<div id="wrap">
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">
 			<jsp:include page="../common/sub-menu.jsp" />
 			<div id="main">
 				<div class="navig">
-					<a href="${fn:escapeXml(homeUrl)}"><spring:message code="home" /></a>
-					&laquo;
-					<a href="${fn:escapeXml(userListUrl)}"><spring:message code="user.gotolistuser" /></a>
+					<c:forEach var="navig" items="${navigations}" varStatus="status">
+						&laquo;
+						<spring:url value="${navig.url}" var="navigs" />
+						<a href="${navigs}"><spring:message code="${navig.name}" /></a>
+					</c:forEach>
 				</div>
 				<h1>User detail</h1>
 				<div id="single_item_details">
@@ -80,56 +105,42 @@
 						</div>
 						</div>
 					<div class="listingbtns">
-						<span class="listbuttons"> <spring:url
-								value="/users/{userId}/edit.htm" var="userUrl">
-								<spring:param name="userId" value="${user.id}" />
-							</spring:url> <a href="${fn:escapeXml(userUrl)}"><spring:message code="user.action.edit" /></a>
+						<span class="listbuttons">
+							 <a href="${fn:escapeXml(editUserUrl)}"><spring:message code="user.action.edit" /></a>
 						</span> 
-						<span class="listbuttons"> <spring:url value="/users/new.htm"
-								var="userUrl" /> <a href="${fn:escapeXml(userUrl)}"><spring:message code="user.action.add" /></a>
+						<span class="listbuttons"> 
+							<a href="${fn:escapeXml(addUserUrl)}"><spring:message code="user.action.add" /></a>
 						</span> 
-						<span class="listbuttons"> <spring:url
-								value="/users/{userId}/delete.htm" var="userUrl">
-								<spring:param name="userId" value="${user.id}" />
-							</spring:url> <a href="${fn:escapeXml(userUrl)}"><spring:message code="user.action.delete" /></a>
+						<span class="listbuttons">
+							 <a href="${fn:escapeXml(userDeleteUrl)}"><spring:message code="user.action.delete" /></a>
 						</span>
-						<span class="listbuttons"> <spring:url
-								value="/users/{userId}/editpassword.htm" var="editPasswordUrl">
-								<spring:param name="userId" value="${user.id}" />
-							</spring:url> <a href="${fn:escapeXml(editPasswordUrl)}"><spring:message code="user.action.editpassword" /></a>
+						<span class="listbuttons"> 
+							<a href="${fn:escapeXml(editPasswordUrl)}"><spring:message code="user.action.editpassword" /></a>
 						</span>
-						<span class="listbuttons"> <spring:url
-												value="/users/{userId}/reset-password.htm" var="resetPasswordUrl">
-												<spring:param name="userId" value="${user.id}" />
-											</spring:url> <a href="${fn:escapeXml(resetPasswordUrl)}"><spring:message code="user.action.resetpassword" /></a>
-										</span>
+						<span class="listbuttons"> 
+							<a href="${fn:escapeXml(resetPasswordUrl)}"><spring:message code="user.action.resetpassword" /></a>
+						</span>
 						<span class="listbuttons"> 
 							<a href="${fn:escapeXml(addPhotoUrl)}"><spring:message code="user.action.editphoto" /></a>
 						</span>
 						
 						<c:choose>
 							<c:when test="${!user.locked }">
-									<span class="listbuttons"> <spring:url
-											value="/users/{userId}/lock-user.htm" var="lockUrl">
-											<spring:param name="userId" value="${user.id}" />
-										</spring:url> <a href="${fn:escapeXml(lockUrl)}"><spring:message code="user.action.lockuser" /></a>
+									<span class="listbuttons"> 
+										<a href="${fn:escapeXml(lockUrl)}"><spring:message code="user.action.lockuser" /></a>
 									</span>						
 							</c:when>
 							<c:otherwise>
-									<span class="listbuttons"> <spring:url
-										value="/users/{userId}/activate-user.htm" var="activateUrl">
-										<spring:param name="userId" value="${user.id}" />
-									</spring:url> <a href="${fn:escapeXml(activateUrl)}"><spring:message code="user.action.activateuser" /></a>
+									<span class="listbuttons"> 
+										<a href="${fn:escapeXml(activateUrl)}"><spring:message code="user.action.activateuser" /></a>
 									</span>
 							</c:otherwise>
 						</c:choose>
 													
 						
 						
-						<span class="listbuttons"> <spring:url
-								value="/users/{userId}/biens-list.htm" var="bienslistUrl">
-								<spring:param name="userId" value="${user.id}" />
-							</spring:url> <a href="${fn:escapeXml(bienslistUrl)}"><spring:message code="user.action.showbienlist" /></a>
+						<span class="listbuttons"> 
+							 <a href="${fn:escapeXml(bienslistUrl)}"><spring:message code="user.action.showbienlist" /></a>
 						</span>
 				</div>
 					</div>
@@ -240,7 +251,7 @@
 				</div>
 				<div id="main_action">
 								<span class="listbuttons">
-										<a class="buttonmenu" href="/users/new.htm"><spring:message code="user.action.add" /></a>
+										<a class="buttonmenu" href="${fn:escapeXml(addUserUrl)}"><spring:message code="user.action.add" /></a>
 								</span> 
 								<span class="listbuttons"> 
 										<a class="buttonmenu"  href="${fn:escapeXml(userListUrl)}"><spring:message code="user.action.userlist" /></a>

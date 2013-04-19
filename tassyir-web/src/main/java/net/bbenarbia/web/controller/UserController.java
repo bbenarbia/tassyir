@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -25,6 +26,7 @@ import net.bbenarbia.service.IRoleService;
 import net.bbenarbia.service.IUserCategoryService;
 import net.bbenarbia.service.IUtilisateurService;
 import net.bbenarbia.utils.ImageService;
+import net.bbenarbia.web.dto.NavigationDTO;
 import net.bbenarbia.web.dto.PasswordDTO;
 import net.bbenarbia.web.dto.RoleFormDTO;
 import net.bbenarbia.web.dto.RoleFormDTOList;
@@ -116,6 +118,11 @@ public class UserController {
 				userRolesOfGroup.add(role.getName());
 			}
 		}
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
+		model.addAttribute("navigations", navigations);
+		
 		model.addAttribute("groupRoles", userRolesOfGroup);
 		return "users/userDetails";
 		}
@@ -203,7 +210,10 @@ public class UserController {
 		}
 		listFormDto.setRoles(roleFormList);
 		userDto.setRoleFormList(listFormDto);
-
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
+		model.addAttribute("navigations", navigations);		
 		model.addAttribute("user", userDto);
 		return "users/createUserForm";
 	}
@@ -212,6 +222,9 @@ public class UserController {
 	public String showUserList(Model model) {
 
 		Collection<User> results = this.utilisateurService.getAll();
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		model.addAttribute("navigations", navigations);
 		model.addAttribute("selections", results);
 		return "users/usersList";
 	}
@@ -238,7 +251,12 @@ public class UserController {
 		}
 		listFormDto.setRoles(roleFormList);
 		userDto.setRoleFormList(listFormDto);
-
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
+		navigations.add(new NavigationDTO("/users/"+userId+".htm", "user.action.details"));
+		model.addAttribute("navigations", navigations);
+		
 		model.addAttribute("user", userDto);
 		return "users/updateUserForm";
 		}
@@ -285,6 +303,11 @@ public class UserController {
 		User user = utilisateurService.get(userId);
 		if(user != null){
 		PasswordDTO userPassword = new PasswordDTO();
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
+		navigations.add(new NavigationDTO("/users/"+userId+".htm", "user.action.details"));
+		model.addAttribute("navigations", navigations);
 		model.addAttribute("userPassword", userPassword);
 		return "users/updatePasswordUserForm";
 	}
@@ -297,7 +320,6 @@ public class UserController {
 	public String processUpdatePasswordForm(
 			@ModelAttribute("userPassword") @Valid PasswordDTO userPassword,
 			BindingResult result, @PathVariable("userId") Long userId,
-
 			SessionStatus status) {
 		userValidator.validate(userPassword, result);
 		if (result.hasErrors()) {
@@ -319,8 +341,43 @@ public class UserController {
 		model.addAttribute(new UploadItem());
 		model.addAttribute("bienId", userId);
 		model.addAttribute("nbFiles", 1);
-		return "upload/uploadForm";
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
+		navigations.add(new NavigationDTO("/users/"+userId+".htm", "user.action.details"));
+		return "users/uploadPhotoForm";
 	}
+	
+	@RequestMapping(value = "/{userId}/activate-user", method = RequestMethod.GET)
+	public String activateUser(@PathVariable("userId") Long userId, Model model, SessionStatus status)throws  Exception{
+		
+		User user = utilisateurService.get(userId);
+		if(user != null){
+			user.setLocked(false);
+			utilisateurService.merge(user);
+			status.setComplete();
+		}
+		else {
+			throw new Exception("User id not found");
+		}
+		return "redirect:/users/" + userId;
+	}
+	
+	@RequestMapping(value = "/{userId}/lock-user", method = RequestMethod.GET)
+	public String blockUser(@PathVariable("userId") Long userId, Model model,SessionStatus status)throws  Exception{
+		
+		User user = utilisateurService.get(userId);
+		if(user != null){
+			user.setLocked(true);
+			utilisateurService.merge(user);
+			status.setComplete();
+		}
+		else {
+			throw new Exception("User id not found");
+		}
+		return "redirect:/users/" + userId;
+	}
+	
 
 	@RequestMapping(value = "/upload/{userId}/save", method = RequestMethod.POST)
 	public String uploadAndSavePhotos(
@@ -351,7 +408,7 @@ public class UserController {
 						user.setPhoto(TEMP_DIR
 								+ multipartFile.getOriginalFilename());
 					} catch (IOException e) {
-						return "upload/uploadForm";
+						return "users/uploadPhotoForm";
 					}
 				}
 			}
