@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -22,6 +23,7 @@ import net.bbenarbia.service.IRoleService;
 import net.bbenarbia.service.IUserCategoryService;
 import net.bbenarbia.utils.ImageService;
 import net.bbenarbia.web.dto.GroupDTO;
+import net.bbenarbia.web.dto.NavigationDTO;
 import net.bbenarbia.web.dto.RoleFormDTO;
 import net.bbenarbia.web.dto.RoleFormDTOList;
 import net.bbenarbia.web.dto.UploadItem;
@@ -67,6 +69,9 @@ public class GroupController {
 
 		Collection<UserCategory> results = this.userCategoryService.getAll();
 		model.addAttribute("selections", results);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		model.addAttribute("navigations", navigations);
 		return "groups/groupList";
 	}
 
@@ -107,13 +112,10 @@ public class GroupController {
 	public String showGroupDetails(@PathVariable("groupId") long groupId, Model model) {
 		UserCategory group = this.userCategoryService.get(groupId);
 		model.addAttribute("group",group);
-//		List<String> userRolesOfGroup = new LinkedList<String>();
-//		if(user != null && user.getUserCategory()!= null ){
-//			for (Role role : user.getUserCategory().getRoles()) {
-//				userRolesOfGroup.add(role.getName());
-//			}
-//		}
-//		model.addAttribute("groupRoles",userRolesOfGroup);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/groups.htm", "group.gotolistgroup"));
+		model.addAttribute("navigations", navigations);
 		return "groups/groupDetails";
 	}
 	
@@ -165,6 +167,12 @@ public class GroupController {
 		groupDto.setName(group.getName());
 		groupDto.setId(String.valueOf(group.getId()));
 		model.addAttribute("group", groupDto);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/groups.htm", "group.gotolistgroup"));
+		navigations.add(new NavigationDTO("/groups/"+groupId+".htm", "group.action.details"));
+		model.addAttribute("navigations", navigations);
+		
 		return "groups/updateGroupForm";
 	}
 
@@ -279,6 +287,10 @@ public class GroupController {
 		listFormDto.setRoles(roleFormList);
 		group.setRoleFormList(listFormDto);
 		model.addAttribute("group", group);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/groups.htm", "group.gotolistgroup"));
+		model.addAttribute("navigations", navigations);
 		return "groups/createGroupForm";
 	}
 	
@@ -287,8 +299,12 @@ public class GroupController {
 	public String getUploadForm(@PathVariable("groupId") Long groupId, Model model) {
 		model.addAttribute(new UploadItem());
 		model.addAttribute("bienId", groupId);
-		model.addAttribute("nbFiles", 1);
-		return "upload/uploadForm";
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/groups.htm", "group.gotolistgroup"));
+		navigations.add(new NavigationDTO("/groups/"+groupId+".htm", "group.action.details"));
+		model.addAttribute("navigations", navigations);
+		return "groups/uploadGroupPhotoForm";
 	}
 
 	@RequestMapping(value = "/upload/{groupId}/save", method = RequestMethod.POST)
@@ -320,7 +336,7 @@ public class GroupController {
 						group.setPhoto(TEMP_DIR
 								+ multipartFile.getOriginalFilename());
 					} catch (IOException e) {
-						return "upload/uploadForm";
+						return "groups/uploadGroupPhotoForm";
 					}
 				}
 			}

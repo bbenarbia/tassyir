@@ -9,6 +9,7 @@
 	<jsp:include page="./../common/head.jsp"/>
 </head>
 <body>
+	<spring:url value="/groups/new.htm"  var="addgroupUrl" />
 	<spring:url value="/groups/photo" var="photoUrl" />
 		<spring:url value="/groups/upload/{groupId}/show" var="addPhotoUrl">
 		<spring:param name="groupId" value="${group.id}" />
@@ -21,6 +22,13 @@
 				<jsp:include page="../common/sub-menu.jsp" />
 
 				<div id="main">
+					<div class="navig">
+						<c:forEach var="navig" items="${navigations}" varStatus="status">
+							&laquo;
+							<spring:url value="${navig.url}" var="navigs" />
+							<a href="${navigs}"><spring:message code="${navig.name}" /></a>
+						</c:forEach>
+					</div>
 					<h1>User Groups Listing</h1>
 					<ul class="listing">
 						<c:forEach var="group" items="${selections}">
@@ -58,6 +66,12 @@
 								<div class="clear">&nbsp;</div>
 							</li>
 						</c:forEach>
+						<li>
+								<span class="listbuttons">
+										<a class="buttonmenu" href="${fn:escapeXml(addgroupUrl)}"><spring:message code="group.action.add" /></a>
+								</span> 
+						<div class="clear">&nbsp;</div>
+						</li>	
 					</ul>
 					<div id="paginations">
 						<ul>
