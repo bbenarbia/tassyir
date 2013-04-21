@@ -40,16 +40,15 @@
 					<div id="leftcolumn">
 						<div id="carrousel">
 							<c:if test="${empty group.photo }">
-								<img width="210" height="210"
+								<img width="330" height="230"
 									src='<c:url value="/resources/graphics/no-photos.jpg"/>'
 									class="previewimg">
 							</c:if>
 							<c:if test="${not empty group.photo }">
-								<img width="210" height="210" src="${photoUrl}/${group.id}"
+								<img width="330" height="230" src="${photoUrl}/${group.id}"
 									class="previewimg">
 							</c:if>
 						</div>
-
 					</div>
 					<div id="rightcolumn">
 						<div class="leftpart">

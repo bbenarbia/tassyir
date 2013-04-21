@@ -46,6 +46,8 @@ public class BienDTO {
 	private String typeBien;
 
 	private double prixVente;
+	
+	private double prixMinVente;
 
 	private double loyerMensuel;
 
@@ -124,7 +126,7 @@ public class BienDTO {
 						.getAdresse().getVille(), appartement.getDepartement()
 						.getReference(), appartement.getDescription(),
 				appartement.getSuperficie(),
-				appartement.getStatus().toString(), appartement.getPrixVente(),
+				appartement.getStatus().toString(), appartement.getPrixVente(), appartement.getPrixMinVente(),
 				appartement.getLoyerMensuel(), appartement.getChargesMensuel(),
 				appartement.getTypeOperation().toString(), appartement
 						.getEtatBien().toString(), appartement.getEtage(),
@@ -151,7 +153,7 @@ public class BienDTO {
 				maison.getAdresse().getCodePostal(), maison.getAdresse()
 						.getVille(), maison.getDepartement().getReference(),
 				maison.getDescription(), maison.getSuperficie(), maison
-						.getStatus().toString(), maison.getPrixVente(), maison
+						.getStatus().toString(), maison.getPrixVente(), maison.getPrixMinVente(), maison
 						.getLoyerMensuel(), maison.getChargesMensuel(), maison
 						.getTypeOperation().toString(), maison.getEtatBien()
 						.toString(), null, maison.getNbPieces(), maison
@@ -176,7 +178,7 @@ public class BienDTO {
 				studio.getAdresse().getCodePostal(), studio.getAdresse()
 						.getVille(), studio.getDepartement().getReference(),
 				studio.getDescription(), studio.getSuperficie(), studio
-						.getStatus().toString(), studio.getPrixVente(), studio
+						.getStatus().toString(), studio.getPrixVente(), studio.getPrixMinVente(), studio
 						.getLoyerMensuel(), studio.getChargesMensuel(), studio
 						.getTypeOperation().toString(), studio.getEtatBien()
 						.toString(), studio.getEtage(), 0, 0, studio
@@ -209,7 +211,7 @@ public class BienDTO {
 	public BienDTO(Long id, String name, String reference, String adresse,
 			String codePostal, String ville, String departement,
 			String description, double superficie, String status,
-			double prixVente, double loyerMensuel, double chargesMensuel,
+			double prixVente, double prixVenteMin,double loyerMensuel, double chargesMensuel,
 			String typeOperation, String etatBien, String etage, int nbPieces,
 			int nbChambres, Boolean ascenseur, Boolean cuisineEquipee,
 			Boolean jardin, int age, String typeBien, int nbTerrasses,
@@ -233,6 +235,7 @@ public class BienDTO {
 		this.superficie = superficie;
 		this.status = status;
 		this.prixVente = prixVente;
+		this.prixMinVente = prixVenteMin;
 		this.loyerMensuel = loyerMensuel;
 		this.chargesMensuel = chargesMensuel;
 		this.typeOperation = typeOperation;
@@ -282,6 +285,7 @@ public class BienDTO {
 		maison.setSuperficie(superficie);
 		maison.setStatus(EnumStatutProperty.valueOf(status));
 		maison.setPrixVente(prixVente);
+		maison.setPrixMinVente(prixMinVente);
 		maison.setLoyerMensuel(loyerMensuel);
 		maison.setChargesMensuel(chargesMensuel);
 		maison.setTypeOperation(EnumTypeOperation.valueOf(typeOperation));
@@ -329,6 +333,7 @@ public class BienDTO {
 		appartement.setSuperficie(superficie);
 		appartement.setStatus(EnumStatutProperty.valueOf(status));
 		appartement.setPrixVente(prixVente);
+		appartement.setPrixMinVente(prixMinVente);
 		appartement.setLoyerMensuel(loyerMensuel);
 		appartement.setChargesMensuel(chargesMensuel);
 		appartement.setTypeOperation(EnumTypeOperation.valueOf(typeOperation));
@@ -377,6 +382,7 @@ public class BienDTO {
 		studio.setSuperficie(superficie);
 		studio.setStatus(EnumStatutProperty.valueOf(status));
 		studio.setPrixVente(prixVente);
+		studio.setPrixMinVente(prixMinVente);
 		studio.setLoyerMensuel(loyerMensuel);
 		studio.setChargesMensuel(chargesMensuel);
 		studio.setTypeOperation(EnumTypeOperation.valueOf(typeOperation));
@@ -768,6 +774,14 @@ public class BienDTO {
 
 	public void setFiles(List<MultipartFile> files) {
 		this.files = files;
+	}
+
+	public double getPrixMinVente() {
+		return prixMinVente;
+	}
+
+	public void setPrixMinVente(double prixMinVente) {
+		this.prixMinVente = prixMinVente;
 	}
 
 	

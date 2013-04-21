@@ -18,7 +18,7 @@ body {background:#fff; font:11px Verdana, Arial, Helvetica, sans-serif; color:#3
 #header {background:url(../graphics/headerbg.jpg) repeat-x; height:128px; margin:0 2px 0 2px;}
 #content {padding:0 2px 0 2px;}
 #home_main, #main, #main_bien {width:750px; float:left; margin-bottom:8px;}
-#home_main_edit, #main_edit,#main_edit_bien  {width:645px; float:left; margin-bottom:8px;}
+#home_main_edit, #main_edit,#main_edit_bien  {width:700px; float:left; margin-bottom:8px;}
 #home_main_edit_user, #main_edit_user,#main_edit_user_bien {width:745px; float:left; margin-bottom:8px;}
 #home_sidebar, #sidebar { width:390px; float:right; margin-bottom:8px;}
 h1#logo { font: bold 48px Tahoma, Geneva, sans-serif; color:#368291;}
@@ -575,7 +575,7 @@ a.highlight {
 	display: block;
 }
 #listing_details td {
-	padding: 3px;
+	padding: 3px 10px;
 	vertical-align: middle;
 }
 

@@ -31,7 +31,7 @@
 					<div id="leftcolumn">
 						<div id="carrousel">
 							<c:if test="${fn:length(bien.photos) == 0 }">
-								<img width="210" height="195"
+								<img width="330" height="230"
 									src='<c:url value="/resources/graphics/no-photos.jpg"/>'
 									class="previewimg">
 							</c:if>
@@ -39,7 +39,7 @@
 								<c:forEach var="photo" items="${bien.photos}" varStatus="status">
 									<div id="slide${status.count}" class="slide">
 										<div class="visu">
-											<img width="210" height="195"
+											<img width="330" height="230"
 												src="${photoUrl}/${bien.id}/${status.count}"
 												class="previewimg">
 											<div class="title">
@@ -62,10 +62,11 @@
 						<div class="leftpart">
 							<h2>${bien.name}</h2>
 							<p class="user">
-								<img src='<c:url value="/resources/graphics/usericon.gif"/>'
-									alt="user" />
 								<spring:message code="bien.reference" />
 								: ${bien.reference}
+							</p>
+							<p>
+								${bien.description}
 							</p>
 							<p>
 								${bien.adresse.adresse} <br /> ${bien.adresse.codePostal} <br />
@@ -100,17 +101,17 @@
 								<div id="tabs-1" class="hiddentab">
 									<p>
 										<img src='<c:url value="/resources/graphics/fav.gif"/>'
-											alt="FAv" width="18" height="13" />&nbsp;<a href="#">To
-											My Favorites</a>
+											alt="FAv" width="18" height="13" />&nbsp;<a href="#">
+											Add to my Favorites</a>
 									</p>
 									<p>
 										<img src='<c:url value="/resources/graphics/emailalert.gif"/>'
-											alt="email" width="18" height="15" />&nbsp;<a href="#">To
-											Email Alerts</a>
+											alt="email" width="18" height="15" />&nbsp;<a href="#">Contact annoncer by 
+											Email</a>
 									</p>
 									<p>
 										<img src='<c:url value="/resources/graphics/sms.gif"/>'
-											alt="sms" width="18" height="16" />&nbsp;<a href="#">To
+											alt="sms" width="18" height="16" />&nbsp;<a href="#">Contact annoncer by
 											SMS Alerts</a>
 									</p>
 								</div>
@@ -149,123 +150,349 @@
 					<div id="listing_details">
 						<table>
 							<tr>
-								<td><h3>Details Bien</h3></td>
-								<td>&nbsp;</td>
+								<td>
+									<spring:message code="bien.superficie" />
+								</td>
+								<td>
+								:
+								</td>
+								<td>
+									${bien.superficie} m²
+								</td>
+								<td>
+									<spring:message code="bien.status" />
+								</td>
+								<td>
+								:
+								</td>
+								<td>
+									${bien.status}
+								</td>
 							</tr>
 							<tr>
-								<td><ul>
-										<li><spring:message code="bien.superficie" />: <c:out
-												value="${bien.superficie} m²" /></li>
-										<li><spring:message code="bien.status" /> : <c:out
-												value="${bien.status}" /></li>
-										<li><spring:message code="bien.etatBien" />: <c:out
-												value="${bien.etatBien}" /></li>
-										<c:if
-											test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' }">
-											<li><spring:message code="bien.etage" />: <c:out
-													value="${bien.etage}" /></li>
-											<c:choose>
-												<c:when test="${bien.gardien}">
-													<li><spring:message code="bien.gardien" />:Oui</li>
-												</c:when>
-											</c:choose>
-											<li><spring:message code="bien.ascenseur" />: <c:choose>
-													<c:when test="${bien.ascenseur==false}">Oui </c:when>
-													<c:otherwise>Non </c:otherwise>
-												</c:choose></li>
-										</c:if>
-									</ul></td>
-								<td></td>
-								<td><ul>
-										<c:if
-											test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='MAISON'}">
-											<li><spring:message code="bien.nbPieces" />: <c:out
-													value="${bien.nbPieces}" />
-											<li>
-											<li><spring:message code="bien.nbChambres" />: <c:out
-													value="${bien.nbChambres}" />
-											<li><c:choose>
-													<c:when test="${bien.cuisineEquipee}">
-														<li><spring:message code="bien.cuisineEquipee" />:Oui
-														</li>
-													</c:when>
-												</c:choose>
-										</c:if>
-										<c:if test="${bien.typeBien=='MAISON'}">
-											<c:choose>
-												<c:when test="${bien.jardin}">
-													<li><spring:message code="bien.jardin" />:Oui</li>
-												</c:when>
-											</c:choose>
-											<c:choose>
-												<c:when test="${bien.piscine}">
-													<li><spring:message code="bien.piscine" />:Oui</li>
-												</c:when>
-											</c:choose>
-										</c:if>
-										<c:if
-											test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' || bien.typeBien=='COMMERCE'  || bien.typeBien=='MAISON' }">
-											<li><spring:message code="bien.age" />: <c:out
-													value="${bien.age}" /></li>
-											<c:choose>
-												<c:when test="${bien.nbTerrasses != 0 }">
-													<li><spring:message code="bien.nbTerrasses" />: <c:out
-															value="${bien.nbTerrasses}" /></li>
-												</c:when>
-											</c:choose>
-											<c:choose>
-												<c:when test="${bien.nbBalcons != 0 }">
-													<li><spring:message code="bien.nbBalcons" />: <c:out
-															value="${bien.nbBalcons}" /></li>
-												</c:when>
-											</c:choose>
-											<c:choose>
-												<c:when test="${bien.nbParkingInt != 0 }">
-													<li><spring:message code="bien.nbParkingInt" />: <c:out
-															value="${bien.nbParkingInt}" /></li>
-												</c:when>
-											</c:choose>
-											<c:choose>
-												<c:when test="${bien.nbParkingExt != 0 }">
-													<li><spring:message code="bien.nbParkingExt" />: <c:out
-															value="${bien.nbParkingExt}" /></li>
-												</c:when>
-											</c:choose>
-											<c:choose>
-												<c:when test="${bien.interphone}">
-													<li><spring:message code="bien.interphone" />:Oui</li>
-												</c:when>
-											</c:choose>
-											<c:choose>
-												<c:when test="${bien.digicode}">
-													<li><spring:message code="bien.digicode" />:Oui</li>
-												</c:when>
-											</c:choose>
-											<c:choose>
-												<c:when test="${bien.meuble}">
-													<li><spring:message code="bien.meuble" />:Oui</li>
-												</c:when>
-											</c:choose>
-											<li><spring:message code="bien.typeEauChaude" />: <c:out
-													value="${bien.typeEauChaude}" /></li>
-											<li><spring:message code="bien.natureChauffage" />: <c:out
-													value="${bien.natureChauffage}" /></li>
-
-											<li><spring:message code="bien.typeChauffage" />: <c:out
-													value="${bien.typeChauffage}" /></li>
-										</c:if>
-									</ul></td>
+								<td>
+									<spring:message code="bien.transport" />
+								</td>
+								<td>
+								:
+								</td>
+								<td>
+									${bien.transport}
+								</td>
+								<td>
+									<spring:message code="bien.proximite" />
+								</td>
+								<td>
+								:
+								</td>
+								<td>
+									${bien.proximite}
+								</td>
 							</tr>
+							
+							<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' }">
+								<tr>
+									<td>
+										<spring:message code="bien.etage" />
+									</td>
+									<td>
+										:
+									</td>
+									<td>
+										${bien.etage}
+									</td>
+									<td>
+										<spring:message code="bien.gardien" />
+									</td>
+									<td>
+									:
+									</td>
+									<td>
+										<c:choose>
+											<c:when test="${bien.gardien}">
+													<li><spring:message code="yes" /></li>
+											</c:when>
+											<c:otherwise>
+													<li><spring:message code="no" /></li>
+											</c:otherwise>
+										</c:choose>
+									</td>
+								</tr>
+							</c:if>
+							<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='MAISON'}">
+								<tr>
+									<td>
+										<spring:message code="bien.nbPieces" />
+									</td>
+									<td>
+									:
+									</td>
+									<td>
+										${bien.nbPieces}
+									</td>
+									<td>
+										<spring:message code="bien.nbChambres" />
+									</td>
+									<td>
+									:
+									</td>
+									<td>
+										${bien.nbChambres}
+									</td>
+								</tr>
+							</c:if>
+							
+							<c:if test="${bien.typeBien=='MAISON'}">
+								<tr>
+									<td>
+										<spring:message code="bien.jardin" />
+									</td>
+									<td>
+									:
+									</td>
+									<td>
+										<c:choose>
+											<c:when test="${bien.jardin}">
+													<li><spring:message code="yes" /></li>
+											</c:when>
+											<c:otherwise>
+													<li><spring:message code="no" /></li>
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<td>
+										<spring:message code="bien.piscine" />
+									</td>
+									<td>
+									:
+									</td>
+									<td>
+										<c:choose>
+											<c:when test="${bien.piscine}">
+													<li><spring:message code="yes" /></li>
+											</c:when>
+											<c:otherwise>
+													<li><spring:message code="no" /></li>
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<td></td>
+									<td></td>
+								</tr>
+							</c:if>
+							<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' }">
+								<tr>	
+									<td>
+										<spring:message code="bien.ascenseur" />
+									</td>
+									<td>
+									:
+									</td>
+									<td>
+										<c:choose>
+											<c:when test="${bien.ascenseur}">
+													<li><spring:message code="yes" /></li>
+											</c:when>
+											<c:otherwise>
+													<li><spring:message code="no" /></li>
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<td>
+										<spring:message code="bien.adapteHandicape" />
+									</td>
+									<td>
+									:
+									</td>
+									<td>
+										<c:choose>
+											<c:when test="${bien.adapteHandicape}">
+													<li><spring:message code="yes" /></li>
+											</c:when>
+											<c:otherwise>
+													<li><spring:message code="no" /></li>
+											</c:otherwise>
+										</c:choose>	
+									</td>
+								</tr>
+								</c:if>
+							<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' || bien.typeBien=='COMMERCE'  || bien.typeBien=='MAISON' }">
+								<tr>
+									<td>
+										<spring:message code="bien.age" />
+									</td>
+									<td>
+									:
+									</td>
+									<td>
+										${bien.age}
+									</td>
+									<td>
+										<spring:message code="bien.nbTerrasses" />
+									</td>
+									<td>
+									:
+									</td>
+									<td>
+										${bien.nbTerrasses}
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<spring:message code="bien.nbBalcons" />
+									</td>
+									<td>
+									:
+									</td>
+									<td>
+										${bien.nbBalcons}
+									</td>
+									
+									<td>
+										<spring:message code="bien.nbParkingInt" />
+									</td>
+									<td>
+									:
+									</td>
+									<td>
+										${bien.nbParkingInt}
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<spring:message code="bien.nbParkingExt" />
+									</td>
+									<td>
+									:
+									</td>
+									<td>
+										${bien.nbParkingExt}
+									</td>
+									<td>
+										<spring:message code="bien.interphone" />
+									</td>
+									<td>
+									:
+									</td>
+									<td>
+										<c:choose>
+											<c:when test="${bien.interphone}">
+													<li><spring:message code="yes" /></li>
+											</c:when>
+											<c:otherwise>
+													<li><spring:message code="no" /></li>
+											</c:otherwise>
+										</c:choose>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<spring:message code="bien.digicode" />
+									</td>
+									<td>
+									:
+									</td>
+									<td>
+										<c:choose>
+											<c:when test="${bien.digicode}">
+													<li><spring:message code="yes" /></li>
+											</c:when>
+											<c:otherwise>
+													<li><spring:message code="no" /></li>
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<td>
+										<spring:message code="bien.meuble" />
+									</td>
+									<td>
+									:
+									</td>
+									<td>
+										<c:choose>
+											<c:when test="${bien.meuble}">
+													<li><spring:message code="yes" /></li>
+											</c:when>
+											<c:otherwise>
+													<li><spring:message code="no" /></li>
+											</c:otherwise>
+										</c:choose>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<spring:message code="bien.typeEauChaude" />
+									</td>
+									<td>
+									:
+									</td>
+									<td>
+										${bien.typeEauChaude}
+									</td>
+									<td>
+										<spring:message code="bien.natureChauffage" />
+									</td>
+									<td>
+									:
+									</td>
+									<td>
+										${bien.natureChauffage}
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<spring:message code="bien.typeChauffage" />
+									</td>
+									<td>
+									:
+									</td>								
+									<td>
+										${bien.typeChauffage}
+									</td>
+									<td>
+									</td>
+								</tr>
+							</c:if>
+							<tr>
+								<td>
+									<spring:message code="bien.etatBien" />
+								</td>
+								<td>
+								:
+								</td>
+								<td colspan="4">
+									${bien.etatBien}
+								</td>
+							</tr>
+							<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='MAISON'}">
+								<tr>
+									<td>
+										<spring:message code="bien.cuisineEquipee" />
+									</td>
+									<td>
+									:
+									</td>
+									<td>
+										<c:choose>
+											<c:when test="${bien.cuisineEquipee}">
+													<li><spring:message code="yes" /></li>
+											</c:when>
+											<c:otherwise>
+													<li><spring:message code="no" /></li>
+											</c:otherwise>
+										</c:choose>
+									</td>
+								</tr>
+							</c:if>	
+							
 						</table>
-					</div>
-
+					</div>					
 				</div>
 				<c:if
 					test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' || bien.typeBien=='COMMERCE'  || bien.typeBien=='MAISON' }">
 					<div id="moredetails">
 						<div id="listing_details">
 							<table>
-
 								<tr>
 									<td><spring:message code="bien.consoEnergie" />: <c:out
 											value="${bien.consoEnergie}" /></td>

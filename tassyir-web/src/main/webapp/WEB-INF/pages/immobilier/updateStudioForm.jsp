@@ -70,13 +70,23 @@
 													class="text smalltext" />
 									</label></td>
 									<td class="label"><form:label path="departement">departement</form:label></td>
-										<td><label> 										
-													<form:select path="departement"  class="select_field">
-																		<option>indifferent</option>
-																		<c:forEach var="item" items="${departementsList}">
-																				<option value="${item.reference}">${item.name}</option>
-																		</c:forEach>
-													</form:select>
+										<td><label> 	
+												<form:select path="departement"  class="select_field">
+													<c:forEach var="item" items="${departementsList}">
+														<c:choose>
+															<c:when test="${departement == item.reference}">
+																<form:option selected="true" value="${item.reference}">
+										               				 ${item.name} 
+										            			</form:option>
+															</c:when>
+															<c:otherwise>
+																<form:option value="${item.reference}">
+										                  			 ${item.name}
+										            			</form:option>
+															</c:otherwise>
+														</c:choose>
+												</c:forEach>
+												</form:select>
 									</label></td>
 								</tr>
 								<tr>
@@ -376,7 +386,7 @@
 										<table>
 											<tr>
 												<form:select path="typeOperation"  class="select_field">
-													<c:forEach var="item" items="${typeOperationList}">
+													<c:forEach var="item" items="${typesOperationsList}">
 														<c:choose>
 															<c:when test="${typeOperation == item}">
 																<form:option selected="true" value="${item}">

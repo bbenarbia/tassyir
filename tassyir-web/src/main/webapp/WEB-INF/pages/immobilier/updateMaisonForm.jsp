@@ -70,8 +70,8 @@
 													class="text smalltext" />
 									</label></td>
 									<td class="label"><form:label path="departement">departement</form:label></td>
-										<td><label> 										
-													<form:select path="departement"  class="select_field">
+										<td><label> 	
+												<form:select path="departement"  class="select_field">
 													<c:forEach var="item" items="${departementsList}">
 														<c:choose>
 															<c:when test="${departement == item.reference}">
@@ -384,7 +384,7 @@
 										<table>
 											<tr>
 												<form:select path="typeOperation"  class="select_field">
-													<c:forEach var="item" items="${typeOperationList}">
+													<c:forEach var="item" items="${typesOperationsList}">
 														<c:choose>
 															<c:when test="${typeOperation == item}">
 																<form:option selected="true" value="${item}">

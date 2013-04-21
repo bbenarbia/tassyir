@@ -65,6 +65,9 @@ public class BienImmobilier extends NamedEntity {
 	@Column(name = "prixVente")
 	private double prixVente;
 
+	@Column(name = "prixMinVente")
+	private double prixMinVente;
+	
 	@Column(name = "honoraires")
 	private double honoraires;
 
@@ -261,6 +264,14 @@ public class BienImmobilier extends NamedEntity {
 
 	public void setNbSallesBains(int nbSallesBains) {
 		this.nbSallesBains = nbSallesBains;
+	}
+
+	public double getPrixMinVente() {
+		return prixMinVente;
+	}
+
+	public void setPrixMinVente(double prixMinVente) {
+		this.prixMinVente = prixMinVente;
 	}
 
 }
