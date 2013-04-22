@@ -33,8 +33,8 @@
 					<div class="tab">
 						<h2>Update user infos</h2>	
 					</div>
-					<div class="container">
-						<form:form modelAttribute="user" method="put" id="form1">
+					<!-- <div class="container"> -->
+					<form:form modelAttribute="user" method="put" id="form1">
 							<table class="edit_form_user" style="width: 100%; border: none;">							 
 								<tr>
 									<td class="label"><form:label path="firstName"><spring:message code="user.firstName" /></form:label></td>
@@ -198,7 +198,7 @@
 								</tr>
 							</table>
 						</form:form>
-					</div>
+					<!-- </div> -->
 					<div class="clear">&nbsp;</div>
 					<div class="bottom"></div>
 				</div>

@@ -87,14 +87,19 @@
 	ALIGN="left"
 }
 
+edit_form_user {
+ background:#E3F6FC  bottom no-repeat;
+ }
 
 edit_form_user td {
 	padding: 5px 3px 3px;
+	height: 35px;
 }
 .edit_form_user .text {
 	display: block;
 	border: 1px solid #4F8B9D;
 	padding: 2px;
+	margin: 5px 2px;
 }
 .search_form .smalltext {
 	width: 45px;
@@ -141,3 +146,4 @@ edit_form_user td {
 	color: red;
 	font-size: 10pt;
 }
+

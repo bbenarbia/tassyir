@@ -5,9 +5,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-	<jsp:include page="./../common/head.jsp"/>
+<jsp:include page="./../common/head.jsp"/>
 </head>
 <body>
+	<spring:url value="/biens/find-biens.htm" var="bienListUrl"/>
+	<spring:url value="/biens/new.htm" var="bienUrl" />	 
 	<div id="wrap">
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">
@@ -19,7 +21,7 @@
 						<h2><spring:message code="biens.appartement.action.edit" /></h2>
 					</div>
 					<div class="container">
-						<form:form modelAttribute="bien" method="put" id="form1">
+						<form:form modelAttribute="bien" method="put" id="form1"> 
 							<table class="edit_form_user" style="width: 100%; border: none;">
 								<tr>
 									<td class="label" style="width: 30px; "><form:label path="name"><spring:message code="biens.name" /></form:label></td>
@@ -221,13 +223,13 @@
 								<tr>
 									<td class="label"><form:label path="transport"><spring:message code="biens.transport" /></form:label></td>
 										<td><label> 
-											<form:input label="name" path="transport"
-												class="text" />												
+											<form:textarea cols="19" rows="3"
+												label="name" path="transport" class="text textBoxfieldlong" />
 									</label></td>
 									<td class="label"><form:label path="proximite"><spring:message code="biens.proximite" /></form:label></td>
 										<td><label> 
-											<form:input label="name" path="proximite"
-												class="text" />												
+											<form:textarea cols="19" rows="3"
+												label="name" path="proximite" class="text textBoxfieldlong" />
 									</label></td>
 								</tr>
 								
@@ -464,7 +466,11 @@
 								<tr>
 									<td class="label">&nbsp;</td>
 									<td>&nbsp;</td>
-									<td colspan="2" class="label"><label> <input
+									<td><span class="listbuttons">
+										<a class="buttonmenured"  href="${fn:escapeXml(detailuserUrl)}"><spring:message code="biens.action.cancel" /></a>
+										</span>
+									</td>
+									<td class="label"><label> <input
 											type="image" src='<c:url value="/resources/graphics/searchbtn.gif"/>'  alt="search"
 											name="button2" id="button2" value="Submit" />
 									</label></td>
@@ -473,8 +479,17 @@
 						</form:form>
 					</div>
 					<div class="bottom">
+					
 					</div>
 				</div>
+				<div id="main_action_edit">
+								<span class="listbuttons">
+									 <a class="buttonmenu"  href="${fn:escapeXml(bienUrl)}"><spring:message code="biens.action.add" /></a>
+								</span> 
+								<span class="listbuttons"> 
+										<a class="buttonmenu"  href="${fn:escapeXml(bienListUrl)}"><spring:message code="biens.action.bienlist" /></a>
+								</span>
+					</div>
 			</div>
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>
