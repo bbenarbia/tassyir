@@ -53,7 +53,13 @@ public class IndexController {
 		bienService.save(studio);
 
 		return "index";
-
 	}
 
+	
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(ModelMap model) {
+
+		return "login";
+	}
 }

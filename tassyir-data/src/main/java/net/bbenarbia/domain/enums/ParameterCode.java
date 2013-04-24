@@ -39,14 +39,46 @@ public enum ParameterCode {
 	 */
 	ETAT_SERVICE_MAIL("ETAT_SERVICE_MAIL"),
 	/**
-	 * Parametre pour specifier le chemin du repertoire temp pour transferer les fichiers à traiter
-	 * il faut que le chemin se termine par / exemple (/home/user/tempfile/)
+	 * Parametre pour specifier le chemin du repertoire temp pour transferer les
+	 * fichiers à traiter il faut que le chemin se termine par / exemple
+	 * (/home/user/tempfile/)
 	 */
 	TEMP_DIRECTORY("TEMP_DIRECTORY"),
 
 	MAIN_CURRENCY("MAIN_CURRENCY"),
-	
-	SECOND_CURRENCY("SECOND_CURRENCY");
+
+	SECOND_CURRENCY("SECOND_CURRENCY"),
+
+	OPTION_ADAPTE_HANDICAPE("OPTION_ADAPTE_HANDICAPE"),
+
+	OPTION_DEPARTEMENT("OPTION_DEPARTEMENT"),
+
+	OPTION_CAVES("OPTION_CAVES"),
+
+	OPTION_TERRASSES("OPTION_TERRASSES"),
+
+	OPTION_CUISINEEQUIPEE("OPTION_CUISINEEQUIPEE"),
+
+	OPTION_INTERPHONE("OPTION_INTERPHONE"),
+
+	OPTION_DIGICODE("OPTION_DIGICODE"),
+
+	OPTION_GARDIEN("OPTION_GARDIEN"),
+
+	OPTION_CONSO_ENERGIE("OPTION_CONSO_ENERGIE"),
+
+	OPTION_EAU_CHAUDE("OPTION_EAU_CHAUDE"),
+
+	OPTION_IMPACT_CONSO("OPTION_IMPACT_CONSO"),
+
+	OPTION_NATURE_CHAUFFAGE("OPTION_NATURE_CHAUFFAGE"),
+
+	OPTION_TYPE_CHAUFFAGE("OPTION_TYPE_CHAUFFAGE"),
+
+	OPTION_PISCINE("OPTION_PISCINE"),
+
+	OPTION_JARDIN("OPTION_JARDIN");
+
 	/**
 	 * le nom du parametres
 	 */

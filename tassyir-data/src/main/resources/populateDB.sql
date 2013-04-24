@@ -1,9 +1,26 @@
 
 insert into parameters values (1,"LANGUAGE", "FRANCAIS", "La langue du systeme");
 insert into parameters values (2,"EMAIL_ADMIN", "benaissa@bbenarbia.fr", "L""email de l""admin");
-insert into parameters values (3,"TEMP_DIRECTORY", "/home/moad/tempfile/", "Temp directory");
+insert into parameters values (3,"TEMP_DIRECTORY", "c:\\Benaissa\\temp\\", "Temp directory");
 insert into parameters values (4,"MAIN_CURRENCY", '&euro;', "Main currency");
 insert into parameters values (5,"SECOND_CURRENCY", "$", "Second currency");
+insert into parameters values (10, "OPTION_EAU_CHAUDE", "false","OPTION_EAU_CHAUDE");
+insert into parameters values (11, "OPTION_IMPACT_CONSO","false","OPTION_IMPACT_CONSO");
+insert into parameters values (12, "OPTION_NATURE_CHAUFFAGE","false","OPTION_NATURE_CHAUFFAGE");
+insert into parameters values (13, "OPTION_TYPE_CHAUFFAGE","false","OPTION_TYPE_CHAUFFAGE");
+insert into parameters values (14, "OPTION_PISCINE","false","OPTION_PISCINE");
+insert into parameters values (15, "OPTION_JARDIN","false","OPTION_JARDIN");
+insert into parameters values (16, "OPTION_ADAPTE_HANDICAPE","false","OPTION_ADAPTE_HANDICAPE");
+insert into parameters values (17, "OPTION_DEPARTEMENT","false","OPTION_DEPARTEMENT");
+insert into parameters values (18, "OPTION_CAVES","false","OPTION_CAVES");
+insert into parameters values (19, "OPTION_TERRASSES","false","OPTION_TERRASSES");
+insert into parameters values (20, "OPTION_CUISINEEQUIPEE", "false","OPTION_CUISINEEQUIPEE");
+insert into parameters values (21, "OPTION_INTERPHONE","false","OPTION_INTERPHONE");
+insert into parameters values (22, "OPTION_DIGICODE","false","OPTION_DIGICODE");
+insert into parameters values (23, "OPTION_GARDIEN","false","OPTION_GARDIEN");
+insert into parameters values (24, "OPTION_CONSO_ENERGIE","false","OPTION_CONSO_ENERGIE");
+
+
 
 
 insert into departements values (1,"1","Ain","Rhone-Alpes","Bourg");
@@ -114,10 +131,10 @@ insert into departements values (105,"979","Wallis et Futura","Wallis et Futura"
 
 ---Table user_categories
 
-insert into user_categories values (1,"Administrateurs", "/home/moad/tempfile/p1.jpg");
-insert into user_categories values (2,"Utilisateurs", "/home/moad/tempfile/p2.jpg");
-insert into user_categories values (3,"SAV", "/home/moad/tempfile/p3.jpg");
-insert into user_categories values (4,"Invites","/home/moad/tempfile/p4.jpg");
+insert into user_categories values (1,"Administrateurs", "c:\\Benaissa\\temp\\p1.jpg");
+insert into user_categories values (2,"Utilisateurs", "c:\\Benaissa\\temp\\p2.jpg");
+insert into user_categories values (3,"SAV", "c:\\Benaissa\\temp\\p3.jpg");
+insert into user_categories values (4,"Invites","c:\\Benaissa\\temp\\p4.jpg");
 
 --Roles
 insert into roles VALUES (1, "UTILISATION", "");
@@ -144,11 +161,11 @@ insert into contact values (2, 1, "Contact2", "Company 2",  "adresse1",  false, 
 insert into contact values (3, 1, "Contact3", "Company 3",  "adresse1",  false, true, 75001, "Paris", "adresse@yahoo.fr", 
 "www.bbenarbia.fr", "01010101", "0202020202");
 
-insert into users VALUES (1, 1, "/home/moad/tempfile/p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, "adresse1","93800",
+insert into users VALUES (1, 1, "c:\\Benaissa\\temp\\p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, "adresse1","93800",
 "Epinay sur seine", false, false, "ben@gmail.com","www.bbenaissa.fr","01010101","","0625252525",2);
-insert into users VALUES (2, 2, "/home/moad/tempfile/p2.jpg", "said", "med","smed","smed",true, false, "adresse2","65800",
+insert into users VALUES (2, 2, "c:\\Benaissa\\temp\\p2.jpg", "said", "med","smed","smed",true, false, "adresse2","65800",
 "Epinay sur seine", false, false, "ben@gmail.com","www.bbenarbia.fr","01010101","","0625252525", 1);
-insert into users VALUES (3, 3, "/home/moad/tempfile/p3.jpg", "lakhdar", "omar","lomar","lomar",true, false,"adresse3","95800",
+insert into users VALUES (3, 3, "c:\\Benaissa\\temp\\p3.jpg", "lakhdar", "omar","lomar","lomar",true, false,"adresse3","95800",
 "Epinay sur seine", true, true, "ben@gmail.com","","01010101","","0625252525",  2);
 
   
@@ -205,14 +222,14 @@ insert into biens (
 
 
 
-insert into photos values(1,"photos1", 2,"/home/moad/tempfile/app1.jpg");
-insert into photos values(2,"photos2", 2,"/home/moad/tempfile/app2.jpg");
-insert into photos values(3,"photos3", 2,"/home/moad/tempfile/app3.jpg");
+insert into photos values(1,"photos1", 2,"c:\\Benaissa\\temp\\app1.jpg");
+insert into photos values(2,"photos2", 2,"c:\\Benaissa\\temp\\app2.jpg");
+insert into photos values(3,"photos3", 2,"c:\\Benaissa\\temp\\app3.jpg");
 
-insert into photos values(4,"photos4", 3,"/home/moad/tempfile/m1.jpg");
-insert into photos values(5,"photos5", 3,"/home/moad/tempfile/m2.jpg");
-insert into photos values(6,"photos6", 3,"/home/moad/tempfile/m3.jpg");
-insert into photos values(7,"photos7", 3,"/home/moad/tempfile/m4.jpg");
+insert into photos values(4,"photos4", 3,"c:\\Benaissa\\temp\\m1.jpg");
+insert into photos values(5,"photos5", 3,"c:\\Benaissa\\temp\\m2.jpg");
+insert into photos values(6,"photos6", 3,"c:\\Benaissa\\temp\\m3.jpg");
+insert into photos values(7,"photos7", 3,"c:\\Benaissa\\temp\\m4.jpg");
 
 
 ---c:\\Benaissa\\temp\\
