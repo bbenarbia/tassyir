@@ -9,9 +9,6 @@
 	<title>Tassyir: Create a new group</title>
 </head>
 <body>
-	<spring:url value="/groups/{groupId}.htm" var="cancelGroupUrl">
-				<spring:param name="groupId" value="${group.id}" />
-	</spring:url>
 	<spring:url value="/groups.htm" var="groupListUrl" />
 	<spring:url value="/groups/new.htm" var="addGroupUrl" /> 
 	
@@ -20,89 +17,77 @@
 		<div id="content">
 			<jsp:include page="../common/sub-menu.jsp" />
 
-			<div id="home_main_edit">
+			<div id="home_main_edit_user">
 				<div class="navig">
-						<c:forEach var="navig" items="${navigations}" varStatus="status">
-							&laquo;
-							<spring:url value="${navig.url}" var="navigs" />
-							<a href="${navigs}"><spring:message code="${navig.name}" /></a>
-						</c:forEach>
+					<c:forEach var="navig" items="${navigations}" varStatus="status">
+						&laquo;
+						<spring:url value="${navig.url}" var="navigs" />
+						<a href="${navigs}"><spring:message code="${navig.name}" /></a>
+					</c:forEach>
 				</div>
-				<div id="edit">
-					<div class="tab">
-						<h2>Add new  group</h2>
-					</div>
-					<div class="container">
-						
-					<form:form modelAttribute="group" method="post" id="form1" enctype="multipart/form-data">
-
-						<table class="edit_form" style="width: 100%; border: none;">
-								<tr>
-									<td class="label"><form:label path="name"><spring:message code="group.name" /></form:label></td>
-									<td><label> <form:input path="name"  class="text" cssErrorClass="error"/>
-										</label>
-										<form:errors path="name" cssClass="error_code"/>
-									</td>
-								</tr>
-								<tr>
-									<td  style="font-weight: bold;"><spring:message code="user.roles" /></td>
-									<td>
-									 <table>
-										<tr>
-											<td style="font-weight: bold;"><spring:message code="user.num" /></td>
-											<td style="font-weight: bold; width: 260px;"><spring:message code="user.rolename" /></td>
-											<td style="font-weight: bold;"><spring:message code="user.included" /></td>
-										</tr>
-										<c:forEach items="${group.roleFormList.roles}" var="roleForm"
-											varStatus="status">
-											<tr>
-												<td><label> ${status.count}</label></td>
-												<td><label>${roleForm.role.name}</label>
-												<label><form:hidden  path="roleFormList.roles[${status.index}].role.name" /></label></td>
-												<td><label><form:checkbox path="roleFormList.roles[${status.index}].included" /></label></td>
-											</tr>
-										</c:forEach>
-									 </table>
-									</td>
-								</tr>
-								<tr>
-								<td colspan="4">
-									<table class="search_form" style="width: 100%; border: none;">
-											<tr>
-												<td  class="label"><spring:message code="user.photo" /> </td>
-												<td><label><input
-														name="photoFile" type="file" accept="image/*" />
-												</label></td>
-											</tr>
-									</table>
-								</td>
-								</tr>	
-								
-							<tr>
-									<td class="label">&nbsp;</td>
-									<td><span class="listbuttons">
-										<a class="buttonmenured"  href="${fn:escapeXml(groupListUrl)}"><spring:message code="group.action.cancel" /></a>
-										</span>
-									</td>
-									
-									<td class="label"><label> <input type="image"
-											src='<c:url value="/resources/graphics/searchbtn.gif"/>'
-											alt="search" name="button2" id="button2" value="Submit" />
-									</label></td>
-								</tr>
-								
-							</table>
-					</form:form>
 				
+				<div id="edit_user">
+					<div class="tab">
+						<h2>Create new group</h2>
 					</div>
-					<div class="bottom">
-					</div>
+					<div style="margin: 10px; background: none repeat scroll 0px 0px rgb(248, 248, 248); padding: 14px;">
+						<form:form modelAttribute="group" method="post" id="form1">
+							<fieldset>
+    							<legend>general Info</legend>
+        						<dl>
+        							<dt><form:label path="name"><spring:message code="group.name" /></form:label></dt>
+					            	<dd>
+										<form:input label="name"
+												path="name" class="text" cssErrorClass="error"/>
+									</dd>
+								</dl>
+							</fieldset>
+							
+							<fieldset>
+								<legend><spring:message code="user.roles" /></legend>
+								<c:forEach items="${group.roleFormList.roles}" var="roleForm" varStatus="status">
+												<dl>
+													<dt>${status.count} - ${roleForm.role.name}</dt>
+													<dd>
+														<form:hidden path="roleFormList.roles[${status.index}].role.name" />
+														<form:checkbox path="roleFormList.roles[${status.index}].included" />
+													</dd>
+												</dl>
+								</c:forEach>
+											
+							</fieldset>	
+							<fieldset>
+												<legend><spring:message code="user.photo" /></legend>
+												<dl>
+													<dt><spring:message code="user.photo" /></dt>
+													<dd>
+														<form:input
+														path="photoFile" type="file" accept="image/*" cssErrorClass="error"/>
+													</dd>
+												</dl>
+							</fieldset>	
+						<fieldset class="action">
+									<dl><dt>
+    								<input
+											type="image" src='<c:url value="/resources/graphics/searchbtn.gif"/>'  alt="search"
+											name="button2" id="button2" value="Submit" />
+									</dt>
+									<dd>
+										<a class="buttonmenured"  href="${fn:escapeXml(groupListUrl)}"><spring:message code="biens.action.cancel" /></a>
+									</dd>
+									</dl>
+    							</fieldset>
+							</form:form>
+							</div>
+					<div class="bottom"></div>
 				</div>
-					<div id="main_action_edit">
+				
+				<div id="main_action_edit">
+							
 								<span class="listbuttons"> 
-										<a class="buttonmenu"  href="${fn:escapeXml(groupListUrl)}"><spring:message code="group.action.grouplist" /></a>
+										<a class="buttonmenu"  href="${fn:escapeXml(groupListUrl)}"><spring:message code="user.action.userlist" /></a>
 								</span>
-					</div>
+				</div>
 			</div>
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>

@@ -25,7 +25,7 @@
 					<div style="margin: 10px; background: none repeat scroll 0px 0px rgb(248, 248, 248); padding: 14px;">
 						<form:form modelAttribute="bien" method="put" id="form1">
 						<fieldset>
-    						<legend>Personal Info</legend>
+    						<legend>general Info</legend>
         						<dl>
         							<dt><form:label path="typeOperation"><spring:message code="biens.typeOperation" /></form:label></dt>
 					            	<dd>
