@@ -8,6 +8,11 @@
 	<jsp:include page="./../common/head.jsp"/>
 </head>
 <body>
+	<spring:url value="/biens/find-biens.htm" var="bienListUrl"/>
+	<spring:url value="/biens/new.htm" var="bienUrl" />
+	<spring:url value="/biens/{BienId}.htm" var="detailBienUrl">
+				<spring:param name="BienId" value="${bien.id}" />
+	</spring:url> 
 	<div id="wrap">
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">
@@ -21,6 +26,57 @@
 					<div class="container">
 						<form:form modelAttribute="bien" method="put" id="form1">
 							<table class="edit_form_user" style="width: 100%; border: none;">
+								<tr>
+									
+									<td class="label"><form:label path="typeOperation"><spring:message code="biens.typeOperation" /></form:label></td>
+									<td>
+										<table>
+											<tr>
+												<form:select path="typeOperation"  class="select_field">
+													<c:forEach var="item" items="${typesOperationsList}">
+														<c:choose>
+															<c:when test="${typeOperation == item}">
+																<form:option selected="true" value="${item}">
+										               				 ${item} 
+										            			</form:option>
+															</c:when>
+															<c:otherwise>
+																<form:option value="${item}">
+										                  			 ${item}
+										            			</form:option>
+															</c:otherwise>
+														</c:choose>
+												</c:forEach>
+												</form:select>
+											</tr>
+										</table>
+									</td>
+									
+									<td class="label"><form:label path="status"><spring:message code="biens.status" /></form:label></td>
+									<td>
+										<table>
+											<tr>
+												<form:select path="status"  class="select_field">
+													<c:forEach var="item" items="${statusList}">
+														<c:choose>
+															<c:when test="${status == item}">
+																<form:option selected="true" value="${item}">
+										               				 ${item} 
+										            			</form:option>
+															</c:when>
+															<c:otherwise>
+																<form:option value="${item}">
+										                  			 ${item}
+										            			</form:option>
+															</c:otherwise>
+														</c:choose>
+												</c:forEach>
+												</form:select>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								
 								<tr>
 									<td class="label" style="width: 30px; "><form:label path="name"><spring:message code="biens.name" /></form:label></td>
 									<td><label> <form:input label="name" path="name"
@@ -54,6 +110,11 @@
 										</label></td>
 								   </tr> 								   
 								   <tr>
+								   		<td class="label"><form:label path="superficie"><spring:message code="biens.superficie" /></form:label></td>
+										<td><label> <form:input label="superficie"
+													path="superficie" class="text smalltext" />
+										</label></td>
+										
 										<td class="label"><form:label path="departement"><spring:message code="biens.departement" /></form:label></td>
 											<td><label> 	
 													<form:select path="departement"  class="select_field">
@@ -110,6 +171,11 @@
 									</label></td>
 							  	 </tr> 
 							  	 <tr>
+							  	 	<td class="label"><form:label path="superficie"><spring:message code="biens.superficie" /></form:label></td>
+									<td><label> <form:input label="superficie"
+												path="superficie" class="text smalltext" />
+									</label></td>
+									
 									<td class="label"><form:label path="departement"><spring:message code="biens.departement" /></form:label></td>
 									<td><label> 	
 												<form:select path="departement"  class="select_field">
@@ -154,6 +220,18 @@
 												label="description" path="description" class="text textBoxfieldlong" />
 									</label>
 									</td>
+								</tr>
+								<tr>
+									<td class="label"><form:label path="transport"><spring:message code="biens.transport" /></form:label></td>
+										<td><label> 
+											<form:textarea cols="19" rows="3"
+												label="name" path="transport" class="text textBoxfieldlong" />
+									</label></td>
+									<td class="label"><form:label path="proximite"><spring:message code="biens.proximite" /></form:label></td>
+										<td><label> 
+											<form:textarea cols="19" rows="3"
+												label="name" path="proximite" class="text textBoxfieldlong" />
+									</label></td>
 								</tr>
 								<tr>
 									<td class="label"><form:label path="age"><spring:message code="biens.age" /></form:label></td>
@@ -202,18 +280,6 @@
 									<td><label> 
 										<form:input label="name" path="nbSallesBains"
 												class="text" />		
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><form:label path="transport"><spring:message code="biens.transport" /></form:label></td>
-										<td><label> 
-											<form:textarea cols="19" rows="3"
-												label="name" path="transport" class="text textBoxfieldlong" />
-									</label></td>
-									<td class="label"><form:label path="proximite"><spring:message code="biens.proximite" /></form:label></td>
-										<td><label> 
-											<form:textarea cols="19" rows="3"
-												label="name" path="proximite" class="text textBoxfieldlong" />
 									</label></td>
 								</tr>
 								
@@ -451,7 +517,7 @@
 									<td class="label">&nbsp;</td>
 									<td>&nbsp;</td>
 									<td><span class="listbuttons">
-										<a class="buttonmenured"  href="${fn:escapeXml(detailuserUrl)}"><spring:message code="biens.action.cancel" /></a>
+										<a class="buttonmenured"  href="${fn:escapeXml(detailBienUrl)}"><spring:message code="biens.action.cancel" /></a>
 										</span>
 									</td>
 									<td class="label"><label> <input
@@ -465,6 +531,14 @@
 					</div>
 				<div class="bottom">
 				</div>
+			</div>
+			<div id="main_action_edit">
+								<span class="listbuttons">
+									 <a class="buttonmenu"  href="${fn:escapeXml(bienUrl)}"><spring:message code="biens.action.add" /></a>
+								</span> 
+								<span class="listbuttons"> 
+										<a class="buttonmenu"  href="${fn:escapeXml(bienListUrl)}"><spring:message code="biens.action.bienlist" /></a>
+								</span>
 			</div>
 			</div>
 			<div class="clear">&nbsp;</div>
