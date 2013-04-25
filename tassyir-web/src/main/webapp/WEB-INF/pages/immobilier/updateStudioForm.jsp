@@ -17,8 +17,15 @@
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">
 			<jsp:include page="../common/sub-menu.jsp" />
-
-			<div id="home_main_edit_user"> 
+			<div id="home_main_edit_user">
+				<div class="navig">
+					<c:forEach var="navig" items="${navigations}" varStatus="status">
+						&laquo;
+						<spring:url value="${navig.url}" var="navigs" />
+						<a href="${navigs}"><spring:message code="${navig.name}" /></a>
+					</c:forEach>
+				</div>
+				<div id="edit_user">
 					<div class="tab">
 						<h2><spring:message code="biens.studio.action.edit" /></h2>
 					</div>
@@ -99,42 +106,6 @@
 									</dd>
 						        </dl>
 						        
-						         <dl>
-        							<dt><form:label path="superficie"><spring:message code="biens.superficie" /></form:label></dt>
-					            	<dd>
-					            		<form:input label="superficie" path="superficie" class="text smalltext" />
-									</dd>
-        							<dt><form:label path="departement"><spring:message code="biens.departement" /></form:label></dt>
-					            	<dd>
-					            		<form:select path="departement"  class="select_field">
-													<c:forEach var="item" items="${departementsList}">
-														<c:choose>
-															<c:when test="${departement == item.reference}">
-																<form:option selected="true" value="${item.reference}">
-										               				 ${item.name} 
-										            			</form:option>
-															</c:when>
-															<c:otherwise>
-																<form:option value="${item.reference}">
-										                  			 ${item.name}
-										            			</form:option>
-															</c:otherwise>
-														</c:choose>
-												</c:forEach>
-										</form:select>
-									</dd>
-						        </dl>
-								<dl>
-								<dt><form:label path="codePostal"><spring:message code="biens.codepostal" /></form:label></dt>
-									<dd>
-										<form:input label="codePostal" path="codePostal"
-													class="text smalltext" />										
-									</dd>
-								  <dt><form:label path="ville"><spring:message code="biens.ville" /></form:label></dt>
-										<dd> 
-											<form:input label="ville" path="ville" class="text smalltext" />										
-									   </dd>
-								</dl>	
 							 </c:if>
 							 <c:if test="${bien.typeOperation =='A_VENDRE'}">
 							   	<dl>
@@ -155,7 +126,8 @@
 										<form:input label="depotGarantie" path="depotGarantie" class="text smalltext" />
 									</dd>
 							   </dl> 
-							   <dl>
+							 </c:if>
+							  <dl>
 							   		<dt><form:label path="superficie"><spring:message code="biens.superficie" /></form:label></dt>
 									<dd> 
 										<form:input label="superficie" path="superficie" class="text smalltext" />
@@ -191,7 +163,6 @@
 														class="text smalltext" />										
 									</dd>
 								</dl>	
-							 </c:if>
 								<dl>
 									<dt><form:label path="adresse"><spring:message code="biens.adresse" /></form:label></dt>
 									<dd> <form:textarea cols="16" rows="6" label="adresse" path="adresse" class="text textBoxfieldlong" />
@@ -409,31 +380,30 @@
 											<form:checkbox id="adapteHandicape" path="adapteHandicape" /> <form:label path="adapteHandicape" for="adapteHandicape"><spring:message code="biens.adapteHandicape" /></form:label>	
 									</dt>
         						</dl>
-        						</fieldset>		
-								<fieldset class="action">
+        					</fieldset>		
+        					<fieldset class="action">
 									<dl><dt>
-    								<input
-											type="image" src='<c:url value="/resources/graphics/searchbtn.gif"/>'  alt="search"
-											name="button2" id="button2" value="Submit" />
+    									<input type="submit"  alt="Update"  class="buttonmenu" value="Update" />
 									</dt>
 									<dd>
 										<a class="buttonmenured"  href="${fn:escapeXml(detailBienUrl)}"><spring:message code="biens.action.cancel" /></a>
 									</dd>
 									</dl>
     							</fieldset>
-    
-						</form:form>
-					</div>
-					<div class="bottom">					
-				</div>
-				<div id="main_action_edit">
-								<span class="listbuttons">
-									 <a class="buttonmenu"  href="${fn:escapeXml(bienUrl)}"><spring:message code="biens.action.add" /></a>
-								</span> 
-								<span class="listbuttons"> 
+    							<fieldset class="action">
+									<dl>
+									<dt>
+    									<a class="buttonmenu"  href="${fn:escapeXml(bienUrl)}"><spring:message code="biens.action.add" /></a>
+									</dt>
+									<dd>
 										<a class="buttonmenu"  href="${fn:escapeXml(bienListUrl)}"><spring:message code="biens.action.bienlist" /></a>
-								</span>
-					</div>
+									</dd>
+									</dl>
+    							</fieldset>
+							</form:form>
+							</div>
+				</div>
+				
 			</div>
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>

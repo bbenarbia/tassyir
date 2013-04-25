@@ -8,19 +8,33 @@
 	<jsp:include page="./../common/head.jsp"/>
 </head>
 <body>
+
+<spring:url value="/biens/find-biens.htm" var="bienListUrl"/>
+	<spring:url value="/biens/new.htm" var="bienUrl" />
+	<spring:url value="/biens/{BienId}.htm" var="detailBienUrl">
+				<spring:param name="BienId" value="${bien.id}" />
+	</spring:url> 
 	<div id="wrap">
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">
 			<jsp:include page="../common/sub-menu.jsp" />
-			
-			<div id="home_main_edit_user"> 
+
+				<div id="home_main_edit_user">
+				<div class="navig">
+					<c:forEach var="navig" items="${navigations}" varStatus="status">
+						&laquo;
+						<spring:url value="${navig.url}" var="navigs" />
+						<a href="${navigs}"><spring:message code="${navig.name}" /></a>
+					</c:forEach>
+				</div>
+				<div id="edit_user">
 					<div class="tab">
 						<h2><spring:message code="biens.maison.action.new" /></h2>
 					</div>
 					<div style="margin: 10px; background: none repeat scroll 0px 0px rgb(248, 248, 248); padding: 14px;">
-						<form:form modelAttribute="maison" method="post" id="form1">
+						<form:form modelAttribute="maison" method="post" id="form1" enctype="multipart/form-data">
 						<fieldset>
-    						<legend>general Info</legend>
+    						<legend>General Info</legend>
         						<dl>
         							<dt><form:label path="typeOperation"><spring:message code="biens.typeOperation" /></form:label></dt>
 					            	<dd>
@@ -407,7 +421,7 @@
 											<form:checkbox id="piscine" path="piscine" /> <form:label path="piscine" for="piscine"><spring:message code="biens.piscine" /></form:label>
 									</dd>
         						</dl>
-        						</fieldset>
+        						</fieldset>	
         						<fieldset>
         							<legend> Photos </legend>
         							<c:forEach varStatus="status" begin="1" end="${5}">
@@ -418,33 +432,27 @@
 												</dd>
 											</dl>
 									</c:forEach>
-        						</fieldset>		
+        						</fieldset>			
 								<fieldset class="action">
 									<dl><dt>
-    								<input
-											type="image" src='<c:url value="/resources/graphics/searchbtn.gif"/>'  alt="search"
-											name="button2" id="button2" value="Submit" />
+    									<input type="submit"  alt="Create"  class="buttonmenu" value="Create" />
 									</dt>
 									<dd>
-										<a class="buttonmenured"  href="${fn:escapeXml(detailBienUrl)}"><spring:message code="biens.action.cancel" /></a>
+										<a class="buttonmenured"  href="${fn:escapeXml(bienListUrl)}"><spring:message code="biens.action.cancel" /></a>
 									</dd>
 									</dl>
     							</fieldset>
-    
-						</form:form>
-					</div>
-					<div class="bottom">					
-				</div>
-				<div id="main_action_edit">
-								<span class="listbuttons">
-									 <a class="buttonmenu"  href="${fn:escapeXml(bienUrl)}"><spring:message code="biens.action.add" /></a>
-								</span> 
-								<span class="listbuttons"> 
+    							<fieldset class="action">
+									<dl>
+									<dd>
 										<a class="buttonmenu"  href="${fn:escapeXml(bienListUrl)}"><spring:message code="biens.action.bienlist" /></a>
-								</span>
+									</dd>
+									</dl>
+    							</fieldset>
+							</form:form>
+							</div>
 				</div>
 			</div>
-			
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>
 			<jsp:include page="../common/footer.jsp" />
@@ -452,5 +460,7 @@
 	</div>
 </body>
 </html>
+
+        						
 
 

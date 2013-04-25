@@ -307,6 +307,10 @@ public class BienController {
 	public String initCreateStudioForm(Model model) {
 
 		BienDTO studio = new BienDTO();
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
+		model.addAttribute("navigations", navigations);
 		model.addAttribute("studio", studio);
 		return "immobilier/createStudioForm";
 	}
@@ -354,6 +358,10 @@ public class BienController {
 
 		BienDTO maison = new BienDTO();
 		model.addAttribute("maison", maison);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
+		model.addAttribute("navigations", navigations);
 		return "immobilier/createMaisonForm";
 	}
 
@@ -399,6 +407,10 @@ public class BienController {
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String initCreateBienForm(Model model) {
 
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
+		model.addAttribute("navigations", navigations);
 		return "immobilier/createBienForm";
 	}
 
@@ -407,6 +419,10 @@ public class BienController {
 
 		BienDTO appartement = new BienDTO();
 		model.addAttribute("appartement", appartement);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
+		model.addAttribute("navigations", navigations);
 		return "immobilier/createAppartementForm";
 	}
 
@@ -454,6 +470,13 @@ public class BienController {
 			Model model) {
 		BienImmobilier bien = this.bienService.get(bienId);
 		BienDTO bienDto = null;
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
+		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
+		navigations.add(new NavigationDTO("/biens/"+bienId+".htm", "biens.action.details"));
+		model.addAttribute("navigations", navigations);
+		
 		if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
 			bienDto = new BienDTO((Appartement) bien);
 			model.addAttribute("bien", bienDto);

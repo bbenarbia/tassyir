@@ -18,14 +18,22 @@
 		<div id="content">
 			<jsp:include page="../common/sub-menu.jsp" />
 
-				<div id="home_main_edit_user"> 
+				<div id="home_main_edit_user">
+				<div class="navig">
+					<c:forEach var="navig" items="${navigations}" varStatus="status">
+						&laquo;
+						<spring:url value="${navig.url}" var="navigs" />
+						<a href="${navigs}"><spring:message code="${navig.name}" /></a>
+					</c:forEach>
+				</div>
+				<div id="edit_user">
 					<div class="tab">
 						<h2><spring:message code="biens.maison.action.edit" /></h2>
 					</div>
 					<div style="margin: 10px; background: none repeat scroll 0px 0px rgb(248, 248, 248); padding: 14px;">
 						<form:form modelAttribute="bien" method="put" id="form1">
 						<fieldset>
-    						<legend>general Info</legend>
+    						<legend>General Info</legend>
         						<dl>
         							<dt><form:label path="typeOperation"><spring:message code="biens.typeOperation" /></form:label></dt>
 					            	<dd>
@@ -99,7 +107,28 @@
 									</dd>
 						        </dl>
 						        
-						         <dl>
+							 </c:if>
+							 <c:if test="${bien.typeOperation =='A_VENDRE'}">
+							   	<dl>
+									<dt><form:label path="prixVente"><spring:message code="biens.prixVente" /></form:label></dt>
+									<dd> <form:input label="prixVente"
+												path="prixVente" class="text smalltext" />
+									<dt><form:label path="prixMinVente"><spring:message code="biens.prixVenteMin" /></form:label></dt>
+									<dd> 
+										<form:input label="prixMinVente" path="prixMinVente" class="text smalltext" />
+									</dd>
+								</dl>
+								<dl>
+									<dt><form:label path="honoraires"><spring:message code="biens.honoraires" /></form:label></dt>
+									<dd> <form:input label="honoraires"
+												path="honoraires" class="text smalltext" />
+									<dt><form:label path="depotGarantie"><spring:message code="biens.depotGarantie" /></form:label></dt>
+									<dd> 
+										<form:input label="depotGarantie" path="depotGarantie" class="text smalltext" />
+									</dd>
+							   </dl> 
+							 </c:if>
+							 	<dl>
         							<dt><form:label path="superficie"><spring:message code="biens.superficie" /></form:label></dt>
 					            	<dd>
 					            		<form:input label="superficie" path="superficie" class="text smalltext" />
@@ -135,63 +164,6 @@
 											<form:input label="ville" path="ville" class="text smalltext" />										
 									   </dd>
 								</dl>	
-							 </c:if>
-							 <c:if test="${bien.typeOperation =='A_VENDRE'}">
-							   	<dl>
-									<dt><form:label path="prixVente"><spring:message code="biens.prixVente" /></form:label></dt>
-									<dd> <form:input label="prixVente"
-												path="prixVente" class="text smalltext" />
-									<dt><form:label path="prixMinVente"><spring:message code="biens.prixVenteMin" /></form:label></dt>
-									<dd> 
-										<form:input label="prixMinVente" path="prixMinVente" class="text smalltext" />
-									</dd>
-								</dl>
-								<dl>
-									<dt><form:label path="honoraires"><spring:message code="biens.honoraires" /></form:label></dt>
-									<dd> <form:input label="honoraires"
-												path="honoraires" class="text smalltext" />
-									<dt><form:label path="depotGarantie"><spring:message code="biens.depotGarantie" /></form:label></dt>
-									<dd> 
-										<form:input label="depotGarantie" path="depotGarantie" class="text smalltext" />
-									</dd>
-							   </dl> 
-							   <dl>
-							   		<dt><form:label path="superficie"><spring:message code="biens.superficie" /></form:label></dt>
-									<dd> 
-										<form:input label="superficie" path="superficie" class="text smalltext" />
-									</dd>
-									<dt><form:label path="departement"><spring:message code="biens.departement" /></form:label></dt>
-									<dd> 	
-												<form:select path="departement"  class="select_field">
-													<c:forEach var="item" items="${departementsList}">
-														<c:choose>
-															<c:when test="${departement == item.reference}">
-																<form:option selected="true" value="${item.reference}">
-										               				 ${item.name} 
-										            			</form:option>
-															</c:when>
-															<c:otherwise>
-																<form:option value="${item.reference}">
-										                  			 ${item.name}
-										            			</form:option>
-															</c:otherwise>
-														</c:choose>
-												</c:forEach>
-												</form:select>
-									</dd>
-								</dl>	
-								<dl>
-									<dt><form:label path="ville"><spring:message code="biens.ville" /></form:label></dt>
-										<dd> 
-											<form:input label="ville" path="ville"
-													class="text smalltext" />										
-									<dt><form:label path="codePostal"><spring:message code="biens.codepostal" /></form:label></dt>
-									<dd> 
-												<form:input label="codePostal" path="codePostal"
-														class="text smalltext" />										
-									</dd>
-								</dl>	
-							 </c:if>
 								<dl>
 									<dt><form:label path="adresse"><spring:message code="biens.adresse" /></form:label></dt>
 									<dd> <form:textarea cols="16" rows="6" label="adresse" path="adresse" class="text textBoxfieldlong" />
@@ -415,27 +387,25 @@
         						</fieldset>		
 								<fieldset class="action">
 									<dl><dt>
-    								<input
-											type="image" src='<c:url value="/resources/graphics/searchbtn.gif"/>'  alt="search"
-											name="button2" id="button2" value="Submit" />
+    									<input type="submit"  alt="Update"  class="buttonmenu" value="Update" />
 									</dt>
 									<dd>
 										<a class="buttonmenured"  href="${fn:escapeXml(detailBienUrl)}"><spring:message code="biens.action.cancel" /></a>
 									</dd>
 									</dl>
     							</fieldset>
-    
-						</form:form>
-					</div>
-					<div class="bottom">					
-				</div>
-				<div id="main_action_edit">
-								<span class="listbuttons">
-									 <a class="buttonmenu"  href="${fn:escapeXml(bienUrl)}"><spring:message code="biens.action.add" /></a>
-								</span> 
-								<span class="listbuttons"> 
+    							<fieldset class="action">
+									<dl>
+									<dt>
+    									<a class="buttonmenu"  href="${fn:escapeXml(bienUrl)}"><spring:message code="biens.action.add" /></a>
+									</dt>
+									<dd>
 										<a class="buttonmenu"  href="${fn:escapeXml(bienListUrl)}"><spring:message code="biens.action.bienlist" /></a>
-								</span>
+									</dd>
+									</dl>
+    							</fieldset>
+							</form:form>
+							</div>
 				</div>
 			</div>
 			<div class="clear">&nbsp;</div>
@@ -445,5 +415,3 @@
 	</div>
 </body>
 </html>
-
-

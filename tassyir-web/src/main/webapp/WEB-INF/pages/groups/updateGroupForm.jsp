@@ -49,53 +49,41 @@
 									</dd>
 								</dl>
 							</fieldset>
-
 							<fieldset>
-								<legend>
-									<spring:message code="user.roles" />
-								</legend>
-								<c:forEach items="${group.roleFormList.roles}" var="roleForm"
-									varStatus="status">
-									<dl>
-										<dt>${status.count} - ${roleForm.role.name}</dt>
-										<dd>
-											<form:hidden
-												path="roleFormList.roles[${status.index}].role.name" />
-											<form:checkbox
-												path="roleFormList.roles[${status.index}].included" />
-										</dd>
-									</dl>
+								<legend><spring:message code="user.roles" /></legend>
+								<c:forEach items="${group.roleFormList.roles}" var="roleForm" varStatus="status">
+												<dl>
+													<dt class="dtlong">${status.count} - ${roleForm.role.name}</dt>
+													<dd>
+														<form:hidden path="roleFormList.roles[${status.index}].role.name" />
+														<form:checkbox path="roleFormList.roles[${status.index}].included" />
+													</dd>
+												</dl>
 								</c:forEach>
-
-							</fieldset>
-
+							</fieldset>	
 							<fieldset class="action">
-								<dl>
-									<dt>
-										<input type="image"
-											src='<c:url value="/resources/graphics/searchbtn.gif"/>'
-											alt="search" name="button2" id="button2" value="Submit" />
+									<dl><dt>
+    									<input type="submit"  alt="Update"  class="buttonmenu" value="Update" />
 									</dt>
 									<dd>
-										<a class="buttonmenured" href="${fn:escapeXml(cancelGroupUrl)}"><spring:message
-												code="biens.action.cancel" /></a>
+										<a class="buttonmenured"  href="${fn:escapeXml(cancelGroupUrl)}"><spring:message code="group.action.cancel" /></a>
 									</dd>
-								</dl>
-							</fieldset>
-						</form:form>
-					</div>
-					<div class="bottom"></div>
+									</dl>
+    							</fieldset>
+    							<fieldset class="action">
+									<dl>
+									<dt>
+    									<a class="buttonmenu"  href="${fn:escapeXml(addGroupUrl)}"><spring:message code="group.action.add" /></a>
+									</dt>
+									<dd>
+										<a class="buttonmenu"  href="${fn:escapeXml(groupListUrl)}"><spring:message code="group.gotolistgroup" /></a>
+									</dd>
+									</dl>
+    							</fieldset>
+							</form:form>
+							</div>
 				</div>
-
-				<div id="main_action_edit">
-					<span class="listbuttons"> <a class="buttonmenu"
-						href="${fn:escapeXml(addGroupUrl)}"><spring:message
-								code="user.action.add" /></a>
-					</span> <span class="listbuttons"> <a class="buttonmenu"
-						href="${fn:escapeXml(groupListUrl)}"><spring:message
-								code="user.action.userlist" /></a>
-					</span>
-				</div>
+				
 			</div>
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>
@@ -104,5 +92,3 @@
 	</div>
 </body>
 </html>
-
-

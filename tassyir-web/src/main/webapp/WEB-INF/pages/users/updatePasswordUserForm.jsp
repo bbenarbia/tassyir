@@ -14,12 +14,14 @@
 	<spring:url value="/users.htm" var="userListUrl"> </spring:url>
 	<spring:url value="/" var="homeUrl"> </spring:url>
 	<spring:url value="/users/new.htm" var="userUrl" />
+	
+	
 	<div id="wrap">
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">
 			<jsp:include page="../common/sub-menu.jsp" />
 
-			<div id="home_main">
+			<div id="home_main_edit_user">
 				<div class="navig">
 					<c:forEach var="navig" items="${navigations}" varStatus="status">
 						&laquo;
@@ -27,63 +29,59 @@
 						<a href="${navigs}"><spring:message code="${navig.name}" /></a>
 					</c:forEach>
 				</div>
-				<div id="search">
-					
+
+				<div id="edit_user">
 					<div class="tab">
 						<h2>Update user password</h2>
 					</div>
-					<div class="container">
+					<div
+						style="margin: 10px; background: none repeat scroll 0px 0px rgb(248, 248, 248); padding: 14px;">
 						<form:form modelAttribute="userPassword" method="put" id="form1">
-							<table class="search_form" style="width: 100%; border: none;">
-								<tr>
-									<td class="label"><form:label path="oldPassword"><spring:message code="user.password" /></form:label></td>
-									<td><label> <form:password label="oldPassword"
-												path="oldPassword" class="text" cssErrorClass="error"/>
-									</label></td>
-									<td><label>
-													<form:errors path="oldPassword" cssClass="error_code"/>
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><form:label path="password"><spring:message code="user.newpassword" /></form:label></td>
-									<td><label> <form:password label="password"
-												path="password" class="text" cssErrorClass="error"/></label></td>
-									<td><label>
-													<form:errors path="password" cssClass="error_code"/>
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><form:label path="passwordConfirmation"><spring:message code="user.confirmation" /></form:label></td>
-									<td><label> <form:password label="passwordConfirmation"
-												path="passwordConfirmation" class="text" cssErrorClass="error"/></label></td>
-									<td><label>
-													<form:errors path="passwordConfirmation" cssClass="error_code"/>
-									</label></td>
-								</tr>
+							<fieldset>
+								<legend>Password Info</legend>
+								<dl>
+									<dt>
+										<form:label path="oldPassword"><spring:message code="user.password" /></form:label>
+									</dt>
+									<dd>
+										<form:password label="oldPassword"  path="oldPassword" class="text" cssErrorClass="error"/>
+										<form:errors path="oldPassword" cssClass="error_code"/>
+									</dd>
+								</dl>
 								
-								<tr>
-									<td class="label">&nbsp;</td>
-									<td><span class="listbuttons">
-											<a class="buttonmenured"  href="${fn:escapeXml(detailuserUrl)}"><spring:message code="user.action.cancel" /></a>
-										</span>
-									</td>
-									<td  class="label"><label> <input
-											type="image"  src='<c:url value="/resources/graphics/searchbtn.gif"/>' alt="search"
-											name="button2" id="button2" value="Submit" />
-									</label></td>
-								</tr>
-							</table>
-						</form:form>
-					</div>
-					<div class="bottom"></div>
-				</div>
-				<div id="main_action_edit">
-								<span class="listbuttons">
-									 <a class="buttonmenu"  href="${fn:escapeXml(userUrl)}"><spring:message code="user.action.add" /></a>
-								</span> 
-								<span class="listbuttons"> 
-										<a class="buttonmenu"  href="${fn:escapeXml(userListUrl)}"><spring:message code="user.action.userlist" /></a>
-								</span>
+								<dl>
+									<dt>
+										<form:label path="password"><spring:message code="user.newpassword" /></form:label>
+									</dt>
+									<dd>
+										<form:password label="password"  path="password" class="text" cssErrorClass="error"/>
+										<form:errors path="password" cssClass="error_code"/>
+									</dd>
+								</dl>
+								
+								<dl>
+									<dt>
+										<form:label path="passwordConfirmation"><spring:message code="user.confirmation" /></form:label>
+									</dt>
+									<dd>
+										<form:password label="passwordConfirmation"  path="passwordConfirmation" class="text" cssErrorClass="error"/>
+										<form:errors path="passwordConfirmation" cssClass="error_code"/>
+									</dd>
+								</dl>
+							</fieldset>
+							
+								
+							<fieldset class="action">
+									<dl><dt>
+    									<input type="submit"  alt="Update"  class="buttonmenu" value="Update" />
+									</dt>
+									<dd>
+										<a class="buttonmenured"  href="${fn:escapeXml(detailuserUrl)}"><spring:message code="parameter.action.cancel" /></a>
+									</dd>
+									</dl>
+    							</fieldset>
+							</form:form>
+							</div>
 				</div>
 			</div>
 			<div class="clear">&nbsp;</div>
