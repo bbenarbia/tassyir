@@ -308,17 +308,17 @@ h1#logo {
 
 #sitename {
 	float: left;
-	width: 261px;
+	width: 370px;
 }
 
 #shoutout {
 	float: left;
-	width: 168px;
+	width: 160px;
 }
 
 #useractions {
 	float: left;
-	width: 490px;
+	width: 380px;
 	padding-left: 20px;
 	background: url(../graphics/header_vertical_devider.jpg) repeat-y 10px
 		0px;
@@ -346,8 +346,15 @@ h1#logo {
 }
 
 .formblock {
-	width: 135px;
+	width: 120px;
 	float: left;
+	padding: 0 5px 5px 0px;
+	margin-right: 12px;
+}
+
+.formblockButton {
+	width: 80px;
+	float: right;
 	padding: 0 5px 5px 0px;
 	margin-right: 12px;
 }
@@ -359,10 +366,10 @@ h1#logo {
 .formblock .textfields {
 	background: #FFFFFF;
 	border: 1px solid #BADEEF;
-	font-size: 14px;
+	font-size: 12px;
 	padding: 3px 5px 0px;
 	height: 22px;
-	width: 125px;
+	width: 130px;
 }
 
 .formblock label {
@@ -495,7 +502,7 @@ a {
 
 #topbar ul {
 	display: block;
-	padding-left: 450px;
+	padding-left: 530px;
 	padding-top: 5px;
 	padding-right: 10px;
 }

@@ -44,12 +44,20 @@ public class CustomUserDetailsService implements UserDetailsService {
 		try {
 
 			User dbuser = userService.getUtilisateurByLogin(login);
-
+			
+			List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
+			if(dbuser != null){
+				List<Role> userRoles = new ArrayList<Role>();
+				userRoles.addAll(dbuser.getGroupsAuthorities());
+				userRoles.addAll(dbuser.getRoles());
+				authList =(List<GrantedAuthority>) getAuthorities(userRoles);
+			}
+			
 			userDetails = new org.springframework.security.core.userdetails.User(
 					dbuser.getLogin(), dbuser.getPassword(),
 					!dbuser.getLocked(), !dbuser.getLocked(),
 					!dbuser.getLocked(), !dbuser.getLocked(),
-					getAuthorities(dbuser.getRoles()));
+					authList);
 
 		} catch (Exception e) {
 			logger.error("Error in retrieving user");

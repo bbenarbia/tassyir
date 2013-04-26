@@ -53,14 +53,14 @@
 				<h1>User detail</h1>
 				<div id="single_item_details">
 					<div id="leftcolumn">
-						<div id="carrousel">
 							<c:if test="${empty user.photo }">
 								<img width="330" height="230"  src='<c:url value="/resources/graphics/no-photos.jpg"/>' class="previewimg">
+								<a class="buttonmenu"  href="${fn:escapeXml(addPhotoUrl)}"><spring:message code="user.action.addphoto" /></a>
 							</c:if>
 							<c:if test="${not empty user.photo }">
 								<img width="330" height="230" src="${photoUrl}/${user.id}" class="previewimg">
+								<a class="buttonmenu"  href="${fn:escapeXml(addPhotoUrl)}"><spring:message code="user.action.editphoto" /></a>
 							</c:if>
-						</div>
 					</div>
 					<div id="rightcolumn">
 						<div class="leftpart">
@@ -119,9 +119,6 @@
 						</span>
 						<span class="listbuttons"> 
 							<a href="${fn:escapeXml(resetPasswordUrl)}"><spring:message code="user.action.resetpassword" /></a>
-						</span>
-						<span class="listbuttons"> 
-							<a href="${fn:escapeXml(addPhotoUrl)}"><spring:message code="user.action.editphoto" /></a>
 						</span>
 						
 						<c:choose>
@@ -243,6 +240,17 @@
 								<td><ul>
 									<c:forEach var="role" items="${user.roles}" varStatus="status">
 										<li>${status.count} : <c:out value="${role.name}" /></li>
+									</c:forEach>
+									</ul></td>
+							</tr>
+							<tr>
+								<td><h3><spring:message code="user.group.roles" /></h3></td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td><ul>
+									<c:forEach var="role" items="${groupRoles}" varStatus="status">
+										<li>${status.count} : <c:out value="${role}" /></li>
 									</c:forEach>
 									</ul></td>
 							</tr>

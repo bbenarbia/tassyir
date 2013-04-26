@@ -1,4 +1,5 @@
 <%@ include file="/WEB-INF/pages/common/header.jsp" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div id="topbar">
 			<ul>
 				<li class="current"><a href="${contextPath}">Home</a></li>
@@ -6,7 +7,6 @@
 				<li><a href="${contextPath}/parameters" >Params</a>	</li>			
 				<li><a href="${contextPath}/biens/find-biens">Biens</a></li>
 				<li><a href="#">About Us</a></li>
-				<li><a href="${contextPath}/logout">Logout</a></li>
 				<li></li>
 			</ul>
 		</div>
@@ -20,49 +20,60 @@
 			</div>
 			<div id="useractions">
 				<div id="headings">
-					<h2>
-						<img  src='<c:url value="/resources/graphics/create_indi_usr.jpg"/>' alt="Individual User"
-							width="25" height="22" /> <a href="#">Create Individual
-							Account</a>
-					</h2>
-					<h2>
-						<img src='<c:url value="/resources/graphics/create_agent_icon.jpg"/>'  alt="Agent Account"
-							width="27" height="22" /> <a href="#">Create Agent Accoun</a>t
-					</h2>
+					<sec:authorize access="isAuthenticated()">
+						<h2>
+							<img src='<c:url value="/resources/graphics/user-icone.png"/>'  alt="My profile"
+								width="27" height="22" /> <a href="#">My profile</a>
+						</h2>
+					 	<h2>
+							<img src='<c:url value="/resources/graphics/logout.png"/>'  alt="Logout"
+								width="27" height="22" /> <a href="${contextPath}/logout">Logout</a>
+						</h2>
+						<h2>
+							<img src='<c:url value="/resources/graphics/mail.png"/>'  alt="Messages"
+								width="27" height="22" /> <a href="${contextPath}/messages">Messages(0)</a>
+						</h2>
+					</sec:authorize>
 				</div>
-				<div id="login">
+				
+				<sec:authorize access="isAnonymous()">
+					<div id="headings">
+						<h2>
+							<img  src='<c:url value="/resources/graphics/create_indi_usr.jpg"/>' alt="Individual User"
+								width="25" height="22" /> <a href="#">New Indiv Account</a>
+						</h2>
+						<h2>
+							<img src='<c:url value="/resources/graphics/create_agent_icon.jpg"/>'  alt="Agent Account"
+								width="27" height="22" /> <a href="#">Create Agent Acc</a>
+						</h2> 
+					</div>
+				 <div id="login">
 					<p>
-						<strong>Already registered ?</strong> Login here to access your
-						account
+						<strong>Already registered ?</strong> Login here to access your account
 					</p>
 					<div id="loginform">
-						<form action="#">
+						 <form method="post" action="j_spring_security_check">
 							<div class="formblock">
 
-								<label>Username</label> <input name="user" type="text"
-									class="textfields" />
+								<label>Username</label> <input id="j_username" name="j_username"  value="" placeholder="Username or Email" type="text"  class="textfields" />
 							</div>
 							<div class="formblock">
 
-								<label>Password</label><input name="user" type="text"
-									class="textfields" />
+								<label>Password</label><input id="j_password" name="j_password" value="" placeholder="Password" type="password" class="textfields" />
 							</div>
-							<div class="formblock">
-								<input type="image" src='<c:url value="/resources/graphics/loginbutton.jpg"/>'  name="button"
-									id="button" value="Submit" />
+							<div class="formblockButton">
+								<%-- <input type="image" src='<c:url value="/resources/graphics/loginbutton.jpg"/>'  name="button" id="button"  value="Submit" /> --%>
+								<input type="submit"  alt="Login"  class="buttonmenu" value="Login" />
 							</div>
-
-
 							<div class="clear">&nbsp;</div>
 							<p>
-								<input name="" type="checkbox" value="" /> Remember me on this
-								computer | Forgot password ?
+								<input name="remember_me" id="remember_me" type="checkbox" value="" /> Remember me on this computer | Forgot password ?
 							</p>
 						</form>
 					</div>
-
 				</div>
-			</div>
+			</sec:authorize>				
+		 </div>
 </div>
 <%-- 
 <div class="wrapperCenter">

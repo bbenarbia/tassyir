@@ -1,7 +1,7 @@
 package net.bbenarbia.domain.enums;
 
 public enum EnumTypeChauffage {
-	INDIVIDUEL(1), COLLEECTIF(2); 
+	SEMI_COLLECTIF(1), COLLECTIF(2), INDIVIDUEL_COLLECTIF(3),FUEL(4), INDIVIDUEL_GAZ(5),INDIVIDUEL(6), SOL(7), GEO_TERMIQUE(8) ; 
 
 	private int index;
 

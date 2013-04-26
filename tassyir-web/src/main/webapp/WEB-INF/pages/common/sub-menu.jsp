@@ -7,8 +7,5 @@
 					<li><a href="${contextPath}/parameters">Params</a></li>
 					<li><a href="${contextPath}/biens/find-biens">Find bien</a></li>	
 					<li><a href="#">Roles</a></li>
-					<li><a href="#">Apartments</a></li>
-					<li><a href="#">Raw Land</a></li>
-					<li><a href="#">Estates</a></li>
 				</ul>
 </div>
