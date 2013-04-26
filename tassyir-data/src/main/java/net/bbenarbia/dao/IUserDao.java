@@ -48,6 +48,7 @@ public interface IUserDao extends IGenericDao<User>{
     
     List<User> getUtilisateursByLastName(String name);
     
+    
     /**
      * @param refUtilisateur
      * @return

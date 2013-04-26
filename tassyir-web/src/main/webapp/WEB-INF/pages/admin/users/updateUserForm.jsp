@@ -5,23 +5,20 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-<jsp:include page="./../common/head.jsp" />
-<title>Tassyir: <spring:message code="user.action.add" /></title>
+	<jsp:include page="./../../common/head.jsp"/>
+	<title>Tassyir: <spring:message code="user.action.edit" /></title>
 </head>
 <body>
 	<spring:url value="/users.htm" var="userListUrl"> </spring:url>
 	<spring:url value="/" var="homeUrl"> </spring:url>
 	<spring:url value="/users/new.htm" var="newUserUrl" />
-	
-	
-	<spring:url value="/users.htm" var="userListUrl"> </spring:url>
-	<spring:url value="/" var="homeUrl"> </spring:url>
-	<spring:url value="/users/new.htm" var="newUserUrl" />
-	
+	<spring:url value="/users/{userId}.htm" var="detailuserUrl">
+				<spring:param name="userId" value="${user.id}" />
+	</spring:url> 
 	<div id="wrap">
-		<jsp:include page="../common/menu.jsp" />
+		<jsp:include page="../../common/menu.jsp" />
 		<div id="content">
-			<jsp:include page="../common/sub-menu.jsp" />
+			<jsp:include page="../../common/sub-menu.jsp" />
 
 			<div id="home_main_edit_user">
 				<div class="navig">
@@ -34,10 +31,10 @@
 				
 				<div id="edit_user">
 					<div class="tab">
-						<h2><spring:message code="user.action.add" /></h2>
+						<h2><spring:message code="user.action.edit" /></h2>
 					</div>
 					<div style="margin: 10px; background: none repeat scroll 0px 0px rgb(248, 248, 248); padding: 14px;">
-						<form:form modelAttribute="user" method="post" id="form1" enctype="multipart/form-data">
+						<form:form modelAttribute="user" method="put" id="form1">
 							<fieldset>
     						<legend><spring:message code="user.infos.general" /></legend>
         						<dl>
@@ -64,20 +61,6 @@
 												<form:errors path="code" cssClass="error_code"/>
 									</dd>
 								</dl>
-								<dl>
-        							<dt><form:label path="password"><spring:message code="user.password" /></form:label></dt>
-					            	<dd>
-										<form:password label="password" path="password" class="text" cssErrorClass="error"/>
-										<form:errors path="password" cssClass="error_code"/>
-									</dd>
-        							<dt><form:label path="passwordConfirmation"><spring:message code="user.confirmation" /></form:label></dt>
-					            	<dd>
-										<form:password label="passwordConfirmation" path="passwordConfirmation"
-												class="text mediumtext" cssErrorClass="error"/>
-												<form:errors path="passwordConfirmation" cssClass="error_code"/>
-									</dd>
-								</dl>
-								
 								<dl>
         							<dt><form:label path="userCategory.name"><spring:message code="user.group" /> </form:label></dt>
 					            	<dd>
@@ -121,7 +104,6 @@
 													</dd>
 												</dl>
 								</c:forEach>
-											
 							</fieldset>	
 							<fieldset>
 								<legend><spring:message code="user.contact" /></legend>
@@ -183,26 +165,20 @@
 													</dd>
 												</dl>
 										</fieldset>
-										<fieldset>
-												<legend><spring:message code="user.photo" /></legend>
-												<dl>
-													<dt><spring:message code="user.photo" /></dt>
-													<dd>
-														<input   name="photoFile" type="file" accept="image/*" />
-													</dd>
-												</dl>
-										</fieldset>
 								<fieldset class="action">
 									<dl><dt>
-    									<input type="submit" alt="Create" value="Create"   class="buttonmenu"  />
+    									<input type="submit"  alt="Update"  class="buttonmenu" value="Update" />
 									</dt>
 									<dd>
-										<a class="buttonmenured"  href="${fn:escapeXml(userListUrl)}"><spring:message code="biens.action.cancel" /></a>
+										<a class="buttonmenured"  href="${fn:escapeXml(detailuserUrl)}"><spring:message code="biens.action.cancel" /></a>
 									</dd>
 									</dl>
     							</fieldset>
     							<fieldset class="action">
 									<dl>
+									<dt>
+    									<a class="buttonmenu"  href="${fn:escapeXml(newUserUrl)}"><spring:message code="user.action.add" /></a>
+									</dt>
 									<dd>
 										<a class="buttonmenu"  href="${fn:escapeXml(userListUrl)}"><spring:message code="user.action.userlist" /></a>
 									</dd>
@@ -211,10 +187,11 @@
 							</form:form>
 							</div>
 				</div>
+				
 			</div>
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>
-			<jsp:include page="../common/footer.jsp" />
+			<jsp:include page="../../common/footer.jsp" />
 		</div>
 	</div>
 </body>

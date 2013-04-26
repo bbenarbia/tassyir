@@ -57,9 +57,9 @@ public class IndexController {
 
 	
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(ModelMap model) {
-
-		return "login";
-	}
+//	@RequestMapping(value = "/login", method = RequestMethod.GET)
+//	public String login(ModelMap model) {
+//
+//		return "login";
+//	}
 }

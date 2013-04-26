@@ -19,9 +19,12 @@
   <section class="container">
     <div class="login">
       <h1>Login to Tassyir</h1>
-      <form method="post" action="">
-        <p><input type="text" name="login" value="" placeholder="Username or Email"></p>
-        <p><input type="password" name="password" value="" placeholder="Password"></p>
+      <div id="login-error">
+	   ${error}
+	  </div>
+      <form method="post" action="j_spring_security_check">
+        <p><input type="text" id="j_username" name="j_username"  value="" placeholder="Username or Email"></p>
+        <p><input type="password" id="j_password" name="j_password" value="" placeholder="Password"></p>
         <p class="remember_me">
           <label>
             <input type="checkbox" name="remember_me" id="remember_me">

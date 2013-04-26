@@ -9,13 +9,13 @@
 <html lang="en">
 
 <head>
-<jsp:include page="./../common/head.jsp"/>
+<jsp:include page="./../../common/head.jsp"/>
 
 </head>
 
 <body>
 	<div id="container">
-		<jsp:include page="../common/menu.jsp" />
+		<jsp:include page="../../common/menu.jsp" />
 		<c:forEach var="navig" items="${navigations}" varStatus="status">
 							&laquo;
 							<spring:url value="${navig.url}" var="navigs" />

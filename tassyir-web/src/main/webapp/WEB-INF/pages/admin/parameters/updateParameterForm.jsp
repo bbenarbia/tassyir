@@ -6,7 +6,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-	<jsp:include page="./../common/head.jsp"/>
+	<jsp:include page="./../../common/head.jsp"/>
 	<title>Tassyir: update params</title>
 </head>
 <body>
@@ -14,9 +14,9 @@
 	<spring:url value="/parameters/new.htm" var="addParamUrl" /> 
 	
 	<div id="wrap">
-		<jsp:include page="../common/menu.jsp" />
+		<jsp:include page="../../common/menu.jsp" />
 		<div id="content">
-			<jsp:include page="../common/sub-menu.jsp" />
+			<jsp:include page="../../common/sub-menu.jsp" />
 
 			<div id="home_main_edit_user">
 				<div class="navig">
@@ -88,7 +88,7 @@
 			</div>
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>
-			<jsp:include page="../common/footer.jsp" />
+			<jsp:include page="../../common/footer.jsp" />
 		</div>
 	</div>
 </body>

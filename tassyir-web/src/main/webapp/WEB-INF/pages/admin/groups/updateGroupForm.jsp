@@ -5,17 +5,19 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-	<jsp:include page="./../common/head.jsp"/>
-	<title>Tassyir: Create a new group</title>
+<jsp:include page="./../../common/head.jsp" />
+<title>Tassyir: update group</title>
 </head>
 <body>
+	<spring:url value="/groups/{groupId}.htm" var="cancelGroupUrl">
+		<spring:param name="groupId" value="${group.id}" />
+	</spring:url>
 	<spring:url value="/groups.htm" var="groupListUrl" />
-	<spring:url value="/groups/new.htm" var="addGroupUrl" /> 
-	
+	<spring:url value="/groups/new.htm" var="addGroupUrl" />
 	<div id="wrap">
-		<jsp:include page="../common/menu.jsp" />
+		<jsp:include page="../../common/menu.jsp" />
 		<div id="content">
-			<jsp:include page="../common/sub-menu.jsp" />
+			<jsp:include page="../../common/sub-menu.jsp" />
 
 			<div id="home_main_edit_user">
 				<div class="navig">
@@ -25,16 +27,16 @@
 						<a href="${navigs}"><spring:message code="${navig.name}" /></a>
 					</c:forEach>
 				</div>
-			
-			<div id="edit_user">
+
+				<div id="edit_user">
 					<div class="tab">
-						<h2>Create group</h2>
+						<h2>Update group</h2>
 					</div>
 					<div
 						style="margin: 10px; background: none repeat scroll 0px 0px rgb(248, 248, 248); padding: 14px;">
-						<form:form modelAttribute="group" method="post" id="form1" enctype="multipart/form-data">
+						<form:form modelAttribute="group" method="put" id="form1">
 							<fieldset>
-								<legend>General Info</legend>
+								<legend>general Info</legend>
 								<dl>
 									<dt>
 										<form:label path="name">
@@ -59,19 +61,9 @@
 												</dl>
 								</c:forEach>
 							</fieldset>	
-							<fieldset>
-												<legend><spring:message code="user.photo" /></legend>
-												<dl>
-													<dt><spring:message code="user.photo" /></dt>
-													<dd>
-														<form:input
-														path="photoFile" type="file" accept="image/*" cssErrorClass="error"/>
-													</dd>
-												</dl>
-							</fieldset>	
 							<fieldset class="action">
 									<dl><dt>
-    									<input type="submit"  alt="Create"  class="buttonmenu" value="Create" />
+    									<input type="submit"  alt="Update"  class="buttonmenu" value="Update" />
 									</dt>
 									<dd>
 										<a class="buttonmenured"  href="${fn:escapeXml(cancelGroupUrl)}"><spring:message code="group.action.cancel" /></a>
@@ -80,6 +72,9 @@
     							</fieldset>
     							<fieldset class="action">
 									<dl>
+									<dt>
+    									<a class="buttonmenu"  href="${fn:escapeXml(addGroupUrl)}"><spring:message code="group.action.add" /></a>
+									</dt>
 									<dd>
 										<a class="buttonmenu"  href="${fn:escapeXml(groupListUrl)}"><spring:message code="group.gotolistgroup" /></a>
 									</dd>
@@ -88,21 +83,12 @@
 							</form:form>
 							</div>
 				</div>
+				
 			</div>
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>
-			<jsp:include page="../common/footer.jsp" />
+			<jsp:include page="../../common/footer.jsp" />
 		</div>
 	</div>
 </body>
 </html>
-
-
-
-			
-			
-			
-			
-			
-
-				

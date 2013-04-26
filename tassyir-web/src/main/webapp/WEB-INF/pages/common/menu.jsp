@@ -6,7 +6,7 @@
 				<li><a href="${contextPath}/parameters" >Params</a>	</li>			
 				<li><a href="${contextPath}/biens/find-biens">Biens</a></li>
 				<li><a href="#">About Us</a></li>
-				<li><a href="#">Help &amp; Support</a></li>
+				<li><a href="${contextPath}/logout">Logout</a></li>
 				<li></li>
 			</ul>
 		</div>

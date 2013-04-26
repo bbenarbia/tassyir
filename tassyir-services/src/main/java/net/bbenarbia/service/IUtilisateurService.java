@@ -20,6 +20,8 @@ public interface IUtilisateurService extends IGenericService<User>{
 	
 	List<User> getUtilisateursByLastName(String lastName);
 	
+	User getUtilisateurByLogin(String login);
+	
 	boolean updatePassword(Long userId, String oldPassword , String newPassword);
 	
 	boolean userCodeExists(Long code) ;		

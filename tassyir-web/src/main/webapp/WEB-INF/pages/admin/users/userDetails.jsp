@@ -5,7 +5,7 @@
 
 <html>
 <head>
-	<jsp:include page="./../common/head.jsp"/>
+	<jsp:include page="./../../common/head.jsp"/>
 	<title>Tassyir: User details</title>
 </head>
 <body>
@@ -39,9 +39,9 @@
 	</spring:url>
 																										
 	<div id="wrap">
-		<jsp:include page="../common/menu.jsp" />
+		<jsp:include page="../../common/menu.jsp" />
 		<div id="content">
-			<jsp:include page="../common/sub-menu.jsp" />
+			<jsp:include page="../../common/sub-menu.jsp" />
 			<div id="main">
 				<div class="navig">
 					<c:forEach var="navig" items="${navigations}" varStatus="status">
@@ -256,14 +256,13 @@
 								<span class="listbuttons"> 
 										<a class="buttonmenu"  href="${fn:escapeXml(userListUrl)}"><spring:message code="user.action.userlist" /></a>
 								</span>
-				</div>
-				
+				</div>				
 			</div>
 		</div>
 
 		<div class="clear">&nbsp;</div>
 		<div class="clear">&nbsp;</div>
-		<jsp:include page="../common/footer.jsp" />
+		<jsp:include page="../../common/footer.jsp" />
 	</div>
 </body>
 </html>

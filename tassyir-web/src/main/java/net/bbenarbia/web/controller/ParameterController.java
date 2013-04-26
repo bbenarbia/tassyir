@@ -50,7 +50,7 @@ public class ParameterController {
 		
 		validator.validate(parameter, result);
 		if (result.hasErrors()) {
-			return "parameters/createParameterForm";
+			return "admin/parameters/createParameterForm";
 		} else {
 			this.parameterService.saveOrUpdate(parameter);
 			status.setComplete();
@@ -65,7 +65,7 @@ public class ParameterController {
 		navigations.add(new NavigationDTO("/", "home"));
 		navigations.add(new NavigationDTO("/parameters.htm", "parameter.gotolistparams"));
 		model.addAttribute("navigations", navigations);
-		return "parameters/createParameterForm";
+		return "admin/parameters/createParameterForm";
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -76,7 +76,7 @@ public class ParameterController {
 		navigations.add(new NavigationDTO("/", "home"));
 		model.addAttribute("navigations", navigations);
 		model.addAttribute("selections", results);
-		return "parameters/parametersList";
+		return "admin/parameters/parametersList";
 	}
 	
 	
@@ -84,7 +84,7 @@ public class ParameterController {
 	public String update(Parameter parameter, BindingResult bindingResult, Model uiModel) {
 		if (bindingResult.hasErrors()) {
 			uiModel.addAttribute("parameter", parameter);
-			return "parameters/updateParameterForm";
+			return "admin/parameters/updateParameterForm";
 		}
 		uiModel.asMap().clear();
 		parameterService.saveOrUpdate(parameter);
@@ -101,7 +101,7 @@ public class ParameterController {
 		navigations.add(new NavigationDTO("/parameters.htm", "parameter.gotolistparams"));
 		model.addAttribute("navigations", navigations);
 		model.addAttribute("parameter",parameter);
-		return "parameters/updateParameterForm";
+		return "admin/parameters/updateParameterForm";
 	}
 	
 	@RequestMapping(value = "/{parameterId}/edit", method = RequestMethod.POST)
@@ -110,14 +110,14 @@ public class ParameterController {
 		try {
 			validator.validate(parameter, result);
 			if (result.hasErrors()) {
-				return "parameters/createParameterForm";
+				return "admin/parameters/createParameterForm";
 			} else {
 					parameterService.saveOrUpdate(parameter);
 				status.setComplete();
 				return "redirect:/parameters/"+parameter.getId();
 			}
 		} catch (Exception e) {
-			return "parameters/updateParameterForm";
+			return "admin/parameters/updateParameterForm";
 		}
 	}
 }

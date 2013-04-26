@@ -6,7 +6,7 @@
 <html>
 <head>
 <title></title>
-	<jsp:include page="./../common/head.jsp"/>
+	<jsp:include page="./../../common/head.jsp"/>
 </head>
 <body>
 	<spring:url value="/parameters/{paramId}.htm" var="cancelParamUrl">
@@ -17,9 +17,9 @@
 	<spring:url value="/parameters/new.htm" var="addParamUrl" /> 
 	
 	<div id="wrap">
-		<jsp:include page="../common/menu.jsp" />
+		<jsp:include page="../../common/menu.jsp" />
 		<div id="content">
-				<jsp:include page="../common/sub-menu.jsp" />
+				<jsp:include page="../../common/sub-menu.jsp" />
 				<div id="main">
 					<div class="navig">
 						<c:forEach var="navig" items="${navigations}" varStatus="status">
@@ -71,7 +71,7 @@
 
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>
-			<jsp:include page="../common/footer.jsp" />
+			<jsp:include page="../../common/footer.jsp" />
 	</div>
 </body>
 </html>

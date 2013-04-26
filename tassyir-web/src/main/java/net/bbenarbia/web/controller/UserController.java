@@ -124,7 +124,7 @@ public class UserController {
 		model.addAttribute("navigations", navigations);
 		
 		model.addAttribute("groupRoles", userRolesOfGroup);
-		return "users/userDetails";
+		return "admin/users/userDetails";
 		}
 		else {
 			throw new Exception("User id not found");
@@ -137,11 +137,11 @@ public class UserController {
 			BindingResult result, SessionStatus status) {
 
 		if (result.hasErrors()) {
-			return "users/createUserForm";
+			return "admin/users/createUserForm";
 		}
 		userValidator.validate(userDto, result);
 		if (result.hasErrors()) {
-			return "users/createUserForm";
+			return "admin/users/createUserForm";
 		}
 		List<UserCategory> userCategoryList = userCategoryService
 				.getUserCategroryByName(userDto.getUserCategory().getName());
@@ -152,7 +152,7 @@ public class UserController {
 		}
 		else {
 			result.rejectValue("userCategory.name", "usergroup.notmatch");
-			return "users/createUserForm";
+			return "admin/users/createUserForm";
 		}
 		Set<Role> rolesList = new HashSet<Role>();
 		if (null != userDto.getRoleFormList().getRoles()
@@ -187,7 +187,7 @@ public class UserController {
 								+ photo.getOriginalFilename());
 					} catch (IOException e) {
 						result.rejectValue("photoFile", "photoFile.error");
-						return "users/createUserForm";
+						return "admin/users/createUserForm";
 					}
 				}
 		}
@@ -215,7 +215,7 @@ public class UserController {
 		navigations.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
 		model.addAttribute("navigations", navigations);		
 		model.addAttribute("user", userDto);
-		return "users/createUserForm";
+		return "admin/users/createUserForm";
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -226,7 +226,7 @@ public class UserController {
 		navigations.add(new NavigationDTO("/", "home"));
 		model.addAttribute("navigations", navigations);
 		model.addAttribute("selections", results);
-		return "users/usersList";
+		return "admin/users/usersList";
 	}
 
 	@RequestMapping(value = "/{userId}/edit", method = RequestMethod.GET)
@@ -258,7 +258,7 @@ public class UserController {
 		model.addAttribute("navigations", navigations);
 		
 		model.addAttribute("user", userDto);
-		return "users/updateUserForm";
+		return "admin/users/updateUserForm";
 		}
 		else {
 			throw new Exception("User id not found");
@@ -270,7 +270,7 @@ public class UserController {
 			BindingResult result, @PathVariable("userId") Long userId,
 			SessionStatus status) {
 			if (result.hasErrors()) {				
-				return "users/updateUserForm";
+				return "admin/users/updateUserForm";
 			}
 
 			UserCategory group = userCategoryService.getUserCategroryByName(
@@ -309,7 +309,7 @@ public class UserController {
 		navigations.add(new NavigationDTO("/users/"+userId+".htm", "user.action.details"));
 		model.addAttribute("navigations", navigations);
 		model.addAttribute("userPassword", userPassword);
-		return "users/updatePasswordUserForm";
+		return "admin/users/updatePasswordUserForm";
 	}
 		else {
 			throw new Exception("User id not found");
@@ -323,14 +323,14 @@ public class UserController {
 			SessionStatus status) {
 		userValidator.validate(userPassword, result);
 		if (result.hasErrors()) {
-			return "users/updatePasswordUserForm";
+			return "admin/users/updatePasswordUserForm";
 		}
 		boolean isValid = this.utilisateurService.updatePassword(userId,
 				userPassword.getOldPassword(), userPassword.getPassword());
 		status.setComplete();
 		if (!isValid) {
 			result.rejectValue("oldPassword", "oldPassword.wrongpassword");
-			return "users/updatePasswordUserForm";
+			return "admin/users/updatePasswordUserForm";
 		} else {
 			return "redirect:/users/" + userId;
 		}
@@ -345,7 +345,7 @@ public class UserController {
 		navigations.add(new NavigationDTO("/", "home"));
 		navigations.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
 		navigations.add(new NavigationDTO("/users/"+userId+".htm", "user.action.details"));
-		return "users/uploadPhotoForm";
+		return "admin/users/uploadPhotoForm";
 	}
 	
 	@RequestMapping(value = "/{userId}/activate-user", method = RequestMethod.GET)
@@ -408,7 +408,7 @@ public class UserController {
 						user.setPhoto(TEMP_DIR
 								+ multipartFile.getOriginalFilename());
 					} catch (IOException e) {
-						return "users/uploadPhotoForm";
+						return "admin/users/uploadPhotoForm";
 					}
 				}
 			}

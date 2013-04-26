@@ -41,6 +41,11 @@ public class UtilisateurService extends GenericService<User> implements IUtilisa
 		return utilisateurDao.getUtilisateursByFirstName(firstName);
 	}
 	
+	@Override
+	public User getUtilisateurByLogin(String login) {
+		return utilisateurDao.getUtilisateurByLogin(login);
+	}
+	
 	
 	@Override
 	public List<User> getUtilisateursByLastName(String LastName) {

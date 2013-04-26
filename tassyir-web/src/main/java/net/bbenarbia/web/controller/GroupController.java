@@ -72,7 +72,7 @@ public class GroupController {
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
 		model.addAttribute("navigations", navigations);
-		return "groups/groupList";
+		return "admin/groups/groupList";
 	}
 
 	@RequestMapping(value = "/photo/{idGroup}", method = RequestMethod.GET)
@@ -105,7 +105,7 @@ public class GroupController {
 		listFormDto.setRoles(roleFormList);
 		model.addAttribute("groupId", groupId);
 		model.addAttribute("roleFormList", listFormDto);
-		return "groups/rolesList";
+		return "admin/groups/rolesList";
 	}
 	
 	@RequestMapping("/{groupId}")
@@ -116,7 +116,7 @@ public class GroupController {
 		navigations.add(new NavigationDTO("/", "home"));
 		navigations.add(new NavigationDTO("/groups.htm", "group.gotolistgroup"));
 		model.addAttribute("navigations", navigations);
-		return "groups/groupDetails";
+		return "admin/groups/groupDetails";
 	}
 	
 
@@ -173,7 +173,7 @@ public class GroupController {
 		navigations.add(new NavigationDTO("/groups/"+groupId+".htm", "group.action.details"));
 		model.addAttribute("navigations", navigations);
 		
-		return "groups/updateGroupForm";
+		return "admin/groups/updateGroupForm";
 	}
 
 	@RequestMapping(value = "/{groupId}/edit", method = RequestMethod.POST)
@@ -183,7 +183,7 @@ public class GroupController {
 		try {
 
 			if (result.hasErrors()) {
-				return "groups/updateGroupForm";
+				return "admin/groups/updateGroupForm";
 			}
 			
 			Set<Role> rolesList = new HashSet<Role>();
@@ -204,7 +204,7 @@ public class GroupController {
 			status.setComplete();
 			return "redirect:/groups";
 		} catch (Exception e) {
-			return "groups/updateGroupForm";
+			return "admin/groups/updateGroupForm";
 		}
 	}
 
@@ -214,14 +214,14 @@ public class GroupController {
 			BindingResult result, SessionStatus status) {
 
 		if (result.hasErrors()) {
-			return "groups/createGroupForm";
+			return "admin/groups/createGroupForm";
 		} else {
 			
 			List<UserCategory> userGroupList =  userCategoryService.getUserCategroryByName(groupDto.getName());
 			
 			if(userGroupList != null && !userGroupList.isEmpty()){
 				result.rejectValue("name", "groupname.exists");
-				return "groups/createGroupForm";
+				return "admin/groups/createGroupForm";
 			}
 			
 			UserCategory group = new UserCategory();
@@ -261,7 +261,7 @@ public class GroupController {
 							group.setPhoto(TEMP_DIR
 									+ photo.getOriginalFilename());
 						} catch (IOException e) {
-							return "groups/createGroupForm";
+							return "admin/groups/createGroupForm";
 						}
 					}
 			}
@@ -291,7 +291,7 @@ public class GroupController {
 		navigations.add(new NavigationDTO("/", "home"));
 		navigations.add(new NavigationDTO("/groups.htm", "group.gotolistgroup"));
 		model.addAttribute("navigations", navigations);
-		return "groups/createGroupForm";
+		return "admin/groups/createGroupForm";
 	}
 	
 	
@@ -304,7 +304,7 @@ public class GroupController {
 		navigations.add(new NavigationDTO("/groups.htm", "group.gotolistgroup"));
 		navigations.add(new NavigationDTO("/groups/"+groupId+".htm", "group.action.details"));
 		model.addAttribute("navigations", navigations);
-		return "groups/uploadGroupPhotoForm";
+		return "admin/groups/uploadGroupPhotoForm";
 	}
 
 	@RequestMapping(value = "/upload/{groupId}/save", method = RequestMethod.POST)
@@ -336,7 +336,7 @@ public class GroupController {
 						group.setPhoto(TEMP_DIR
 								+ multipartFile.getOriginalFilename());
 					} catch (IOException e) {
-						return "groups/uploadGroupPhotoForm";
+						return "admin/groups/uploadGroupPhotoForm";
 					}
 				}
 			}
