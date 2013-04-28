@@ -3,9 +3,9 @@
 <div id="topbar">
 			<ul>
 				<li class="current"><a href="${contextPath}">Home</a></li>
-				<li><a href="${contextPath}/users" >Admin</a></li>
-				<li><a href="${contextPath}/parameters" >Params</a>	</li>			
-				<li><a href="${contextPath}/biens/find-biens">Biens</a></li>
+				<li><a href="${contextPath}/users.htm" >Admin</a></li>
+				<li><a href="${contextPath}/parameters.htm" >Params</a>	</li>			
+				<li><a href="${contextPath}/biens/find-biens.htm">Biens</a></li>
 				<li><a href="#">About Us</a></li>
 				<li></li>
 			</ul>
@@ -52,7 +52,7 @@
 						<strong>Already registered ?</strong> Login here to access your account
 					</p>
 					<div id="loginform">
-						 <form method="post" action="j_spring_security_check">
+						 <form method="post" action="${contextPath}/j_spring_security_check">
 							<div class="formblock">
 
 								<label>Username</label> <input id="j_username" name="j_username"  value="" placeholder="Username or Email" type="text"  class="textfields" />

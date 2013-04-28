@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS biens (
   cuisineEquipee tinyint (1),
   age  INT(5) DEFAULT 0, 
   jardin  tinyint (1),
- 
+  proprietaire INT(5) UNSIGNED NOT NULL,
   INDEX(ref, name)
 ) engine=InnoDB  DEFAULT CHARSET=utf8;
 

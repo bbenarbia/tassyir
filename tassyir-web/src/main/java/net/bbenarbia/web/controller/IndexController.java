@@ -1,14 +1,14 @@
 package net.bbenarbia.web.controller;
 
+import java.util.LinkedList;
 import java.util.List;
 
-import net.bbenarbia.constants.Constants;
-import net.bbenarbia.domain.enums.EnumEtatBien;
-import net.bbenarbia.domain.enums.EnumStatutProperty;
+import net.bbenarbia.domain.Departement;
+import net.bbenarbia.domain.enums.EnumTypeBien;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
-import net.bbenarbia.domain.immobilier.BienImmobilier;
-import net.bbenarbia.domain.immobilier.Studio;
+import net.bbenarbia.service.IDepartementService;
 import net.bbenarbia.service.immobilier.IBienService;
+import net.bbenarbia.web.dto.FindBienDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,36 +22,61 @@ public class IndexController {
 
 	@Autowired
 	IBienService bienService;
+	 
+	@Autowired
+	private IDepartementService departementservice;
+	
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 
-		List<BienImmobilier> results1 = this.bienService.getEntityByType(Constants.APPARTEMENT);
-		
-		model.addAttribute("selections", results1);
+		List<Departement> listDepartements = departementservice.getAll();
 		
 		
-		model.addAttribute("message", "Tassyir Home page");
-//		LOG.debug("Index Controller ");
+		List<EnumTypeOperation> typesOperationsList = new LinkedList<EnumTypeOperation>();
+		for (EnumTypeOperation typeOperationBien : EnumTypeOperation.values()) {
+			typesOperationsList.add(typeOperationBien);
+		}
 		
-		Studio studio = new Studio();
-//		studio.setAdresse("adresse");
-		studio.setAge(10);
-		studio.setAscenseur(false);
-		studio.setChargesMensuel(100);
-		studio.setDescription("Studio 1 save");
-		studio.setEtage("1/3");
-		studio.setEtatBien(EnumEtatBien.CORRECT);
-		studio.setLoyerMensuel(200);
-		studio.setName("Studio ben");
-		studio.setPrixVente(300);
-		studio.setReference("ref1111");
-		studio.setStatus(EnumStatutProperty.DISPONIBLE);
-		studio.setSuperficie(200);
-		studio.setTypeOperation(EnumTypeOperation.A_LOUER);
+		List<EnumTypeBien> typesLogementList = new LinkedList<EnumTypeBien>();
+		for (EnumTypeBien typeBien : EnumTypeBien.values()) {
+			typesLogementList.add(typeBien);
+		}
 		
-		bienService.save(studio);
+		FindBienDTO findBienDto = new FindBienDTO();
+		
+		model.addAttribute("findBiens", findBienDto);
+		model.addAttribute("departementsList", new LinkedList<Departement>(listDepartements));
+		model.addAttribute("typesOperationsList", typesOperationsList);
+		model.addAttribute("typesLogementList", typesLogementList);
+		
+//		List<BienImmobilier> results1 = this.bienService.getEntityByType(Constants.APPARTEMENT);
+//		
+//		model.addAttribute("selections", results1);
+//		
+//		
+//		model.addAttribute("message", "Tassyir Home page");
+////		LOG.debug("Index Controller ");
+//		
+//		Studio studio = new Studio();
+////		studio.setAdresse("adresse");
+//		studio.setAge(10);
+//		studio.setAscenseur(false);
+//		studio.setChargesMensuel(100);
+//		studio.setDescription("Studio 1 save");
+//		studio.setEtage("1/3");
+//		studio.setEtatBien(EnumEtatBien.CORRECT);
+//		studio.setLoyerMensuel(200);
+//		studio.setName("Studio ben");
+//		studio.setPrixVente(300);
+//		studio.setReference("ref1111");
+//		studio.setStatus(EnumStatutProperty.DISPONIBLE);
+//		studio.setSuperficie(200);
+//		studio.setTypeOperation(EnumTypeOperation.A_LOUER);
+//		
+//		bienService.save(studio);
 
+		
 		return "index";
 	}
 

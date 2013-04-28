@@ -257,6 +257,29 @@
 						</table>
 					</div>
 				</div>
+				<div id="moredetails">
+					<div id="listing_detail">
+						<table>
+							<tr>
+								<td><h3>Mes annonces</h3></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td><ul>
+									<c:forEach var="bien" items="${user.biens}" varStatus="status">
+										<spring:url value="/biens/{bienId}.htm" var="DetailbienUrl">
+											<spring:param name="bienId" value="${bien.id}" />
+										</spring:url> 
+										<li>${status.count} : <a href="${DetailbienUrl}"><c:out value="${bien.name}" /></a></li>
+									</c:forEach>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				
 				<div id="main_action">
 								<span class="listbuttons">
 										<a class="buttonmenu" href="${fn:escapeXml(addUserUrl)}"><spring:message code="user.action.add" /></a>

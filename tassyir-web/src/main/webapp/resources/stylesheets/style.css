@@ -165,6 +165,8 @@ h1#logo {
 	margin-left: auto;
 }
 
+
+
 #search_bien .tab {
 	height: 20px;
 	padding: 5px 20px 0 10px;
@@ -198,6 +200,14 @@ h1#logo {
 	margin-right: auto;
 	margin-left: auto;
 }
+
+#search_bien .container_home {
+	background: #E3F6FC bottom no-repeat;
+	width: 700px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
 
 #search_bien .tab {
 	height: 25px;

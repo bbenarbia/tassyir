@@ -194,7 +194,7 @@ public class BienController {
 		model.addAttribute("navigations", navigations);
 
 		model.addAttribute("findBiens", findBienDto);
-		return "immobilier/biensList";
+		return "immobilier/find-biens";
 	}
 
 	@RequestMapping(value = "/find-biens", method = RequestMethod.POST)
@@ -243,11 +243,25 @@ public class BienController {
 		model.addAttribute("findBiens", findBienDto);
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
-		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
+		navigations.add(new NavigationDTO("/biens/find-biens.htm", "biens.listbien"));
 		model.addAttribute("navigations", navigations);
 		return "immobilier/biensList";
 	}
 
+	
+	@RequestMapping(value = "/find-biens-reduit", method = RequestMethod.POST)
+	public String searchBiensReduit(
+			@ModelAttribute("findBiens") @Valid FindBienDTO findBienDto,
+			BindingResult result, SessionStatus status, Model model) {
+		
+	//Recherche reduite	
+		
+		model.addAttribute("findBiens", findBienDto);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		model.addAttribute("navigations", navigations);
+		return "immobilier/biensList";
+	}
 	@RequestMapping(value = "/appartements", method = RequestMethod.GET)
 	public String showAppartementList(Model model) {
 

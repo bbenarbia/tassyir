@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import net.bbenarbia.domain.Departement;
+import net.bbenarbia.domain.User;
 import net.bbenarbia.domain.base.Adresse;
 import net.bbenarbia.domain.base.NamedEntity;
 import net.bbenarbia.domain.enums.EnumEtatBien;
@@ -57,7 +58,11 @@ public class BienImmobilier extends NamedEntity {
 
 	@Column(name = "superficie")
 	private double superficie;
-
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="proprietaire")
+	private User proprietaire;
+	
 	@Column(nullable = false)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumStatutProperty status;
@@ -272,6 +277,14 @@ public class BienImmobilier extends NamedEntity {
 
 	public void setPrixMinVente(double prixMinVente) {
 		this.prixMinVente = prixMinVente;
+	}
+
+	public User getProprietaire() {
+		return proprietaire;
+	}
+
+	public void setProprietaire(User proprietaire) {
+		this.proprietaire = proprietaire;
 	}
 
 }

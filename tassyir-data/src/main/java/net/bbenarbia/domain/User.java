@@ -14,15 +14,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlElement;
 
 import net.bbenarbia.domain.base.BaseUser;
 import net.bbenarbia.domain.base.Contact;
+import net.bbenarbia.domain.immobilier.BienImmobilier;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 
@@ -36,6 +40,11 @@ public class User extends BaseUser {
 	
 	@Column(name = "photo")
 	private String photo;
+	
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "proprietaire", cascade = {
+			javax.persistence.CascadeType.PERSIST, javax.persistence.CascadeType.MERGE })
+	private List<BienImmobilier> biens = new ArrayList<BienImmobilier>(0);
 	
 	@ManyToOne
 	@Cascade(CascadeType.SAVE_UPDATE)
@@ -105,6 +114,14 @@ public class User extends BaseUser {
 
 	public void setContact(Contact contact) {
 		this.contact = contact;
+	}
+
+	public List<BienImmobilier> getBiens() {
+		return biens;
+	}
+
+	public void setBiens(List<BienImmobilier> biens) {
+		this.biens = biens;
 	}
 
 }

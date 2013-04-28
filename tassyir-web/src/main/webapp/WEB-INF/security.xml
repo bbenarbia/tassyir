@@ -17,11 +17,11 @@
   <intercept-url pattern="/users/**" access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')"/>
   <intercept-url pattern="/groups/**" access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')"/>
   <intercept-url pattern="/parameters/**" access="hasRole('ROLE_ADMIN')"/>
-  <intercept-url pattern="/biens/**" access="hasRole('ROLE_USER')"/>
+  <!-- <intercept-url pattern="/biens/**" access="hasRole('ROLE_USER')"/> -->
  
   
   <form-login
-    login-page="/login"
+    login-page="/"
     authentication-failure-url="/"
     default-target-url="/"/>
     

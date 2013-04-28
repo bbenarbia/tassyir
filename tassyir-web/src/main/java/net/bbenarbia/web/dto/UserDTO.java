@@ -1,9 +1,16 @@
 package net.bbenarbia.web.dto;
 
+import java.util.ArrayList;
+
 import javax.validation.constraints.Pattern;
 
 import net.bbenarbia.domain.User;
 import net.bbenarbia.domain.base.Contact;
+import net.bbenarbia.domain.enums.EnumTypeBien;
+import net.bbenarbia.domain.immobilier.Appartement;
+import net.bbenarbia.domain.immobilier.BienImmobilier;
+import net.bbenarbia.domain.immobilier.Maison;
+import net.bbenarbia.domain.immobilier.Studio;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -73,6 +80,8 @@ public class UserDTO {
 	private RoleFormDTOList roleFormList;
 	
 	private MultipartFile photoFile;
+	
+	private java.util.List<BienDTO> biens = new ArrayList<BienDTO>();
 
 	public UserDTO() {
 		super();
@@ -100,6 +109,19 @@ public class UserDTO {
 		this.telephoneProf = user.getContact().getTelephoneProf();
 		this.telephoneMobile = user.getContact().getTelephoneMobile();
 		this.userCategory = new UserCategoryDTO(user.getUserCategory());
+		if(user.getBiens() != null){
+			for (BienImmobilier bien : user.getBiens()) {
+				if(bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT)){
+					this.biens.add(new BienDTO((Appartement)bien));
+				}
+				else if(bien.getTypeBien().equals(EnumTypeBien.STUDIO)){
+					this.biens.add(new BienDTO((Studio)bien));
+				}
+				else if(bien.getTypeBien().equals(EnumTypeBien.MAISON)){
+					this.biens.add(new BienDTO((Maison)bien));
+				}
+			}
+		}
 	}
 
 	public User getUserWithoutPassword() {
@@ -372,4 +394,13 @@ public class UserDTO {
 		this.photoFile = photoFile;
 	}
 
+	public java.util.List<BienDTO> getBiens() {
+		return biens;
+	}
+
+	public void setBiens(java.util.List<BienDTO> biens) {
+		this.biens = biens;
+	}
+
+	
 }
