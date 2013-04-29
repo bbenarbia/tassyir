@@ -6,11 +6,11 @@
 
 <html lang="en">
 <head>
-<jsp:include page="./../common/head.jsp"/>
+<jsp:include page="./../../common/head.jsp"/>
 </head>
 <body>
 	<div id="container">
-		<jsp:include page="../common/menu.jsp" />
+		<jsp:include page="../../common/menu.jsp" />
 		<h2>rechercher logements</h2>
 
 		<div class="CSS_Table_Example" style="width: 600px; height: 150px;">

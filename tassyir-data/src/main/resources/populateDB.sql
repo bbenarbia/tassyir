@@ -1,7 +1,7 @@
 
 insert into parameters values (1,"LANGUAGE", "FRANCAIS", "La langue du systeme");
 insert into parameters values (2,"EMAIL_ADMIN", "benaissa@bbenarbia.fr", "L""email de l""admin");
-insert into parameters values (3,"TEMP_DIRECTORY", "/home/moad/tempfile/", "Temp directory");
+insert into parameters values (3,"TEMP_DIRECTORY", "c:\\Benaissa\\temp\\", "Temp directory");
 insert into parameters values (4,"MAIN_CURRENCY", '&euro;', "Main currency");
 insert into parameters values (5,"SECOND_CURRENCY", "$", "Second currency");
 insert into parameters values (10, "OPTION_EAU_CHAUDE", "false","OPTION_EAU_CHAUDE");
@@ -131,11 +131,11 @@ insert into departements values (105,"979","Wallis et Futura","Wallis et Futura"
 
 ---Table user_categories
 
-insert into user_categories values (1,"Administrateurs", "/home/moad/tempfile/p1.jpg");
-insert into user_categories values (2,"Utilisateurs", "/home/moad/tempfile/p2.jpg");
-insert into user_categories values (3,"Managers", "/home/moad/tempfile/p3.jpg");
-insert into user_categories values (4,"Commerciaux","/home/moad/tempfile/p4.jpg");
-insert into user_categories values (5,"Autres","/home/moad/tempfile/p4.jpg");
+insert into user_categories values (1,"Administrateurs", "c:\\Benaissa\\temp\\p1.jpg");
+insert into user_categories values (2,"Utilisateurs", "c:\\Benaissa\\temp\\p2.jpg");
+insert into user_categories values (3,"Managers", "c:\\Benaissa\\temp\\p3.jpg");
+insert into user_categories values (4,"Commerciaux","c:\\Benaissa\\temp\\p4.jpg");
+insert into user_categories values (5,"Autres","c:\\Benaissa\\temp\\p4.jpg");
 
 --Roles
 insert into roles VALUES (1, "ROLE_USER", "");
@@ -174,14 +174,14 @@ insert into contact values (3, 1, "Contact3", "Company 3",  "adresse1",  false, 
 "www.bbenarbia.fr", "01010101", "0202020202");
 
 insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile,  fk_categorieutilisateur)  VALUES
-				(1, 1, "/home/moad/tempfile/p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, "adresse1","93800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenaissa.fr","01010101","","0625252525",4);
+				(1, 1, "c:\\Benaissa\\temp\\p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, "adresse1","93800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenaissa.fr","01010101","","0625252525",4);
 insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile,  fk_categorieutilisateur)  VALUES 
-				(2, 2, "/home/moad/tempfile/p2.jpg", "said", "med","smed","smed",true, false, "adresse2","65800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenarbia.fr","01010101","","0625252525", 3);
+				(2, 2, "c:\\Benaissa\\temp\\p2.jpg", "said", "med","smed","smed",true, false, "adresse2","65800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenarbia.fr","01010101","","0625252525", 3);
 insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile,  fk_categorieutilisateur)  VALUES
-				(3, 3, "/home/moad/tempfile/p3.jpg", "lakhdar", "omar","lomar","lomar",true, false,"adresse3","95800","Epinay sur seine", true, true, "ben@gmail.com","","01010101","","0625252525",  2);
+				(3, 3, "c:\\Benaissa\\temp\\p3.jpg", "lakhdar", "omar","lomar","lomar",true, false,"adresse3","95800","Epinay sur seine", true, true, "ben@gmail.com","","01010101","","0625252525",  2);
 
 insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile,  fk_categorieutilisateur)  VALUES 
-                 (4, 4, "/home/moad/tempfile/p3.jpg", "benaissa", "BENARBIA","bbenaissa","bbenaissa",false, false,"adresse3","95800","Epinay sur seine", false, false, "ben@gmail.com","","01010101","","0625252525",  1);
+                 (4, 4, "c:\\Benaissa\\temp\\p3.jpg", "benaissa", "BENARBIA","bbenaissa","bbenaissa",false, false,"adresse3","95800","Epinay sur seine", false, false, "ben@gmail.com","","01010101","","0625252525",  1);
   
   
 insert into user_role values (4,1);
@@ -232,14 +232,14 @@ insert into biens (
 
 
 
-insert into photos values(1,"photos1", 2,"/home/moad/tempfile/app1.jpg");
-insert into photos values(2,"photos2", 2,"/home/moad/tempfile/app2.jpg");
-insert into photos values(3,"photos3", 2,"/home/moad/tempfile/app3.jpg");
+insert into photos values(1,"photos1", 2,"c:\\Benaissa\\temp\\app1.jpg");
+insert into photos values(2,"photos2", 2,"c:\\Benaissa\\temp\\app2.jpg");
+insert into photos values(3,"photos3", 2,"c:\\Benaissa\\temp\\app3.jpg");
 
-insert into photos values(4,"photos4", 3,"/home/moad/tempfile/m1.jpg");
-insert into photos values(5,"photos5", 3,"/home/moad/tempfile/m2.jpg");
-insert into photos values(6,"photos6", 3,"/home/moad/tempfile/m3.jpg");
-insert into photos values(7,"photos7", 3,"/home/moad/tempfile/m4.jpg");
+insert into photos values(4,"photos4", 3,"c:\\Benaissa\\temp\\m1.jpg");
+insert into photos values(5,"photos5", 3,"c:\\Benaissa\\temp\\m2.jpg");
+insert into photos values(6,"photos6", 3,"c:\\Benaissa\\temp\\m3.jpg");
+insert into photos values(7,"photos7", 3,"c:\\Benaissa\\temp\\m4.jpg");
 
 
 ---c:\\Benaissa\\temp\\

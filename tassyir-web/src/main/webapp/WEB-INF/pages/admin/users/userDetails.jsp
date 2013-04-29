@@ -34,7 +34,7 @@
 	<spring:url	value="/users/{userId}/activate-user.htm" var="activateUrl">
 			<spring:param name="userId" value="${user.id}" />
 	</spring:url> 
-	<spring:url value="/users/{userId}/biens-list.htm" var="bienslistUrl">
+	<spring:url value="/biens/{userId}/user-biens.htm" var="bienslistUrl">
 			<spring:param name="userId" value="${user.id}" />
 	</spring:url>
 																										

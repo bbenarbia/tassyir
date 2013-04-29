@@ -19,23 +19,32 @@
 					width="168" height="126" />
 			</div>
 			<div id="useractions">
+			<sec:authorize access="isAuthenticated()">
 				<div id="headings">
-					<sec:authorize access="isAuthenticated()">
 						<h2>
 							<img src='<c:url value="/resources/graphics/user-icone.png"/>'  alt="My profile"
-								width="27" height="22" /> <a href="#">My profile</a>
-						</h2>
-					 	<h2>
-							<img src='<c:url value="/resources/graphics/logout.png"/>'  alt="Logout"
-								width="27" height="22" /> <a href="${contextPath}/logout">Logout</a>
+								width="27" height="22" /> <a href="${contextPath}/users/my-profile">My profile</a>
 						</h2>
 						<h2>
 							<img src='<c:url value="/resources/graphics/mail.png"/>'  alt="Messages"
 								width="27" height="22" /> <a href="${contextPath}/messages">Messages(0)</a>
 						</h2>
-					</sec:authorize>
+						<h2>
+							<img src='<c:url value="/resources/graphics/logout.png"/>'  alt="Logout"
+								width="27" height="22" /> <a href="${contextPath}/logout">Logout</a>
+						</h2>
 				</div>
-				
+				<div id="headings">
+						<h2>
+							<img src='<c:url value="/resources/graphics/Home.png"/>'  alt="Mes annonces"
+								width="27" height="22" /> <a href="${contextPath}/biens/my-biens.htm">Mes annonces</a>
+						</h2>
+						<h2>
+							<img  src='<c:url value="/resources/graphics/Home-plus.png"/>' alt="New annonce"
+								width="25" height="22" /> <a href="${contextPath}/biens/new.htm">Add new annonce</a>
+						</h2>
+				</div>
+				</sec:authorize>	
 				<sec:authorize access="isAnonymous()">
 					<div id="headings">
 						<h2>

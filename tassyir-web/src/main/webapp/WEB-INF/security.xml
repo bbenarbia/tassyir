@@ -17,7 +17,14 @@
   <intercept-url pattern="/users/**" access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')"/>
   <intercept-url pattern="/groups/**" access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')"/>
   <intercept-url pattern="/parameters/**" access="hasRole('ROLE_ADMIN')"/>
-  <!-- <intercept-url pattern="/biens/**" access="hasRole('ROLE_USER')"/> -->
+  <intercept-url pattern="/biens/photo/**" access="permitAll"/>
+  <intercept-url pattern="/users/photo/**" access="permitAll"/>
+  <intercept-url pattern="/biens/find-biens/**" access="permitAll"/>
+  <intercept-url pattern="/biens/studios/**" access="permitAll"/>
+  <intercept-url pattern="/biens/appartements/**" access="permitAll"/>
+  <intercept-url pattern="/biens/studio/new**" access="isAuthenticated()"/>
+  <intercept-url pattern="/biens/appartement/new**" access="isAuthenticated()"/>
+  <intercept-url pattern="/biens/maison/new**" access="isAuthenticated()"/>
  
   
   <form-login

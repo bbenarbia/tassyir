@@ -5,20 +5,19 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-	<jsp:include page="./../common/head.jsp"/>
+<jsp:include page="./../../common/head.jsp"/>
 </head>
 <body>
 	<spring:url value="/biens/find-biens.htm" var="bienListUrl"/>
-	<spring:url value="/biens/new.htm" var="bienUrl" />
+	<spring:url value="/biens/new.htm" var="bienUrl" />	 
 	<spring:url value="/biens/{BienId}.htm" var="detailBienUrl">
 				<spring:param name="BienId" value="${bien.id}" />
 	</spring:url> 
 	<div id="wrap">
-		<jsp:include page="../common/menu.jsp" />
+		<jsp:include page="../../common/menu.jsp" />
 		<div id="content">
-			<jsp:include page="../common/sub-menu.jsp" />
-
-				<div id="home_main_edit_user">
+			<jsp:include page="../../common/sub-menu.jsp" />
+		<div id="home_main_edit_user">
 				<div class="navig">
 					<c:forEach var="navig" items="${navigations}" varStatus="status">
 						&laquo;
@@ -28,10 +27,10 @@
 				</div>
 				<div id="edit_user">
 					<div class="tab">
-						<h2><spring:message code="biens.maison.action.edit" /></h2>
+						<h2><spring:message code="biens.appartement.action.edit" /></h2>
 					</div>
 					<div style="margin: 10px; background: none repeat scroll 0px 0px rgb(248, 248, 248); padding: 14px;">
-						<form:form modelAttribute="bien" method="put" id="form1">
+					<form:form modelAttribute="bien" method="put" id="form1">
 						<fieldset>
     						<legend>General Info</legend>
         						<dl>
@@ -106,7 +105,7 @@
 					            		<form:input label="depotGarantie" path="depotGarantie" class="text smalltext" />
 									</dd>
 						        </dl>
-						        
+						         	
 							 </c:if>
 							 <c:if test="${bien.typeOperation =='A_VENDRE'}">
 							   	<dl>
@@ -127,8 +126,9 @@
 										<form:input label="depotGarantie" path="depotGarantie" class="text smalltext" />
 									</dd>
 							   </dl> 
-							 </c:if>
-							 	<dl>
+							   </c:if> 
+							   
+							   <dl>
         							<dt><form:label path="superficie"><spring:message code="biens.superficie" /></form:label></dt>
 					            	<dd>
 					            		<form:input label="superficie" path="superficie" class="text smalltext" />
@@ -164,6 +164,7 @@
 											<form:input label="ville" path="ville" class="text smalltext" />										
 									   </dd>
 								</dl>	
+							
 								<dl>
 									<dt><form:label path="adresse"><spring:message code="biens.adresse" /></form:label></dt>
 									<dd> <form:textarea cols="16" rows="6" label="adresse" path="adresse" class="text textBoxfieldlong" />
@@ -187,25 +188,10 @@
 									<dd> 
 										<form:input label="age" path="age" class="text smalltext" />
 									</dd>
-									<dt><form:label path="etatBien"><spring:message code="biens.etatBien" /></form:label></dt>
-									<dd>
-												<form:select path="etatBien"  class="select_field">
-													<c:forEach var="item" items="${etatBienList}">
-														<c:choose>
-															<c:when test="${etatBien == item}">
-																<form:option selected="true" value="${item}">
-										               				 ${item} 
-										            			</form:option>
-															</c:when>
-															<c:otherwise>
-																<form:option value="${item}">
-										                  			 ${item}
-										            			</form:option>
-															</c:otherwise>
-														</c:choose>
-												</c:forEach>
-												</form:select>
-											</dd>
+									<dt><form:label path="etage"><spring:message code="biens.etage" /></form:label></dt>
+									<dd> 
+										<form:input label="etage" path="etage" class="text smalltext" />										
+									</dd>
 								</dl>						
 								<dl>
 									<dt><form:label path="nbPieces"><spring:message code="biens.nbPieces" /></form:label></dt>
@@ -250,6 +236,27 @@
 										<form:input label="name" path="nbSallesBains"
 												class="text" />		
 									</dd>
+								</dl>
+								<dl>
+									<dt><form:label path="etatBien"><spring:message code="biens.etatBien" /></form:label></dt>
+									<dd>
+												<form:select path="etatBien"  class="select_field">
+													<c:forEach var="item" items="${etatBienList}">
+														<c:choose>
+															<c:when test="${etatBien == item}">
+																<form:option selected="true" value="${item}">
+										               				 ${item} 
+										            			</form:option>
+															</c:when>
+															<c:otherwise>
+																<form:option value="${item}">
+										                  			 ${item}
+										            			</form:option>
+															</c:otherwise>
+														</c:choose>
+												</c:forEach>
+												</form:select>
+											</dd>
 								</dl>
 							</fieldset>	
 								
@@ -370,19 +377,19 @@
 											<form:checkbox id="cuisineEquipee" path="cuisineEquipee" /><form:label path="cuisineEquipee"><spring:message code="biens.cuisineEquipee" /></form:label>
 									</dt>
 									<dd>
-											<form:checkbox id="jardin" path="jardin" /><form:label path="jardin"><spring:message code="biens.jardin" /></form:label>
+											<form:checkbox id="gardien" path="gardien" /><form:label path="gardien"><spring:message code="biens.gardien" /></form:label>
 									</dd>
 								</dl>
 								<dl>
 									<dt>
 											<form:checkbox id="meuble" path="meuble" /><form:label path="meuble"><spring:message code="biens.meuble" /></form:label>
 									</dt>
+									<dd>
+											<form:checkbox id="ascenseur" path="ascenseur" /> <form:label path="ascenseur" for="ascenseur"><spring:message code="biens.ascenseur" /></form:label>
+									</dd>
 									<dt>
 											<form:checkbox id="adapteHandicape" path="adapteHandicape" /> <form:label path="adapteHandicape" for="adapteHandicape"><spring:message code="biens.adapteHandicape" /></form:label>	
 									</dt>
-									<dd>
-											<form:checkbox id="piscine" path="piscine" /> <form:label path="piscine" for="piscine"><spring:message code="biens.piscine" /></form:label>
-									</dd>
         						</dl>
         						</fieldset>		
 								<fieldset class="action">
@@ -407,10 +414,11 @@
 							</form:form>
 							</div>
 				</div>
+				
 			</div>
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>
-			<jsp:include page="../common/footer.jsp" />
+			<jsp:include page="../../common/footer.jsp" />
 		</div>
 	</div>
 </body>

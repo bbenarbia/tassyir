@@ -5,16 +5,16 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-<jsp:include page="./../common/head.jsp" />
+<jsp:include page="./../../common/head.jsp" />
 </head>
 <body>
 	<spring:url value="/biens/new.htm" var="addBienUrl" />
 	<spring:url value="/biens/find-biens.htm" var="bienListUrl" />
 
 	<div id="wrap">
-		<jsp:include page="../common/menu.jsp" />
+		<jsp:include page="../../common/menu.jsp" />
 		<div id="content">
-			<jsp:include page="../common/sub-menu.jsp" />
+			<jsp:include page="../../common/sub-menu.jsp" />
 
 			<div id="main_bien">
 				<div class="navig">
@@ -251,7 +251,7 @@
 			</div>
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>
-			<jsp:include page="../common/footer.jsp" />
+			<jsp:include page="../../common/footer.jsp" />
 		</div>
 	</div>
 </body>

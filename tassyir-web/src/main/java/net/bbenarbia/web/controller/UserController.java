@@ -37,6 +37,8 @@ import net.bbenarbia.web.validator.UserValidator;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -61,7 +63,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class UserController {
 
 	@Autowired
-	private IUtilisateurService utilisateurService;
+	private IUtilisateurService userService;
 
 	@Autowired
 	private IUserCategoryService userCategoryService;
@@ -100,7 +102,7 @@ public class UserController {
 	@ResponseBody
 	public byte[] downloadPhoto(@PathVariable("idUser") Long idUser)
 			throws IOException {
-		User user = this.utilisateurService.get(idUser);
+		User user = this.userService.get(idUser);
 		InputStream inputStream = new FileInputStream(user.getPhoto());
 		byte[] fileContent = IOUtils.toByteArray(inputStream);
 		return fileContent;
@@ -109,7 +111,7 @@ public class UserController {
 	@RequestMapping("/{userId}")
 	public String showUserDetails(@PathVariable("userId") long userId,
 			Model model) throws Exception {
-		User user = this.utilisateurService.get(userId);
+		User user = this.userService.get(userId);
 		if(user != null){
 		model.addAttribute("user", user);
 		List<String> userRolesOfGroup = new LinkedList<String>();
@@ -131,6 +133,34 @@ public class UserController {
 		}
 	}
 
+	
+	@RequestMapping("/my-profile")
+	public String showMyProfile(
+			Model model) throws Exception {
+		User user = null;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		user = userService.getUtilisateurByLogin(auth.getName());
+		if(user != null){
+		model.addAttribute("user", user);
+		List<String> userRolesOfGroup = new LinkedList<String>();
+		if (user != null && user.getUserCategory() != null) {
+			for (Role role : user.getUserCategory().getRoles()) {
+				userRolesOfGroup.add(role.getName());
+			}
+		}
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
+		model.addAttribute("navigations", navigations);
+		
+		model.addAttribute("groupRoles", userRolesOfGroup);
+		return "admin/users/userDetails";
+		}
+		else {
+			throw new Exception("User id not found");
+		}
+	}
+	
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String processCreationForm(
 			@ModelAttribute("user") @Valid UserDTO userDto,
@@ -191,7 +221,7 @@ public class UserController {
 					}
 				}
 		}
-			this.utilisateurService.save(user);
+			this.userService.save(user);
 			status.setComplete();
 			return "redirect:/users/" + user.getId();
 	}
@@ -221,7 +251,7 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String showUserList(Model model) {
 
-		Collection<User> results = this.utilisateurService.getAll();
+		Collection<User> results = this.userService.getAll();
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
 		model.addAttribute("navigations", navigations);
@@ -232,7 +262,7 @@ public class UserController {
 	@RequestMapping(value = "/{userId}/edit", method = RequestMethod.GET)
 	public String initUpdateUserForm(@PathVariable("userId") Long userId,
 			Model model) throws Exception {
-		User user = this.utilisateurService.get(userId);
+		User user = this.userService.get(userId);
 		if(user != null){
 		
 		UserDTO userDto = new UserDTO(user);
@@ -275,7 +305,7 @@ public class UserController {
 
 			UserCategory group = userCategoryService.getUserCategroryByName(
 					userDto.getUserCategory().getName()).get(0);
-			User user = this.utilisateurService.get(userId);
+			User user = this.userService.get(userId);
 			user = userDto.updateUser(user);
 			user.setUserCategory(group);
 
@@ -292,7 +322,7 @@ public class UserController {
 			}
 			user.setRolesInternal(rolesList);
 
-			utilisateurService.merge(user);
+			userService.merge(user);
 			status.setComplete();
 			return "redirect:/users/" + user.getId();
 	}
@@ -300,7 +330,7 @@ public class UserController {
 	@RequestMapping(value = "/{userId}/editpassword", method = RequestMethod.GET)
 	public String updatePasswordForm(@PathVariable("userId") Long userId,
 			Model model) throws Exception {
-		User user = utilisateurService.get(userId);
+		User user = userService.get(userId);
 		if(user != null){
 		PasswordDTO userPassword = new PasswordDTO();
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
@@ -325,7 +355,7 @@ public class UserController {
 		if (result.hasErrors()) {
 			return "admin/users/updatePasswordUserForm";
 		}
-		boolean isValid = this.utilisateurService.updatePassword(userId,
+		boolean isValid = this.userService.updatePassword(userId,
 				userPassword.getOldPassword(), userPassword.getPassword());
 		status.setComplete();
 		if (!isValid) {
@@ -351,10 +381,10 @@ public class UserController {
 	@RequestMapping(value = "/{userId}/activate-user", method = RequestMethod.GET)
 	public String activateUser(@PathVariable("userId") Long userId, Model model, SessionStatus status)throws  Exception{
 		
-		User user = utilisateurService.get(userId);
+		User user = userService.get(userId);
 		if(user != null){
 			user.setLocked(false);
-			utilisateurService.merge(user);
+			userService.merge(user);
 			status.setComplete();
 		}
 		else {
@@ -366,10 +396,10 @@ public class UserController {
 	@RequestMapping(value = "/{userId}/lock-user", method = RequestMethod.GET)
 	public String blockUser(@PathVariable("userId") Long userId, Model model,SessionStatus status)throws  Exception{
 		
-		User user = utilisateurService.get(userId);
+		User user = userService.get(userId);
 		if(user != null){
 			user.setLocked(true);
-			utilisateurService.merge(user);
+			userService.merge(user);
 			status.setComplete();
 		}
 		else {
@@ -384,7 +414,7 @@ public class UserController {
 			@ModelAttribute("uploadForm") UploadItem uploadForm,
 			@PathVariable("userId") long userId, Model map) {
 
-		User user = this.utilisateurService.get(userId);
+		User user = this.userService.get(userId);
 
 		List<MultipartFile> files = uploadForm.getFiles();
 
@@ -412,7 +442,7 @@ public class UserController {
 					}
 				}
 			}
-			utilisateurService.merge(user);
+			userService.merge(user);
 		}
 		return "redirect:/users/" + userId;
 	}

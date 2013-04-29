@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import net.bbenarbia.domain.Departement;
+import net.bbenarbia.domain.User;
 import net.bbenarbia.domain.enums.EnumConsEnergie;
 import net.bbenarbia.domain.enums.EnumEtatBien;
 import net.bbenarbia.domain.enums.EnumImpactConso;
@@ -34,6 +35,7 @@ import net.bbenarbia.domain.immobilier.Studio;
 import net.bbenarbia.service.IDepartementService;
 import net.bbenarbia.service.IParameterService;
 import net.bbenarbia.service.IPhotoService;
+import net.bbenarbia.service.IUtilisateurService;
 import net.bbenarbia.service.immobilier.IBienService;
 import net.bbenarbia.utils.ImageService;
 import net.bbenarbia.web.dto.BienDTO;
@@ -43,6 +45,8 @@ import net.bbenarbia.web.dto.UploadItem;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -65,6 +69,9 @@ public class BienController {
 	@Autowired
 	private IBienService bienService;
 
+	@Autowired
+	private IUtilisateurService userService;
+	
 	@Autowired
 	private IDepartementService departementservice;
 
@@ -194,7 +201,7 @@ public class BienController {
 		model.addAttribute("navigations", navigations);
 
 		model.addAttribute("findBiens", findBienDto);
-		return "immobilier/find-biens";
+		return "immobilier/consultation/find-biens";
 	}
 
 	@RequestMapping(value = "/find-biens", method = RequestMethod.POST)
@@ -245,9 +252,51 @@ public class BienController {
 		navigations.add(new NavigationDTO("/", "home"));
 		navigations.add(new NavigationDTO("/biens/find-biens.htm", "biens.listbien"));
 		model.addAttribute("navigations", navigations);
-		return "immobilier/biensList";
+		return "immobilier/consultation/biensList";
 	}
 
+	
+	@RequestMapping(value = "/{userId}/user-biens", method = RequestMethod.GET)	
+	public String showUserBiens(@PathVariable("userId") Long userId, Model model) {
+		User user = null;
+		FindBienDTO findBienDto = new FindBienDTO();		
+		if(userId != null){
+			user = userService.get(userId);
+			if(user != null){
+				List<BienImmobilier> listBiens =  user.getBiens();
+				for (BienImmobilier bienImmobilier : listBiens) {
+					findBienDto.getListBiens().add(bienImmobilier);
+				}
+		}
+		}
+		model.addAttribute("findBiens", findBienDto);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/biens/find-biens.htm", "biens.listbien"));
+		model.addAttribute("navigations", navigations);
+		return "immobilier/consultation/biensList";
+	}
+	
+	@RequestMapping(value = "/my-biens", method = RequestMethod.GET)	
+	public String showMyBiens(Model model) {
+		User user = null;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		user = userService.getUtilisateurByLogin(auth.getName());
+		FindBienDTO findBienDto = new FindBienDTO();		
+		if(user != null){
+			List<BienImmobilier> listBiens =  user.getBiens();
+			for (BienImmobilier bienImmobilier : listBiens) {
+				findBienDto.getListBiens().add(bienImmobilier);
+			}
+		}
+		model.addAttribute("findBiens", findBienDto);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/biens/find-biens.htm", "biens.listbien"));
+		model.addAttribute("navigations", navigations);
+		return "immobilier/consultation/biensList";
+	}
+	
 	
 	@RequestMapping(value = "/find-biens-reduit", method = RequestMethod.POST)
 	public String searchBiensReduit(
@@ -260,7 +309,7 @@ public class BienController {
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
 		model.addAttribute("navigations", navigations);
-		return "immobilier/biensList";
+		return "immobilier/consultation/biensList";
 	}
 	@RequestMapping(value = "/appartements", method = RequestMethod.GET)
 	public String showAppartementList(Model model) {
@@ -271,7 +320,7 @@ public class BienController {
 			listAppartementDto.add(new BienDTO((Appartement) bienImmobilier));
 		}
 		model.addAttribute("selections", listAppartementDto);
-		return "immobilier/biensList";
+		return "immobilier/consultation/biensList";
 	}
 
 	@RequestMapping(value = "/studios", method = RequestMethod.GET)
@@ -280,7 +329,7 @@ public class BienController {
 		List<BienImmobilier> results = this.bienService.getAllStudio();
 
 		model.addAttribute("selections", results);
-		return "immobilier/biensList";
+		return "immobilier/consultation/biensList";
 	}
 
 	@RequestMapping(value = "/photo/{idBien}/{idPhoto}", method = RequestMethod.GET)
@@ -307,7 +356,7 @@ public class BienController {
 		model.addAttribute("currency", currency);
 		model.addAttribute("bien", bien);
 
-		return "immobilier/bienDetails";
+		return "immobilier/consultation/bienDetails";
 	}
 
 	@RequestMapping(value = "{bienId}/photo/delete/{photoId}", method = RequestMethod.GET)
@@ -326,7 +375,7 @@ public class BienController {
 		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
 		model.addAttribute("navigations", navigations);
 		model.addAttribute("studio", studio);
-		return "immobilier/createStudioForm";
+		return "immobilier/modification/createStudioForm";
 	}
 
 	@RequestMapping(value = "/studio/new", method = RequestMethod.POST)
@@ -335,8 +384,13 @@ public class BienController {
 			BindingResult result, SessionStatus status) {
 
 		if (result.hasErrors()) {
-			return "immobilier/createStudioForm";
+			return "immobilier/modification/createStudioForm";
 		} else {
+			User user = null;
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			user = userService.getUtilisateurByLogin(auth.getName());
+			if(user != null){
+				
 			String refDepartement = bienDto.getDepartement();
 			Departement departement = null;
 			List<Departement> listDepartement = departementservice
@@ -348,6 +402,7 @@ public class BienController {
 			Studio studio = new Studio();
 			studio = bienDto.updateStudio(studio);
 			studio.setDepartement(departement);
+			studio.setProprietaire(user);
 			bienService.save(studio);
 
 			List<MultipartFile> files = bienDto.getFiles();
@@ -363,8 +418,13 @@ public class BienController {
 				status.setComplete();
 
 			}
+			
 			return "redirect:/biens/" + studio.getId();
 		}
+			else {
+				return "immobilier/modification/createStudioForm";
+			}
+	}
 	}
 
 	@RequestMapping(value = "/maison/new", method = RequestMethod.GET)
@@ -376,7 +436,7 @@ public class BienController {
 		navigations.add(new NavigationDTO("/", "home"));
 		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
 		model.addAttribute("navigations", navigations);
-		return "immobilier/createMaisonForm";
+		return "immobilier/modification/createMaisonForm";
 	}
 
 	@RequestMapping(value = "/maison/new", method = RequestMethod.POST)
@@ -385,7 +445,7 @@ public class BienController {
 			BindingResult result, SessionStatus status) {
 
 		if (result.hasErrors()) {
-			return "immobilier/createMaisonForm";
+			return "immobilier/modification/createMaisonForm";
 		} else {
 			String refDepartement = bienDto.getDepartement();
 			Departement departement = null;
@@ -425,7 +485,7 @@ public class BienController {
 		navigations.add(new NavigationDTO("/", "home"));
 		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
 		model.addAttribute("navigations", navigations);
-		return "immobilier/createBienForm";
+		return "immobilier/modification/createBienForm";
 	}
 
 	@RequestMapping(value = "/appartement/new", method = RequestMethod.GET)
@@ -437,7 +497,7 @@ public class BienController {
 		navigations.add(new NavigationDTO("/", "home"));
 		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
 		model.addAttribute("navigations", navigations);
-		return "immobilier/createAppartementForm";
+		return "immobilier/modification/createAppartementForm";
 	}
 
 	@RequestMapping(value = "/appartement/new", method = RequestMethod.POST)
@@ -446,7 +506,7 @@ public class BienController {
 			BindingResult result, SessionStatus status) {
 
 		if (result.hasErrors()) {
-			return "immobilier/createAppartementForm";
+			return "immobilier/modification/createAppartementForm";
 		} else {
 			String refDepartement = bienDto.getDepartement();
 			Departement departement = null;
@@ -494,20 +554,20 @@ public class BienController {
 		if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
 			bienDto = new BienDTO((Appartement) bien);
 			model.addAttribute("bien", bienDto);
-			return "immobilier/updateAppartementForm";
+			return "immobilier/modification/updateAppartementForm";
 		} else if (bien.getTypeBien().equals(EnumTypeBien.STUDIO.toString())) {
 			bienDto = new BienDTO((Studio) bien);
 			model.addAttribute("bien", bienDto);
-			return "immobilier/updateStudioForm";
+			return "immobilier/modification/updateStudioForm";
 		} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
 			bienDto = new BienDTO((Maison) bien);
 			model.addAttribute("bien", bienDto);
-			return "immobilier/updateMaisonForm";
+			return "immobilier/modification/updateMaisonForm";
 		} else if (bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())) {
 			model.addAttribute("bien", bienDto);
-			return "immobilier/updateTerrainForm";
+			return "immobilier/modification/updateTerrainForm";
 		} else
-			return "immobilier/updateTerrainForm";
+			return "immobilier/modification/updateTerrainForm";
 	}
 
 	@RequestMapping(value = "/{bienId}/edit", method = RequestMethod.POST)
@@ -515,7 +575,7 @@ public class BienController {
 			BindingResult result, @PathVariable("bienId") Long bienId,
 			SessionStatus status) {
 			if (result.hasErrors()) {
-				return "immobilier/updateTerrainForm";
+				return "immobilier/modification/updateTerrainForm";
 			}
 
 			BienImmobilier bien = bienService.get(bienId);
@@ -535,7 +595,7 @@ public class BienController {
 				bien.setDepartement(listDepartFound.get(0));
 			}
 			else {
-				return "immobilier/updateTerrainForm";
+				return "immobilier/modification/updateTerrainForm";
 			}
 
 			bienService.merge(bien);

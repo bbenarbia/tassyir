@@ -5,20 +5,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-<jsp:include page="./../common/head.jsp"/>
-
+	<jsp:include page="./../../common/head.jsp"/>
 </head>
 <body>
-
-<spring:url value="/biens/find-biens.htm" var="bienListUrl"/>
+	<spring:url value="/biens/find-biens.htm" var="bienListUrl"/>
 	<spring:url value="/biens/new.htm" var="bienUrl" />
 	<spring:url value="/biens/{BienId}.htm" var="detailBienUrl">
 				<spring:param name="BienId" value="${bien.id}" />
 	</spring:url> 
 	<div id="wrap">
-		<jsp:include page="../common/menu.jsp" />
+		<jsp:include page="../../common/menu.jsp" />
 		<div id="content">
-			<jsp:include page="../common/sub-menu.jsp" />
+			<jsp:include page="../../common/sub-menu.jsp" />
 			<div id="home_main_edit_user">
 				<div class="navig">
 					<c:forEach var="navig" items="${navigations}" varStatus="status">
@@ -29,10 +27,10 @@
 				</div>
 				<div id="edit_user">
 					<div class="tab">
-						<h2><spring:message code="biens.studio.action.new" /></h2>
+						<h2><spring:message code="biens.studio.action.edit" /></h2>
 					</div>
 					<div style="margin: 10px; background: none repeat scroll 0px 0px rgb(248, 248, 248); padding: 14px;">
-						<form:form modelAttribute="studio" method="post" id="form1"  enctype="multipart/form-data">
+						<form:form modelAttribute="bien" method="put" id="form1">
 						<fieldset>
     						<legend>Personal Info</legend>
         						<dl>
@@ -108,42 +106,6 @@
 									</dd>
 						        </dl>
 						        
-						         <dl>
-        							<dt><form:label path="superficie"><spring:message code="biens.superficie" /></form:label></dt>
-					            	<dd>
-					            		<form:input label="superficie" path="superficie" class="text smalltext" />
-									</dd>
-        							<dt><form:label path="departement"><spring:message code="biens.departement" /></form:label></dt>
-					            	<dd>
-					            		<form:select path="departement"  class="select_field">
-													<c:forEach var="item" items="${departementsList}">
-														<c:choose>
-															<c:when test="${departement == item.reference}">
-																<form:option selected="true" value="${item.reference}">
-										               				 ${item.name} 
-										            			</form:option>
-															</c:when>
-															<c:otherwise>
-																<form:option value="${item.reference}">
-										                  			 ${item.name}
-										            			</form:option>
-															</c:otherwise>
-														</c:choose>
-												</c:forEach>
-										</form:select>
-									</dd>
-						        </dl>
-								<dl>
-								<dt><form:label path="codePostal"><spring:message code="biens.codepostal" /></form:label></dt>
-									<dd>
-										<form:input label="codePostal" path="codePostal"
-													class="text smalltext" />										
-									</dd>
-								  <dt><form:label path="ville"><spring:message code="biens.ville" /></form:label></dt>
-										<dd> 
-											<form:input label="ville" path="ville" class="text smalltext" />										
-									   </dd>
-								</dl>	
 							 </c:if>
 							 <c:if test="${bien.typeOperation =='A_VENDRE'}">
 							   	<dl>
@@ -164,7 +126,8 @@
 										<form:input label="depotGarantie" path="depotGarantie" class="text smalltext" />
 									</dd>
 							   </dl> 
-							   <dl>
+							 </c:if>
+							  <dl>
 							   		<dt><form:label path="superficie"><spring:message code="biens.superficie" /></form:label></dt>
 									<dd> 
 										<form:input label="superficie" path="superficie" class="text smalltext" />
@@ -200,7 +163,6 @@
 														class="text smalltext" />										
 									</dd>
 								</dl>	
-							 </c:if>
 								<dl>
 									<dt><form:label path="adresse"><spring:message code="biens.adresse" /></form:label></dt>
 									<dd> <form:textarea cols="16" rows="6" label="adresse" path="adresse" class="text textBoxfieldlong" />
@@ -419,28 +381,20 @@
 									</dt>
         						</dl>
         					</fieldset>		
-        					<fieldset>
-        							<legend> Photos </legend>
-        							<c:forEach varStatus="status" begin="1" end="${5}">
-											<dl>
-												<dt> Photo: ${status.count}</dt>
-												<dd><input
-														name="files[${status.count-1}]" type="file" accept="image/*" />
-												</dd>
-											</dl>
-									</c:forEach>
-        						</fieldset>		
         					<fieldset class="action">
 									<dl><dt>
-    									<input type="submit"  alt="Create"  class="buttonmenu" value="Create" />
+    									<input type="submit"  alt="Update"  class="buttonmenu" value="Update" />
 									</dt>
 									<dd>
-										<a class="buttonmenured"  href="${fn:escapeXml(bienListUrl)}"><spring:message code="biens.action.cancel" /></a>
+										<a class="buttonmenured"  href="${fn:escapeXml(detailBienUrl)}"><spring:message code="biens.action.cancel" /></a>
 									</dd>
 									</dl>
     							</fieldset>
     							<fieldset class="action">
 									<dl>
+									<dt>
+    									<a class="buttonmenu"  href="${fn:escapeXml(bienUrl)}"><spring:message code="biens.action.add" /></a>
+									</dt>
 									<dd>
 										<a class="buttonmenu"  href="${fn:escapeXml(bienListUrl)}"><spring:message code="biens.action.bienlist" /></a>
 									</dd>
@@ -453,10 +407,10 @@
 			</div>
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>
-			<jsp:include page="../common/footer.jsp" />
+			<jsp:include page="../../common/footer.jsp" />
 		</div>
 	</div>
 </body>
 </html>
 
-			
+

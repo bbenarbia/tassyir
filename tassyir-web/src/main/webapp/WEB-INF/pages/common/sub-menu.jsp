@@ -12,5 +12,7 @@
 					</sec:authorize>
 					<li><a href="${contextPath}/biens/find-biens">Find bien</a></li>	
 					<li><a href="#">Roles</a></li>
+					<li><a href="${contextPath}/biens/new.htm">Add new annonce</a>
+					</li>
 				</ul>
 </div>
