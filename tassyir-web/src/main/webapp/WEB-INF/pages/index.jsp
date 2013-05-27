@@ -94,6 +94,9 @@
 									<td class="label">&nbsp;</td>
 									<td>&nbsp;</td>
 									<td>&nbsp;</td>
+									
+									<td class="label"><a class="buttonmenu"  href="${contextPath}/biens/find-biens.htm"><spring:message code="biens.action.bienlist" /></a></td>
+									
 									<td class="label"><label> <input type="image"
 											src='<c:url value="/resources/graphics/searchbtn.gif"/>'
 											alt="search

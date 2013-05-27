@@ -3,11 +3,15 @@
 <div id="topbar">
 			<ul>
 				<li class="current"><a href="${contextPath}">Home</a></li>
-				<li><a href="${contextPath}/users.htm" >Admin</a></li>
-				<li><a href="${contextPath}/parameters.htm" >Params</a>	</li>			
-				<li><a href="${contextPath}/biens/find-biens.htm">Biens</a></li>
+				<sec:authorize access="hasAnyRole('ROLE_MANAGER')">
+						<li><a href="${contextPath}/users">Admin</a></li>
+				</sec:authorize>
+				<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+						<li><a href="${contextPath}/parameters">Params</a></li>
+				</sec:authorize>				
+				<li><a href="#">Publicité</a></li>
 				<li><a href="#">About Us</a></li>
-				<li></li>
+				<li><a href="#">Contact Us</a></li>
 			</ul>
 		</div>
 		<div id="header">

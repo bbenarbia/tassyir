@@ -203,7 +203,91 @@ public class BienController {
 		model.addAttribute("findBiens", findBienDto);
 		return "immobilier/consultation/find-biens";
 	}
+	
+	@RequestMapping(value = "/vente-biens", method = RequestMethod.GET)
+	public String initVenteBiens(Model model) {
+		List<BienImmobilier> listBiens = bienService.getAll();
 
+		FindBienDTO findBienDto = new FindBienDTO();
+		findBienDto.setListBiens(listBiens);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		model.addAttribute("navigations", navigations);
+
+		model.addAttribute("findBiens", findBienDto);
+		return "immobilier/vente-biens";
+	}
+
+	@RequestMapping(value = "/vacances-biens", method = RequestMethod.GET)
+	public String initVacancesBiens(Model model) {
+		List<BienImmobilier> listBiens = bienService.getAll();
+
+		FindBienDTO findBienDto = new FindBienDTO();
+		findBienDto.setListBiens(listBiens);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		model.addAttribute("navigations", navigations);
+
+		model.addAttribute("findBiens", findBienDto);
+		return "immobilier/biens-vacances";
+	}
+	
+	@RequestMapping(value = "/location-biens", method = RequestMethod.GET)
+	public String initLocationBiens(Model model) {
+		List<BienImmobilier> listBiens = bienService.getAll();
+
+		FindBienDTO findBienDto = new FindBienDTO();
+		findBienDto.setListBiens(listBiens);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		model.addAttribute("navigations", navigations);
+
+		model.addAttribute("findBiens", findBienDto);
+		return "immobilier/location-biens";
+	}
+	
+	@RequestMapping(value = "/commerce-biens", method = RequestMethod.GET)
+	public String initBiensCommerce(Model model) {
+		List<BienImmobilier> listBiens = bienService.getAll();
+
+		FindBienDTO findBienDto = new FindBienDTO();
+		findBienDto.setListBiens(listBiens);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		model.addAttribute("navigations", navigations);
+
+		model.addAttribute("findBiens", findBienDto);
+		return "immobilier/biens-commerces";
+	}
+	
+	@RequestMapping(value = "/colocation-biens", method = RequestMethod.GET)
+	public String initColocationBiens(Model model) {
+		List<BienImmobilier> listBiens = bienService.getAll();
+
+		FindBienDTO findBienDto = new FindBienDTO();
+		findBienDto.setListBiens(listBiens);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		model.addAttribute("navigations", navigations);
+
+		model.addAttribute("findBiens", findBienDto);
+		return "immobilier/colocation-biens";
+	}
+	
+	@RequestMapping(value = "/echange-biens", method = RequestMethod.GET)
+	public String initEchangeBiens(Model model) {
+		List<BienImmobilier> listBiens = bienService.getAll();
+
+		FindBienDTO findBienDto = new FindBienDTO();
+		findBienDto.setListBiens(listBiens);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		model.addAttribute("navigations", navigations);
+
+		model.addAttribute("findBiens", findBienDto);
+		return "immobilier/echange-biens";
+	}
+	
 	@RequestMapping(value = "/find-biens", method = RequestMethod.POST)
 	public String searchBiens(
 			@ModelAttribute("findBiens") @Valid FindBienDTO findBienDto,
