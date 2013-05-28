@@ -3,8 +3,7 @@
 	margin: 0;
 }
 
-fieldset {
-	/* background: #f2f2e6; */
+fieldset { /* background: #f2f2e6; */
 	padding: 10px;
 	border: 1px solid #fff;
 	border-radius: 10px 10px 10px 10px;
@@ -12,28 +11,78 @@ fieldset {
 	margin-bottom: 20px;
 	width: 680px;
 }
-fieldset.action { border-color:#e5e5e5 #797c80 #797c80 #e5e5e5; margin-top:-20px; }
-fieldset.action dt{ float:right; font-weight: bold;text-align:right; width:105px; line-height:15px; margin:0 10px 0 0;}
-fieldset.action dd{ float:right; width:225px; line-height:15px; margin:0 0 0 0;}
 
-dl {clear:both;}
-dt {float:left; font-weight: bold;text-align:left; width:105px; line-height:25px; margin:0 10px 10px 0;}
-.dtlong {float:left; font-weight: bold;text-align:left; width:305px; line-height:25px; margin:0 10px 10px 0;}
-dd {float:left; width:225px; line-height:25px; margin:0 0 10px 0;}
+fieldset.action {
+	border-color: #e5e5e5 #797c80 #797c80 #e5e5e5;
+	margin-top: -20px;
+}
+
+fieldset.action dt {
+	float: right;
+	font-weight: bold;
+	text-align: right;
+	width: 105px;
+	line-height: 15px;
+	margin: 0 10px 0 0;
+}
+
+fieldset.action dd {
+	float: right;
+	width: 225px;
+	line-height: 15px;
+	margin: 0 0 0 0;
+}
+
+dl {
+	clear: both;
+}
+
+dt {
+	float: left;
+	font-weight: bold;
+	text-align: left;
+	width: 105px;
+	line-height: 25px;
+	margin: 0 10px 10px 0;
+}
+
+.dtlong {
+	float: left;
+	font-weight: bold;
+	text-align: left;
+	width: 305px;
+	line-height: 25px;
+	margin: 0 10px 10px 0;
+}
+
+dd {
+	float: left;
+	width: 225px;
+	line-height: 25px;
+	margin: 0 0 10px 0;
+}
 
 /*Checkbox*/
-.NFCheck {cursor:pointer; position:absolute; width:12px; height:12px; border:1px solid transparent; background:url(img/checkbox.png) no-repeat 0 0; z-index:2;}
+.NFCheck {
+	cursor: pointer;
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	border: 1px solid transparent;
+	background: url(img/checkbox.png) no-repeat 0 0;
+	z-index: 2;
+}
 
-legend {
-	/* background: #bfbf30; */
-	background:url("../graphics/searchbg.jpg") repeat scroll 0 0 transparent;
+legend { /* background: #bfbf30; */
+	background: url("../graphics/searchbg.jpg") repeat scroll 0 0
+		transparent;
 	font: 17px/21px Calibri, Arial, Helvetica, sans-serif;
 	padding: 0 10px;
 	margin: 0px;
 	font-weight: bold;
 	border: 1px solid #fff;
 	border-color: #e5e5c3 #505014 #505014 #e5e5c3;
-	 border-radius:7px;
+	border-radius: 7px;
 }
 
 ul {
@@ -165,8 +214,6 @@ h1#logo {
 	margin-left: auto;
 }
 
-
-
 #search_bien .tab {
 	height: 20px;
 	padding: 5px 20px 0 10px;
@@ -208,11 +255,11 @@ h1#logo {
 	margin-left: auto;
 }
 
-
 #search_bien .tab {
 	height: 25px;
 	padding: 5px 20px 0 10px;
 }
+
 #home_main_edit_user .tab {
 	height: 20px;
 	/* padding: 5px 20px 0 10px; */
@@ -655,6 +702,13 @@ h3 a:hover {
 	width: 725px;
 }
 
+#topcategorieslink ul.submenu {
+	display: block;
+	float: left;
+	padding-top: 11px;
+	width: 725px;
+}
+
 #topcategorieslink li {
 	display: inline;
 	font: bold 16px "Trebuchet MS", Verdana, Arial, sans-serif;
@@ -973,8 +1027,8 @@ a.highlight {
 	vertical-align: middle;
 	float: right;
 	height: 20px;
-    margin: 6px;
-    padding: 6px 12px;
+	margin: 6px;
+	padding: 6px 12px;
 }
 
 .buttonmenured:hover {
@@ -986,4 +1040,109 @@ a.highlight {
 .buttonmenured:active {
 	border-top-color: #1b435e;
 	background: #1b435e;
+}
+
+nav ul ul {
+	background: #5f6975;
+	border-radius: 0px;
+	padding: 0;
+	position: absolute;
+	top: 100%;
+}
+
+nav ul ul li {
+	float: none;
+	border-top: 1px solid #6b727c;
+	border-bottom: 1px solid #575f6a;
+	position: relative;
+}
+
+nav ul ul li a {
+	padding: 15px 40px;
+	color: #fff;
+}
+
+nav ul ul li a:hover {
+	background: #4b545f;
+}
+
+nav ul li {
+	float: left;
+}
+
+nav ul li.annonce {
+	float: left;
+}
+
+nav ul li.annonce a {
+	display: block;
+	padding: 15px 20px;
+	color: red;
+	text-decoration: none;
+	border-right: 1px solid #9AB5BE;
+}
+
+
+
+nav ul li:hover {
+	background: #4b545f;
+	background: linear-gradient(top, #4f5964 0%, #5f6975 40%);
+	background: -moz-linear-gradient(top, #4f5964 0%, #5f6975 40%);
+	background: -webkit-linear-gradient(top, #4f5964 0%, #5f6975 40%);
+}
+
+nav ul li:hover a {
+	color: #fff;
+}
+
+nav ul li a {
+	display: block;
+	padding: 15px 20px;
+	color: black;
+	text-decoration: none;
+	border-right: 1px solid #9AB5BE;
+}
+
+nav ul {
+    background: #efefef;
+	background: linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+	background: -moz-linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+	background: -webkit-linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+	
+/* 	background: url("../graphics/categoriesbg.jpg") repeat scroll 0 0 transparent; */
+	box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.15);
+	padding: 0 20px;
+	border-radius: 10px;
+	list-style: none;
+	position: relative;
+	display: inline-table;
+	font: bold 16px "Trebuchet MS", Verdana, Arial, sans-serif;
+}
+
+
+nav ul:after {
+	content: "";
+	clear: both;
+	display: block;
+}
+
+nav ul ul {
+	display: none;
+}
+
+nav ul li:hover>ul {
+	display: block;
+	
+}
+
+nav ul ul ul {
+	position: absolute;
+	left: 100%;
+	top: 0;
+}
+
+#nav_menu {
+	/* width: 750px; */
+	float: left;
+	padding-bottom: 5px;
 }

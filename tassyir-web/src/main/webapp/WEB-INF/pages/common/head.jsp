@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" media="screen" href='<c:url value="/resources/stylesheets/style.css"/>' />
 <link rel="stylesheet" type="text/css" media="screen" href='<c:url value="/resources/stylesheets/carroussel.css"/>' />
 <link rel="stylesheet" type="text/css" media="screen" href='<c:url value="/resources/stylesheets/forms.css"/>' />
+<link rel="stylesheet" type="text/css" media="screen" href='<c:url value="/resources/stylesheets/menu.css"/>' />
 
 <link rel="stylesheet" type="text/css" media="screen" href='<c:url value="/resources/stylesheets/smartspinner.css"/>' />
 
