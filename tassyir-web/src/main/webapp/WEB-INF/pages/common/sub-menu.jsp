@@ -2,7 +2,7 @@
 <div id="nav_menu">
 <nav>
 	<ul>
-		<li><a href="#">Home</a></li>
+		<h2><a href="#">Home</a></h2>
 		<li><a href="#">Offres</a>
 			<ul>
 					<li><a href="${contextPath}/biens/location-biens.htm">Location</a></li>
@@ -46,12 +46,7 @@
 					<li><a href="${contextPath}/biens/find-biens.htm">Promoteurs</a></li>
 			</ul>
 		</li>
-		<li><a href="#">Conseils</a>
-			<ul>
-					<li><a href="${contextPath}/biens/find-biens.htm">Agences</a></li>
-					<li><a href="${contextPath}/biens/find-biens.htm">Promoteurs</a></li>
-			</ul>
-		</li>
+		
 		<li class="annonce"><a href="#">Passer une annonce </a>
 		</li>
 	</ul>

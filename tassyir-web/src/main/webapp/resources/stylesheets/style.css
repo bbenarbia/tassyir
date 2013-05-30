@@ -126,6 +126,7 @@ body {
 
 #content {
 	padding: 0 2px 0 2px;
+	background: none repeat scroll 0 0 #F4F5F6;
 }
 
 #home_main {
@@ -380,7 +381,7 @@ h1#logo {
 }
 
 #useractions {
-	float: left;
+	float: right;
 	width: 380px;
 	padding-left: 20px;
 	background: url(../graphics/header_vertical_devider.jpg) repeat-y 10px
@@ -1117,7 +1118,7 @@ nav ul {
 	
 /* 	background: url("../graphics/categoriesbg.jpg") repeat scroll 0 0 transparent; */
 	box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.15);
-	padding: 0 20px;
+	/* padding: 0 20px; */
 	border-radius: 10px;
 	list-style: none;
 	position: relative;
@@ -1125,6 +1126,17 @@ nav ul {
 	font: bold 16px "Trebuchet MS", Verdana, Arial, sans-serif;
 }
 
+nav h2 {
+	background: url(../graphics/topcategories_h2.jpg) no-repeat;
+	height: 34px;
+	width: 110px;
+	padding-top: 12px;
+	padding-left: 10px;
+	color: #FFFFFF;
+	text-transform: uppercase;
+	float: left;
+	font: bold 18px "Trebuchet MS", Arial, sans-serif;
+}
 
 nav ul:after {
 	content: "";
