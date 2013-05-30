@@ -128,8 +128,14 @@ body {
 	padding: 0 2px 0 2px;
 }
 
-#home_main,#main,#main_bien {
+#home_main {
 	width: 750px;
+	float: left;
+	margin-bottom: 8px;
+}
+
+#main_bien,#main {
+	width: 650px;
 	float: left;
 	margin-bottom: 8px;
 }
@@ -838,7 +844,7 @@ a.highlight {
 #rightcolumn {
 	float: right;
 	padding: 5px;
-	width: 380px;
+	width: 340px;
 }
 
 #rightcolumn .leftpart {

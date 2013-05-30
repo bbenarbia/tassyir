@@ -54,11 +54,11 @@
 				<div id="single_item_details">
 					<div id="leftcolumn">
 							<c:if test="${empty user.photo }">
-								<img width="330" height="230"  src='<c:url value="/resources/graphics/no-photos.jpg"/>' class="previewimg">
+								<img width="290" height="230"  src='<c:url value="/resources/graphics/no-photos.jpg"/>' class="previewimg">
 								<a class="buttonmenu"  href="${fn:escapeXml(addPhotoUrl)}"><spring:message code="user.action.addphoto" /></a>
 							</c:if>
 							<c:if test="${not empty user.photo }">
-								<img width="330" height="230" src="${photoUrl}/${user.id}" class="previewimg">
+								<img width="290" height="230" src="${photoUrl}/${user.id}" class="previewimg">
 								<a class="buttonmenu"  href="${fn:escapeXml(addPhotoUrl)}"><spring:message code="user.action.editphoto" /></a>
 							</c:if>
 					</div>

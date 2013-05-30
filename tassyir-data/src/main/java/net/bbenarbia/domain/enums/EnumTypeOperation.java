@@ -1,7 +1,7 @@
 package net.bbenarbia.domain.enums;
 
 public enum EnumTypeOperation {
-	A_VENDRE(1), A_LOUER(2), AUTRE(3);
+	VENTE(1), LOCATION(2), COLOCATION(3), ECHANGE(5), ACHAT(6), CHERCHE_LOCATION(7);
 
 	private int index;
 

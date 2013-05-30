@@ -213,8 +213,9 @@ public class BienController {
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
 		model.addAttribute("navigations", navigations);
-
 		model.addAttribute("findBiens", findBienDto);
+		String mainOperation = EnumTypeOperation.VENTE.toString();
+		model.addAttribute("mainOperation", mainOperation);
 		return "immobilier/vente-biens";
 	}
 
@@ -236,12 +237,14 @@ public class BienController {
 	public String initLocationBiens(Model model) {
 		List<BienImmobilier> listBiens = bienService.getAll();
 
+		String mainOperation = EnumTypeOperation.LOCATION.toString();
+		model.addAttribute("mainOperation", mainOperation);
 		FindBienDTO findBienDto = new FindBienDTO();
 		findBienDto.setListBiens(listBiens);
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
 		model.addAttribute("navigations", navigations);
-
+		
 		model.addAttribute("findBiens", findBienDto);
 		return "immobilier/location-biens";
 	}
@@ -255,7 +258,9 @@ public class BienController {
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
 		model.addAttribute("navigations", navigations);
-
+		model.addAttribute("mainOperation", EnumTypeOperation.VENTE.toString());
+		model.addAttribute("mainType", EnumTypeBien.COMMERCE.toString());
+		
 		model.addAttribute("findBiens", findBienDto);
 		return "immobilier/biens-commerces";
 	}
@@ -283,7 +288,8 @@ public class BienController {
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
 		model.addAttribute("navigations", navigations);
-
+		String mainOperation = EnumTypeOperation.ECHANGE.toString();
+		model.addAttribute("mainOperation", mainOperation);
 		model.addAttribute("findBiens", findBienDto);
 		return "immobilier/echange-biens";
 	}

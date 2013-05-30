@@ -31,7 +31,7 @@
 					<div id="leftcolumn">
 						<div id="carrousel">
 							<c:if test="${fn:length(bien.photos) == 0 }">
-								<img width="330" height="230"
+								<img width="290" height="230"
 									src='<c:url value="/resources/graphics/no-photos.jpg"/>'
 									class="previewimg">
 							</c:if>
@@ -39,7 +39,7 @@
 								<c:forEach var="photo" items="${bien.photos}" varStatus="status">
 									<div id="slide${status.count}" class="slide">
 										<div class="visu">
-											<img width="330" height="230"
+											<img width="290" height="230"
 												src="${photoUrl}/${bien.id}/${status.count}"
 												class="previewimg">
 											<div class="title">
@@ -65,18 +65,7 @@
 								<spring:message code="bien.reference" />
 								: ${bien.reference}
 							</p>
-							<p>
-								${bien.description}
-							</p>
-							<p>
-								${bien.adresse.adresse} <br /> ${bien.adresse.codePostal} <br />
-								${bien.adresse.ville}
-							</p>
-							<p>
-								<spring:message code="bien.departement" />
-								:${bien.departement.name}(${bien.departement.reference})
-							</p>
-							<c:if test="${bien.typeOperation =='A_LOUER'}">
+							<c:if test="${bien.typeOperation =='LOCATION'}">
 								<p class="price">
 									<spring:message code="bien.loyerMensuel" />
 									: ${bien.loyerMensuel} ${currency}
@@ -86,7 +75,7 @@
 									: ${bien.chargesMensuel} ${currency}
 								</p>
 							</c:if>
-							<c:if test="${bien.typeOperation =='A_VENDRE'}">
+							<c:if test="${bien.typeOperation =='VENTE'}">
 								<p class="price">
 									<spring:message code="bien.prixVente" />
 									: ${bien.prixVente} ${currency}
@@ -96,7 +85,17 @@
 									: ${bien.honoraires} ${currency}
 								</p>
 							</c:if>
-
+							<p>
+								${bien.adresse.adresse} <br /> ${bien.adresse.codePostal} <br />
+								${bien.adresse.ville}
+							</p>
+							<p>
+								<spring:message code="bien.departement" />
+								:${bien.departement.name}(${bien.departement.reference})
+							</p>
+							<p>
+								${bien.description}
+							</p>
 							<div id="tabs">
 								<div id="tabs-1" class="hiddentab">
 									<p>

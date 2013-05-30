@@ -37,7 +37,7 @@
 												class="select_field">
 												<c:forEach var="item" items="${typesOperationsList}">
 													<c:choose>
-														<c:when test="${typeOperationBien == item}">
+														<c:when test="${mainOperation == item}">
 															<form:option selected="true" value="${item}">
 																               				 ${item} 
 																            			</form:option>
@@ -59,7 +59,7 @@
 												</option>
 												<c:forEach var="item" items="${typesLogementList}">
 													<c:choose>
-														<c:when test="${typeBien == item}">
+														<c:when test="${mainType == item}">
 															<form:option selected="true" value="${item.index}">
 																               				 ${item} 
 																            			</form:option>

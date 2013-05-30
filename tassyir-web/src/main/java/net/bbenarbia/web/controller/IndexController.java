@@ -72,7 +72,7 @@ public class IndexController {
 //		studio.setReference("ref1111");
 //		studio.setStatus(EnumStatutProperty.DISPONIBLE);
 //		studio.setSuperficie(200);
-//		studio.setTypeOperation(EnumTypeOperation.A_LOUER);
+//		studio.setTypeOperation(EnumTypeOperation.LOCATION);
 //		
 //		bienService.save(studio);
 
