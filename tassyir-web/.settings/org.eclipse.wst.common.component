@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project-modules id="moduleCoreId" project-version="1.5.0">
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
   <wb-module deploy-name="SpringMVC">
         <dependent-module archiveName="tassyir-services.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/tassyir-services/tassyir-services">
             <dependency-type>uses</dependency-type>
