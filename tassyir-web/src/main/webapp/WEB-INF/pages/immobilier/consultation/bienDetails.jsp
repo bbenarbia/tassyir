@@ -65,7 +65,7 @@
 								<spring:message code="bien.reference" />
 								: ${bien.reference}
 							</p>
-							<c:if test="${bien.typeOperation =='LOCATION'}">
+							<c:if test="${bien.typeOperation =='OFFRE_LOCATION' || bien.typeOperation =='DEMANDE_LOCATION' }">
 								<p class="price">
 									<spring:message code="bien.loyerMensuel" />
 									: ${bien.loyerMensuel} ${currency}
@@ -75,7 +75,7 @@
 									: ${bien.chargesMensuel} ${currency}
 								</p>
 							</c:if>
-							<c:if test="${bien.typeOperation =='VENTE'}">
+							<c:if test="${bien.typeOperation =='OFFRE_VENDRE' || bien.typeOperation =='DEMANDE_ACHAT'}">
 								<p class="price">
 									<spring:message code="bien.prixVente" />
 									: ${bien.prixVente} ${currency}

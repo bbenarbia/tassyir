@@ -155,6 +155,21 @@
 	</dependencies>
 
 	<build>
+				<finalName>tassyir-mvc</finalName>
+				<plugins>
+					<plugin>
+						<artifactId>maven-war-plugin</artifactId>
+						<version>2.1.1</version>
+						<configuration>
+							<outputDirectory>webapps</outputDirectory>
+							<warName>tassyir-mvc</warName>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+
+<!--
+	<build>
 		<finalName>tassyir-mvc</finalName>
 		<plugins>
 			<plugin>
@@ -164,7 +179,7 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-			<!-- <plugin>
+			 <plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>tomcat-maven-plugin</artifactId>
 				<configuration>
@@ -172,8 +187,8 @@
 					<server>TomcatServer</server>
 					<path>/tassyir-mvc</path>
 				</configuration>
-			</plugin> -->
+			</plugin> 
 		</plugins>
 	</build>
-
+-->
 </project>

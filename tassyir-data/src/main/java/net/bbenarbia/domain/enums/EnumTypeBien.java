@@ -1,8 +1,9 @@
 package net.bbenarbia.domain.enums;
 
 public enum EnumTypeBien {
-	APPARTEMENT(1), STUDIO(2), TERRAIN(3), MAISON(4), COMMERCE(5), ENTREPOT(6); 
+	APPARTEMENT(1),  MAISON(2),  IMMEUBLE(3),   TERRAIN(4), AGRICOLE(5), CARCASSE(6), COMMERCE(7), BUNGALOW(8), FERME(9), AUTRES(10); 
 
+	
 	private int index;
 
 	private EnumTypeBien(int index) {

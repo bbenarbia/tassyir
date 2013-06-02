@@ -114,9 +114,9 @@ public class UserDTO {
 				if(bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT)){
 					this.biens.add(new BienDTO((Appartement)bien));
 				}
-				else if(bien.getTypeBien().equals(EnumTypeBien.STUDIO)){
-					this.biens.add(new BienDTO((Studio)bien));
-				}
+//				else if(bien.getTypeBien().equals(EnumTypeBien.STUDIO)){
+//					this.biens.add(new BienDTO((Studio)bien));
+//				}
 				else if(bien.getTypeBien().equals(EnumTypeBien.MAISON)){
 					this.biens.add(new BienDTO((Maison)bien));
 				}

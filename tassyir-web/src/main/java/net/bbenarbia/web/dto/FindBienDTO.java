@@ -11,7 +11,7 @@ public class FindBienDTO {
 	private String departementBien;
 	private String typeBien;
 	private Integer nbPiecesMin;
-	private String typeOperationBien;
+	private Integer typeOperationBien;
 	private Integer nbPiecesMax;
 	private Double surfaceMin;
 	private Double surfaceMax;
@@ -208,11 +208,11 @@ public class FindBienDTO {
 		this.terrassesBalcons = terrassesBalcons;
 	}
 
-	public String getTypeOperationBien() {
+	public Integer getTypeOperationBien() {
 		return typeOperationBien;
 	}
 
-	public void setTypeOperationBien(String typeOperationBien) {
+	public void setTypeOperationBien(Integer typeOperationBien) {
 		this.typeOperationBien = typeOperationBien;
 	}
 

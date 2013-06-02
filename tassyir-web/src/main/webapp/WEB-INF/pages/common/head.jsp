@@ -16,6 +16,7 @@
 
 <script type='text/javascript' src='<c:url value="/resources/scripts/jquery-1.9.1.js"/>'></script>
 <script type='text/javascript' src='<c:url value="/resources/scripts/carroussel.js"/>'></script>
+<script type='text/javascript' src='<c:url value="/resources/scripts/jquery.infinitecarousel.js"/>'></script>
 
 
 <script type='text/javascript' src='<c:url value="/resources/scripts/smartspinner.js"/>'></script>

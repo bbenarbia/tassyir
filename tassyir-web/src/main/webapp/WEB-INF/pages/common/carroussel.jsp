@@ -1,37 +1,53 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div id="carrousel">
-	<div id="slide1" class="slide">
-		<div class="visu">
-			<img  width="712" height="264" src='<c:url value="/resources/stylesheets/images/im1.png"/>' />
-			
-			<div class="title">
-				Un titre 1
-			</div>
-		</div>
-	</div>
-	
-	<div id="slide2" class="slide">
-		<div class="visu">
-			<img  width="712" height="264" src='<c:url value="/resources/stylesheets/images/im2.jpg"/>' />
-			<div class="title">
-				Un titre 2
-			</div>
-		</div>
-	</div>
-	
-	<div id="slide3" class="slide">
-		<div class="visu">
-			<img  width="712" height="264" src='<c:url value="/resources/stylesheets/images/im3.jpg"/>'>
-			<div class="title">
-				Un titre 3 
-			</div>
-		</div>
-	</div>
-	<!-- <div class="navigation">
-		<span>1</span>
-		<span>2</span>
-		<span>3</span>
-	</div> -->
-</div>
+<head>
+<jsp:include page="./../common/head.jsp"/>
+<script type="text/javascript">
+$(function(){
+	$('#carousel1').infiniteCarousel();
+});
+</script>
 
+<style type="text/css">
+#carousel1 {
+	width:400px;
+	height:250px;
+	overflow:scroll;
+	border:2px solid #999;
+}
+.textholder {
+	text-align:left;
+	font-size:small;
+	padding:6px;
+	-moz-border-radius: 6px 6px 0 0;
+	-webkit-border-top-left-radius: 6px;	
+	-webkit-border-top-right-radius: 6px;
+}
+</style>
+
+</head>
+
+<body>
+<div id="carousel1">
+	<ul>
+		<li>
+		<img alt="" src='<c:url value="/resources/graphics/caroussel/img-11.jpg"/>' width="400" height="250" /><p>This carousel 
+		has padding applied to it so you can see hints for the previous and 
+		next images.</p>
+		</li>
+		<li>
+
+		<img alt="" src='<c:url value="/resources/graphics/caroussel/img-12.jpg"/>' width="400" height="250" /><p>Many of the images used in the demos come from
+		<a href="#">Mike Swanson's excellent wallpaper images</a> page.</p>
+		</li>
+		<li>
+		<img alt="" src='<c:url value="/resources/graphics/caroussel/img-13.jpg"/>' width="400" height="250" /></li>
+		<li>
+		<img alt="" src='<c:url value="/resources/graphics/caroussel/img-14.jpg"/>' width="400" height="250" /><p>The images to the left and right of this one have no caption.</p>
+
+		</li>
+	</ul>
+</div>
+</body>
+
+</html>
