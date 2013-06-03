@@ -10,7 +10,7 @@ $(function(){
 
 <style type="text/css">
 #carousel1 {
-	width:400px;
+	width:645px;
 	height:250px;
 	overflow:scroll;
 	border:2px solid #999;
@@ -31,19 +31,19 @@ $(function(){
 <div id="carousel1">
 	<ul>
 		<li>
-		<img alt="" src='<c:url value="/resources/graphics/caroussel/img-11.jpg"/>' width="400" height="250" /><p>This carousel 
+		<img alt="" src='<c:url value="/resources/graphics/caroussel/img-11.jpg"/>' width="645" height="250" /><p>This carousel 
 		has padding applied to it so you can see hints for the previous and 
 		next images.</p>
 		</li>
 		<li>
 
-		<img alt="" src='<c:url value="/resources/graphics/caroussel/img-12.jpg"/>' width="400" height="250" /><p>Many of the images used in the demos come from
+		<img alt="" src='<c:url value="/resources/graphics/caroussel/img-12.jpg"/>' width="640" height="250" /><p>Many of the images used in the demos come from
 		<a href="#">Mike Swanson's excellent wallpaper images</a> page.</p>
 		</li>
 		<li>
-		<img alt="" src='<c:url value="/resources/graphics/caroussel/img-13.jpg"/>' width="400" height="250" /></li>
+		<img alt="" src='<c:url value="/resources/graphics/caroussel/img-13.jpg"/>' width="640" height="250" /></li>
 		<li>
-		<img alt="" src='<c:url value="/resources/graphics/caroussel/img-14.jpg"/>' width="400" height="250" /><p>The images to the left and right of this one have no caption.</p>
+		<img alt="" src='<c:url value="/resources/graphics/caroussel/img-14.jpg"/>' width="640" height="250" /><p>The images to the left and right of this one have no caption.</p>
 
 		</li>
 	</ul>

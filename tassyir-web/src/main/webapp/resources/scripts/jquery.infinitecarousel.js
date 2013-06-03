@@ -1,12 +1,4 @@
-/*
- * jQuery infinitecarousel plugin
- * @author admin@catchmyfame.com - http://www.catchmyfame.com
- * @version 1.2.2
- * @date August 31, 2009
- * @category jQuery plugin
- * @copyright (c) 2009 admin@catchmyfame.com (www.catchmyfame.com)
- * @license CC Attribution-Share Alike 3.0 - http://creativecommons.org/licenses/by-sa/3.0/
- */
+
 
 (function($){
 	$.fn.extend({ 
@@ -65,31 +57,11 @@
 				showtext($('li:eq(1) p', obj).html());
 			
 				// Prev/next button(img) 
-				html = '<div id="btn_rt'+randID+'" style="position:absolute;right:0;top:'+((imgHeight/2)-15)+'px"><a href="javascript:void(0);"><img style="border:none;margin-right:2px" src="../graphics/caroussel/rt.png" /></a></div>';
-				html += '<div id="btn_lt'+randID+'" style="position:absolute;left:0;top:'+((imgHeight/2)-15)+'px"><a href="javascript:void(0);"><img style="border:none;margin-left:2px" src="../graphics/caroussel/lt.png" /></a></div>';
+				html = '<div id="btn_rt'+randID+'" style="position:absolute;right:0;top:'+((imgHeight/2)-15)+'px"><a style="border:none;margin-right:2px" href="javascript:void(0);"> Next </a></div>';
+				html += '<div id="btn_lt'+randID+'" style="position:absolute;left:0;top:'+((imgHeight/2)-15)+'px"><a style="border:none;margin-left:2px" href="javascript:void(0);">Previous</a></div>';
 				$(obj).append(html);
 			
-				// Pause/play button(img)	
-				html = '<a href="javascript:void(0);"><img id="pause_btn'+randID+'" src="../graphics/caroussel/pause.png" style="position:absolute;top:3px;right:3px;border:none" alt="Pause" /></a>';
-				html += '<a href="javascript:void(0);"><img id="play_btn'+randID+'" src="../graphics/caroussel/play.png" style="position:absolute;top:3px;right:3px;border:none;display:none;" alt="Play" /></a>';
-				$(obj).append(html);
-				$('#pause_btn'+randID).css('opacity','.5').hover(function(){$(this).animate({opacity:'1'},250)},function(){$(this).animate({opacity:'.5'},250)});
-				$('#pause_btn'+randID).click(function(){
-					autopilot = 0;
-					$('#progress'+randID).stop().fadeOut();
-					clearTimeout(clearInt);
-					$('#pause_btn'+randID).fadeOut(250);
-					$('#play_btn'+randID).fadeIn(250);
-					showminmax();
-				});
-				$('#play_btn'+randID).css('opacity','.5').hover(function(){$(this).animate({opacity:'1'},250)},function(){$(this).animate({opacity:'.5'},250)});
-				$('#play_btn'+randID).click(function(){
-					autopilot = 1;
-					anim('next');
-					$('#play_btn'+randID).hide();
-					clearInt=setInterval(function(){anim('next');},o.displayTime+o.transitionSpeed);
-					setTimeout(function(){$('#pause_btn'+randID).show();$('#progress'+randID).fadeIn().width(imgWidth).height(5);},o.transitionSpeed);
-				});
+				
 				
 				// Left and right arrow image button actions
 				$('#btn_rt'+randID).css('opacity','.75').click(function(){
@@ -166,15 +138,7 @@
 				}
 				function showminmax()
 				{
-						if(!autopilot)
-						{
-							html = '<img style="position:absolute;top:2px;right:18px;display:none;cursor:pointer" src="../graphics/caroussel/down.png" title="Minimize" alt="minimize" id="min" /><img style="position:absolute;top:2px;right:18px;display:none;cursor:pointer" src="../graphics/caroussel/up.png" title="Maximize" alt="maximize" id="max" />';
-							html += '<img style="position:absolute;top:2px;right:6px;display:none;cursor:pointer" src="../graphics/caroussel/close.png" title="Close" alt="close" id="close" />';
-							$('#textholder'+randID).append(html);
-							$('#min').fadeIn(250).click(function(){$('#textholder'+randID).animate({marginBottom:(-imgHeight*o.textholderHeight)-(correctTHHeight * 2)+24+'px'},500,function(){$("#min,#max").toggle();});});
-							$('#max').click(function(){$('#textholder'+randID).animate({marginBottom:'0px'},500,function(){$("#min,#max").toggle();});});
-							$('#close').fadeIn(250).click(function(){$('#textholder'+randID).animate({marginBottom:(-imgHeight*o.textholderHeight)-(correctTHHeight * 2)+'px'},500);});
-						}
+						
 				}
 				function borderpatrol(elem)
 				{

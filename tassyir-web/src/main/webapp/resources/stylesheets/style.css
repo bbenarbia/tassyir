@@ -1182,16 +1182,17 @@ nav ul ul ul {
 
 
 #header-menu {
-    background:  #2632D2;
+    background:  #5f6975;
     border-top: 1px solid #CCCCCC;
     font-family: Arial,Helvetica,FreeSans,sans-serif;
     font: bold 16px "Trebuchet MS", Arial, sans-serif;
     height: 32px;
-    margin: 0 0 30px;
-    padding: 0;
+    margin: 0 0 50px;
+    padding: 7px 15px;
+    
     position: relative;
     text-transform: uppercase;
-    width: 950px;
+    width: 915px;
 }
 #header-menu a {
     border: 0 none;
@@ -1213,9 +1214,13 @@ nav ul ul ul {
     color: #FFFFFF;
     display: block;
     float: left;
-    height: 28px;
+    height: 38px;
     line-height: 24px;
-    padding: 0 16px;
+    margin-top: -6px;
+    padding-bottom:0px;
+    padding-top:8px;
+    padding-left:16px;
+    padding-right:16px;
     text-decoration: none;
     white-space: nowrap;
 }
@@ -1224,7 +1229,7 @@ nav ul ul ul {
     width: 1px;
 }
 #header-menu .select a:hover, #header-menu .select li:hover a {
-    background-color: #DF0D3D;
+    background-color: #4b545f;
     color: #FFFFFF;
     cursor: pointer;
 }
@@ -1238,33 +1243,38 @@ nav ul ul ul {
     top: 0;
 }
 #header-menu .current a {
-    background-color: #DF0D3D;
-    color: #FFFFFF;
+    background-color: #D1E0FA;
+    color: #368291;
+    
+    /* background-color: red; */
+    margin-left: -15px;
+    margin-top: -7px;
 }
 #header-menu .sub li a:hover, #header-menu .select a:hover .sub li a:hover, #header-menu .select li:hover .sub li a:hover {
-    color: #DF0D3D;
+    color: red;
 }
 #header-menu .sub_active .current_sub a, #header-menu .sub_active a:hover {
-    color: #DF0D3D;
+    color: red;
 }
 #header-menu .select li a:hover .sub, #header-menu .select li:hover .sub {
     background: none repeat scroll 0 0 #D1E0FA;
     color: #222222;
     display: block;
     left: 0;
-    margin-top: 0;
-    padding: 0;
+    margin-top: 22px;
     position: absolute;
     top: 24px;
-    width: 950px;
+    width: 945px;
     z-index: 100;
+    padding-top: 5px;
 }
 #header-menu .sub, #header-menu .sub_active {
     border-bottom: 1px solid #CCCCCC;
     font-weight: normal;
     list-style: none outside none;
-    margin: 0;
+    margin-top: 38px;
     text-transform: none;
+    font-weight: bold;
 }
 #header-menu .sub_active {
     background: none repeat scroll 0 0 #D1E0FA;
@@ -1272,11 +1282,11 @@ nav ul ul ul {
     display: block;
     font-weight: bold;
     left: 0;
-    margin-top: 0;
-    padding: 0;
+    margin-top: 22px;
+    padding-top: 5px;
     position: absolute;
     top: 24px;
-    width: 950px;
+    width: 945px;
     z-index: 10;
 }
 * html #header-menu .sub_active, * html #header-menu .select a:hover .sub {
@@ -1289,7 +1299,7 @@ nav ul ul ul {
     color: #555555;
     display: block;
     float: left;
-    height: 24px;
+    height: 38px;
     line-height: 25px;
     margin: 0;
     padding: 0 14px;
