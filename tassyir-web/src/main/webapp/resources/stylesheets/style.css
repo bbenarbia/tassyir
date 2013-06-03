@@ -216,7 +216,7 @@ h1#logo {
 #search_bien .container {
 	background: #E3F6FC bottom no-repeat;
 	height: 240px;
-	width: 700px;
+	width: 650px;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -250,7 +250,7 @@ h1#logo {
 #search_bien .container {
 	background: #E3F6FC bottom no-repeat;
 	height: 350px;
-	width: 700px;
+	width: 650px;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -1055,18 +1055,25 @@ nav ul ul {
 	padding: 0;
 	position: absolute;
 	top: 100%;
+	left: 0px;
+}
+
+nav ul li ul{
+	float: left;
 }
 
 nav ul ul li {
-	float: none;
+	float: left;
 	border-top: 1px solid #6b727c;
 	border-bottom: 1px solid #575f6a;
 	position: relative;
+	
 }
 
 nav ul ul li a {
 	padding: 15px 40px;
 	color: #fff;
+	
 }
 
 nav ul ul li a:hover {
@@ -1163,4 +1170,148 @@ nav ul ul ul {
 	/* width: 750px; */
 	float: left;
 	padding-bottom: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+#header-menu {
+    background:  #2632D2;
+    border-top: 1px solid #CCCCCC;
+    font-family: Arial,Helvetica,FreeSans,sans-serif;
+    font: bold 16px "Trebuchet MS", Arial, sans-serif;
+    height: 32px;
+    margin: 0 0 30px;
+    padding: 0;
+    position: relative;
+    text-transform: uppercase;
+    width: 950px;
+}
+#header-menu a {
+    border: 0 none;
+    outline: 0 none;
+}
+#header-menu .select, #header-menu .current {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+#header-menu li {
+    display: inline;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+#header-menu .select a, #header-menu .current a {
+    background: 100% 0 transparent;
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    height: 28px;
+    line-height: 24px;
+    padding: 0 16px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+* html #header-menu .select a, * html #header-menu .current a {
+    height: 24px;
+    width: 1px;
+}
+#header-menu .select a:hover, #header-menu .select li:hover a {
+    background-color: #DF0D3D;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+#header-menu .sub {
+    display: none;
+}
+#header-menu table {
+    border-collapse: collapse;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+#header-menu .current a {
+    background-color: #DF0D3D;
+    color: #FFFFFF;
+}
+#header-menu .sub li a:hover, #header-menu .select a:hover .sub li a:hover, #header-menu .select li:hover .sub li a:hover {
+    color: #DF0D3D;
+}
+#header-menu .sub_active .current_sub a, #header-menu .sub_active a:hover {
+    color: #DF0D3D;
+}
+#header-menu .select li a:hover .sub, #header-menu .select li:hover .sub {
+    background: none repeat scroll 0 0 #D1E0FA;
+    color: #222222;
+    display: block;
+    left: 0;
+    margin-top: 0;
+    padding: 0;
+    position: absolute;
+    top: 24px;
+    width: 950px;
+    z-index: 100;
+}
+#header-menu .sub, #header-menu .sub_active {
+    border-bottom: 1px solid #CCCCCC;
+    font-weight: normal;
+    list-style: none outside none;
+    margin: 0;
+    text-transform: none;
+}
+#header-menu .sub_active {
+    background: none repeat scroll 0 0 #D1E0FA;
+    border-top: 1px solid #CCCCCC;
+    display: block;
+    font-weight: bold;
+    left: 0;
+    margin-top: 0;
+    padding: 0;
+    position: absolute;
+    top: 24px;
+    width: 950px;
+    z-index: 10;
+}
+* html #header-menu .sub_active, * html #header-menu .select a:hover .sub {
+    margin-top: 0;
+    z-index: -1;
+}
+#header-menu .sub_active a {
+    background: none repeat scroll 0 0 #D1E0FA;
+    border: 0 none;
+    color: #555555;
+    display: block;
+    float: left;
+    height: 24px;
+    line-height: 25px;
+    margin: 0;
+    padding: 0 14px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+#header-menu .select a:hover .sub li a, #header-menu .select li:hover .sub li a {
+    background: none repeat scroll 0 0 #D1E0FA;
+    border: 0 none;
+    color: #555555;
+    display: block;
+    margin: 0;
+    padding: 0 15px;
+    white-space: nowrap;
+}
+#header-menu .menu-bouton-pa {
+    color: #000000;
+    cursor: pointer;
+    display: block;
+    height: 21px;
+    width: 159px;
+}
+#header-menu .menu-bouton-pa {
+    background: url("/images/home/bouton-pa-rose.png") no-repeat scroll 0 0 transparent;
 }

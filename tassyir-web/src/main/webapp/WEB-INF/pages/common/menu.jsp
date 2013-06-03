@@ -2,7 +2,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div id="topbar">
 			<ul>
-				<li class="current"><a href="${contextPath}">Home</a></li>
+				<li class="current"><a href="${contextPath}"><spring:message code="home" /> </a></li>
 				<sec:authorize access="hasAnyRole('ROLE_MANAGER')">
 						<li><a href="${contextPath}/users">Admin</a></li>
 				</sec:authorize>

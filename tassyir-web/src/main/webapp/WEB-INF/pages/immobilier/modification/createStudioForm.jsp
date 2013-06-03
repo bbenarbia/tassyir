@@ -86,7 +86,8 @@
 					            		<form:input label="reference" path="reference" class="text smalltext" />
 									</dd>
 						        </dl>
-						        <c:if test="${bien.typeOperation =='LOCATION'}">
+						        
+						        <c:if test="${bien.typeOperation =='OFFRE_LOCATION' || bien.typeOperation =='DEMANDE_LOCATION'}">						        
 						        <dl>
         							<dt><form:label path="loyerMensuel"><spring:message code="biens.loyerMensuel" /></form:label></dt>
 					            	<dd>	
@@ -145,7 +146,8 @@
 									   </dd>
 								</dl>	
 							 </c:if>
-							 <c:if test="${bien.typeOperation =='VENTE'}">
+							 
+							 <c:if test="${bien.typeOperation =='OFFRE_VENDRE' || bien.typeOperation =='DEMANDE_ACHAT'}">							 
 							   	<dl>
 									<dt><form:label path="prixVente"><spring:message code="biens.prixVente" /></form:label></dt>
 									<dd> <form:input label="prixVente"
