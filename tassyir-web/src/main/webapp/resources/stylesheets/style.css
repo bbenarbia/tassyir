@@ -136,7 +136,7 @@ body {
 }
 
 #main_bien,#main {
-	width: 650px;
+	width: 590px;
 	float: left;
 	margin-bottom: 8px;
 }
@@ -154,7 +154,7 @@ body {
 }
 
 #home_sidebar,#sidebar {
-	width: 390px;
+	width: 350px;
 	float: right;
 	margin-bottom: 8px;
 }
@@ -182,7 +182,7 @@ h1#logo {
 }
 
 #search_bien {
-	background: url(../graphics/searchbg.jpg);
+	background: none repeat scroll 0 0 #D1E0FA;
 }
 
 .hot {
@@ -215,8 +215,8 @@ h1#logo {
 
 #search_bien .container {
 	background: #E3F6FC bottom no-repeat;
-	height: 240px;
-	width: 650px;
+	/* height: 240px; */
+	width: 570px;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -247,13 +247,6 @@ h1#logo {
 	margin-left: auto;
 }
 
-#search_bien .container {
-	background: #E3F6FC bottom no-repeat;
-	height: 350px;
-	width: 650px;
-	margin-right: auto;
-	margin-left: auto;
-}
 
 #search_bien .container_home {
 	background: #E3F6FC bottom no-repeat;
@@ -1185,7 +1178,7 @@ nav ul ul ul {
     background:  #5f6975;
     border-top: 1px solid #CCCCCC;
     font-family: Arial,Helvetica,FreeSans,sans-serif;
-    font: bold 16px "Trebuchet MS", Arial, sans-serif;
+    font: bold 14px "Trebuchet MS", Arial, sans-serif;
     height: 32px;
     margin: 0 0 50px;
     padding: 7px 15px;

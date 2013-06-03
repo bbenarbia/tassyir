@@ -41,7 +41,42 @@
 				</div>
 				<div id="search_bien">
 					<div class="tab">
-						<h2>Recherche de biens</h2>
+						<c:if test="${mainOperation == 1}">
+							<h2>offres Vente</h2>
+						</c:if>
+						<c:if test="${mainOperation == 2}">
+							<h2>offres Location</h2>
+						</c:if>
+						<c:if test="${mainOperation == 3}">
+							<h2>offres Vacances</h2>
+						</c:if>
+						<c:if test="${mainOperation == 4}">
+							<h2>offres Colocation</h2>
+						</c:if>
+						<c:if test="${mainOperation == 5}">
+							<h2>Echange</h2>
+						</c:if>
+						<c:if test="${mainOperation == 6}">
+							<h2>offres Commerce</h2>
+						</c:if>
+						<c:if test="${mainOperation == 7}">
+							<h2>Autres</h2>
+						</c:if>
+						<c:if test="${mainOperation == 8}">
+							<h2>Demandes Achat</h2>
+						</c:if>
+						<c:if test="${mainOperation == 9}">
+							<h2>Demandes Location</h2>
+						</c:if>
+						<c:if test="${mainOperation == 10}">
+							<h2>Demandes Vacances</h2>
+						</c:if>
+						<c:if test="${mainOperation == 11}">
+							<h2>Demandes Colocation</h2>
+						</c:if>
+						<c:if test="${mainOperation == 12}">
+							<h2>Demandes Commerce</h2>
+						</c:if>						
 					</div>
 					<div class="container">
 						<form:form modelAttribute="findBiens" method="post" id="form1">
@@ -266,6 +301,9 @@
 					</div>
 					<div class="bottom"></div>
 				</div>
+			</div>
+			<div id="home_sidebar">
+				<jsp:include page="./../common/slide-right.jsp" />
 			</div>
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>

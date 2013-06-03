@@ -1,9 +1,9 @@
 <%@ include file="/WEB-INF/pages/common/header.jsp" %>
 
 <div id="header-menu">
-	<a href="/?lang=en"><img src="/images/lang/en.png" alt="English version" style="float : right ; margin : 4px 6px" /></a>
+	<a href="/?lang=en"><img src="/images/lang/en.png" alt="Arabic version" style="float : right ; margin : 4px 6px" /></a>
 	<ul class="current" id="origine-menu">
-		<li><a href="http://www.pap.fr">Offres</a></li>
+		<li><a href="${contextPath}">Offres</a></li>
 	</ul>
 	
 	<ul class="sub_active" id="origine-sous-menu">
@@ -13,10 +13,10 @@
 					<li><a href="${contextPath}/biens/recherche-logement/3.htm">Vacances</a></li>
 					<li><a href="${contextPath}/biens/recherche-logement/6.htm">Commerces</a></li>
 					<li><a href="${contextPath}/biens/recherche-logement/7.htm">Autres</a></li>	
-					<li ><a href="http://www.pap.fr/annonceur/passer" style="color : #DF0D3D">>> Passer une annonce</a></li>
+					<li ><a href="${contextPath}/biens/new.htm" style="color : #DF0D3D"> &#62;&#62; Passer une annonce</a></li>
 	</ul>
 	<ul class="select">
-		<li><a href="http://www.pap.fr/evaluation">Demande		<!--[if gte IE 7]><!--></a><!--<![endif]--><!--[if lte IE 6]><table><tr><td><![endif]-->
+		<li><a href="#">Demande		<!--[if gte IE 7]><!--></a><!--<![endif]--><!--[if lte IE 6]><table><tr><td><![endif]-->
 		<ul class="sub">
 					<li><a href="${contextPath}/biens/recherche-logement/9.htm">Location</a></li>
 					<li><a href="${contextPath}/biens/recherche-logement/8.htm">Vente</a></li>
@@ -28,7 +28,7 @@
 		</li>
 	</ul>
 	<ul class="select">
-		<li><a href="http://www.pap.fr/diagnostic">Services		<!--[if gte IE 7]><!--></a><!--<![endif]--><!--[if lte IE 6]><table><tr><td><![endif]-->
+		<li><a href="#">Services		<!--[if gte IE 7]><!--></a><!--<![endif]--><!--[if lte IE 6]><table><tr><td><![endif]-->
 		<ul class="sub">
 					<li><a href="${contextPath}/biens/find-biens.htm">Plans</a></li>
 					<li><a href="${contextPath}/biens/find-biens.htm">Annuaire</a></li>
@@ -39,7 +39,7 @@
 		</li>
 	</ul>
 	<ul class="select">
-		<li><a href="http://www.pap.fr/argent">Profesionnels		<!--[if gte IE 7]><!--></a><!--<![endif]--><!--[if lte IE 6]><table><tr><td><![endif]-->
+		<li><a href="#">Profesionnels		<!--[if gte IE 7]><!--></a><!--<![endif]--><!--[if lte IE 6]><table><tr><td><![endif]-->
 		<ul class="sub">
 			<li><a href="${contextPath}/biens/find-biens.htm">Agences</a></li>
 					<li><a href="${contextPath}/biens/find-biens.htm">Promoteurs</a></li>
@@ -50,7 +50,7 @@
 		</li>
 	</ul>
 	<ul class="select">
-		<li><a href="http://www.pap.fr/conseils">Offres		<!--[if gte IE 7]><!--></a><!--<![endif]--><!--[if lte IE 6]><table><tr><td><![endif]-->
+		<li><a href="#">Offres		<!--[if gte IE 7]><!--></a><!--<![endif]--><!--[if lte IE 6]><table><tr><td><![endif]-->
 		<ul class="sub">
 					<li><a href="${contextPath}/biens/recherche-logement/2.htm">Location</a></li>
 					<li><a href="${contextPath}/biens/recherche-logement/1.htm">Vente</a></li>
@@ -63,7 +63,7 @@
 		</li>
 	</ul>
 	<ul class="select">
-		<li><a href="http://www.pap.fr/travaux-deco">Conseils		<!--[if gte IE 7]><!--></a><!--<![endif]--><!--[if lte IE 6]><table><tr><td><![endif]-->
+		<li><a href="#">Conseils		<!--[if gte IE 7]><!--></a><!--<![endif]--><!--[if lte IE 6]><table><tr><td><![endif]-->
 		<ul class="sub">
 					<li><a href="${contextPath}/biens/find-biens.htm">Agences</a></li>
 					<li><a href="${contextPath}/biens/find-biens.htm">Promoteurs</a></li>
@@ -72,7 +72,7 @@
 		</li>
 	</ul>
 	<ul class="select">
-		<li><a href="http://www.pap.fr/services">Services		<!--[if gte IE 7]><!--></a><!--<![endif]--><!--[if lte IE 6]><table><tr><td><![endif]-->
+		<li><a href="#">Services		<!--[if gte IE 7]><!--></a><!--<![endif]--><!--[if lte IE 6]><table><tr><td><![endif]-->
 		<ul class="sub">
 				<li><a href="http://www.pap.fr/argent/calculettes">Calculettes</a></li>
 				<li><a href="http://www.pap.fr/argent/indices">Indices &amp; chiffres</a></li>
