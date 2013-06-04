@@ -108,12 +108,14 @@ CREATE TABLE IF NOT EXISTS users (
   UNIQUE(id_user,  id_role)
   ) engine=InnoDB  DEFAULT CHARSET=utf8;
   
-  CREATE TABLE IF NOT EXISTS departements (
+  CREATE TABLE IF NOT EXISTS towns (
  id INT(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
  ref VARCHAR(80),
  name VARCHAR(80),
+ codePostal VARCHAR(20),
+ departement VARCHAR(80),
+ typeVille INT(5) DEFAULT 0,
  region VARCHAR(80),
- prefecture VARCHAR(80),
   INDEX(name)
 ) engine=InnoDB  DEFAULT CHARSET=utf8;
 

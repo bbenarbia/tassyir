@@ -19,7 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import net.bbenarbia.domain.Departement;
+import net.bbenarbia.domain.Town;
 import net.bbenarbia.domain.User;
 import net.bbenarbia.domain.base.Adresse;
 import net.bbenarbia.domain.base.NamedEntity;
@@ -51,7 +51,7 @@ public class BienImmobilier extends NamedEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "idDepartement")
-	private Departement departement;
+	private Town departement;
 
 	@Column(name = "description")
 	private String description;
@@ -199,11 +199,11 @@ public class BienImmobilier extends NamedEntity {
 		this.photos = photos;
 	}
 
-	public Departement getDepartement() {
+	public Town getDepartement() {
 		return departement;
 	}
 
-	public void setDepartement(Departement departement) {
+	public void setDepartement(Town departement) {
 		this.departement = departement;
 	}
 

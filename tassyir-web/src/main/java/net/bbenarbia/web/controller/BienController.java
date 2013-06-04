@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import net.bbenarbia.domain.Departement;
+import net.bbenarbia.domain.Town;
 import net.bbenarbia.domain.User;
 import net.bbenarbia.domain.enums.EnumConsEnergie;
 import net.bbenarbia.domain.enums.EnumEtatBien;
@@ -34,7 +34,7 @@ import net.bbenarbia.domain.immobilier.BienImmobilier;
 import net.bbenarbia.domain.immobilier.Maison;
 import net.bbenarbia.domain.immobilier.Photo;
 import net.bbenarbia.domain.immobilier.Studio;
-import net.bbenarbia.service.IDepartementService;
+import net.bbenarbia.service.ITownService;
 import net.bbenarbia.service.IParameterService;
 import net.bbenarbia.service.IPhotoService;
 import net.bbenarbia.service.IUtilisateurService;
@@ -77,7 +77,7 @@ public class BienController {
 	private IUtilisateurService userService;
 	
 	@Autowired
-	private IDepartementService departementservice;
+	private ITownService departementservice;
 
 	@Autowired
 	IParameterService parameterService;
@@ -120,10 +120,10 @@ public class BienController {
 	
 	@RequestMapping(value = "/states", method = RequestMethod.GET)
 	public @ResponseBody
-	List<Departement> findAllStates() {
+	List<Town> findAllStates() {
 //		logger.debug("finding all states");
-		List<Departement> listDepartements = departementservice.getAll();
-		return new LinkedList<Departement>(listDepartements);
+		List<Town> listDepartements = departementservice.getAll();
+		return new LinkedList<Town>(listDepartements);
 	}
 	
 	
@@ -146,11 +146,11 @@ public class BienController {
 	}
 
 	@ModelAttribute("departementsList")
-	public List<Departement> populateDepartementList() {
+	public List<Town> populateDepartementList() {
 
-		List<Departement> listDepartements = departementservice.getAll();
+		List<Town> listDepartements = departementservice.getAll();
 
-		return new LinkedList<Departement>(listDepartements);
+		return new LinkedList<Town>(listDepartements);
 	}
 
 	@ModelAttribute("statusList")
@@ -528,9 +528,9 @@ public class BienController {
 			if(user != null){
 				
 			String refDepartement = bienDto.getDepartement();
-			Departement departement = null;
-			List<Departement> listDepartement = departementservice
-					.getDepartementByReference(refDepartement);
+			Town departement = null;
+			List<Town> listDepartement = departementservice
+					.getTownByReference(refDepartement);
 			if (listDepartement != null && listDepartement.size() != 0) {
 				departement = listDepartement.get(0);
 			}
@@ -584,9 +584,9 @@ public class BienController {
 			return "immobilier/modification/createMaisonForm";
 		} else {
 			String refDepartement = bienDto.getDepartement();
-			Departement departement = null;
-			List<Departement> listDepartement = departementservice
-					.getDepartementByReference(refDepartement);
+			Town departement = null;
+			List<Town> listDepartement = departementservice
+					.getTownByReference(refDepartement);
 			if (listDepartement != null && listDepartement.size() != 0) {
 				departement = listDepartement.get(0);
 			}
@@ -645,9 +645,9 @@ public class BienController {
 			return "immobilier/modification/createAppartementForm";
 		} else {
 			String refDepartement = bienDto.getDepartement();
-			Departement departement = null;
-			List<Departement> listDepartement = departementservice
-					.getDepartementByReference(refDepartement);
+			Town departement = null;
+			List<Town> listDepartement = departementservice
+					.getTownByReference(refDepartement);
 			if (listDepartement != null && listDepartement.size() != 0) {
 				departement = listDepartement.get(0);
 			}
@@ -727,7 +727,7 @@ public class BienController {
 				bien = bienDto.updateStudio((Studio) bien);
 			}
 			*/
-			List<Departement> listDepartFound = departementservice.getDepartementByReference(bienDto.getDepartement()); 
+			List<Town> listDepartFound = departementservice.getTownByReference(bienDto.getDepartement()); 
 			if(listDepartFound != null && listDepartFound.size() != 0){
 				bien.setDepartement(listDepartFound.get(0));
 			}

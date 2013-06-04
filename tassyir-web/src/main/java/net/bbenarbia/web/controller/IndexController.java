@@ -3,10 +3,10 @@ package net.bbenarbia.web.controller;
 import java.util.LinkedList;
 import java.util.List;
 
-import net.bbenarbia.domain.Departement;
+import net.bbenarbia.domain.Town;
 import net.bbenarbia.domain.enums.EnumTypeBien;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
-import net.bbenarbia.service.IDepartementService;
+import net.bbenarbia.service.ITownService;
 import net.bbenarbia.service.immobilier.IBienService;
 import net.bbenarbia.web.dto.FindBienDTO;
 
@@ -24,13 +24,13 @@ public class IndexController {
 	IBienService bienService;
 	 
 	@Autowired
-	private IDepartementService departementservice;
+	private ITownService departementservice;
 	
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 
-		List<Departement> listDepartements = departementservice.getAll();
+		List<Town> listDepartements = departementservice.getAll();
 		
 		
 		List<EnumTypeOperation> typesOperationsList = new LinkedList<EnumTypeOperation>();
@@ -46,7 +46,7 @@ public class IndexController {
 		FindBienDTO findBienDto = new FindBienDTO();
 		
 		model.addAttribute("findBiens", findBienDto);
-		model.addAttribute("departementsList", new LinkedList<Departement>(listDepartements));
+		model.addAttribute("departementsList", new LinkedList<Town>(listDepartements));
 		model.addAttribute("typesOperationsList", typesOperationsList);
 		model.addAttribute("typesLogementList", typesLogementList);
 		
