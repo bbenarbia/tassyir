@@ -9,6 +9,7 @@ public class FindBienDTO {
 
 	private String refBien;
 	private String departementBien;
+	private String communeBien;
 	private String typeBien;
 	private Integer nbPiecesMin;
 	private Integer typeOperationBien;
@@ -214,6 +215,14 @@ public class FindBienDTO {
 
 	public void setTypeOperationBien(Integer typeOperationBien) {
 		this.typeOperationBien = typeOperationBien;
+	}
+
+	public String getCommuneBien() {
+		return communeBien;
+	}
+
+	public void setCommuneBien(String communeBien) {
+		this.communeBien = communeBien;
 	}
 
 

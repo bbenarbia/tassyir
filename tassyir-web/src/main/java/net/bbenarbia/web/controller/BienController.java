@@ -6,8 +6,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -57,6 +59,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -87,6 +90,43 @@ public class BienController {
 		dataBinder.setDisallowedFields("id");
 	}
 
+	
+	
+	@RequestMapping(value = "/communes", method = RequestMethod.GET)
+	public @ResponseBody
+	Set<String> communesForWilaya(
+			@RequestParam(value = "stateName", required = true) String state) {
+//		logger.debug("finding cities for state " + state);
+		Set<String> listCommunes = new HashSet<String>();
+		if(state.equals("Oran")){
+			listCommunes.add("Oran");
+			listCommunes.add("Bir eldjir");
+			listCommunes.add("Senia");
+			listCommunes.add("Arzew");
+		}
+		else if(state.equals("Alger")){
+			listCommunes.add("Alger");
+			listCommunes.add("Bouzeriaa");
+			listCommunes.add("Dali Ibrahim");
+		}
+		else {
+			listCommunes.add("A");
+			listCommunes.add("B");
+			listCommunes.add("C");
+		}
+		return listCommunes;
+	}
+	
+	
+	@RequestMapping(value = "/states", method = RequestMethod.GET)
+	public @ResponseBody
+	List<Departement> findAllStates() {
+//		logger.debug("finding all states");
+		List<Departement> listDepartements = departementservice.getAll();
+		return new LinkedList<Departement>(listDepartements);
+	}
+	
+	
 	@ModelAttribute("typesLogementList")
 	public List<EnumTypeBien> populateLogementTypeList() {
 		List<EnumTypeBien> typesLogementList = new LinkedList<EnumTypeBien>();

@@ -21,6 +21,67 @@
 			});
  
 </script>
+
+
+<c:url var="findStateCommunesURL" value="/biens/communes.htm" />
+<c:url var="findStatesURL" value="/biens/states.htm" />
+
+<script type="text/javascript">
+$(document).ready(function() { 
+	$('#states').change(
+			function() {
+				$.getJSON('${findStateCommunesURL}', {
+					stateName : $(this).val(),
+					ajax : 'true'
+				}, function(data) {
+					var html = '<option value="">All</option>';
+					var len = data.length;
+					for ( var i = 0; i < len; i++) {
+						html += '<option value="' + data[i] + '">'
+								+ data[i] + '</option>';
+					}
+					html += '</option>';
+
+					$('#commune').html(html);
+				});
+			});
+});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				$.getJSON('${findStatesURL}', {
+					ajax : 'true'
+				}, function(data) {
+					var html = '<option value="">Departement</option>';
+					var len = data.length;
+					for ( var i = 0; i < len; i++) {
+						html += '<option value="' + data[i].name + '">'
+								+ data[i].name+ '</option>';
+					}
+					html += '</option>';
+
+					$('#states').html(html);
+				});
+			});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#commune").change(onSelectChange);
+	});
+
+	function onSelectChange() {
+		var selected = $("#commune option:selected");		
+		var output = "";
+		if(selected.val() != 0){
+			output = "You selected commune " + selected.text();
+		}
+		$("#output").html(output);
+	}
+</script>
+
 </head>
 <body>
 	<spring:url value="/biens/new.htm" var="addBienUrl" />
@@ -129,7 +190,15 @@
 											</form:select>
 									</label></td>
 									<td class="label"><spring:message code="biens.departement" /></td>
-									<td colspan="3"><label> <form:select
+									<td colspan="3"><label> 
+														<form:select id="states" path="departementBien">
+														</form:select> 
+														
+														<form:select id="commune" path="communeBien">
+															<form:option value="">commune</form:option>
+														</form:select>
+									
+									<%-- <form:select
 												path="departementBien" class="select_field">
 												<option value="-1">
 													<spring:message code="biens.indifferent" />
@@ -148,19 +217,9 @@
 														</c:otherwise>
 													</c:choose>
 												</c:forEach>
-											</form:select>
-									</label></td>
-								</tr>
-								<tr>
-									
-									<td class="label"><spring:message code="biens.pieces.min" /></td>
-									<td><label> <form:input label="nbPiecesMin"
-												path="nbPiecesMin" class="text mediumtext" />
-									</label></td>
-									<td class="label"><spring:message code="biens.pieces.max" /></td>
-									<td><label> <form:input label="nbPiecesMax"
-												path="nbPiecesMax" class="text mediumtext" />
-									</label></td>
+											</form:select> --%>
+									</label>
+									</td>
 								</tr>
 								<tr>
 									<td class="label"><spring:message
@@ -189,7 +248,19 @@
 										
 									<a href="#" class="show_hide">Afficher/Masquer les options</a>
 									<div class="slidingDiv">
-										
+									<table class="search_form">
+									<tr>
+									
+									<td class="label"><spring:message code="biens.pieces.min" /></td>
+									<td><label> <form:input label="nbPiecesMin"
+												path="nbPiecesMin" class="text mediumtext" />
+									</label></td>
+									<td class="label"><spring:message code="biens.pieces.max" /></td>
+									<td><label> <form:input label="nbPiecesMax"
+												path="nbPiecesMax" class="text mediumtext" />
+									</label></td>
+								</tr>	
+								</table>
   	 								<table class="search_form">
 											<tr>
 												<td><label> <form:checkbox path="ascenseur" />
