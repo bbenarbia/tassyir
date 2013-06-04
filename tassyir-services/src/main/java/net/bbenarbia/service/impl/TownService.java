@@ -5,6 +5,7 @@ import java.util.List;
 import net.bbenarbia.dao.ITownDao;
 import net.bbenarbia.dao.common.IGenericDao;
 import net.bbenarbia.domain.Town;
+import net.bbenarbia.domain.enums.EnumTypeVille;
 import net.bbenarbia.service.ITownService;
 import net.bbenarbia.service.generic.GenericService;
 
@@ -33,6 +34,18 @@ public class TownService extends GenericService<Town> implements
 	public List<Town> getTownByReference(String reference) {
 		
 		return townDao.getTownByReference(reference);
+	}
+
+
+	@Override
+	public List<Town> getTownByType(EnumTypeVille type) {
+		return townDao.getTownByType(type);
+	}
+
+
+	@Override
+	public List<Town> getCommunesByState(String state) {
+		return townDao.getCommunesByState(state);
 	}
 
 }

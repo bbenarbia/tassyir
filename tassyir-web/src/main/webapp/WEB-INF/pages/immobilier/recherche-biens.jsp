@@ -37,8 +37,8 @@ $(document).ready(function() {
 					var html = '<option value="">All</option>';
 					var len = data.length;
 					for ( var i = 0; i < len; i++) {
-						html += '<option value="' + data[i] + '">'
-								+ data[i] + '</option>';
+						html += '<option value="' + data[i].reference + '">'
+								+ data[i].name + '</option>';
 					}
 					html += '</option>';
 
@@ -54,10 +54,10 @@ $(document).ready(function() {
 				$.getJSON('${findStatesURL}', {
 					ajax : 'true'
 				}, function(data) {
-					var html = '<option value="">Departement</option>';
+					var html = '<option value="">All</option>';
 					var len = data.length;
 					for ( var i = 0; i < len; i++) {
-						html += '<option value="' + data[i].name + '">'
+						html += '<option value="' + data[i].reference + '">'
 								+ data[i].name+ '</option>';
 					}
 					html += '</option>';
@@ -143,8 +143,48 @@ $(document).ready(function() {
 						<form:form modelAttribute="findBiens" method="post" id="form1">
 							<table class="search_form" style="width: 100%; border: none;">
 								<tr>
-									<td class="label"><spring:message code="biens.recherche" /></td>
-									<td><label>
+									<td class="label"><spring:message code="biens.departement" /></td>
+									<td colspan="3"><label> 
+														<form:select id="states" path="departementBien">
+														</form:select>
+										</label>
+									</td>
+								</tr> 
+								<tr>
+									<td class="label"><spring:message code="biens.commune" /></td>
+									<td colspan="3"><label>		
+														<form:select id="commune" path="communeBien">
+															<form:option value="">Commune</form:option>
+														</form:select>
+										</label>
+										</td>
+								</tr>
+								<tr>
+									<td class="label"><spring:message code="biens.typebien" /></td>
+									<td><label> <form:select path="typeBien" class="select_field">
+													<option>
+														<spring:message code="bien.type.recherche.divers" />
+													</option>
+													<form:option  value="2"><spring:message code="bien.type.recherche.maison" /></form:option>
+													<form:option  value="1"><spring:message code="bien.type.recherche.appartement" /></form:option>
+													<form:option  value="3"><spring:message code="bien.type.recherche.immeuble" /></form:option>
+													<form:option  value="4"><spring:message code="bien.type.recherche.terrain" /></form:option>
+													<form:option  value="5"><spring:message code="bien.type.recherche.agricole" /></form:option>
+													<form:option  value="6"><spring:message code="bien.type.recherche.carcasse" /></form:option>
+													<form:option  value="7"><spring:message code="bien.type.recherche.commercial" /></form:option>
+													<form:option  value="8"><spring:message code="bien.type.recherche.bungalow" /></form:option>
+													<form:option  value="9"><spring:message code="bien.type.recherche.ferme" /></form:option>
+											</form:select>
+									</label></td>
+									
+								</tr>
+								<tr>
+									<td class="label"><spring:message code="biens.reference" /></td>
+									<td><label> <form:input label="refBien"
+												path="refBien" class="text mediumtext" />
+									</label></td>
+								  
+								  <td hidden="hidden"><label>
 											<form:select path="typeOperationBien"
 												class="select_field">
 												   <optgroup label="<spring:message code="bien.action.recherche.offres" />"> 
@@ -166,61 +206,8 @@ $(document).ready(function() {
    											</form:select>																
 									    </label>
 								      </td>
-								      
-									<td class="label"><spring:message code="biens.reference" /></td>
-									<td><label> <form:input label="refBien"
-												path="refBien" class="text mediumtext" />
-									</label></td>
-								    </tr>
-									<tr>
-									<td class="label"><spring:message code="biens.typebien" /></td>
-									<td><label> <form:select path="typeBien" class="select_field">
-													<option>
-														<spring:message code="bien.type.recherche.divers" />
-													</option>
-													<form:option  value="2"><spring:message code="bien.type.recherche.maison" /></form:option>
-													<form:option  value="1"><spring:message code="bien.type.recherche.appartement" /></form:option>
-													<form:option  value="3"><spring:message code="bien.type.recherche.immeuble" /></form:option>
-													<form:option  value="4"><spring:message code="bien.type.recherche.terrain" /></form:option>
-													<form:option  value="5"><spring:message code="bien.type.recherche.agricole" /></form:option>
-													<form:option  value="6"><spring:message code="bien.type.recherche.carcasse" /></form:option>
-													<form:option  value="7"><spring:message code="bien.type.recherche.commercial" /></form:option>
-													<form:option  value="8"><spring:message code="bien.type.recherche.bungalow" /></form:option>
-													<form:option  value="9"><spring:message code="bien.type.recherche.ferme" /></form:option>
-											</form:select>
-									</label></td>
-									<td class="label"><spring:message code="biens.departement" /></td>
-									<td colspan="3"><label> 
-														<form:select id="states" path="departementBien">
-														</form:select> 
-														
-														<form:select id="commune" path="communeBien">
-															<form:option value="">commune</form:option>
-														</form:select>
-									
-									<%-- <form:select
-												path="departementBien" class="select_field">
-												<option value="-1">
-													<spring:message code="biens.indifferent" />
-												</option>
-												<c:forEach var="item" items="${departementsList}">
-													<c:choose>
-														<c:when test="${departementBien == item.reference}">
-															<form:option selected="true" value="${item.reference}">
-																               				 ${item.name} 
-																            			</form:option>
-														</c:when>
-														<c:otherwise>
-															<form:option value="${item.reference}">
-																                  			 ${item.name}
-																            			</form:option>
-														</c:otherwise>
-													</c:choose>
-												</c:forEach>
-											</form:select> --%>
-									</label>
-									</td>
-								</tr>
+								 </tr>
+								
 								<tr>
 									<td class="label"><spring:message
 											code="biens.superficie.min" /></td>

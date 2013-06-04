@@ -28,15 +28,16 @@ import net.bbenarbia.domain.enums.EnumTypeBien;
 import net.bbenarbia.domain.enums.EnumTypeChauffage;
 import net.bbenarbia.domain.enums.EnumTypeEauChaude;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
+import net.bbenarbia.domain.enums.EnumTypeVille;
 import net.bbenarbia.domain.enums.ParameterCode;
 import net.bbenarbia.domain.immobilier.Appartement;
 import net.bbenarbia.domain.immobilier.BienImmobilier;
 import net.bbenarbia.domain.immobilier.Maison;
 import net.bbenarbia.domain.immobilier.Photo;
 import net.bbenarbia.domain.immobilier.Studio;
-import net.bbenarbia.service.ITownService;
 import net.bbenarbia.service.IParameterService;
 import net.bbenarbia.service.IPhotoService;
+import net.bbenarbia.service.ITownService;
 import net.bbenarbia.service.IUtilisateurService;
 import net.bbenarbia.service.immobilier.IBienService;
 import net.bbenarbia.utils.ImageService;
@@ -94,26 +95,30 @@ public class BienController {
 	
 	@RequestMapping(value = "/communes", method = RequestMethod.GET)
 	public @ResponseBody
-	Set<String> communesForWilaya(
+	Set<Town> communesForWilaya(
 			@RequestParam(value = "stateName", required = true) String state) {
 //		logger.debug("finding cities for state " + state);
-		Set<String> listCommunes = new HashSet<String>();
-		if(state.equals("Oran")){
-			listCommunes.add("Oran");
-			listCommunes.add("Bir eldjir");
-			listCommunes.add("Senia");
-			listCommunes.add("Arzew");
-		}
-		else if(state.equals("Alger")){
-			listCommunes.add("Alger");
-			listCommunes.add("Bouzeriaa");
-			listCommunes.add("Dali Ibrahim");
-		}
-		else {
-			listCommunes.add("A");
-			listCommunes.add("B");
-			listCommunes.add("C");
-		}
+		Set<Town> listCommunes = new HashSet<Town>();
+		
+		
+		listCommunes.addAll(departementservice.getCommunesByState(state));
+		
+//		if(state.equals("Oran")){
+//			listCommunes.add("Oran");
+//			listCommunes.add("Bir eldjir");
+//			listCommunes.add("Senia");
+//			listCommunes.add("Arzew");
+//		}
+//		else if(state.equals("Alger")){
+//			listCommunes.add("Alger");
+//			listCommunes.add("Bouzeriaa");
+//			listCommunes.add("Dali Ibrahim");
+//		}
+//		else {
+//			listCommunes.add("A");
+//			listCommunes.add("B");
+//			listCommunes.add("C");
+//		}
 		return listCommunes;
 	}
 	
@@ -122,7 +127,7 @@ public class BienController {
 	public @ResponseBody
 	List<Town> findAllStates() {
 //		logger.debug("finding all states");
-		List<Town> listDepartements = departementservice.getAll();
+		List<Town> listDepartements = departementservice.getTownByType(EnumTypeVille.WILAYA) ;
 		return new LinkedList<Town>(listDepartements);
 	}
 	

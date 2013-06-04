@@ -16,15 +16,15 @@ public class Town extends NamedEntity {
 	@Column(name = "ref")
 	private String reference;
 
-//	@Column(name = "codePostal")
-//	private String codePostal;
-//	
-//	@Column(name = "departement")
-//	private String departement;
-//	
-//	@Column(nullable = false)
-//	@Enumerated(EnumType.ORDINAL)
-//	private EnumTypeVille typeVille;
+	@Column(name = "codePostal")
+	private String codePostal;
+	
+	@Column(name = "departement")
+	private String departement;
+	
+	@Column(nullable = false)
+	@Enumerated(EnumType.ORDINAL)
+	private EnumTypeVille typeVille;
 
 	@Column(name = "region")
 	private String region;
@@ -46,28 +46,28 @@ public class Town extends NamedEntity {
 		this.region = region;
 	}
 
-//	public String getDepartement() {
-//		return departement;
-//	}
-//
-//	public void setDepartement(String departement) {
-//		this.departement = departement;
-//	}
-//
-//	public EnumTypeVille getTypeVille() {
-//		return typeVille;
-//	}
-//
-//	public void setTypeVille(EnumTypeVille typeVille) {
-//		this.typeVille = typeVille;
-//	}
-//
-//	public String getCodePostal() {
-//		return codePostal;
-//	}
-//
-//	public void setCodePostal(String codePostal) {
-//		this.codePostal = codePostal;
-//	}
+	public String getDepartement() {
+		return departement;
+	}
+
+	public void setDepartement(String departement) {
+		this.departement = departement;
+	}
+
+	public EnumTypeVille getTypeVille() {
+		return typeVille;
+	}
+
+	public void setTypeVille(EnumTypeVille typeVille) {
+		this.typeVille = typeVille;
+	}
+
+	public String getCodePostal() {
+		return codePostal;
+	}
+
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
+	}
 	
 }
