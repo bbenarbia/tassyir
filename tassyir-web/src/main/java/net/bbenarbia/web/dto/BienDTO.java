@@ -2,9 +2,6 @@ package net.bbenarbia.web.dto;
 
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
-
-import net.bbenarbia.domain.base.Adresse;
 import net.bbenarbia.domain.enums.EnumConsEnergie;
 import net.bbenarbia.domain.enums.EnumEtatBien;
 import net.bbenarbia.domain.enums.EnumImpactConso;
@@ -16,6 +13,8 @@ import net.bbenarbia.domain.enums.EnumTypeOperation;
 import net.bbenarbia.domain.immobilier.Appartement;
 import net.bbenarbia.domain.immobilier.Maison;
 import net.bbenarbia.domain.immobilier.Studio;
+
+import org.springframework.web.multipart.MultipartFile;
 /**
  * Le Bien DTO 
  * @author bbenarbia
@@ -121,9 +120,9 @@ public class BienDTO {
 
 	public BienDTO(Appartement appartement) {
 		this(appartement.getId(), appartement.getName(), appartement
-				.getReference(), appartement.getAdresse().getAdresse(),
-				appartement.getAdresse().getCodePostal(), appartement
-						.getAdresse().getVille(), appartement.getDepartement()
+				.getReference(), appartement.getAdresse(),
+				appartement.getDepartement().getCodePostal(), appartement
+						.getDepartement().getName(), appartement.getDepartement()
 						.getReference(), appartement.getDescription(),
 				appartement.getSuperficie(),
 				appartement.getStatus().toString(), appartement.getPrixVente(), appartement.getPrixMinVente(),
@@ -149,9 +148,9 @@ public class BienDTO {
 
 	public BienDTO(Maison maison) {
 		this(maison.getId(), maison.getName(), maison.getReference(), maison
-				.getAdresse().getAdresse(),
-				maison.getAdresse().getCodePostal(), maison.getAdresse()
-						.getVille(), maison.getDepartement().getReference(),
+				.getAdresse(),
+				maison.getDepartement().getCodePostal(), maison.getDepartement().getName()
+						, maison.getDepartement().getReference(),
 				maison.getDescription(), maison.getSuperficie(), maison
 						.getStatus().toString(), maison.getPrixVente(), maison.getPrixMinVente(), maison
 						.getLoyerMensuel(), maison.getChargesMensuel(), maison
@@ -174,9 +173,9 @@ public class BienDTO {
 
 	public BienDTO(Studio studio) {
 		this(studio.getId(), studio.getName(), studio.getReference(), studio
-				.getAdresse().getAdresse(),
-				studio.getAdresse().getCodePostal(), studio.getAdresse()
-						.getVille(), studio.getDepartement().getReference(),
+				.getAdresse(),
+				studio.getDepartement().getCodePostal(), studio.getDepartement()
+						.getName(), studio.getDepartement().getReference(),
 				studio.getDescription(), studio.getSuperficie(), studio
 						.getStatus().toString(), studio.getPrixVente(), studio.getPrixMinVente(), studio
 						.getLoyerMensuel(), studio.getChargesMensuel(), studio
@@ -273,14 +272,10 @@ public class BienDTO {
 
 	public Maison updateMaison(Maison maison) {
 
-
+		//	Update the departement not complete
 		maison.setName(name);
 		maison.setReference(reference);
-		Adresse adress = new Adresse();
-		adress.setAdresse(adresse);
-		adress.setCodePostal(codePostal);
-		adress.setVille(ville);
-		maison.setAdresse(adress);
+		maison.setAdresse(adresse);
 		maison.setDescription(description);
 		maison.setSuperficie(superficie);
 		maison.setStatus(EnumStatutProperty.valueOf(status));
@@ -321,14 +316,10 @@ public class BienDTO {
 
 	public Appartement updateAppartement(Appartement appartement) {
 
-
+//		Update the departement not complete
 		appartement.setName(name);
 		appartement.setReference(reference);
-		Adresse adress = new Adresse();
-		adress.setAdresse(adresse);
-		adress.setCodePostal(codePostal);
-		adress.setVille(ville);
-		appartement.setAdresse(adress);
+		appartement.setAdresse(adresse);
 		appartement.setDescription(description);
 		appartement.setSuperficie(superficie);
 		appartement.setStatus(EnumStatutProperty.valueOf(status));
@@ -371,13 +362,10 @@ public class BienDTO {
 	
 	public Studio updateStudio(Studio studio) {
 
+//		Update the departement not complete
 		studio.setName(name);
 		studio.setReference(reference);
-		Adresse adress = new Adresse();
-		adress.setAdresse(adresse);
-		adress.setCodePostal(codePostal);
-		adress.setVille(ville);
-		studio.setAdresse(adress);
+		studio.setAdresse(adresse);
 		studio.setDescription(description);
 		studio.setSuperficie(superficie);
 		studio.setStatus(EnumStatutProperty.valueOf(status));

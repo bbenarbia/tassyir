@@ -10,7 +10,15 @@ public class FindBienDTO {
 	private String refBien;
 	private String departementBien;
 	private String communeBien;
-	private String typeBien;
+	private Boolean appartement;
+	private Boolean maison;
+	private Boolean immeuble;
+	private Boolean terrain;
+	private Boolean agricole;
+	private Boolean carcasse;
+	private Boolean commercial;
+	private Boolean bungalow;
+	private Boolean ferme;
 	private Integer nbPiecesMin;
 	private Integer typeOperationBien;
 	private Integer nbPiecesMax;
@@ -47,14 +55,6 @@ public class FindBienDTO {
 
 	public void setDepartementBien(String departementBien) {
 		this.departementBien = departementBien;
-	}
-
-	public String getTypeBien() {
-		return typeBien;
-	}
-
-	public void setTypeBien(String typeBien) {
-		this.typeBien = typeBien;
 	}
 
 	public Integer getNbPiecesMin() {
@@ -225,6 +225,76 @@ public class FindBienDTO {
 		this.communeBien = communeBien;
 	}
 
+	public Boolean getAppartement() {
+		return appartement;
+	}
 
-	
+	public void setAppartement(Boolean appartement) {
+		this.appartement = appartement;
+	}
+
+	public Boolean getMaison() {
+		return maison;
+	}
+
+	public void setMaison(Boolean maison) {
+		this.maison = maison;
+	}
+
+	public Boolean getImmeuble() {
+		return immeuble;
+	}
+
+	public void setImmeuble(Boolean immeuble) {
+		this.immeuble = immeuble;
+	}
+
+	public Boolean getTerrain() {
+		return terrain;
+	}
+
+	public void setTerrain(Boolean terrain) {
+		this.terrain = terrain;
+	}
+
+	public Boolean getAgricole() {
+		return agricole;
+	}
+
+	public void setAgricole(Boolean agricole) {
+		this.agricole = agricole;
+	}
+
+	public Boolean getCarcasse() {
+		return carcasse;
+	}
+
+	public void setCarcasse(Boolean carcasse) {
+		this.carcasse = carcasse;
+	}
+
+	public Boolean getCommercial() {
+		return commercial;
+	}
+
+	public void setCommercial(Boolean commercial) {
+		this.commercial = commercial;
+	}
+
+	public Boolean getBungalow() {
+		return bungalow;
+	}
+
+	public void setBungalow(Boolean bungalow) {
+		this.bungalow = bungalow;
+	}
+
+	public Boolean getFerme() {
+		return ferme;
+	}
+
+	public void setFerme(Boolean ferme) {
+		this.ferme = ferme;
+	}
+
 }

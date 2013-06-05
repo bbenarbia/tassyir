@@ -7,7 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,7 +20,6 @@ import javax.persistence.Table;
 
 import net.bbenarbia.domain.Town;
 import net.bbenarbia.domain.User;
-import net.bbenarbia.domain.base.Adresse;
 import net.bbenarbia.domain.base.NamedEntity;
 import net.bbenarbia.domain.enums.EnumEtatBien;
 import net.bbenarbia.domain.enums.EnumStatutProperty;
@@ -37,9 +35,12 @@ public class BienImmobilier extends NamedEntity {
 	@Column(name = "ref")
 	private String reference;
 
-	@Embedded
-	private Adresse adresse;
-	
+	@Column(name = "adresse")
+	private String adresse = "";
+
+	// @Embedded
+	// private Adresse adresse;
+
 	@Column(name = "transport")
 	private String transport;
 
@@ -58,11 +59,11 @@ public class BienImmobilier extends NamedEntity {
 
 	@Column(name = "superficie")
 	private double superficie;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="proprietaire")
+	@JoinColumn(name = "proprietaire")
 	private User proprietaire;
-	
+
 	@Column(nullable = false)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumStatutProperty status;
@@ -72,7 +73,7 @@ public class BienImmobilier extends NamedEntity {
 
 	@Column(name = "prixMinVente")
 	private double prixMinVente;
-	
+
 	@Column(name = "honoraires")
 	private double honoraires;
 
@@ -114,21 +115,29 @@ public class BienImmobilier extends NamedEntity {
 		this.reference = reference;
 	}
 
-	public Adresse getAdresse() {
-		return adresse;
-	}
-
-	public void setAdresse(Adresse adresse) {
-		if(adresse != null){
-			this.adresse = adresse;
-		}
-		else {
-			this.adresse = new Adresse();
-		}
-	}
+	// public Adresse getAdresse() {
+	// return adresse;
+	// }
+	//
+	// public void setAdresse(Adresse adresse) {
+	// if(adresse != null){
+	// this.adresse = adresse;
+	// }
+	// else {
+	// this.adresse = new Adresse();
+	// }
+	// }
 
 	public String getDescription() {
 		return description;
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
 
 	public void setDescription(String description) {

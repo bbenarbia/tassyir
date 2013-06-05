@@ -3,15 +3,15 @@
 	margin: 0;
 }
 
-fieldset { /* background: #f2f2e6; */
+/* fieldset { 
 	padding: 10px;
 	border: 1px solid #fff;
 	border-radius: 10px 10px 10px 10px;
 	border-color: #fff #666661 #666661 #fff;
 	margin-bottom: 20px;
-	width: 680px;
-}
 
+}
+ */
 fieldset.action {
 	border-color: #e5e5e5 #797c80 #797c80 #e5e5e5;
 	margin-top: -20px;
@@ -73,7 +73,7 @@ dd {
 	z-index: 2;
 }
 
-legend { /* background: #bfbf30; */
+/* legend { 
 	background: url("../graphics/searchbg.jpg") repeat scroll 0 0
 		transparent;
 	font: 17px/21px Calibri, Arial, Helvetica, sans-serif;
@@ -83,7 +83,7 @@ legend { /* background: #bfbf30; */
 	border: 1px solid #fff;
 	border-color: #e5e5c3 #505014 #505014 #e5e5c3;
 	border-radius: 7px;
-}
+} */
 
 ul {
 	list-style: none;
@@ -1317,4 +1317,73 @@ nav ul ul ul {
 }
 #header-menu .menu-bouton-pa {
     background: url("/images/home/bouton-pa-rose.png") no-repeat scroll 0 0 transparent;
+}
+
+
+.group{
+	
+	background: none repeat scroll 0 0 #F3F3F3;
+    border: 1px solid #999999;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 3px 3px 10px #DDDDDD;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+}
+
+.group h2{
+	
+	 background-color: #BBBBBB;
+    box-shadow: 1px 1px 15px #999999 inset;
+    color: #FFFFFF;
+    font-size: 1.6em;
+    font-weight: normal;
+    margin-top: 0;
+    padding: 0.1em 0.3em;
+    text-shadow: 0 1px 0 #777777;
+}
+
+#maincontainer ul {
+    list-style-type: disc;
+    vertical-align: middle;
+}
+
+#fieldset_select_fields{	
+	float: left;
+}
+
+fieldset fieldset1 {
+    background: none repeat scroll 0 0 #E8E8E8;
+    border: 1px solid #AAAAAA;
+    margin: 0.8em;
+}
+fieldset {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #AAAAAA;
+    border-radius: 4px 4px 0 0;
+    box-shadow: 1px 1px 2px #FFFFFF inset;
+    margin-top: 1em;
+    padding: 1.5em;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+fieldset legend{
+	background-color: #FFFFFF;
+    border: 1px solid #AAAAAA;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 3px 3px 15px #BBBBBB;
+    color: #444444;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+input[type="submit"]{
+	    background: -moz-linear-gradient(center top , #FFFFFF, #CCCCCC) repeat scroll 0 0 transparent;
+    border: 1px solid #AAAAAA;
+    border-radius: 12px 12px 12px 12px;
+    color: #111111;
+    font-weight: bold;
+    margin-left: 14px;
+    padding: 3px 7px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #FFFFFF;
 }
