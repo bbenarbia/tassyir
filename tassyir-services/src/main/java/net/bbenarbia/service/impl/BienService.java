@@ -1,6 +1,7 @@
 package net.bbenarbia.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import net.bbenarbia.constants.Constants;
 import net.bbenarbia.dao.common.IGenericDao;
@@ -83,7 +84,7 @@ public class BienService extends GenericService<BienImmobilier> implements
 	}
 	
 	@Override
-	public List<BienImmobilier> searchBiens(EnumTypeBien typeBien,
+	public List<BienImmobilier> searchBiens(Set<String> selectedTypes,
 			String departement, Double superficieMin,
 			Double superficieMax, Integer NbPiecesMin, Integer NbPiecesMax,
 			Double loyerMin, Double loyerMax, Boolean ascenseur,
@@ -92,7 +93,7 @@ public class BienService extends GenericService<BienImmobilier> implements
 			Boolean adapteHandicape, Boolean piscine, Boolean caves,
 			Boolean parking, Boolean terrassesBalcons, EnumTypeOperation typeOperation) {
 	
-		return bienDao.searchBiens(typeBien, departement,
+		return bienDao.searchBiens(selectedTypes, departement,
 				 superficieMin,  superficieMax,  NbPiecesMin,
 				 NbPiecesMax,  loyerMin,  loyerMax,  ascenseur,
 					 cuisineEquipee,  jardin,  interphone,

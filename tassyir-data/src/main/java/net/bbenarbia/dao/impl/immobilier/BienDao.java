@@ -1,6 +1,7 @@
 package net.bbenarbia.dao.impl.immobilier;
 
 import java.util.List;
+import java.util.Set;
 
 import net.bbenarbia.dao.common.GenericDao;
 import net.bbenarbia.dao.immobilier.IBienDao;
@@ -31,7 +32,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 	public List<BienImmobilier> searchBiens(EnumTypeBien typeBien,
 			String departement, Double superficieMin, Double superficieMax,
 			Integer NbPiecesMin, Integer NbPiecesMax, Double loyerMin,
-			Double loyerMax,  EnumTypeOperation typeOperation) {
+			Double loyerMax, EnumTypeOperation typeOperation) {
 
 		boolean withAnd = false;
 		String and = " AND ";
@@ -40,13 +41,12 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 		StringBuilder sb = new StringBuilder();
 		sb.append("FROM " + getEntityClass().getName());
 
-
 		if (typeBien != null) {
 			sb.append(where);
 			sb.append(" typeBien = :type ");
 			withAnd = true;
 		}
-		
+
 		if (typeOperation != null) {
 			if (withAnd) {
 				sb.append(and);
@@ -57,7 +57,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			withAnd = true;
 		}
 
-		if (departement != null) {
+		if (departement != null && !departement.isEmpty()) {
 			if (withAnd) {
 				sb.append(and);
 			} else {
@@ -113,8 +113,8 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 		if (typeOperation != null) {
 			query.setParameter("typeOperation", typeOperation);
 		}
-		
-		if (departement != null) {
+
+		if (departement != null && !departement.isEmpty()) {
 			query.setParameter("departement", departement.toString());
 		}
 		if (superficieMin != null) {
@@ -135,7 +135,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<BienImmobilier> searchBiens(EnumTypeBien typeBien,
+	public List<BienImmobilier> searchBiens(Set<String> selectedTypes,
 			String departement, Double superficieMin, Double superficieMax,
 			Integer NbPiecesMin, Integer NbPiecesMax, Double loyerMin,
 			Double loyerMax, Boolean ascenseur, Boolean cuisineEquipee,
@@ -151,12 +151,17 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 		StringBuilder sb = new StringBuilder();
 		sb.append("FROM " + getEntityClass().getName());
 
-
-		if (typeBien != null) {
+		if (!selectedTypes.isEmpty()) {
 			sb.append(where);
-			sb.append(" typeBien = :type ");
+			sb.append(" typeBien IN (:listTypes) ");
 			withAnd = true;
 		}
+
+		// if (typeBien != null) {
+		// sb.append(where);
+		// sb.append(" typeBien = :type ");
+		//
+		// }
 		if (typeOperation != null) {
 			if (withAnd) {
 				sb.append(and);
@@ -166,7 +171,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			sb.append(" typeOperation = :typeOperation ");
 			withAnd = true;
 		}
-		if (departement != null) {
+		if (departement != null && !departement.isEmpty()) {
 			if (withAnd) {
 				sb.append(and);
 			} else {
@@ -332,15 +337,17 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 		}
 
 		Query query = getSession().createQuery(sb.toString());
-		if (typeBien != null) {
-			query.setParameter("type", typeBien.toString());
+		// if (typeBien != null) {
+		// query.setParameter("type", typeBien.toString());
+		// }
+		if (!selectedTypes.isEmpty()) {
+			query.setParameterList("listTypes", selectedTypes);
 		}
 		if (typeOperation != null) {
 			query.setParameter("typeOperation", typeOperation);
 		}
-		
-		
-		if (departement != null) {
+
+		if (departement != null && !departement.isEmpty()) {
 			query.setParameter("departement", departement.toString());
 		}
 		if (superficieMin != null) {

@@ -459,7 +459,7 @@ h1 {
 }
 
 .navig {
-	background: url(../graphics/mainh2bg.jpg);
+	background: none repeat scroll 0 0 #BBBBBB;
 	font: bold 12px "Trebuchet MS", Arial, sans-serif;
 	color: #000000;
 	padding: 5px;
@@ -1349,6 +1349,7 @@ nav ul ul ul {
 
 #fieldset_select_fields{	
 	float: left;
+	width: 510px;
 }
 
 fieldset fieldset1 {
@@ -1386,4 +1387,12 @@ input[type="submit"]{
     padding: 3px 7px;
     text-decoration: none;
     text-shadow: 0 1px 0 #FFFFFF;
+}
+
+.listing li:HOVER {
+    background: none repeat scroll 0 0 #BBBBBB;
+    border: 1px solid #EEEEEE;
+    display: block;
+    margin-bottom: 8px;
+    padding: 10px;
 }

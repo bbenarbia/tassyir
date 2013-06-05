@@ -1,6 +1,7 @@
 package net.bbenarbia.service.immobilier;
 
 import java.util.List;
+import java.util.Set;
 
 import net.bbenarbia.domain.enums.EnumTypeBien;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
@@ -30,7 +31,7 @@ public interface IBienService extends IGenericService<BienImmobilier> {
 			Integer NbPiecesMin, Integer NbPiecesMax, Double loyerMin,
 			Double loyerMax,  EnumTypeOperation typeOperation);
 
-	List<BienImmobilier> searchBiens(EnumTypeBien typeBien, 
+	List<BienImmobilier> searchBiens(Set<String> selectedTypes , 
 			String departement, Double superficieMin, Double superficieMax,
 			Integer NbPiecesMin, Integer NbPiecesMax, Double loyerMin,
 			Double loyerMax, Boolean ascenseur, Boolean cuisineEquipee,

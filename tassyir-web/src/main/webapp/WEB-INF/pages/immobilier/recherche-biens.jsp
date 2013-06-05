@@ -12,16 +12,23 @@
 <script type="text/javascript">
 			$(document).ready(function(){
 			        $(".slidingDiv").hide();
-			        $(".show_hide").show();
-			 
-			    $('.show_hide').click(function(){
+			        $(".show_div").show();
+			        $(".hide_div").hide();
+			        
+			    $('.show_div').click(function(){
 			    $(".slidingDiv").slideToggle();
+			    $(".show_div").hide();
+		        $(".hide_div").show();
 			    });
+			    
+			    $('.hide_div').click(function(){
+				    $(".slidingDiv").slideToggle();
+				    $(".show_div").show();
+			        $(".hide_div").hide();
+				    });
 			 
 			});
- 
 </script>
-
 
 <c:url var="findStateCommunesURL" value="/biens/communes.htm" />
 <c:url var="findStatesURL" value="/biens/states.htm" />
@@ -34,7 +41,7 @@ $(document).ready(function() {
 					stateName : $(this).val(),
 					ajax : 'true'
 				}, function(data) {
-					var html = '<option value="">All</option>';
+					var html = '<option value=""><spring:message code="biens.commune" /></option>';
 					var len = data.length;
 					for ( var i = 0; i < len; i++) {
 						html += '<option value="' + data[i].reference + '">'
@@ -54,7 +61,7 @@ $(document).ready(function() {
 				$.getJSON('${findStatesURL}', {
 					ajax : 'true'
 				}, function(data) {
-					var html = '<option value="">All</option>';
+					var html = '<option value=""><spring:message code="biens.departement" /></option>';
 					var len = data.length;
 					for ( var i = 0; i < len; i++) {
 						html += '<option value="' + data[i].reference + '">'
@@ -143,50 +150,56 @@ $(document).ready(function() {
 							<form:form modelAttribute="findBiens" method="post" id="form1">
 							<table class="search_form" style="width: 100%; border: none;">
 								 <tr>
-									<td class="label"><spring:message code="biens.departement" /></td>
-									<td colspan="3"><label> 
-														<form:select id="states" class="select_field" path="departementBien">
-														</form:select>
-										</label>
-									</td>
-								</tr>  
-								<tr>
-									<td class="label"><spring:message code="biens.commune" /></td>
-									<td colspan="3"><label>		
-														<form:select id="commune" class="select_field" path="communeBien">
-															<form:option value="">Commune</form:option>
-														</form:select>
-										</label>
-										</td>
-										<td hidden="hidden"><label>
-											<form:select path="typeOperationBien"
-												class="select_field">
-												   <optgroup label="<spring:message code="bien.action.recherche.offres" />"> 
-												      <form:option value="1"><spring:message code="bien.action.recherche.vente" /></form:option> 
-												      <form:option value="2"><spring:message code="bien.action.recherche.location" /></form:option> 
-												      <form:option value="3"><spring:message code="bien.action.recherche.vacances" /></form:option> 
-												      <form:option value="4"><spring:message code="bien.action.recherche.colocation" /></form:option> 
-												      <form:option value="6"><spring:message code="bien.action.recherche.commerce" /></form:option> 
-												   </optgroup> 
-												   <optgroup label="<spring:message code="bien.action.recherche.demandes" />"> 
-												      <form:option value="8"><spring:message code="bien.action.recherche.achat" /></form:option> 
-												      <form:option value="9"><spring:message code="bien.action.recherche.location" /></form:option> 
-												      <form:option value="10"><spring:message code="bien.action.recherche.vacances" /></form:option> 
-												      <form:option value="11"><spring:message code="bien.action.recherche.colocation" /></form:option> 
-												      <form:option value="12"><spring:message code="bien.action.recherche.commerce" /></form:option> 
-												   </optgroup>
-												   <form:option  value="5"><spring:message code="bien.action.recherche.echange" /></form:option> 
-												   <form:option  value="7"><spring:message code="bien.action.recherche.autre" /></form:option>
-   											</form:select>																
+								 	<td colspan="4">
+										<div id="searchoptions" class="pma_auto_slider slider_init_done" title="Options" style="overflow: auto;">
+										<fieldset id="fieldset_select_fields">
+											<legend><spring:message code="biens.zoneRecherche" /> </legend>
+												<table class="search_form">
+												 <tr>
+												 	 <td ><label> 
+															<form:select id="states" class="select_field" path="departementBien">
+															</form:select>
+														</label>
+													</td>
+													<td ><label>		
+															<form:select id="commune" class="select_field" path="communeBien">
+																<form:option value=""><spring:message code="biens.commune" /></form:option>
+															</form:select>
+														</label>
+														</td>
+														<td hidden="hidden"><label>
+															<form:select path="typeOperationBien"
+																class="select_field">
+																   <optgroup label="<spring:message code="bien.action.recherche.offres" />"> 
+																      <form:option value="1"><spring:message code="bien.action.recherche.vente" /></form:option> 
+																      <form:option value="2"><spring:message code="bien.action.recherche.location" /></form:option> 
+																      <form:option value="3"><spring:message code="bien.action.recherche.vacances" /></form:option> 
+																      <form:option value="4"><spring:message code="bien.action.recherche.colocation" /></form:option> 
+																      <form:option value="6"><spring:message code="bien.action.recherche.commerce" /></form:option> 
+																   </optgroup> 
+																   <optgroup label="<spring:message code="bien.action.recherche.demandes" />"> 
+																      <form:option value="8"><spring:message code="bien.action.recherche.achat" /></form:option> 
+																      <form:option value="9"><spring:message code="bien.action.recherche.location" /></form:option> 
+																      <form:option value="10"><spring:message code="bien.action.recherche.vacances" /></form:option> 
+																      <form:option value="11"><spring:message code="bien.action.recherche.colocation" /></form:option> 
+																      <form:option value="12"><spring:message code="bien.action.recherche.commerce" /></form:option> 
+																   </optgroup>
+																   <form:option  value="5"><spring:message code="bien.action.recherche.echange" /></form:option> 
+																   <form:option  value="7"><spring:message code="bien.action.recherche.autre" /></form:option>
+				   											</form:select>																
 									    </label>
 								      </td>
+												 </tr>
+												</table>
+											</fieldset>
+											</div>
+								 	</td>
 								</tr>
 								<tr>
 								<td colspan="4">
-								  <div class="slide-wrapper" >
 									<div id="searchoptions" class="pma_auto_slider slider_init_done" title="Options" style="overflow: auto;">
 									<fieldset id="fieldset_select_fields">
-										<legend><spring:message code="biens.typebien" /> : </legend>
+										<legend><spring:message code="biens.typebien" /></legend>
 										<table class="search_form">
 											<tr>
 												<td><label> <form:checkbox path="appartement" /></label></td>
@@ -242,17 +255,18 @@ $(document).ready(function() {
 												</tr>
 										</table>
 									</fieldset>
-									<br style="clear: both;">
+										<br style="clear: both;">
 									</div>
-								</div>
 								</td>
 								</tr>
 								<tr>
 								<td colspan="4">
-								<div class="slide-wrapper" >
+									<a href="#" class="show_div"><spring:message code="biens.moreoption"/></a>
+									<a href="#" class="hide_div" hidden="hidden"> <spring:message code="biens.lessoption"/></a>
+									<div class="slide-wrapper slidingDiv" >				
 									<div id="searchoptions" class="pma_auto_slider slider_init_done" title="Options" style="overflow: auto;">
-									<fieldset id="fieldset_select_fields">
-										<legend><spring:message code="biens.typebien" /> : </legend>
+									 <fieldset id="fieldset_select_fields">
+										<legend><spring:message code="biens.optionsbien" /></legend>
 										<table class="search_form">
 											<tr>
 												<td class="label"><spring:message code="biens.reference" /></td>
@@ -283,31 +297,22 @@ $(document).ready(function() {
 															path="loyerMax" class="text mediumtext" />
 												</label></td>
 											</tr>
-											</table>
-								
-									</fieldset>
-									</div>
-								</div>
-								</td>
-							  </tr>
- 							  <tr>
-								 <td class="label" colspan="4">
-									<a href="#" class="show_hide">Afficher/Masquer les options</a>
-									<div class="slide-wrapper slidingDiv" >
-									<div id="searchoptions" class="pma_auto_slider slider_init_done" title="Options" style="overflow: auto;">
-									<fieldset id="fieldset_select_fields">
-										<legend><spring:message code="biens.typebien" /> : </legend>
-										<table class="search_form">
 											<tr>
 												<td   class="label"><spring:message code="biens.pieces.min" /></td>
-												<td   colspan="2" ><label> <form:input label="nbPiecesMin"
+												<td   ><label> <form:input label="nbPiecesMin"
 															path="nbPiecesMin" class="text mediumtext" />
 												</label></td>
 												<td   class="label"><spring:message code="biens.pieces.max" /></td>
-												<td   colspan="2"><label> <form:input label="nbPiecesMax"
+												<td  ><label> <form:input label="nbPiecesMax"
 															path="nbPiecesMax" class="text mediumtext" />
 												</label></td>
 											</tr>
+											<tr>
+											<td colspan="4">
+													
+									<!-- <div class="slide-wrapper slidingDiv" >
+									<div id="searchoptions" class="pma_auto_slider slider_init_done" title="Options" style="overflow: auto;"> -->
+										<table class="search_form">
 											<tr>
 												<td><label> <form:checkbox path="ascenseur" />
 												</label></td>
@@ -330,7 +335,6 @@ $(document).ready(function() {
 														for="jardin">
 														<spring:message code="biens.jardin" />
 													</form:label></td>
-
 											</tr>
 											<tr>
 												<td><label> <form:checkbox path="interphone" />
@@ -401,23 +405,14 @@ $(document).ready(function() {
 													</form:label></td>
 											</tr>
 										</table>
-									</fieldset>
-									</div>
-									</div>
-									
-									<div class="slidingDiv">
-									<table class="search_form">
-									<tr>
-									
-									
-								</tr>	
-								</table>
-  	 								<table class="search_form">
-											
-										</table>
-										</div>
-									</td>
+								</td>
 								</tr>
+								</table>
+									</fieldset>
+								</div>
+								</div>
+								</td>
+							  </tr>
 								
 								<tr>
 									<td class="label">&nbsp;</td>
