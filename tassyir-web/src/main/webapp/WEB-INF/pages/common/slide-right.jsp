@@ -2,7 +2,7 @@
 
 <div class="block advert">
 	<img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-		alt="Advertise Here" />
+		alt="Advertise Here" style="width: 315px;" />
 </div>
 <div class="block smsalert">
 	<p>

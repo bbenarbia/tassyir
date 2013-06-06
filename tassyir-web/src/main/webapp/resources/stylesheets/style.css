@@ -479,7 +479,7 @@ h1 {
 }
 
 .listing .listinfo {
-	width: 470px;
+	width: 460px;
 	float: left;
 }
 
@@ -492,7 +492,7 @@ h1 {
 
 .listingbtns {
 	float: right;
-	width: 125px;
+	width: 135px;
 }
 
 .listinfo h3 {
@@ -516,10 +516,37 @@ h1 {
 	text-decoration: none;
 }
 
+.listbuttons {
+	background: url(../graphics/listingbuttons.jpg) no-repeat;
+	display: block;
+	height: 18px;
+	width: 121px;
+	padding-top: 4px;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.listbuttons a {
+	color: #F3F0DF;
+	text-decoration: none;
+}
+
 .price {
 	display: block;
 	font-weight: bold;
 	color: #0099CC;
+	font-size: 20px;
+	float: right;
+	margin-bottom: 4px;
+    margin-top: 16px;
+}
+
+.price-small {
+	display: block;
+	font-weight: bold;
+	color: #0099CC;
+	font-size: 12px;
+	float: right;
 }
 
 .listingbtns .listbuttons a:visited,.listingbtns .listbuttons a:active,.listingbtns .listbuttons a:hover

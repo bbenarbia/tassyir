@@ -13,8 +13,8 @@
 				<li><a href="#">About Us</a></li>
 				<li><a href="#">Contact Us</a></li>
 			</ul>
-		</div>
-		<div id="header">
+</div>
+<div id="header">
 			<div id="sitename">
 				<h1 id="logo">Tassyir</h1>
 			</div>
@@ -88,6 +88,8 @@
 			</sec:authorize>				
 		 </div>
 </div>
+<!-- <div id="header">
+</div> -->
 <%-- 
 <div class="wrapperCenter">
        <table id="table-menu">

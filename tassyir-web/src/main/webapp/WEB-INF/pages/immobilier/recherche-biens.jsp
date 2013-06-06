@@ -88,7 +88,6 @@ $(document).ready(function() {
 		$("#output").html(output);
 	}
 </script>
-
 </head>
 <body>
 	<spring:url value="/biens/new.htm" var="addBienUrl" />
@@ -98,7 +97,6 @@ $(document).ready(function() {
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">
 			<jsp:include page="../common/sub-menu.jsp" />
-
 			<div id="main_bien">
 				<jsp:include page="../common/navigator.jsp" />
 				<div id="search_bien">
@@ -406,8 +404,7 @@ $(document).ready(function() {
 								</div>
 								</div>
 								</td>
-							  </tr>
-								
+							  </tr>								
 								<tr>
 									<td class="label">&nbsp;</td>
 									<td>&nbsp;</td>

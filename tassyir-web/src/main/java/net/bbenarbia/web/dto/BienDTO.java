@@ -1,5 +1,6 @@
 package net.bbenarbia.web.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.bbenarbia.domain.enums.EnumConsEnergie;
@@ -12,6 +13,7 @@ import net.bbenarbia.domain.enums.EnumTypeEauChaude;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
 import net.bbenarbia.domain.immobilier.Appartement;
 import net.bbenarbia.domain.immobilier.Maison;
+import net.bbenarbia.domain.immobilier.Photo;
 import net.bbenarbia.domain.immobilier.Studio;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -113,6 +115,8 @@ public class BienDTO {
 	private Boolean piscine;
 	
 	private List<MultipartFile> files;
+	
+	private List<Photo> photos = new ArrayList<Photo>();
 
 	public BienDTO() {
 		super();
@@ -143,7 +147,7 @@ public class BienDTO {
 				appartement.getTransport(), appartement.isAdapteHandicape(),
 				appartement.getProximite(), appartement.getHonoraires(),
 				appartement.getDepotGarantie(), appartement.getNbSallesBains(),
-				appartement.getNbCaves(), false);
+				appartement.getNbCaves(), false, appartement.getPhotos());
 	}
 
 	public BienDTO(Maison maison) {
@@ -168,7 +172,7 @@ public class BienDTO {
 						.getTransport(), maison.isAdapteHandicape(), maison
 						.getProximite(), maison.getHonoraires(), maison
 						.getDepotGarantie(), maison.getNbSallesBains(), maison
-						.getNbCaves(), maison.isPiscine());
+						.getNbCaves(), maison.isPiscine(), maison.getPhotos());
 	}
 
 	public BienDTO(Studio studio) {
@@ -193,7 +197,7 @@ public class BienDTO {
 						.getTransport(), studio.isAdapteHandicape(), studio
 						.getProximite(), studio.getHonoraires(), studio
 						.getDepotGarantie(), studio.getNbSallesBains(), studio
-						.getNbCaves(), false);
+						.getNbCaves(), false, studio.getPhotos());
 	}
 
 	// public BienDTO(Commerce commerce) {
@@ -220,7 +224,7 @@ public class BienDTO {
 			String natureChauffage, String typeChauffage, Boolean meuble,
 			String transport, Boolean adapteHandicape, String proximite,
 			double honoraires, double depotGarantie, int nbSallesBains,
-			int nbCaves, Boolean piscine) {
+			int nbCaves, Boolean piscine, List<Photo> photos) {
 
 		super();
 		this.name = name;
@@ -268,6 +272,7 @@ public class BienDTO {
 		this.nbSallesBains = nbSallesBains;
 		this.nbCaves = nbCaves;
 		this.piscine = piscine;
+		this.photos.addAll(photos);
 	}
 
 	public Maison updateMaison(Maison maison) {
@@ -770,6 +775,14 @@ public class BienDTO {
 
 	public void setPrixMinVente(double prixMinVente) {
 		this.prixMinVente = prixMinVente;
+	}
+
+	public List<Photo> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<Photo> photos) {
+		this.photos = photos;
 	}
 
 	

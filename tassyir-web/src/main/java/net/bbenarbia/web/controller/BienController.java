@@ -574,15 +574,24 @@ public class BienController {
 	@RequestMapping("/{bienId}")
 	public String showBienDetails(@PathVariable("bienId") long bienId,
 			Model model, HttpServletRequest request,
-			HttpServletResponse response, HttpSession session) {
+			HttpServletResponse response, HttpSession session) throws Exception {
 		BienImmobilier bien = this.bienService.get(bienId);
-
+		BienDTO bienDto = null;
 		String currency = parameterService
 				.getParameterName(ParameterCode.MAIN_CURRENCY.toString())
 				.get(0).getValue();
-
 		model.addAttribute("currency", currency);
-		model.addAttribute("bien", bien);
+		
+		if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
+			bienDto = new BienDTO((Appartement) bien);
+		} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
+			bienDto = new BienDTO((Maison) bien);
+		}
+		else throw new Exception("Voir les autres types");
+		//A voir les autres types
+		
+		model.addAttribute("bien", bienDto);
+		
 
 		return "immobilier/consultation/bienDetails";
 	}
@@ -774,7 +783,6 @@ public class BienController {
 		BienDTO bienDto = null;
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
-		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
 		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
 		navigations.add(new NavigationDTO("/biens/" + bienId + ".htm",
 				"biens.action.details"));

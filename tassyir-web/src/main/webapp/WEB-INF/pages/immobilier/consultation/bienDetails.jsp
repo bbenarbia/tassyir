@@ -17,16 +17,11 @@
 		<div id="content">
 			<jsp:include page="../../common/sub-menu.jsp" />
 			<div id="main">
-				<div class="navig">
-					<c:forEach var="navig" items="${navigations}" varStatus="status">
-						&laquo;
-						<spring:url value="${navig.url}" var="navigs" />
-						<a href="${navigs}"><spring:message code="${navig.name}" /></a>
-					</c:forEach>
-				</div>
-				<h1>
+					<jsp:include page="../../common/navigator.jsp" />
+			<div class="group">
+				<h2>
 					<spring:message code="bien.information" />
-				</h1>
+				</h2>
 				<div id="single_item_details">
 					<div id="leftcolumn">
 						<div id="carrousel">
@@ -86,12 +81,12 @@
 								</p>
 							</c:if>
 							<p>
-								${bien.adresse.adresse} <br /> ${bien.adresse.codePostal} <br />
-								${bien.adresse.ville}
+								${bien.adresse} <br /> ${bien.codePostal} <br />
+								${bien.ville}
 							</p>
 							<p>
 								<spring:message code="bien.departement" />
-								:${bien.departement.name}(${bien.departement.reference})
+								:${bien.departement}
 							</p>
 							<p>
 								${bien.description}
@@ -114,10 +109,9 @@
 											SMS Alerts</a>
 									</p>
 								</div>
-
 							</div>
 						</div>
-						<div class="listingbtns">
+						<%-- <div class="listingbtns">
 							<span class="listbuttons"> <spring:url
 									value="/biens/{bienId}/edit.htm" var="bienUrl">
 									<spring:param name="bienId" value="${bien.id}" />
@@ -140,12 +134,14 @@
 								href="${fn:escapeXml(bienslistUrl)}"><spring:message
 										code="user.action.showbienlist" /></a>
 							</span>
-						</div>
+						</div> --%>
 					</div>
 					<div class="clear">&nbsp;</div>
 				</div>
-
-				<div id="moredetails">
+			</div>
+			<div class="group">
+				<h2>More details</h2>
+			<div id="moredetails">
 					<div id="listing_details">
 						<table>
 							<tr>
@@ -487,8 +483,11 @@
 						</table>
 					</div>					
 				</div>
+				</div>
 				<c:if
 					test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' || bien.typeBien=='COMMERCE'  || bien.typeBien=='MAISON' }">
+					<div class="group">
+				<h2>details energetiques</h2>
 					<div id="moredetails">
 						<div id="listing_details">
 							<table>
@@ -508,6 +507,7 @@
 								</tr>
 							</table>
 						</div>
+					</div>
 					</div>
 				</c:if>
 			</div>

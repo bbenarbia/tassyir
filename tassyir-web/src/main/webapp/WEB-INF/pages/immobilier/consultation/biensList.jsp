@@ -16,51 +16,86 @@
 	<spring:url value="/users.htm" var="userListUrl"> </spring:url>
 	<spring:url value="/" var="homeUrl"> </spring:url>
 	
+	
 	<div id="wrap">
 		<jsp:include page="../../common/menu.jsp" />
 			<div id="content">
 				<jsp:include page="../../common/sub-menu.jsp" />
 				<div id="main">
-					<jsp:include page="../../common/navigator.jsp" />
-					
+					<jsp:include page="../../common/navigator.jsp" />					
 					 <div class="group">
 					 <h2><spring:message code="biens.list" /></h2>
 					 <ul class="listing">
     					<c:forEach var="bien" items="${findBiens.listBiens}">
 							<li>
-								<div class="listinfo">
-									
-									<c:if test="${fn:length(bien.files) == 0 }">
+								<spring:url value="/biens/{bienId}.htm" var="DetailbienUrl">
+									<spring:param name="bienId" value="${bien.id}" />
+								</spring:url>
+	
+								<div class="listinfo">									
+									<c:if test="${fn:length(bien.photos) == 0 }">
 										<img  width="120" height="120" src='<c:url value="/resources/graphics/imageholder.jpg"/>'  alt="Listing Image"
 										class="listingimage" />
 									</c:if>
-									<c:if test="${fn:length(bien.files) > 0 }">
+									<c:if test="${fn:length(bien.photos) > 0 }">
 										<spring:url value="/biens/photo" var="photoUrl" />
 										<img width="120" height="120"
 												src="${photoUrl}/${bien.id}/${1}" class="listingimage">
 									</c:if>
 									<h3>${bien.typeOperation} ${bien.departement}(${bien.codePostal}) ${bien.superficie} m2</h3>
-									<p>${bien.description} ... more details </p>
-									<span class="price">${bien.superficie}</span> 
-									<span class="price">${bien.prixVente}</span> 
-									<span class="price">${bien.loyerMensuel}</span>
-									<span class="price">${bien.chargesMensuel}</span>
+									<p>${bien.description} ... <a href="${DetailbienUrl}"> Details </a></p>
+									
 								</div>
-								<div class="listingbtns">
-									<span class="listbuttons"> <spring:url value="{bienId}.htm" var="DetailbienUrl">
+								 <div class="listingbtns">
+								 	<span class="price">${bien.prixVente} M.DA</span> 
+									<span class="price-small">loyer:${bien.loyerMensuel} DA</span>
+									<span class="price-small">charges:${bien.chargesMensuel} DA</span>
+								 </div>
+											
+											
+								<%-- <div class="listingbtns">
+									<span class="listbuttons"> <spring:url value="/biens/{bienId}.htm" var="DetailbienUrl">
 										<spring:param name="bienId" value="${bien.id}" />
 										</spring:url> 
 										<a href="${DetailbienUrl}">Details Bien</a>
 									</span> 
-									<span class="listbuttons"> <spring:url value="{bienId}.htm" var="EditbienUrl">
+									<span class="listbuttons"> <spring:url value="/biens/{bienId}/edit.htm" var="EditbienUrl">
 										<spring:param name="bienId" value="${bien.id}" />
 									</spring:url> 
 									<a href="${EditbienUrl}">Edit Bien</a>
-											</span> <span class="listbuttons"> <spring:url value="{bienId}.htm" var="deleteBienUrl">
+											</span> <span class="listbuttons"> <spring:url value="/biens/{bienId}/delete.htm" var="deleteBienUrl">
 										<spring:param name="bienId" value="${bien.id}" />
 									</spring:url> 
 									<a href="${deleteBienUrl}">Delete</a></span> 
-								</div>
+								</div>  --%>
+								<%-- <div style="float: right; width: 125px;">
+											<table>
+												<tr>
+													<td>
+												 	 <span class="listbuttons"> <spring:url value="/biens/{bienId}.htm" var="DetailbienUrl">
+														<spring:param name="bienId" value="${bien.id}" />
+														</spring:url> 
+														<a href="${DetailbienUrl}">Details Bien</a>
+														</span> 
+													 </td>
+													<td>
+														<span class="listbuttons"> <spring:url value="/biens/{bienId}/edit.htm" var="EditbienUrl">
+															<spring:param name="bienId" value="${bien.id}" />
+														</spring:url> 
+															<a href="${EditbienUrl}">Edit Bien</a>
+														</span>
+													</td>
+													<td>
+														<span class="listbuttons"> <spring:url value="/biens/{bienId}/delete.htm" var="deleteBienUrl">
+																<spring:param name="bienId" value="${bien.id}" />
+															</spring:url> 
+															<a href="${deleteBienUrl}">Delete</a>
+														</span> 
+													</td>
+													
+												</tr>
+											</table>
+								</div> --%>
 								<div class="clear">&nbsp;</div>
 							</li>
 						</c:forEach>
@@ -82,7 +117,9 @@
 					</div>
 
 				</div>
-
+			<div id="home_sidebar">
+				<jsp:include page="./../../common/slide-right.jsp" />
+			</div>
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>
 			<jsp:include page="../../common/footer.jsp" />
