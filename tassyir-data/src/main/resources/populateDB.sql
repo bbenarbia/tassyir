@@ -358,7 +358,7 @@ insert into biens (
   ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
   ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin,proprietaire
-) values(1, "1",  "appartement1","APPARTEMENT","adresse 1", 1,"description de location",24.4, 1, 700, 
+) values(1, "1",  "appartement1","APPARTEMENT","adresse 1", 1,"ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, à seulement 750m-10mn à pied des RER B et C ! A l’angle du 4° étage, il est lumineux grâce à sa triple exposition et 2 terrasses de 27 m² auxquelles toutes les pièces ont accès, offrant une vue dégagée sur le parc au pied de l’immeuble et Paris à l’horizon ! Les volumes sont spacieux et agréables avec 78,21 m² habitables, un séjour confortable et une superbe cuisine équipée ouverte sur bar-repas.",24.4, 1, 700, 
 500,100, 100, 1, 1, "2/5", 2,1, 0,1,1,0,true,false,true,false, "10 min de RER A", "Proche tout commerce et centre ville",false,100.0,200,2,0,1,1,1,1,1,false, false, false, 1967, false,4);   
 
 
@@ -367,7 +367,7 @@ insert into biens (
   ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
  ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin,proprietaire
-) values(2, "2", "appartement2","APPARTEMENT","adresse 1", 2, "description de location",24.4, 1, 700, 
+) values(2, "2", "appartement2","APPARTEMENT","adresse 1", 2, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, à seulement 750m-10mn à pied des RER B et C ! A l’angle du 4° étage, il est lumineux grâce à sa triple exposition et 2 terrasses de 27 m² auxquelles toutes les pièces ont accès, offrant une vue dégagée sur le parc au pied de l’immeuble et Paris à l’horizon ! Les volumes sont spacieux et agréables avec 78,21 m² habitables, un séjour confortable et une superbe cuisine équipée ouverte sur bar-repas.",24.4, 1, 700, 
 500,100, 100, 1, 1, "2/2", 2,1,0,1,1,0,true,false,true,false, "10 min de RER A", "Proche tout commerce et centre ville",false,100.0,200,2,0,1,1,1,1,1,false, false, false, 2001, false,3);   
 
 
@@ -376,7 +376,7 @@ insert into biens (
   ,etatBien,etage,nbPieces,nbChambres,nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
   ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin,proprietaire
-) values(3, "3", "Studio","STUDIO","adresse 1", 2, "description de location",24.4, 1, 700, 
+) values(3, "3", "Studio","STUDIO","adresse 1", 2, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, à seulement 750m-10mn à pied des RER B et C ! A l’angle du 4° étage, il est lumineux grâce à sa triple exposition et 2 terrasses de 27 m² auxquelles toutes les pièces ont accès, offrant une vue dégagée sur le parc au pied de l’immeuble et Paris à l’horizon ! Les volumes sont spacieux et agréables avec 78,21 m² habitables, un séjour confortable et une superbe cuisine équipée ouverte sur bar-repas.",24.4, 1, 700, 
 500,100, 100, 1, 1,"2/6", 2,2,0,1,1,0,true,false,true,false, "10 min de RER A", "Proche tout commerce et centre ville",false,100.0,200,2,0,1,1,1,1,1,false, false, false, 2011, false,2);   
 
 insert into biens (
@@ -384,7 +384,7 @@ insert into biens (
   ,etatBien,etage,nbPieces,nbChambres,nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
   ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin,proprietaire
-) values(4, "4",  "maison 1","MAISON","adresse 1",1, "description de location",24.4, 1, 700, 
+) values(4, "4",  "maison 1","MAISON","adresse 1",1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, à seulement 750m-10mn à pied des RER B et C ! A l’angle du 4° étage, il est lumineux grâce à sa triple exposition et 2 terrasses de 27 m² auxquelles toutes les pièces ont accès, offrant une vue dégagée sur le parc au pied de l’immeuble et Paris à l’horizon ! Les volumes sont spacieux et agréables avec 78,21 m² habitables, un séjour confortable et une superbe cuisine équipée ouverte sur bar-repas.",24.4, 1, 700, 
 500,100, 100, 1, 1, "1/3", 2,2,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2011, true,1);   
 
 
@@ -393,7 +393,7 @@ insert into biens (
   ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
  ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin,proprietaire
-) values(5, "5", "appartement5","APPARTEMENT","adresse 5", 1, "description de location",24.4, 1, 700, 
+) values(5, "5", "appartement5","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, à seulement 750m-10mn à pied des RER B et C ! A l’angle du 4° étage, il est lumineux grâce à sa triple exposition et 2 terrasses de 27 m² auxquelles toutes les pièces ont accès, offrant une vue dégagée sur le parc au pied de l’immeuble et Paris à l’horizon ! Les volumes sont spacieux et agréables avec 78,21 m² habitables, un séjour confortable et une superbe cuisine équipée ouverte sur bar-repas. de location",24.4, 1, 700, 
 -500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1);   
 
 

@@ -10,7 +10,6 @@ import net.bbenarbia.domain.enums.EnumTypeBien;
 import net.bbenarbia.domain.immobilier.Appartement;
 import net.bbenarbia.domain.immobilier.BienImmobilier;
 import net.bbenarbia.domain.immobilier.Maison;
-import net.bbenarbia.domain.immobilier.Studio;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;

@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS biens (
   typeBien VARCHAR(15),
   adresse  VARCHAR(120),
   idDepartement INT(5) DEFAULT 0,
-  description VARCHAR(300),
+  description VARCHAR(800),
   superficie DOUBLE ,
   status INT(5) DEFAULT 0,
   prixVente DOUBLE ,

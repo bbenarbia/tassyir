@@ -3,8 +3,6 @@ package net.bbenarbia.web.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.bbenarbia.domain.immobilier.BienImmobilier;
-
 public class FindBienDTO {
 
 	private String refBien;
@@ -39,7 +37,7 @@ public class FindBienDTO {
 	private Boolean parking;
 	private Boolean terrassesBalcons;
 
-	List<BienImmobilier> listBiens = new ArrayList<BienImmobilier>(0);
+	List<BienDTO> listBiens = new ArrayList<BienDTO>(0);
 
 	public String getRefBien() {
 		return refBien;
@@ -105,11 +103,11 @@ public class FindBienDTO {
 		this.loyerMax = loyerMax;
 	}
 
-	public List<BienImmobilier> getListBiens() {
+	public List<BienDTO> getListBiens() {
 		return listBiens;
 	}
 
-	public void setListBiens(List<BienImmobilier> listBiens) {
+	public void setListBiens(List<BienDTO> listBiens) {
 		this.listBiens = listBiens;
 	}
 

@@ -136,7 +136,7 @@ body {
 }
 
 #main_bien,#main {
-	width: 590px;
+	width: 620px;
 	float: left;
 	margin-bottom: 8px;
 }
@@ -148,13 +148,13 @@ body {
 }
 
 #home_main_edit_user,#main_edit_user,#main_edit_user_bien {
-	width: 745px;
+	width: 775px;
 	float: left;
 	margin-bottom: 8px;
 }
 
 #home_sidebar,#sidebar {
-	width: 350px;
+	width: 320px;
 	float: right;
 	margin-bottom: 8px;
 }
@@ -182,7 +182,7 @@ h1#logo {
 }
 
 #search_bien {
-	background: none repeat scroll 0 0 #D1E0FA;
+	/* background: none repeat scroll 0 0 #D1E0FA; */
 }
 
 .hot {
@@ -216,7 +216,7 @@ h1#logo {
 #search_bien .container {
 	background: #E3F6FC bottom no-repeat;
 	/* height: 240px; */
-	width: 570px;
+	width: 600px;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -479,7 +479,7 @@ h1 {
 }
 
 .listing .listinfo {
-	width: 385px;
+	width: 470px;
 	float: left;
 }
 
@@ -1349,7 +1349,7 @@ nav ul ul ul {
 
 #fieldset_select_fields{	
 	float: left;
-	width: 510px;
+	width: 540px;
 }
 
 fieldset fieldset1 {
@@ -1395,4 +1395,11 @@ input[type="submit"]{
     display: block;
     margin-bottom: 8px;
     padding: 10px;
+}
+
+h1.error, div.error{
+    background-position: 5px 50%;
+    background-repeat: no-repeat;
+    border-color: #333333;
+    background-color: #FA5858;
 }

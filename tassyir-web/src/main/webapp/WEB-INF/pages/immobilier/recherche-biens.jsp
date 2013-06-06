@@ -100,13 +100,7 @@ $(document).ready(function() {
 			<jsp:include page="../common/sub-menu.jsp" />
 
 			<div id="main_bien">
-				<div class="navig">
-					<c:forEach var="navig" items="${navigations}" varStatus="status">
-							&laquo;
-							<spring:url value="${navig.url}" var="navigs" />
-						<a href="${navigs}"><spring:message code="${navig.name}" /></a>
-					</c:forEach>
-				</div>
+				<jsp:include page="../common/navigator.jsp" />
 				<div id="search_bien">
 				 <div class="group">
 						<c:if test="${mainOperation == 1}">
@@ -430,17 +424,10 @@ $(document).ready(function() {
 							</table>
 						</form:form>
 						</li>	
-							
-							<li id="li_select_theme">
-							<li id="li_select_fontsize">
 					</ul>
+					<div class="error">Veuillez selectionner au moins un type .Veuillez selectionner au moins un type .Veuillez selectionner au moins un type .</div>
 					</div>
-					<div class="container">
-						
-						
-
-					</div>
-					<div class="bottom"></div>
+					
 				</div>
 			</div>
 			<div id="home_sidebar">

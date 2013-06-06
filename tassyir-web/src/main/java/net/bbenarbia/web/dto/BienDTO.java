@@ -230,7 +230,7 @@ public class BienDTO {
 		this.adresse = adresse;
 		this.codePostal = codePostal;
 		this.ville = ville;
-		this.description = description;
+		this.description = description.substring(0, Math.min(description.length(), 200)) ;
 		this.superficie = superficie;
 		this.status = status;
 		this.prixVente = prixVente;
