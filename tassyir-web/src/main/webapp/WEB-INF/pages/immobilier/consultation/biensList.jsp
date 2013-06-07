@@ -43,13 +43,13 @@
 												src="${photoUrl}/${bien.id}/${1}" class="listingimage">
 									</c:if>
 									<h3>${bien.typeOperation} ${bien.departement}(${bien.codePostal}) ${bien.superficie} m2</h3>
-									<p>${bien.description} ... <a href="${DetailbienUrl}"> Details </a></p>
+									<p>${bien.shortDescription} ... <a href="${DetailbienUrl}"> Details </a></p>
 									
 								</div>
 								 <div class="listingbtns">
 								 	<span class="price">${bien.prixVente} M.DA</span> 
-									<span class="price-small">loyer:${bien.loyerMensuel} DA</span>
-									<span class="price-small">charges:${bien.chargesMensuel} DA</span>
+									<span class="pricesmall">loyer:${bien.loyerMensuel} DA</span>
+									<span class="pricesmall">charges:${bien.chargesMensuel} DA</span>
 								 </div>
 											
 											

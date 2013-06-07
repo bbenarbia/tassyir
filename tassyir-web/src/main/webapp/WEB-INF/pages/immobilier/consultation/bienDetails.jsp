@@ -18,10 +18,41 @@
 			<jsp:include page="../../common/sub-menu.jsp" />
 			<div id="main">
 					<jsp:include page="../../common/navigator.jsp" />
+					
 			<div class="group">
 				<h2>
-					<spring:message code="bien.information" />
+					${bien.name}
+				</h2>				
+				<div id="single_item_details">
+						<div>
+							<c:if test="${bien.typeOperation =='OFFRE_VENDRE' || bien.typeOperation =='DEMANDE_ACHAT'}">
+							 	<div class="listingprices">
+								 	<span class="price"><spring:message code="bien.prixVente" /> : ${bien.prixVente} </span> 
+									<span class="pricesmall"><spring:message code="bien.honoraires" /> : ${bien.chargesMensuel} ${currency}</span>
+								 </div>
+							</c:if> 
+							<c:if test="${bien.typeOperation =='OFFRE_LOCATION' || bien.typeOperation =='DEMANDE_LOCATION' }">
+							<div class="listingprices">
+							 	 <span class="price"><spring:message code="bien.loyerMensuel" /> : ${bien.loyerMensuel} ${currency} </span> 
+								<span class="pricesmall"><spring:message code="bien.chargesMensuel" /> : ${bien.chargesMensuel} ${currency}</span>
+								</div>
+							</c:if>
+						</div>
+						<div id="adressediv">
+									<p>
+									${bien.adresse} 
+									</p>
+									<p>
+									${bien.ville}(${bien.codePostal}) <br />
+									</p>
+						</div>
+				</div>
+			</div>
+			<div class="group">
+				<h2>
+					${bien.name}
 				</h2>
+				
 				<div id="single_item_details">
 					<div id="leftcolumn">
 						<div id="carrousel">
@@ -51,42 +82,12 @@
 									</div>
 								</c:forEach>
 							</c:if>
-						</div>
+						</div> 
 					</div>
-					<div id="rightcolumn">
-						<div class="leftpart">
-							<h2>${bien.name}</h2>
+					<div id="rightcolumndetail">
 							<p class="user">
 								<spring:message code="bien.reference" />
 								: ${bien.reference}
-							</p>
-							<c:if test="${bien.typeOperation =='OFFRE_LOCATION' || bien.typeOperation =='DEMANDE_LOCATION' }">
-								<p class="price">
-									<spring:message code="bien.loyerMensuel" />
-									: ${bien.loyerMensuel} ${currency}
-								</p>
-								<p class="price">
-									<spring:message code="bien.chargesMensuel" />
-									: ${bien.chargesMensuel} ${currency}
-								</p>
-							</c:if>
-							<c:if test="${bien.typeOperation =='OFFRE_VENDRE' || bien.typeOperation =='DEMANDE_ACHAT'}">
-								<p class="price">
-									<spring:message code="bien.prixVente" />
-									: ${bien.prixVente} ${currency}
-								</p>
-								<p class="price">
-									<spring:message code="bien.honoraires" />
-									: ${bien.honoraires} ${currency}
-								</p>
-							</c:if>
-							<p>
-								${bien.adresse} <br /> ${bien.codePostal} <br />
-								${bien.ville}
-							</p>
-							<p>
-								<spring:message code="bien.departement" />
-								:${bien.departement}
 							</p>
 							<p>
 								${bien.description}
@@ -110,7 +111,7 @@
 									</p>
 								</div>
 							</div>
-						</div>
+						<!-- </div> -->
 						<%-- <div class="listingbtns">
 							<span class="listbuttons"> <spring:url
 									value="/biens/{bienId}/edit.htm" var="bienUrl">
@@ -138,6 +139,21 @@
 					</div>
 					<div class="clear">&nbsp;</div>
 				</div>
+			</div>
+			
+			<div>
+					<div class="barreoutils">
+					
+					<span class="flol">Partagez :</span>
+					<span class="flol">Partagez :</span>
+					<span class="flol">Partagez :</span>
+					
+					<ul class="">
+						<li id="">
+							<a title="Partagez sur Facebook" target="_blank" onclick="xt_click(this,'C',xtn2,'Facebook-Detail','A');" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.paruvendu.fr%2Fimmobilier%2Flocation%2Fappartement%2Fepinay-sur-seine-93800%2F1182849903A1KILHAP000&t=vu+sur+ParuVendu.fr">Facebook</a>
+						</li>
+					</ul>
+					</div>
 			</div>
 			<div class="group">
 				<h2>More details</h2>

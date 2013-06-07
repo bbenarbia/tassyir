@@ -39,6 +39,8 @@ public class BienDTO {
 	private String departement;
 
 	private String description;
+	
+	private String shortDescription;
 
 	private double superficie;
 
@@ -234,7 +236,8 @@ public class BienDTO {
 		this.adresse = adresse;
 		this.codePostal = codePostal;
 		this.ville = ville;
-		this.description = description.substring(0, Math.min(description.length(), 200)) ;
+		this.description = description;
+		this.shortDescription= description.substring(0, Math.min(description.length(), 200)) ;
 		this.superficie = superficie;
 		this.status = status;
 		this.prixVente = prixVente;
@@ -783,6 +786,14 @@ public class BienDTO {
 
 	public void setPhotos(List<Photo> photos) {
 		this.photos = photos;
+	}
+
+	public String getShortDescription() {
+		return shortDescription;
+	}
+
+	public void setShortDescription(String shortDescription) {
+		this.shortDescription = shortDescription;
 	}
 
 	
