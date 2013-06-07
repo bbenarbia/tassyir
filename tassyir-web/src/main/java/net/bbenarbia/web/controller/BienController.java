@@ -476,7 +476,7 @@ public class BienController {
 		if (userId != null) {
 			user = userService.get(userId);
 			if (user != null) {
-				List<BienImmobilier> listBiens = user.getBiens();
+				Set<BienImmobilier> listBiens = user.getBiens();
 				for (BienImmobilier bien : listBiens) {
 					if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
 						findBienDto.getListBiens().add(new BienDTO((Appartement) bien));
@@ -505,7 +505,7 @@ public class BienController {
 		user = userService.getUtilisateurByLogin(auth.getName());
 		FindBienDTO findBienDto = new FindBienDTO();
 		if (user != null) {
-			List<BienImmobilier> listBiens = user.getBiens();
+			Set<BienImmobilier> listBiens = user.getBiens();
 			for (BienImmobilier bien : listBiens) {
 				if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
 					findBienDto.getListBiens().add(new BienDTO((Appartement) bien));
@@ -576,12 +576,17 @@ public class BienController {
 			Model model, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
 		BienImmobilier bien = this.bienService.get(bienId);
+		if(bien != null){
 		BienDTO bienDto = null;
 		String currency = parameterService
 				.getParameterName(ParameterCode.MAIN_CURRENCY.toString())
 				.get(0).getValue();
 		model.addAttribute("currency", currency);
 		
+		User user = bien.getProprietaire(); 
+		if(user != null){
+			model.addAttribute("user", user);
+		}		
 		if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
 			bienDto = new BienDTO((Appartement) bien);
 		} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
@@ -590,9 +595,8 @@ public class BienController {
 		else throw new Exception("Voir les autres types");
 		//A voir les autres types
 		
-		model.addAttribute("bien", bienDto);
-		
-
+			model.addAttribute("bien", bienDto);
+		}
 		return "immobilier/consultation/bienDetails";
 	}
 

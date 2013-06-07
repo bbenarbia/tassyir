@@ -5,10 +5,11 @@
 
 <html>
 <head>
-<jsp:include page="./../../common/head.jsp" />
+	<jsp:include page="./../../common/head.jsp" />
+	<title>${bien.typeOperation} ${bien.typeBien} ${bien.ville}(${bien.codePostal}) ${bien.superficie} m2</title>
 </head>
 <body>
-	<spring:url value="/biens/photo" var="photoUrl" />
+	<spring:url value="/users/photo" var="userPhotoUrl" />
 	<spring:url value="/biens/upload/{bienId}/show.htm" var="addPhotoUrl">
 		<spring:param name="bienId" value="${bien.id}" />
 	</spring:url>
@@ -21,7 +22,7 @@
 					
 			<div class="group">
 				<h2>
-					${bien.name}
+					${bien.typeOperation} ${bien.typeBien} ${bien.ville}(${bien.codePostal}) ${bien.superficie} m2
 				</h2>				
 				<div id="single_item_details">
 						<div>
@@ -40,18 +41,20 @@
 						</div>
 						<div id="adressediv">
 									<p>
-									${bien.adresse} 
+										${bien.adresse} 
 									</p>
 									<p>
-									${bien.ville}(${bien.codePostal}) <br />
+										${bien.ville}(${bien.codePostal}) <br />
 									</p>
+									
+									<c:if test="${not empty bien.proximite}">
+										<p>
+											<spring:message code="bien.proximite" />: ${bien.proximite}
+										</p>
+									</c:if>
+									
 						</div>
 				</div>
-			</div>
-			<div class="group">
-				<h2>
-					${bien.name}
-				</h2>
 				
 				<div id="single_item_details">
 					<div id="leftcolumn">
@@ -86,12 +89,68 @@
 					</div>
 					<div id="rightcolumndetail">
 							<p class="user">
-								<spring:message code="bien.reference" />
-								: ${bien.reference}
+								<spring:message code="bien.reference" />: ${bien.reference}
+							</p>
+							<p class="user">
+								<spring:message code="date.miseajour" />: ${bien.reference}
 							</p>
 							<p>
 								${bien.description}
 							</p>
+							<div class="divdetails">
+							 <table class="im12_detTab">
+								<tbody>
+									<tr class="auto2010_detTabTR">
+										<td class="auto2010_detTD1First"><spring:message code="bien.superficie" /></td>
+										<td class="auto2010_detTD1First">${bien.superficie} m2</td>
+									</tr>
+									<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='MAISON'}">
+									   <tr class="auto2010_detTabTR">
+										 <td class="auto2010_detTD1First"><spring:message code="bien.nbPieces" /></td>
+										 <td class="auto2010_detTD1First">${bien.nbPieces}</td>
+									   </tr>
+									  <c:if test="${ bien.cuisineEquipee}">	
+									   <tr class="auto2010_detTabTR">
+										 <td class="auto2010_detTD1First"><spring:message code="bien.cuisineEquipee" /></td>
+										 <td class="auto2010_detTD1First">
+												<spring:message code="yes" />
+										</td>
+									   	</tr>
+									   </c:if>
+									  
+									  
+									</c:if>
+									<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' }">
+										<tr class="auto2010_detTabTR">
+											 <td class="auto2010_detTD1First"><spring:message code="bien.etage" /></td>
+											 <td class="auto2010_detTD1First">${bien.etage}</td>
+									 	 </tr>
+									 	 <c:if test="${ bien.ascenseur}">	
+									 	   <tr class="auto2010_detTabTR">
+										  	<td class="auto2010_detTD1First"><spring:message code="bien.ascenseur" /></td>
+											<td class="auto2010_detTD1First">
+													<spring:message code="yes" />
+											</td>
+									  	  </tr>
+									  	  </c:if>
+									</c:if>
+									
+									<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' || bien.typeBien=='COMMERCE'  || bien.typeBien=='MAISON' }">
+										 <tr class="auto2010_detTabTR">
+											 <td class="auto2010_detTD1First"><spring:message code="bien.age" /></td>
+											 <td class="auto2010_detTD1First">${bien.age}</td>
+									 	 </tr>
+									 	 <tr class="auto2010_detTabTR">
+											 <td class="auto2010_detTD1First"><spring:message code="bien.etatBien" /></td>
+											 <td class="auto2010_detTD1First">${bien.etatBien}</td>
+									 	 </tr>
+									 	 
+									 	 
+									</c:if>
+									
+								</tbody>
+							 </table>
+							</div>
 							<div id="tabs">
 								<div id="tabs-1" class="hiddentab">
 									<p>
@@ -111,70 +170,41 @@
 									</p>
 								</div>
 							</div>
-						<!-- </div> -->
-						<%-- <div class="listingbtns">
-							<span class="listbuttons"> <spring:url
-									value="/biens/{bienId}/edit.htm" var="bienUrl">
-									<spring:param name="bienId" value="${bien.id}" />
-								</spring:url> <a href="${fn:escapeXml(bienUrl)}">Edit Bien</a>
-							</span>
-							<c:if test="${fn:length(bien.photos) < 5 }">
-								<span class="listbuttons"> <a
-									href="${fn:escapeXml(addPhotoUrl)}">Add photo</a>
-								</span>
-							</c:if>
-
-							<span class="listbuttons"><spring:url
-									value="/biens/new.htm" var="bienUrl" /> <a
-								href="${fn:escapeXml(bienUrl)}">Add Bien</a> </span> <span
-								class="listbuttons"> <spring:url
-									value="/biens/{bienId}/delete.htm" var="bienUrl">
-									<spring:param name="bienId" value="${bien.id}" />
-								</spring:url> <a href="${fn:escapeXml(bienUrl)}">Delete bien</a></span> <span
-								class="listbuttons"> <a
-								href="${fn:escapeXml(bienslistUrl)}"><spring:message
-										code="user.action.showbienlist" /></a>
-							</span>
-						</div> --%>
 					</div>
 					<div class="clear">&nbsp;</div>
-				</div>
-			</div>
-			
-			<div>
-					<div class="barreoutils">
-					
-					<span class="flol">Partagez :</span>
-					<span class="flol">Partagez :</span>
-					<span class="flol">Partagez :</span>
-					
-					<ul class="">
-						<li id="">
-							<a title="Partagez sur Facebook" target="_blank" onclick="xt_click(this,'C',xtn2,'Facebook-Detail','A');" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.paruvendu.fr%2Fimmobilier%2Flocation%2Fappartement%2Fepinay-sur-seine-93800%2F1182849903A1KILHAP000&t=vu+sur+ParuVendu.fr">Facebook</a>
-						</li>
-					</ul>
 					</div>
-			</div>
-			<div class="group">
-				<h2>More details</h2>
-			<div id="moredetails">
-					<div id="listing_details">
-						<table>
+					</div>
+							<div>
+								<div class="barreoutils">
+									<ul class="barreoutilsgardez flor">
+										<li>
+											<span class="listbuttons"> <spring:url
+													value="/biens/{bienId}/edit.htm" var="bienUrl">
+													<spring:param name="bienId" value="${bien.id}" />
+												</spring:url> <a href="${fn:escapeXml(bienUrl)}">Edit Bien</a>
+											</span>
+										</li>
+										<li>
+											<span class="listbuttons"> <spring:url value="/biens/{bienId}/delete.htm" var="bienUrl">
+												<spring:param name="bienId" value="${bien.id}" />
+											</spring:url> <a href="${fn:escapeXml(bienUrl)}">Delete bien</a></span>
+										</li>
+										<li>
+											<span class="listbuttons"> <a
+												href="${fn:escapeXml(bienslistUrl)}"><spring:message code="user.action.showbienlist" /></a>
+											</span>
+										</li>
+									</ul>
+									<div class="fin"></div>
+							</div>
+						</div>
+						<div class="group">
+							<h2>More infos</h2>
+							<div id="listing_details">
+						  <table>
 							<tr>
 								<td>
-									<spring:message code="bien.superficie" />
-								</td>
-								<td>
-								:
-								</td>
-								<td>
-									${bien.superficie} m²
-								</td>
-								<td>
 									<spring:message code="bien.status" />
-								</td>
-								<td>
-								:
 								</td>
 								<td>
 									${bien.status}
@@ -185,266 +215,133 @@
 									<spring:message code="bien.transport" />
 								</td>
 								<td>
-								:
-								</td>
-								<td>
 									${bien.transport}
 								</td>
-								<td>
-									<spring:message code="bien.proximite" />
-								</td>
-								<td>
-								:
-								</td>
-								<td>
-									${bien.proximite}
-								</td>
 							</tr>
-							
-							<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' }">
+
+							<c:if test="${(bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO') && bien.gardien}">
 								<tr>
-									<td>
-										<spring:message code="bien.etage" />
-									</td>
-									<td>
-										:
-									</td>
-									<td>
-										${bien.etage}
-									</td>
 									<td>
 										<spring:message code="bien.gardien" />
 									</td>
 									<td>
-									:
-									</td>
-									<td>
-										<c:choose>
-											<c:when test="${bien.gardien}">
-													<li><spring:message code="yes" /></li>
-											</c:when>
-											<c:otherwise>
-													<li><spring:message code="no" /></li>
-											</c:otherwise>
-										</c:choose>
+										<spring:message code="yes" />
 									</td>
 								</tr>
 							</c:if>
-							<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='MAISON'}">
-								<tr>
-									<td>
-										<spring:message code="bien.nbPieces" />
-									</td>
-									<td>
-									:
-									</td>
-									<td>
-										${bien.nbPieces}
-									</td>
-									<td>
-										<spring:message code="bien.nbChambres" />
-									</td>
-									<td>
-									:
-									</td>
-									<td>
-										${bien.nbChambres}
-									</td>
-								</tr>
-							</c:if>
-							
-							<c:if test="${bien.typeBien=='MAISON'}">
+							<c:if test="${bien.typeBien=='MAISON' && bien.jardin}">
 								<tr>
 									<td>
 										<spring:message code="bien.jardin" />
 									</td>
 									<td>
-									:
+										<spring:message code="yes" />
+										
 									</td>
-									<td>
-										<c:choose>
-											<c:when test="${bien.jardin}">
-													<li><spring:message code="yes" /></li>
-											</c:when>
-											<c:otherwise>
-													<li><spring:message code="no" /></li>
-											</c:otherwise>
-										</c:choose>
-									</td>
+								</tr>
+							</c:if>
+							<c:if test="${bien.typeBien=='MAISON' && bien.piscine}">
+								<tr>
 									<td>
 										<spring:message code="bien.piscine" />
 									</td>
 									<td>
-									:
+										<spring:message code="yes" />
 									</td>
-									<td>
-										<c:choose>
-											<c:when test="${bien.piscine}">
-													<li><spring:message code="yes" /></li>
-											</c:when>
-											<c:otherwise>
-													<li><spring:message code="no" /></li>
-											</c:otherwise>
-										</c:choose>
-									</td>
-									<td></td>
-									<td></td>
 								</tr>
 							</c:if>
-							<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' }">
-								<tr>	
-									<td>
-										<spring:message code="bien.ascenseur" />
-									</td>
-									<td>
-									:
-									</td>
-									<td>
-										<c:choose>
-											<c:when test="${bien.ascenseur}">
-													<li><spring:message code="yes" /></li>
-											</c:when>
-											<c:otherwise>
-													<li><spring:message code="no" /></li>
-											</c:otherwise>
-										</c:choose>
-									</td>
+							<c:if test="${(bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO') && bien.adapteHandicape  }">
+								<tr>
 									<td>
 										<spring:message code="bien.adapteHandicape" />
 									</td>
 									<td>
-									:
-									</td>
-									<td>
-										<c:choose>
-											<c:when test="${bien.adapteHandicape}">
-													<li><spring:message code="yes" /></li>
-											</c:when>
-											<c:otherwise>
-													<li><spring:message code="no" /></li>
-											</c:otherwise>
-										</c:choose>	
+										<spring:message code="yes" />
 									</td>
 								</tr>
 								</c:if>
 							<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' || bien.typeBien=='COMMERCE'  || bien.typeBien=='MAISON' }">
-								<tr>
-									<td>
-										<spring:message code="bien.age" />
-									</td>
-									<td>
-									:
-									</td>
-									<td>
-										${bien.age}
-									</td>
-									<td>
-										<spring:message code="bien.nbTerrasses" />
-									</td>
-									<td>
-									:
-									</td>
-									<td>
-										${bien.nbTerrasses}
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<spring:message code="bien.nbBalcons" />
-									</td>
-									<td>
-									:
-									</td>
-									<td>
-										${bien.nbBalcons}
-									</td>
-									
-									<td>
-										<spring:message code="bien.nbParkingInt" />
-									</td>
-									<td>
-									:
-									</td>
-									<td>
-										${bien.nbParkingInt}
-									</td>
-								</tr>
-								<tr>
+								<c:if test="${bien.nbTerrasses > 0}">
+									<tr>
+										<td>
+											<spring:message code="bien.nbTerrasses" />
+										</td>
+										<td>
+											${bien.nbTerrasses}
+										</td>
+									</tr>
+								</c:if>		
+								<c:if test="${bien.nbBalcons > 0}">							
+									<tr>
+										<td>
+											<spring:message code="bien.nbBalcons" />
+										</td>
+										<td>
+											${bien.nbBalcons}
+										</td>
+									</tr>
+								</c:if>
+								<c:if test="${bien.nbParkingInt > 0}">		
+									<tr>
+										<td>
+											<spring:message code="bien.nbParkingInt" />
+										</td>
+										<td>
+											${bien.nbParkingInt}
+										</td>
+									</tr>
+								</c:if>
+								<c:if test="${bien.nbParkingExt > 0}">		
+							  	 <tr>
 									<td>
 										<spring:message code="bien.nbParkingExt" />
 									</td>
 									<td>
-									:
-									</td>
-									<td>
 										${bien.nbParkingExt}
 									</td>
+								 </tr>
+								</c:if>
+								<c:if test="${ bien.interphone}">		
+								 <tr>
 									<td>
 										<spring:message code="bien.interphone" />
 									</td>
 									<td>
-									:
+													<spring:message code="yes" />
 									</td>
-									<td>
-										<c:choose>
-											<c:when test="${bien.interphone}">
-													<li><spring:message code="yes" /></li>
-											</c:when>
-											<c:otherwise>
-													<li><spring:message code="no" /></li>
-											</c:otherwise>
-										</c:choose>
-									</td>
-								</tr>
-								<tr>
+								 </tr>
+								</c:if>
+								<c:if test="${ bien.digicode}">	
+								 <tr>
 									<td>
 										<spring:message code="bien.digicode" />
 									</td>
 									<td>
-									:
+										<spring:message code="yes" />
 									</td>
-									<td>
-										<c:choose>
-											<c:when test="${bien.digicode}">
-													<li><spring:message code="yes" /></li>
-											</c:when>
-											<c:otherwise>
-													<li><spring:message code="no" /></li>
-											</c:otherwise>
-										</c:choose>
-									</td>
+								 </tr>
+								</c:if>
+								<c:if test="${ bien.meuble}">	
+								 <tr>
 									<td>
 										<spring:message code="bien.meuble" />
 									</td>
 									<td>
-									:
+										<spring:message code="yes" />
 									</td>
-									<td>
-										<c:choose>
-											<c:when test="${bien.meuble}">
-													<li><spring:message code="yes" /></li>
-											</c:when>
-											<c:otherwise>
-													<li><spring:message code="no" /></li>
-											</c:otherwise>
-										</c:choose>
-									</td>
-								</tr>
+								 </tr>
+								</c:if>
 								<tr>
 									<td>
 										<spring:message code="bien.typeEauChaude" />
 									</td>
 									<td>
-									:
-									</td>
-									<td>
 										${bien.typeEauChaude}
 									</td>
+								</tr>
+								<tr>
 									<td>
 										<spring:message code="bien.natureChauffage" />
-									</td>
-									<td>
-									:
 									</td>
 									<td>
 										${bien.natureChauffage}
@@ -453,82 +350,48 @@
 								<tr>
 									<td>
 										<spring:message code="bien.typeChauffage" />
-									</td>
-									<td>
-									:
 									</td>								
 									<td>
 										${bien.typeChauffage}
 									</td>
-									<td>
-									</td>
 								</tr>
 							</c:if>
-							<tr>
-								<td>
-									<spring:message code="bien.etatBien" />
-								</td>
-								<td>
-								:
-								</td>
-								<td colspan="4">
-									${bien.etatBien}
-								</td>
-							</tr>
-							<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='MAISON'}">
-								<tr>
-									<td>
-										<spring:message code="bien.cuisineEquipee" />
-									</td>
-									<td>
-									:
-									</td>
-									<td>
-										<c:choose>
-											<c:when test="${bien.cuisineEquipee}">
-													<li><spring:message code="yes" /></li>
-											</c:when>
-											<c:otherwise>
-													<li><spring:message code="no" /></li>
-											</c:otherwise>
-										</c:choose>
-									</td>
-								</tr>
-							</c:if>	
-							
 						</table>
-					</div>					
-				</div>
-				</div>
-				<c:if
-					test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' || bien.typeBien=='COMMERCE'  || bien.typeBien=='MAISON' }">
-					<div class="group">
-				<h2>details energetiques</h2>
-					<div id="moredetails">
-						<div id="listing_details">
-							<table>
-								<tr>
-									<td><spring:message code="bien.consoEnergie" />: <c:out
-											value="${bien.consoEnergie}" /></td>
-									<td><spring:message code="bien.impactConso" />: <c:out
-											value="${bien.impactConso}" /></td>
-								</tr>
-								<tr>
-									<td><img width="220" height="220"
-										src='<c:url value="/resources/graphics/dpe/DPE_${bien.consoEnergie}.jpg"/>'
-										class="previewimg"></td>
-									<td><img width="220" height="220"
-										src='<c:url value="/resources/graphics/dpe/GES_${bien.consoEnergie}.jpg"/>'
-										class="previewimg"></td>
-								</tr>
-							</table>
-						</div>
-					</div>
-					</div>
-				</c:if>
+					</div>	
+						<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' || bien.typeBien=='COMMERCE'  || bien.typeBien=='MAISON' }">
+							<div id="listing_details">
+												<table>
+													<tr>
+														<td><spring:message code="bien.consoEnergie" />: <c:out
+																					value="${bien.consoEnergie}" /></td>
+														<td><spring:message code="bien.impactConso" />: <c:out
+																					value="${bien.impactConso}" /></td>
+													</tr>
+													<tr>
+														<td><img width="220" height="220"
+																				src='<c:url value="/resources/graphics/dpe/DPE_${bien.consoEnergie}.jpg"/>'
+																				class="previewimg"></td>
+														<td><img width="220" height="220"
+																				src='<c:url value="/resources/graphics/dpe/GES_${bien.consoEnergie}.jpg"/>'
+																				class="previewimg"></td>
+													</tr>
+												</table>
+							</div>
+						</c:if>			
+					</div>			
 			</div>
+		<div id="home_sidebar">
+				<div class="divannonceur" >
+										<c:if test="${empty user.photo }">
+											<img width="90" height="90"  src='<c:url value="/resources/graphics/no-photos.jpg"/>' class="previewimg">
+										</c:if>
+										<c:if test="${not empty user.photo }">
+											<img width="90" height="90" src="${userPhotoUrl}/${user.id}" class="previewimg">
+										</c:if>
+				</div>
+				<jsp:include page="./../../common/slide-right.jsp" />
 		</div>
-
+	</div>
 		<div class="clear">&nbsp;</div>
 		<div class="clear">&nbsp;</div>
 		<jsp:include page="../../common/footer.jsp" />

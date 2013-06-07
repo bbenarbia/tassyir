@@ -8,15 +8,15 @@
 <jsp:include page="./../../common/head.jsp"/>
 </head>
 <body>
-	<spring:url value="/users/photo" var="photoUrl" />
-		<spring:url value="/users/upload/{userId}/show" var="addPhotoUrl">
+	<spring:url value="/users/photo" var="userPhotoUrl" />
+	<spring:url value="/users/upload/{userId}/show" var="addPhotoUrl">
 		<spring:param name="userId" value="${user.id}" />
 	</spring:url>
 	<spring:url value="/users/new.htm"  var="addUserUrl" />
 	<spring:url value="/users.htm" var="userListUrl"> </spring:url>
 	<spring:url value="/" var="homeUrl"> </spring:url>
 	
-	
+	<spring:url value="/users/photo" var="photoUrl" />
 	<div id="wrap">
 		<jsp:include page="../../common/menu.jsp" />
 			<div id="content">

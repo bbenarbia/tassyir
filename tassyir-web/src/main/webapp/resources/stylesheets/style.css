@@ -909,8 +909,8 @@ a.highlight {
 
 #single_item_details .user {
 	display: block;
-	font: bolder 16px "Trebuchet MS", Verdana, Arial, sans-serif;
-	margin-bottom: 8px;
+	font: bolder 14px "Trebuchet MS", Verdana, Arial, sans-serif;
+	margin-bottom: 6px;
 }
 
 #imagesgallerylisting {
@@ -1443,15 +1443,16 @@ h1.error, div.error{
 }
 
 #adressediv{
-	height: 90px;	
+	height: 70px;	
 	padding: 5px;	
 }
 
 #rightcolumndetail{
-	
+	padding-top:10px;
 	float: right;
     padding-right: 5px;
     width: 300px;
+    text-align: justify;
 }
 
 #tabs{
@@ -1472,4 +1473,117 @@ h1.error, div.error{
 .barreoutils span{
 	 color: #595959;
     padding: 7px 0;
+}
+
+
+
+
+
+.barreoutils {
+    background-color: #F9F9F9;
+    border: 1px solid #CACBCB;
+    border-radius: 4px 4px 4px 4px;
+    margin: 8px 0;
+    padding: 6px;
+    position: relative;
+}
+.barreoutils span {
+    color: #595959;
+    padding: 7px 0;
+}
+.barreoutilspartagez li {
+    float: left;
+    padding: 5px 6px;
+}
+.barreoutilsgardez li {
+    float: left;
+    padding: 2px 6px;
+}
+.barreoutilspartagez li a {
+    background:no-repeat scroll 0 0 transparent;
+    display: block;
+    height: 20px;
+    text-indent: 4000px;
+}
+#partagezfb a {
+    background-position: 0 0;
+    width: 68px;
+}
+#partageztw a {
+    background-position: 0 -50px;
+    width: 70px;
+}
+#partagezgp a {
+    background-position: 0 -100px;
+    width: 32px;
+}
+#partagezfb a:hover {
+    background-position: -100px 0;
+}
+#partageztw a:hover {
+    background-position: -100px -50px;
+}
+#partagezgp a:hover {
+    background-position: -100px -100px;
+}
+.barreoutilsgardez li a {
+    background: no-repeat scroll 0 0 transparent;
+    display: block;
+    height: 27px;
+    line-height: 10px;
+}
+.barreoutilsgardez li a:hover {
+    color: #D33033;
+    text-decoration: none;
+}
+#gardezenvoyez a {
+    background-position: 0 -150px;
+}
+#gardezenvoyez a:hover {
+    background-position: -100px -150px;
+}
+/* #gardezimprimez a {
+    background-position: 0 -200px;
+} */
+#gardezimprimez a:hover {
+    background-position: -100px -200px;
+}
+#gardezfavoris a {
+    background-position: 0 -250px;
+}
+#gardezfavoris a:hover {
+    background-position: -100px -250px;
+}
+.fin {
+    clear: both;
+}
+
+.im12_detTab{
+	
+	 border-collapse: collapse;
+    margin-bottom: 10px;
+    width: 265px;
+}
+.im12_detTab{
+	
+	  border-collapse: collapse;
+}
+.auto2010_detTD1First{
+	background: none repeat scroll 0 0 #F9F9F9;
+    border-bottom: 1px solid #CACBCB;
+    border-top: 1px solid #CACBCB;
+    color: #595959;
+    font-size: 12px;
+    height: 16px;
+    padding-left: 10px;
+    width: 128px;
+}
+
+.divdetails{
+	padding-top: 10px;
+}
+
+.divannonceur{
+	
+	
 }

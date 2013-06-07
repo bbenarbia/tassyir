@@ -60,8 +60,16 @@ public class BienImmobilier extends NamedEntity {
 	@Column(name = "superficie")
 	private double superficie;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "proprietaire")
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "proprietaire")
+	
+//	@ManyToOne
+//	@JoinColumn(name = "proprietaire", nullable = false)
+//	
+	@ManyToOne
+    @JoinColumn(name="proprietaire", 
+                insertable=false, updatable=false, 
+                nullable=false)
 	private User proprietaire;
 
 	@Column(nullable = false)

@@ -94,6 +94,7 @@ CREATE TABLE IF NOT EXISTS users (
   telephonePerso  VARCHAR(80),
   telephoneProf VARCHAR(80),
   mobile  VARCHAR(80),
+  typeUser INT(5) DEFAULT 0,
   fk_categorieutilisateur INT(5) UNSIGNED NOT NULL,  
   FOREIGN KEY (fk_categorieutilisateur) REFERENCES  user_categories(id),
   INDEX(last_name)

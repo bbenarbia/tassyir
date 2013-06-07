@@ -9,6 +9,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -21,12 +23,11 @@ import javax.xml.bind.annotation.XmlElement;
 
 import net.bbenarbia.domain.base.BaseUser;
 import net.bbenarbia.domain.base.Contact;
+import net.bbenarbia.domain.enums.EnumTypeUser;
 import net.bbenarbia.domain.immobilier.BienImmobilier;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 
@@ -34,23 +35,32 @@ import org.springframework.beans.support.PropertyComparator;
 @Table(name = "users")
 public class User extends BaseUser {
 
-	
 	@Embedded
 	private Contact contact;
-	
+
 	@Column(name = "photo")
 	private String photo;
+
+	@Column(nullable = false)
+	@Enumerated(EnumType.ORDINAL)
+	private EnumTypeUser typeUser;
+
+//	
+//	@OneToMany(mappedBy = "proprietaire", cascade = {
+//			javax.persistence.CascadeType.PERSIST,
+//			javax.persistence.CascadeType.MERGE })
+//	@LazyCollection(LazyCollectionOption.FALSE)
+//	@OneToMany(fetch = FetchType.LAZY,mappedBy = "proprietaire")
 	
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(mappedBy = "proprietaire", cascade = {
-			javax.persistence.CascadeType.PERSIST, javax.persistence.CascadeType.MERGE })
-	private List<BienImmobilier> biens = new ArrayList<BienImmobilier>(0);
-	
+//	@OneToMany(cascade={javax.persistence.CascadeType.ALL})
+	@OneToMany(fetch=FetchType.EAGER)
+    @JoinColumn(name="proprietaire")
+	private Set<BienImmobilier> biens = new HashSet<BienImmobilier>(0);
+
 	@ManyToOne
 	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name = "fk_categorieutilisateur")
 	private UserCategory userCategory;
-
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_role"))
@@ -84,6 +94,7 @@ public class User extends BaseUser {
 		}
 		return this.roles;
 	}
+
 	@XmlElement
 	public List<Role> getRoles() {
 		List<Role> sortedSpecs = new ArrayList<Role>(getRolesInternal());
@@ -116,12 +127,21 @@ public class User extends BaseUser {
 		this.contact = contact;
 	}
 
-	public List<BienImmobilier> getBiens() {
+
+	public Set<BienImmobilier> getBiens() {
 		return biens;
 	}
 
-	public void setBiens(List<BienImmobilier> biens) {
+	public void setBiens(Set<BienImmobilier> biens) {
 		this.biens = biens;
+	}
+
+	public EnumTypeUser getTypeUser() {
+		return typeUser;
+	}
+
+	public void setTypeUser(EnumTypeUser typeUser) {
+		this.typeUser = typeUser;
 	}
 
 }

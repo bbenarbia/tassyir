@@ -7,6 +7,7 @@ import javax.validation.constraints.Pattern;
 import net.bbenarbia.domain.User;
 import net.bbenarbia.domain.base.Contact;
 import net.bbenarbia.domain.enums.EnumTypeBien;
+import net.bbenarbia.domain.enums.EnumTypeUser;
 import net.bbenarbia.domain.immobilier.Appartement;
 import net.bbenarbia.domain.immobilier.BienImmobilier;
 import net.bbenarbia.domain.immobilier.Maison;
@@ -73,6 +74,8 @@ public class UserDTO {
 	@NotEmpty(message = "mobile must not be empty.")
 	@Pattern(regexp="(^$|[0-9]*)")
 	private String telephoneMobile;
+	
+	private String typeUser;
 
 	private UserCategoryDTO userCategory;
 
@@ -108,6 +111,7 @@ public class UserDTO {
 		this.telephoneProf = user.getContact().getTelephoneProf();
 		this.telephoneMobile = user.getContact().getTelephoneMobile();
 		this.userCategory = new UserCategoryDTO(user.getUserCategory());
+		this.typeUser = user.getTypeUser().toString();
 		if(user.getBiens() != null){
 			for (BienImmobilier bien : user.getBiens()) {
 				if(bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT)){
@@ -149,6 +153,7 @@ public class UserDTO {
 		user.setLastName(this.lastName.toUpperCase());
 		user.setLocked(this.locked);
 		user.setLogin(this.login);
+		user.setTypeUser(EnumTypeUser.valueOf(this.typeUser));
 		user.setUserCategory(this.userCategory.getUserCategory());
 		return user;
 	}
@@ -193,7 +198,7 @@ public class UserDTO {
 			UserCategoryDTO userCategory, String adresse, String codePostal,
 			String ville, Boolean alerteSurTelephone1,
 			Boolean alerteSurTelephone2, String adresseMail, String siteWeb,
-			String telephonePerso, String telephoneProf, String telephoneMobile) {
+			String telephonePerso, String telephoneProf, String telephoneMobile, EnumTypeUser typeUser) {
 		super();
 		this.id = String.valueOf(id);
 		this.code = String.valueOf(code);
@@ -213,7 +218,7 @@ public class UserDTO {
 		this.telephonePerso = telephonePerso;
 		this.telephoneProf = telephoneProf;
 		this.telephoneMobile = telephoneMobile;
-
+		this.typeUser = typeUser.toString();
 		this.userCategory = userCategory;
 	}
 
@@ -399,6 +404,14 @@ public class UserDTO {
 
 	public void setBiens(java.util.List<BienDTO> biens) {
 		this.biens = biens;
+	}
+
+	public String getTypeUser() {
+		return typeUser;
+	}
+
+	public void setTypeUser(String typeUser) {
+		this.typeUser = typeUser;
 	}
 
 	

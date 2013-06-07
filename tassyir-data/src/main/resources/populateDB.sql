@@ -297,11 +297,11 @@ insert into towns(id,ref,name,codePostal,departement,typeVille, region) values (
 
 ---Table user_categories
 
-insert into user_categories values (1,"Administrateurs", "c:\\Benaissa\\temp\\p1.jpg");
-insert into user_categories values (2,"Utilisateurs", "c:\\Benaissa\\temp\\p2.jpg");
-insert into user_categories values (3,"Managers", "c:\\Benaissa\\temp\\p3.jpg");
-insert into user_categories values (4,"Commerciaux","c:\\Benaissa\\temp\\p4.jpg");
-insert into user_categories values (5,"Autres","c:\\Benaissa\\temp\\p4.jpg");
+insert into user_categories values (1,"Administrateurs", "/opt/work/temp/p1.jpg");
+insert into user_categories values (2,"Utilisateurs", "/opt/work/temp/p2.jpg");
+insert into user_categories values (3,"Managers", "/opt/work/temp/p3.jpg");
+insert into user_categories values (4,"Commerciaux","/opt/work/temp/p4.jpg");
+insert into user_categories values (5,"Autres","/opt/work/temp/p4.jpg");
 
 --Roles
 insert into roles VALUES (1, "ROLE_USER", "");
@@ -339,15 +339,15 @@ insert into contact values (2, 1, "Contact2", "Company 2",  "adresse1",  false, 
 insert into contact values (3, 1, "Contact3", "Company 3",  "adresse1",  false, true, 75001, "Paris", "adresse@yahoo.fr", 
 "www.bbenarbia.fr", "01010101", "0202020202");
 
-insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile,  fk_categorieutilisateur)  VALUES
-				(1, 1, "c:\\Benaissa\\temp\\p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, "adresse1","93800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenaissa.fr","01010101","","0625252525",4);
-insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile,  fk_categorieutilisateur)  VALUES 
-				(2, 2, "c:\\Benaissa\\temp\\p2.jpg", "said", "med","smed","smed",true, false, "adresse2","65800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenarbia.fr","01010101","","0625252525", 3);
-insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile,  fk_categorieutilisateur)  VALUES
-				(3, 3, "c:\\Benaissa\\temp\\p3.jpg", "lakhdar", "omar","lomar","lomar",true, false,"adresse3","95800","Epinay sur seine", true, true, "ben@gmail.com","","01010101","","0625252525",  2);
+insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile,typeUser,  fk_categorieutilisateur)  VALUES
+				(1, 1, "/opt/work/temp/p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, "adresse1","93800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenaissa.fr","01010101","","0625252525",1, 4);
+insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile, typeUser, fk_categorieutilisateur)  VALUES 
+				(2, 2, "/opt/work/temp/p2.jpg", "said", "med","smed","smed",true, false, "adresse2","65800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenarbia.fr","01010101","","0625252525",0, 3);
+insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile, typeUser, fk_categorieutilisateur)  VALUES
+				(3, 3, "/opt/work/temp/p3.jpg", "lakhdar", "omar","lomar","lomar",true, false,"adresse3","95800","Epinay sur seine", true, true, "ben@gmail.com","","01010101","","0625252525",  1, 2);
 
-insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile,  fk_categorieutilisateur)  VALUES 
-                 (4, 4, "c:\\Benaissa\\temp\\p3.jpg", "benaissa", "BENARBIA","bbenaissa","bbenaissa",false, false,"adresse3","95800","Epinay sur seine", false, false, "ben@gmail.com","","01010101","","0625252525",  1);
+insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile, typeUser, fk_categorieutilisateur)  VALUES 
+                 (4, 4, "/opt/work/temp/p3.jpg", "benaissa", "BENARBIA","bbenaissa","bbenaissa",false, false,"adresse3","95800","Epinay sur seine", false, false, "ben@gmail.com","","01010101","","0625252525", 0, 1);
   
   
 insert into user_role values (4,1);
@@ -358,7 +358,7 @@ insert into biens (
   ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
   ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin,proprietaire
-) values(1, "1",  "appartement1","APPARTEMENT","adresse 1", 1,"ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, à seulement 750m-10mn à pied des RER B et C ! A l’angle du 4° étage, il est lumineux grâce à sa triple exposition et 2 terrasses de 27 m² auxquelles toutes les pièces ont accès, offrant une vue dégagée sur le parc au pied de l’immeuble et Paris à l’horizon ! Les volumes sont spacieux et agréables avec 78,21 m² habitables, un séjour confortable et une superbe cuisine équipée ouverte sur bar-repas.",24.4, 1, 700, 
+) values(1, "1",  "appartement1","APPARTEMENT","adresse 1", 1,"ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, ï¿½ seulement 750m-10mn ï¿½ pied des RER B et C ! A lï¿½angle du 4ï¿½ ï¿½tage, il est lumineux grï¿½ce ï¿½ sa triple exposition et 2 terrasses de 27 mï¿½ auxquelles toutes les piï¿½ces ont accï¿½s, offrant une vue dï¿½gagï¿½e sur le parc au pied de lï¿½immeuble et Paris ï¿½ lï¿½horizon ! Les volumes sont spacieux et agrï¿½ables avec 78,21 mï¿½ habitables, un sï¿½jour confortable et une superbe cuisine ï¿½quipï¿½e ouverte sur bar-repas.",24.4, 1, 700, 
 500,100, 100, 1, 1, "2/5", 2,1, 0,1,1,0,true,false,true,false, "10 min de RER A", "Proche tout commerce et centre ville",false,100.0,200,2,0,1,1,1,1,1,false, false, false, 1967, false,4);   
 
 
@@ -367,7 +367,7 @@ insert into biens (
   ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
  ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin,proprietaire
-) values(2, "2", "appartement2","APPARTEMENT","adresse 1", 2, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, à seulement 750m-10mn à pied des RER B et C ! A l’angle du 4° étage, il est lumineux grâce à sa triple exposition et 2 terrasses de 27 m² auxquelles toutes les pièces ont accès, offrant une vue dégagée sur le parc au pied de l’immeuble et Paris à l’horizon ! Les volumes sont spacieux et agréables avec 78,21 m² habitables, un séjour confortable et une superbe cuisine équipée ouverte sur bar-repas.",24.4, 1, 700, 
+) values(2, "2", "appartement2","APPARTEMENT","adresse 1", 2, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, ï¿½ seulement 750m-10mn ï¿½ pied des RER B et C ! A lï¿½angle du 4ï¿½ ï¿½tage, il est lumineux grï¿½ce ï¿½ sa triple exposition et 2 terrasses de 27 mï¿½ auxquelles toutes les piï¿½ces ont accï¿½s, offrant une vue dï¿½gagï¿½e sur le parc au pied de lï¿½immeuble et Paris ï¿½ lï¿½horizon ! Les volumes sont spacieux et agrï¿½ables avec 78,21 mï¿½ habitables, un sï¿½jour confortable et une superbe cuisine ï¿½quipï¿½e ouverte sur bar-repas.",24.4, 1, 700, 
 500,100, 100, 1, 1, "2/2", 2,1,0,1,1,0,true,false,true,false, "10 min de RER A", "Proche tout commerce et centre ville",false,100.0,200,2,0,1,1,1,1,1,false, false, false, 2001, false,3);   
 
 
@@ -376,7 +376,7 @@ insert into biens (
   ,etatBien,etage,nbPieces,nbChambres,nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
   ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin,proprietaire
-) values(3, "3", "Studio","STUDIO","adresse 1", 2, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, à seulement 750m-10mn à pied des RER B et C ! A l’angle du 4° étage, il est lumineux grâce à sa triple exposition et 2 terrasses de 27 m² auxquelles toutes les pièces ont accès, offrant une vue dégagée sur le parc au pied de l’immeuble et Paris à l’horizon ! Les volumes sont spacieux et agréables avec 78,21 m² habitables, un séjour confortable et une superbe cuisine équipée ouverte sur bar-repas.",24.4, 1, 700, 
+) values(3, "3", "Studio","STUDIO","adresse 1", 2, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, ï¿½ seulement 750m-10mn ï¿½ pied des RER B et C ! A lï¿½angle du 4ï¿½ ï¿½tage, il est lumineux grï¿½ce ï¿½ sa triple exposition et 2 terrasses de 27 mï¿½ auxquelles toutes les piï¿½ces ont accï¿½s, offrant une vue dï¿½gagï¿½e sur le parc au pied de lï¿½immeuble et Paris ï¿½ lï¿½horizon ! Les volumes sont spacieux et agrï¿½ables avec 78,21 mï¿½ habitables, un sï¿½jour confortable et une superbe cuisine ï¿½quipï¿½e ouverte sur bar-repas.",24.4, 1, 700, 
 500,100, 100, 1, 1,"2/6", 2,2,0,1,1,0,true,false,true,false, "10 min de RER A", "Proche tout commerce et centre ville",false,100.0,200,2,0,1,1,1,1,1,false, false, false, 2011, false,2);   
 
 insert into biens (
@@ -384,7 +384,7 @@ insert into biens (
   ,etatBien,etage,nbPieces,nbChambres,nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
   ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin,proprietaire
-) values(4, "4",  "maison 1","MAISON","adresse 1",1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, à seulement 750m-10mn à pied des RER B et C ! A l’angle du 4° étage, il est lumineux grâce à sa triple exposition et 2 terrasses de 27 m² auxquelles toutes les pièces ont accès, offrant une vue dégagée sur le parc au pied de l’immeuble et Paris à l’horizon ! Les volumes sont spacieux et agréables avec 78,21 m² habitables, un séjour confortable et une superbe cuisine équipée ouverte sur bar-repas.",24.4, 1, 700, 
+) values(4, "4",  "maison 1","MAISON","adresse 1",1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, ï¿½ seulement 750m-10mn ï¿½ pied des RER B et C ! A lï¿½angle du 4ï¿½ ï¿½tage, il est lumineux grï¿½ce ï¿½ sa triple exposition et 2 terrasses de 27 mï¿½ auxquelles toutes les piï¿½ces ont accï¿½s, offrant une vue dï¿½gagï¿½e sur le parc au pied de lï¿½immeuble et Paris ï¿½ lï¿½horizon ! Les volumes sont spacieux et agrï¿½ables avec 78,21 mï¿½ habitables, un sï¿½jour confortable et une superbe cuisine ï¿½quipï¿½e ouverte sur bar-repas.",24.4, 1, 700, 
 500,100, 100, 1, 1, "1/3", 2,2,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2011, true,1);   
 
 
@@ -393,20 +393,20 @@ insert into biens (
   ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
  ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin,proprietaire
-) values(5, "5", "appartement5","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, à seulement 750m-10mn à pied des RER B et C ! A l’angle du 4° étage, il est lumineux grâce à sa triple exposition et 2 terrasses de 27 m² auxquelles toutes les pièces ont accès, offrant une vue dégagée sur le parc au pied de l’immeuble et Paris à l’horizon ! Les volumes sont spacieux et agréables avec 78,21 m² habitables, un séjour confortable et une superbe cuisine équipée ouverte sur bar-repas. de location",24.4, 1, 700, 
+) values(5, "5", "appartement5","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, ï¿½ seulement 750m-10mn ï¿½ pied des RER B et C ! A lï¿½angle du 4ï¿½ ï¿½tage, il est lumineux grï¿½ce ï¿½ sa triple exposition et 2 terrasses de 27 mï¿½ auxquelles toutes les piï¿½ces ont accï¿½s, offrant une vue dï¿½gagï¿½e sur le parc au pied de lï¿½immeuble et Paris ï¿½ lï¿½horizon ! Les volumes sont spacieux et agrï¿½ables avec 78,21 mï¿½ habitables, un sï¿½jour confortable et une superbe cuisine ï¿½quipï¿½e ouverte sur bar-repas. de location",24.4, 1, 700, 
 -500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1);   
 
 
 
-insert into photos values(1,"photos1", 2,"c:\\Benaissa\\temp\\app1.jpg");
-insert into photos values(2,"photos2", 2,"c:\\Benaissa\\temp\\app2.jpg");
-insert into photos values(3,"photos3", 2,"c:\\Benaissa\\temp\\app3.jpg");
+insert into photos values(1,"photos1", 2,"/opt/work/temp/app1.jpg");
+insert into photos values(2,"photos2", 2,"/opt/work/temp/app2.jpg");
+insert into photos values(3,"photos3", 2,"/opt/work/temp/app3.jpg");
 
-insert into photos values(4,"photos4", 3,"c:\\Benaissa\\temp\\m1.jpg");
-insert into photos values(5,"photos5", 3,"c:\\Benaissa\\temp\\m2.jpg");
-insert into photos values(6,"photos6", 3,"c:\\Benaissa\\temp\\m3.jpg");
-insert into photos values(7,"photos7", 3,"c:\\Benaissa\\temp\\m4.jpg");
+insert into photos values(4,"photos4", 3,"/opt/work/temp/m1.jpg");
+insert into photos values(5,"photos5", 3,"/opt/work/temp/m2.jpg");
+insert into photos values(6,"photos6", 3,"/opt/work/temp/m3.jpg");
+insert into photos values(7,"photos7", 3,"/opt/work/temp/m4.jpg");
 
 
 ---c:\\Benaissa\\temp\\
----/home/moad/tempfile/
+--/opt/work/temp/
