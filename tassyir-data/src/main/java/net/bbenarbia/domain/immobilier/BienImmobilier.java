@@ -60,17 +60,34 @@ public class BienImmobilier extends NamedEntity {
 	@Column(name = "superficie")
 	private double superficie;
 
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "proprietaire")
+
 	
+
+//	
+//	@ManyToOne
+//    @JoinColumn(name="proprietaire", 
+//                insertable=false, updatable=false, 
+//                nullable=false)
 //	@ManyToOne
 //	@JoinColumn(name = "proprietaire", nullable = false)
-//	
+	
+//	@ManyToOne
+//	@Cascade (value=org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//	@JoinColumn (name="proprietaire")
+	
+//	@ManyToOne
+//	@JoinColumn (name="proprietaire")
+	
+//	@OneToMany(targetEntity=User.class,mappedBy="users")
+//	@JoinColumn(name="proprietaire")
+//	@Cascade (value={org.hibernate.annotations.CascadeType.SAVE_UPDATE,org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+	
+//	@ManyToOne(cascade = CascadeType.ALL)
+	
 	@ManyToOne
-    @JoinColumn(name="proprietaire", 
-                insertable=false, updatable=false, 
-                nullable=false)
+	@JoinColumn(name = "proprietaire")
 	private User proprietaire;
+	
 
 	@Column(nullable = false)
 	@Enumerated(EnumType.ORDINAL)

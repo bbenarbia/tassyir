@@ -28,6 +28,8 @@ import net.bbenarbia.domain.immobilier.BienImmobilier;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 
@@ -46,15 +48,15 @@ public class User extends BaseUser {
 	private EnumTypeUser typeUser;
 
 //	
-//	@OneToMany(mappedBy = "proprietaire", cascade = {
-//			javax.persistence.CascadeType.PERSIST,
-//			javax.persistence.CascadeType.MERGE })
-//	@LazyCollection(LazyCollectionOption.FALSE)
-//	@OneToMany(fetch = FetchType.LAZY,mappedBy = "proprietaire")
+
+//	
 	
-//	@OneToMany(cascade={javax.persistence.CascadeType.ALL})
-	@OneToMany(fetch=FetchType.EAGER)
-    @JoinColumn(name="proprietaire")
+//	@OneToMany
+//    @JoinColumn(name="proprietaire") 
+	@OneToMany(mappedBy = "proprietaire", cascade = {
+			javax.persistence.CascadeType.PERSIST,
+			javax.persistence.CascadeType.MERGE })
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<BienImmobilier> biens = new HashSet<BienImmobilier>(0);
 
 	@ManyToOne

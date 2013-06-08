@@ -10,6 +10,8 @@
 </head>
 <body>
 	<spring:url value="/users/photo" var="userPhotoUrl" />
+	
+	<spring:url value="/biens/photo" var="photoUrl" />
 	<spring:url value="/biens/upload/{bienId}/show.htm" var="addPhotoUrl">
 		<spring:param name="bienId" value="${bien.id}" />
 	</spring:url>
@@ -46,18 +48,12 @@
 									<p>
 										${bien.ville}(${bien.codePostal}) <br />
 									</p>
-									
-									<c:if test="${not empty bien.proximite}">
-										<p>
-											<spring:message code="bien.proximite" />: ${bien.proximite}
-										</p>
-									</c:if>
-									
 						</div>
 				</div>
 				
 				<div id="single_item_details">
 					<div id="leftcolumn">
+						
 						<div id="carrousel">
 							<c:if test="${fn:length(bien.photos) == 0 }">
 								<img width="290" height="230"
@@ -70,7 +66,7 @@
 										<div class="visu">
 											<img width="290" height="230"
 												src="${photoUrl}/${bien.id}/${status.count}"
-												class="previewimg">
+												class="previewimg"/>
 											<div class="title">
 												<spring:url value="/biens/{bienId}/photo/delete/{photoId}"
 													var="deletePhotoUrl">
@@ -104,6 +100,12 @@
 										<td class="auto2010_detTD1First"><spring:message code="bien.superficie" /></td>
 										<td class="auto2010_detTD1First">${bien.superficie} m2</td>
 									</tr>
+									<c:if test="${not empty bien.proximite}">
+										 <tr class="auto2010_detTabTR">
+											 <td class="auto2010_detTD1First"><spring:message code="bien.proximite" /></td>
+											 <td class="auto2010_detTD1First">${bien.proximite}</td>
+									 	 </tr>
+									</c:if>
 									<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='MAISON'}">
 									   <tr class="auto2010_detTabTR">
 										 <td class="auto2010_detTD1First"><spring:message code="bien.nbPieces" /></td>
@@ -113,7 +115,9 @@
 									   <tr class="auto2010_detTabTR">
 										 <td class="auto2010_detTD1First"><spring:message code="bien.cuisineEquipee" /></td>
 										 <td class="auto2010_detTD1First">
-												<spring:message code="yes" />
+										 		<img width="20" height="20"
+													src='<c:url value="/resources/graphics/Checked.png"/>'>
+												<%-- <spring:message code="yes" /> --%>
 										</td>
 									   	</tr>
 									   </c:if>
@@ -129,7 +133,9 @@
 									 	   <tr class="auto2010_detTabTR">
 										  	<td class="auto2010_detTD1First"><spring:message code="bien.ascenseur" /></td>
 											<td class="auto2010_detTD1First">
-													<spring:message code="yes" />
+													<%-- <spring:message code="yes" /> --%>
+													<img width="20" height="20"
+													src='<c:url value="/resources/graphics/Checked.png"/>'>
 											</td>
 									  	  </tr>
 									  	  </c:if>
@@ -144,8 +150,6 @@
 											 <td class="auto2010_detTD1First"><spring:message code="bien.etatBien" /></td>
 											 <td class="auto2010_detTD1First">${bien.etatBien}</td>
 									 	 </tr>
-									 	 
-									 	 
 									</c:if>
 									
 								</tbody>
@@ -225,7 +229,9 @@
 										<spring:message code="bien.gardien" />
 									</td>
 									<td>
-										<spring:message code="yes" />
+										<%-- <spring:message code="yes" /> --%>
+										<img width="40" height="40"
+													src='<c:url value="/resources/graphics/Checked.png"/>'>
 									</td>
 								</tr>
 							</c:if>
@@ -235,7 +241,8 @@
 										<spring:message code="bien.jardin" />
 									</td>
 									<td>
-										<spring:message code="yes" />
+										<img width="40" height="40"
+													src='<c:url value="/resources/graphics/Checked.png"/>'>
 										
 									</td>
 								</tr>
@@ -246,7 +253,8 @@
 										<spring:message code="bien.piscine" />
 									</td>
 									<td>
-										<spring:message code="yes" />
+										<img width="40" height="40"
+													src='<c:url value="/resources/graphics/Checked.png"/>'>
 									</td>
 								</tr>
 							</c:if>
@@ -256,7 +264,8 @@
 										<spring:message code="bien.adapteHandicape" />
 									</td>
 									<td>
-										<spring:message code="yes" />
+										<img width="40" height="40"
+													src='<c:url value="/resources/graphics/Checked.png"/>'>
 									</td>
 								</tr>
 								</c:if>
@@ -307,7 +316,8 @@
 										<spring:message code="bien.interphone" />
 									</td>
 									<td>
-													<spring:message code="yes" />
+													<img width="40" height="40"
+													src='<c:url value="/resources/graphics/Checked.png"/>'>
 									</td>
 								 </tr>
 								</c:if>
@@ -317,7 +327,8 @@
 										<spring:message code="bien.digicode" />
 									</td>
 									<td>
-										<spring:message code="yes" />
+										<img width="40" height="40"
+													src='<c:url value="/resources/graphics/Checked.png"/>'>
 									</td>
 								 </tr>
 								</c:if>
@@ -327,7 +338,8 @@
 										<spring:message code="bien.meuble" />
 									</td>
 									<td>
-										<spring:message code="yes" />
+										<img width="40" height="40"
+													src='<c:url value="/resources/graphics/Checked.png"/>'>
 									</td>
 								 </tr>
 								</c:if>
@@ -381,14 +393,14 @@
 					</div>			
 			</div>
 		<div id="home_sidebar">
-				<div class="divannonceur" >
+				<%-- <div class="divannonceur" >
 										<c:if test="${empty user.photo }">
 											<img width="90" height="90"  src='<c:url value="/resources/graphics/no-photos.jpg"/>' class="previewimg">
 										</c:if>
 										<c:if test="${not empty user.photo }">
 											<img width="90" height="90" src="${userPhotoUrl}/${user.id}" class="previewimg">
 										</c:if>
-				</div>
+				</div> --%>
 				<jsp:include page="./../../common/slide-right.jsp" />
 		</div>
 	</div>

@@ -583,10 +583,11 @@ public class BienController {
 				.get(0).getValue();
 		model.addAttribute("currency", currency);
 		
-		User user = bien.getProprietaire(); 
-		if(user != null){
-			model.addAttribute("user", user);
-		}		
+//		User user = userService.get(1l); 
+		
+//		if(user != null){
+//			model.addAttribute("user", user);
+//		}		
 		if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
 			bienDto = new BienDTO((Appartement) bien);
 		} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
