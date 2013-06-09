@@ -39,5 +39,9 @@ public interface IBienService extends IGenericService<BienImmobilier> {
 			Boolean gardien, Boolean meuble, Boolean adapteHandicape,
 			Boolean piscine, Boolean caves, Boolean parking,
 			Boolean terrassesBalcons, EnumTypeOperation typeOperation);
+	
+	List<BienImmobilier> searchBiensByTown(Long townId);
+	
+	List<BienImmobilier> getLastBiens(int nb);
 
 }

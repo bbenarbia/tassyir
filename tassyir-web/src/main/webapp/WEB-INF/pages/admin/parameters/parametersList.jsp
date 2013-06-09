@@ -29,23 +29,37 @@
 						</c:forEach>
 					</div>
 					<h1>Parameters Listing</h1>
+					
 					<ul class="listing">
 						<c:forEach var="parameter" items="${selections}">
 							<li>
 								<div class="listinfo">
-
 									<h3>${parameter.name}</h3>
-									<span class="price">${parameter.value}</span> <span
-										class="price">${parameter.description}</span>
-								</div>
-								<div class="listingbtns">
-									<span class="listbuttons"> 
-										<spring:url value="/parameters/{paramId}/edit.htm" var="editParamUrl">
-												<spring:param name="paramId" value="${parameter.id}" />
-										</spring:url>
-										<a href="${fn:escapeXml(editParamUrl)}"><spring:message code="param.action.edit" /></a>
-									</span> 
-								</div>
+									<div class="divdetails">
+										 <table class="im12_detTab"  style="width: 600px">
+											<tbody>
+											<tr class="auto2010_detTabTR">
+												<td class="auto2010_detTD1First" >Valeur</td>
+												<td class="auto2010_detTD1First">${parameter.value}</td>
+											</tr>
+											<tr class="auto2010_detTabTR">
+												<td class="auto2010_detTD1First">Description</td>
+												<td class="auto2010_detTD1First">${parameter.description}</td>
+											</tr>
+											</tbody>
+										</table>
+									<%-- <span class="price">${parameter.value}</span> <span
+										class="price">${parameter.description}</span> --%>
+									</div>
+									</div>
+									<div class="listingbtns">
+										<span class="listbuttons"> 
+											<spring:url value="/parameters/{paramId}/edit.htm" var="editParamUrl">
+													<spring:param name="paramId" value="${parameter.id}" />
+											</spring:url>
+											<a href="${fn:escapeXml(editParamUrl)}"><spring:message code="param.action.edit" /></a>
+										</span> 
+									</div>
 								<div class="clear">&nbsp;</div>
 							</li>
 						</c:forEach>

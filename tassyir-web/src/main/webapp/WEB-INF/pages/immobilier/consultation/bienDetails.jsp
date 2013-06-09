@@ -53,7 +53,6 @@
 				
 				<div id="single_item_details">
 					<div id="leftcolumn">
-						
 						<div id="carrousel">
 							<c:if test="${fn:length(bien.photos) == 0 }">
 								<img width="290" height="230"
@@ -88,9 +87,9 @@
 								<spring:message code="bien.reference" />: ${bien.reference}
 							</p>
 							<p class="user">
-								<spring:message code="date.miseajour" />: ${bien.reference}
+								<spring:message code="date.miseajour" />: ${bien.dateMiseAjour}
 							</p>
-							<p>
+							<p class="">
 								${bien.description}
 							</p>
 							<div class="divdetails">

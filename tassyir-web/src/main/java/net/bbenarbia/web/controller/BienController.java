@@ -99,23 +99,6 @@ public class BienController {
 		Set<Town> listCommunes = new HashSet<Town>();
 
 		listCommunes.addAll(departementservice.getCommunesByState(state));
-
-		// if(state.equals("Oran")){
-		// listCommunes.add("Oran");
-		// listCommunes.add("Bir eldjir");
-		// listCommunes.add("Senia");
-		// listCommunes.add("Arzew");
-		// }
-		// else if(state.equals("Alger")){
-		// listCommunes.add("Alger");
-		// listCommunes.add("Bouzeriaa");
-		// listCommunes.add("Dali Ibrahim");
-		// }
-		// else {
-		// listCommunes.add("A");
-		// listCommunes.add("B");
-		// listCommunes.add("C");
-		// }
 		return listCommunes;
 	}
 
@@ -128,6 +111,30 @@ public class BienController {
 		return new LinkedList<Town>(listDepartements);
 	}
 
+	
+	
+	@ModelAttribute("lastBiensAdded")
+	public List<BienDTO> findLastBiens() throws Exception {
+		
+		List<BienImmobilier> lastBiens = bienService.getLastBiens(3);
+		List<BienDTO> biensDto = new ArrayList<BienDTO>();
+		
+		for (BienImmobilier bien : lastBiens) {
+			if (bien != null) {
+				if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
+					biensDto.add(new BienDTO((Appartement) bien));
+				} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
+					biensDto.add(new BienDTO((Maison) bien));
+				}
+				else throw new Exception("Voir les autres types de biens non testés");
+				//A voir les autres types
+			}
+		}
+		
+		return new LinkedList<BienDTO>(biensDto);
+	}
+	
+	
 	@ModelAttribute("typesLogementList")
 	public List<EnumTypeBien> populateLogementTypeList() {
 		List<EnumTypeBien> typesLogementList = new LinkedList<EnumTypeBien>();
@@ -308,8 +315,6 @@ public class BienController {
 				}
 				else throw new Exception("Voir les autres types");
 				//A voir les autres types
-				
-				
 			}
 		} else {
 			EnumTypeOperation typeOperation = null;
@@ -582,6 +587,11 @@ public class BienController {
 				.getParameterName(ParameterCode.MAIN_CURRENCY.toString())
 				.get(0).getValue();
 		model.addAttribute("currency", currency);
+		
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/recherche-logement/2.htm", "biens.listbien"));
+		model.addAttribute("navigations", navigations);
 		
 //		User user = userService.get(1l); 
 		
@@ -899,5 +909,33 @@ public class BienController {
 			}
 		}
 		return bien;
+	}
+	
+	@RequestMapping(value = "/recherche-logement-by-dep/{idTown}", method = RequestMethod.GET)
+	public String rechercherBienByTown(
+			@PathVariable("idTown") Long idTown,
+			 Model model) throws Exception {
+
+			FindBienDTO findBienDto = new FindBienDTO();
+
+			List<BienImmobilier> listBiensFound = bienService.searchBiensByTown(idTown);
+			
+			for (BienImmobilier bien : listBiensFound) {
+				if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Appartement) bien));
+				} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Maison) bien));
+				}
+				else throw new Exception("Voir les autres types");
+				//A voir les autres types
+			}
+		
+		model.addAttribute("findBiens", findBienDto);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/biens/find-biens.htm",
+				"biens.listbien"));
+		model.addAttribute("navigations", navigations);
+		return "immobilier/consultation/biensList";
 	}
 }

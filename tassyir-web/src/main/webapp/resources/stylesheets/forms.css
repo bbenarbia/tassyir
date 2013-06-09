@@ -21,6 +21,9 @@
 .search_form .mediumtext {
 	width: 90px;
 }
+.search_form .mediumtext1 {
+	width: 120px;
+}
 .search_form .longfield {
 	width: 304px;
 }

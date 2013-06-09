@@ -16,6 +16,9 @@ import net.bbenarbia.domain.immobilier.Maison;
 import net.bbenarbia.domain.immobilier.Photo;
 import net.bbenarbia.domain.immobilier.Studio;
 
+import org.joda.time.LocalDateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.web.multipart.MultipartFile;
 /**
  * Le Bien DTO 
@@ -43,6 +46,8 @@ public class BienDTO {
 	private String shortDescription;
 
 	private double superficie;
+	
+	private boolean validated;
 
 	private String status;
 
@@ -116,6 +121,8 @@ public class BienDTO {
 
 	private Boolean piscine;
 	
+	private String dateMiseAjour;
+	
 	private List<MultipartFile> files;
 	
 	private List<Photo> photos = new ArrayList<Photo>();
@@ -149,7 +156,7 @@ public class BienDTO {
 				appartement.getTransport(), appartement.isAdapteHandicape(),
 				appartement.getProximite(), appartement.getHonoraires(),
 				appartement.getDepotGarantie(), appartement.getNbSallesBains(),
-				appartement.getNbCaves(), false, appartement.getPhotos());
+				appartement.getNbCaves(), false, appartement.getPhotos(), appartement.getDateMiseAjour(), appartement.isValidated());
 	}
 
 	public BienDTO(Maison maison) {
@@ -174,7 +181,7 @@ public class BienDTO {
 						.getTransport(), maison.isAdapteHandicape(), maison
 						.getProximite(), maison.getHonoraires(), maison
 						.getDepotGarantie(), maison.getNbSallesBains(), maison
-						.getNbCaves(), maison.isPiscine(), maison.getPhotos());
+						.getNbCaves(), maison.isPiscine(), maison.getPhotos(), maison.getDateMiseAjour(), maison.isValidated());
 	}
 
 	public BienDTO(Studio studio) {
@@ -199,7 +206,7 @@ public class BienDTO {
 						.getTransport(), studio.isAdapteHandicape(), studio
 						.getProximite(), studio.getHonoraires(), studio
 						.getDepotGarantie(), studio.getNbSallesBains(), studio
-						.getNbCaves(), false, studio.getPhotos());
+						.getNbCaves(), false, studio.getPhotos(), studio.getDateMiseAjour(), studio.isValidated());
 	}
 
 	// public BienDTO(Commerce commerce) {
@@ -226,7 +233,7 @@ public class BienDTO {
 			String natureChauffage, String typeChauffage, Boolean meuble,
 			String transport, Boolean adapteHandicape, String proximite,
 			double honoraires, double depotGarantie, int nbSallesBains,
-			int nbCaves, Boolean piscine, List<Photo> photos) {
+			int nbCaves, Boolean piscine, List<Photo> photos, LocalDateTime dateMiseAjour, boolean validated) {
 
 		super();
 		this.name = name;
@@ -275,6 +282,9 @@ public class BienDTO {
 		this.nbSallesBains = nbSallesBains;
 		this.nbCaves = nbCaves;
 		this.piscine = piscine;
+		this.validated = validated;
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/yyyy  hh:mm");
+		this.dateMiseAjour = dateMiseAjour.toString(fmt) ;
 		this.photos.addAll(photos);
 	}
 
@@ -318,6 +328,9 @@ public class BienDTO {
 		maison.setTypeChauffage(EnumTypeChauffage.valueOf(typeChauffage));
 		maison.setMeuble(meuble);
 		maison.setPiscine(piscine);
+		maison.setValidated(validated);
+		
+		maison.setDateMiseAjour( new LocalDateTime());
 
 		return maison;
 	}
@@ -344,7 +357,7 @@ public class BienDTO {
 		appartement.setDepotGarantie(depotGarantie);
 		appartement.setNbSallesBains(nbSallesBains);
 		appartement.setNbCaves(nbCaves);
-		
+		appartement.setValidated(validated);
 		appartement.setNbPieces(nbPieces);
 		appartement.setNbChambres(nbChambres);
 		appartement.setCuisineEquipee(cuisineEquipee);
@@ -364,7 +377,7 @@ public class BienDTO {
 				.valueOf(natureChauffage));
 		appartement.setTypeChauffage(EnumTypeChauffage.valueOf(typeChauffage));
 		appartement.setMeuble(meuble);
-
+		appartement.setDateMiseAjour( new LocalDateTime());
 		return appartement;
 	}
 	
@@ -390,7 +403,7 @@ public class BienDTO {
 		studio.setDepotGarantie(depotGarantie);
 		studio.setNbSallesBains(nbSallesBains);
 		studio.setNbCaves(nbCaves);
-		
+		studio.setValidated(validated);
 		
 		studio.setAscenseur(ascenseur);
 		studio.setEtage(etage);
@@ -408,6 +421,7 @@ public class BienDTO {
 				.valueOf(natureChauffage));
 		studio.setTypeChauffage(EnumTypeChauffage.valueOf(typeChauffage));
 		studio.setMeuble(meuble);
+		studio.setDateMiseAjour( new LocalDateTime());
 
 		return studio;
 	}
@@ -794,6 +808,22 @@ public class BienDTO {
 
 	public void setShortDescription(String shortDescription) {
 		this.shortDescription = shortDescription;
+	}
+
+	public String getDateMiseAjour() {
+		return dateMiseAjour;
+	}
+
+	public void setDateMiseAjour(String dateMiseAjour) {
+		this.dateMiseAjour = dateMiseAjour;
+	}
+
+	public boolean isValidated() {
+		return validated;
+	}
+
+	public void setValidated(boolean validated) {
+		this.validated = validated;
 	}
 
 	

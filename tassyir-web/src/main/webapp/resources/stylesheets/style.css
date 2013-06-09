@@ -109,7 +109,7 @@ body {
 }
 
 #wrap {
-	width: 948px;
+	width: 1030px;
 	margin: auto;
 }
 
@@ -136,7 +136,7 @@ body {
 }
 
 #main_bien,#main {
-	width: 620px;
+	width: 610px;
 	float: left;
 	margin-bottom: 8px;
 }
@@ -154,7 +154,7 @@ body {
 }
 
 #home_sidebar,#sidebar {
-	width: 320px;
+	width: 325px;
 	float: right;
 	margin-bottom: 8px;
 }
@@ -183,6 +183,7 @@ h1#logo {
 
 #search_bien {
 	/* background: none repeat scroll 0 0 #D1E0FA; */
+	width: 700px;
 }
 
 .hot {
@@ -216,7 +217,7 @@ h1#logo {
 #search_bien .container {
 	background: #E3F6FC bottom no-repeat;
 	/* height: 240px; */
-	width: 600px;
+	width: 700px;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -464,6 +465,7 @@ h1 {
 	color: #000000;
 	padding: 5px;
 	margin-bottom: 5px;
+	width: 690px;
 }
 
 .listing {
@@ -1223,7 +1225,7 @@ nav ul ul ul {
     
     position: relative;
     text-transform: uppercase;
-    width: 915px;
+    width: 998px;
 }
 #header-menu a {
     border: 0 none;
@@ -1239,7 +1241,7 @@ nav ul ul ul {
     height: auto;
     margin: 0;
     padding: 0;
-}
+} 
 #header-menu .select a, #header-menu .current a {
     background: 100% 0 transparent;
     color: #FFFFFF;
@@ -1317,7 +1319,7 @@ nav ul ul ul {
     padding-top: 5px;
     position: absolute;
     top: 24px;
-    width: 945px;
+    width: 1027px;
     z-index: 10;
 }
 * html #header-menu .sub_active, * html #header-menu .select a:hover .sub {
@@ -1457,7 +1459,10 @@ h1.error, div.error{
 	float: right;
     padding-right: 5px;
     width: 300px;
-    text-align: justify;
+    
+}
+#rightcolumndetail .decscription{
+	text-align: justify;
 }
 
 #tabs{
@@ -1590,4 +1595,12 @@ h1.error, div.error{
 
 .divannonceur{
 	
+}
+.main .product-essential .product-shop .visuel{
+	
+	  border-right: 1px solid #CCCCCC;
+    float: left;
+    margin: 20px 16px 30px 10px;
+    position: relative;
+    width: 240px;
 }

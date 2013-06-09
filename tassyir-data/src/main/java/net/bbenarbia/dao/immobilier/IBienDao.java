@@ -12,6 +12,8 @@ public interface IBienDao extends IGenericDao<BienImmobilier>{
 
 	 List<BienImmobilier> getEntityByType(String type) ;
 	 
+	 List<BienImmobilier> getLastBiens(int nb);
+	 
 	 List<BienImmobilier> searchBiens(EnumTypeBien typeBien,  String departement, Double superficieMin , Double superficieMax , 
 				Integer NbPiecesMin, Integer NbPiecesMax, Double loyerMin, Double loyerMax, EnumTypeOperation typeOperation);
 	 
@@ -25,4 +27,6 @@ public interface IBienDao extends IGenericDao<BienImmobilier>{
 				Boolean gardien, Boolean meuble, Boolean adapteHandicape,
 				Boolean piscine, Boolean caves, Boolean parking,
 				Boolean terrassesBalcons,  EnumTypeOperation typeOperation);
+	 
+	 List<BienImmobilier> searchBiensByTown(Long townId);
 }

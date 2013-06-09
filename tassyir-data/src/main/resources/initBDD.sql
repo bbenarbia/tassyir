@@ -148,6 +148,7 @@ CREATE TABLE IF NOT EXISTS biens (
   digicode tinyint (1),
   gardien tinyint (1),
   piscine tinyint (1),
+  validated tinyint (1) default false,
   transport VARCHAR(200),
   proximite VARCHAR(200),
   adapteHandicape tinyint (1),
@@ -166,6 +167,7 @@ CREATE TABLE IF NOT EXISTS biens (
   age  INT(5) DEFAULT 0, 
   jardin  tinyint (1),
   proprietaire INT(5) UNSIGNED NOT NULL,
+  dateMiseAjour DATETIME,
   INDEX(ref, name)
 ) engine=InnoDB  DEFAULT CHARSET=utf8;
 

@@ -103,4 +103,14 @@ public class BienService extends GenericService<BienImmobilier> implements
 		
 	}
 
+	@Override
+	public List<BienImmobilier> searchBiensByTown(Long townId) {
+		return bienDao.searchBiensByTown(townId);
+	}
+
+	@Override
+	public List<BienImmobilier> getLastBiens(int nb) {
+		return bienDao.getLastBiens(nb);
+	}
+
 }

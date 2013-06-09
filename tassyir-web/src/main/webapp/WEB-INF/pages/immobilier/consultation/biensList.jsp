@@ -23,7 +23,7 @@
 				<jsp:include page="../../common/sub-menu.jsp" />
 				<div id="main">
 					<jsp:include page="../../common/navigator.jsp" />					
-					 <div class="group">
+					 <div class="group" style="width: 698px;">
 					 <h2><spring:message code="biens.list" /></h2>
 					 <ul class="listing">
     					<c:forEach var="bien" items="${findBiens.listBiens}">

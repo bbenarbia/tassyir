@@ -25,6 +25,9 @@ import net.bbenarbia.domain.enums.EnumEtatBien;
 import net.bbenarbia.domain.enums.EnumStatutProperty;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.LocalDateTime;
+
 @Entity
 @Table(name = "biens")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -37,9 +40,6 @@ public class BienImmobilier extends NamedEntity {
 
 	@Column(name = "adresse")
 	private String adresse = "";
-
-	// @Embedded
-	// private Adresse adresse;
 
 	@Column(name = "transport")
 	private String transport;
@@ -60,30 +60,6 @@ public class BienImmobilier extends NamedEntity {
 	@Column(name = "superficie")
 	private double superficie;
 
-
-	
-
-//	
-//	@ManyToOne
-//    @JoinColumn(name="proprietaire", 
-//                insertable=false, updatable=false, 
-//                nullable=false)
-//	@ManyToOne
-//	@JoinColumn(name = "proprietaire", nullable = false)
-	
-//	@ManyToOne
-//	@Cascade (value=org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-//	@JoinColumn (name="proprietaire")
-	
-//	@ManyToOne
-//	@JoinColumn (name="proprietaire")
-	
-//	@OneToMany(targetEntity=User.class,mappedBy="users")
-//	@JoinColumn(name="proprietaire")
-//	@Cascade (value={org.hibernate.annotations.CascadeType.SAVE_UPDATE,org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
-	
-//	@ManyToOne(cascade = CascadeType.ALL)
-	
 	@ManyToOne
 	@JoinColumn(name = "proprietaire")
 	private User proprietaire;
@@ -131,6 +107,9 @@ public class BienImmobilier extends NamedEntity {
 
 	@Column(nullable = false, updatable = false, insertable = false)
 	private String typeBien;
+	
+	@Column(name = "validated")
+	private boolean validated;
 
 	public String getReference() {
 		return reference;
@@ -139,19 +118,10 @@ public class BienImmobilier extends NamedEntity {
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
-
-	// public Adresse getAdresse() {
-	// return adresse;
-	// }
-	//
-	// public void setAdresse(Adresse adresse) {
-	// if(adresse != null){
-	// this.adresse = adresse;
-	// }
-	// else {
-	// this.adresse = new Adresse();
-	// }
-	// }
+	
+	@Column(name = "dateMiseAjour", nullable = false)
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentLocalDateTime")
+	private LocalDateTime dateMiseAjour;
 
 	public String getDescription() {
 		return description;
@@ -320,5 +290,22 @@ public class BienImmobilier extends NamedEntity {
 	public void setProprietaire(User proprietaire) {
 		this.proprietaire = proprietaire;
 	}
+
+	public LocalDateTime getDateMiseAjour() {
+		return dateMiseAjour;
+	}
+
+	public void setDateMiseAjour(LocalDateTime dateMiseAjour) {
+		this.dateMiseAjour = dateMiseAjour;
+	}
+
+	public boolean isValidated() {
+		return validated;
+	}
+
+	public void setValidated(boolean validated) {
+		this.validated = validated;
+	}
+
 
 }

@@ -19,7 +19,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 	@SuppressWarnings("unchecked")
 	public List<BienImmobilier> getEntityByType(String type) {
 		String queryString = "FROM " + getEntityClass().getName()
-				+ " WHERE typeBien = :type";
+				+ " WHERE typeBien = :type AND validated is true order by dateMiseAjour desc";
 
 		Query query = getSession().createQuery(queryString);
 		query.setParameter("type", type);
@@ -27,6 +27,19 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 		return query.list();
 	}
 
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<BienImmobilier> getLastBiens(int nb) {
+		String queryString = "FROM " + getEntityClass().getName()
+				+ " WHERE validated is true  order by dateMiseAjour desc ";
+
+		Query query = getSession().createQuery(queryString);
+		query.setMaxResults(nb);
+
+		return query.list();
+	}
+	
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<BienImmobilier> searchBiens(EnumTypeBien typeBien,
@@ -34,17 +47,18 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			Integer NbPiecesMin, Integer NbPiecesMax, Double loyerMin,
 			Double loyerMax, EnumTypeOperation typeOperation) {
 
-		boolean withAnd = false;
+		boolean withAnd = true;
 		String and = " AND ";
 		String where = " WHERE ";
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("FROM " + getEntityClass().getName());
-
-		if (typeBien != null) {
-			sb.append(where);
-			sb.append(" typeBien = :type ");
-			withAnd = true;
+		sb.append(" WHERE validated is true ");
+		withAnd = true;
+//		sb.append(where);
+		if (typeBien != null) {		
+			sb.append(" AND typeBien = :type ");
+			
 		}
 
 		if (typeOperation != null) {
@@ -105,6 +119,8 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			withAnd = true;
 			sb.append(" loyerMensuel <= :loyerMax ");
 		}
+		
+		sb.append(" order by dateMiseAjour desc ");
 
 		Query query = getSession().createQuery(sb.toString());
 		if (typeBien != null) {
@@ -144,17 +160,19 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			Boolean piscine, Boolean caves, Boolean parking,
 			Boolean terrassesBalcons, EnumTypeOperation typeOperation) {
 
-		boolean withAnd = false;
+		boolean withAnd = true;
 		String and = " AND ";
 		String where = " WHERE ";
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("FROM " + getEntityClass().getName());
-
+		sb.append(" WHERE validated is true ");
+		
+		withAnd = true;
 		if (!selectedTypes.isEmpty()) {
-			sb.append(where);
-			sb.append(" typeBien IN (:listTypes) ");
-			withAnd = true;
+//			sb.append(where);
+			sb.append(" AND typeBien IN (:listTypes) ");
+			
 		}
 
 		// if (typeBien != null) {
@@ -336,6 +354,9 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			sb.append(" ( nbTerrasses > 0 or  nbBalcons > 0 )");
 		}
 
+		sb.append(" order by dateMiseAjour desc ");
+		
+		
 		Query query = getSession().createQuery(sb.toString());
 		// if (typeBien != null) {
 		// query.setParameter("type", typeBien.toString());
@@ -370,12 +391,25 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 	@Override
 	public BienImmobilier getBienByRef(String refBien) {
 		String queryString = "FROM " + getEntityClass().getName()
-				+ " WHERE reference = :reference";
+				+ " WHERE reference = :reference AND validated is true order by dateMiseAjour desc ";
 
 		Query query = getSession().createQuery(queryString);
 		query.setParameter("reference", refBien);
 
 		return (BienImmobilier) query.uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<BienImmobilier> searchBiensByTown(Long townId) {
+		
+		String queryString = "FROM " + getEntityClass().getName()
+				+ " WHERE departement.reference = :referenceTown  AND validated is true";
+
+		Query query = getSession().createQuery(queryString);
+		query.setParameter("referenceTown", String.valueOf(townId));
+
+		return query.list();
 	}
 
 }
