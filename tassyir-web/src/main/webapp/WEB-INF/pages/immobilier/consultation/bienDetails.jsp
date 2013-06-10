@@ -9,8 +9,7 @@
 	<title>${bien.typeOperation} ${bien.typeBien} ${bien.ville}(${bien.codePostal}) ${bien.superficie} m2</title>
 </head>
 <body>
-	<spring:url value="/users/photo" var="userPhotoUrl" />
-	
+	<spring:url value="/users/photo" var="userPhotoUrl" />	
 	<spring:url value="/biens/photo" var="photoUrl" />
 	<spring:url value="/biens/upload/{bienId}/show.htm" var="addPhotoUrl">
 		<spring:param name="bienId" value="${bien.id}" />
@@ -20,8 +19,7 @@
 		<div id="content">
 			<jsp:include page="../../common/sub-menu.jsp" />
 			<div id="main">
-					<jsp:include page="../../common/navigator.jsp" />
-					
+					<jsp:include page="../../common/navigator.jsp" />					
 			<div class="group">
 				<h2>
 					${bien.typeOperation} ${bien.typeBien} ${bien.ville}(${bien.codePostal}) ${bien.superficie} m2
@@ -55,7 +53,7 @@
 					<div id="leftcolumn">
 						<div id="carrousel">
 							<c:if test="${fn:length(bien.photos) == 0 }">
-								<img width="290" height="230"
+								<img width="320" height="230"
 									src='<c:url value="/resources/graphics/no-photos.jpg"/>'
 									class="previewimg">
 							</c:if>
@@ -63,7 +61,7 @@
 								<c:forEach var="photo" items="${bien.photos}" varStatus="status">
 									<div id="slide${status.count}" class="slide">
 										<div class="visu">
-											<img width="290" height="230"
+											<img width="320" height="230"
 												src="${photoUrl}/${bien.id}/${status.count}"
 												class="previewimg"/>
 											<div class="title">
@@ -81,19 +79,8 @@
 								</c:forEach>
 							</c:if>
 						</div> 
-					</div>
-					<div id="rightcolumndetail">
-							<p class="user">
-								<spring:message code="bien.reference" />: ${bien.reference}
-							</p>
-							<p class="user">
-								<spring:message code="date.miseajour" />: ${bien.dateMiseAjour}
-							</p>
-							<p class="">
-								${bien.description}
-							</p>
-							<div class="divdetails">
-							 <table class="im12_detTab">
+						<div class="divdetails">
+							 <table class="im12_detTabDetails">
 								<tbody>
 									<tr class="auto2010_detTabTR">
 										<td class="auto2010_detTD1First"><spring:message code="bien.superficie" /></td>
@@ -120,8 +107,6 @@
 										</td>
 									   	</tr>
 									   </c:if>
-									  
-									  
 									</c:if>
 									<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' }">
 										<tr class="auto2010_detTabTR">
@@ -154,31 +139,54 @@
 								</tbody>
 							 </table>
 							</div>
+						
+				
+					</div>
+					<div id="rightcolumndetail">
+							<p class="user">
+								<spring:message code="bien.reference" />: ${bien.reference}
+							</p>
+							<p class="user">
+								<spring:message code="date.miseajour" />: ${bien.dateMiseAjour}
+							</p>
+							<p class="decscription">
+								${bien.description}
+							</p>
 							<div id="tabs">
+								<div class="userDetails" >
+										<c:if test="${empty user.photo }">
+											<img width="130" height="130"  src='<c:url value="/resources/graphics/no-photos.jpg"/>' class="previewimg">
+										</c:if>
+										<c:if test="${not empty user.photo }">
+											<img width="130" height="130" src="${userPhotoUrl}/${user.id}" class="previewimg">
+										</c:if>
+										<p>
+											${user.firstName} (${user.typeUser})
+										</p>
+										<p>
+											${user.contact.telephoneMobile }
+										</p>
+								</div> 
 								<div id="tabs-1" class="hiddentab">
 									<p>
 										<img src='<c:url value="/resources/graphics/fav.gif"/>'
-											alt="FAv" width="18" height="13" />&nbsp;<a href="#">
-											Add to my Favorites</a>
+											alt="FAv" width="18" height="13" />&nbsp;<a href="#">Add to my Favorites</a>
 									</p>
 									<p>
 										<img src='<c:url value="/resources/graphics/emailalert.gif"/>'
-											alt="email" width="18" height="15" />&nbsp;<a href="#">Contact annoncer by 
+											alt="email" width="18" height="15" />&nbsp;<a href="#">Contact by 
 											Email</a>
 									</p>
 									<p>
 										<img src='<c:url value="/resources/graphics/sms.gif"/>'
-											alt="sms" width="18" height="16" />&nbsp;<a href="#">Contact annoncer by
-											SMS Alerts</a>
+											alt="sms" width="18" height="16" />&nbsp;<a href="#">Contact by
+											SMS</a>
 									</p>
 								</div>
 							</div>
 					</div>
 					<div class="clear">&nbsp;</div>
-					</div>
-					</div>
-							<div>
-								<div class="barreoutils">
+						<div class="barreoutils">
 									<ul class="barreoutilsgardez flor">
 										<li>
 											<span class="listbuttons"> <spring:url
@@ -199,8 +207,10 @@
 										</li>
 									</ul>
 									<div class="fin"></div>
-							</div>
 						</div>
+					</div>
+					</div>
+						
 						<div class="group">
 							<h2>More infos</h2>
 							<div id="listing_details">
@@ -392,14 +402,6 @@
 					</div>			
 			</div>
 		<div id="home_sidebar">
-				<%-- <div class="divannonceur" >
-										<c:if test="${empty user.photo }">
-											<img width="90" height="90"  src='<c:url value="/resources/graphics/no-photos.jpg"/>' class="previewimg">
-										</c:if>
-										<c:if test="${not empty user.photo }">
-											<img width="90" height="90" src="${userPhotoUrl}/${user.id}" class="previewimg">
-										</c:if>
-				</div> --%>
 				<jsp:include page="./../../common/slide-right.jsp" />
 		</div>
 	</div>

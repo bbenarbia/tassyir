@@ -593,11 +593,11 @@ public class BienController {
 		navigations.add(new NavigationDTO("/recherche-logement/2.htm", "biens.listbien"));
 		model.addAttribute("navigations", navigations);
 		
-//		User user = userService.get(1l); 
+		User user = bien.getProprietaire(); 
 		
-//		if(user != null){
-//			model.addAttribute("user", user);
-//		}		
+		if(user != null){
+			model.addAttribute("user", user);
+		}		
 		if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
 			bienDto = new BienDTO((Appartement) bien);
 		} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
@@ -733,6 +733,9 @@ public class BienController {
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String initCreateBienForm(Model model) {
 
+		FindBienDTO findBienDto = new FindBienDTO();
+		model.addAttribute("findBiens", findBienDto);
+		
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
 		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));

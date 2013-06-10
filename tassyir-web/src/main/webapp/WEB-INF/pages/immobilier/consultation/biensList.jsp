@@ -118,6 +118,9 @@
 
 				</div>
 			<div id="home_sidebar">
+				<div class="block advert">
+					<jsp:include page="./../right-side-recherche.jsp" /> 
+				</div>
 				<jsp:include page="./../../common/slide-right.jsp" />
 			</div>
 			<div class="clear">&nbsp;</div>

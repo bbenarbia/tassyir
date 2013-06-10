@@ -136,7 +136,7 @@ body {
 }
 
 #main_bien,#main {
-	width: 610px;
+	width: 700px;
 	float: left;
 	margin-bottom: 8px;
 }
@@ -1001,6 +1001,7 @@ a.highlight {
 
 .hiddentab a {
 	display: inline !important;
+	padding-right: 5px;
 }
 
 .hiddentab a:hover {
@@ -1389,7 +1390,7 @@ nav ul ul ul {
 
 #fieldset_select_fields{	
 	float: left;
-	width: 540px;
+	width: 630px;
 }
 
 fieldset fieldset1 {
@@ -1428,7 +1429,13 @@ input[type="submit"]{
     text-decoration: none;
     text-shadow: 0 1px 0 #FFFFFF;
 }
+#buttonGo:hover {
+    background: -moz-linear-gradient(center top , #CCCCCC, #DDDDDD) repeat scroll 0 0 transparent;
+}
 
+#sectionlinks a:hover, .buttonlinks a:hover, a.button:hover {
+    background: -moz-linear-gradient(center top , #CCCCCC, #DDDDDD) repeat scroll 0 0 transparent;
+}
 .listing li:HOVER {
     background: none repeat scroll 0 0 #BBBBBB;
     border: 1px solid #EEEEEE;
@@ -1445,7 +1452,7 @@ h1.error, div.error{
 }
 
 #adressediv{
-	height: 70px;	
+	height: 60px;	
 	padding: 5px;
 	color: #0099CC;
     /* float: left; */
@@ -1458,7 +1465,7 @@ h1.error, div.error{
 	padding-top:10px;
 	float: right;
     padding-right: 5px;
-    width: 300px;
+    width: 350px;
     
 }
 #rightcolumndetail .decscription{
@@ -1466,8 +1473,9 @@ h1.error, div.error{
 }
 
 #tabs{
-	padding-bottom: 10px;
-	padding-top: 10px;
+	 padding-bottom: 10px;
+    /* padding-left: 23px; */
+    padding-top: 15px;
 }
 
 .barreoutils{
@@ -1574,6 +1582,12 @@ h1.error, div.error{
     margin-bottom: 10px;
     width: 265px;
 }
+.im12_detTabDetails{
+	
+	 border-collapse: collapse;
+    margin-bottom: 10px;
+    width: 330px;
+}
 .im12_detTab{
 	
 	  border-collapse: collapse;
@@ -1603,4 +1617,11 @@ h1.error, div.error{
     margin: 20px 16px 30px 10px;
     position: relative;
     width: 240px;
+}
+.userDetails {
+	 float: left;
+}
+
+#smalltext{
+	font-size: 10px;
 }

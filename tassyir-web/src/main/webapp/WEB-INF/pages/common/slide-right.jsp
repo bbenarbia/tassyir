@@ -3,13 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-
-<div class="block advert">
-	
-	<%-- <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-		alt="Advertise Here" style="width: 315px;" /> --%>
-	<jsp:include page="./../immobilier/right-side-recherche.jsp" />
-</div>
+			
 <div class="hot">
 	<h2 class="sidebar_head">
 		 Les derniers

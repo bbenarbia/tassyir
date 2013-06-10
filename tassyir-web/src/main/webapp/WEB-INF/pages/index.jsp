@@ -18,15 +18,84 @@
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$(".slidingDiv").hide();
-		$(".show_hide").show();
+			$(document).ready(function(){
+			        $(".slidingDiv").hide();
+			        $(".show_div").show();
+			        $(".hide_div").hide();
+			        
+			    $('.show_div').click(function(){
+			    $(".slidingDiv").slideToggle();
+			    $(".show_div").hide();
+		        $(".hide_div").show();
+			    });
+			    
+			    $('.hide_div').click(function(){
+				    $(".slidingDiv").slideToggle();
+				    $(".show_div").show();
+			        $(".hide_div").hide();
+				    });
+			 
+			});
+</script>
 
-		$('.show_hide').click(function() {
-			$(".slidingDiv").slideToggle();
-		});
+<c:url var="findStateCommunesURL" value="/biens/communes.htm" />
+<c:url var="findStatesURL" value="/biens/states.htm" />
 
+
+<script type="text/javascript">
+$(document).ready(function() { 
+	$('#states').change(
+			function() {
+				$.getJSON('${findStateCommunesURL}', {
+					stateName : $(this).val(),
+					ajax : 'true'
+				}, function(data) {
+					var html = '<option value=""><spring:message code="biens.commune" /></option>';
+					var len = data.length;
+					for ( var i = 0; i < len; i++) {
+						html += '<option value="' + data[i].reference + '">'
+								+ data[i].name + '</option>';
+					}
+					html += '</option>';
+
+					$('#commune').html(html);
+				});
+			});
+});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				$.getJSON('${findStatesURL}', {
+					ajax : 'true'
+				}, function(data) {
+					var html = '<option value=""><spring:message code="biens.departement" /></option>';
+					var len = data.length;
+					for ( var i = 0; i < len; i++) {
+						html += '<option value="' + data[i].reference + '">'
+								+ data[i].name+ '</option>';
+					}
+					html += '</option>';
+
+					$('#states').html(html);
+				});
+			});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#commune").change(onSelectChange);
 	});
+
+	function onSelectChange() {
+		var selected = $("#commune option:selected");		
+		var output = "";
+		if(selected.val() != 0){
+			output = "You selected commune " + selected.text();
+		}
+		$("#output").html(output);
+	}
 </script>
 
 </head>
@@ -39,270 +108,293 @@
 			<div id="main_bien">
 
 				<div id="search_bien">
-					<div class="tab">
+					<div class="group">
 						<h2>Recherche de biens</h2>
-					</div>
-					<div class="container">
+					 <ul>
+						<li id="li_select_lang">
 						<form:form modelAttribute="findBiens" method="post" id="form1">
 							<table class="search_form" style="width: 100%; border: none;">
-								<tr>
-									<td class="label"><spring:message code="biens.recherche" /></td>
-									<td><label> <form:select path="typeOperationBien"
-												class="select_field">
-												<optgroup
-													label="<spring:message code="bien.action.recherche.offres" />">
-													<form:option value="1">
-														<spring:message code="bien.action.recherche.vente" />
-													</form:option>
-													<form:option value="2">
-														<spring:message code="bien.action.recherche.location" />
-													</form:option>
-													<form:option value="3">
-														<spring:message code="bien.action.recherche.vacances" />
-													</form:option>
-													<form:option value="4">
-														<spring:message code="bien.action.recherche.colocation" />
-													</form:option>
-													<form:option value="6">
-														<spring:message code="bien.action.recherche.commerce" />
-													</form:option>
-												</optgroup>
-												<optgroup
-													label="<spring:message code="bien.action.recherche.demandes" />">
-													<form:option value="8">
-														<spring:message code="bien.action.recherche.achat" />
-													</form:option>
-													<form:option value="9">
-														<spring:message code="bien.action.recherche.location" />
-													</form:option>
-													<form:option value="10">
-														<spring:message code="bien.action.recherche.vacances" />
-													</form:option>
-													<form:option value="11">
-														<spring:message code="bien.action.recherche.colocation" />
-													</form:option>
-													<form:option value="12">
-														<spring:message code="bien.action.recherche.commerce" />
-													</form:option>
-												</optgroup>
-												<form:option value="5">
-													<spring:message code="bien.action.recherche.echange" />
-												</form:option>
-												<form:option value="7">
-													<spring:message code="bien.action.recherche.autre" />
-												</form:option>
-											</form:select>
-									</label></td>
-
-									<td class="label"><spring:message code="biens.reference" /></td>
-									<td><label> <form:input label="refBien"
-												path="refBien" class="text mediumtext" />
-									</label></td>
+								 <tr>
+								 	<td colspan="4">
+										<div id="searchoptions" class="pma_auto_slider slider_init_done" title="Options" style="overflow: auto;">
+										<fieldset id="fieldset_select_fields">
+											<legend><spring:message code="biens.zoneRecherche" /> </legend>
+												<table class="search_form">
+												 <tr>
+												 		<td><label>
+															<form:select path="typeOperationBien"
+																class="select_field">
+																   <optgroup label="<spring:message code="bien.action.recherche.offres" />"> 
+																      <form:option value="1"><spring:message code="bien.action.recherche.vente" /></form:option> 
+																      <form:option value="2"><spring:message code="bien.action.recherche.location" /></form:option> 
+																      <form:option value="3"><spring:message code="bien.action.recherche.vacances" /></form:option> 
+																      <form:option value="4"><spring:message code="bien.action.recherche.colocation" /></form:option> 
+																      <form:option value="6"><spring:message code="bien.action.recherche.commerce" /></form:option> 
+																   </optgroup> 
+																   <optgroup label="<spring:message code="bien.action.recherche.demandes" />"> 
+																      <form:option value="8"><spring:message code="bien.action.recherche.achat" /></form:option> 
+																      <form:option value="9"><spring:message code="bien.action.recherche.location" /></form:option> 
+																      <form:option value="10"><spring:message code="bien.action.recherche.vacances" /></form:option> 
+																      <form:option value="11"><spring:message code="bien.action.recherche.colocation" /></form:option> 
+																      <form:option value="12"><spring:message code="bien.action.recherche.commerce" /></form:option> 
+																   </optgroup>
+																   <form:option  value="5"><spring:message code="bien.action.recherche.echange" /></form:option> 
+																   <form:option  value="7"><spring:message code="bien.action.recherche.autre" /></form:option>
+				   											</form:select>																
+													    </label>
+												      </td>
+												 	   <td ><label> 
+															<form:select id="states" class="select_field" path="departementBien">
+															</form:select>
+														</label>
+													    </td>
+													    <td ><label>		
+															<form:select id="commune" class="select_field" path="communeBien">
+																<form:option value=""><spring:message code="biens.commune" /></form:option>
+															</form:select>
+														</label>
+														</td>
+												 </tr>
+												</table>
+											</fieldset>
+											</div>
+								 	</td>
 								</tr>
 								<tr>
-									<td class="label"><spring:message code="biens.typebien" /></td>
-									<td><label> <form:select path="typeBien"
-												class="select_field">
-												<option>
-													<spring:message code="bien.type.recherche.divers" />
-												</option>
-												<form:option value="2">
-													<spring:message code="bien.type.recherche.maison" />
-												</form:option>
-												<form:option value="1">
-													<spring:message code="bien.type.recherche.appartement" />
-												</form:option>
-												<form:option value="3">
-													<spring:message code="bien.type.recherche.immeuble" />
-												</form:option>
-												<form:option value="4">
-													<spring:message code="bien.type.recherche.terrain" />
-												</form:option>
-												<form:option value="5">
-													<spring:message code="bien.type.recherche.agricole" />
-												</form:option>
-												<form:option value="6">
-													<spring:message code="bien.type.recherche.carcasse" />
-												</form:option>
-												<form:option value="7">
-													<spring:message code="bien.type.recherche.commercial" />
-												</form:option>
-												<form:option value="8">
-													<spring:message code="bien.type.recherche.bungalow" />
-												</form:option>
-												<form:option value="9">
-													<spring:message code="bien.type.recherche.ferme" />
-												</form:option>
-											</form:select>
-									</label></td>
-									<td class="label"><spring:message code="biens.departement" /></td>
-									<td colspan="3"><label> <form:select
-												path="departementBien" class="select_field">
-												<option value="-1">
-													<spring:message code="biens.indifferent" />
-												</option>
-												<c:forEach var="item" items="${departementsList}">
-													<c:choose>
-														<c:when test="${departementBien == item.reference}">
-															<form:option selected="true" value="${item.reference}">
-																               				 ${item.name} 
-																            			</form:option>
-														</c:when>
-														<c:otherwise>
-															<form:option value="${item.reference}">
-																                  			 ${item.name}
-																            			</form:option>
-														</c:otherwise>
-													</c:choose>
-												</c:forEach>
-											</form:select>
-									</label></td>
-								</tr>
-								<tr>
-
-									<td class="label"><spring:message code="biens.pieces.min" /></td>
-									<td><label> <form:input label="nbPiecesMin"
-												path="nbPiecesMin" class="text mediumtext" />
-									</label></td>
-									<td class="label"><spring:message code="biens.pieces.max" /></td>
-									<td><label> <form:input label="nbPiecesMax"
-												path="nbPiecesMax" class="text mediumtext" />
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><spring:message
-											code="biens.superficie.min" /></td>
-									<td><label> <form:input label="surfaceMin"
-												path="surfaceMin" class="text mediumtext" />
-									</label></td>
-									<td class="label"><spring:message
-											code="biens.superficie.max" /></td>
-									<td><label> <form:input label="surfaceMax"
-												path="surfaceMax" class="text mediumtext" />
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label"><spring:message code="biens.budget.max" /></td>
-									<td><label> <form:input label="loyerMin"
-												path="loyerMin" class="text mediumtext" />
-									</label></td>
-									<td class="label"><spring:message code="biens.budget.max" />:</td>
-									<td><label> <form:input label="loyerMax"
-												path="loyerMax" class="text mediumtext" />
-									</label></td>
-								</tr>
-								<tr>
-									<td class="label" colspan="4"><a href="#"
-										class="show_hide">Afficher/Masquer les options</a>
-										<div class="slidingDiv">
-
-											<table class="search_form">
-												<tr>
-													<td><label> <form:checkbox path="ascenseur" />
-													</label></td>
-													<td class="label"><form:label path="ascenseur"
-															for="ascenseur">
-															<spring:message code="biens.ascenseur" />
-														</form:label></td>
-
-													<td><label> <form:checkbox
-																path="cuisineEquipee" />
-													</label></td>
-													<td class="label"><form:label path="cuisineEquipee"
-															for="cuisineEquipee">
-															<spring:message code="biens.cuisineEquipee" />
-														</form:label></td>
-
-													<td><label> <form:checkbox path="jardin" />
-													</label></td>
-													<td class="label"><form:label path="jardin"
-															for="jardin">
-															<spring:message code="biens.jardin" />
-														</form:label></td>
-
-
-													<td><label> <form:checkbox path="interphone" />
-													</label></td>
-													<td class="label"><form:label path="interphone"
-															for="interphone">
-															<spring:message code="biens.interphone" />
-														</form:label></td>
+								<td colspan="4">
+									<div id="searchoptions" class="pma_auto_slider slider_init_done" title="Options" style="overflow: auto;">
+									<fieldset id="fieldset_select_fields">
+										<legend><spring:message code="biens.typebien" /></legend>
+										<table class="search_form">
+											<tr>
+												<td><label> <form:checkbox path="appartement" /></label></td>
+												<td class="label"><form:label path="appartement" for="appartement">
+																			<spring:message code="bien.type.recherche.appartement" />
+																  </form:label>
+												</td>
+												<td><label> <form:checkbox path="maison" /></label></td>
+												<td class="label"><form:label path="maison" for="maison">
+																			<spring:message code="bien.type.recherche.maison" />
+																  </form:label>
+												</td>
+												<td><label> <form:checkbox path="immeuble" /></label></td>
+												<td class="label"><form:label path="immeuble" for="immeuble">
+																			<spring:message code="bien.type.recherche.immeuble" />
+																  </form:label>
+												</td>
 												</tr>
 												<tr>
-													<td><label> <form:checkbox path="digicode" />
-													</label></td>
-													<td class="label"><form:label path="digicode"
-															for="digicode">
-															<spring:message code="biens.digicode" />
-														</form:label></td>
-
-													<td><label> <form:checkbox path="gardien" />
-													</label></td>
-													<td class="label"><form:label path="gardien"
-															for="gardien">
-															<spring:message code="biens.gardien" />
-														</form:label></td>
-
-													<td><label> <form:checkbox
-																path="adapteHandicape" />
-													</label></td>
-													<td class="label"><form:label path="adapteHandicape"
-															for="adapteHandicape">
-															<spring:message code="biens.adapte" />
-														</form:label></td>
-
-													<td><label> <form:checkbox path="meuble" />
-													</label></td>
-													<td class="label"><form:label path="meuble"
-															for="meuble">
-															<spring:message code="biens.meuble" />
-														</form:label></td>
+												<td><label> <form:checkbox path="terrain" /></label></td>
+												<td class="label"><form:label path="terrain" for="terrain">
+																			<spring:message code="bien.type.recherche.terrain" />
+																  </form:label>
+												</td>
+												<td><label> <form:checkbox path="agricole" /></label></td>
+												<td class="label"><form:label path="agricole" for="agricole">
+																			<spring:message code="bien.type.recherche.agricole" />
+																  </form:label>
+												</td>
+												
+												<td><label> <form:checkbox path="carcasse" /></label></td>
+												<td class="label"><form:label path="carcasse" for="carcasse">
+																			<spring:message code="bien.type.recherche.carcasse" />
+																  </form:label>
+												</td>
 												</tr>
 												<tr>
-													<td><label> <form:checkbox path="piscine" />
-													</label></td>
-													<td class="label"><form:label path="piscine"
-															for="piscine">
-															<spring:message code="biens.piscine" />
-														</form:label></td>
-													<td><label> <form:checkbox path="caves" />
-													</label></td>
-													<td class="label"><form:label path="caves" for="caves">
-															<spring:message code="biens.caves" />
-														</form:label></td>
-
-													<td><label> <form:checkbox path="parking" />
-													</label></td>
-													<td class="label"><form:label path="parking"
-															for="parking">
-															<spring:message code="biens.parking" />
-														</form:label></td>
-													<td><label> <form:checkbox
-																path="terrassesBalcons" />
-													</label></td>
-													<td class="label"><form:label path="terrassesBalcons"
-															for="terrassesBalcons">
-															<spring:message code="biens.terrassesBalcons" />
-														</form:label></td>
+												<td><label> <form:checkbox path="commercial" /></label></td>
+												<td class="label"><form:label path="commercial" for="commercial">
+																			<spring:message code="bien.type.recherche.commercial" />
+																  </form:label>
+												</td>
+												<td><label> <form:checkbox path="bungalow" /></label></td>
+												<td class="label"><form:label path="bungalow" for="bungalow">
+																			<spring:message code="bien.type.recherche.bungalow" />
+																  </form:label>
+												</td>
+												<td><label> <form:checkbox path="ferme" /></label></td>
+												<td class="label"><form:label path="ferme" for="ferme">
+																			<spring:message code="bien.type.recherche.ferme" />
+																  </form:label>
+												</td>
 												</tr>
-											</table>
-										</div></td>
+										</table>
+									</fieldset>
+										<br style="clear: both;">
+									</div>
+								</td>
 								</tr>
+								<tr>
+								<td colspan="4">
+									<a href="#" class="show_div"><spring:message code="biens.moreoption"/></a>
+									<a href="#" class="hide_div" hidden="hidden"> <spring:message code="biens.lessoption"/></a>
+									<div class="slide-wrapper slidingDiv" >				
+									<div id="searchoptions" class="pma_auto_slider slider_init_done" title="Options" style="overflow: auto;">
+									 <fieldset id="fieldset_select_fields">
+										<legend><spring:message code="biens.optionsbien" /></legend>
+										<table class="search_form">
+											<tr>
+												<td class="label"><spring:message code="biens.reference" /></td>
+												<td><label> <form:input label="refBien"
+															path="refBien" class="text mediumtext" />
+												</label></td>
+											 </tr>
+											
+											<tr>
+												<td class="label"><spring:message
+														code="biens.superficie.min" /></td>
+												<td><label> <form:input label="surfaceMin"
+															path="surfaceMin" class="text mediumtext" />
+												</label></td>
+												<td class="label"><spring:message
+														code="biens.superficie.max" /></td>
+												<td><label> <form:input label="surfaceMax"
+															path="surfaceMax" class="text mediumtext" />
+												</label></td>
+											</tr>
+											<tr>
+												<td class="label"><spring:message code="biens.budget.max" /></td>
+												<td><label> <form:input label="loyerMin"
+															path="loyerMin" class="text mediumtext" />
+												</label></td>
+												<td class="label"><spring:message code="biens.budget.max" />:</td>
+												<td><label> <form:input label="loyerMax"
+															path="loyerMax" class="text mediumtext" />
+												</label></td>
+											</tr>
+											<tr>
+												<td   class="label"><spring:message code="biens.pieces.min" /></td>
+												<td   ><label> <form:input label="nbPiecesMin"
+															path="nbPiecesMin" class="text mediumtext" />
+												</label></td>
+												<td   class="label"><spring:message code="biens.pieces.max" /></td>
+												<td  ><label> <form:input label="nbPiecesMax"
+															path="nbPiecesMax" class="text mediumtext" />
+												</label></td>
+											</tr>
+											<tr>
+											<td colspan="4">
+													
+									<!-- <div class="slide-wrapper slidingDiv" >
+									<div id="searchoptions" class="pma_auto_slider slider_init_done" title="Options" style="overflow: auto;"> -->
+										<table class="search_form">
+											<tr>
+												<td><label> <form:checkbox path="ascenseur" />
+												</label></td>
+												<td class="label"><form:label path="ascenseur"
+														for="ascenseur">
+														<spring:message code="biens.ascenseur" />
+													</form:label></td>
 
+												<td><label> <form:checkbox
+															path="cuisineEquipee" />
+												</label></td>
+												<td class="label"><form:label path="cuisineEquipee"
+														for="cuisineEquipee">
+														<spring:message code="biens.cuisineEquipee" />
+													</form:label></td>
+
+												<td><label> <form:checkbox path="jardin" />
+												</label></td>
+												<td class="label"><form:label path="jardin"
+														for="jardin">
+														<spring:message code="biens.jardin" />
+													</form:label></td>
+											</tr>
+											<tr>
+												<td><label> <form:checkbox path="interphone" />
+												</label></td>
+												<td class="label"><form:label path="interphone"
+														for="interphone">
+														<spring:message code="biens.interphone" />
+													</form:label></td>
+											
+												<td><label> <form:checkbox path="digicode" />
+												</label></td>
+												<td class="label"><form:label path="digicode"
+														for="digicode">
+														<spring:message code="biens.digicode" />
+													</form:label></td>
+
+												<td><label> <form:checkbox path="gardien" />
+												</label></td>
+											
+												<td class="label"><form:label path="gardien"
+														for="gardien">
+														<spring:message code="biens.gardien" />
+													</form:label></td>
+											</tr>
+											<tr>
+												<td><label> <form:checkbox
+															path="adapteHandicape" />
+												</label></td>
+												<td class="label"><form:label path="adapteHandicape"
+														for="adapteHandicape">
+														<spring:message code="biens.adapte" />
+													</form:label></td>
+
+												<td><label> <form:checkbox path="meuble" />
+												</label></td>
+												<td class="label"><form:label path="meuble"
+														for="meuble">
+														<spring:message code="biens.meuble" />
+													</form:label></td>
+											
+												<td><label> <form:checkbox path="piscine" />
+												</label></td>
+												<td class="label"><form:label path="piscine"
+														for="piscine">
+														<spring:message code="biens.piscine" />
+													</form:label></td>
+											</tr>
+											<tr>
+												<td><label> <form:checkbox path="caves" />
+												</label></td>
+												<td class="label"><form:label path="caves" for="caves">
+														<spring:message code="biens.caves" />
+													</form:label></td>
+
+												<td><label> <form:checkbox path="parking" />
+												</label></td>
+												<td class="label"><form:label path="parking"
+														for="parking">
+														<spring:message code="biens.parking" />
+													</form:label></td>
+												<td><label> <form:checkbox
+															path="terrassesBalcons" />
+												</label></td>
+											
+												<td class="label"><form:label path="terrassesBalcons"
+														for="terrassesBalcons">
+														<spring:message code="biens.terrassesBalcons" />
+													</form:label></td>
+											</tr>
+										</table>
+								</td>
+								</tr>
+								</table>
+									</fieldset>
+								</div>
+								</div>
+								</td>
+							  </tr>								
 								<tr>
 									<td class="label">&nbsp;</td>
 									<td>&nbsp;</td>
 									<td>&nbsp;</td>
-									<td class="label"><label> <input type="image"
+									<td class="label"><label> 
+									<input class="buttonGo" type="submit" value="Exécuter" name="submit">
+									<%-- <input type="image"
 											src='<c:url value="/resources/graphics/searchbtn.gif"/>'
 											alt="search
       " name="button2" id="button2"
-											value="Submit" />
+											value="Submit" /> --%>
 									</label></td>
 								</tr>
 							</table>
 						</form:form>
-
+					</li>
+					</ul>					
 					</div>
 					<div class="bottom"></div>
 				</div>
@@ -316,6 +408,12 @@
 				</div>
 			</div>
 			<div id="home_sidebar">
+				<div class="block advert">
+	
+					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
+						alt="Advertise Here" style="width: 315px;" /> 
+					<%-- <jsp:include page="./../immobilier/right-side-recherche.jsp" /> --%>
+				</div>
 				<jsp:include page="./common/slide-right.jsp" />
 			
 			

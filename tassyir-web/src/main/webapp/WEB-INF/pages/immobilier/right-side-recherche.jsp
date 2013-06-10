@@ -123,13 +123,13 @@ $(document).ready(function() {
 									 <tr>
 									 	<td>
 									 	<div  class="group">
-											<table>
+											<table style="font-size: 14px;">
 											 <tr>
 												<td>
 													<label> <form:checkbox path="appartement" /></label>
-													 <form:label path="appartement" for="appartement">
-																				<spring:message code="bien.type.recherche.appartement" />
-													 </form:label>
+														 <form:label path="appartement" for="appartement">
+																					<spring:message code="bien.type.recherche.appartement" />
+														 </form:label>
 												</td>													
 												<td>
 													<label> <form:checkbox path="maison" /></label>
@@ -188,7 +188,7 @@ $(document).ready(function() {
 								 <tr>
 									 	<td>
 									 	<div  class="group">
-												<table>
+											<table  style="font-size: 14px;">
 												  <tr>
 													<td>
 														<tr>
@@ -223,8 +223,6 @@ $(document).ready(function() {
 																		path="nbPiecesMax" class="text mediumtext1" />
 															</label></td>
 														</tr>
-													</td>
-													
 												</table> 	
 											</div>
 										</td>
@@ -232,7 +230,7 @@ $(document).ready(function() {
 								 <tr>
 									 	<td>
 									 		<div  class="group">
-												<table>
+												<table  style="font-size: 14px;">
 												  <tr>
 													<td>
 														<tr>

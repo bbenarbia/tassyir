@@ -2,47 +2,168 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
 <head>
 <jsp:include page="./../../common/head.jsp" />
+<c:url var="findStateCommunesURL" value="/biens/communes.htm" />
+<c:url var="findStatesURL" value="/biens/states.htm" />
+
+
+<script type="text/javascript">
+$(document).ready(function() { 
+	$('#states').change(
+			function() {
+				$.getJSON('${findStateCommunesURL}', {
+					stateName : $(this).val(),
+					ajax : 'true'
+				}, function(data) {
+					var html = '<option value=""><spring:message code="biens.commune" /></option>';
+					var len = data.length;
+					for ( var i = 0; i < len; i++) {
+						html += '<option value="' + data[i].reference + '">'
+								+ data[i].name + '</option>';
+					}
+					html += '</option>';
+
+					$('#commune').html(html);
+				});
+			});
+});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				$.getJSON('${findStatesURL}', {
+					ajax : 'true'
+				}, function(data) {
+					var html = '<option value=""><spring:message code="biens.departement" /></option>';
+					var len = data.length;
+					for ( var i = 0; i < len; i++) {
+						html += '<option value="' + data[i].reference + '">'
+								+ data[i].name+ '</option>';
+					}
+					html += '</option>';
+
+					$('#states').html(html);
+				});
+			});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#commune").change(onSelectChange);
+	});
+
+	function onSelectChange() {
+		var selected = $("#commune option:selected");		
+		var output = "";
+		if(selected.val() != 0){
+			output = "You selected commune " + selected.text();
+		}
+		$("#output").html(output);
+	}
+</script>
 </head>
 <body>
-	<spring:url value="/biens/photo" var="photoUrl" />
-	<spring:url value="/biens/upload/{bienId}/show.htm" var="addPhotoUrl">
-		<spring:param name="bienId" value="${bien.id}" />
-	</spring:url>
 	<div id="wrap">
-		<jsp:include page="../../common/menu.jsp" />
+		<jsp:include page="./../../common/menu.jsp" />
+		<jsp:include page="./../../common/sub-menu.jsp" />
 		<div id="content">
-			<jsp:include page="../../common/sub-menu.jsp" />
-			<div id="main">
-				<h1>
-					<spring:message code="bien.information" />
-				</h1>
-				<div id="midraw_details">
-					<div class="listingbtns">
-						<span class="listbuttons"> <spring:url
-								value="/biens/appartement/new.htm" var="createAppartUrl">
-							</spring:url> <a href="${fn:escapeXml(createAppartUrl)}">Create appartement</a>
-						</span> 
-						<span class="listbuttons"> <spring:url
-								value="/biens/studio/new.htm" var="createStudioUrl">
-							</spring:url> <a href="${fn:escapeXml(createStudioUrl)}">Create Studio</a>
-						</span> 
-						<span class="listbuttons"> <spring:url
-								value="/biens/maison/new.htm" var="createMaisonUrl">
-							</spring:url> <a href="${fn:escapeXml(createMaisonUrl)}">Create Maison</a>
-						</span> 
-					</div>
+			<div id="main_bien">
 
-					<div class="clear">&nbsp;</div>
-				</div>
+				<div id="search_bien">
+					<div class="group">
+						<h2>Selectionner le type de biens</h2>
+					 <ul>
+						<li id="li_select_lang">
+						<form:form modelAttribute="findBiens" method="post" id="form1">
+							<table class="search_form" style="width: 100%; border: none;">
+								 <tr>
+								 	<td colspan="4">
+										<div id="searchoptions" class="pma_auto_slider slider_init_done" title="Options" style="overflow: auto;">
+										<fieldset id="fieldset_select_fields">
+											<legend><spring:message code="biens.zoneRecherche" /> </legend>
+												<table class="search_form">
+												 <tr>
+												 		<td><label>
+															<form:select path="typeOperationBien"
+																class="select_field">
+																   <optgroup label="<spring:message code="bien.action.recherche.offres" />"> 
+																      <form:option value="1"><spring:message code="bien.action.recherche.vente" /></form:option> 
+																      <form:option value="2"><spring:message code="bien.action.recherche.location" /></form:option> 
+																      <form:option value="3"><spring:message code="bien.action.recherche.vacances" /></form:option> 
+																      <form:option value="4"><spring:message code="bien.action.recherche.colocation" /></form:option> 
+																      <form:option value="6"><spring:message code="bien.action.recherche.commerce" /></form:option> 
+																   </optgroup> 
+																   <optgroup label="<spring:message code="bien.action.recherche.demandes" />"> 
+																      <form:option value="8"><spring:message code="bien.action.recherche.achat" /></form:option> 
+																      <form:option value="9"><spring:message code="bien.action.recherche.location" /></form:option> 
+																      <form:option value="10"><spring:message code="bien.action.recherche.vacances" /></form:option> 
+																      <form:option value="11"><spring:message code="bien.action.recherche.colocation" /></form:option> 
+																      <form:option value="12"><spring:message code="bien.action.recherche.commerce" /></form:option> 
+																   </optgroup>
+																   <form:option  value="5"><spring:message code="bien.action.recherche.echange" /></form:option> 
+																   <form:option  value="7"><spring:message code="bien.action.recherche.autre" /></form:option>
+				   											</form:select>																
+													    </label>
+												      </td>
+												 	   <td ><label> 
+															<form:select id="states" class="select_field" path="departementBien">
+															</form:select>
+														</label>
+													    </td>
+													    <td ><label>		
+															<form:select id="commune" class="select_field" path="communeBien">
+																<form:option value=""><spring:message code="biens.commune" /></form:option>
+															</form:select>
+														</label>
+														</td>
+												 </tr>
+												</table>
+											</fieldset>
+											</div>
+								 	</td>
+								</tr>
+								<%-- <tr>
+								<td colspan="4">
+									<div id="searchoptions" class="pma_auto_slider slider_init_done" title="Options" style="overflow: auto;">
+									<fieldset id="fieldset_select_fields">
+										<legend><spring:message code="biens.typebien" /></legend>
+										<table class="search_form">
+											<tr>
+												<td><label>
+														<form:select path="typeBien" class="select_field">
+															<option value="1"><spring:message code="bien.type.recherche.appartement" /></option>
+															<option value="2"><spring:message code="bien.type.recherche.maison" /></option>
+															<option value="3"><spring:message code="bien.type.recherche.immeuble" /></option>
+															<option value="4"><spring:message code="bien.type.recherche.terrain" /></option>
+															<option value="5"><spring:message code="bien.type.recherche.agricole" /></option>
+															<option value="6"><spring:message code="bien.type.recherche.carcasse" /></option>
+															<option value="7"><spring:message code="bien.type.recherche.commercial" /></option>
+															<option value="8"><spring:message code="bien.type.recherche.bungalow" /></option>
+															<option value="9"><spring:message code="bien.type.recherche.ferme" /></option>															
+			   											</form:select>																
+													    </label>
+												 </td>
+											</tr>
+										</table>
+									</fieldset>
+										<br style="clear: both;">
+									</div>
+								</td>
+								</tr> --%>
+						</table>
+					</form:form>
+				</li>
+			</ul>
 			</div>
 		</div>
-		<div class="clear">&nbsp;</div>
-		<div class="clear">&nbsp;</div>
-		<jsp:include page="../../common/footer.jsp" />
-	</div>
+		</div>				
+		</div>
+	</div>						
+								
 </body>
 </html>
