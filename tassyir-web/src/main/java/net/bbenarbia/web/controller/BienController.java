@@ -742,6 +742,44 @@ public class BienController {
 		model.addAttribute("navigations", navigations);
 		return "immobilier/modification/createBienForm";
 	}
+	
+	@RequestMapping(value = "/new", method = RequestMethod.POST)
+	public String createBienFormSelector(
+			@ModelAttribute("findBiens") @Valid FindBienDTO findBienDto,
+			BindingResult result, SessionStatus status, Model model) {
+
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
+		model.addAttribute("navigations", navigations);
+		
+		if(findBienDto.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())){
+			return "/appartement/new";
+		}else 
+		if(findBienDto.getTypeBien().equals(EnumTypeBien.AGRICOLE.toString())){
+			return "/appartement/new";
+		}else
+		if(findBienDto.getTypeBien().equals(EnumTypeBien.BUNGALOW.toString())){
+			return "/appartement/new";
+		}else
+		if(findBienDto.getTypeBien().equals(EnumTypeBien.CARCASSE.toString())){
+			return "/appartement/new";	
+		}else if(findBienDto.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())){
+			return "/appartement/new";
+		}else if(findBienDto.getTypeBien().equals(EnumTypeBien.FERME.toString())){
+			return "/appartement/new";
+		}else if(findBienDto.getTypeBien().equals(EnumTypeBien.IMMEUBLE.toString())){
+			return "/appartement/new";
+		}else if(findBienDto.getTypeBien().equals(EnumTypeBien.MAISON.toString())){
+			return "/appartement/new";
+		}else if(findBienDto.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())){
+			return "/appartement/new";
+		}
+		else return "/appartement/new";
+						
+		
+		
+	}
 
 	@RequestMapping(value = "/appartement/new", method = RequestMethod.GET)
 	public String initCreateAppartementForm(Model model) {

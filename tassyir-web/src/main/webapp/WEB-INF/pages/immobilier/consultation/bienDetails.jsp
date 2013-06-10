@@ -402,6 +402,12 @@
 					</div>			
 			</div>
 		<div id="home_sidebar">
+				<div class="block advert">
+	
+					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
+						alt="Advertise Here" style="width: 315px;" /> 
+					<%-- <jsp:include page="./../immobilier/right-side-recherche.jsp" /> --%>
+				</div>
 				<jsp:include page="./../../common/slide-right.jsp" />
 		</div>
 	</div>

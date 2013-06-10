@@ -1,7 +1,7 @@
 
 insert into parameters values (1,"LANGUAGE", "FRANCAIS", "La langue du systeme");
 insert into parameters values (2,"EMAIL_ADMIN", "benaissa@bbenarbia.fr", "L""email de l""admin");
-insert into parameters values (3,"TEMP_DIRECTORY", "c:\\Benaissa\\temp\\", "Temp directory");
+insert into parameters values (3,"TEMP_DIRECTORY", "/opt/work/temp/", "Temp directory");
 insert into parameters values (4,"MAIN_CURRENCY", '&euro;', "Main currency");
 insert into parameters values (5,"SECOND_CURRENCY", "$", "Second currency");
 insert into parameters values (10, "OPTION_EAU_CHAUDE", "false","OPTION_EAU_CHAUDE");
@@ -20,56 +20,6 @@ insert into parameters values (22, "OPTION_DIGICODE","false","OPTION_DIGICODE");
 insert into parameters values (23, "OPTION_GARDIEN","false","OPTION_GARDIEN");
 insert into parameters values (24, "OPTION_CONSO_ENERGIE","false","OPTION_CONSO_ENERGIE");
  
--- 
---insert into departements values (1,"1","Adrar","Adrar","Adrar");
---insert into departements values (2,"2","Chlef","Chlef","Chlef");
---insert into departements values (3,"3","Laghouat","Laghouat","Laghouat");
---insert into departements values (4,"4","Oum El Bouaghi","Oum El Bouaghi","Oum El Bouaghi");
---insert into departements values (5,"5","Batna","Batna","Batna");
---insert into departements values (6,"6","Béjaïa","Béjaïa","Béjaïa");
---insert into departements values (7,"7","Biskra","Biskra","Biskra");
---insert into departements values (8,"8","Béchar","Béchar","Béchar");
---insert into departements values (9,"9","Blida","Blida","Blida");
---insert into departements values (10,"10","Bouira","Bouira","Bouira");
---insert into departements values (11,"11","Tamanrasset","Tamanrasset","Tamanrasset");
---insert into departements values (12,"12","Tébessa","Tébessa","Tébessa");
---insert into departements values (13,"13","Tlemcen","Tlemcen","Tlemcen");
---insert into departements values (14,"14","Tiaret","Tiaret","Tiaret");
---insert into departements values (15,"15","Tizi Ouzou","Tizi Ouzou","Tizi Ouzou");
---insert into departements values (16,"16","Alger","Alger","Alger");
---insert into departements values (17,"17","Djelfa","Djelfa","Djelfa");
---insert into departements values (18,"18","Jijel","Jijel","Jijel");
---insert into departements values (19,"19","Sétif","Sétif","Sétif");
---insert into departements values (20,"20","Saïda","Saïda","Saïda");
---insert into departements values (21,"21","Skikda","Skikda","Skikda");
---insert into departements values (22,"22","Sidi Bel Abbès","Sidi Bel Abbès","Sidi Bel Abbès");
---insert into departements values (23,"23","Annaba","Annaba","Annaba");
---insert into departements values (24,"24","Guelma","Guelma","Guelma");
---insert into departements values (25,"25","Constantine","Constantine","Constantine");
---insert into departements values (26,"26","Médéa","Médéa","Médéa");
---insert into departements values (27,"27","Mostaganem","Mostaganem","Mostaganem");
---insert into departements values (28,"28","MSila","MSila","MSila");
---insert into departements values (29,"29","Mascara","Mascara","Mascara");
---insert into departements values (30,"30","Ouargla","Ouargla","Ouargla");
---insert into departements values (31,"31","Oran","Oran","Oran");
---insert into departements values (32,"32","El Bayadh","El Bayadh","El Bayadh");
---insert into departements values (33,"33","Illizi","Illizi","Illizi");
---insert into departements values (34,"34","Bordj Bou Arreridj","Bordj Bou Arreridj","Bordj Bou Arreridj");
---insert into departements values (35,"35","Boumerdès","Boumerdès","Boumerdès");
---insert into departements values (36,"36","El Tarf","El Tarf","El Tarf");
---insert into departements values (37,"37","Tindouf","Tindouf","Tindouf");
---insert into departements values (38,"38","Tissemsilt","Tissemsilt","Tissemsilt");
---insert into departements values (39,"39","El Oued","El Oued","El Oued");
---insert into departements values (40,"40","Khenchela","Khenchela","Khenchela");
---insert into departements values (41,"41","Souk Ahras","Souk Ahras","Souk Ahras");
---insert into departements values (42,"42","Tipaza","Tipaza","Tipaza");
---insert into departements values (43,"43","Mila","Mila","Mila");
---insert into departements values (44,"44","Aïn Defla","Aïn Defla","Aïn Defla");
---insert into departements values (45,"45","Naama","Naama","Naama");
---insert into departements values (46,"46","Aïn Témouchent","Aïn Témouchent","Aïn Témouchent");
---insert into departements values (47,"47","Ghardaia","Ghardaia","Ghardaia");
---insert into departements values (48,"48","Relizane","Relizane","Relizane");
-
 insert into towns(id,ref,name,codePostal,departement,typeVille, region) values (1001,"1","Adrar","101","1",0,"");
 insert into towns(id,ref,name,codePostal,departement,typeVille, region) values (1002,"2","Tamest","102","1",0,"");
 insert into towns(id,ref,name,codePostal,departement,typeVille, region) values (1003,"3","Charouine","103","1",0,"");
@@ -297,11 +247,11 @@ insert into towns(id,ref,name,codePostal,departement,typeVille, region) values (
 
 ---Table user_categories
 
-insert into user_categories values (1,"Administrateurs", "c:\\Benaissa\\temp\\p1.jpg");
-insert into user_categories values (2,"Utilisateurs", "c:\\Benaissa\\temp\\p2.jpg");
-insert into user_categories values (3,"Managers", "c:\\Benaissa\\temp\\p3.jpg");
-insert into user_categories values (4,"Commerciaux","c:\\Benaissa\\temp\\p4.jpg");
-insert into user_categories values (5,"Autres","c:\\Benaissa\\temp\\p4.jpg");
+insert into user_categories values (1,"Administrateurs", "/opt/work/temp/p1.jpg");
+insert into user_categories values (2,"Utilisateurs", "/opt/work/temp/p2.jpg");
+insert into user_categories values (3,"Managers", "/opt/work/temp/p3.jpg");
+insert into user_categories values (4,"Commerciaux","/opt/work/temp/p4.jpg");
+insert into user_categories values (5,"Autres","/opt/work/temp/p4.jpg");
 
 --Roles
 insert into roles VALUES (1, "ROLE_USER", "");
@@ -340,14 +290,14 @@ insert into contact values (3, 1, "Contact3", "Company 3",  "adresse1",  false, 
 "www.bbenarbia.fr", "01010101", "0202020202");
 
 insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile,typeUser,  fk_categorieutilisateur)  VALUES
-				(1, 1, "c:\\Benaissa\\temp\\p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, "adresse1","93800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenaissa.fr","01010101","","0625252525",1, 4);
+				(1, 1, "/opt/work/temp/p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, "adresse1","93800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenaissa.fr","01010101","","0625252525",1, 4);
 insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile, typeUser, fk_categorieutilisateur)  VALUES 
-				(2, 2, "c:\\Benaissa\\temp\\p2.jpg", "said", "med","smed","smed",true, false, "adresse2","65800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenarbia.fr","01010101","","0625252525",0, 3);
+				(2, 2, "/opt/work/temp/p2.jpg", "said", "med","smed","smed",true, false, "adresse2","65800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenarbia.fr","01010101","","0625252525",0, 3);
 insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile, typeUser, fk_categorieutilisateur)  VALUES
-				(3, 3, "c:\\Benaissa\\temp\\p3.jpg", "lakhdar", "omar","lomar","lomar",true, false,"adresse3","95800","Epinay sur seine", true, true, "ben@gmail.com","","01010101","","0625252525",  1, 2);
+				(3, 3, "/opt/work/temp/p3.jpg", "lakhdar", "omar","lomar","lomar",true, false,"adresse3","95800","Epinay sur seine", true, true, "ben@gmail.com","","01010101","","0625252525",  1, 2);
 
 insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile, typeUser, fk_categorieutilisateur)  VALUES 
-                 (4, 4, "c:\\Benaissa\\temp\\p3.jpg", "benaissa", "BENARBIA","bbenaissa","bbenaissa",false, false,"adresse3","95800","Epinay sur seine", false, false, "ben@gmail.com","","01010101","","0625252525", 0, 1);
+                 (4, 4, "/opt/work/temp/p3.jpg", "benaissa", "BENARBIA","bbenaissa","bbenaissa",false, false,"adresse3","95800","Epinay sur seine", false, false, "ben@gmail.com","","01010101","","0625252525", 0, 1);
   
   
 insert into user_role values (4,1);
@@ -398,14 +348,14 @@ insert into biens (
 
 
 
-insert into photos values(1,"photos1", 2,"c:\\Benaissa\\temp\\app1.jpg");
-insert into photos values(2,"photos2", 2,"c:\\Benaissa\\temp\\app2.jpg");
-insert into photos values(3,"photos3", 2,"c:\\Benaissa\\temp\\app3.jpg");
+insert into photos values(1,"photos1", 2,"/opt/work/temp/app1.jpg");
+insert into photos values(2,"photos2", 2,"/opt/work/temp/app2.jpg");
+insert into photos values(3,"photos3", 2,"/opt/work/temp/app3.jpg");
 
-insert into photos values(4,"photos4", 3,"c:\\Benaissa\\temp\\m1.jpg");
-insert into photos values(5,"photos5", 3,"c:\\Benaissa\\temp\\m2.jpg");
-insert into photos values(6,"photos6", 3,"c:\\Benaissa\\temp\\m3.jpg");
-insert into photos values(7,"photos7", 3,"c:\\Benaissa\\temp\\m4.jpg");
+insert into photos values(4,"photos4", 3,"/opt/work/temp/m1.jpg");
+insert into photos values(5,"photos5", 3,"/opt/work/temp/m2.jpg");
+insert into photos values(6,"photos6", 3,"/opt/work/temp/m3.jpg");
+insert into photos values(7,"photos7", 3,"/opt/work/temp/m4.jpg");
 
 
 ---c:\\Benaissa\\temp\\

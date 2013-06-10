@@ -3,6 +3,10 @@ package net.bbenarbia.web.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author mohamed
+ *
+ */
 public class FindBienDTO {
 
 	private String refBien;
@@ -36,6 +40,7 @@ public class FindBienDTO {
 	private Boolean caves;
 	private Boolean parking;
 	private Boolean terrassesBalcons;
+	private String typeBien;
 
 	List<BienDTO> listBiens = new ArrayList<BienDTO>(0);
 
@@ -293,6 +298,14 @@ public class FindBienDTO {
 
 	public void setFerme(Boolean ferme) {
 		this.ferme = ferme;
+	}
+
+	public String getTypeBien() {
+		return typeBien;
+	}
+
+	public void setTypeBien(String typeBien) {
+		this.typeBien = typeBien;
 	}
 
 }
