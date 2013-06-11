@@ -184,18 +184,12 @@
 										<form:input label="name" path="nbPieces"
 												class="text" />										
 									</dd>
-									<dt><form:label path="nbChambres"><spring:message code="biens.nbChambres" /></form:label></dt>
-									<dd> 
-										<form:input label="name" path="nbChambres" class="text" />		
+										
 								</dl>
 								<dl>
 									<dt><form:label path="nbTerrasses"><spring:message code="biens.nbTerrasses" /></form:label></dt>
 									<dd> 
 										<form:input label="name" path="nbTerrasses" class="text" />		
-									</dd>
-									<dt><form:label path="nbBalcons"><spring:message code="biens.nbBalcons" /></form:label></dt>
-									<dd> 
-										<form:input label="name" path="nbBalcons" class="text" />	
 									</dd>
 								</dl>
 								<dl>
