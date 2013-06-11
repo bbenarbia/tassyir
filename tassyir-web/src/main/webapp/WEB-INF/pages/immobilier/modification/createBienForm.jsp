@@ -3,254 +3,417 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
 <html>
 <head>
-<jsp:include page="./../../common/head.jsp" />
-
-<c:url var="findStateCommunesURL" value="/biens/communes.htm" />
-<c:url var="findStatesURL" value="/biens/states.htm" />
-<script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$('#states')
-								.change(
-										function() {
-											$
-													.getJSON(
-															'${findStateCommunesURL}',
-															{
-																stateName : $(
-																		this)
-																		.val(),
-																ajax : 'true'
-															},
-															function(data) {
-																var html = '<option value=""><spring:message code="biens.commune" /></option>';
-																var len = data.length;
-																for ( var i = 0; i < len; i++) {
-																	html += '<option value="' + data[i].reference + '">'
-																			+ data[i].name
-																			+ '</option>';
-																}
-																html += '</option>';
-
-																$('#commune')
-																		.html(
-																				html);
-															});
-										});
-					});
-</script>
-
-<script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$
-								.getJSON(
-										'${findStatesURL}',
-										{
-											ajax : 'true'
-										},
-										function(data) {
-											var html = '<option value=""><spring:message code="biens.departement" /></option>';
-											var len = data.length;
-											for ( var i = 0; i < len; i++) {
-												html += '<option value="' + data[i].reference + '">'
-														+ data[i].name
-														+ '</option>';
-											}
-											html += '</option>';
-
-											$('#states').html(html);
-										});
-					});
-</script>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#commune").change(onSelectChange);
-	});
-
-	function onSelectChange() {
-		var selected = $("#commune option:selected");
-		var output = "";
-		if (selected.val() != 0) {
-			output = "You selected commune " + selected.text();
-		}
-		$("#output").html(output);
-	}
-</script>
+	<jsp:include page="./../../common/head.jsp"/>
 </head>
 <body>
+	<spring:url value="/biens/find-biens.htm" var="bienListUrl"/>
+	<spring:url value="/biens/new.htm" var="bienUrl" />	 
+	<spring:url value="/biens/{BienId}.htm" var="detailBienUrl">
+				<spring:param name="BienId" value="${bien.id}" />
+	</spring:url> 
 	
 	<div id="wrap">
-		<jsp:include page="./../../common/menu.jsp" />
-		<jsp:include page="./../../common/sub-menu.jsp" />
+		<jsp:include page="../../common/menu.jsp" />
 		<div id="content">
-			<div id="main_bien">
-
-				<div id="search_bien">
-					<div class="group">
-						<h2>Selectionner le type de biens</h2>
-						<ul>
-							<li id="li_select_lang"><form:form
-									modelAttribute="findBiens" method="post" id="form1">
-									<table class="search_form" style="width: 100%; border: none;">
-										<tr>
-											<td colspan="4">
-												<div id="searchoptions"
-													class="pma_auto_slider slider_init_done" title="Options"
-													style="overflow: auto;">
-													<fieldset id="fieldset_select_fields">
-														<legend>
-															<spring:message code="biens.zoneRecherche" />
-														</legend>
-														<table class="search_form">
-															<tr>
-																<td><label> <form:select id="states"
-																			class="select_field" path="departementBien">
-																		</form:select>
-																</label></td>
-																<td><label> <form:select id="commune"
-																			class="select_field" path="communeBien">
-																			<form:option value="">
-																				<spring:message code="biens.commune" />
-																			</form:option>
-																		</form:select>
-																</label></td>
-															</tr>
-															<tr>
-																<td><label> <form:select
-																			path="typeOperationBien" class="select_field">
-																			<optgroup
-																				label="<spring:message code="bien.action.recherche.offres" />">
-																				<form:option value="1">
-																					<spring:message code="bien.action.recherche.vente" />
-																				</form:option>
-																				<form:option value="2">
-																					<spring:message
-																						code="bien.action.recherche.location" />
-																				</form:option>
-																				<form:option value="3">
-																					<spring:message
-																						code="bien.action.recherche.vacances" />
-																				</form:option>
-																				<form:option value="4">
-																					<spring:message
-																						code="bien.action.recherche.colocation" />
-																				</form:option>
-																				<form:option value="6">
-																					<spring:message
-																						code="bien.action.recherche.commerce" />
-																				</form:option>
-																			</optgroup>
-																			<optgroup
-																				label="<spring:message code="bien.action.recherche.demandes" />">
-																				<form:option value="8">
-																					<spring:message code="bien.action.recherche.achat" />
-																				</form:option>
-																				<form:option value="9">
-																					<spring:message
-																						code="bien.action.recherche.location" />
-																				</form:option>
-																				<form:option value="10">
-																					<spring:message
-																						code="bien.action.recherche.vacances" />
-																				</form:option>
-																				<form:option value="11">
-																					<spring:message
-																						code="bien.action.recherche.colocation" />
-																				</form:option>
-																				<form:option value="12">
-																					<spring:message
-																						code="bien.action.recherche.commerce" />
-																				</form:option>
-																			</optgroup>
-																			<form:option value="5">
-																				<spring:message code="bien.action.recherche.echange" />
-																			</form:option>
-																			<form:option value="7">
-																				<spring:message code="bien.action.recherche.autre" />
-																			</form:option>
-																		</form:select>
-																</label></td>
-																<td><label> <form:select path="typeBien"
-																			class="select_field">
-																			<option value="1">
-																				<spring:message
-																					code="bien.type.recherche.appartement" />
-																			</option>
-																			<option value="2">
-																				<spring:message code="bien.type.recherche.maison" />
-																			</option>
-																			<option value="3">
-																				<spring:message code="bien.type.recherche.immeuble" />
-																			</option>
-																			<option value="4">
-																				<spring:message code="bien.type.recherche.terrain" />
-																			</option>
-																			<option value="5">
-																				<spring:message code="bien.type.recherche.agricole" />
-																			</option>
-																			<option value="6">
-																				<spring:message code="bien.type.recherche.carcasse" />
-																			</option>
-																			<option value="7">
-																				<spring:message
-																					code="bien.type.recherche.commercial" />
-																			</option>
-																			<option value="8">
-																				<spring:message code="bien.type.recherche.bungalow" />
-																			</option>
-																			<option value="9">
-																				<spring:message code="bien.type.recherche.ferme" />
-																			</option>
-																		</form:select>
-																</label></td>
-															</tr>
-															<tr>
-																<td class="label">&nbsp;</td>
-																<td>&nbsp;</td>
-																<td>&nbsp;</td>
-																<td class="label"><label> <input
-																		class="buttonGo" type="submit" value="Exécuter"
-																		name="submit">
-																</label></td>
-															</tr>
-														</table>
-													</fieldset>
-													<br style="clear: both;">
-												</div>
-											</td>
-										</tr>
-									</table>
-								</form:form></li>
-						</ul>
+			<jsp:include page="../../common/sub-menu.jsp" />
+		<div id="home_main_edit_user">
+				<div class="navig">
+					<c:forEach var="navig" items="${navigations}" varStatus="status">
+						&laquo;
+						<spring:url value="${navig.url}" var="navigs" />
+						<a href="${navigs}"><spring:message code="${navig.name}" /></a>
+					</c:forEach>
+				</div>
+				<div id="edit_user">
+					<div class="tab">
+						<h2><spring:message code="biens.appartement.action.new" /></h2>
 					</div>
+					<div style="margin: 10px; background: none repeat scroll 0px 0px rgb(248, 248, 248); padding: 14px;">
+					<form:form modelAttribute="bien" method="post" id="form1" enctype="multipart/form-data">
+						<fieldset>
+    						<legend>General Info</legend>
+        						<dl>
+        							<dt><form:label path="status"><spring:message code="biens.status" /></form:label></dt>
+					            	<dd>
+										<form:select path="status"  class="select_field">
+													<c:forEach var="item" items="${statusList}">
+																<form:option value="${item}"/>
+												</c:forEach>
+										</form:select>
+									</dd>
+									<dd>
+										<form:input path="typeOperation" />
+									</dd>
+						        </dl>
+						        
+						        <dl>
+        							<dt><form:label path="name"><spring:message code="biens.name" /></form:label></dt>
+					            	<dd>
+					            		<form:input label="name" path="name"	class="text" />
+									</dd>
+        							
+						        </dl>
+					        <c:if test="${bien.typeOperation =='OFFRE_LOCATION' || bien.typeOperation =='DEMANDE_LOCATION'}">
+						        <dl>
+        							<dt><form:label path="loyerMensuel"><spring:message code="biens.loyerMensuel" /></form:label></dt>
+					            	<dd>	
+					            		<form:input label="loyerMensuel"  path="loyerMensuel" class="text smalltext" />
+									</dd>
+        							<dt><form:label path="chargesMensuel"><spring:message code="biens.chargesMensuel" /></form:label></dt>
+					            	<dd>
+					            		<form:input label="chargesMensuel" path="chargesMensuel" class="text smalltext" />
+									</dd>
+						        </dl>
+						        <dl>
+        							<dt><form:label path="honoraires"><spring:message code="biens.honoraires" /></form:label></dt>
+					            	<dd>
+					            		<form:input label="honoraires" path="honoraires" class="text smalltext" />
+									</dd>
+        							<dt><form:label path="depotGarantie"><spring:message code="biens.depotGarantie" /></form:label></dt>
+					            	<dd>
+					            		<form:input label="depotGarantie" path="depotGarantie" class="text smalltext" />
+									</dd>
+						        </dl>
+						        
+						         <dl>
+        							<dt><form:label path="superficie"><spring:message code="biens.superficie" /></form:label></dt>
+					            	<dd>
+					            		<form:input label="superficie" path="superficie" class="text smalltext" />
+									</dd>
+        							<dt><form:label path="departement"><spring:message code="biens.departement" /></form:label></dt>
+					            	<dd>
+					            		<form:select path="departement"  class="select_field">
+													<c:forEach var="item" items="${departementsList}">
+														<c:choose>
+															<c:when test="${departement == item.reference}">
+																<form:option selected="true" value="${item.reference}">
+										               				 ${item.name} 
+										            			</form:option>
+															</c:when>
+															<c:otherwise>
+																<form:option value="${item.reference}">
+										                  			 ${item.name}
+										            			</form:option>
+															</c:otherwise>
+														</c:choose>
+												</c:forEach>
+										</form:select>
+									</dd>
+						        </dl>
+								<dl>
+								<dt><form:label path="codePostal"><spring:message code="biens.codepostal" /></form:label></dt>
+									<dd>
+										<form:input label="codePostal" path="codePostal"
+													class="text smalltext" />										
+									</dd>
+								  <dt><form:label path="ville"><spring:message code="biens.ville" /></form:label></dt>
+										<dd> 
+											<form:input label="ville" path="ville" class="text smalltext" />										
+									   </dd>
+								</dl>	
+							 </c:if>
+							 <c:if test="${bien.typeOperation =='OFFRE_VENDRE' || bien.typeOperation =='DEMANDE_ACHAT'}">
+							   	<dl>
+									<dt><form:label path="prixVente"><spring:message code="biens.prixVente" /></form:label></dt>
+									<dd> <form:input label="prixVente"
+												path="prixVente" class="text smalltext" />
+								</dl>
+								<dl>
+									<dt><form:label path="honoraires"><spring:message code="biens.honoraires" /></form:label></dt>
+									<dd> <form:input label="honoraires"
+												path="honoraires" class="text smalltext" />
+									<dt><form:label path="depotGarantie"><spring:message code="biens.depotGarantie" /></form:label></dt>
+									<dd> 
+										<form:input label="depotGarantie" path="depotGarantie" class="text smalltext" />
+									</dd>
+							   </dl> 
+							   <dl>
+							   		<dt><form:label path="superficie"><spring:message code="biens.superficie" /></form:label></dt>
+									<dd> 
+										<form:input label="superficie" path="superficie" class="text smalltext" />
+									</dd>
+									<dt>
+										<form:input path="departement"  />
+									</dt>
+								</dl>	
+								<dl>
+									<dt>
+										<form:input path="ville" /></dt>
+									<dd> 
+																					
+									<dt><form:label path="codePostal"><spring:message code="biens.codepostal" /></form:label></dt>
+									<dd> 
+										<form:input label="codePostal" path="codePostal"
+														class="text smalltext" />										
+									</dd>
+								</dl>	
+							 </c:if>
+								<dl>
+									<dt><form:label path="adresse"><spring:message code="biens.adresse" /></form:label></dt>
+									<dd> <form:textarea cols="16" rows="6" label="adresse" path="adresse" class="text textBoxfieldlong" />
+									</dd>
+									<dt><form:label path="description"><spring:message code="biens.description" /></form:label></dt>
+									<dd><form:textarea cols="16" rows="6"	label="description" path="description" class="text textBoxfieldlong" />
+									</dd>
+								</dl>
+								<dl>
+									<dt><form:label path="transport"><spring:message code="biens.transport" /></form:label></dt>
+									<dd> 
+										<form:textarea cols="16" rows="6" label="name" path="transport" class="text textBoxfieldlong" />
+									</dd>
+									<dt><form:label path="proximite"><spring:message code="biens.proximite" /></form:label></dt>
+									<dd> 
+										<form:textarea cols="16" rows="6" label="name" path="proximite" class="text textBoxfieldlong" />
+									</dd>
+								</dl>
+								<dl>
+									<dt><form:label path="age"><spring:message code="biens.age" /></form:label></dt>
+									<dd> 
+										<form:input label="age" path="age" class="text smalltext" />
+									</dd>
+									<dt><form:label path="etage"><spring:message code="biens.etage" /></form:label></dt>
+									<dd> 
+										<form:input label="etage" path="etage" class="text smalltext" />										
+									</dd>
+								</dl>						
+								<dl>
+									<dt><form:label path="nbPieces"><spring:message code="biens.nbPieces" /></form:label></dt>
+									<dd> 
+										<form:input label="name" path="nbPieces"
+												class="text" />										
+									</dd>
+									<dt><form:label path="nbChambres"><spring:message code="biens.nbChambres" /></form:label></dt>
+									<dd> 
+										<form:input label="name" path="nbChambres" class="text" />		
+								</dl>
+								<dl>
+									<dt><form:label path="nbTerrasses"><spring:message code="biens.nbTerrasses" /></form:label></dt>
+									<dd> 
+										<form:input label="name" path="nbTerrasses" class="text" />		
+									</dd>
+									<dt><form:label path="nbBalcons"><spring:message code="biens.nbBalcons" /></form:label></dt>
+									<dd> 
+										<form:input label="name" path="nbBalcons" class="text" />	
+									</dd>
+								</dl>
+								<dl>
+									<dt><form:label path="nbParkingInt"><spring:message code="biens.nbParkingInt" /></form:label></dt>
+										<dd> 
+												<form:input label="name" path="nbParkingInt"
+												class="text" />	
+									</dd>
+									<dt><form:label path="nbParkingExt"><spring:message code="biens.nbParkingExt" /></form:label></dt>
+										<dd> 
+											<form:input label="name" path="nbParkingExt"
+												class="text" />												
+									</dd>
+								</dl>
+								<dl>
+									<dt><form:label path="nbCaves"><spring:message code="biens.nbCaves" /></form:label></dt>
+										<dd> 
+											<form:input label="name" path="nbCaves"
+												class="text" />												
+									</dd>
+									<dt><form:label path="nbSallesBains" for="nbSallesBains"><spring:message code="biens.nbSallesBains" /></form:label></dt>
+									<dd> 
+										<form:input label="name" path="nbSallesBains"
+												class="text" />		
+									</dd>
+								</dl>
+								<dl>
+									<dt><form:label path="etatBien"><spring:message code="biens.etatBien" /></form:label></dt>
+									<dd>
+												<form:select path="etatBien"  class="select_field">
+													<c:forEach var="item" items="${etatBienList}">
+														<c:choose>
+															<c:when test="${etatBien == item}">
+																<form:option selected="true" value="${item}">
+										               				 ${item} 
+										            			</form:option>
+															</c:when>
+															<c:otherwise>
+																<form:option value="${item}">
+										                  			 ${item}
+										            			</form:option>
+															</c:otherwise>
+														</c:choose>
+												</c:forEach>
+												</form:select>
+											</dd>
+								</dl>
+							</fieldset>	
+								
+							<fieldset>	
+								<legend>Informations Energitiques</legend>
+								<dl>
+									<dt><form:label path="typeEauChaude"><spring:message code="biens.typeEauChaude" /></form:label></dt>
+											<dd>
+												<form:select path="typeEauChaude"  class="select_field">
+													<c:forEach var="item" items="${typeEauChaudeList}">
+														<c:choose>
+															<c:when test="${typeEauChaude == item}">
+																<form:option selected="true" value="${item}">
+										               				 ${item} 
+										            			</form:option>
+															</c:when>
+															<c:otherwise>
+																<form:option value="${item}">
+										                  			 ${item}
+										            			</form:option>
+															</c:otherwise>
+														</c:choose>
+												</c:forEach>
+												</form:select>
+											</dd>
+								</dl>
+								<dl>
+									<dt><form:label path="natureChauffage"><spring:message code="biens.natureChauffage" /></form:label></dt>
+											<dd>
+												<form:select path="natureChauffage"  class="select_field">
+													<c:forEach var="item" items="${typeNatureChauffageList}">
+														<c:choose>
+															<c:when test="${natureChauffage == item}">
+																<form:option selected="true" value="${item}">
+										               				 ${item} 
+										            			</form:option>
+															</c:when>
+															<c:otherwise>
+																<form:option value="${item}">
+										                  			 ${item}
+										            			</form:option>
+															</c:otherwise>
+														</c:choose>
+												</c:forEach>
+												</form:select>
+											</dd>
+									<dt><form:label path="typeChauffage"><spring:message code="biens.typeChauffage" /></form:label></dt>
+											<dd>
+												<form:select path="typeChauffage"  class="select_field">
+													<c:forEach var="item" items="${typeTypeChauffageList}">
+														<c:choose>
+															<c:when test="${typeChauffage == item}">
+																<form:option selected="true" value="${item}">
+										               				 ${item} 
+										            			</form:option>
+															</c:when>
+															<c:otherwise>
+																<form:option value="${item}">
+										                  			 ${item}
+										            			</form:option>
+															</c:otherwise>
+														</c:choose>
+												</c:forEach>
+												</form:select>
+											</dd>
+								</dl>
+								<dl>
+									<dt><form:label path="consoEnergie"><spring:message code="biens.consoEnergie" /></form:label></dt>
+										<dd>
+												<form:select path="consoEnergie"  class="select_field">
+													<c:forEach var="item" items="${typeConsoEnergieList}">
+														<c:choose>
+															<c:when test="${consoEnergie == item}">
+																<form:option selected="true" value="${item}">
+										               				 ${item} 
+										            			</form:option>
+															</c:when>
+															<c:otherwise>
+																<form:option value="${item}">
+										                  			 ${item}
+										            			</form:option>
+															</c:otherwise>
+														</c:choose>
+												</c:forEach>
+												</form:select>
+											</dd>
+									<dt><form:label path="impactConso"><spring:message code="biens.impactConso" /></form:label></dt>
+											<dd>
+												<form:select path="impactConso"  class="select_field">
+													<c:forEach var="item" items="${typeImpactConsoList}">
+														<c:choose>
+															<c:when test="${impactConso == item}">
+																<form:option selected="true" value="${item}">
+										               				 ${item} 
+										            			</form:option>
+															</c:when>
+															<c:otherwise>
+																<form:option value="${item}">
+										                  			 ${item}
+										            			</form:option>
+															</c:otherwise>
+														</c:choose>
+												</c:forEach>
+												</form:select>
+											</dd>
+									</dl>
+							</fieldset>			
+							<fieldset>		
+								<legend>Options</legend>
+								<dl>
+									<dt>
+											<form:checkbox path="interphone" id="interphone"/><form:label path="interphone" for="interphone"><spring:message code="biens.interphone" /></form:label>
+									</dt>
+									<dd> 	
+											<form:checkbox id="digicode" path="digicode" /><form:label path="digicode" for="digicode"><spring:message code="biens.digicode" /></form:label>
+									</dd>
+									<dt> 
+											<form:checkbox id="cuisineEquipee" path="cuisineEquipee" /><form:label path="cuisineEquipee"><spring:message code="biens.cuisineEquipee" /></form:label>
+									</dt>
+									<dd>
+											<form:checkbox id="gardien" path="gardien" /><form:label path="gardien"><spring:message code="biens.gardien" /></form:label>
+									</dd>
+								</dl>
+								<dl>
+									<dt>
+											<form:checkbox id="meuble" path="meuble" /><form:label path="meuble"><spring:message code="biens.meuble" /></form:label>
+									</dt>
+									<dd>
+											<form:checkbox id="ascenseur" path="ascenseur" /> <form:label path="ascenseur" for="ascenseur"><spring:message code="biens.ascenseur" /></form:label>
+									</dd>
+									<dt>
+											<form:checkbox id="adapteHandicape" path="adapteHandicape" /> <form:label path="adapteHandicape" for="adapteHandicape"><spring:message code="biens.adapteHandicape" /></form:label>	
+									</dt>
+        						</dl>
+        						</fieldset>	
+        						<fieldset>
+        							<legend> Photos </legend>
+        							<c:forEach varStatus="status" begin="1" end="${5}">
+											<dl>
+												<dt> Photo: ${status.count}</dt>
+												<dd><input
+														name="files[${status.count-1}]" type="file" accept="image/*" />
+												</dd>
+											</dl>
+									</c:forEach>
+        						</fieldset>	
+								<fieldset class="action">
+									<dl><dt>
+    									<input type="submit"  alt="Create"  class="buttonmenu" value="Create" />
+									</dt>
+									<dd>
+										<a class="buttonmenured"  href="${fn:escapeXml(bienListUrl)}"><spring:message code="biens.action.cancel" /></a>
+									</dd>
+									</dl>
+    							</fieldset>
+    							<fieldset class="action">
+									<dl>
+									<dd>
+										<a class="buttonmenu"  href="${fn:escapeXml(bienListUrl)}"><spring:message code="biens.action.bienlist" /></a>
+									</dd>
+									</dl>
+    							</fieldset>
+							</form:form>
+							</div>
 				</div>
-			</div>
-			<div id="home_sidebar">
-				<div class="block advert">
-
-					<img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-						alt="Advertise Here" style="width: 315px;" />
-					<%-- <jsp:include page="./../immobilier/right-side-recherche.jsp" /> --%>
-				</div>
-				<jsp:include page="./../../common/slide-right.jsp" />
-
-
+				
 			</div>
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>
+			<jsp:include page="../../common/footer.jsp" />
 		</div>
-
-		<div class="clear">&nbsp;</div>
-		<div class="clear">&nbsp;</div>
-		<jsp:include page="./../../common/footer.jsp" />
 	</div>
-
 </body>
 </html>
+	

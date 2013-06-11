@@ -40,7 +40,7 @@ public class FindBienDTO {
 	private Boolean caves;
 	private Boolean parking;
 	private Boolean terrassesBalcons;
-	private String typeBien;
+	private int typeBien;
 
 	List<BienDTO> listBiens = new ArrayList<BienDTO>(0);
 
@@ -300,12 +300,14 @@ public class FindBienDTO {
 		this.ferme = ferme;
 	}
 
-	public String getTypeBien() {
+	public int getTypeBien() {
 		return typeBien;
 	}
 
-	public void setTypeBien(String typeBien) {
+	public void setTypeBien(int typeBien) {
 		this.typeBien = typeBien;
 	}
+
+
 
 }

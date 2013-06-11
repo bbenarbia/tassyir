@@ -40,6 +40,7 @@ import net.bbenarbia.service.IPhotoService;
 import net.bbenarbia.service.ITownService;
 import net.bbenarbia.service.IUtilisateurService;
 import net.bbenarbia.service.immobilier.IBienService;
+import net.bbenarbia.service.impl.TownService;
 import net.bbenarbia.utils.ImageService;
 import net.bbenarbia.web.dto.BienDTO;
 import net.bbenarbia.web.dto.FindBienDTO;
@@ -740,7 +741,7 @@ public class BienController {
 		navigations.add(new NavigationDTO("/", "home"));
 		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
 		model.addAttribute("navigations", navigations);
-		return "immobilier/modification/createBienForm";
+		return "immobilier/modification/addNewBienSelectorForm";
 	}
 	
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
@@ -753,32 +754,56 @@ public class BienController {
 		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
 		model.addAttribute("navigations", navigations);
 		
-		if(findBienDto.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())){
-			return "/appartement/new";
-		}else 
-		if(findBienDto.getTypeBien().equals(EnumTypeBien.AGRICOLE.toString())){
-			return "/appartement/new";
-		}else
-		if(findBienDto.getTypeBien().equals(EnumTypeBien.BUNGALOW.toString())){
-			return "/appartement/new";
-		}else
-		if(findBienDto.getTypeBien().equals(EnumTypeBien.CARCASSE.toString())){
-			return "/appartement/new";	
-		}else if(findBienDto.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())){
-			return "/appartement/new";
-		}else if(findBienDto.getTypeBien().equals(EnumTypeBien.FERME.toString())){
-			return "/appartement/new";
-		}else if(findBienDto.getTypeBien().equals(EnumTypeBien.IMMEUBLE.toString())){
-			return "/appartement/new";
-		}else if(findBienDto.getTypeBien().equals(EnumTypeBien.MAISON.toString())){
-			return "/appartement/new";
-		}else if(findBienDto.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())){
-			return "/appartement/new";
+		if(findBienDto.getDepartementBien() != null && !findBienDto.getDepartementBien().isEmpty()){			
+		if(findBienDto.getCommuneBien() != null && !findBienDto.getCommuneBien().isEmpty()){
+
+		BienDTO bienDto = new BienDTO();
+		
+		Town town = departementservice.getTownByReference(findBienDto.getCommuneBien()).get(0);
+		bienDto.setVille(town.getName());
+		bienDto.setDepartement(town.getDepartement());
+		bienDto.setCodePostal(town.getCodePostal());
+		bienDto.setTypeBien(EnumTypeBien.fromIndex(findBienDto.getTypeBien()).toString());
+		bienDto.setTypeOperation(EnumTypeOperation.fromIndex(findBienDto.getTypeOperationBien()).toString());
+		model.addAttribute("bien", bienDto);
+		
+		return "immobilier/modification/createBienForm";
+		
+//		if(findBienDto.getTypeBien() == EnumTypeBien.APPARTEMENT.getIndex()){
+//			return "immobilier/modification/createBienForm";
+//		}else 
+//		if(findBienDto.getTypeBien()==EnumTypeBien.AGRICOLE.getIndex()){
+//			return "agricole/new";
+//		}else
+//		if(findBienDto.getTypeBien()==EnumTypeBien.BUNGALOW.getIndex()){
+//			return "bungalow/new";
+//		}else
+//		if(findBienDto.getTypeBien()==EnumTypeBien.CARCASSE.getIndex()){
+//			return "carcasse/new";	
+//		}else if(findBienDto.getTypeBien()==EnumTypeBien.COMMERCE.getIndex()){
+//			return "commerce/new";
+//		}else if(findBienDto.getTypeBien()==EnumTypeBien.FERME.getIndex()){
+//			return "ferme/new";
+//		}else if(findBienDto.getTypeBien()==EnumTypeBien.IMMEUBLE.getIndex()){
+//			return "immeuble/new";
+//		}else if(findBienDto.getTypeBien()==EnumTypeBien.MAISON.getIndex()){
+//			return "maison/new";
+//		}else if(findBienDto.getTypeBien()== EnumTypeBien.TERRAIN.getIndex()){
+//			return "terrain/new";
+//		}
+//		else return "immobilier/modification/createBienForm";
+		}	
+		else {
+			result.rejectValue("communeBien", "commune.null");
+			model.addAttribute("findBiens", findBienDto);
+			return "immobilier/modification/createBienForm";
 		}
-		else return "/appartement/new";
-						
-		
-		
+		}
+		else {
+			result.rejectValue("departementBien", "departement.null");
+			model.addAttribute("findBiens", findBienDto);
+			return "immobilier/modification/createBienForm";
+		}
 	}
 
 	@RequestMapping(value = "/appartement/new", method = RequestMethod.GET)
@@ -828,7 +853,7 @@ public class BienController {
 				status.setComplete();
 			}
 
-			return "redirect:/biens/" + appartement.getId();
+			return "s/" + appartement.getId();
 		}
 	}
 
