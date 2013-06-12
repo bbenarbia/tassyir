@@ -6,7 +6,7 @@ import java.util.Set;
 import net.bbenarbia.dao.common.IGenericDao;
 import net.bbenarbia.domain.enums.EnumTypeBien;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
-import net.bbenarbia.domain.immobilier.BienImmobilier;
+import net.bbenarbia.domain.immobilier.subtype.BienImmobilier;
 
 public interface IBienDao extends IGenericDao<BienImmobilier>{
 

@@ -7,7 +7,7 @@ import net.bbenarbia.dao.common.GenericDao;
 import net.bbenarbia.dao.immobilier.IBienDao;
 import net.bbenarbia.domain.enums.EnumTypeBien;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
-import net.bbenarbia.domain.immobilier.BienImmobilier;
+import net.bbenarbia.domain.immobilier.subtype.BienImmobilier;
 
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;

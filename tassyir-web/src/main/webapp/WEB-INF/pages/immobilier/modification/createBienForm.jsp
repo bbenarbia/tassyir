@@ -67,7 +67,7 @@
 										<dd> 
 											<form:input label="etage" path="etage" class="text smalltext" />										
 										</dd>
-								</c:if>
+									</c:if>
 						        </dl>
 						       <c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='MAISON'}">
 						         <dl>
@@ -101,14 +101,16 @@
 									<dd> 
 										<form:textarea cols="16" rows="6" label="name" path="proximite" class="text textBoxfieldlong" />
 									</dd>
-									<dt><form:label path="etatBien"><spring:message code="biens.etatBien" /></form:label></dt>
-									<dd>
-												<form:select path="etatBien"  class="select_field">
-													<c:forEach var="item" items="${etatBienList}">
-																<form:option  value="${item}"> ${item} </form:option>
-													</c:forEach>
-												</form:select>
-									</dd>
+									<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='FERME' || bien.typeBien=='BUNGALOW'  || bien.typeBien=='COMMERCE'  || bien.typeBien=='CARCASSE' || bien.typeBien=='IMMEUBLE' || bien.typeBien=='MAISON'}">
+										<dt><form:label path="etatBien"><spring:message code="biens.etatBien" /></form:label></dt>
+										<dd>
+													<form:select path="etatBien"  class="select_field">
+														<c:forEach var="item" items="${etatBienList}">
+																	<form:option  value="${item}"> ${item} </form:option>
+														</c:forEach>
+													</form:select>
+										</dd>
+									</c:if>
 								</dl>
 							</fieldset>	
 							<fieldset>
@@ -132,7 +134,7 @@
 									</dd>
 						       </dl>
 							</fieldset>
-								
+							<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='FERME' || bien.typeBien=='BUNGALOW'  || bien.typeBien=='COMMERCE' || bien.typeBien=='IMMEUBLE' || bien.typeBien=='MAISON'}">	
 							<fieldset>	
 								<legend>Informations Energitiques</legend>
 								<dl>
@@ -157,40 +159,49 @@
 												</form:select>
 											</dd>
 								</dl>
-							</fieldset>			
+							</fieldset>		
+							</c:if>	
+							<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='BUNGALOW' || bien.typeBien=='IMMEUBLE' || bien.typeBien=='MAISON'}">
 							<fieldset>		
 								<legend>Options</legend>
+								<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='IMMEUBLE' || bien.typeBien=='MAISON'}">
 								<dl>
 									<dt>
-											<form:checkbox path="interphone" id="interphone"/><form:label path="interphone" for="interphone"><spring:message code="biens.interphone" /></form:label>
+											<form:checkbox path="interphone" id="interphone"/>  <form:label path="interphone" for="interphone"><spring:message code="biens.interphone" /></form:label>
 									</dt>
+								</dl>
+								<dl>
 									<dd> 	
-											<form:checkbox id="digicode" path="digicode" /><form:label path="digicode" for="digicode"><spring:message code="biens.digicode" /></form:label>
+											<form:checkbox id="digicode" path="digicode" />  <form:label path="digicode" for="digicode"><spring:message code="biens.digicode" /></form:label>
 									</dd>
 								</dl>
+								<dl>
+									<dd>
+											<form:checkbox id="gardien" path="gardien" />  <form:label path="gardien"><spring:message code="biens.gardien" /></form:label>
+									</dd>
+								</dl>
+								
+								<dl>
+									<dt>
+											<form:checkbox id="meuble" path="meuble" />  <form:label path="meuble"><spring:message code="biens.meuble" /></form:label>
+									</dt>
+								</dl>
+								</c:if>
+								<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='IMMEUBLE'}">
+								<dl>
+									<dd>
+											<form:checkbox id="ascenseur" path="ascenseur" />  <form:label path="ascenseur" for="ascenseur"><spring:message code="biens.ascenseur" /></form:label>
+									</dd>
+								</dl>
+								</c:if>
 								<dl>
 									<dt> 
-											<form:checkbox id="cuisineEquipee" path="cuisineEquipee" /><form:label path="cuisineEquipee"><spring:message code="biens.cuisineEquipee" /></form:label>
+											<form:checkbox id="cuisineEquipee" path="cuisineEquipee" />  <form:label path="cuisineEquipee"><spring:message code="biens.cuisineEquipee" /></form:label>
 									</dt>
-									<dd>
-											<form:checkbox id="gardien" path="gardien" /><form:label path="gardien"><spring:message code="biens.gardien" /></form:label>
-									</dd>
 								</dl>
-								<dl>
-									<dt>
-											<form:checkbox id="meuble" path="meuble" /><form:label path="meuble"><spring:message code="biens.meuble" /></form:label>
-									</dt>
-									<dd>
-											<form:checkbox id="ascenseur" path="ascenseur" /> <form:label path="ascenseur" for="ascenseur"><spring:message code="biens.ascenseur" /></form:label>
-									</dd>
-								</dl>
-								<dl>
-									<dt>
-											<form:checkbox id="adapteHandicape" path="adapteHandicape" /> <form:label path="adapteHandicape" for="adapteHandicape"><spring:message code="biens.adapteHandicape" /></form:label>	
-									</dt>
-        						</dl>
-        						</fieldset>	
-        						<fieldset>
+        					</fieldset>	
+        					</c:if>
+        					<fieldset>
         							<legend> Photos </legend>
         							<c:forEach varStatus="status" begin="1" end="${5}">
 											<dl>
@@ -208,24 +219,8 @@
 										<input hidden="hidden" name="ville" class="text smalltext" />	
 										
 									</dl>	
-        						</fieldset>	
-								<fieldset class="action">
-									<dl><dt>
-    									<input type="submit"  alt="Create"  class="buttonmenu" value="Create" />
-									</dt>
-									<dd>
-										<a class="buttonmenured"  href="${fn:escapeXml(bienListUrl)}"><spring:message code="biens.action.cancel" /></a>
-									</dd>
-									</dl>
-    							</fieldset>
-    							<fieldset class="action">
-									<dl>
-									<dd>
-										<a class="buttonmenu"  href="${fn:escapeXml(bienListUrl)}"><spring:message code="biens.action.bienlist" /></a>
-										<input hidden="hidden" name="typeOperation" />
-									</dd>
-									</dl>
-    							</fieldset>
+        					</fieldset>	
+							
 							</form:form>
 							</div>
 				</div>

@@ -8,9 +8,9 @@ import net.bbenarbia.domain.User;
 import net.bbenarbia.domain.base.Contact;
 import net.bbenarbia.domain.enums.EnumTypeBien;
 import net.bbenarbia.domain.enums.EnumTypeUser;
-import net.bbenarbia.domain.immobilier.Appartement;
-import net.bbenarbia.domain.immobilier.BienImmobilier;
-import net.bbenarbia.domain.immobilier.Maison;
+import net.bbenarbia.domain.immobilier.subtype.Appartement;
+import net.bbenarbia.domain.immobilier.subtype.BienImmobilier;
+import net.bbenarbia.domain.immobilier.subtype.Maison;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;

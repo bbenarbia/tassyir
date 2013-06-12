@@ -161,6 +161,7 @@ CREATE TABLE IF NOT EXISTS biens (
   impactConso INT(5) DEFAULT 0,
   natureChauffage INT(5) DEFAULT 0,
   typeChauffage INT(5) DEFAULT 0,
+  puit  INT(5) DEFAULT 0,
   meuble tinyint (1),
   ascenseur tinyint (1),
   cuisineEquipee tinyint (1),

@@ -9,6 +9,12 @@ public class Constants {
 	public final static String COMMERCE = "COMMERCE";
 	public final static String MAISON = "MAISON";
 	public final static String ENTREPOT = "ENTREPOT";
+	public final static String FARM = "FARM";
+	public final static String AGRICOLE = "AGRICOLE";
+	public final static String VACANCES = "VACANCES"; 
+	public final static String CARCASSE = "CARCASSE";
+	
+	
 	/**
 	 * La longueur maximal des users name
 	 */

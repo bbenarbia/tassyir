@@ -5,7 +5,7 @@ import java.util.Set;
 
 import net.bbenarbia.domain.enums.EnumTypeBien;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
-import net.bbenarbia.domain.immobilier.BienImmobilier;
+import net.bbenarbia.domain.immobilier.subtype.BienImmobilier;
 import net.bbenarbia.service.generic.IGenericService;
 
 public interface IBienService extends IGenericService<BienImmobilier> {

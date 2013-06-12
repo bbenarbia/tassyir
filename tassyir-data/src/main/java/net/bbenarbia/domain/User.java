@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlElement;
 import net.bbenarbia.domain.base.BaseUser;
 import net.bbenarbia.domain.base.Contact;
 import net.bbenarbia.domain.enums.EnumTypeUser;
-import net.bbenarbia.domain.immobilier.BienImmobilier;
+import net.bbenarbia.domain.immobilier.subtype.BienImmobilier;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;

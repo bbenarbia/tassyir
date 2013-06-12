@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import net.bbenarbia.domain.base.NamedEntity;
+import net.bbenarbia.domain.immobilier.subtype.BienImmobilier;
 
 @Entity
 @Table(name = "photos")

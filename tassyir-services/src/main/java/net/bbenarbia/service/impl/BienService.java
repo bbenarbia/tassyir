@@ -8,7 +8,7 @@ import net.bbenarbia.dao.common.IGenericDao;
 import net.bbenarbia.dao.immobilier.IBienDao;
 import net.bbenarbia.domain.enums.EnumTypeBien;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
-import net.bbenarbia.domain.immobilier.BienImmobilier;
+import net.bbenarbia.domain.immobilier.subtype.BienImmobilier;
 import net.bbenarbia.service.generic.GenericService;
 import net.bbenarbia.service.immobilier.IBienService;
 

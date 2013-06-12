@@ -11,10 +11,10 @@ import net.bbenarbia.domain.enums.EnumStatutProperty;
 import net.bbenarbia.domain.enums.EnumTypeChauffage;
 import net.bbenarbia.domain.enums.EnumTypeEauChaude;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
-import net.bbenarbia.domain.immobilier.Appartement;
-import net.bbenarbia.domain.immobilier.Maison;
 import net.bbenarbia.domain.immobilier.Photo;
-import net.bbenarbia.domain.immobilier.Studio;
+import net.bbenarbia.domain.immobilier.subtype.Appartement;
+import net.bbenarbia.domain.immobilier.subtype.Maison;
+import net.bbenarbia.domain.immobilier.subtype.Studio;
 
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
