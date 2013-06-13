@@ -46,6 +46,7 @@
 		
 		 	<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
@@ -72,11 +73,6 @@
 				<groupId>joda-time</groupId>
 				<artifactId>joda-time</artifactId>
 				<version>${jodatime.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>joda-time</groupId>
-				<artifactId>joda-time-hibernate</artifactId>
-				<version>${jodatime-hibernate.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>joda-time</groupId>
@@ -131,11 +127,6 @@
 			</dependency>
 
 			<!-- Spring -->
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-validator</artifactId>
-				<version>${hibernate-validator.version}</version>
-			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-core</artifactId>
@@ -249,19 +240,7 @@
 
 			<dependency>
 				<groupId>org.springframework.security</groupId>
-				<artifactId>spring-security-config</artifactId>
-				<version>${spring-security.version}</version>
-				<scope>compile</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-acl</artifactId>
-				<version>${spring-security.version}</version>
-				<scope>compile</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.security</groupId>
-				<artifactId>spring-security-web</artifactId>
 				<version>${spring-security.version}</version>
 				<scope>compile</scope>
 			</dependency>
@@ -288,11 +267,6 @@
 			<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-config</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.security</groupId>
-				<artifactId>spring-security-taglibs</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
@@ -381,11 +355,6 @@
 
 
 			<!-- Date handling -->
-			<dependency>
-				<groupId>joda-time</groupId>
-				<artifactId>joda-time</artifactId>
-				<version>1.6.2</version>
-			</dependency>
 			<dependency>
 				<groupId>joda-time</groupId>
 				<artifactId>joda-time-hibernate</artifactId>
@@ -598,12 +567,6 @@
 			</dependency>
 
 			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>jstl</artifactId>
-				<version>1.2</version>
-			</dependency>
-
-			<dependency>
 				<groupId>org.aspectj</groupId>
 				<artifactId>aspectjrt</artifactId>
 				<version>1.6.8</version>
@@ -686,18 +649,6 @@
 				<version>1.2</version>
 			</dependency>
 
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>servlet-api</artifactId>
-				<version>2.5</version>
-			</dependency>
-
-			<dependency>
-				<groupId>javax.servlet.jsp</groupId>
-				<artifactId>jsp-api</artifactId>
-				<version>2.1</version>
-			</dependency>
-
 			<!-- EL -->
 			<dependency>
 				<groupId>org.glassfish.web</groupId>
@@ -741,11 +692,6 @@
 				<groupId>commons-digester</groupId>
 				<artifactId>commons-digester</artifactId>
 				<version>2.1</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-fileupload</groupId>
-				<artifactId>commons-fileupload</artifactId>
-				<version>1.0</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-io</groupId>

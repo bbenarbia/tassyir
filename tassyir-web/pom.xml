@@ -28,7 +28,10 @@
 			<artifactId>joda-time-jsptags</artifactId>
 		</dependency>
 
-
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+		</dependency>
 		<!-- Spring 3 dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>

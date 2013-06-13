@@ -12,7 +12,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
@@ -27,7 +26,9 @@ import net.bbenarbia.service.IParameterService;
 import net.bbenarbia.service.IRoleService;
 import net.bbenarbia.service.IUserCategoryService;
 import net.bbenarbia.service.IUtilisateurService;
+import net.bbenarbia.service.utils.MailManager;
 import net.bbenarbia.utils.ImageService;
+import net.bbenarbia.utils.Utils;
 import net.bbenarbia.web.dto.NavigationDTO;
 import net.bbenarbia.web.dto.PasswordDTO;
 import net.bbenarbia.web.dto.RoleFormDTO;
@@ -37,7 +38,6 @@ import net.bbenarbia.web.dto.UserDTO;
 import net.bbenarbia.web.validator.UserValidator;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.Authentication;
@@ -79,7 +79,10 @@ public class UserController {
 
 	@Autowired
 	IParameterService parameterService;
-
+	
+	@Autowired
+	private MailManager mailService;
+	
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
@@ -270,10 +273,8 @@ public class UserController {
 		user.setUserCategory(userGroup);
 		user.setLocked(true);
 		
-		String activationUrl = "123456789" + RandomUtils.nextInt(500);
-		
-		user.setActivationUrl(activationUrl);
-		
+		String activationUrl = Utils.getRandomString();		
+		user.setActivationUrl(activationUrl);		
 		MultipartFile photo= userDto.getPhotoFile();
 		
 		if (null != photo ) {
@@ -301,23 +302,32 @@ public class UserController {
 		}
 			this.userService.save(user);
 			status.setComplete();
+			
+			StringBuilder sb = new StringBuilder();
+			sb.append("Congratulation, Your account is created <br/>");
+			sb.append("Click on this link to activate your account <br/>");
+			sb.append("http://localhost:8080/tassyir-mvc/users/activate/");
+			sb.append(user.getId()+"/"+activationUrl);
+			
+			
+			mailService.sendMail(user.getContact().getAdresseMail(), sb.toString(), "Compte bien crée");
+			
 			return "redirect:/users/" + user.getId();
 	}
 
 	@RequestMapping(value = "/activate/{userId}/{urlActivation}", method = RequestMethod.GET)
 	public String initSubscribeUserForm(@PathVariable("userId") long userId,@PathVariable("urlActivation") String urlActivation, Model model) {
 		
-		
 		User user = userService.get(userId);
 		if(user.getActivationUrl().equals(urlActivation)){
 			user.setLocked(false);
 			user.setActivationUrl("");
 			this.userService.merge(user);
+			return "redirect:/users/" + userId;
 		}
 		else {
-			
+			return "redirect:/";
 		}
-		return "";
 	}
 	
 	
@@ -532,4 +542,6 @@ public class UserController {
 		}
 		return "redirect:/users/" + userId;
 	}
+	
+
 }
