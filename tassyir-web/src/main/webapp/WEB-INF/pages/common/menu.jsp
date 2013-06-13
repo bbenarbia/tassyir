@@ -53,7 +53,7 @@
 					<div id="headings">
 						<h2>
 							<img  src='<c:url value="/resources/graphics/create_indi_usr.jpg"/>' alt="Individual User"
-								width="25" height="22" /> <a href="#">New Indiv Account</a>
+								width="25" height="22" /> <a href="${contextPath}/users/subscribe.htm">New Indiv Account</a>
 						</h2>
 						<h2>
 							<img src='<c:url value="/resources/graphics/create_agent_icon.jpg"/>'  alt="Agent Account"

@@ -18,4 +18,14 @@ public class Agricole extends BienImmobilier {
 
 	@Column(name = "puit")
 	private boolean puit;
+
+	public boolean isPuit() {
+		return puit;
+	}
+
+	public void setPuit(boolean puit) {
+		this.puit = puit;
+	}
+	
+	
 }

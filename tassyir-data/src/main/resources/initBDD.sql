@@ -95,6 +95,7 @@ CREATE TABLE IF NOT EXISTS users (
   telephoneProf VARCHAR(80),
   mobile  VARCHAR(80),
   typeUser INT(5) DEFAULT 0,
+  activationUrl  VARCHAR(250),
   fk_categorieutilisateur INT(5) UNSIGNED NOT NULL,  
   FOREIGN KEY (fk_categorieutilisateur) REFERENCES  user_categories(id),
   INDEX(last_name)
@@ -169,6 +170,9 @@ CREATE TABLE IF NOT EXISTS biens (
   jardin  tinyint (1),
   proprietaire INT(5) UNSIGNED NOT NULL,
   dateMiseAjour DATETIME,
+  eauPotable tinyint (1),
+  gaz tinyint (1),
+  
   INDEX(ref, name)
 ) engine=InnoDB  DEFAULT CHARSET=utf8;
 

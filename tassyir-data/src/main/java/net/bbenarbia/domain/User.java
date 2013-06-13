@@ -47,9 +47,6 @@ public class User extends BaseUser {
 	@Enumerated(EnumType.ORDINAL)
 	private EnumTypeUser typeUser;
 
-//	
-
-//	
 	
 //	@OneToMany
 //    @JoinColumn(name="proprietaire") 
@@ -69,6 +66,9 @@ public class User extends BaseUser {
 	@Cascade(CascadeType.PERSIST)
 	private Set<Role> roles = new HashSet<Role>();
 
+	@Column(name="activationUrl")
+	private String activationUrl; 
+	
 	public UserCategory getUserCategory() {
 		return userCategory;
 	}
@@ -145,5 +145,15 @@ public class User extends BaseUser {
 	public void setTypeUser(EnumTypeUser typeUser) {
 		this.typeUser = typeUser;
 	}
+
+	public String getActivationUrl() {
+		return activationUrl;
+	}
+
+	public void setActivationUrl(String activationUrl) {
+		this.activationUrl = activationUrl;
+	}
+	
+	
 
 }

@@ -177,11 +177,6 @@ $(document).ready(function() {
 																			<spring:message code="bien.type.recherche.maison" />
 																  </form:label>
 												</td>
-												<td><label> <form:checkbox path="immeuble" /></label></td>
-												<td class="label"><form:label path="immeuble" for="immeuble">
-																			<spring:message code="bien.type.recherche.immeuble" />
-																  </form:label>
-												</td>
 												</tr>
 												<tr>
 												<td><label> <form:checkbox path="terrain" /></label></td>

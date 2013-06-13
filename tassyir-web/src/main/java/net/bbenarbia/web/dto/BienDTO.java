@@ -12,9 +12,13 @@ import net.bbenarbia.domain.enums.EnumTypeChauffage;
 import net.bbenarbia.domain.enums.EnumTypeEauChaude;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
 import net.bbenarbia.domain.immobilier.Photo;
+import net.bbenarbia.domain.immobilier.subtype.Agricole;
 import net.bbenarbia.domain.immobilier.subtype.Appartement;
+import net.bbenarbia.domain.immobilier.subtype.Carcasse;
+import net.bbenarbia.domain.immobilier.subtype.Commerce;
 import net.bbenarbia.domain.immobilier.subtype.Maison;
 import net.bbenarbia.domain.immobilier.subtype.Studio;
+import net.bbenarbia.domain.immobilier.subtype.Terrain;
 
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -22,6 +26,10 @@ import org.joda.time.format.DateTimeFormatter;
 import org.springframework.web.multipart.MultipartFile;
 /**
  * Le Bien DTO 
+ * @author bbenarbia
+ *
+ */
+/**
  * @author bbenarbia
  *
  */
@@ -126,6 +134,12 @@ public class BienDTO {
 	private List<MultipartFile> files;
 	
 	private List<Photo> photos = new ArrayList<Photo>();
+	
+	private Boolean puit;
+	
+	private Boolean eauPotable;
+	
+	private Boolean gaz;
 
 	public BienDTO() {
 		super();
@@ -156,9 +170,102 @@ public class BienDTO {
 				appartement.getTransport(), appartement.isAdapteHandicape(),
 				appartement.getProximite(), appartement.getHonoraires(),
 				appartement.getDepotGarantie(), appartement.getNbSallesBains(),
-				appartement.getNbCaves(), false, appartement.getPhotos(), appartement.getDateMiseAjour(), appartement.isValidated());
+				appartement.getNbCaves(), false, appartement.getPhotos(), appartement.getDateMiseAjour(), appartement.isValidated(), false, appartement.isEauPotable(), appartement.isGaz());
 	}
-
+	
+	
+	public BienDTO(Terrain terrain) {
+		this(terrain.getId(), terrain.getName(), terrain
+				.getReference(), terrain.getAdresse(),
+				terrain.getDepartement().getCodePostal(), terrain
+						.getDepartement().getName(), terrain.getDepartement()
+						.getReference(), terrain.getDescription(),
+				terrain.getSuperficie(),
+				terrain.getStatus().toString(), terrain.getPrixVente(), terrain.getPrixMinVente(),
+				terrain.getLoyerMensuel(), terrain.getChargesMensuel(),
+				terrain.getTypeOperation().toString(), terrain
+						.getEtatBien().toString(), null,
+				0, 0,
+				false, false,
+				false, 0, terrain.getTypeBien(),
+				0, 0,
+				0, 0,
+				false, false,
+				false,null
+						, null,
+				null, null, null, false,
+				terrain.getTransport(), terrain.isAdapteHandicape(),
+				terrain.getProximite(), terrain.getHonoraires(),
+				terrain.getDepotGarantie(), terrain.getNbSallesBains(),
+				terrain.getNbCaves(), false, terrain.getPhotos(), terrain.getDateMiseAjour(), terrain.isValidated(), false, terrain.isEauPotable(), terrain.isGaz());
+	}
+	
+	public BienDTO(Agricole agricole) {
+		this(agricole.getId(), agricole.getName(), agricole
+				.getReference(), agricole.getAdresse(),
+				agricole.getDepartement().getCodePostal(), agricole
+						.getDepartement().getName(), agricole.getDepartement()
+						.getReference(), agricole.getDescription(),
+				agricole.getSuperficie(),
+				agricole.getStatus().toString(), agricole.getPrixVente(), agricole.getPrixMinVente(),
+				agricole.getLoyerMensuel(), agricole.getChargesMensuel(),
+				agricole.getTypeOperation().toString(), agricole
+						.getEtatBien().toString(), null,
+				0, 0,
+				false, false,
+				false, 0, agricole.getTypeBien(),
+				0, 0,
+				0, 0,
+				false, false,
+				false,null
+						, null,
+				null, null, null, false,
+				agricole.getTransport(), agricole.isAdapteHandicape(),
+				agricole.getProximite(), agricole.getHonoraires(),
+				agricole.getDepotGarantie(), agricole.getNbSallesBains(),
+				agricole.getNbCaves(), false, agricole.getPhotos(), agricole.getDateMiseAjour(), agricole.isValidated(), agricole.isPuit(), agricole.isEauPotable(), agricole.isGaz());
+	}
+	
+	public BienDTO(Carcasse carcasse) {
+		this(carcasse.getId(), carcasse.getName(), carcasse.getReference(), carcasse
+				.getAdresse(),
+				carcasse.getDepartement().getCodePostal(), carcasse.getDepartement().getName()
+						, carcasse.getDepartement().getReference(),
+				carcasse.getDescription(), carcasse.getSuperficie(), carcasse
+						.getStatus().toString(), carcasse.getPrixVente(), carcasse.getPrixMinVente(), carcasse
+						.getLoyerMensuel(), carcasse.getChargesMensuel(), carcasse
+						.getTypeOperation().toString(), carcasse.getEtatBien()
+						.toString(), null, 0, 0, null, false,
+				false, 0, carcasse.getTypeBien(),
+				0,0,0, 0, false, false, null, null, null, null
+						, null,
+						null, false, carcasse
+						.getTransport(), carcasse.isAdapteHandicape(), carcasse
+						.getProximite(), carcasse.getHonoraires(), carcasse
+						.getDepotGarantie(), carcasse.getNbSallesBains(), carcasse
+						.getNbCaves(), false, carcasse.getPhotos(), carcasse.getDateMiseAjour(), carcasse.isValidated(), false, carcasse.isEauPotable(), carcasse.isGaz());
+	}
+	
+	public BienDTO(Commerce commerce) {
+		this(commerce.getId(), commerce.getName(), commerce.getReference(), commerce
+				.getAdresse(),
+				commerce.getDepartement().getCodePostal(), commerce.getDepartement().getName()
+						, commerce.getDepartement().getReference(),
+				commerce.getDescription(), commerce.getSuperficie(), commerce
+						.getStatus().toString(), commerce.getPrixVente(), commerce.getPrixMinVente(), commerce
+						.getLoyerMensuel(), commerce.getChargesMensuel(), commerce
+						.getTypeOperation().toString(), commerce.getEtatBien()
+						.toString(), null, 0, 0, null, false,
+				false, commerce.getAge(), commerce.getTypeBien(),
+				0, 0, 0, 0, false, false, null, null, null, null, null,
+				null, false, commerce
+						.getTransport(), commerce.isAdapteHandicape(), commerce
+						.getProximite(), commerce.getHonoraires(), commerce
+						.getDepotGarantie(), commerce.getNbSallesBains(), commerce
+						.getNbCaves(),false, commerce.getPhotos(), commerce.getDateMiseAjour(), commerce.isValidated(), false, commerce.isEauPotable(), commerce.isGaz());
+	}
+	
+	
 	public BienDTO(Maison maison) {
 		this(maison.getId(), maison.getName(), maison.getReference(), maison
 				.getAdresse(),
@@ -181,7 +288,7 @@ public class BienDTO {
 						.getTransport(), maison.isAdapteHandicape(), maison
 						.getProximite(), maison.getHonoraires(), maison
 						.getDepotGarantie(), maison.getNbSallesBains(), maison
-						.getNbCaves(), maison.isPiscine(), maison.getPhotos(), maison.getDateMiseAjour(), maison.isValidated());
+						.getNbCaves(), maison.isPiscine(), maison.getPhotos(), maison.getDateMiseAjour(), maison.isValidated(), false, maison.isEauPotable(), maison.isGaz());
 	}
 
 	public BienDTO(Studio studio) {
@@ -206,19 +313,8 @@ public class BienDTO {
 						.getTransport(), studio.isAdapteHandicape(), studio
 						.getProximite(), studio.getHonoraires(), studio
 						.getDepotGarantie(), studio.getNbSallesBains(), studio
-						.getNbCaves(), false, studio.getPhotos(), studio.getDateMiseAjour(), studio.isValidated());
+						.getNbCaves(), false, studio.getPhotos(), studio.getDateMiseAjour(), studio.isValidated(), false, studio.isEauPotable(), studio.isGaz());
 	}
-
-	// public BienDTO(Commerce commerce) {
-	// this(commerce.getId(), commerce.getName(), commerce.getReference(),
-	// commerce.getAdresse(), commerce.getDescription(), commerce
-	// .getSuperficie(), commerce.getStatus().toString(),
-	// commerce.getPrixVente(), commerce.getPrixMinVente(), commerce
-	// .getLoyerMensuel(), commerce.getChargesMensuel(),
-	// commerce.getTypeOperation().toString(), commerce.getEtatBien()
-	// .toString(), "", 0, null, null, null,
-	// commerce.getAge(), commerce.getTypeBien());
-	// }
 
 	public BienDTO(Long id, String name, String reference, String adresse,
 			String codePostal, String ville, String departement,
@@ -233,7 +329,7 @@ public class BienDTO {
 			String natureChauffage, String typeChauffage, Boolean meuble,
 			String transport, Boolean adapteHandicape, String proximite,
 			double honoraires, double depotGarantie, int nbSallesBains,
-			int nbCaves, Boolean piscine, List<Photo> photos, LocalDateTime dateMiseAjour, boolean validated) {
+			int nbCaves, Boolean piscine, List<Photo> photos, LocalDateTime dateMiseAjour, boolean validated,Boolean puit,Boolean eauPotable,Boolean gaz) {
 
 		super();
 		this.name = name;
@@ -286,7 +382,10 @@ public class BienDTO {
 		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/yyyy  hh:mm");
 		this.dateMiseAjour = dateMiseAjour.toString(fmt) ;
 		this.photos.addAll(photos);
-	}
+		this.puit = puit;
+		this.eauPotable = eauPotable;
+		this.gaz = gaz;
+		}
 
 	public Maison updateMaison(Maison maison) {
 
@@ -824,6 +923,30 @@ public class BienDTO {
 
 	public void setValidated(boolean validated) {
 		this.validated = validated;
+	}
+
+	public Boolean getPuit() {
+		return puit;
+	}
+
+	public void setPuit(Boolean puit) {
+		this.puit = puit;
+	}
+
+	public Boolean getEauPotable() {
+		return eauPotable;
+	}
+
+	public void setEauPotable(Boolean eauPotable) {
+		this.eauPotable = eauPotable;
+	}
+
+	public Boolean getGaz() {
+		return gaz;
+	}
+
+	public void setGaz(Boolean gaz) {
+		this.gaz = gaz;
 	}
 
 	

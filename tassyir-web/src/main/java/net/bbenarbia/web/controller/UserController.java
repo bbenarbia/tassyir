@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
@@ -20,6 +21,7 @@ import javax.validation.Valid;
 import net.bbenarbia.domain.Role;
 import net.bbenarbia.domain.User;
 import net.bbenarbia.domain.UserCategory;
+import net.bbenarbia.domain.enums.EnumTypeUser;
 import net.bbenarbia.domain.enums.ParameterCode;
 import net.bbenarbia.service.IParameterService;
 import net.bbenarbia.service.IRoleService;
@@ -35,6 +37,7 @@ import net.bbenarbia.web.dto.UserDTO;
 import net.bbenarbia.web.validator.UserValidator;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.Authentication;
@@ -246,6 +249,89 @@ public class UserController {
 		model.addAttribute("navigations", navigations);		
 		model.addAttribute("user", userDto);
 		return "admin/users/createUserForm";
+	}
+	
+	
+	@RequestMapping(value = "/subscribe", method = RequestMethod.POST)
+	public String processSubscribeUserForm(
+			@ModelAttribute("user") @Valid UserDTO userDto,
+			BindingResult result, SessionStatus status) {
+
+		if (result.hasErrors()) {
+			return "admin/users/userSubscribing";
+		}
+		userValidator.validate(userDto, result);
+		if (result.hasErrors()) {
+			return "admin/users/userSubscribing";
+		}
+		userDto.setTypeUser(EnumTypeUser.PARTICULIER.toString());
+		User user = userDto.getUser();
+		UserCategory userGroup = userCategoryService.getUserCategroryByName("Utilisateurs").get(0);
+		user.setUserCategory(userGroup);
+		user.setLocked(true);
+		
+		String activationUrl = "123456789" + RandomUtils.nextInt(500);
+		
+		user.setActivationUrl(activationUrl);
+		
+		MultipartFile photo= userDto.getPhotoFile();
+		
+		if (null != photo ) {
+			String TEMP_DIR = parameterService
+					.getParameterName(ParameterCode.TEMP_DIRECTORY.toString())
+					.get(0).getValue();
+				if (photo.getSize() != 0) {
+					try {
+						File destFile = new File(new File(TEMP_DIR),
+								photo.getOriginalFilename());
+						photo.transferTo(destFile);
+						BufferedImage bimg = ImageIO.read(destFile);
+						BufferedImage bimgResized = ImageService
+								.createResizedCopy(bimg, 300, 300, true);
+						File destFile1 = new File(new File(TEMP_DIR), "small_"
+								+ photo.getOriginalFilename());
+						ImageIO.write(bimgResized, "jpeg", destFile1);
+						user.setPhoto(TEMP_DIR
+								+ photo.getOriginalFilename());
+					} catch (IOException e) {
+						result.rejectValue("photoFile", "photoFile.error");
+						return "admin/users/userSubscribing";
+					}
+				}
+		}
+			this.userService.save(user);
+			status.setComplete();
+			return "redirect:/users/" + user.getId();
+	}
+
+	@RequestMapping(value = "/activate/{userId}/{urlActivation}", method = RequestMethod.GET)
+	public String initSubscribeUserForm(@PathVariable("userId") long userId,@PathVariable("urlActivation") String urlActivation, Model model) {
+		
+		
+		User user = userService.get(userId);
+		if(user.getActivationUrl().equals(urlActivation)){
+			user.setLocked(false);
+			user.setActivationUrl("");
+			this.userService.merge(user);
+		}
+		else {
+			
+		}
+		return "";
+	}
+	
+	
+	@RequestMapping(value = "/subscribe", method = RequestMethod.GET)
+	public String initSubscribeUserForm(Model model) {
+
+		UserDTO userDto = new UserDTO();
+
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
+		model.addAttribute("navigations", navigations);		
+		model.addAttribute("user", userDto);
+		return "admin/users/userSubscribing";
 	}
 
 	@RequestMapping(method = RequestMethod.GET)

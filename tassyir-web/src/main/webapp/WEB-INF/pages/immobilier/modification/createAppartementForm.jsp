@@ -425,6 +425,7 @@
 									<dt>
 											<form:checkbox id="adapteHandicape" path="adapteHandicape" /> <form:label path="adapteHandicape" for="adapteHandicape"><spring:message code="biens.adapteHandicape" /></form:label>	
 									</dt>
+									
         						</dl>
         						</fieldset>	
         						<fieldset>

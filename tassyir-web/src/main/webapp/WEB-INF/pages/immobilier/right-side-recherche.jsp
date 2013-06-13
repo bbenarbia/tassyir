@@ -139,11 +139,6 @@ $(document).ready(function() {
 												</td>
 											 </tr>
 											 <tr>
-												<td><label> <form:checkbox path="immeuble" /></label>
-												<form:label path="immeuble" for="immeuble">
-																			<spring:message code="bien.type.recherche.immeuble" />
-																  </form:label>
-												</td>
 												<td><label> <form:checkbox path="terrain" /></label>
 												<form:label path="terrain" for="terrain">
 																		<spring:message code="bien.type.recherche.terrain" />

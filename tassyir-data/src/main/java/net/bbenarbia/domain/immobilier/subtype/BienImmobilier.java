@@ -111,6 +111,12 @@ public class BienImmobilier extends NamedEntity {
 	
 	@Column(name = "validated")
 	private boolean validated;
+	
+	@Column(name = "eauPotable")
+	private boolean eauPotable;
+	
+	@Column(name = "gaz")
+	private boolean gaz;
 
 	public String getReference() {
 		return reference;
@@ -306,6 +312,22 @@ public class BienImmobilier extends NamedEntity {
 
 	public void setValidated(boolean validated) {
 		this.validated = validated;
+	}
+
+	public boolean isEauPotable() {
+		return eauPotable;
+	}
+
+	public void setEauPotable(boolean eauPotable) {
+		this.eauPotable = eauPotable;
+	}
+
+	public boolean isGaz() {
+		return gaz;
+	}
+
+	public void setGaz(boolean gaz) {
+		this.gaz = gaz;
 	}
 
 

@@ -53,11 +53,6 @@ public class BienService extends GenericService<BienImmobilier> implements
 	}
 
 	@Override
-	public List<BienImmobilier> getAllEntreport() {
-		return getEntityByType(Constants.ENTREPOT);
-	}
-
-	@Override
 	public List<BienImmobilier> getAllMaison() {
 		return getEntityByType(Constants.MAISON);
 	}

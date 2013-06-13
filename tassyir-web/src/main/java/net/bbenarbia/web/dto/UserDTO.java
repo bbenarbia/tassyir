@@ -154,7 +154,6 @@ public class UserDTO {
 		user.setLocked(this.locked);
 		user.setLogin(this.login);
 		user.setTypeUser(EnumTypeUser.valueOf(this.typeUser));
-		user.setUserCategory(this.userCategory.getUserCategory());
 		return user;
 	}
 

@@ -18,20 +18,15 @@
 		<jsp:include page="../../common/menu.jsp" />
 		<div id="content">
 			<jsp:include page="../../common/sub-menu.jsp" />
-		<div id="home_main_edit_user">
-				<div class="navig">
-					<c:forEach var="navig" items="${navigations}" varStatus="status">
-						&laquo;
-						<spring:url value="${navig.url}" var="navigs" />
-						<a href="${navigs}"><spring:message code="${navig.name}" /></a>
-					</c:forEach>
-				</div>
-				<div id="edit_user">
-					<div class="tab">
-						<h2><spring:message code="biens.appartement.action.new" /></h2>
-					</div>
-					<div style="margin: 10px; background: none repeat scroll 0px 0px rgb(248, 248, 248); padding: 14px;">
-					<form:form modelAttribute="bien" method="post" id="form1" enctype="multipart/form-data">
+		<div id="main_bien">
+		   <jsp:include page="../../common/navigator.jsp" />
+				<div id="search_bien">
+				 <div class="group">
+					<h2><spring:message code="biens.appartement.action.new" /></h2>
+					<ul>
+						<li id="li_select_lang">
+						<!-- <div style="margin: 10px; background: none repeat scroll 0px 0px rgb(248, 248, 248); padding: 14px;"> -->
+						<form:form modelAttribute="bien" method="post" id="form1" enctype="multipart/form-data">
 						<fieldset>
     						<legend>${bien.typeOperation} ${bien.typeBien} ${bien.ville} (${bien.codePostal})</legend>
     							<dl>
@@ -62,14 +57,14 @@
 					            	<dd>
 					            		<form:input label="superficie" path="superficie" class="text smalltext" />m2
 									</dd>
-									<c:if test="${bien.typeBien=='APPARTEMENT' }">
+									<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='CARCASSE' }">
 										<dt><form:label path="etage"><spring:message code="biens.etage" /></form:label></dt>
 										<dd> 
 											<form:input label="etage" path="etage" class="text smalltext" />										
 										</dd>
 									</c:if>
 						        </dl>
-						       <c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='MAISON'}">
+						       <c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='MAISON' || bien.typeBien=='CARCASSE'}">
 						         <dl>
 									<dt><form:label path="nbPieces"><spring:message code="biens.nbPieces" /></form:label></dt>
 									<dd> 
@@ -101,7 +96,7 @@
 									<dd> 
 										<form:textarea cols="16" rows="6" label="name" path="proximite" class="text textBoxfieldlong" />
 									</dd>
-									<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='FERME' || bien.typeBien=='BUNGALOW'  || bien.typeBien=='COMMERCE'  || bien.typeBien=='CARCASSE' || bien.typeBien=='IMMEUBLE' || bien.typeBien=='MAISON'}">
+									<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='AGRICOLE' || bien.typeBien=='VACANCES'  || bien.typeBien=='COMMERCE'  || bien.typeBien=='CARCASSE' || bien.typeBien=='MAISON'}">
 										<dt><form:label path="etatBien"><spring:message code="biens.etatBien" /></form:label></dt>
 										<dd>
 													<form:select path="etatBien"  class="select_field">
@@ -134,7 +129,7 @@
 									</dd>
 						       </dl>
 							</fieldset>
-							<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='FERME' || bien.typeBien=='BUNGALOW'  || bien.typeBien=='COMMERCE' || bien.typeBien=='IMMEUBLE' || bien.typeBien=='MAISON'}">	
+							<c:if test="${bien.typeBien=='APPARTEMENT'  || bien.typeBien=='VACANCES'  || bien.typeBien=='COMMERCE' || bien.typeBien=='MAISON'}">	
 							<fieldset>	
 								<legend>Informations Energitiques</legend>
 								<dl>
@@ -161,46 +156,65 @@
 								</dl>
 							</fieldset>		
 							</c:if>	
-							<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='BUNGALOW' || bien.typeBien=='IMMEUBLE' || bien.typeBien=='MAISON'}">
+							
 							<fieldset>		
 								<legend>Options</legend>
-								<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='IMMEUBLE' || bien.typeBien=='MAISON'}">
-								<dl>
-									<dt>
-											<form:checkbox path="interphone" id="interphone"/>  <form:label path="interphone" for="interphone"><spring:message code="biens.interphone" /></form:label>
-									</dt>
-								</dl>
-								<dl>
-									<dd> 	
+								<table class="search_form">
+									<tr>
+										<td><label> <form:checkbox id="eauPotable" path="eauPotable" />  <form:label path="eauPotable"><spring:message code="biens.eauPotable" /></form:label></label></td>
+										<td><label> <form:checkbox id="gaz" path="gaz" />  <form:label path="gaz"><spring:message code="biens.gaz" /></form:label></label></td>
+									</tr>
+									
+									<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='MAISON'}">
+									<tr>
+										<td><label> 
+												<form:checkbox path="interphone" id="interphone"/>  <form:label path="interphone" for="interphone"><spring:message code="biens.interphone" /></form:label>
+											</label>
+										</td>
+										<td><label> 
 											<form:checkbox id="digicode" path="digicode" />  <form:label path="digicode" for="digicode"><spring:message code="biens.digicode" /></form:label>
-									</dd>
-								</dl>
-								<dl>
-									<dd>
+										</label>
+										</td>
+									</tr>
+									<tr>
+										<td><label> 
 											<form:checkbox id="gardien" path="gardien" />  <form:label path="gardien"><spring:message code="biens.gardien" /></form:label>
-									</dd>
-								</dl>
-								
-								<dl>
-									<dt>
+										</label>
+										</td>
+										
+										<td><label> 
 											<form:checkbox id="meuble" path="meuble" />  <form:label path="meuble"><spring:message code="biens.meuble" /></form:label>
-									</dt>
-								</dl>
-								</c:if>
-								<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='IMMEUBLE'}">
-								<dl>
-									<dd>
-											<form:checkbox id="ascenseur" path="ascenseur" />  <form:label path="ascenseur" for="ascenseur"><spring:message code="biens.ascenseur" /></form:label>
-									</dd>
-								</dl>
-								</c:if>
-								<dl>
-									<dt> 
+										</label>
+										</td>
+									</tr>
+									</c:if>
+									<c:if test="${bien.typeBien=='AGRICOLE'}">
+									 <tr>
+										<td><label> 
+											<form:checkbox path="puit" id="puit"/>  <form:label path="puit" for="puit"><spring:message code="biens.puit" /></form:label>
+										</label>
+										</td>
+								 	 </tr>
+									</c:if>
+									<c:if test="${bien.typeBien=='APPARTEMENT' }">
+										<tr>
+											<td><label> 
+														<form:checkbox id="ascenseur" path="ascenseur" />  <form:label path="ascenseur" for="ascenseur"><spring:message code="biens.ascenseur" /></form:label>
+												</label>
+											</td>
+										</tr>
+									</c:if>
+									<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='VACANCES' || bien.typeBien=='MAISON'}">
+									<tr>
+										<td><label> 
 											<form:checkbox id="cuisineEquipee" path="cuisineEquipee" />  <form:label path="cuisineEquipee"><spring:message code="biens.cuisineEquipee" /></form:label>
-									</dt>
-								</dl>
+										</label>
+										</td>
+									</tr>
+									</c:if>
+								</table>			
         					</fieldset>	
-        					</c:if>
+        				
         					<fieldset>
         							<legend> Photos </legend>
         							<c:forEach varStatus="status" begin="1" end="${5}">
@@ -218,13 +232,37 @@
 										<input hidden="hidden" name="departement"  />	
 										<input hidden="hidden" name="ville" class="text smalltext" />	
 										
-									</dl>	
+									</dl>
+									
         					</fieldset>	
-							
+							<fieldset class="action">
+								<dl>
+									<dd>
+										<input type="submit" value="Create" name="submit">
+									</dd>
+									</dl>
+							</fieldset>
 							</form:form>
-							</div>
+							</li>	
+					</ul>
+					
+					</div>
+					
+				</div>
+			</div>
+			<div id="home_sidebar">
+				<div class="block advert">
+					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
+						alt="Advertise Here" style="width: 315px;" /> 
+				</div>
+				<div class="block advert">
+					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
+						alt="Advertise Here" style="width: 315px;" /> 
 				</div>
 				
+				<%-- <jsp:include page="./../immobilier/right-side-recherche.jsp" /> --%>
+				<jsp:include page="./../../common/slide-right.jsp" />
+
 			</div>
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>

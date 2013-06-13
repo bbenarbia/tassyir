@@ -41,7 +41,7 @@ dt {
 	float: left;
 	font-weight: bold;
 	text-align: left;
-	width: 105px;
+	width: 130px;
 	line-height: 25px;
 	margin: 0 10px 10px 0;
 }
@@ -57,7 +57,7 @@ dt {
 
 dd {
 	float: left;
-	width: 225px;
+	width: 190px;
 	line-height: 25px;
 	margin: 0 0 10px 0;
 }

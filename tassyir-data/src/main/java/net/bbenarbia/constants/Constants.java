@@ -8,7 +8,6 @@ public class Constants {
 	public final static String TERRAIN = "TERRAIN";
 	public final static String COMMERCE = "COMMERCE";
 	public final static String MAISON = "MAISON";
-	public final static String ENTREPOT = "ENTREPOT";
 	public final static String FARM = "FARM";
 	public final static String AGRICOLE = "AGRICOLE";
 	public final static String VACANCES = "VACANCES"; 

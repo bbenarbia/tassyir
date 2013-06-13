@@ -40,7 +40,6 @@ import net.bbenarbia.service.IPhotoService;
 import net.bbenarbia.service.ITownService;
 import net.bbenarbia.service.IUtilisateurService;
 import net.bbenarbia.service.immobilier.IBienService;
-import net.bbenarbia.service.impl.TownService;
 import net.bbenarbia.utils.ImageService;
 import net.bbenarbia.web.dto.BienDTO;
 import net.bbenarbia.web.dto.FindBienDTO;

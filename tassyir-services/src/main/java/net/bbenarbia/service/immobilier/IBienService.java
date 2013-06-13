@@ -18,10 +18,8 @@ public interface IBienService extends IGenericService<BienImmobilier> {
 
 	List<BienImmobilier> getAllTerrain();
 
-	List<BienImmobilier> getAllEntreport();
-
 	List<BienImmobilier> getAllMaison();
-
+	
 	List<BienImmobilier> getAllCommerce();
 	
 	BienImmobilier getBienByRef(String refBien);

@@ -191,9 +191,6 @@
 																			<option value="2">
 																				<spring:message code="bien.type.recherche.maison" />
 																			</option>
-																			<option value="3">
-																				<spring:message code="bien.type.recherche.immeuble" />
-																			</option>
 																			<option value="4">
 																				<spring:message code="bien.type.recherche.terrain" />
 																			</option>
@@ -250,7 +247,16 @@
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>
 		</div>
+<div id="home_sidebar">
+				<div class="block advert">
+					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
+						alt="Advertise Here" style="width: 315px;" /> 
+				</div>
+				
+				<%-- <jsp:include page="./../immobilier/right-side-recherche.jsp" /> --%>
+				<jsp:include page="./../../common/slide-right.jsp" />
 
+			</div>
 		<div class="clear">&nbsp;</div>
 		<div class="clear">&nbsp;</div>
 		<jsp:include page="./../../common/footer.jsp" />

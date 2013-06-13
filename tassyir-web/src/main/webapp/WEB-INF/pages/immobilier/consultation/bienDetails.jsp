@@ -377,6 +377,28 @@
 									</td>
 								</tr>
 							</c:if>
+							<%-- <c:if test="${ bien.eauPotable}">		
+								<tr>
+										<td>
+											<spring:message code="biens.eauPotable" />
+										</td>
+										<td>
+											<img width="40" height="40"
+														src='<c:url value="/resources/graphics/Checked.png"/>'>
+										</td>
+								</tr>
+							</c:if>
+							<c:if test="${ bien.gaz}">		
+								<tr>
+										<td>
+											<spring:message code="bien.gaz" />
+										</td>
+										<td>
+											<img width="40" height="40"
+														src='<c:url value="/resources/graphics/Checked.png"/>'>
+										</td>
+								</tr>
+							</c:if> --%>
 						</table>
 					</div>	
 						<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' || bien.typeBien=='COMMERCE'  || bien.typeBien=='MAISON' }">
