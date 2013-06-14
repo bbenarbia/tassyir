@@ -45,6 +45,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -80,16 +81,17 @@ public class UserController {
 
 	@Autowired
 	IParameterService parameterService;
-	
+
 	@Autowired
 	private MailManager mailService;
-	
+
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
 		dateFormat.setLenient(false);
-		dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+		dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(
+				dateFormat, true));
 	}
 
 	@ModelAttribute("userGroupList")
@@ -119,55 +121,116 @@ public class UserController {
 	public String showUserDetails(@PathVariable("userId") long userId,
 			Model model) throws Exception {
 		User user = this.userService.get(userId);
-		if(user != null){
-		model.addAttribute("user", user);
-		List<String> userRolesOfGroup = new LinkedList<String>();
-		if (user != null && user.getUserCategory() != null) {
-			for (Role role : user.getUserCategory().getRoles()) {
-				userRolesOfGroup.add(role.getName());
+		if (user != null) {
+			model.addAttribute("user", user);
+			List<String> userRolesOfGroup = new LinkedList<String>();
+			if (user != null && user.getUserCategory() != null) {
+				for (Role role : user.getUserCategory().getRoles()) {
+					userRolesOfGroup.add(role.getName());
+				}
 			}
-		}
-		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
-		navigations.add(new NavigationDTO("/", "home"));
-		navigations.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
-		model.addAttribute("navigations", navigations);
-		
-		model.addAttribute("groupRoles", userRolesOfGroup);
-		return "admin/users/userDetails";
-		}
-		else {
+			List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+			navigations.add(new NavigationDTO("/", "home"));
+			navigations
+					.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
+			model.addAttribute("navigations", navigations);
+
+			model.addAttribute("groupRoles", userRolesOfGroup);
+			return "admin/users/userDetails";
+		} else {
 			throw new Exception("User id not found");
 		}
 	}
 
-	
-	@RequestMapping("/my-profile")
-	public String showMyProfile(
-			Model model) throws Exception {
-		User user = null;
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		user = userService.getUtilisateurByLogin(auth.getName());
-		if(user != null){
-		model.addAttribute("user", user);
-		List<String> userRolesOfGroup = new LinkedList<String>();
-		if (user != null && user.getUserCategory() != null) {
-			for (Role role : user.getUserCategory().getRoles()) {
-				userRolesOfGroup.add(role.getName());
-			}
-		}
+	@RequestMapping(value = "/reset-password", method = RequestMethod.GET)
+	public String resetPasswordInitForm(ModelMap model) {
+
+		UserDTO userDto = new UserDTO();
+
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
-		navigations.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
 		model.addAttribute("navigations", navigations);
-		
-		model.addAttribute("groupRoles", userRolesOfGroup);
-		return "admin/users/userDetails";
+		model.addAttribute("user", userDto);
+
+		return "lostPassword";
+	}
+
+	@RequestMapping(value = "/reset-password", method = RequestMethod.POST)
+	public String resetPasswordProcess(@ModelAttribute("user") UserDTO userDto,
+			BindingResult result, SessionStatus status, Model model) {
+
+		if (!userDto.getLogin().isEmpty()
+				&& !userDto.getAdresseMail().isEmpty()) {
+			User user = userService.getUtilisateurByLogin(userDto.getLogin());
+			if (user.getContact().getAdresseMail()
+					.equalsIgnoreCase(userDto.getAdresseMail())) {
+				String newPassword = "newpassword";
+				user.setPassword(newPassword);
+				userService.merge(user);
+
+				status.setComplete();
+
+				StringBuilder sb = new StringBuilder();
+				sb.append("Congratulation, Your new password " + newPassword);
+
+				mailService.sendMail(user.getContact().getAdresseMail(),
+						sb.toString(), "Mot de passe bien reinitialisé");
+
+				List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+				navigations.add(new NavigationDTO("/", "home"));
+				model.addAttribute("navigations", navigations);
+
+				MessageDTO message = new MessageDTO();
+				message.setText("Your password is initialised" + sb.toString());
+				message.setTitle("User password reset");
+				model.addAttribute("message", message);
+
+				return "/information";
+
+			} else {
+				List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+				navigations.add(new NavigationDTO("/", "home"));
+				model.addAttribute("navigations", navigations);
+
+				MessageDTO message = new MessageDTO();
+				message.setText("Un compte introuvable");
+				message.setTitle("Erreur de compte");
+				model.addAttribute("message", message);
+
+				return "/information";
+			}
+		} else {
+			return "lostPassword";
 		}
-		else {
+	}
+
+	@RequestMapping("/my-profile")
+	public String showMyProfile(Model model) throws Exception {
+		User user = null;
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		user = userService.getUtilisateurByLogin(auth.getName());
+		if (user != null) {
+			model.addAttribute("user", user);
+			List<String> userRolesOfGroup = new LinkedList<String>();
+			if (user != null && user.getUserCategory() != null) {
+				for (Role role : user.getUserCategory().getRoles()) {
+					userRolesOfGroup.add(role.getName());
+				}
+			}
+			List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+			navigations.add(new NavigationDTO("/", "home"));
+			navigations
+					.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
+			model.addAttribute("navigations", navigations);
+
+			model.addAttribute("groupRoles", userRolesOfGroup);
+			return "admin/users/userDetails";
+		} else {
 			throw new Exception("User id not found");
 		}
 	}
-	
+
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String processCreationForm(
 			@ModelAttribute("user") @Valid UserDTO userDto,
@@ -186,8 +249,7 @@ public class UserController {
 		User user = userDto.getUser();
 		if (!userCategoryList.isEmpty()) {
 			user.setUserCategory(userCategoryList.get(0));
-		}
-		else {
+		} else {
 			result.rejectValue("userCategory.name", "usergroup.notmatch");
 			return "admin/users/createUserForm";
 		}
@@ -203,34 +265,33 @@ public class UserController {
 			}
 		}
 		user.setRolesInternal(rolesList);
-		MultipartFile photo= userDto.getPhotoFile();
-		
-		if (null != photo ) {
+		MultipartFile photo = userDto.getPhotoFile();
+
+		if (null != photo) {
 			String TEMP_DIR = parameterService
 					.getParameterName(ParameterCode.TEMP_DIRECTORY.toString())
 					.get(0).getValue();
-				if (photo.getSize() != 0) {
-					try {
-						File destFile = new File(new File(TEMP_DIR),
-								photo.getOriginalFilename());
-						photo.transferTo(destFile);
-						BufferedImage bimg = ImageIO.read(destFile);
-						BufferedImage bimgResized = ImageService
-								.createResizedCopy(bimg, 300, 300, true);
-						File destFile1 = new File(new File(TEMP_DIR), "small_"
-								+ photo.getOriginalFilename());
-						ImageIO.write(bimgResized, "jpeg", destFile1);
-						user.setPhoto(TEMP_DIR
-								+ photo.getOriginalFilename());
-					} catch (IOException e) {
-						result.rejectValue("photoFile", "photoFile.error");
-						return "admin/users/createUserForm";
-					}
+			if (photo.getSize() != 0) {
+				try {
+					File destFile = new File(new File(TEMP_DIR),
+							photo.getOriginalFilename());
+					photo.transferTo(destFile);
+					BufferedImage bimg = ImageIO.read(destFile);
+					BufferedImage bimgResized = ImageService.createResizedCopy(
+							bimg, 300, 300, true);
+					File destFile1 = new File(new File(TEMP_DIR), "small_"
+							+ photo.getOriginalFilename());
+					ImageIO.write(bimgResized, "jpeg", destFile1);
+					user.setPhoto(TEMP_DIR + photo.getOriginalFilename());
+				} catch (IOException e) {
+					result.rejectValue("photoFile", "photoFile.error");
+					return "admin/users/createUserForm";
 				}
+			}
 		}
-			this.userService.save(user);
-			status.setComplete();
-			return "redirect:/users/" + user.getId();
+		this.userService.save(user);
+		status.setComplete();
+		return "redirect:/users/" + user.getId();
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
@@ -250,16 +311,15 @@ public class UserController {
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
 		navigations.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
-		model.addAttribute("navigations", navigations);		
+		model.addAttribute("navigations", navigations);
 		model.addAttribute("user", userDto);
 		return "admin/users/createUserForm";
 	}
-	
-	
+
 	@RequestMapping(value = "/subscribe", method = RequestMethod.POST)
 	public String processSubscribeUserForm(
 			@ModelAttribute("user") @Valid UserDTO userDto,
-			BindingResult result, SessionStatus status,Model model) {
+			BindingResult result, SessionStatus status, Model model) {
 
 		if (result.hasErrors()) {
 			return "admin/users/userSubscribing";
@@ -270,67 +330,68 @@ public class UserController {
 		}
 		userDto.setTypeUser(EnumTypeUser.PARTICULIER.toString());
 		User user = userDto.getUser();
-		UserCategory userGroup = userCategoryService.getUserCategroryByName("Utilisateurs").get(0);
+		UserCategory userGroup = userCategoryService.getUserCategroryByName(
+				"Utilisateurs").get(0);
 		user.setUserCategory(userGroup);
 		user.setLocked(true);
-		
-		String activationUrl = Utils.getRandomString();		
-		user.setActivationUrl(activationUrl);		
-		MultipartFile photo= userDto.getPhotoFile();
-		
-		if (null != photo ) {
+
+		String activationUrl = Utils.getRandomString();
+		user.setActivationUrl(activationUrl);
+		MultipartFile photo = userDto.getPhotoFile();
+
+		if (null != photo) {
 			String TEMP_DIR = parameterService
 					.getParameterName(ParameterCode.TEMP_DIRECTORY.toString())
 					.get(0).getValue();
-				if (photo.getSize() != 0) {
-					try {
-						File destFile = new File(new File(TEMP_DIR),
-								photo.getOriginalFilename());
-						photo.transferTo(destFile);
-						BufferedImage bimg = ImageIO.read(destFile);
-						BufferedImage bimgResized = ImageService
-								.createResizedCopy(bimg, 300, 300, true);
-						File destFile1 = new File(new File(TEMP_DIR), "small_"
-								+ photo.getOriginalFilename());
-						ImageIO.write(bimgResized, "jpeg", destFile1);
-						user.setPhoto(TEMP_DIR
-								+ photo.getOriginalFilename());
-					} catch (IOException e) {
-						result.rejectValue("photoFile", "photoFile.error");
-						return "admin/users/userSubscribing";
-					}
+			if (photo.getSize() != 0) {
+				try {
+					File destFile = new File(new File(TEMP_DIR),
+							photo.getOriginalFilename());
+					photo.transferTo(destFile);
+					BufferedImage bimg = ImageIO.read(destFile);
+					BufferedImage bimgResized = ImageService.createResizedCopy(
+							bimg, 300, 300, true);
+					File destFile1 = new File(new File(TEMP_DIR), "small_"
+							+ photo.getOriginalFilename());
+					ImageIO.write(bimgResized, "jpeg", destFile1);
+					user.setPhoto(TEMP_DIR + photo.getOriginalFilename());
+				} catch (IOException e) {
+					result.rejectValue("photoFile", "photoFile.error");
+					return "admin/users/userSubscribing";
 				}
+			}
 		}
-			this.userService.save(user);
-			status.setComplete();
-			
-			StringBuilder sb = new StringBuilder();
-			sb.append("Congratulation, Your account is created <br/>");
-			sb.append("Click on this link to activate your account <br/>");
-			sb.append("http://localhost:8080/tassyir-mvc/users/activate/");
-			sb.append(user.getId()+"/"+activationUrl);
-			
-			
-			//mailService.sendMail(user.getContact().getAdresseMail(), sb.toString(), "Compte bien crée");
-			
-			List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
-			navigations.add(new NavigationDTO("/", "home"));
-			model.addAttribute("navigations", navigations);
-			
-			MessageDTO message = new MessageDTO();
-			message.setText("Your subscribing is done correctely, Please check your mail, and click on the activation link<br/>+" +
-					sb.toString());
-			message.setTitle("User subscribing done correctely");
-			model.addAttribute("message", message);
-			
-			return "/information" ;
+		this.userService.save(user);
+		status.setComplete();
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("Congratulation, Your account is created <br/>");
+		sb.append("Click on this link to activate your account <br/>");
+		sb.append("http://localhost:8080/tassyir-mvc/users/activate/");
+		sb.append(user.getId() + "/" + activationUrl);
+
+		// mailService.sendMail(user.getContact().getAdresseMail(),
+		// sb.toString(), "Compte bien crée");
+
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		model.addAttribute("navigations", navigations);
+
+		MessageDTO message = new MessageDTO();
+		message.setText("Your subscribing is done correctely, Please check your mail, and click on the activation link<br/>+"
+				+ sb.toString());
+		message.setTitle("User subscribing done correctely");
+		model.addAttribute("message", message);
+
+		return "/information";
 	}
 
 	@RequestMapping(value = "/activate/{userId}/{urlActivation}", method = RequestMethod.GET)
-	public String initSubscribeUserForm(@PathVariable("userId") long userId,@PathVariable("urlActivation") String urlActivation, Model model) {
-		
+	public String initSubscribeUserForm(@PathVariable("userId") long userId,
+			@PathVariable("urlActivation") String urlActivation, Model model) {
+
 		User user = userService.get(userId);
-		if(user.getActivationUrl().equals(urlActivation)){
+		if (user.getActivationUrl().equals(urlActivation)) {
 			user.setLocked(false);
 			user.setActivationUrl("");
 			this.userService.merge(user);
@@ -341,19 +402,17 @@ public class UserController {
 			List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 			navigations.add(new NavigationDTO("/", "home"));
 			model.addAttribute("navigations", navigations);
-			return "/information" ;
-		}
-		else {
+			return "/information";
+		} else {
 			MessageDTO message = new MessageDTO();
 			message.setText("Error while activation account ");
 			message.setTitle("User activation error ");
 			model.addAttribute("message", message);
-			
-			return "/information" ;
+
+			return "/information";
 		}
 	}
-	
-	
+
 	@RequestMapping(value = "/subscribe", method = RequestMethod.GET)
 	public String initSubscribeUserForm(Model model) {
 
@@ -362,7 +421,7 @@ public class UserController {
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
 		navigations.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
-		model.addAttribute("navigations", navigations);		
+		model.addAttribute("navigations", navigations);
 		model.addAttribute("user", userDto);
 		return "admin/users/userSubscribing";
 	}
@@ -382,34 +441,35 @@ public class UserController {
 	public String initUpdateUserForm(@PathVariable("userId") Long userId,
 			Model model) throws Exception {
 		User user = this.userService.get(userId);
-		if(user != null){
-		
-		UserDTO userDto = new UserDTO(user);
+		if (user != null) {
 
-		RoleFormDTOList listFormDto = new RoleFormDTOList();
+			UserDTO userDto = new UserDTO(user);
 
-		LinkedList<RoleFormDTO> roleFormList = new LinkedList<RoleFormDTO>();
-		List<Role> allRolesList = roleService.getAll();
+			RoleFormDTOList listFormDto = new RoleFormDTOList();
 
-		for (Role role : allRolesList) {
-			if (user.getRoles() != null && user.getRoles().contains(role)) {
-				roleFormList.add(new RoleFormDTO(role, true));
-			} else {
-				roleFormList.add(new RoleFormDTO(role, false));
+			LinkedList<RoleFormDTO> roleFormList = new LinkedList<RoleFormDTO>();
+			List<Role> allRolesList = roleService.getAll();
+
+			for (Role role : allRolesList) {
+				if (user.getRoles() != null && user.getRoles().contains(role)) {
+					roleFormList.add(new RoleFormDTO(role, true));
+				} else {
+					roleFormList.add(new RoleFormDTO(role, false));
+				}
 			}
-		}
-		listFormDto.setRoles(roleFormList);
-		userDto.setRoleFormList(listFormDto);
-		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
-		navigations.add(new NavigationDTO("/", "home"));
-		navigations.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
-		navigations.add(new NavigationDTO("/users/"+userId+".htm", "user.action.details"));
-		model.addAttribute("navigations", navigations);
-		
-		model.addAttribute("user", userDto);
-		return "admin/users/updateUserForm";
-		}
-		else {
+			listFormDto.setRoles(roleFormList);
+			userDto.setRoleFormList(listFormDto);
+			List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+			navigations.add(new NavigationDTO("/", "home"));
+			navigations
+					.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
+			navigations.add(new NavigationDTO("/users/" + userId + ".htm",
+					"user.action.details"));
+			model.addAttribute("navigations", navigations);
+
+			model.addAttribute("user", userDto);
+			return "admin/users/updateUserForm";
+		} else {
 			throw new Exception("User id not found");
 		}
 	}
@@ -418,49 +478,50 @@ public class UserController {
 	public String processUpdateUserForm(@Valid UserDTO userDto,
 			BindingResult result, @PathVariable("userId") Long userId,
 			SessionStatus status) {
-			if (result.hasErrors()) {				
-				return "admin/users/updateUserForm";
-			}
+		if (result.hasErrors()) {
+			return "admin/users/updateUserForm";
+		}
 
-			UserCategory group = userCategoryService.getUserCategroryByName(
-					userDto.getUserCategory().getName()).get(0);
-			User user = this.userService.get(userId);
-			user = userDto.updateUser(user);
-			user.setUserCategory(group);
+		UserCategory group = userCategoryService.getUserCategroryByName(
+				userDto.getUserCategory().getName()).get(0);
+		User user = this.userService.get(userId);
+		user = userDto.updateUser(user);
+		user.setUserCategory(group);
 
-			Set<Role> rolesList = new HashSet<Role>();
-			if (null != userDto.getRoleFormList().getRoles()
-					&& userDto.getRoleFormList().getRoles().size() > 0) {
-				for (RoleFormDTO roleDto : userDto.getRoleFormList().getRoles()) {
-					if (roleDto.isIncluded()) {
-						Role role = roleService.getRolesByName(
-								roleDto.getRole().getName()).get(0);
-						rolesList.add(role);
-					}
+		Set<Role> rolesList = new HashSet<Role>();
+		if (null != userDto.getRoleFormList().getRoles()
+				&& userDto.getRoleFormList().getRoles().size() > 0) {
+			for (RoleFormDTO roleDto : userDto.getRoleFormList().getRoles()) {
+				if (roleDto.isIncluded()) {
+					Role role = roleService.getRolesByName(
+							roleDto.getRole().getName()).get(0);
+					rolesList.add(role);
 				}
 			}
-			user.setRolesInternal(rolesList);
+		}
+		user.setRolesInternal(rolesList);
 
-			userService.merge(user);
-			status.setComplete();
-			return "redirect:/users/" + user.getId();
+		userService.merge(user);
+		status.setComplete();
+		return "redirect:/users/" + user.getId();
 	}
 
 	@RequestMapping(value = "/{userId}/editpassword", method = RequestMethod.GET)
 	public String updatePasswordForm(@PathVariable("userId") Long userId,
 			Model model) throws Exception {
 		User user = userService.get(userId);
-		if(user != null){
-		PasswordDTO userPassword = new PasswordDTO();
-		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
-		navigations.add(new NavigationDTO("/", "home"));
-		navigations.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
-		navigations.add(new NavigationDTO("/users/"+userId+".htm", "user.action.details"));
-		model.addAttribute("navigations", navigations);
-		model.addAttribute("userPassword", userPassword);
-		return "admin/users/updatePasswordUserForm";
-	}
-		else {
+		if (user != null) {
+			PasswordDTO userPassword = new PasswordDTO();
+			List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+			navigations.add(new NavigationDTO("/", "home"));
+			navigations
+					.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
+			navigations.add(new NavigationDTO("/users/" + userId + ".htm",
+					"user.action.details"));
+			model.addAttribute("navigations", navigations);
+			model.addAttribute("userPassword", userPassword);
+			return "admin/users/updatePasswordUserForm";
+		} else {
 			throw new Exception("User id not found");
 		}
 	}
@@ -493,40 +554,40 @@ public class UserController {
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
 		navigations.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
-		navigations.add(new NavigationDTO("/users/"+userId+".htm", "user.action.details"));
+		navigations.add(new NavigationDTO("/users/" + userId + ".htm",
+				"user.action.details"));
 		return "admin/users/uploadPhotoForm";
 	}
-	
+
 	@RequestMapping(value = "/{userId}/activate-user", method = RequestMethod.GET)
-	public String activateUser(@PathVariable("userId") Long userId, Model model, SessionStatus status)throws  Exception{
-		
+	public String activateUser(@PathVariable("userId") Long userId,
+			Model model, SessionStatus status) throws Exception {
+
 		User user = userService.get(userId);
-		if(user != null){
+		if (user != null) {
 			user.setLocked(false);
 			userService.merge(user);
 			status.setComplete();
-		}
-		else {
+		} else {
 			throw new Exception("User id not found");
 		}
 		return "redirect:/users/" + userId;
 	}
-	
+
 	@RequestMapping(value = "/{userId}/lock-user", method = RequestMethod.GET)
-	public String blockUser(@PathVariable("userId") Long userId, Model model,SessionStatus status)throws  Exception{
-		
+	public String blockUser(@PathVariable("userId") Long userId, Model model,
+			SessionStatus status) throws Exception {
+
 		User user = userService.get(userId);
-		if(user != null){
+		if (user != null) {
 			user.setLocked(true);
 			userService.merge(user);
 			status.setComplete();
-		}
-		else {
+		} else {
 			throw new Exception("User id not found");
 		}
 		return "redirect:/users/" + userId;
 	}
-	
 
 	@RequestMapping(value = "/upload/{userId}/save", method = RequestMethod.POST)
 	public String uploadAndSavePhotos(
@@ -565,6 +626,5 @@ public class UserController {
 		}
 		return "redirect:/users/" + userId;
 	}
-	
 
 }

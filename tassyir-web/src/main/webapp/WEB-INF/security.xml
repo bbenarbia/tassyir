@@ -17,6 +17,7 @@
   <intercept-url pattern="/users/photo/**" access="permitAll"/>
   <intercept-url pattern="/users/subscribe**" access="permitAll"/>
   <intercept-url pattern="/users/activate/**" access="permitAll"/>
+  <intercept-url pattern="/users/reset-password**" access="permitAll"/> 
   <intercept-url pattern="/users/my-profile/**" access="isAuthenticated()"/>  
   <intercept-url pattern="/users/**" access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')"/>
   <intercept-url pattern="/groups/**" access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')"/>

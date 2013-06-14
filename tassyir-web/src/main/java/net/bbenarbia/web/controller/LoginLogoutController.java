@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class LoginLogoutController {
 
+	
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String getLoginPage(
 			@RequestParam(value = "error", required = false) boolean error,
@@ -36,6 +38,9 @@ public class LoginLogoutController {
 		// This will resolve to /WEB-INF/jsp/loginpage.jsp
 		return "login";
 	}
+	
+	
+	
 
 	/**
 	 * Handles and retrieves the denied JSP page. This is shown whenever a

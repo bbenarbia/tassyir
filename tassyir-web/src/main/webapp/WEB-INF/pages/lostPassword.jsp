@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -13,9 +12,6 @@
 
 </head>
 <body>
-	<spring:url value="/users/subscribe.htm" var="subscribeUrl" />
-	<spring:url value="/users/reset-password.htm" var="resetPasswordUrl" />
-	
 	<div id="wrap">
 		<jsp:include page="./common/menu.jsp" />
 		<jsp:include page="./common/sub-menu.jsp" />
@@ -32,48 +28,25 @@
 											<div id="searchoptions"
 												class="pma_auto_slider slider_init_done" title="Options"
 												style="overflow: auto;">
-												<fieldset id="fieldset_select_fields">
-													<legend> You have a new </legend>
-													<div class="login-help">
-															<p>
-																Click her to create your account? <a href="${fn:escapeXml(subscribeUrl)}">Click
-																	here to reset it</a>.
-															</p>
-													</div>
-												</fieldset>
 
 												<fieldset id="fieldset_select_fields">
-													<legend> You have an account </legend>
-
+													<legend> Reset your password </legend>
 													<section class="containerlogin">
 														<div class="login">
 															<div id="login-error">${error}</div>
-															<form method="post" action="j_spring_security_check">
+															<form:form modelAttribute="user" method="post" id="form1">
 																<p>
-																	<input type="text" id="j_username" name="j_username"
-																		value="" placeholder="Login">
+																	<form:input type="text" id="login" path="login"
+																		value="" placeholder="Login"/>
 																</p>
 																<p>
-																	<input type="password" id="j_password"
-																		name="j_password" value="" placeholder="Password">
-																</p>
-																<p class="remember_me">
-																	<label> <input type="checkbox"
-																		name="remember_me" id="remember_me"> Remember
-																		me on this computer
-																	</label>
+																	<input type="text" id="adresseMail" name="adresseMail"
+																		value="" placeholder="Email">
 																</p>
 																<p class="submit">
-																	<input type="submit" name="commit" value="Login">
+																	<input type="submit" name="commit" value="Initialiser">
 																</p>
-															</form>
-														</div>
-
-														<div class="login-help">
-															<p>
-																Forgot your password? <a href="${fn:escapeXml(resetPasswordUrl)}">Click
-																	here to reset it</a>.
-															</p>
+															</form:form>
 														</div>
 													</section>
 												</fieldset>
