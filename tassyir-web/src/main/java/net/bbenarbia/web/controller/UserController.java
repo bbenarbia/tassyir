@@ -29,6 +29,7 @@ import net.bbenarbia.service.IUtilisateurService;
 import net.bbenarbia.service.utils.MailManager;
 import net.bbenarbia.utils.ImageService;
 import net.bbenarbia.utils.Utils;
+import net.bbenarbia.web.dto.MessageDTO;
 import net.bbenarbia.web.dto.NavigationDTO;
 import net.bbenarbia.web.dto.PasswordDTO;
 import net.bbenarbia.web.dto.RoleFormDTO;
@@ -258,7 +259,7 @@ public class UserController {
 	@RequestMapping(value = "/subscribe", method = RequestMethod.POST)
 	public String processSubscribeUserForm(
 			@ModelAttribute("user") @Valid UserDTO userDto,
-			BindingResult result, SessionStatus status) {
+			BindingResult result, SessionStatus status,Model model) {
 
 		if (result.hasErrors()) {
 			return "admin/users/userSubscribing";
@@ -310,9 +311,19 @@ public class UserController {
 			sb.append(user.getId()+"/"+activationUrl);
 			
 			
-			mailService.sendMail(user.getContact().getAdresseMail(), sb.toString(), "Compte bien crée");
+			//mailService.sendMail(user.getContact().getAdresseMail(), sb.toString(), "Compte bien crée");
 			
-			return "redirect:/users/" + user.getId();
+			List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+			navigations.add(new NavigationDTO("/", "home"));
+			model.addAttribute("navigations", navigations);
+			
+			MessageDTO message = new MessageDTO();
+			message.setText("Your subscribing is done correctely, Please check your mail, and click on the activation link<br/>+" +
+					sb.toString());
+			message.setTitle("User subscribing done correctely");
+			model.addAttribute("message", message);
+			
+			return "/information" ;
 	}
 
 	@RequestMapping(value = "/activate/{userId}/{urlActivation}", method = RequestMethod.GET)
@@ -323,10 +334,22 @@ public class UserController {
 			user.setLocked(false);
 			user.setActivationUrl("");
 			this.userService.merge(user);
-			return "redirect:/users/" + userId;
+			MessageDTO message = new MessageDTO();
+			message.setText("Your account is activated now <br/> you can log in");
+			message.setTitle("User activation done correctely");
+			model.addAttribute("message", message);
+			List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+			navigations.add(new NavigationDTO("/", "home"));
+			model.addAttribute("navigations", navigations);
+			return "/information" ;
 		}
 		else {
-			return "redirect:/";
+			MessageDTO message = new MessageDTO();
+			message.setText("Error while activation account ");
+			message.setTitle("User activation error ");
+			model.addAttribute("message", message);
+			
+			return "/information" ;
 		}
 	}
 	

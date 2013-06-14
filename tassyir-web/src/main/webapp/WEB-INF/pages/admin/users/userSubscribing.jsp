@@ -17,26 +17,16 @@
 	<spring:url value="/users.htm" var="userListUrl"> </spring:url>
 	<spring:url value="/" var="homeUrl"> </spring:url>
 	<spring:url value="/users/new.htm" var="newUserUrl" />
-	
 	<div id="wrap">
-		<jsp:include page="../../common/menu.jsp" />
+		<jsp:include page="./../../common/menu.jsp" />
+		<jsp:include page="./../../common/sub-menu.jsp" />
 		<div id="content">
-			<jsp:include page="../../common/sub-menu.jsp" />
-
-			<div id="home_main_edit_user">
-				<div class="navig">
-					<c:forEach var="navig" items="${navigations}" varStatus="status">
-						&laquo;
-						<spring:url value="${navig.url}" var="navigs" />
-						<a href="${navigs}"><spring:message code="${navig.name}" /></a>
-					</c:forEach>
-				</div>
-				
-				<div id="edit_user">
-					<div class="tab">
-						<h2><spring:message code="user.action.add" /></h2>
-					</div>
-					<div style="margin: 10px; background: none repeat scroll 0px 0px rgb(248, 248, 248); padding: 14px;">
+			<div id="main_bien">
+				<div id="search_bien">
+					<div class="group">
+						<h2><spring:message code="user.action.subscribe" /></h2>
+						<ul>
+							<li id="li_select_lang">
 						<form:form modelAttribute="user" method="post" id="form1" enctype="multipart/form-data">
 							<fieldset>
     						<legend><spring:message code="user.infos.general" /></legend>
@@ -165,13 +155,28 @@
 									</dl>
     							</fieldset>
 							</form:form>
-							</div>
+						</ul>
+					</div>
 				</div>
+			</div>
+			<div id="home_sidebar">
+				<div class="block advert">
+
+					<img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
+						alt="Advertise Here" style="width: 315px;" />
+					<%-- <jsp:include page="./../immobilier/right-side-recherche.jsp" /> --%>
+				</div>
+				<jsp:include page="./../../common/slide-right.jsp" />
+
+
 			</div>
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>
-			<jsp:include page="../../common/footer.jsp" />
 		</div>
+		<div class="clear">&nbsp;</div>
+		<div class="clear">&nbsp;</div>
+		<jsp:include page="./../../common/footer.jsp" />
 	</div>
+
 </body>
 </html>

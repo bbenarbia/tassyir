@@ -10,7 +10,7 @@
 	
 	
 	<!-- This is where we configure Spring-Security  -->
- <http auto-config="true" use-expressions="true" access-denied-page="/denied" >
+ <http auto-config="true" use-expressions="true" access-denied-page="/login" >
   
   <intercept-url pattern="/denied" access="permitAll"/>  
   <intercept-url pattern="/login" access="permitAll"/>
@@ -32,8 +32,8 @@
  
   
   <form-login
-    login-page="/"
-    authentication-failure-url="/"
+    login-page="/login"
+    authentication-failure-url="/login"
     default-target-url="/"/>
     
   <logout

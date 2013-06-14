@@ -111,9 +111,12 @@ body {
   background: #0ca3d2;
 }
 
-.container {
-  margin: 80px auto;
+.containerlogin {
+  margin: 5px auto;
   width: 640px;
+  font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
+  color: #404040;
+  /* background: #0ca3d2; */
 }
 
 .login {
@@ -185,18 +188,18 @@ body {
 
 .login-help {
   margin: 20px 0;
-  font-size: 11px;
-  color: white;
+  font-size: 12px;
+  color: black;
   text-align: center;
-  text-shadow: 0 1px #2a85a1;
+  /* text-shadow: 0 1px #2a85a1; */
 }
-.login-help a {
+/* .login-help a {
   color: #cce7fa;
   text-decoration: none;
 }
 .login-help a:hover {
   text-decoration: underline;
-}
+} */
 
 :-moz-placeholder {
   color: #c9c9c9 !important;

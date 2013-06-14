@@ -85,7 +85,6 @@
 </script>
 </head>
 <body>
-	
 	<div id="wrap">
 		<jsp:include page="./../../common/menu.jsp" />
 		<jsp:include page="./../../common/sub-menu.jsp" />
@@ -96,8 +95,8 @@
 					<div class="group">
 						<h2>Selectionner le type de biens</h2>
 						<ul>
-							<li id="li_select_lang"><form:form
-									modelAttribute="findBiens" method="post" id="form1">
+							<li id="li_select_lang">
+							<form:form modelAttribute="findBiens" method="post" id="form1">
 									<table class="search_form" style="width: 100%; border: none;">
 										<tr>
 											<td colspan="4">
@@ -247,16 +246,6 @@
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>
 		</div>
-<div id="home_sidebar">
-				<div class="block advert">
-					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-						alt="Advertise Here" style="width: 315px;" /> 
-				</div>
-				
-				<%-- <jsp:include page="./../immobilier/right-side-recherche.jsp" /> --%>
-				<jsp:include page="./../../common/slide-right.jsp" />
-
-			</div>
 		<div class="clear">&nbsp;</div>
 		<div class="clear">&nbsp;</div>
 		<jsp:include page="./../../common/footer.jsp" />
