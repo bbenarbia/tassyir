@@ -410,8 +410,6 @@ $(document).ready(function() {
 					<%-- <jsp:include page="./../immobilier/right-side-recherche.jsp" /> --%>
 				</div>
 				<jsp:include page="./common/slide-right.jsp" />
-			
-			
 			</div>
 			<div class="clear">&nbsp;</div>
 			<div class="clear">&nbsp;</div>

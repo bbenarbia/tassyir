@@ -18,10 +18,6 @@
 			<div id="sitename">
 				<h1 id="logo">Tassyir</h1>
 			</div>
-			<div id="shoutout">
-				<img  src='<c:url value="/resources/graphics/joinnow_shoutout.jpg"/>'  alt="Join Now! It's Free"
-					width="168" height="126" />
-			</div>
 			<div id="useractions">
 			<sec:authorize access="isAuthenticated()">
 				<div id="headings">
@@ -53,12 +49,12 @@
 					<div id="headings">
 						<h2>
 							<img  src='<c:url value="/resources/graphics/create_indi_usr.jpg"/>' alt="Individual User"
-								width="25" height="22" /> <a href="${contextPath}/users/subscribe.htm">New Indiv Account</a>
+								width="25" height="22" /> <a href="${contextPath}/users/subscribe.htm">Creer un compte(gratuit)</a>
 						</h2>
-						<h2>
+						<%-- <h2>
 							<img src='<c:url value="/resources/graphics/create_agent_icon.jpg"/>'  alt="Agent Account"
 								width="27" height="22" /> <a href="#">Create Agent Acc</a>
-						</h2> 
+						</h2>  --%>
 					</div>
 				 <div id="login">
 					<p>
@@ -68,7 +64,7 @@
 						 <form method="post" action="${contextPath}/j_spring_security_check">
 							<div class="formblock">
 
-								<label>Username</label> <input id="j_username" name="j_username"  value="" placeholder="Username or Email" type="text"  class="textfields" />
+								<label>Username</label> <input id="j_username" name="j_username"  value="" placeholder="Login" type="text"  class="textfields" />
 							</div>
 							<div class="formblock">
 
@@ -80,7 +76,7 @@
 							</div>
 							<div class="clear">&nbsp;</div>
 							<p>
-								<input name="remember_me" id="remember_me" type="checkbox" value="" /> Remember me on this computer | Forgot password ?
+								<input name="remember_me" id="remember_me" type="checkbox" value="" /> Remember me on this computer |  <a href="${contextPath}/users/reset-password.htm">Forgot password ?</a> 
 							</p>
 						</form>
 					</div>
