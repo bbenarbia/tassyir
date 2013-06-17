@@ -9,7 +9,9 @@ import net.bbenarbia.domain.enums.EnumTypeBien;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
 import net.bbenarbia.domain.immobilier.subtype.BienImmobilier;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Projections;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -408,6 +410,18 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 
 		Query query = getSession().createQuery(queryString);
 		query.setParameter("referenceTown", String.valueOf(townId));
+
+		return query.list();
+	}
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getAllBiensReference() {
+		
+		String queryString = "SELECT reference FROM BienImmobilier"  ;
+
+		Query query = getSession().createQuery(queryString);
 
 		return query.list();
 	}

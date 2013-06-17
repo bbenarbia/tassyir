@@ -12,6 +12,7 @@ import net.bbenarbia.domain.immobilier.subtype.BienImmobilier;
 import net.bbenarbia.service.generic.GenericService;
 import net.bbenarbia.service.immobilier.IBienService;
 
+import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -108,4 +109,17 @@ public class BienService extends GenericService<BienImmobilier> implements
 		return bienDao.getLastBiens(nb);
 	}
 
+	@Override
+	public String getNewReferenceBien() {
+		
+		List<String> allBienReferences = bienDao.getAllBiensReference();
+		String newRef =""; 
+		boolean exists = true;
+		do {
+			newRef = String.valueOf(RandomUtils.nextLong());
+			exists = allBienReferences.contains(newRef); 
+		} while (exists);
+		
+		return newRef;
+	}
 }

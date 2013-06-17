@@ -14,11 +14,13 @@ import net.bbenarbia.domain.enums.EnumTypeOperation;
 import net.bbenarbia.domain.immobilier.Photo;
 import net.bbenarbia.domain.immobilier.subtype.Agricole;
 import net.bbenarbia.domain.immobilier.subtype.Appartement;
+import net.bbenarbia.domain.immobilier.subtype.BienImmobilier;
 import net.bbenarbia.domain.immobilier.subtype.Carcasse;
 import net.bbenarbia.domain.immobilier.subtype.Commerce;
 import net.bbenarbia.domain.immobilier.subtype.Maison;
 import net.bbenarbia.domain.immobilier.subtype.Studio;
 import net.bbenarbia.domain.immobilier.subtype.Terrain;
+import net.bbenarbia.domain.immobilier.subtype.Vacances;
 
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -163,10 +165,10 @@ public class BienDTO {
 				appartement.getNbParkingInt(), appartement.getNbParkingExt(),
 				appartement.isInterphone(), appartement.isDigicode(),
 				appartement.isGardien(), appartement.getConsoEnergie()
-						.toString(), appartement.getTypeEauChaude().toString(),
-				appartement.getImpactConso().toString(), appartement
-						.getNatureChauffage().toString(), appartement
-						.getTypeChauffage().toString(), appartement.isMeuble(),
+						, appartement.getTypeEauChaude(),
+				appartement.getImpactConso(), appartement
+						.getNatureChauffage(), appartement
+						.getTypeChauffage(), appartement.isMeuble(),
 				appartement.getTransport(), appartement.isAdapteHandicape(),
 				appartement.getProximite(), appartement.getHonoraires(),
 				appartement.getDepotGarantie(), appartement.getNbSallesBains(),
@@ -281,10 +283,10 @@ public class BienDTO {
 				maison.getNbTerrasses(), maison.getNbBalcons(), maison
 						.getNbParkingInt(), maison.getNbParkingExt(), maison
 						.isInterphone(), maison.isDigicode(), null, maison
-						.getConsoEnergie().toString(), maison
-						.getTypeEauChaude().toString(), maison.getImpactConso()
-						.toString(), maison.getNatureChauffage().toString(),
-				maison.getTypeChauffage().toString(), maison.isMeuble(), maison
+						.getConsoEnergie(), maison
+						.getTypeEauChaude(), maison.getImpactConso()
+						, maison.getNatureChauffage(),
+				maison.getTypeChauffage(), maison.isMeuble(), maison
 						.getTransport(), maison.isAdapteHandicape(), maison
 						.getProximite(), maison.getHonoraires(), maison
 						.getDepotGarantie(), maison.getNbSallesBains(), maison
@@ -306,10 +308,10 @@ public class BienDTO {
 						.getNbBalcons(), studio.getNbParkingInt(), studio
 						.getNbParkingExt(), studio.isInterphone(), studio
 						.isDigicode(), studio.isGardien(), studio
-						.getConsoEnergie().toString(), studio
-						.getTypeEauChaude().toString(), studio.getImpactConso()
-						.toString(), studio.getNatureChauffage().toString(),
-				studio.getTypeChauffage().toString(), studio.isMeuble(), studio
+						.getConsoEnergie(), studio
+						.getTypeEauChaude(), studio.getImpactConso()
+						, studio.getNatureChauffage(),
+				studio.getTypeChauffage(), studio.isMeuble(), studio
 						.getTransport(), studio.isAdapteHandicape(), studio
 						.getProximite(), studio.getHonoraires(), studio
 						.getDepotGarantie(), studio.getNbSallesBains(), studio
@@ -325,8 +327,8 @@ public class BienDTO {
 			Boolean jardin, int age, String typeBien, int nbTerrasses,
 			int nbBalcons, int nbParkingInt, int nbParkingExt,
 			Boolean interphone, Boolean digicode, Boolean gardien,
-			String consoEnergie, String typeEauChaude, String impactConso,
-			String natureChauffage, String typeChauffage, Boolean meuble,
+			EnumConsEnergie consoEnergie, EnumTypeEauChaude typeEauChaude, EnumImpactConso impactConso,
+			EnumNatureChauffage natureChauffage, EnumTypeChauffage typeChauffage, Boolean meuble,
 			String transport, Boolean adapteHandicape, String proximite,
 			double honoraires, double depotGarantie, int nbSallesBains,
 			int nbCaves, Boolean piscine, List<Photo> photos, LocalDateTime dateMiseAjour, boolean validated,Boolean puit,Boolean eauPotable,Boolean gaz) {
@@ -364,11 +366,16 @@ public class BienDTO {
 		this.interphone = interphone;
 		this.digicode = digicode;
 		this.gardien = gardien;
-		this.consoEnergie = consoEnergie;
-		this.typeEauChaude = typeEauChaude;
-		this.impactConso = impactConso;
-		this.natureChauffage = natureChauffage;
-		this.typeChauffage = typeChauffage;
+		if(consoEnergie != null)
+			this.consoEnergie = consoEnergie.toString();
+		if(typeEauChaude != null)
+			this.typeEauChaude = typeEauChaude.toString();
+		if(impactConso != null)
+			this.impactConso = impactConso.toString();
+		if(natureChauffage != null)
+			this.natureChauffage = natureChauffage.toString();
+		if(typeChauffage != null)
+			this.typeChauffage = typeChauffage.toString();
 		this.meuble = meuble;
 		this.transport = transport;
 		this.adapteHandicape = adapteHandicape;
@@ -390,141 +397,360 @@ public class BienDTO {
 	public Maison updateMaison(Maison maison) {
 
 		//	Update the departement not complete
-		maison.setName(name);
-		maison.setReference(reference);
-		maison.setAdresse(adresse);
-		maison.setDescription(description);
-		maison.setSuperficie(superficie);
-		maison.setStatus(EnumStatutProperty.valueOf(status));
-		maison.setPrixVente(prixVente);
-		maison.setPrixMinVente(prixMinVente);
-		maison.setLoyerMensuel(loyerMensuel);
-		maison.setChargesMensuel(chargesMensuel);
-		maison.setTypeOperation(EnumTypeOperation.valueOf(typeOperation));
-		maison.setEtatBien(EnumEtatBien.valueOf(etatBien));
-		maison.setTransport(transport);
-		maison.setAdapteHandicape(adapteHandicape);
-		maison.setProximite(proximite);
-		maison.setHonoraires(honoraires);
-		maison.setDepotGarantie(depotGarantie);
-		maison.setNbSallesBains(nbSallesBains);
-		maison.setNbCaves(nbCaves);		
+		maison = (Maison) updateBien(maison);
+		
+//		maison.setName(name);
+//		maison.setReference(reference);
+//		maison.setAdresse(adresse);
+//		maison.setDescription(description);
+//		maison.setSuperficie(superficie);
+//		maison.setStatus(EnumStatutProperty.valueOf(status));
+//		maison.setPrixVente(prixVente);
+//		maison.setPrixMinVente(prixMinVente);
+//		maison.setLoyerMensuel(loyerMensuel);
+//		maison.setChargesMensuel(chargesMensuel);
+//		maison.setTypeOperation(EnumTypeOperation.valueOf(typeOperation));
+//		maison.setEtatBien(EnumEtatBien.valueOf(etatBien));
+//		maison.setTransport(transport);
+//		maison.setAdapteHandicape(false);		
+//		maison.setProximite(proximite);
+//		maison.setHonoraires(honoraires);
+//		maison.setDepotGarantie(depotGarantie);
+//		maison.setNbSallesBains(nbSallesBains);
+//		maison.setDateMiseAjour( new LocalDateTime());
+		
+		
+		maison.setNbCaves(nbCaves);
+		maison.setValidated(validated);
 		maison.setNbPieces(nbPieces);
 		maison.setNbChambres(nbChambres);
-		maison.setCuisineEquipee(cuisineEquipee);
-		maison.setJardin(jardin);
+		
+		maison.setAdapteHandicape(false);
+		if(adapteHandicape!= null && adapteHandicape){
+			maison.setAdapteHandicape(true);
+		}
+		maison.setCuisineEquipee(false);
+		if(cuisineEquipee!= null && cuisineEquipee){
+			maison.setCuisineEquipee(true);
+		}
+		maison.setInterphone(false);
+		if(interphone!= null && interphone){
+			maison.setInterphone(true);
+		}		
+		maison.setDigicode(false);
+		if(digicode!= null && digicode){
+			maison.setDigicode(true);
+		}
+		maison.setConsoEnergie(null);
+		if(consoEnergie!= null){
+			maison.setConsoEnergie(EnumConsEnergie.valueOf(consoEnergie));
+		}
+		maison.setTypeEauChaude(null);
+		if(typeEauChaude!= null){
+			maison.setTypeEauChaude(EnumTypeEauChaude.valueOf(typeEauChaude));
+		}
+		maison.setImpactConso(null);
+		if(impactConso!= null){
+			maison.setImpactConso(EnumImpactConso.valueOf(impactConso));
+		}
+		maison.setTypeChauffage(null);
+		if(typeChauffage!= null){
+			maison.setTypeChauffage(EnumTypeChauffage.valueOf(typeChauffage));
+		}
+		maison.setNatureChauffage(null);
+		if(natureChauffage!= null){
+			maison.setNatureChauffage(EnumNatureChauffage
+					.valueOf(natureChauffage));
+		}
+		maison.setMeuble(false);
+		if(meuble!= null && meuble){
+			maison.setMeuble(true);
+		}
+		maison.setJardin(false);
+		if(jardin!= null && jardin){
+			maison.setJardin(true);
+		}
+		maison.setPiscine(false);
+		if(piscine!= null && piscine){
+			maison.setPiscine(true);
+		}
+		
 		maison.setAge(age);
 		maison.setNbTerrasses(nbTerrasses);
 		maison.setNbBalcons(nbBalcons);
 		maison.setNbParkingInt(nbParkingInt);
 		maison.setNbParkingExt(nbParkingExt);
-		maison.setInterphone(interphone);
-		maison.setDigicode(digicode);
-		maison.setConsoEnergie(EnumConsEnergie.valueOf(consoEnergie));
-		maison.setTypeEauChaude(EnumTypeEauChaude.valueOf(typeEauChaude));
-		maison.setImpactConso(EnumImpactConso.valueOf(impactConso));
-		maison.setNatureChauffage(EnumNatureChauffage.valueOf(natureChauffage));
-		maison.setTypeChauffage(EnumTypeChauffage.valueOf(typeChauffage));
-		maison.setMeuble(meuble);
-		maison.setPiscine(piscine);
-		maison.setValidated(validated);
 		
-		maison.setDateMiseAjour( new LocalDateTime());
+		
 
 		return maison;
 	}
 
+	public Agricole updateAgricole(Agricole agricole) {
+
+//		Update the agricole not complete
+		
+		agricole = (Agricole) updateBien(agricole);
+		
+//		agricole.setName(name);
+//		agricole.setReference(reference);
+//		agricole.setAdresse(adresse);
+//		agricole.setDescription(description);
+//		agricole.setSuperficie(superficie);
+//		agricole.setStatus(EnumStatutProperty.valueOf(status));
+//		agricole.setPrixVente(prixVente);
+//		agricole.setPrixMinVente(prixMinVente);
+//		agricole.setLoyerMensuel(loyerMensuel);
+//		agricole.setChargesMensuel(chargesMensuel);
+//		agricole.setTypeOperation(EnumTypeOperation.valueOf(typeOperation));
+//		agricole.setEtatBien(EnumEtatBien.valueOf(etatBien));
+//		agricole.setTransport(transport);
+//		agricole.setAdapteHandicape(false);		
+//		agricole.setProximite(proximite);
+//		agricole.setHonoraires(honoraires);
+//		agricole.setDepotGarantie(depotGarantie);
+//		agricole.setNbSallesBains(nbSallesBains);
+//		agricole.setNbCaves(nbCaves);
+//		agricole.setValidated(validated);
+//		
+//		agricole.setDateMiseAjour( new LocalDateTime());
+		return agricole;
+	}
+	
 	public Appartement updateAppartement(Appartement appartement) {
 
 //		Update the departement not complete
-		appartement.setName(name);
-		appartement.setReference(reference);
-		appartement.setAdresse(adresse);
-		appartement.setDescription(description);
-		appartement.setSuperficie(superficie);
-		appartement.setStatus(EnumStatutProperty.valueOf(status));
-		appartement.setPrixVente(prixVente);
-		appartement.setPrixMinVente(prixMinVente);
-		appartement.setLoyerMensuel(loyerMensuel);
-		appartement.setChargesMensuel(chargesMensuel);
-		appartement.setTypeOperation(EnumTypeOperation.valueOf(typeOperation));
-		appartement.setEtatBien(EnumEtatBien.valueOf(etatBien));
-		appartement.setTransport(transport);
-		appartement.setAdapteHandicape(adapteHandicape);
-		appartement.setProximite(proximite);
-		appartement.setHonoraires(honoraires);
-		appartement.setDepotGarantie(depotGarantie);
-		appartement.setNbSallesBains(nbSallesBains);
-		appartement.setNbCaves(nbCaves);
-		appartement.setValidated(validated);
+		
+		appartement = (Appartement) updateBien(appartement);
+		
+		
+//		appartement.setName(name);
+//		appartement.setReference(reference);
+//		appartement.setAdresse(adresse);
+//		appartement.setDescription(description);
+//		appartement.setSuperficie(superficie);
+//		appartement.setStatus(EnumStatutProperty.valueOf(status));
+//		appartement.setPrixVente(prixVente);
+//		appartement.setPrixMinVente(prixMinVente);
+//		appartement.setLoyerMensuel(loyerMensuel);
+//		appartement.setChargesMensuel(chargesMensuel);
+//		appartement.setTypeOperation(EnumTypeOperation.valueOf(typeOperation));
+//		appartement.setEtatBien(EnumEtatBien.valueOf(etatBien));
+//		appartement.setTransport(transport);
+//		appartement.setAdapteHandicape(false);		
+//		appartement.setProximite(proximite);
+//		appartement.setHonoraires(honoraires);
+//		appartement.setDepotGarantie(depotGarantie);
+//		appartement.setNbSallesBains(nbSallesBains);
+//		appartement.setNbCaves(nbCaves);
+//		appartement.setValidated(validated);
+//		appartement.setDateMiseAjour( new LocalDateTime());
+		
 		appartement.setNbPieces(nbPieces);
 		appartement.setNbChambres(nbChambres);
-		appartement.setCuisineEquipee(cuisineEquipee);
-		appartement.setAscenseur(ascenseur);
+		
+		appartement.setAdapteHandicape(false);
+		if(adapteHandicape!= null && adapteHandicape){
+			appartement.setAdapteHandicape(true);
+		}
+		appartement.setCuisineEquipee(false);
+		if(cuisineEquipee!= null && cuisineEquipee){
+			appartement.setCuisineEquipee(true);
+		}
+		appartement.setAscenseur(false);
+		if(ascenseur!= null && ascenseur){
+			appartement.setAscenseur(true);
+		}		
+		appartement.setInterphone(false);
+		if(interphone!= null && interphone){
+			appartement.setInterphone(true);
+		}		
+		appartement.setDigicode(false);
+		if(digicode!= null && digicode){
+			appartement.setDigicode(true);
+		}
+		appartement.setConsoEnergie(null);
+		if(consoEnergie!= null){
+			appartement.setConsoEnergie(EnumConsEnergie.valueOf(consoEnergie));
+		}
+		appartement.setTypeEauChaude(null);
+		if(typeEauChaude!= null){
+			appartement.setTypeEauChaude(EnumTypeEauChaude.valueOf(typeEauChaude));
+		}
+		appartement.setImpactConso(null);
+		if(impactConso!= null){
+			appartement.setImpactConso(EnumImpactConso.valueOf(impactConso));
+		}
+		appartement.setTypeChauffage(null);
+		if(typeChauffage!= null){
+			appartement.setTypeChauffage(EnumTypeChauffage.valueOf(typeChauffage));
+		}
+		appartement.setNatureChauffage(null);
+		if(natureChauffage!= null){
+			appartement.setNatureChauffage(EnumNatureChauffage
+					.valueOf(natureChauffage));
+		}
+		appartement.setMeuble(false);
+		if(meuble!= null && meuble){
+			appartement.setMeuble(true);
+		}
 		appartement.setEtage(etage);
 		appartement.setAge(age);
 		appartement.setNbTerrasses(nbTerrasses);
 		appartement.setNbBalcons(nbBalcons);
 		appartement.setNbParkingInt(nbParkingInt);
 		appartement.setNbParkingExt(nbParkingExt);
-		appartement.setInterphone(interphone);
-		appartement.setDigicode(digicode);
-		appartement.setConsoEnergie(EnumConsEnergie.valueOf(consoEnergie));
-		appartement.setTypeEauChaude(EnumTypeEauChaude.valueOf(typeEauChaude));
-		appartement.setImpactConso(EnumImpactConso.valueOf(impactConso));
-		appartement.setNatureChauffage(EnumNatureChauffage
-				.valueOf(natureChauffage));
-		appartement.setTypeChauffage(EnumTypeChauffage.valueOf(typeChauffage));
-		appartement.setMeuble(meuble);
-		appartement.setDateMiseAjour( new LocalDateTime());
+		
 		return appartement;
 	}
 	
-	public Studio updateStudio(Studio studio) {
-
-//		Update the departement not complete
-		studio.setName(name);
-		studio.setReference(reference);
-		studio.setAdresse(adresse);
-		studio.setDescription(description);
-		studio.setSuperficie(superficie);
-		studio.setStatus(EnumStatutProperty.valueOf(status));
-		studio.setPrixVente(prixVente);
-		studio.setPrixMinVente(prixMinVente);
-		studio.setLoyerMensuel(loyerMensuel);
-		studio.setChargesMensuel(chargesMensuel);
-		studio.setTypeOperation(EnumTypeOperation.valueOf(typeOperation));
-		studio.setEtatBien(EnumEtatBien.valueOf(etatBien));
-		studio.setTransport(transport);
-		studio.setAdapteHandicape(adapteHandicape);
-		studio.setProximite(proximite);
-		studio.setHonoraires(honoraires);
-		studio.setDepotGarantie(depotGarantie);
-		studio.setNbSallesBains(nbSallesBains);
-		studio.setNbCaves(nbCaves);
-		studio.setValidated(validated);
+	
+	public BienImmobilier updateBien(BienImmobilier bien) {
 		
-		studio.setAscenseur(ascenseur);
-		studio.setEtage(etage);
-		studio.setAge(age);
-		studio.setNbTerrasses(nbTerrasses);
-		studio.setNbBalcons(nbBalcons);
-		studio.setNbParkingInt(nbParkingInt);
-		studio.setNbParkingExt(nbParkingExt);
-		studio.setInterphone(interphone);
-		studio.setDigicode(digicode);
-		studio.setConsoEnergie(EnumConsEnergie.valueOf(consoEnergie));
-		studio.setTypeEauChaude(EnumTypeEauChaude.valueOf(typeEauChaude));
-		studio.setImpactConso(EnumImpactConso.valueOf(impactConso));
-		studio.setNatureChauffage(EnumNatureChauffage
-				.valueOf(natureChauffage));
-		studio.setTypeChauffage(EnumTypeChauffage.valueOf(typeChauffage));
-		studio.setMeuble(meuble);
-		studio.setDateMiseAjour( new LocalDateTime());
-
-		return studio;
+//		Update the bien not complete
+		bien.setName(name);
+		bien.setReference(reference);
+		bien.setAdresse(adresse);
+		bien.setDescription(description);
+		bien.setSuperficie(superficie);
+		bien.setStatus(EnumStatutProperty.valueOf(status));
+		bien.setPrixVente(prixVente);
+		bien.setPrixMinVente(prixMinVente);
+		bien.setLoyerMensuel(loyerMensuel);
+		bien.setChargesMensuel(chargesMensuel);
+		bien.setTypeOperation(EnumTypeOperation.valueOf(typeOperation));
+		bien.setEtatBien(EnumEtatBien.valueOf(etatBien));
+		bien.setTransport(transport);
+		bien.setAdapteHandicape(false);		
+		bien.setProximite(proximite);
+		bien.setHonoraires(honoraires);
+		bien.setDepotGarantie(depotGarantie);
+		bien.setNbSallesBains(nbSallesBains);
+		bien.setNbCaves(nbCaves);
+		bien.setValidated(validated);
+		bien.setDateMiseAjour( new LocalDateTime());
+		return bien;
 	}
+	
+	public Carcasse updateCarcasse(Carcasse carcasse) {
 
+//		Update the carcasse not complete
+		carcasse = (Carcasse) updateBien(carcasse);
+//		carcasse.setName(name);
+//		carcasse.setReference(reference);
+//		carcasse.setAdresse(adresse);
+//		carcasse.setDescription(description);
+//		carcasse.setSuperficie(superficie);
+//		carcasse.setStatus(EnumStatutProperty.valueOf(status));
+//		carcasse.setPrixVente(prixVente);
+//		carcasse.setPrixMinVente(prixMinVente);
+//		carcasse.setLoyerMensuel(loyerMensuel);
+//		carcasse.setChargesMensuel(chargesMensuel);
+//		carcasse.setTypeOperation(EnumTypeOperation.valueOf(typeOperation));
+//		carcasse.setEtatBien(EnumEtatBien.valueOf(etatBien));
+//		carcasse.setTransport(transport);
+//		carcasse.setAdapteHandicape(false);		
+//		carcasse.setProximite(proximite);
+//		carcasse.setHonoraires(honoraires);
+//		carcasse.setDepotGarantie(depotGarantie);
+//		carcasse.setNbSallesBains(nbSallesBains);
+//		carcasse.setNbCaves(nbCaves);
+//		carcasse.setValidated(validated);
+//		carcasse.setDateMiseAjour( new LocalDateTime());
+		return carcasse;
+	}
+	
+	
+	public Vacances updateVacances(Vacances vacances) {
+
+//		Update the vacances not complete
+//		vacances.setName(name);
+//		vacances.setReference(reference);
+//		vacances.setAdresse(adresse);
+//		vacances.setDescription(description);
+//		vacances.setSuperficie(superficie);
+//		vacances.setStatus(EnumStatutProperty.valueOf(status));
+//		vacances.setPrixVente(prixVente);
+//		vacances.setPrixMinVente(prixMinVente);
+//		vacances.setLoyerMensuel(loyerMensuel);
+//		vacances.setChargesMensuel(chargesMensuel);
+//		vacances.setTypeOperation(EnumTypeOperation.valueOf(typeOperation));
+//		vacances.setEtatBien(EnumEtatBien.valueOf(etatBien));
+//		vacances.setTransport(transport);
+//		vacances.setAdapteHandicape(false);		
+//		vacances.setProximite(proximite);
+//		vacances.setHonoraires(honoraires);
+//		vacances.setDepotGarantie(depotGarantie);
+//		vacances.setNbSallesBains(nbSallesBains);
+//		vacances.setNbCaves(nbCaves);
+//		vacances.setValidated(validated);
+//		vacances.setDateMiseAjour( new LocalDateTime());
+		vacances = (Vacances) updateBien(vacances);
+		return vacances;
+	}
+	
+	public Terrain updateTerrain(Terrain terrain) {
+
+//		Update the Terrain not complete
+//		terrain.setName(name);
+//		terrain.setReference(reference);
+//		terrain.setAdresse(adresse);
+//		terrain.setDescription(description);
+//		terrain.setSuperficie(superficie);
+//		terrain.setStatus(EnumStatutProperty.valueOf(status));
+//		terrain.setPrixVente(prixVente);
+//		terrain.setPrixMinVente(prixMinVente);
+//		terrain.setLoyerMensuel(loyerMensuel);
+//		terrain.setChargesMensuel(chargesMensuel);
+//		terrain.setTypeOperation(EnumTypeOperation.valueOf(typeOperation));
+//		terrain.setEtatBien(EnumEtatBien.valueOf(etatBien));
+//		terrain.setTransport(transport);
+//		terrain.setAdapteHandicape(false);		
+//		terrain.setProximite(proximite);
+//		terrain.setHonoraires(honoraires);
+//		terrain.setDepotGarantie(depotGarantie);
+//		terrain.setNbSallesBains(nbSallesBains);
+//		terrain.setNbCaves(nbCaves);
+//		terrain.setValidated(validated);
+//		terrain.setAdapteHandicape(false);
+//		terrain.setDateMiseAjour( new LocalDateTime());
+		terrain = (Terrain) updateBien(terrain);
+		return terrain;
+	}
+	
+	public Commerce updateCommerce(Commerce commerce) {
+
+//		Update the commerce not complete
+//		commerce.setName(name);
+//		commerce.setReference(reference);
+//		commerce.setAdresse(adresse);
+//		commerce.setDescription(description);
+//		commerce.setSuperficie(superficie);
+//		commerce.setStatus(EnumStatutProperty.valueOf(status));
+//		commerce.setPrixVente(prixVente);
+//		commerce.setPrixMinVente(prixMinVente);
+//		commerce.setLoyerMensuel(loyerMensuel);
+//		commerce.setChargesMensuel(chargesMensuel);
+//		commerce.setTypeOperation(EnumTypeOperation.valueOf(typeOperation));
+//		commerce.setEtatBien(EnumEtatBien.valueOf(etatBien));
+//		commerce.setTransport(transport);
+//		commerce.setAdapteHandicape(false);		
+//		commerce.setProximite(proximite);
+//		commerce.setHonoraires(honoraires);
+//		commerce.setDepotGarantie(depotGarantie);
+//		commerce.setNbSallesBains(nbSallesBains);
+//		commerce.setNbCaves(nbCaves);
+//		commerce.setValidated(validated);		
+//		commerce.setAdapteHandicape(false);
+//		commerce.setDateMiseAjour( new LocalDateTime());
+		commerce = (Commerce) updateBien(commerce);
+		commerce.setAge(age);
+		
+		
+		return commerce;
+	}
+	
+	
 	public String getName() {
 		return name;
 	}

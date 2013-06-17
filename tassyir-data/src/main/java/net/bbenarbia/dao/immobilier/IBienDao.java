@@ -29,4 +29,7 @@ public interface IBienDao extends IGenericDao<BienImmobilier>{
 				Boolean terrassesBalcons,  EnumTypeOperation typeOperation);
 	 
 	 List<BienImmobilier> searchBiensByTown(Long townId);
+	 
+	 List<String> getAllBiensReference();
+	 
 }

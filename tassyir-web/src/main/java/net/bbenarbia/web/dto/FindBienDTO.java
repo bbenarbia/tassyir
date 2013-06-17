@@ -14,13 +14,11 @@ public class FindBienDTO {
 	private String communeBien;
 	private Boolean appartement;
 	private Boolean maison;
-	private Boolean immeuble;
 	private Boolean terrain;
 	private Boolean agricole;
 	private Boolean carcasse;
 	private Boolean commercial;
-	private Boolean bungalow;
-	private Boolean ferme;
+	private Boolean vacances;
 	private Integer nbPiecesMin;
 	private Integer typeOperationBien;
 	private Integer nbPiecesMax;
@@ -244,14 +242,6 @@ public class FindBienDTO {
 		this.maison = maison;
 	}
 
-	public Boolean getImmeuble() {
-		return immeuble;
-	}
-
-	public void setImmeuble(Boolean immeuble) {
-		this.immeuble = immeuble;
-	}
-
 	public Boolean getTerrain() {
 		return terrain;
 	}
@@ -284,20 +274,13 @@ public class FindBienDTO {
 		this.commercial = commercial;
 	}
 
-	public Boolean getBungalow() {
-		return bungalow;
+
+	public Boolean getVacances() {
+		return vacances;
 	}
 
-	public void setBungalow(Boolean bungalow) {
-		this.bungalow = bungalow;
-	}
-
-	public Boolean getFerme() {
-		return ferme;
-	}
-
-	public void setFerme(Boolean ferme) {
-		this.ferme = ferme;
+	public void setVacances(Boolean vacances) {
+		this.vacances = vacances;
 	}
 
 	public int getTypeBien() {

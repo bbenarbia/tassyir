@@ -31,10 +31,14 @@ import net.bbenarbia.domain.enums.EnumTypeOperation;
 import net.bbenarbia.domain.enums.EnumTypeVille;
 import net.bbenarbia.domain.enums.ParameterCode;
 import net.bbenarbia.domain.immobilier.Photo;
+import net.bbenarbia.domain.immobilier.subtype.Agricole;
 import net.bbenarbia.domain.immobilier.subtype.Appartement;
 import net.bbenarbia.domain.immobilier.subtype.BienImmobilier;
+import net.bbenarbia.domain.immobilier.subtype.Carcasse;
+import net.bbenarbia.domain.immobilier.subtype.Commerce;
 import net.bbenarbia.domain.immobilier.subtype.Maison;
-import net.bbenarbia.domain.immobilier.subtype.Studio;
+import net.bbenarbia.domain.immobilier.subtype.Terrain;
+import net.bbenarbia.domain.immobilier.subtype.Vacances;
 import net.bbenarbia.service.IParameterService;
 import net.bbenarbia.service.IPhotoService;
 import net.bbenarbia.service.ITownService;
@@ -345,11 +349,8 @@ public class BienController {
 			if (findBienDto.getCommercial()) {
 				selectedTypes.add(EnumTypeBien.COMMERCE.toString());
 			}
-			if (findBienDto.getBungalow()) {
-				selectedTypes.add(EnumTypeBien.BUNGALOW.toString());
-			}
-			if (findBienDto.getFerme()) {
-				selectedTypes.add(EnumTypeBien.FERME.toString());
+			if (findBienDto.getVacances()) {
+				selectedTypes.add(EnumTypeBien.VACANCES.toString());
 			}
 
 			List<BienImmobilier> listBiensFound = bienService.searchBiens(
@@ -428,11 +429,8 @@ public class BienController {
 			if (findBienDto.getCommercial()) {
 				selectedTypes.add(EnumTypeBien.COMMERCE.toString());
 			}
-			if (findBienDto.getBungalow()) {
-				selectedTypes.add(EnumTypeBien.BUNGALOW.toString());
-			}
-			if (findBienDto.getFerme()) {
-				selectedTypes.add(EnumTypeBien.FERME.toString());
+			if (findBienDto.getVacances()) {
+				selectedTypes.add(EnumTypeBien.VACANCES.toString());
 			}
 
 			typeOperation = EnumTypeOperation.fromIndex(findBienDto
@@ -618,68 +616,8 @@ public class BienController {
 		return "redirect:/biens/" + bienId;
 	}
 
-	@RequestMapping(value = "/studio/new", method = RequestMethod.GET)
-	public String initCreateStudioForm(Model model) {
 
-		BienDTO studio = new BienDTO();
-		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
-		navigations.add(new NavigationDTO("/", "home"));
-		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
-		model.addAttribute("navigations", navigations);
-		model.addAttribute("studio", studio);
-		return "immobilier/modification/createStudioForm";
-	}
-
-	@RequestMapping(value = "/studio/new", method = RequestMethod.POST)
-	public String processCreationStudioForm(
-			@ModelAttribute("studio") @Valid BienDTO bienDto,
-			BindingResult result, SessionStatus status) {
-
-		if (result.hasErrors()) {
-			return "immobilier/modification/createStudioForm";
-		} else {
-			User user = null;
-			Authentication auth = SecurityContextHolder.getContext()
-					.getAuthentication();
-			user = userService.getUtilisateurByLogin(auth.getName());
-			if (user != null) {
-
-				String refDepartement = bienDto.getDepartement();
-				Town departement = null;
-				List<Town> listDepartement = departementservice
-						.getTownByReference(refDepartement);
-				if (listDepartement != null && listDepartement.size() != 0) {
-					departement = listDepartement.get(0);
-				}
-
-				Studio studio = new Studio();
-				studio = bienDto.updateStudio(studio);
-				studio.setDepartement(departement);
-				studio.setProprietaire(user);
-				bienService.save(studio);
-
-				List<MultipartFile> files = bienDto.getFiles();
-				if (null != files && files.size() > 0) {
-					String TEMP_DIR = parameterService
-							.getParameterName(
-									ParameterCode.TEMP_DIRECTORY.toString())
-							.get(0).getValue();
-
-					studio = (Studio) uploadFiles(files, studio, TEMP_DIR);
-
-					bienService.merge(studio);
-					status.setComplete();
-
-				}
-
-				return "redirect:/biens/" + studio.getId();
-			} else {
-				return "immobilier/modification/createStudioForm";
-			}
-		}
-	}
-
-	@RequestMapping(value = "/maison/new", method = RequestMethod.GET)
+	@RequestMapping(value = "/maison/{typeOperation}/{commune}/new", method = RequestMethod.GET)
 	public String initCreateMaisonForm(Model model) {
 
 		BienDTO maison = new BienDTO();
@@ -691,7 +629,9 @@ public class BienController {
 		return "immobilier/modification/createMaisonForm";
 	}
 
-	@RequestMapping(value = "/maison/new", method = RequestMethod.POST)
+	
+	
+	@RequestMapping(value = "/maison/{typeOperation}/{commune}/new", method = RequestMethod.POST)
 	public String processCreationMaisonForm(
 			@ModelAttribute("maison") @Valid BienDTO bienDto,
 			BindingResult result, SessionStatus status) {
@@ -753,18 +693,43 @@ public class BienController {
 		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
 		model.addAttribute("navigations", navigations);
 		
+		
+		
 		if(findBienDto.getDepartementBien() != null && !findBienDto.getDepartementBien().isEmpty()){			
 		if(findBienDto.getCommuneBien() != null && !findBienDto.getCommuneBien().isEmpty()){
-
-		BienDTO bienDto = new BienDTO();
+			
 		
-		Town town = departementservice.getTownByReference(findBienDto.getCommuneBien()).get(0);
-		bienDto.setVille(town.getName());
-		bienDto.setDepartement(town.getDepartement());
-		bienDto.setCodePostal(town.getCodePostal());
-		bienDto.setTypeBien(EnumTypeBien.fromIndex(findBienDto.getTypeBien()).toString());
-		bienDto.setTypeOperation(EnumTypeOperation.fromIndex(findBienDto.getTypeOperationBien()).toString());
-		model.addAttribute("bien", bienDto);
+		if(findBienDto.getTypeBien()==EnumTypeBien.APPARTEMENT.getIndex()){
+			return "redirect:/biens/Appartement/"+findBienDto.getTypeOperationBien()+"/"+findBienDto.getCommuneBien()+"/new";		
+		}else 
+		if(findBienDto.getTypeBien()==EnumTypeBien.MAISON.getIndex()){
+			return "redirect:/biens/Maison/"+findBienDto.getTypeOperationBien()+"/"+findBienDto.getCommuneBien()+"/new";
+		}else
+		if(findBienDto.getTypeBien()==EnumTypeBien.VACANCES.getIndex()){
+			return "redirect:/biens/Vacances/"+findBienDto.getTypeOperationBien()+"/"+findBienDto.getCommuneBien()+"/new";
+		}else
+		if(findBienDto.getTypeBien()==EnumTypeBien.CARCASSE.getIndex()){
+			return "redirect:/biens/Carcasse/"+findBienDto.getTypeOperationBien()+"/"+findBienDto.getCommuneBien()+"/new";
+		}else if(findBienDto.getTypeBien()==EnumTypeBien.COMMERCE.getIndex()){
+			return "redirect:/biens/Commerce/"+findBienDto.getTypeOperationBien()+"/"+findBienDto.getCommuneBien()+"/new";
+		}else if(findBienDto.getTypeBien()==EnumTypeBien.TERRAIN.getIndex()){
+			return "redirect:/biens/Terrain/"+findBienDto.getTypeOperationBien()+"/"+findBienDto.getCommuneBien()+"/new";
+		}
+		else if(findBienDto.getTypeBien()==EnumTypeBien.AGRICOLE.getIndex()){
+			return "redirect:/biens/Agricole/"+findBienDto.getTypeOperationBien()+"/"+findBienDto.getCommuneBien()+"/new";
+		}
+			
+			
+
+//		BienDTO bienDto = new BienDTO();
+//		
+//		Town town = departementservice.getTownByReference(findBienDto.getCommuneBien()).get(0);
+//		bienDto.setVille(town.getName());
+//		bienDto.setDepartement(town.getDepartement());
+//		bienDto.setCodePostal(town.getCodePostal());
+//		bienDto.setTypeBien(EnumTypeBien.fromIndex(findBienDto.getTypeBien()).toString());
+//		bienDto.setTypeOperation(EnumTypeOperation.fromIndex(findBienDto.getTypeOperationBien()).toString());
+//		model.addAttribute("bien", bienDto);
 		
 		return "immobilier/modification/createBienForm";
 		
@@ -781,10 +746,6 @@ public class BienController {
 //			return "carcasse/new";	
 //		}else if(findBienDto.getTypeBien()==EnumTypeBien.COMMERCE.getIndex()){
 //			return "commerce/new";
-//		}else if(findBienDto.getTypeBien()==EnumTypeBien.FERME.getIndex()){
-//			return "ferme/new";
-//		}else if(findBienDto.getTypeBien()==EnumTypeBien.IMMEUBLE.getIndex()){
-//			return "immeuble/new";
 //		}else if(findBienDto.getTypeBien()==EnumTypeBien.MAISON.getIndex()){
 //			return "maison/new";
 //		}else if(findBienDto.getTypeBien()== EnumTypeBien.TERRAIN.getIndex()){
@@ -805,38 +766,77 @@ public class BienController {
 		}
 	}
 
-	@RequestMapping(value = "/appartement/new", method = RequestMethod.GET)
-	public String initCreateAppartementForm(Model model) {
+	
+	@RequestMapping(value = "/{typeBien}/{typeOperation}/{commune}/new", method = RequestMethod.GET)
+	public String initCreateAppartementForm(@PathVariable("typeBien") String typeBien, @PathVariable("typeOperation") int typeOperation,@PathVariable("commune") String commune,
+			Model model) {
 
-		BienDTO appartement = new BienDTO();
-		model.addAttribute("appartement", appartement);
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
 		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
 		model.addAttribute("navigations", navigations);
-		return "immobilier/modification/createAppartementForm";
+		
+		BienDTO bienDto = new BienDTO();
+		
+		Town town = departementservice.getTownByReference(commune).get(0);
+		bienDto.setVille(town.getName());
+		bienDto.setDepartement(town.getDepartement());
+		bienDto.setCodePostal(town.getReference());
+		bienDto.setTypeBien(typeBien.toUpperCase());
+		bienDto.setTypeOperation(EnumTypeOperation.fromIndex(typeOperation).toString());
+		model.addAttribute("bien", bienDto);
+		
+		return "immobilier/modification/create"+typeBien+"Form";
 	}
 
-	@RequestMapping(value = "/appartement/new", method = RequestMethod.POST)
+	@RequestMapping(value = "/{typeBien}/{typeOperation}/{commune}/new", method = RequestMethod.POST)
 	public String processCreationAppartementForm(
-			@ModelAttribute("appartement") @Valid BienDTO bienDto,
+			@ModelAttribute("bien") @Valid BienDTO bienDto,
 			BindingResult result, SessionStatus status) {
 
 		if (result.hasErrors()) {
 			return "immobilier/modification/createAppartementForm";
 		} else {
-			String refDepartement = bienDto.getDepartement();
-			Town departement = null;
-			List<Town> listDepartement = departementservice
-					.getTownByReference(refDepartement);
-			if (listDepartement != null && listDepartement.size() != 0) {
-				departement = listDepartement.get(0);
+			String refVille = bienDto.getCodePostal();
+			Town ville = null;
+			List<Town> listVilles = departementservice
+					.getTownByReference(refVille);
+			if (listVilles != null && listVilles.size() != 0) {
+				ville = listVilles.get(0);
 			}
-
-			Appartement appartement = new Appartement();
-			appartement = bienDto.updateAppartement(appartement);
-			appartement.setDepartement(departement);
-			bienService.save(appartement);
+			String newRef = bienService.getNewReferenceBien();
+			bienDto.setReference(newRef);
+			BienImmobilier bienToCreate = null;
+			if(bienDto.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())){
+				bienToCreate = new Appartement();
+				bienToCreate = bienDto.updateAppartement((Appartement)bienToCreate);
+			}else if(bienDto.getTypeBien().equals(EnumTypeBien.MAISON.toString())){
+				bienToCreate = new Maison();
+				bienToCreate = bienDto.updateMaison((Maison)bienToCreate);
+			}else if(bienDto.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())){
+				bienToCreate = new Terrain();
+				bienToCreate = bienDto.updateTerrain((Terrain)bienToCreate);
+			}else if(bienDto.getTypeBien().equals(EnumTypeBien.AGRICOLE.toString())){
+				bienToCreate = new Agricole();
+				bienToCreate = bienDto.updateAgricole((Agricole)bienToCreate);
+			}else if(bienDto.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())){
+				bienToCreate = new Commerce();
+				bienToCreate = bienDto.updateCommerce((Commerce)bienToCreate);
+			}else if(bienDto.getTypeBien().equals(EnumTypeBien.VACANCES.toString())){
+				bienToCreate = new Vacances();
+				bienToCreate = bienDto.updateVacances((Vacances)bienToCreate);
+			}else if(bienDto.getTypeBien().equals(EnumTypeBien.CARCASSE.toString())){
+				bienToCreate = new Carcasse();
+				bienToCreate = bienDto.updateCarcasse((Carcasse)bienToCreate);
+			}
+			
+			User user = null;
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			user = userService.getUtilisateurByLogin(auth.getName());
+			bienToCreate.setProprietaire(user);
+			
+			bienToCreate.setDepartement(ville);
+			bienService.save(bienToCreate);
 
 			List<MultipartFile> files = bienDto.getFiles();
 			if (null != files && files.size() > 0) {
@@ -845,14 +845,14 @@ public class BienController {
 								ParameterCode.TEMP_DIRECTORY.toString()).get(0)
 						.getValue();
 
-				appartement = (Appartement) uploadFiles(files, appartement,
+				bienToCreate = (Appartement) uploadFiles(files, bienToCreate,
 						TEMP_DIR);
 
-				bienService.merge(appartement);
+				bienService.merge(bienToCreate);
 				status.setComplete();
 			}
 
-			return "s/" + appartement.getId();
+			return "s/" + bienToCreate.getId();
 		}
 	}
 

@@ -12,6 +12,7 @@
 				<li><a href="#">Publicité</a></li>
 				<li><a href="#">About Us</a></li>
 				<li><a href="#">Contact Us</a></li>
+				<li><a href="${contextPath}/login">Connexion</a></li>
 			</ul>
 </div>
 <div id="header">
@@ -58,7 +59,7 @@
 					</div>
 				 <div id="login">
 					<p>
-						<strong>Already registered ?</strong> Login here to access your account
+						<strong>Vous avez un compte ?</strong> Connectez vous ici pour y accéder 
 					</p>
 					<div id="loginform">
 						 <form method="post" action="${contextPath}/j_spring_security_check">
@@ -76,7 +77,7 @@
 							</div>
 							<div class="clear">&nbsp;</div>
 							<p>
-								<input name="remember_me" id="remember_me" type="checkbox" value="" /> Remember me on this computer |  <a href="${contextPath}/users/reset-password.htm">Forgot password ?</a> 
+								<a href="${contextPath}/users/reset-password.htm">Mot de passe perdu ?</a> 
 							</p>
 						</form>
 					</div>

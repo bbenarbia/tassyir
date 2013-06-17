@@ -42,4 +42,5 @@ public interface IBienService extends IGenericService<BienImmobilier> {
 	
 	List<BienImmobilier> getLastBiens(int nb);
 
+	String getNewReferenceBien() ;
 }

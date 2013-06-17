@@ -230,16 +230,12 @@ $(document).ready(function() {
 																			<spring:message code="bien.type.recherche.commercial" />
 																  </form:label>
 												</td>
-												<td><label> <form:checkbox path="bungalow" /></label></td>
-												<td class="label"><form:label path="bungalow" for="bungalow">
-																			<spring:message code="bien.type.recherche.bungalow" />
+												<td><label> <form:checkbox path="vacances" /></label></td>
+												<td class="label"><form:label path="vacances" for="vacances">
+																			<spring:message code="bien.type.recherche.vacances" />
 																  </form:label>
 												</td>
-												<td><label> <form:checkbox path="ferme" /></label></td>
-												<td class="label"><form:label path="ferme" for="ferme">
-																			<spring:message code="bien.type.recherche.ferme" />
-																  </form:label>
-												</td>
+												
 												</tr>
 										</table>
 									</fieldset>

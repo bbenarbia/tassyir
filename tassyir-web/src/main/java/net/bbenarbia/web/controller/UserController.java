@@ -36,11 +36,13 @@ import net.bbenarbia.web.dto.RoleFormDTO;
 import net.bbenarbia.web.dto.RoleFormDTOList;
 import net.bbenarbia.web.dto.UploadItem;
 import net.bbenarbia.web.dto.UserDTO;
+import net.bbenarbia.web.services.TassyirAuthenticationProvider;
 import net.bbenarbia.web.validator.UserValidator;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -81,6 +83,9 @@ public class UserController {
 
 	@Autowired
 	IParameterService parameterService;
+	
+	@Autowired
+	TassyirAuthenticationProvider authentificationProvider;
 
 	@Autowired
 	private MailManager mailService;
@@ -367,8 +372,7 @@ public class UserController {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Congratulation, Your account is created <br/>");
 		sb.append("Click on this link to activate your account <br/>");
-		sb.append("http://localhost:8080/tassyir-mvc/users/activate/");
-		sb.append(user.getId() + "/" + activationUrl);
+		sb.append("<a href='http://localhost:8080/tassyir-mvc/users/activate/"+user.getId() + "/" + activationUrl+"'>Click here to activate ");
 
 		// mailService.sendMail(user.getContact().getAdresseMail(),
 		// sb.toString(), "Compte bien crée");
@@ -402,7 +406,13 @@ public class UserController {
 			List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 			navigations.add(new NavigationDTO("/", "home"));
 			model.addAttribute("navigations", navigations);
-			return "/information";
+			
+			Authentication auth = new UsernamePasswordAuthenticationToken(user.getLogin(), user.getPassword()); 
+			authentificationProvider.authenticate(auth);
+			SecurityContextHolder.getContext().setAuthentication(auth);
+			
+			return "redirect:/users/my-profile";
+//			return "/information";
 		} else {
 			MessageDTO message = new MessageDTO();
 			message.setText("Error while activation account ");

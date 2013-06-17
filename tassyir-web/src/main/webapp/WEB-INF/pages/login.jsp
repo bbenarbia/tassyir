@@ -58,22 +58,14 @@
 																		name="j_password" value="" placeholder="Password">
 																</p>
 																<p class="remember_me">
-																	<label> <input type="checkbox"
-																		name="remember_me" id="remember_me"> Remember
-																		me on this computer
+																	<label> Mot de passe oublié? <a href="${fn:escapeXml(resetPasswordUrl)}">Clicker ici</a>.
 																	</label>
+																	
 																</p>
 																<p class="submit">
 																	<input type="submit" name="commit" value="Login">
 																</p>
 															</form>
-														</div>
-
-														<div class="login-help">
-															<p>
-																Forgot your password? <a href="${fn:escapeXml(resetPasswordUrl)}">Click
-																	here to reset it</a>.
-															</p>
 														</div>
 													</section>
 												</fieldset>

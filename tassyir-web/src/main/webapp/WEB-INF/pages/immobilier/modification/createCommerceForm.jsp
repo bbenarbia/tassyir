@@ -58,36 +58,13 @@
 					            		<form:input label="superficie" path="superficie" class="text smalltext" />m2
 									</dd>
 						        </dl>
-						         <dl>
-									<dt><form:label path="nbPieces"><spring:message code="biens.nbPieces" /></form:label></dt>
-									<dd> 
-										<form:input label="name" path="nbPieces"
-												class="text" />										
-									</dd>
-								
-									<dt><form:label path="age"><spring:message code="biens.age" /></form:label></dt>
-									<dd> 
-										<form:input label="age" path="age" class="text smalltext" />
-									</dd>
-								 </dl>
-								<dl>
-									<dt><form:label path="nbParkingInt"><spring:message code="biens.nbParkingInt" /></form:label></dt>
-										<dd> 
-												<form:input label="name" path="nbParkingInt"
-												class="text" />	
-									</dd>
-									<dt><form:label path="nbCaves"><spring:message code="biens.nbCaves" /></form:label></dt>
-										<dd> 
-											<form:input label="name" path="nbCaves"
-												class="text" />												
-									</dd>
-									
-								</dl>
+						       
 								<dl>
 									<dt><form:label path="proximite"><spring:message code="biens.proximite" /></form:label></dt>
 									<dd> 
 										<form:textarea cols="16" rows="6" label="name" path="proximite" class="text textBoxfieldlong" />
 									</dd>
+									
 									<dt><form:label path="etatBien"><spring:message code="biens.etatBien" /></form:label></dt>
 										<dd>
 													<form:select path="etatBien"  class="select_field">
@@ -119,6 +96,7 @@
 									</dd>
 						       </dl>
 							</fieldset>
+								
 							<fieldset>	
 								<legend>Informations Energitiques</legend>
 								<dl>
@@ -144,39 +122,13 @@
 											</dd>
 								</dl>
 							</fieldset>		
+							
 							<fieldset>		
 								<legend>Options</legend>
 								<table class="search_form">
 									<tr>
 										<td><label> <form:checkbox id="eauPotable" path="eauPotable" />  <form:label path="eauPotable"><spring:message code="biens.eauPotable" /></form:label></label></td>
 										<td><label> <form:checkbox id="gaz" path="gaz" />  <form:label path="gaz"><spring:message code="biens.gaz" /></form:label></label></td>
-									</tr>
-									<tr>
-										<td><label> 
-												<form:checkbox path="interphone" id="interphone"/>  <form:label path="interphone" for="interphone"><spring:message code="biens.interphone" /></form:label>
-											</label>
-										</td>
-										<td><label> 
-											<form:checkbox id="digicode" path="digicode" />  <form:label path="digicode" for="digicode"><spring:message code="biens.digicode" /></form:label>
-										</label>
-										</td>
-									</tr>
-									<tr>
-										<td><label> 
-											<form:checkbox id="gardien" path="gardien" />  <form:label path="gardien"><spring:message code="biens.gardien" /></form:label>
-										</label>
-										</td>
-										
-										<td><label> 
-											<form:checkbox id="meuble" path="meuble" />  <form:label path="meuble"><spring:message code="biens.meuble" /></form:label>
-										</label>
-										</td>
-									</tr>
-									<tr>
-										<td><label> 
-											<form:checkbox id="cuisineEquipee" path="cuisineEquipee" />  <form:label path="cuisineEquipee"><spring:message code="biens.cuisineEquipee" /></form:label>
-										</label>
-										</td>
 									</tr>
 								</table>			
         					</fieldset>	

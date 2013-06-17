@@ -204,11 +204,9 @@
 																					code="bien.type.recherche.commercial" />
 																			</option>
 																			<option value="8">
-																				<spring:message code="bien.type.recherche.bungalow" />
+																				<spring:message code="bien.type.recherche.vacances" />
 																			</option>
-																			<option value="9">
-																				<spring:message code="bien.type.recherche.ferme" />
-																			</option>
+																			
 																		</form:select>
 																</label></td>
 															</tr>
