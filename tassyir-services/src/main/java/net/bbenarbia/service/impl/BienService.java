@@ -11,6 +11,7 @@ import net.bbenarbia.domain.enums.EnumTypeOperation;
 import net.bbenarbia.domain.immobilier.subtype.BienImmobilier;
 import net.bbenarbia.service.generic.GenericService;
 import net.bbenarbia.service.immobilier.IBienService;
+import net.bbenarbia.utils.Utils;
 
 import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,7 +117,7 @@ public class BienService extends GenericService<BienImmobilier> implements
 		String newRef =""; 
 		boolean exists = true;
 		do {
-			newRef = String.valueOf(RandomUtils.nextLong());
+			newRef = Utils.getRandomString(5);
 			exists = allBienReferences.contains(newRef); 
 		} while (exists);
 		

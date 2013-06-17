@@ -154,10 +154,10 @@ public class BienDTO {
 						.getDepartement().getName(), appartement.getDepartement()
 						.getReference(), appartement.getDescription(),
 				appartement.getSuperficie(),
-				appartement.getStatus().toString(), appartement.getPrixVente(), appartement.getPrixMinVente(),
+				appartement.getStatus(), appartement.getPrixVente(), appartement.getPrixMinVente(),
 				appartement.getLoyerMensuel(), appartement.getChargesMensuel(),
 				appartement.getTypeOperation().toString(), appartement
-						.getEtatBien().toString(), appartement.getEtage(),
+						.getEtatBien(), appartement.getEtage(),
 				appartement.getNbPieces(), appartement.getNbChambres(),
 				appartement.isAscenseur(), appartement.isCuisineEquipee(),
 				null, appartement.getAge(), appartement.getTypeBien(),
@@ -176,6 +176,7 @@ public class BienDTO {
 	}
 	
 	
+	
 	public BienDTO(Terrain terrain) {
 		this(terrain.getId(), terrain.getName(), terrain
 				.getReference(), terrain.getAdresse(),
@@ -183,10 +184,10 @@ public class BienDTO {
 						.getDepartement().getName(), terrain.getDepartement()
 						.getReference(), terrain.getDescription(),
 				terrain.getSuperficie(),
-				terrain.getStatus().toString(), terrain.getPrixVente(), terrain.getPrixMinVente(),
+				terrain.getStatus(), terrain.getPrixVente(), terrain.getPrixMinVente(),
 				terrain.getLoyerMensuel(), terrain.getChargesMensuel(),
 				terrain.getTypeOperation().toString(), terrain
-						.getEtatBien().toString(), null,
+						.getEtatBien(), null,
 				0, 0,
 				false, false,
 				false, 0, terrain.getTypeBien(),
@@ -202,6 +203,32 @@ public class BienDTO {
 				terrain.getNbCaves(), false, terrain.getPhotos(), terrain.getDateMiseAjour(), terrain.isValidated(), false, terrain.isEauPotable(), terrain.isGaz());
 	}
 	
+	public BienDTO(Vacances vacances) {
+		this(vacances.getId(), vacances.getName(), vacances
+				.getReference(), vacances.getAdresse(),
+				vacances.getDepartement().getCodePostal(), vacances
+						.getDepartement().getName(), vacances.getDepartement()
+						.getReference(), vacances.getDescription(),
+				vacances.getSuperficie(),
+				vacances.getStatus(), vacances.getPrixVente(), vacances.getPrixMinVente(),
+				vacances.getLoyerMensuel(), vacances.getChargesMensuel(),
+				vacances.getTypeOperation().toString(), vacances
+						.getEtatBien(), null,
+				0, 0,
+				false, false,
+				false, 0, vacances.getTypeBien(),
+				0, 0,
+				0, 0,
+				false, false,
+				false,null
+						, null,
+				null, null, null, false,
+				vacances.getTransport(), vacances.isAdapteHandicape(),
+				vacances.getProximite(), vacances.getHonoraires(),
+				vacances.getDepotGarantie(), vacances.getNbSallesBains(),
+				vacances.getNbCaves(), false, vacances.getPhotos(), vacances.getDateMiseAjour(), vacances.isValidated(), false, vacances.isEauPotable(), vacances.isGaz());
+	}
+	
 	public BienDTO(Agricole agricole) {
 		this(agricole.getId(), agricole.getName(), agricole
 				.getReference(), agricole.getAdresse(),
@@ -209,10 +236,10 @@ public class BienDTO {
 						.getDepartement().getName(), agricole.getDepartement()
 						.getReference(), agricole.getDescription(),
 				agricole.getSuperficie(),
-				agricole.getStatus().toString(), agricole.getPrixVente(), agricole.getPrixMinVente(),
+				agricole.getStatus(), agricole.getPrixVente(), agricole.getPrixMinVente(),
 				agricole.getLoyerMensuel(), agricole.getChargesMensuel(),
 				agricole.getTypeOperation().toString(), agricole
-						.getEtatBien().toString(), null,
+						.getEtatBien(), null,
 				0, 0,
 				false, false,
 				false, 0, agricole.getTypeBien(),
@@ -234,10 +261,10 @@ public class BienDTO {
 				carcasse.getDepartement().getCodePostal(), carcasse.getDepartement().getName()
 						, carcasse.getDepartement().getReference(),
 				carcasse.getDescription(), carcasse.getSuperficie(), carcasse
-						.getStatus().toString(), carcasse.getPrixVente(), carcasse.getPrixMinVente(), carcasse
+						.getStatus(), carcasse.getPrixVente(), carcasse.getPrixMinVente(), carcasse
 						.getLoyerMensuel(), carcasse.getChargesMensuel(), carcasse
 						.getTypeOperation().toString(), carcasse.getEtatBien()
-						.toString(), null, 0, 0, null, false,
+						, null, 0, 0, null, false,
 				false, 0, carcasse.getTypeBien(),
 				0,0,0, 0, false, false, null, null, null, null
 						, null,
@@ -254,10 +281,10 @@ public class BienDTO {
 				commerce.getDepartement().getCodePostal(), commerce.getDepartement().getName()
 						, commerce.getDepartement().getReference(),
 				commerce.getDescription(), commerce.getSuperficie(), commerce
-						.getStatus().toString(), commerce.getPrixVente(), commerce.getPrixMinVente(), commerce
+						.getStatus(), commerce.getPrixVente(), commerce.getPrixMinVente(), commerce
 						.getLoyerMensuel(), commerce.getChargesMensuel(), commerce
 						.getTypeOperation().toString(), commerce.getEtatBien()
-						.toString(), null, 0, 0, null, false,
+						, null, 0, 0, null, false,
 				false, commerce.getAge(), commerce.getTypeBien(),
 				0, 0, 0, 0, false, false, null, null, null, null, null,
 				null, false, commerce
@@ -274,10 +301,10 @@ public class BienDTO {
 				maison.getDepartement().getCodePostal(), maison.getDepartement().getName()
 						, maison.getDepartement().getReference(),
 				maison.getDescription(), maison.getSuperficie(), maison
-						.getStatus().toString(), maison.getPrixVente(), maison.getPrixMinVente(), maison
+						.getStatus(), maison.getPrixVente(), maison.getPrixMinVente(), maison
 						.getLoyerMensuel(), maison.getChargesMensuel(), maison
 						.getTypeOperation().toString(), maison.getEtatBien()
-						.toString(), null, maison.getNbPieces(), maison
+						, null, maison.getNbPieces(), maison
 						.getNbChambres(), null, maison.isCuisineEquipee(),
 				maison.isJardin(), maison.getAge(), maison.getTypeBien(),
 				maison.getNbTerrasses(), maison.getNbBalcons(), maison
@@ -299,10 +326,9 @@ public class BienDTO {
 				studio.getDepartement().getCodePostal(), studio.getDepartement()
 						.getName(), studio.getDepartement().getReference(),
 				studio.getDescription(), studio.getSuperficie(), studio
-						.getStatus().toString(), studio.getPrixVente(), studio.getPrixMinVente(), studio
+						.getStatus(), studio.getPrixVente(), studio.getPrixMinVente(), studio
 						.getLoyerMensuel(), studio.getChargesMensuel(), studio
-						.getTypeOperation().toString(), studio.getEtatBien()
-						.toString(), studio.getEtage(), 0, 0, studio
+						.getTypeOperation().toString(), studio.getEtatBien(), studio.getEtage(), 0, 0, studio
 						.isAscenseur(), null, null, studio.getAge(), studio
 						.getTypeBien(), studio.getNbTerrasses(), studio
 						.getNbBalcons(), studio.getNbParkingInt(), studio
@@ -320,9 +346,9 @@ public class BienDTO {
 
 	public BienDTO(Long id, String name, String reference, String adresse,
 			String codePostal, String ville, String departement,
-			String description, double superficie, String status,
+			String description, double superficie, EnumStatutProperty status,
 			double prixVente, double prixVenteMin,double loyerMensuel, double chargesMensuel,
-			String typeOperation, String etatBien, String etage, int nbPieces,
+			String typeOperation, EnumEtatBien etatBien, String etage, int nbPieces,
 			int nbChambres, Boolean ascenseur, Boolean cuisineEquipee,
 			Boolean jardin, int age, String typeBien, int nbTerrasses,
 			int nbBalcons, int nbParkingInt, int nbParkingExt,
@@ -344,13 +370,15 @@ public class BienDTO {
 		this.description = description;
 		this.shortDescription= description.substring(0, Math.min(description.length(), 200)) ;
 		this.superficie = superficie;
-		this.status = status;
+		if(status != null)
+			this.status = status.toString();
 		this.prixVente = prixVente;
 		this.prixMinVente = prixVenteMin;
 		this.loyerMensuel = loyerMensuel;
 		this.chargesMensuel = chargesMensuel;
 		this.typeOperation = typeOperation;
-		this.etatBien = etatBien;
+		if(etatBien != null)
+			this.etatBien = etatBien.toString();
 		this.etage = etage;
 		this.nbPieces = nbPieces;
 		this.nbChambres = nbChambres;
@@ -613,13 +641,18 @@ public class BienDTO {
 		bien.setAdresse(adresse);
 		bien.setDescription(description);
 		bien.setSuperficie(superficie);
-		bien.setStatus(EnumStatutProperty.valueOf(status));
+		if(status != null){
+			bien.setStatus(EnumStatutProperty.valueOf(status));
+		}
 		bien.setPrixVente(prixVente);
 		bien.setPrixMinVente(prixMinVente);
 		bien.setLoyerMensuel(loyerMensuel);
 		bien.setChargesMensuel(chargesMensuel);
+		if(etatBien != null){
+			bien.setEtatBien(EnumEtatBien.valueOf(etatBien));
+		}
 		bien.setTypeOperation(EnumTypeOperation.valueOf(typeOperation));
-		bien.setEtatBien(EnumEtatBien.valueOf(etatBien));
+		
 		bien.setTransport(transport);
 		bien.setAdapteHandicape(false);		
 		bien.setProximite(proximite);

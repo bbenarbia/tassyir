@@ -205,7 +205,6 @@
 										<form:input  path="ville" />
 										<form:input  path="codePostal" />
 										<form:input  path="departement"  />	
-										
 									</dl>
 									
         					</fieldset>	

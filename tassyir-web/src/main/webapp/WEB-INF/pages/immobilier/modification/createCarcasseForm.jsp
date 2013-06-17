@@ -143,15 +143,12 @@
 												</dd>
 											</dl>
 									</c:forEach>
-									<dl>
-										<input hidden="hidden" name="ville" />
-										<input hidden="hidden" name="codePostal"
-														class="text smalltext" />
-										<input hidden="hidden" name="departement"  />	
-										<input hidden="hidden" name="ville" class="text smalltext" />	
+									<dl hidden="hidden">
+										<form:input  path="ville" />
+										<form:input  path="codePostal" />
+										<form:input  path="departement"  />	
 										
 									</dl>
-									
         					</fieldset>	
 							<fieldset class="action">
 								<dl>
