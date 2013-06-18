@@ -1,7 +1,7 @@
 
 insert into parameters values (1,"LANGUAGE", "FRANCAIS", "La langue du systeme");
 insert into parameters values (2,"MAIL_ADMIN", "ben.benarbia@gmail.fr", "L""email de l""admin");
-insert into parameters values (3,"TEMP_DIRECTORY", "/opt/work/temp/", "Temp directory");
+insert into parameters values (3,"TEMP_DIRECTORY", "c:\\Benaissa\\temp\\", "Temp directory");
 insert into parameters values (4,"MAIN_CURRENCY", '&euro;', "Main currency");
 insert into parameters values (5,"SECOND_CURRENCY", "$", "Second currency");
 insert into parameters values (10, "OPTION_EAU_CHAUDE", "false","OPTION_EAU_CHAUDE");
@@ -140,11 +140,11 @@ insert into towns(id,ref,name,codePostal,departement,typeVille, region) values (
 
 ---Table user_categories
 
-insert into user_categories values (1,"Administrateurs", "/opt/work/temp/p1.jpg");
-insert into user_categories values (2,"Utilisateurs", "/opt/work/temp/p2.jpg");
-insert into user_categories values (3,"Managers", "/opt/work/temp/p3.jpg");
-insert into user_categories values (4,"Commerciaux","/opt/work/temp/p4.jpg");
-insert into user_categories values (5,"Autres","/opt/work/temp/p4.jpg");
+insert into user_categories values (1,"Administrateurs", "c:\\Benaissa\\temp\\p1.jpg");
+insert into user_categories values (2,"Utilisateurs", "c:\\Benaissa\\temp\\p2.jpg");
+insert into user_categories values (3,"Managers", "c:\\Benaissa\\temp\\p3.jpg");
+insert into user_categories values (4,"Commerciaux","c:\\Benaissa\\temp\\p4.jpg");
+insert into user_categories values (5,"Autres","c:\\Benaissa\\temp\\p4.jpg");
 
 --Roles
 insert into roles VALUES (1, "ROLE_USER", "");
@@ -183,14 +183,14 @@ insert into contact values (3, 1, "Contact3", "Company 3",  "adresse1",  false, 
 "www.bbenarbia.fr", "01010101", "0202020202");
 
 insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile,typeUser,  fk_categorieutilisateur)  VALUES
-				(1, 1, "/opt/work/temp/p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, "adresse1","93800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenaissa.fr","01010101","","0625252525",1, 4);
+				(1, 1, "c:\\Benaissa\\temp\\p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, "adresse1","93800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenaissa.fr","01010101","","0625252525",1, 4);
 insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile, typeUser, fk_categorieutilisateur)  VALUES 
-				(2, 2, "/opt/work/temp/p2.jpg", "said", "med","smed","smed",true, false, "adresse2","65800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenarbia.fr","01010101","","0625252525",0, 3);
+				(2, 2, "c:\\Benaissa\\temp\\p2.jpg", "said", "med","smed","smed",true, false, "adresse2","65800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenarbia.fr","01010101","","0625252525",0, 3);
 insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile, typeUser, fk_categorieutilisateur)  VALUES
-				(3, 3, "/opt/work/temp/p3.jpg", "lakhdar", "omar","lomar","lomar",true, false,"adresse3","95800","Epinay sur seine", true, true, "ben@gmail.com","","01010101","","0625252525",  1, 2);
+				(3, 3, "c:\\Benaissa\\temp\\p3.jpg", "lakhdar", "omar","lomar","lomar",true, false,"adresse3","95800","Epinay sur seine", true, true, "ben@gmail.com","","01010101","","0625252525",  1, 2);
 
 insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile, typeUser, fk_categorieutilisateur)  VALUES 
-                 (4, 4, "/opt/work/temp/p3.jpg", "benaissa", "BENARBIA","bbenaissa","bbenaissa",false, false,"adresse3","95800","Epinay sur seine", false, false, "ben@gmail.com","","01010101","","0625252525", 0, 1);
+                 (4, 4, "c:\\Benaissa\\temp\\p3.jpg", "benaissa", "BENARBIA","bbenaissa","bbenaissa",false, false,"adresse3","95800","Epinay sur seine", false, false, "ben@gmail.com","","01010101","","0625252525", 0, 1);
   
   
 insert into user_role values (4,1);
@@ -219,7 +219,7 @@ insert into biens (
   ,etatBien,etage,nbPieces,nbChambres,nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
   ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
   ,cuisineEquipee,age,jardin,proprietaire,dateMiseAjour,validated, puit,eauPotable,gaz
-) values(3, "3", "Studio","STUDIO","adresse 1", 2, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas.",24.4, 1, 700, 
+) values(3, "3", "Terrain","TERRAIN","adresse 1", 2, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas.",24.4, 1, 700, 
 500,100, 100, 1, 1,"2/6", 2,2,0,1,1,0,true,false,true,false, "10 min de RER A", "Proche tout commerce et centre ville",false,100.0,200,2,0,1,1,1,1,1,false, false, false, 2011, false,2,"2013-06-09 11:56:59",false,false, true, true);   
 
 insert into biens (
@@ -241,14 +241,14 @@ insert into biens (
 
 
 
-insert into photos values(1,"photos1", 2,"/opt/work/temp/app1.jpg");
-insert into photos values(2,"photos2", 2,"/opt/work/temp/app2.jpg");
-insert into photos values(3,"photos3", 2,"/opt/work/temp/app3.jpg");
+insert into photos values(1,"photos1", 2,"c:\\Benaissa\\temp\\app1.jpg");
+insert into photos values(2,"photos2", 2,"c:\\Benaissa\\temp\\app2.jpg");
+insert into photos values(3,"photos3", 2,"c:\\Benaissa\\temp\\app3.jpg");
 
-insert into photos values(4,"photos4", 3,"/opt/work/temp/m1.jpg");
-insert into photos values(5,"photos5", 3,"/opt/work/temp/m2.jpg");
-insert into photos values(6,"photos6", 3,"/opt/work/temp/m3.jpg");
-insert into photos values(7,"photos7", 3,"/opt/work/temp/m4.jpg");
+insert into photos values(4,"photos4", 3,"c:\\Benaissa\\temp\\m1.jpg");
+insert into photos values(5,"photos5", 3,"c:\\Benaissa\\temp\\m2.jpg");
+insert into photos values(6,"photos6", 3,"c:\\Benaissa\\temp\\m3.jpg");
+insert into photos values(7,"photos7", 3,"c:\\Benaissa\\temp\\m4.jpg");
 
 
 ---/opt/work/temp/

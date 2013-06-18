@@ -35,21 +35,20 @@
 					            		<form:input label="name" path="name"	class="text" />
 									</dd>
 									
-									<dt><form:label path="status"><spring:message code="biens.status" /></form:label></dt>
-					            	<dd>
-										<form:select path="status"  class="select_field">
-													<c:forEach var="item" items="${statusList}">
-																<form:option value="${item}"/>
-												</c:forEach>
-										</form:select>
-									</dd>
 						        </dl>
 						        <dl>
+									
+									<dt><form:label path="description"><spring:message code="biens.description" /></form:label></dt>
+									<dd><form:textarea cols="57" rows="6"	label="description" path="description" class="text textBoxfieldlong" />
+									</dd>
+								</dl>
+								<dl>
 									<dt><form:label path="adresse"><spring:message code="biens.adresse" /></form:label></dt>
 									<dd> <form:textarea cols="16" rows="6" label="adresse" path="adresse" class="text textBoxfieldlong" />
 									</dd>
-									<dt><form:label path="description"><spring:message code="biens.description" /></form:label></dt>
-									<dd><form:textarea cols="16" rows="6"	label="description" path="description" class="text textBoxfieldlong" />
+									<dt><form:label path="proximite"><spring:message code="biens.proximite" /></form:label></dt>
+									<dd> 
+										<form:textarea cols="16" rows="6" label="name" path="proximite" class="text textBoxfieldlong" />
 									</dd>
 								</dl>
         						<dl>
@@ -60,12 +59,6 @@
 									
 						        </dl>
 						       
-								<dl>
-									<dt><form:label path="proximite"><spring:message code="biens.proximite" /></form:label></dt>
-									<dd> 
-										<form:textarea cols="16" rows="6" label="name" path="proximite" class="text textBoxfieldlong" />
-									</dd>
-								</dl>
 							</fieldset>	
 							<fieldset>
 								<legend>Prix</legend>

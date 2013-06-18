@@ -45,11 +45,17 @@
 									</dd>
 						        </dl>
 						        <dl>
+									<dt><form:label path="description"><spring:message code="biens.description" /></form:label></dt>
+									<dd><form:textarea cols="57" rows="6"	label="description" path="description" class="text textBoxfieldlong" />
+									</dd>
+								</dl>
+								<dl>
 									<dt><form:label path="adresse"><spring:message code="biens.adresse" /></form:label></dt>
 									<dd> <form:textarea cols="16" rows="6" label="adresse" path="adresse" class="text textBoxfieldlong" />
 									</dd>
-									<dt><form:label path="description"><spring:message code="biens.description" /></form:label></dt>
-									<dd><form:textarea cols="16" rows="6"	label="description" path="description" class="text textBoxfieldlong" />
+									<dt><form:label path="proximite"><spring:message code="biens.proximite" /></form:label></dt>
+									<dd> 
+										<form:textarea cols="16" rows="6" label="name" path="proximite" class="text textBoxfieldlong" />
 									</dd>
 								</dl>
         						<dl>
@@ -75,18 +81,6 @@
 										<dd> 
 												<form:input label="name" path="nbParkingInt"
 												class="text" />	
-									</dd>
-									<dt><form:label path="nbCaves"><spring:message code="biens.nbCaves" /></form:label></dt>
-										<dd> 
-											<form:input label="name" path="nbCaves"
-												class="text" />												
-									</dd>
-									
-								</dl>
-								<dl>
-									<dt><form:label path="proximite"><spring:message code="biens.proximite" /></form:label></dt>
-									<dd> 
-										<form:textarea cols="16" rows="6" label="name" path="proximite" class="text textBoxfieldlong" />
 									</dd>
 									<dt><form:label path="etatBien"><spring:message code="biens.etatBien" /></form:label></dt>
 										<dd>
@@ -150,8 +144,6 @@
 									<tr>
 										<td><label> <form:checkbox id="eauPotable" path="eauPotable" />  <form:label path="eauPotable"><spring:message code="biens.eauPotable" /></form:label></label></td>
 										<td><label> <form:checkbox id="gaz" path="gaz" />  <form:label path="gaz"><spring:message code="biens.gaz" /></form:label></label></td>
-									</tr>
-									<tr>
 										<td><label> 
 												<form:checkbox path="interphone" id="interphone"/>  <form:label path="interphone" for="interphone"><spring:message code="biens.interphone" /></form:label>
 											</label>
@@ -171,8 +163,6 @@
 											<form:checkbox id="meuble" path="meuble" />  <form:label path="meuble"><spring:message code="biens.meuble" /></form:label>
 										</label>
 										</td>
-									</tr>
-									<tr>
 										<td><label> 
 											<form:checkbox id="cuisineEquipee" path="cuisineEquipee" />  <form:label path="cuisineEquipee"><spring:message code="biens.cuisineEquipee" /></form:label>
 										</label>

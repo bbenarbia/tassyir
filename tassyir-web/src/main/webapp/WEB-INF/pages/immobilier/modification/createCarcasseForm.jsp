@@ -34,23 +34,22 @@
 					            	<dd>
 					            		<form:input label="name" path="name"	class="text" />
 									</dd>
-									
-									<dt><form:label path="status"><spring:message code="biens.status" /></form:label></dt>
-					            	<dd>
-										<form:select path="status"  class="select_field">
-													<c:forEach var="item" items="${statusList}">
-																<form:option value="${item}"/>
-												</c:forEach>
-										</form:select>
-									</dd>
 						        </dl>
+						        <dl>
+									<dt><form:label path="description"><spring:message code="biens.description" /></form:label></dt>
+									<dd><form:textarea cols="57" rows="6"	label="description" path="description" class="text textBoxfieldlong" />
+									</dd>
+								</dl>
+								
 						        <dl>
 									<dt><form:label path="adresse"><spring:message code="biens.adresse" /></form:label></dt>
 									<dd> <form:textarea cols="16" rows="6" label="adresse" path="adresse" class="text textBoxfieldlong" />
 									</dd>
-									<dt><form:label path="description"><spring:message code="biens.description" /></form:label></dt>
-									<dd><form:textarea cols="16" rows="6"	label="description" path="description" class="text textBoxfieldlong" />
+									<dt><form:label path="proximite"><spring:message code="biens.proximite" /></form:label></dt>
+									<dd> 
+										<form:textarea cols="16" rows="6" label="name" path="proximite" class="text textBoxfieldlong" />
 									</dd>
+									
 								</dl>
         						<dl>
         							<dt><form:label path="superficie"><spring:message code="biens.superficie" /></form:label></dt>
@@ -63,34 +62,10 @@
 									</dd>
 						        </dl>
 						         <dl>
-									<dt><form:label path="nbPieces"><spring:message code="biens.nbPieces" /></form:label></dt>
-									<dd> 
-										<form:input label="name" path="nbPieces"
-												class="text" />										
-									</dd>
 								
 									<dt><form:label path="age"><spring:message code="biens.age" /></form:label></dt>
 									<dd> 
 										<form:input label="age" path="age" class="text smalltext" />
-									</dd>
-								 </dl>
-								<dl>
-									<dt><form:label path="nbParkingInt"><spring:message code="biens.nbParkingInt" /></form:label></dt>
-										<dd> 
-												<form:input label="name" path="nbParkingInt"
-												class="text" />	
-									</dd>
-									<dt><form:label path="nbCaves"><spring:message code="biens.nbCaves" /></form:label></dt>
-										<dd> 
-											<form:input label="name" path="nbCaves"
-												class="text" />												
-									</dd>
-									
-								</dl>
-								<dl>
-									<dt><form:label path="proximite"><spring:message code="biens.proximite" /></form:label></dt>
-									<dd> 
-										<form:textarea cols="16" rows="6" label="name" path="proximite" class="text textBoxfieldlong" />
 									</dd>
 									<dt><form:label path="etatBien"><spring:message code="biens.etatBien" /></form:label></dt>
 										<dd>

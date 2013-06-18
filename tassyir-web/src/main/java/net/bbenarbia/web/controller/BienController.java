@@ -131,6 +131,21 @@ public class BienController {
 				} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
 					biensDto.add(new BienDTO((Maison) bien));
 				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())) {
+					biensDto.add(new BienDTO((Terrain) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.AGRICOLE.toString())) {
+					biensDto.add(new BienDTO((Agricole) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.VACANCES.toString())) {
+					biensDto.add(new BienDTO((Vacances) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.CARCASSE.toString())) {
+					biensDto.add(new BienDTO((Carcasse) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
+					biensDto.add(new BienDTO((Commerce) bien));
+				}
 				else throw new Exception("Voir les autres types de biens non testés");
 				//A voir les autres types
 			}
@@ -318,6 +333,22 @@ public class BienController {
 				} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
 					findBienDto.getListBiens().add(new BienDTO((Maison) bien));
 				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Terrain) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.AGRICOLE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Agricole) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.VACANCES.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Vacances) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.CARCASSE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Carcasse) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Commerce) bien));
+				}
+				
 				else throw new Exception("Voir les autres types");
 				//A voir les autres types
 			}
@@ -371,6 +402,20 @@ public class BienController {
 					findBienDto.getListBiens().add(new BienDTO((Appartement) bien));
 				} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
 					findBienDto.getListBiens().add(new BienDTO((Maison) bien));
+				} else if (bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Terrain) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.AGRICOLE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Agricole) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.VACANCES.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Vacances) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.CARCASSE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Carcasse) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Commerce) bien));
 				}
 				else throw new Exception("Voir les autres types");
 				//A voir les autres types
@@ -398,7 +443,22 @@ public class BienController {
 					findBienDto.getListBiens().add(new BienDTO((Appartement) bien));
 				} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
 					findBienDto.getListBiens().add(new BienDTO((Maison) bien));
+				}else if (bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Terrain) bien));
 				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.AGRICOLE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Agricole) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.VACANCES.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Vacances) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.CARCASSE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Carcasse) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Commerce) bien));
+				}
+				
 				else throw new Exception("Voir les autres types");
 				//A voir les autres types
 			}
@@ -459,6 +519,20 @@ public class BienController {
 					findBienDto.getListBiens().add(new BienDTO((Appartement) bien));
 				} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
 					findBienDto.getListBiens().add(new BienDTO((Maison) bien));
+				}else if (bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Terrain) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.AGRICOLE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Agricole) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.VACANCES.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Vacances) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.CARCASSE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Carcasse) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Commerce) bien));
 				}
 				else throw new Exception("Voir les autres types");
 				//A voir les autres types
@@ -486,6 +560,20 @@ public class BienController {
 						findBienDto.getListBiens().add(new BienDTO((Appartement) bien));
 					} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
 						findBienDto.getListBiens().add(new BienDTO((Maison) bien));
+					}else if (bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())) {
+						findBienDto.getListBiens().add(new BienDTO((Terrain) bien));
+					}
+					else if (bien.getTypeBien().equals(EnumTypeBien.AGRICOLE.toString())) {
+						findBienDto.getListBiens().add(new BienDTO((Agricole) bien));
+					}
+					else if (bien.getTypeBien().equals(EnumTypeBien.VACANCES.toString())) {
+						findBienDto.getListBiens().add(new BienDTO((Vacances) bien));
+					}
+					else if (bien.getTypeBien().equals(EnumTypeBien.CARCASSE.toString())) {
+						findBienDto.getListBiens().add(new BienDTO((Carcasse) bien));
+					}
+					else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
+						findBienDto.getListBiens().add(new BienDTO((Commerce) bien));
 					}
 					else throw new Exception("Voir les autres types");
 					//A voir les autres types
@@ -515,6 +603,20 @@ public class BienController {
 					findBienDto.getListBiens().add(new BienDTO((Appartement) bien));
 				} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
 					findBienDto.getListBiens().add(new BienDTO((Maison) bien));
+				}else if (bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Terrain) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.AGRICOLE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Agricole) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.VACANCES.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Vacances) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.CARCASSE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Carcasse) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Commerce) bien));
 				}
 				else throw new Exception("Voir les autres types");
 				//A voir les autres types
@@ -609,8 +711,9 @@ public class BienController {
 			bienDto = new BienDTO((Carcasse) bien);
 		}else if (bien.getTypeBien().equals(EnumTypeBien.VACANCES.toString())) {
 			bienDto = new BienDTO((Vacances) bien);
+		}else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
+			bienDto = new BienDTO((Commerce) bien);
 		}
-		
 		
 		else throw new Exception("Voir les autres types");
 		//A voir les autres types
@@ -975,6 +1078,20 @@ public class BienController {
 					findBienDto.getListBiens().add(new BienDTO((Appartement) bien));
 				} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
 					findBienDto.getListBiens().add(new BienDTO((Maison) bien));
+				}else if (bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Terrain) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.AGRICOLE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Agricole) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.VACANCES.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Vacances) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.CARCASSE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Carcasse) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Commerce) bien));
 				}
 				else throw new Exception("Voir les autres types");
 				//A voir les autres types

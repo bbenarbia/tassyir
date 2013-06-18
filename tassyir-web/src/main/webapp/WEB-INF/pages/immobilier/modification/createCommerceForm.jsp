@@ -44,25 +44,25 @@
 										</form:select>
 									</dd>
 						        </dl>
+						         <dl>
+									<dt><form:label path="description"><spring:message code="biens.description" /></form:label></dt>
+									<dd><form:textarea cols="57" rows="6"	label="description" path="description" class="text textBoxfieldlong" />
+									</dd>
+								</dl>
+								
 						        <dl>
 									<dt><form:label path="adresse"><spring:message code="biens.adresse" /></form:label></dt>
 									<dd> <form:textarea cols="16" rows="6" label="adresse" path="adresse" class="text textBoxfieldlong" />
 									</dd>
-									<dt><form:label path="description"><spring:message code="biens.description" /></form:label></dt>
-									<dd><form:textarea cols="16" rows="6"	label="description" path="description" class="text textBoxfieldlong" />
+									<dt><form:label path="proximite"><spring:message code="biens.proximite" /></form:label></dt>
+									<dd> 
+										<form:textarea cols="16" rows="6" label="name" path="proximite" class="text textBoxfieldlong" />
 									</dd>
 								</dl>
         						<dl>
         							<dt><form:label path="superficie"><spring:message code="biens.superficie" /></form:label></dt>
 					            	<dd>
 					            		<form:input label="superficie" path="superficie" class="text smalltext" />m2
-									</dd>
-						        </dl>
-						       
-								<dl>
-									<dt><form:label path="proximite"><spring:message code="biens.proximite" /></form:label></dt>
-									<dd> 
-										<form:textarea cols="16" rows="6" label="name" path="proximite" class="text textBoxfieldlong" />
 									</dd>
 									
 									<dt><form:label path="etatBien"><spring:message code="biens.etatBien" /></form:label></dt>

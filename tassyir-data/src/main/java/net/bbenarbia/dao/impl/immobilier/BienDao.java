@@ -238,7 +238,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			sb.append(" loyerMensuel <= :loyerMax ");
 		}
 
-		if (ascenseur) {
+		if (ascenseur != null && ascenseur) {
 			if (withAnd) {
 				sb.append(and);
 			} else {
@@ -248,7 +248,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			sb.append(" ascenseur is true");
 		}
 
-		if (cuisineEquipee) {
+		if (cuisineEquipee != null && cuisineEquipee) {
 			if (withAnd) {
 				sb.append(and);
 			} else {
@@ -257,7 +257,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			withAnd = true;
 			sb.append(" cuisineEquipee is true");
 		}
-		if (jardin) {
+		if (jardin != null && jardin) {
 			if (withAnd) {
 				sb.append(and);
 			} else {
@@ -266,7 +266,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			withAnd = true;
 			sb.append(" jardin is true");
 		}
-		if (interphone) {
+		if (interphone != null && interphone) {
 			if (withAnd) {
 				sb.append(and);
 			} else {
@@ -275,7 +275,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			withAnd = true;
 			sb.append(" interphone is true");
 		}
-		if (digicode) {
+		if (digicode != null && digicode) {
 			if (withAnd) {
 				sb.append(and);
 			} else {
@@ -285,7 +285,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			sb.append(" digicode is true");
 		}
 
-		if (gardien) {
+		if (gardien != null && gardien) {
 			if (withAnd) {
 				sb.append(and);
 			} else {
@@ -295,7 +295,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			sb.append(" gardien is true");
 		}
 
-		if (meuble) {
+		if (meuble != null && meuble) {
 			if (withAnd) {
 				sb.append(and);
 			} else {
@@ -305,7 +305,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			sb.append(" meuble is true");
 		}
 
-		if (adapteHandicape) {
+		if (adapteHandicape != null && adapteHandicape) {
 			if (withAnd) {
 				sb.append(and);
 			} else {
@@ -314,7 +314,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			withAnd = true;
 			sb.append(" adapteHandicape is true");
 		}
-		if (piscine) {
+		if (piscine != null && piscine) {
 			if (withAnd) {
 				sb.append(and);
 			} else {
@@ -324,7 +324,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			sb.append(" piscine is true");
 		}
 
-		if (caves) {
+		if (caves != null && caves) {
 			if (withAnd) {
 				sb.append(and);
 			} else {
@@ -334,7 +334,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			sb.append(" nbCaves > 0");
 		}
 
-		if (parking) {
+		if (parking != null && parking) {
 			if (withAnd) {
 				sb.append(and);
 			} else {
@@ -344,7 +344,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			sb.append(" (nbParkingInt > 0  or  nbParkingExt > 0 )");
 		}
 
-		if (terrassesBalcons) {
+		if (terrassesBalcons != null && terrassesBalcons) {
 			if (withAnd) {
 				sb.append(and);
 			} else {

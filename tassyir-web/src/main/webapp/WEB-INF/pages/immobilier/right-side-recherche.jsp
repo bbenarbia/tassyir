@@ -144,25 +144,26 @@ $(document).ready(function() {
 																		<spring:message code="bien.type.recherche.terrain" />
 															  </form:label>
 												</td>
-											</tr>
-											<tr>
 												<td><label> <form:checkbox path="agricole" /></label>
 															  <form:label path="agricole" for="agricole">
 																		<spring:message code="bien.type.recherche.agricole" />
 															  </form:label>
 												</td>
+											</tr>
+											<tr>	
 												<td><label> <form:checkbox path="carcasse" /></label>
 													<form:label path="carcasse" for="carcasse">
 																		<spring:message code="bien.type.recherche.carcasse" />
 													</form:label>
 												</td>
-											</tr>
-											<tr>
+											
 												<td><label> <form:checkbox path="commercial" /></label>
 															<form:label path="commercial" for="commercial">
 																			<spring:message code="bien.type.recherche.commercial" />
 															</form:label>
 												</td>
+											</tr>
+											<tr>
 												<td><label> <form:checkbox path="vacances" /></label>
 												<form:label path="vacances" for="vacances">
 																		<spring:message code="bien.type.recherche.vacances" />
@@ -287,26 +288,13 @@ $(document).ready(function() {
 																		for="piscine">
 																		<spring:message code="biens.piscine" />
 																	</form:label></td>
-																<td><label> <form:checkbox path="caves" />
-																</label>
-																<form:label path="caves" for="caves">
-																		<spring:message code="biens.caves" />
-																	</form:label></td>
-														</tr>
-														<tr>
 																<td><label> <form:checkbox path="parking" />
 																</label>
 																<form:label path="parking"
 																		for="parking">
 																		<spring:message code="biens.parking" />
 																	</form:label></td>
-																<td><label> <form:checkbox
-																			path="terrassesBalcons" />
-																</label>
-																<form:label path="terrassesBalcons"
-																		for="terrassesBalcons">
-																		<spring:message code="biens.terrassesBalcons" />
-																	</form:label></td>
+																
 														</tr>
 												</table> 
 											</div>

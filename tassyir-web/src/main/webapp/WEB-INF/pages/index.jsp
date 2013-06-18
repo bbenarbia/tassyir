@@ -168,48 +168,16 @@ $(document).ready(function() {
 										<legend><spring:message code="biens.typebien" /></legend>
 										<table class="search_form">
 											<tr>
-												<td><label> <form:checkbox path="appartement" /></label></td>
-												<td class="label"><form:label path="appartement" for="appartement">
-																			<spring:message code="bien.type.recherche.appartement" />
-																  </form:label>
-												</td>
-												<td><label> <form:checkbox path="maison" /></label></td>
-												<td class="label"><form:label path="maison" for="maison">
-																			<spring:message code="bien.type.recherche.maison" />
-																  </form:label>
-												</td>
-												</tr>
-												<tr>
-												<td><label> <form:checkbox path="terrain" /></label></td>
-												<td class="label"><form:label path="terrain" for="terrain">
-																			<spring:message code="bien.type.recherche.terrain" />
-																  </form:label>
-												</td>
-												<td><label> <form:checkbox path="agricole" /></label></td>
-												<td class="label"><form:label path="agricole" for="agricole">
-																			<spring:message code="bien.type.recherche.agricole" />
-																  </form:label>
-												</td>
-												
-												<td><label> <form:checkbox path="carcasse" /></label></td>
-												<td class="label"><form:label path="carcasse" for="carcasse">
-																			<spring:message code="bien.type.recherche.carcasse" />
-																  </form:label>
-												</td>
-												</tr>
-												<tr>
-												<td><label> <form:checkbox path="commercial" /></label></td>
-												<td class="label"><form:label path="commercial" for="commercial">
-																			<spring:message code="bien.type.recherche.commercial" />
-																  </form:label>
-												</td>
-												<td><label> <form:checkbox path="vacances" /></label></td>
-												<td class="label"><form:label path="vacances" for="vacances">
-																			<spring:message code="bien.type.recherche.vacances" />
-																  </form:label>
-												</td>
-												
-												</tr>
+												<td><label> <form:checkbox path="appartement" />  <spring:message code="bien.type.recherche.appartement" /></label></td>
+												<td><label> <form:checkbox path="maison" />  <spring:message code="bien.type.recherche.maison" /></label></td>
+												<td><label> <form:checkbox path="terrain" />  <spring:message code="bien.type.recherche.terrain" /></label></td>
+												<td><label> <form:checkbox path="agricole" />  <spring:message code="bien.type.recherche.agricole" /></label></td>
+											</tr>
+											<tr>
+												<td><label> <form:checkbox path="carcasse" />  <spring:message code="bien.type.recherche.carcasse" /></label></td>
+												<td><label> <form:checkbox path="commercial" />  <spring:message code="bien.type.recherche.commercial" /></label></td>
+												<td><label> <form:checkbox path="vacances" />  <spring:message code="bien.type.recherche.vacances" /></label></td>
+											</tr>
 										</table>
 									</fieldset>
 										<br style="clear: both;">

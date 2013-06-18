@@ -195,48 +195,16 @@ $(document).ready(function() {
 										<legend><spring:message code="biens.typebien" /></legend>
 										<table class="search_form">
 											<tr>
-												<td><label> <form:checkbox path="appartement" /></label></td>
-												<td class="label"><form:label path="appartement" for="appartement">
-																			<spring:message code="bien.type.recherche.appartement" />
-																  </form:label>
-												</td>
-												<td><label> <form:checkbox path="maison" /></label></td>
-												<td class="label"><form:label path="maison" for="maison">
-																			<spring:message code="bien.type.recherche.maison" />
-																  </form:label>
-												</td>
-												</tr>
-												<tr>
-												<td><label> <form:checkbox path="terrain" /></label></td>
-												<td class="label"><form:label path="terrain" for="terrain">
-																			<spring:message code="bien.type.recherche.terrain" />
-																  </form:label>
-												</td>
-												<td><label> <form:checkbox path="agricole" /></label></td>
-												<td class="label"><form:label path="agricole" for="agricole">
-																			<spring:message code="bien.type.recherche.agricole" />
-																  </form:label>
-												</td>
-												
-												<td><label> <form:checkbox path="carcasse" /></label></td>
-												<td class="label"><form:label path="carcasse" for="carcasse">
-																			<spring:message code="bien.type.recherche.carcasse" />
-																  </form:label>
-												</td>
-												</tr>
-												<tr>
-												<td><label> <form:checkbox path="commercial" /></label></td>
-												<td class="label"><form:label path="commercial" for="commercial">
-																			<spring:message code="bien.type.recherche.commercial" />
-																  </form:label>
-												</td>
-												<td><label> <form:checkbox path="vacances" /></label></td>
-												<td class="label"><form:label path="vacances" for="vacances">
-																			<spring:message code="bien.type.recherche.vacances" />
-																  </form:label>
-												</td>
-												
-												</tr>
+												<td><label> <form:checkbox path="appartement" />  <spring:message code="bien.type.recherche.appartement" /></label></td>
+												<td><label> <form:checkbox path="maison" />  <spring:message code="bien.type.recherche.maison" /></label></td>
+												<td><label> <form:checkbox path="terrain" />  <spring:message code="bien.type.recherche.terrain" /></label></td>
+												<td><label> <form:checkbox path="agricole" />  <spring:message code="bien.type.recherche.agricole" /></label></td>
+											</tr>
+											<tr>
+												<td><label> <form:checkbox path="carcasse" />  <spring:message code="bien.type.recherche.carcasse" /></label></td>
+												<td><label> <form:checkbox path="commercial" />  <spring:message code="bien.type.recherche.commercial" /></label></td>
+												<td><label> <form:checkbox path="vacances" />  <spring:message code="bien.type.recherche.vacances" /></label></td>
+											</tr>
 										</table>
 									</fieldset>
 										<br style="clear: both;">
@@ -245,12 +213,9 @@ $(document).ready(function() {
 								</tr>
 								<tr>
 								<td colspan="4">
-									<a href="#" class="show_div"><spring:message code="biens.moreoption"/></a>
-									<a href="#" class="hide_div" hidden="hidden"> <spring:message code="biens.lessoption"/></a>
-									<div class="slide-wrapper slidingDiv" >				
 									<div id="searchoptions" class="pma_auto_slider slider_init_done" title="Options" style="overflow: auto;">
-									 <fieldset id="fieldset_select_fields">
-										<legend><spring:message code="biens.optionsbien" /></legend>
+									<fieldset id="fieldset_select_fields">
+										<legend><spring:message code="biens.typebien" /></legend>
 										<table class="search_form">
 											<tr>
 												<td class="label"><spring:message code="biens.reference" /></td>
@@ -291,102 +256,64 @@ $(document).ready(function() {
 															path="nbPiecesMax" class="text mediumtext" />
 												</label></td>
 											</tr>
-											<tr>
-											<td colspan="4">
-													
-									<!-- <div class="slide-wrapper slidingDiv" >
-									<div id="searchoptions" class="pma_auto_slider slider_init_done" title="Options" style="overflow: auto;"> -->
+										</table>
+									</fieldset>
+										<br style="clear: both;">
+									</div>
+								</td>
+								</tr>
+								
+								<tr>
+								<td colspan="4">
+									<a href="#" class="show_div"><spring:message code="biens.moreoption"/></a>
+									<a href="#" class="hide_div" hidden="hidden"> <spring:message code="biens.lessoption"/></a>
+									<div class="slide-wrapper slidingDiv" >				
+									<div id="searchoptions" class="pma_auto_slider slider_init_done" title="Options" style="overflow: auto;">
+									 <fieldset id="fieldset_select_fields">
+										<legend><spring:message code="biens.optionsbien" /></legend>
 										<table class="search_form">
 											<tr>
-												<td><label> <form:checkbox path="ascenseur" />
+											<td colspan="4">
+										<table class="search_form">
+											<tr>
+												<td><label> <form:checkbox path="ascenseur" />  <spring:message code="biens.ascenseur" />
 												</label></td>
-												<td class="label"><form:label path="ascenseur"
-														for="ascenseur">
-														<spring:message code="biens.ascenseur" />
-													</form:label></td>
 
 												<td><label> <form:checkbox
-															path="cuisineEquipee" />
+															path="cuisineEquipee" />  <spring:message code="biens.cuisineEquipee" />
 												</label></td>
-												<td class="label"><form:label path="cuisineEquipee"
-														for="cuisineEquipee">
-														<spring:message code="biens.cuisineEquipee" />
-													</form:label></td>
 
-												<td><label> <form:checkbox path="jardin" />
-												</label></td>
-												<td class="label"><form:label path="jardin"
-														for="jardin">
-														<spring:message code="biens.jardin" />
-													</form:label></td>
-											</tr>
-											<tr>
-												<td><label> <form:checkbox path="interphone" />
-												</label></td>
-												<td class="label"><form:label path="interphone"
-														for="interphone">
-														<spring:message code="biens.interphone" />
-													</form:label></td>
-											
-												<td><label> <form:checkbox path="digicode" />
-												</label></td>
-												<td class="label"><form:label path="digicode"
-														for="digicode">
-														<spring:message code="biens.digicode" />
-													</form:label></td>
-
-												<td><label> <form:checkbox path="gardien" />
+												<td><label> <form:checkbox path="jardin" />  <spring:message code="biens.jardin" />
 												</label></td>
 											
-												<td class="label"><form:label path="gardien"
-														for="gardien">
-														<spring:message code="biens.gardien" />
-													</form:label></td>
+												<td><label> <form:checkbox path="interphone" />  <spring:message code="biens.interphone" />
+												</label></td>
 											</tr>
 											<tr>
+												
+												<td><label> <form:checkbox path="digicode" />  <spring:message code="biens.digicode" />
+												</label></td>
+
+												<td><label> <form:checkbox path="gardien" />  <spring:message code="biens.gardien" />
+												</label></td>
+											
 												<td><label> <form:checkbox
-															path="adapteHandicape" />
+															path="adapteHandicape" />  <spring:message code="biens.adapte" />
 												</label></td>
-												<td class="label"><form:label path="adapteHandicape"
-														for="adapteHandicape">
-														<spring:message code="biens.adapte" />
-													</form:label></td>
 
-												<td><label> <form:checkbox path="meuble" />
+												<td><label> <form:checkbox path="meuble" />  <spring:message code="biens.meuble" />
 												</label></td>
-												<td class="label"><form:label path="meuble"
-														for="meuble">
-														<spring:message code="biens.meuble" />
-													</form:label></td>
-											
-												<td><label> <form:checkbox path="piscine" />
-												</label></td>
-												<td class="label"><form:label path="piscine"
-														for="piscine">
-														<spring:message code="biens.piscine" />
-													</form:label></td>
 											</tr>
 											<tr>
-												<td><label> <form:checkbox path="caves" />
+												<td><label> <form:checkbox path="piscine" />  <spring:message code="biens.piscine" />
 												</label></td>
-												<td class="label"><form:label path="caves" for="caves">
-														<spring:message code="biens.caves" />
-													</form:label></td>
-
-												<td><label> <form:checkbox path="parking" />
+												
+												<td><label> <form:checkbox path="parking" /> <spring:message code="biens.parking" />
 												</label></td>
-												<td class="label"><form:label path="parking"
-														for="parking">
-														<spring:message code="biens.parking" />
-													</form:label></td>
+												
 												<td><label> <form:checkbox
-															path="terrassesBalcons" />
+															path="terrassesBalcons" /> <spring:message code="biens.terrassesBalcons" />
 												</label></td>
-											
-												<td class="label"><form:label path="terrassesBalcons"
-														for="terrassesBalcons">
-														<spring:message code="biens.terrassesBalcons" />
-													</form:label></td>
 											</tr>
 										</table>
 								</td>
