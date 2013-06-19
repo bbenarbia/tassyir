@@ -38,7 +38,7 @@
   
   <form-login
     login-page="/login"
-    authentication-failure-url="/login"
+    authentication-failure-url="/login?login_error=1"
     default-target-url="/"/>
     
   <logout

@@ -57,7 +57,7 @@ table {
 .login {
   position: relative;
   margin: 0 auto;
-  padding: 20px 20px 20px;
+  padding: 10px 20px 20px;
   width: 310px;
   background: white;
   border-radius: 3px;
@@ -195,4 +195,13 @@ input[type=submit]:active {
 
 .lt-ie9 input[type=text], .lt-ie9 input[type=password] {
   line-height: 34px;
+}
+
+.errorblock {
+	color: #ff0000;
+	background-color: #ffEEEE;
+	border: 2px solid #ff0000;
+	padding: 2px;
+	margin: 9px;
+	width: 260px;
 }

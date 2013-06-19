@@ -1625,3 +1625,12 @@ h1.error, div.error{
 #smalltext{
 	font-size: 10px;
 }
+
+.errorblock {
+	color: #ff0000;
+	background-color: #ffEEEE;
+	border: 2px solid #ff0000;
+	padding: 2px;
+	margin: 9px;
+	width: 260px;
+}

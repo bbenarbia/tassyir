@@ -33,15 +33,20 @@
 													<legend> Reset your password </legend>
 													<section class="containerlogin">
 														<div class="login">
-															<div id="login-error">${error}</div>
+															<c:if test="${not empty errorMessage}">
+																<div class="errorblock">
+																        Error. <br />	
+																        ${errorMessage}															        
+																</div>
+															</c:if>
 															<form:form modelAttribute="user" method="post" id="form1">
 																<p>
 																	<form:input type="text" id="login" path="login"
-																		value="" placeholder="Login"/>
+																		value="" placeholder="Login" cssErrorClass="error"/>
 																</p>
 																<p>
-																	<input type="text" id="adresseMail" name="adresseMail"
-																		value="" placeholder="Email">
+																	<form:input type="text" id="adresseMail" path="adresseMail"
+																		value="" placeholder="Email" cssErrorClass="error"/>
 																</p>
 																<p class="submit">
 																	<input type="submit" name="commit" value="Initialiser">

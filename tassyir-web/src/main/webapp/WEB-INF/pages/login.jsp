@@ -47,8 +47,15 @@
 
 													<section class="containerlogin">
 														<div class="login">
-															<div id="login-error">${error}</div>
-															<form method="post" action="j_spring_security_check">
+															<c:if test="${not empty param.login_error}">
+																<div class="errorblock">
+																        Login Error. <br />	
+																        ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}															        
+																</div>
+															</c:if>
+															
+															<form method="post" action="${pageContext.request.contextPath}/j_spring_security_check">
+																
 																<p>
 																	<input type="text" id="j_username" name="j_username"
 																		value="" placeholder="Login">

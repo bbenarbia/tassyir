@@ -62,9 +62,15 @@
 						<strong>Vous avez un compte ?</strong> Connectez vous ici pour y accéder 
 					</p>
 					<div id="loginform">
+						${error}
+																<c:if test="${not empty error}">
+																		<div class="errorblock">
+																			Your login attempt was not successful, try again.<br /> Caused :
+																			${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+																		</div>
+																</c:if>
 						 <form method="post" action="${contextPath}/j_spring_security_check">
 							<div class="formblock">
-
 								<label>Username</label> <input id="j_username" name="j_username"  value="" placeholder="Login" type="text"  class="textfields" />
 							</div>
 							<div class="formblock">

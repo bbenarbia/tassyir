@@ -164,6 +164,7 @@ public class UserController {
 	public String resetPasswordProcess(@ModelAttribute("user") UserDTO userDto,
 			BindingResult result, SessionStatus status, Model model) {
 
+		
 		if (!userDto.getLogin().isEmpty()
 				&& !userDto.getAdresseMail().isEmpty()) {
 			User user = userService.getUtilisateurByLogin(userDto.getLogin());
@@ -193,18 +194,24 @@ public class UserController {
 				return "/information";
 
 			} else {
-				List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
-				navigations.add(new NavigationDTO("/", "home"));
-				model.addAttribute("navigations", navigations);
-
-				MessageDTO message = new MessageDTO();
-				message.setText("Un compte introuvable");
-				message.setTitle("Erreur de compte");
-				model.addAttribute("message", message);
-
-				return "/information";
+				model.addAttribute("errorMessage", "Login ou email incorrect");
+				return "lostPassword";
+				
+//				List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+//				navigations.add(new NavigationDTO("/", "home"));
+//				model.addAttribute("navigations", navigations);
+//
+//				MessageDTO message = new MessageDTO();
+//				message.setText("Un compte introuvable");
+//				message.setTitle("Erreur de compte");
+//				model.addAttribute("message", message);
+//
+//				return "/information";
 			}
 		} else {
+//			result.rejectValue("login", "usergroup.notmatch");
+//			result.rejectValue("adresseMail", "usergroup.notmatch");
+			model.addAttribute("errorMessage", "Error");
 			return "lostPassword";
 		}
 	}
