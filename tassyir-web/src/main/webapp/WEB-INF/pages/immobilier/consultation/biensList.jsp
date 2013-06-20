@@ -26,7 +26,14 @@
 					 <div class="group" style="width: 698px;">
 					 <h2><spring:message code="biens.list" /></h2>
 					 <ul class="listing">
-    					<c:forEach var="bien" items="${findBiens.listBiens}">
+    					<c:forEach var="bien" items="${findBiens.listBiens}" varStatus="status" begin="${(page-1)*5 }" end="${(page)*5 }">
+    						<c:if test="${status.count % 4 == 0 }">
+	    						<li>
+	    							<div class="listinfo">
+	    								Publicité
+	    							</div>
+	    						</li>
+    						</c:if>
 							<li>
 								<spring:url value="/biens/{bienId}.htm" var="DetailbienUrl">
 									<spring:param name="bienId" value="${bien.id}" />
@@ -51,51 +58,6 @@
 									<span class="pricesmall">loyer:${bien.loyerMensuel} DA</span>
 									<span class="pricesmall">charges:${bien.chargesMensuel} DA</span>
 								 </div>
-											
-											
-								<%-- <div class="listingbtns">
-									<span class="listbuttons"> <spring:url value="/biens/{bienId}.htm" var="DetailbienUrl">
-										<spring:param name="bienId" value="${bien.id}" />
-										</spring:url> 
-										<a href="${DetailbienUrl}">Details Bien</a>
-									</span> 
-									<span class="listbuttons"> <spring:url value="/biens/{bienId}/edit.htm" var="EditbienUrl">
-										<spring:param name="bienId" value="${bien.id}" />
-									</spring:url> 
-									<a href="${EditbienUrl}">Edit Bien</a>
-											</span> <span class="listbuttons"> <spring:url value="/biens/{bienId}/delete.htm" var="deleteBienUrl">
-										<spring:param name="bienId" value="${bien.id}" />
-									</spring:url> 
-									<a href="${deleteBienUrl}">Delete</a></span> 
-								</div>  --%>
-								<%-- <div style="float: right; width: 125px;">
-											<table>
-												<tr>
-													<td>
-												 	 <span class="listbuttons"> <spring:url value="/biens/{bienId}.htm" var="DetailbienUrl">
-														<spring:param name="bienId" value="${bien.id}" />
-														</spring:url> 
-														<a href="${DetailbienUrl}">Details Bien</a>
-														</span> 
-													 </td>
-													<td>
-														<span class="listbuttons"> <spring:url value="/biens/{bienId}/edit.htm" var="EditbienUrl">
-															<spring:param name="bienId" value="${bien.id}" />
-														</spring:url> 
-															<a href="${EditbienUrl}">Edit Bien</a>
-														</span>
-													</td>
-													<td>
-														<span class="listbuttons"> <spring:url value="/biens/{bienId}/delete.htm" var="deleteBienUrl">
-																<spring:param name="bienId" value="${bien.id}" />
-															</spring:url> 
-															<a href="${deleteBienUrl}">Delete</a>
-														</span> 
-													</td>
-													
-												</tr>
-											</table>
-								</div> --%>
 								<div class="clear">&nbsp;</div>
 							</li>
 						</c:forEach>
@@ -103,15 +65,12 @@
 					</div>
 					<div id="paginations">
 						<ul>
-							<li><a href="#">&laquo;</a></li>
-
+							<!-- <li><a href="#">&laquo;</a></li> -->
 							<li class="current"><a href="#">1</a></li>
 							<li><a href="#">2</a></li>
 							<li><a href="#">3</a></li>
 							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">&raquo;</a></li>
-
+							<!-- <li><a href="#">&raquo;</a></li> -->
 						</ul>
 						<div class="clear">&nbsp;</div>
 					</div>

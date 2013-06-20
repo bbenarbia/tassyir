@@ -72,7 +72,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-@SessionAttributes("bien")
+@SessionAttributes("findBiens")
 @RequestMapping("/biens")
 public class BienController {
 
@@ -258,24 +258,6 @@ public class BienController {
 		return typeImpactConsoList;
 	}
 
-//	@RequestMapping(value = "/find-biens", method = RequestMethod.GET)
-//	public String initSearchBiens(Model model) {
-//		List<BienImmobilier> listBiens = bienService.getAll();
-//
-//		FindBienDTO findBienDto = new FindBienDTO();
-//		for (BienImmobilier bienImmobilier : listBiens) {
-//			findBienDto.getListBiens().add(new BienDTO(bienImmobilier));
-//		}
-//		findBienDto.setListBiens(listBiens);
-//		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
-//		navigations.add(new NavigationDTO("/", "home"));
-//		navigations.add(new NavigationDTO("/find-biens.htm", "biens.listbien"));
-//		model.addAttribute("navigations", navigations);
-//
-//		model.addAttribute("findBiens", findBienDto);
-//		return "immobilier/consultation/find-biens";
-//	}
-
 	@RequestMapping(value = "/recherche-logement", method = RequestMethod.GET)
 	public String rechercheBiensGlobal(Model model, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) {
@@ -291,43 +273,27 @@ public class BienController {
 		return "immobilier/recherche-biens";
 
 	}
-
-	@RequestMapping(value = "/recherche-logement/{typeAction}", method = RequestMethod.GET)
-	public String rechercheSpecifiqueBiens(
+	
+	@RequestMapping(value = "/recherche-logement/{typeAction}", method = RequestMethod.POST)
+	public String rechercheSpecifiqueBiensInit(@ModelAttribute("findBiens") FindBienDTO findBienDto,
 			@PathVariable("typeAction") Integer typeAction, Model model,
 			HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) {
-
-		Integer mainOperation = null;
-		FindBienDTO findBienDto = new FindBienDTO();
-		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
-		navigations.add(new NavigationDTO("/", "home"));
-		model.addAttribute("navigations", navigations);
-		if (typeAction != null) {
-			EnumTypeAction enumTypeAction = EnumTypeAction
-					.fromIndex(typeAction);
-			if (enumTypeAction != null) {
-				mainOperation = enumTypeAction.getIndex();
-			}
-		}
-		findBienDto.setTypeOperationBien(mainOperation);
-		model.addAttribute("mainOperation", mainOperation);
-		model.addAttribute("findBiens", findBienDto);
-		return "immobilier/recherche-biens";
-
+		
+		return "redirect:/biens/search-result/1.htm";
 	}
 
-	@RequestMapping(value = "/recherche-logement/{typeAction}", method = RequestMethod.POST)
-	public String rechercherBiens(
-			@ModelAttribute("findBiens") @Valid FindBienDTO findBienDto,
-			BindingResult result, SessionStatus status, Model model) throws Exception {
+	@RequestMapping(value = "/search-result/{page}", method = RequestMethod.GET)
+	public String rechercheSpecifiqueBiensResult(@ModelAttribute("findBiens") FindBienDTO findBienDto,
+			@PathVariable("page") Integer page, Model model,
+			HttpServletRequest request, HttpServletResponse response,
+			HttpSession session) {
 
 		String ref = findBienDto.getRefBien();
+		findBienDto.getListBiens().clear();
 		if (ref != null && !ref.isEmpty()) {
 			BienImmobilier bien = bienService.getBienByRef(ref);
-//			findBienDto.setListBiens(new ArrayList<BienImmobilier>());
-			if (bien != null) {
-				
+			if (bien != null) {				
 				if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
 					findBienDto.getListBiens().add(new BienDTO((Appartement) bien));
 				} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
@@ -348,9 +314,6 @@ public class BienController {
 				else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
 					findBienDto.getListBiens().add(new BienDTO((Commerce) bien));
 				}
-				
-				else throw new Exception("Voir les autres types");
-				//A voir les autres types
 			}
 		} else {
 			EnumTypeOperation typeOperation = null;
@@ -417,10 +380,10 @@ public class BienController {
 				else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
 					findBienDto.getListBiens().add(new BienDTO((Commerce) bien));
 				}
-				else throw new Exception("Voir les autres types");
-				//A voir les autres types
 			}
 		}
+		model.addAttribute("page", page);
+		model.addAttribute("nbpage", findBienDto.getListBiens().size()/6);
 		model.addAttribute("findBiens", findBienDto);
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
@@ -429,123 +392,31 @@ public class BienController {
 		model.addAttribute("navigations", navigations);
 		return "immobilier/consultation/biensList";
 	}
+	
+	@RequestMapping(value = "/recherche-logement/{typeAction}", method = RequestMethod.GET)
+	public String rechercheSpecifiqueBiensForm(
+			@PathVariable("typeAction") Integer typeAction, Model model,
+			HttpServletRequest request, HttpServletResponse response,
+			HttpSession session) {
 
-	@RequestMapping(value = "/find-biens", method = RequestMethod.POST)
-	public String searchBiens(
-			@ModelAttribute("findBiens") @Valid FindBienDTO findBienDto,
-			BindingResult result, SessionStatus status, Model model) throws Exception {
-
-		String ref = findBienDto.getRefBien();
-		if (ref != null && !ref.isEmpty()) {
-			BienImmobilier bien = bienService.getBienByRef(ref);
-			if (bien != null) {
-				if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Appartement) bien));
-				} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Maison) bien));
-				}else if (bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Terrain) bien));
-				}
-				else if (bien.getTypeBien().equals(EnumTypeBien.AGRICOLE.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Agricole) bien));
-				}
-				else if (bien.getTypeBien().equals(EnumTypeBien.VACANCES.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Vacances) bien));
-				}
-				else if (bien.getTypeBien().equals(EnumTypeBien.CARCASSE.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Carcasse) bien));
-				}
-				else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Commerce) bien));
-				}
-				
-				else throw new Exception("Voir les autres types");
-				//A voir les autres types
-			}
-		} else {
-			// EnumTypeBien typeBien = null;
-			EnumTypeOperation typeOperation = null;
-			// try {
-			// typeBien = EnumTypeBien.fromIndex(Integer.valueOf(findBienDto
-			// .getTypeBien()));
-			// } catch (NumberFormatException e) {
-			// }
-			Set<String> selectedTypes = new HashSet<String>();
-
-			if (findBienDto.getAppartement()) {
-				selectedTypes.add(EnumTypeBien.APPARTEMENT.toString());
-			}
-			if (findBienDto.getMaison()) {
-				selectedTypes.add(EnumTypeBien.MAISON.toString());
-			}
-			if (findBienDto.getTerrain()) {
-				selectedTypes.add(EnumTypeBien.TERRAIN.toString());
-			}
-			if (findBienDto.getAgricole()) {
-				selectedTypes.add(EnumTypeBien.AGRICOLE.toString());
-			}
-			if (findBienDto.getCarcasse()) {
-				selectedTypes.add(EnumTypeBien.CARCASSE.toString());
-			}
-			if (findBienDto.getCommercial()) {
-				selectedTypes.add(EnumTypeBien.COMMERCE.toString());
-			}
-			if (findBienDto.getVacances()) {
-				selectedTypes.add(EnumTypeBien.VACANCES.toString());
-			}
-
-			typeOperation = EnumTypeOperation.fromIndex(findBienDto
-					.getTypeOperationBien());
-
-			if (findBienDto.getDepartementBien().equals("-1")) {
-				findBienDto.setDepartementBien(null);
-			}
-
-			List<BienImmobilier> listBiensFound = bienService.searchBiens(
-					selectedTypes, findBienDto.getDepartementBien(),
-					findBienDto.getSurfaceMin(), findBienDto.getSurfaceMax(),
-					findBienDto.getNbPiecesMin(), findBienDto.getNbPiecesMax(),
-					findBienDto.getLoyerMin(), findBienDto.getLoyerMax(),
-					findBienDto.getAscenseur(),
-					findBienDto.getCuisineEquipee(), findBienDto.getJardin(),
-					findBienDto.getInterphone(), findBienDto.getDigicode(),
-					findBienDto.getGardien(), findBienDto.getMeuble(),
-					findBienDto.getAdapteHandicape(), findBienDto.getPiscine(),
-					findBienDto.getCaves(), findBienDto.getParking(),
-					findBienDto.getTerrassesBalcons(), typeOperation);
-
-			for (BienImmobilier bien : listBiensFound) {
-				if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Appartement) bien));
-				} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Maison) bien));
-				}else if (bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Terrain) bien));
-				}
-				else if (bien.getTypeBien().equals(EnumTypeBien.AGRICOLE.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Agricole) bien));
-				}
-				else if (bien.getTypeBien().equals(EnumTypeBien.VACANCES.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Vacances) bien));
-				}
-				else if (bien.getTypeBien().equals(EnumTypeBien.CARCASSE.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Carcasse) bien));
-				}
-				else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Commerce) bien));
-				}
-				else throw new Exception("Voir les autres types");
-				//A voir les autres types
-			}
-		}
-		model.addAttribute("findBiens", findBienDto);
+		Integer mainOperation = null;
+		FindBienDTO findBienDto = new FindBienDTO();
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
-		navigations.add(new NavigationDTO("/biens/find-biens.htm",
-				"biens.listbien"));
 		model.addAttribute("navigations", navigations);
-		return "immobilier/consultation/biensList";
+		if (typeAction != null) {
+			EnumTypeAction enumTypeAction = EnumTypeAction
+					.fromIndex(typeAction);
+			if (enumTypeAction != null) {
+				mainOperation = enumTypeAction.getIndex();
+			}
+		}
+		findBienDto.setTypeOperationBien(mainOperation);
+		model.addAttribute("mainOperation", mainOperation);
+		model.addAttribute("findBiens", findBienDto);
+		return "immobilier/recherche-biens";
 	}
+
 
 	@RequestMapping(value = "/{userId}/user-biens", method = RequestMethod.GET)
 	public String showUserBiens(@PathVariable("userId") Long userId, Model model) throws Exception {
