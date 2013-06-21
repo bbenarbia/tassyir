@@ -401,7 +401,7 @@
 							</c:if> --%>
 						</table>
 					</div>	
-						<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' || bien.typeBien=='COMMERCE'  || bien.typeBien=='MAISON' }">
+						<%-- <c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' || bien.typeBien=='COMMERCE'  || bien.typeBien=='MAISON' }">
 							<div id="listing_details">
 												<table>
 													<tr>
@@ -420,7 +420,7 @@
 													</tr>
 												</table>
 							</div>
-						</c:if>			
+						</c:if>		 --%>	
 					</div>			
 			</div>
 		<div id="home_sidebar">

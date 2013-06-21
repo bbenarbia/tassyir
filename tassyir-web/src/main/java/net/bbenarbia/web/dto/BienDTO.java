@@ -469,18 +469,18 @@ public class BienDTO {
 		if(digicode!= null && digicode){
 			maison.setDigicode(true);
 		}
-		maison.setConsoEnergie(null);
-		if(consoEnergie!= null){
-			maison.setConsoEnergie(EnumConsEnergie.valueOf(consoEnergie));
-		}
+//		maison.setConsoEnergie(null);
+//		if(consoEnergie!= null){
+//			maison.setConsoEnergie(EnumConsEnergie.valueOf(consoEnergie));
+//		}
 		maison.setTypeEauChaude(null);
 		if(typeEauChaude!= null){
 			maison.setTypeEauChaude(EnumTypeEauChaude.valueOf(typeEauChaude));
 		}
-		maison.setImpactConso(null);
-		if(impactConso!= null){
-			maison.setImpactConso(EnumImpactConso.valueOf(impactConso));
-		}
+//		maison.setImpactConso(null);
+//		if(impactConso!= null){
+//			maison.setImpactConso(EnumImpactConso.valueOf(impactConso));
+//		}
 		maison.setTypeChauffage(null);
 		if(typeChauffage!= null){
 			maison.setTypeChauffage(EnumTypeChauffage.valueOf(typeChauffage));
@@ -597,18 +597,19 @@ public class BienDTO {
 		if(digicode!= null && digicode){
 			appartement.setDigicode(true);
 		}
-		appartement.setConsoEnergie(null);
-		if(consoEnergie!= null){
-			appartement.setConsoEnergie(EnumConsEnergie.valueOf(consoEnergie));
-		}
+		
+//		appartement.setConsoEnergie(null);
+//		if(consoEnergie!= null){
+//			appartement.setConsoEnergie(EnumConsEnergie.valueOf(consoEnergie));
+//		}
 		appartement.setTypeEauChaude(null);
 		if(typeEauChaude!= null){
 			appartement.setTypeEauChaude(EnumTypeEauChaude.valueOf(typeEauChaude));
 		}
-		appartement.setImpactConso(null);
-		if(impactConso!= null){
-			appartement.setImpactConso(EnumImpactConso.valueOf(impactConso));
-		}
+//		appartement.setImpactConso(null);
+//		if(impactConso!= null){
+//			appartement.setImpactConso(EnumImpactConso.valueOf(impactConso));
+//		}
 		appartement.setTypeChauffage(null);
 		if(typeChauffage!= null){
 			appartement.setTypeChauffage(EnumTypeChauffage.valueOf(typeChauffage));
@@ -637,7 +638,7 @@ public class BienDTO {
 		
 //		Update the bien not complete
 		bien.setName(name);
-		bien.setReference(reference);
+//		bien.setReference(reference);
 		bien.setAdresse(adresse);
 		bien.setDescription(description);
 		bien.setSuperficie(superficie);
@@ -651,8 +652,9 @@ public class BienDTO {
 		if(etatBien != null){
 			bien.setEtatBien(EnumEtatBien.valueOf(etatBien));
 		}
-		bien.setTypeOperation(EnumTypeOperation.valueOf(typeOperation));
-		
+		if(typeOperation != null){
+			bien.setTypeOperation(EnumTypeOperation.valueOf(typeOperation));
+		}
 		bien.setTransport(transport);
 		bien.setAdapteHandicape(false);		
 		bien.setProximite(proximite);
