@@ -197,16 +197,6 @@ public class UserController {
 				model.addAttribute("errorMessage", "Login ou email incorrect");
 				return "lostPassword";
 				
-//				List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
-//				navigations.add(new NavigationDTO("/", "home"));
-//				model.addAttribute("navigations", navigations);
-//
-//				MessageDTO message = new MessageDTO();
-//				message.setText("Un compte introuvable");
-//				message.setTitle("Erreur de compte");
-//				model.addAttribute("message", message);
-//
-//				return "/information";
 			}
 		} else {
 //			result.rejectValue("login", "usergroup.notmatch");

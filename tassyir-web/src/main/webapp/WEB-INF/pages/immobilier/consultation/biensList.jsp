@@ -65,16 +65,26 @@
 					</div>
 					<div id="paginations">
 						<ul>
-							<!-- <li><a href="#">&laquo;</a></li> -->
-							<li class="current"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<!-- <li><a href="#">&raquo;</a></li> -->
+							<spring:url value="/biens/search-result" var="biensListUrl" />
+							<c:if test="${page > 1 }">
+								<li><a href="${biensListUrl}/${page-1}.htm">&laquo;</a></li>
+							</c:if> 
+							<c:forEach varStatus="status" begin="1" end="${nbpages}" step="1">								
+								<c:choose>
+									<c:when test="${status.count == page}">
+										<li class="current"><a href="${biensListUrl}/${status.count}.htm">${status.count}</a></li>
+									</c:when>
+									<c:otherwise>
+										<li><a href="${biensListUrl}/${status.count}.htm">${status.count}</a></li>
+									</c:otherwise>								
+								</c:choose>
+							</c:forEach>
+							<c:if test="${page < nbpages}">
+								<li><a href="${biensListUrl}/${page+1}.htm">&raquo;</a></li>
+							</c:if> 
 						</ul>
 						<div class="clear">&nbsp;</div>
 					</div>
-
 				</div>
 			<div id="home_sidebar">
 				<div class="block advert">

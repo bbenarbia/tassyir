@@ -280,15 +280,64 @@ public class BienController {
 			HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) {
 		
+		searchBiens(findBienDto);
+		model.addAttribute("page", 1);		
+		int nbPages = findBienDto.getListBiens().size()/6 ;
+		if(findBienDto.getListBiens().size()%6 != 0){
+			nbPages++;
+		}
+		model.addAttribute("nbpages", nbPages);
+		model.addAttribute("findBiens", findBienDto);
+		
 		return "redirect:/biens/search-result/1.htm";
 	}
 
+	@RequestMapping(value = "/search-result/{page}", method = RequestMethod.POST)
+	public String rechercheSpecifiqueBiensResultForms(@ModelAttribute("findBiens") FindBienDTO findBienDto,
+			@PathVariable("page") Integer page, Model model,
+			HttpServletRequest request, HttpServletResponse response,
+			HttpSession session) {
+		
+		
+		searchBiens(findBienDto);
+		model.addAttribute("page", page);		
+		int nbPages = findBienDto.getListBiens().size()/6 ;
+		if(findBienDto.getListBiens().size()%6 != 0){
+			nbPages++;
+		}
+		model.addAttribute("nbpages", nbPages);
+		model.addAttribute("findBiens", findBienDto);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/biens/find-biens.htm",
+				"biens.listbien"));
+		model.addAttribute("navigations", navigations);
+		return "immobilier/consultation/biensList";
+	}
 	@RequestMapping(value = "/search-result/{page}", method = RequestMethod.GET)
 	public String rechercheSpecifiqueBiensResult(@ModelAttribute("findBiens") FindBienDTO findBienDto,
 			@PathVariable("page") Integer page, Model model,
 			HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) {
 
+//		searchBiens(findBienDto);
+		model.addAttribute("page", page);
+		
+		int nbPages = findBienDto.getListBiens().size()/6 ;
+		if(findBienDto.getListBiens().size()%6 != 0){
+			nbPages++;
+		}
+		model.addAttribute("nbpages", nbPages);
+//		model.addAttribute("findBiens", findBienDto);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/biens/find-biens.htm",
+				"biens.listbien"));
+		model.addAttribute("navigations", navigations);
+		return "immobilier/consultation/biensList";
+	}
+
+	private void searchBiens(FindBienDTO findBienDto) {
 		String ref = findBienDto.getRefBien();
 		findBienDto.getListBiens().clear();
 		if (ref != null && !ref.isEmpty()) {
@@ -382,15 +431,6 @@ public class BienController {
 				}
 			}
 		}
-		model.addAttribute("page", page);
-		model.addAttribute("nbpage", findBienDto.getListBiens().size()/6);
-		model.addAttribute("findBiens", findBienDto);
-		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
-		navigations.add(new NavigationDTO("/", "home"));
-		navigations.add(new NavigationDTO("/biens/find-biens.htm",
-				"biens.listbien"));
-		model.addAttribute("navigations", navigations);
-		return "immobilier/consultation/biensList";
 	}
 	
 	@RequestMapping(value = "/recherche-logement/{typeAction}", method = RequestMethod.GET)
@@ -451,6 +491,14 @@ public class BienController {
 				}
 			}
 		}
+		
+		model.addAttribute("page", 1);
+		
+		int nbPages = findBienDto.getListBiens().size()/6 ;
+		if(findBienDto.getListBiens().size()%6 != 0){
+				nbPages++;
+		}
+		model.addAttribute("nbpages", nbPages);
 		model.addAttribute("findBiens", findBienDto);
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
@@ -493,6 +541,13 @@ public class BienController {
 				//A voir les autres types
 			}
 		}
+		model.addAttribute("page", 1);
+		
+		int nbPages = findBienDto.getListBiens().size()/6 ;
+		if(findBienDto.getListBiens().size()%6 != 0){
+				nbPages++;
+		}
+		model.addAttribute("nbpages", nbPages);
 		model.addAttribute("findBiens", findBienDto);
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
@@ -513,6 +568,13 @@ public class BienController {
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
 		model.addAttribute("navigations", navigations);
+		model.addAttribute("page", 1);
+		
+		int nbPages = findBienDto.getListBiens().size()/6 ;
+		if(findBienDto.getListBiens().size()%6 != 0){
+				nbPages++;
+		}
+		model.addAttribute("nbpages", nbPages);
 		return "immobilier/consultation/biensList";
 	}
 
@@ -525,17 +587,11 @@ public class BienController {
 			listAppartementDto.add(new BienDTO((Appartement) bienImmobilier));
 		}
 		model.addAttribute("selections", listAppartementDto);
+		
 		return "immobilier/consultation/biensList";
 	}
 
-	@RequestMapping(value = "/studios", method = RequestMethod.GET)
-	public String showStudiosList(Model model) {
-
-		List<BienImmobilier> results = this.bienService.getAllStudio();
-
-		model.addAttribute("selections", results);
-		return "immobilier/consultation/biensList";
-	}
+	
 
 	@RequestMapping(value = "/photo/{idBien}/{idPhoto}", method = RequestMethod.GET)
 	@ResponseBody
@@ -968,6 +1024,16 @@ public class BienController {
 				//A voir les autres types
 			}
 		
+			
+		model.addAttribute("page", 1);
+			
+		int nbPages = findBienDto.getListBiens().size()/6 ;
+		if(findBienDto.getListBiens().size()%6 != 0){
+				nbPages++;
+		}
+		model.addAttribute("nbpages", nbPages);
+			
+			
 		model.addAttribute("findBiens", findBienDto);
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
