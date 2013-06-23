@@ -63,6 +63,23 @@ public class BienSearchController {
 
 	}
 	
+	@RequestMapping(value = "/", method = RequestMethod.POST)
+	public String rechercheBiens(Model model, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) {
+
+		Integer mainOperation = -1;
+		FindBienDTO findBienDto = new FindBienDTO();
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		model.addAttribute("navigations", navigations);
+		findBienDto.setTypeOperationBien(mainOperation);
+		model.addAttribute("mainOperation", mainOperation);
+		model.addAttribute("findBiens", findBienDto);
+		return "immobilier/recherche-biens";
+
+	}
+	
+	
 	@RequestMapping(value = "/recherche-logement/{typeAction}", method = RequestMethod.POST)
 	public String rechercheSpecifiqueBiensInit(@ModelAttribute("findBiens") FindBienDTO findBienDto,
 			@PathVariable("typeAction") Integer typeAction, Model model,

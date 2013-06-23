@@ -122,28 +122,18 @@ $(document).ready(function() {
 											<legend><spring:message code="biens.zoneRecherche" /> </legend>
 												<table class="search_form">
 												 <tr>
-												 		<td><label>
-															<form:select path="typeOperationBien"
-																class="select_field">
-																   <optgroup label="<spring:message code="bien.action.recherche.offres" />"> 
-																      <form:option value="1"><spring:message code="bien.action.recherche.vente" /></form:option> 
-																      <form:option value="2"><spring:message code="bien.action.recherche.location" /></form:option> 
-																      <form:option value="3"><spring:message code="bien.action.recherche.vacances" /></form:option> 
-																      <form:option value="4"><spring:message code="bien.action.recherche.colocation" /></form:option> 
-																      <form:option value="6"><spring:message code="bien.action.recherche.commerce" /></form:option> 
-																   </optgroup> 
-																   <optgroup label="<spring:message code="bien.action.recherche.demandes" />"> 
-																      <form:option value="8"><spring:message code="bien.action.recherche.achat" /></form:option> 
-																      <form:option value="9"><spring:message code="bien.action.recherche.location" /></form:option> 
-																      <form:option value="10"><spring:message code="bien.action.recherche.vacances" /></form:option> 
-																      <form:option value="11"><spring:message code="bien.action.recherche.colocation" /></form:option> 
-																      <form:option value="12"><spring:message code="bien.action.recherche.commerce" /></form:option> 
-																   </optgroup>
-																   <form:option  value="5"><spring:message code="bien.action.recherche.echange" /></form:option> 
-																   <form:option  value="7"><spring:message code="bien.action.recherche.autre" /></form:option>
-				   											</form:select>																
-													    </label>
+												 		<td colspan="2">
+												 			<form:radiobutton id="typeOperationBien1" path="typeOperationBien" value="1" ></form:radiobutton><label for="typeOperationBien1">    <spring:message code="bien.action.recherche.vente" /> </label>
+															<form:radiobutton id="typeOperationBien2" path="typeOperationBien"  value="2"></form:radiobutton><label for="typeOperationBien2">    <spring:message code="bien.action.recherche.location" /> </label> 
+															<form:radiobutton id="typeOperationBien6" path="typeOperationBien"  value="6"></form:radiobutton><label for="typeOperationBien6">    <spring:message code="bien.action.recherche.commerce" /> </label> 
+															<form:radiobutton id="typeOperationBien8" path="typeOperationBien"  value="8"></form:radiobutton><label for="typeOperationBien8">    <spring:message code="bien.action.recherche.achat" />  </label>
+															<form:radiobutton id="typeOperationBien9" path="typeOperationBien"  value="9"></form:radiobutton><label for="typeOperationBien9">    <spring:message code="bien.action.recherche.location" />  </label>
+															<form:radiobutton id="typeOperationBien7" path="typeOperationBien"  value="7"></form:radiobutton><label for="typeOperationBien7">    <spring:message code="bien.action.recherche.autre" /> </label>
+																													
+													   
 												      </td>
+												     </tr>
+												    <tr>
 												 	   <td ><label> 
 															<form:select id="states" class="select_field" path="departementBien">
 															</form:select>
