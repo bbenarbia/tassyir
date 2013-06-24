@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -802,5 +803,42 @@ public class BienController {
 				"biens.listbien"));
 		model.addAttribute("navigations", navigations);
 		return "immobilier/consultation/biensList";
+	}
+	
+
+	@RequestMapping(value = "/{bienId}/add-favorite", method = RequestMethod.GET)
+	public String AddBienToFavorites(@PathVariable("bienId") Long bienId, Model model,
+			SessionStatus status, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) {
+
+//		User user = null;
+//		boolean found = false;
+//		String cookiesvalue = "";
+//		Authentication auth = SecurityContextHolder.getContext()
+//				.getAuthentication();
+//		user = userService.getUtilisateurByLogin(auth.getName());
+//		if (user != null) {
+//			user.setLocked(true);
+//			userService.merge(user);
+//			status.setComplete();
+//		} else {
+//			
+//			Cookie[] cookies = request.getCookies();
+//				if (cookies != null){
+//		          for (Cookie ck : cookies) {
+//		            if ("tassyirFavoritesBien".equals(ck.getName())) {
+//		            	cookiesvalue = ck.getValue()+";"+String.valueOf(bienId);
+//		            	found = true;
+//		            	break;
+//		            }
+//		           }
+//		        }
+//				if(!found){
+//					cookiesvalue = String.valueOf(bienId);
+//				}
+//				
+//				response.addCookie(new Cookie("tassyirFavoritesBien", cookiesvalue));
+//		}
+		return "redirect:/biens/" + bienId;
 	}
 }

@@ -4,7 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-			
+
+<c:if test="${fn:length(lastBiensAdded) != 0 }">		
 <div class="hot">
 	<h2 class="sidebar_head">
 		 Les derniers
@@ -36,6 +37,7 @@
 		</c:forEach>
 	</ul>
 </div>
+</c:if>
 <%-- <sec:authorize access="isAuthenticated()">
  <div class="hot">
 	<h2 class="sidebar_head">

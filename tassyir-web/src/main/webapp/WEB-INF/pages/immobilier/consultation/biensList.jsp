@@ -24,7 +24,7 @@
 				<div id="main">
 					<jsp:include page="../../common/navigator.jsp" />					
 					 <div class="group" style="width: 698px;">
-					 <h2><spring:message code="biens.list" /></h2>
+					 <h2><spring:message code="biens.list" /> : ${fn:length(findBiens.listBiens)} <spring:message code="biens.nbresult" />  </h2>
 					 <ul class="listing">
     					<c:forEach var="bien" items="${findBiens.listBiens}" varStatus="status" begin="${(page-1)*5 }" end="${(page)*5 }">
     						<c:if test="${status.count % 4 == 0 }">

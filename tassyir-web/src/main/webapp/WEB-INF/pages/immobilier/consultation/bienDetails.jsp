@@ -14,6 +14,13 @@
 	<spring:url value="/biens/upload/{bienId}/show.htm" var="addPhotoUrl">
 		<spring:param name="bienId" value="${bien.id}" />
 	</spring:url>
+	
+	<spring:url value="/biens/{bienId}/add-favorite.htm" var="addFavoriteUrl">
+		<spring:param name="bienId" value="${bien.id}" />
+	</spring:url>
+	
+	
+	
 	<div id="wrap">
 		<jsp:include page="../../common/menu.jsp" />
 		<div id="content">
@@ -47,8 +54,7 @@
 										${bien.ville}(${bien.codePostal}) <br />
 									</p>
 						</div>
-				</div>
-				
+				</div>				
 				<div id="single_item_details">
 					<div id="leftcolumn">
 						<div id="carrousel">
@@ -139,8 +145,6 @@
 								</tbody>
 							 </table>
 							</div>
-						
-				
 					</div>
 					<div id="rightcolumndetail">
 							<p class="user">
@@ -170,7 +174,7 @@
 								<div id="tabs-1" class="hiddentab">
 									<p>
 										<img src='<c:url value="/resources/graphics/fav.gif"/>'
-											alt="FAv" width="18" height="13" />&nbsp;<a href="#">Add to my Favorites</a>
+											alt="FAv" width="18" height="13" />&nbsp;<a href="${addFavoriteUrl }">Add to my Favorites</a>
 									</p>
 									<p>
 										<img src='<c:url value="/resources/graphics/emailalert.gif"/>'

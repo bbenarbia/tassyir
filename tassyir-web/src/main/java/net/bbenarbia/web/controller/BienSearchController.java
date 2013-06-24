@@ -143,7 +143,7 @@ public class BienSearchController {
 		return "immobilier/consultation/biensList";
 	}
 
-	private void searchBiens(FindBienDTO findBienDto) {
+	public void searchBiens(FindBienDTO findBienDto) {
 		String ref = findBienDto.getRefBien();
 		findBienDto.getListBiens().clear();
 		if (ref != null && !ref.isEmpty()) {

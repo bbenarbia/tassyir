@@ -121,58 +121,57 @@ $(document).ready(function() {
 										<fieldset id="fieldset_select_fields">
 											<legend><spring:message code="biens.zoneRecherche" /> </legend>
 												<table class="search_form">
-												 <tr>
+													<tr>
+														<td colspan="4">
+															<form:errors path="*" cssClass="error_code"/>
+														</td>
+													</tr>
+												 	<tr>
 												 		<td colspan="2">
 												 			<form:radiobutton id="typeOperationBien1" path="typeOperationBien" value="1" ></form:radiobutton><label for="typeOperationBien1">    <spring:message code="bien.action.recherche.vente" /> </label>
+												    	 </td>
+												    	 <td colspan="2">
 															<form:radiobutton id="typeOperationBien2" path="typeOperationBien"  value="2"></form:radiobutton><label for="typeOperationBien2">    <spring:message code="bien.action.recherche.location" /> </label> 
-															<form:radiobutton id="typeOperationBien6" path="typeOperationBien"  value="6"></form:radiobutton><label for="typeOperationBien6">    <spring:message code="bien.action.recherche.commerce" /> </label> 
-															<form:radiobutton id="typeOperationBien8" path="typeOperationBien"  value="8"></form:radiobutton><label for="typeOperationBien8">    <spring:message code="bien.action.recherche.achat" />  </label>
-															<form:radiobutton id="typeOperationBien9" path="typeOperationBien"  value="9"></form:radiobutton><label for="typeOperationBien9">    <spring:message code="bien.action.recherche.location" />  </label>
-															<form:radiobutton id="typeOperationBien7" path="typeOperationBien"  value="7"></form:radiobutton><label for="typeOperationBien7">    <spring:message code="bien.action.recherche.autre" /> </label>
-																													
-													   
-												      </td>
-												     </tr>
+												    	 </td>
+												    </tr>
 												    <tr>
-												 	   <td ><label> 
+												 	   <td  colspan="2">
+												 	   	<label> 
 															<form:select id="states" class="select_field" path="departementBien">
 															</form:select>
 														</label>
 													    </td>
-													    <td ><label>		
+													    <td  colspan="2"><label>		
 															<form:select id="commune" class="select_field" path="communeBien">
 																<form:option value=""><spring:message code="biens.commune" /></form:option>
 															</form:select>
 														</label>
 														</td>
-												 </tr>
-												</table>
+												 	</tr>
+													<tr>
+														<td><label> <form:checkbox
+																	path="appartement" /> <spring:message
+																	code="bien.type.recherche.appartement" /></label></td>
+														<td><label> <form:checkbox path="maison" />
+																<spring:message code="bien.type.recherche.maison" /></label></td>
+														<td><label> <form:checkbox path="terrain" />
+																<spring:message code="bien.type.recherche.terrain" /></label></td>
+														<td><label> <form:checkbox path="agricole" />
+																<spring:message code="bien.type.recherche.agricole" /></label></td>
+													</tr>
+													<tr>
+														<td><label> <form:checkbox path="carcasse" />
+																<spring:message code="bien.type.recherche.carcasse" /></label></td>
+														<td><label> <form:checkbox
+																	path="commercial" /> <spring:message
+																	code="bien.type.recherche.commercial" /></label></td>
+														<td><label> <form:checkbox path="vacances" />
+																<spring:message code="bien.type.recherche.vacances" /></label></td>
+													</tr>
+														</table>
 											</fieldset>
 											</div>
 								 	</td>
-								</tr>
-								<tr>
-								<td colspan="4">
-									<div id="searchoptions" class="pma_auto_slider slider_init_done" title="Options" style="overflow: auto;">
-									<fieldset id="fieldset_select_fields">
-										<legend><spring:message code="biens.typebien" /></legend>
-										<table class="search_form">
-											<tr>
-												<td><label> <form:checkbox path="appartement" />  <spring:message code="bien.type.recherche.appartement" /></label></td>
-												<td><label> <form:checkbox path="maison" />  <spring:message code="bien.type.recherche.maison" /></label></td>
-												<td><label> <form:checkbox path="terrain" />  <spring:message code="bien.type.recherche.terrain" /></label></td>
-												<td><label> <form:checkbox path="agricole" />  <spring:message code="bien.type.recherche.agricole" /></label></td>
-											</tr>
-											<tr>
-												<td><label> <form:checkbox path="carcasse" />  <spring:message code="bien.type.recherche.carcasse" /></label></td>
-												<td><label> <form:checkbox path="commercial" />  <spring:message code="bien.type.recherche.commercial" /></label></td>
-												<td><label> <form:checkbox path="vacances" />  <spring:message code="bien.type.recherche.vacances" /></label></td>
-											</tr>
-										</table>
-									</fieldset>
-										<br style="clear: both;">
-									</div>
-								</td>
 								</tr>
 								<tr>
 								<td colspan="4">
@@ -333,12 +332,7 @@ $(document).ready(function() {
 									<td>&nbsp;</td>
 									<td>&nbsp;</td>
 									<td class="label"><label> 
-									<input class="buttonGo" type="submit" value="Exécuter" name="submit">
-									<%-- <input type="image"
-											src='<c:url value="/resources/graphics/searchbtn.gif"/>'
-											alt="search
-      " name="button2" id="button2"
-											value="Submit" /> --%>
+									<input class="buttonGo" type="submit" value="Chercher" name="submit">
 									</label></td>
 								</tr>
 							</table>
