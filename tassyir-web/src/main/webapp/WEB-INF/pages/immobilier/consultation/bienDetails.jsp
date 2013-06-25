@@ -15,12 +15,9 @@
 		<spring:param name="bienId" value="${bien.id}" />
 	</spring:url>
 	
-	<spring:url value="/biens/{bienId}/add-favorite.htm" var="addFavoriteUrl">
+	<spring:url value="/biens/add-favorite/{bienId}.htm" var="addFavoriteUrl">
 		<spring:param name="bienId" value="${bien.id}" />
 	</spring:url>
-	
-	
-	
 	<div id="wrap">
 		<jsp:include page="../../common/menu.jsp" />
 		<div id="content">

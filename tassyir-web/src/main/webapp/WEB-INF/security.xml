@@ -22,6 +22,7 @@
   <intercept-url pattern="/users/activate/**" access="permitAll"/>
   <intercept-url pattern="/users/reset-password**" access="permitAll"/> 
   <intercept-url pattern="/users/my-profile/**" access="isAuthenticated()"/>  
+  <intercept-url pattern="/biens/add-favorite/**" access="isAuthenticated()"/>  
   <intercept-url pattern="/biens/new**" access="isAuthenticated()"/>
   <intercept-url pattern="/users/**" access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')"/>
   <intercept-url pattern="/groups/**" access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')"/>

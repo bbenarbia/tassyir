@@ -1,7 +1,7 @@
 package net.bbenarbia.domain.immobilier.subtype;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -65,7 +65,6 @@ public class BienImmobilier extends NamedEntity {
 	@JoinColumn(name = "proprietaire")
 	private User proprietaire;
 	
-
 	@Column(nullable = false)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumStatutProperty status;
@@ -84,7 +83,7 @@ public class BienImmobilier extends NamedEntity {
 
 	@OneToMany(mappedBy = "bien", fetch = FetchType.EAGER, cascade = {
 			CascadeType.PERSIST, CascadeType.MERGE })
-	private List<Photo> photos = new ArrayList<Photo>(0);
+	private Set<Photo> photos = new HashSet<Photo>(0);
 
 	@Column(name = "loyerMensuel")
 	private double loyerMensuel;
@@ -202,11 +201,12 @@ public class BienImmobilier extends NamedEntity {
 		this.etatBien = etatBien;
 	}
 
-	public List<Photo> getPhotos() {
+
+	public Set<Photo> getPhotos() {
 		return photos;
 	}
 
-	public void setPhotos(List<Photo> photos) {
+	public void setPhotos(Set<Photo> photos) {
 		this.photos = photos;
 	}
 
@@ -329,6 +329,5 @@ public class BienImmobilier extends NamedEntity {
 	public void setGaz(boolean gaz) {
 		this.gaz = gaz;
 	}
-
 
 }

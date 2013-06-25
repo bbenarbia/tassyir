@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -398,10 +397,18 @@ public class BienController {
 	public byte[] downloadPhoto(@PathVariable("idBien") Long idBien,
 			@PathVariable("idPhoto") Integer idPhoto) throws IOException {
 		BienImmobilier bien = this.bienService.get(idBien);
-		InputStream inputStream = new FileInputStream(bien.getPhotos()
-				.get(idPhoto - 1).getPhotoPath());
+		Photo photoToShow = null;
+		for (Photo photo : bien.getPhotos()) {
+			if(photo.getId().equals(idPhoto)){
+				photoToShow = photo;
+			}
+		}
+		if(photoToShow != null){
+		InputStream inputStream = new FileInputStream(photoToShow.getPhotoPath());
 		byte[] fileContent = IOUtils.toByteArray(inputStream);
 		return fileContent;
+		}
+		else return null;
 	}
 
 	@RequestMapping("/{bienId}")
@@ -806,39 +813,24 @@ public class BienController {
 	}
 	
 
-	@RequestMapping(value = "/{bienId}/add-favorite", method = RequestMethod.GET)
+	@RequestMapping(value = "/add-favorite/{bienId}", method = RequestMethod.GET)
 	public String AddBienToFavorites(@PathVariable("bienId") Long bienId, Model model,
 			SessionStatus status, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) {
 
-//		User user = null;
-//		boolean found = false;
-//		String cookiesvalue = "";
-//		Authentication auth = SecurityContextHolder.getContext()
-//				.getAuthentication();
-//		user = userService.getUtilisateurByLogin(auth.getName());
-//		if (user != null) {
-//			user.setLocked(true);
-//			userService.merge(user);
-//			status.setComplete();
-//		} else {
-//			
-//			Cookie[] cookies = request.getCookies();
-//				if (cookies != null){
-//		          for (Cookie ck : cookies) {
-//		            if ("tassyirFavoritesBien".equals(ck.getName())) {
-//		            	cookiesvalue = ck.getValue()+";"+String.valueOf(bienId);
-//		            	found = true;
-//		            	break;
-//		            }
-//		           }
-//		        }
-//				if(!found){
-//					cookiesvalue = String.valueOf(bienId);
-//				}
-//				
-//				response.addCookie(new Cookie("tassyirFavoritesBien", cookiesvalue));
-//		}
+		User user = null;
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		user = userService.getUtilisateurByLogin(auth.getName());
+		if (user != null) {
+			
+			BienImmobilier bien = bienService.get(bienId);
+			if(bien != null){
+				user.getFavorites().add(bien);
+				userService.merge(user);
+				status.setComplete();
+			}
+		}
 		return "redirect:/biens/" + bienId;
 	}
 }

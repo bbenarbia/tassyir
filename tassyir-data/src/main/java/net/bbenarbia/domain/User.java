@@ -48,14 +48,19 @@ public class User extends BaseUser {
 	private EnumTypeUser typeUser;
 
 	
-//	@OneToMany
-//    @JoinColumn(name="proprietaire") 
 	@OneToMany(mappedBy = "proprietaire", cascade = {
 			javax.persistence.CascadeType.PERSIST,
 			javax.persistence.CascadeType.MERGE })
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<BienImmobilier> biens = new HashSet<BienImmobilier>(0);
 
+	
+	@ManyToMany(fetch=FetchType.EAGER, cascade = javax.persistence.CascadeType.ALL)
+	@JoinTable(name = "biens_favorites", joinColumns = { @JoinColumn(name = "id_user") },
+	inverseJoinColumns = { @JoinColumn(name = "id_bien") })
+	private Set<BienImmobilier> favorites = new HashSet<BienImmobilier>(0);
+	
+	
 	@ManyToOne
 	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name = "fk_categorieutilisateur")
@@ -152,6 +157,14 @@ public class User extends BaseUser {
 
 	public void setActivationUrl(String activationUrl) {
 		this.activationUrl = activationUrl;
+	}
+
+	public Set<BienImmobilier> getFavorites() {
+		return favorites;
+	}
+
+	public void setFavorites(Set<BienImmobilier> favorites) {
+		this.favorites = favorites;
 	}
 	
 	

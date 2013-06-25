@@ -2,6 +2,7 @@ package net.bbenarbia.web.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import net.bbenarbia.domain.enums.EnumConsEnergie;
 import net.bbenarbia.domain.enums.EnumEtatBien;
@@ -357,7 +358,7 @@ public class BienDTO {
 			EnumNatureChauffage natureChauffage, EnumTypeChauffage typeChauffage, Boolean meuble,
 			String transport, Boolean adapteHandicape, String proximite,
 			double honoraires, double depotGarantie, int nbSallesBains,
-			int nbCaves, Boolean piscine, List<Photo> photos, LocalDateTime dateMiseAjour, boolean validated,Boolean puit,Boolean eauPotable,Boolean gaz) {
+			int nbCaves, Boolean piscine, Set<Photo> photos, LocalDateTime dateMiseAjour, boolean validated,Boolean puit,Boolean eauPotable,Boolean gaz) {
 
 		super();
 		this.name = name;
