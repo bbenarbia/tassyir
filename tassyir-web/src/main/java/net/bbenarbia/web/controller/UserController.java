@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import net.bbenarbia.domain.Role;
@@ -22,6 +25,7 @@ import net.bbenarbia.domain.User;
 import net.bbenarbia.domain.UserCategory;
 import net.bbenarbia.domain.enums.EnumTypeUser;
 import net.bbenarbia.domain.enums.ParameterCode;
+import net.bbenarbia.domain.immobilier.subtype.BienImmobilier;
 import net.bbenarbia.service.IParameterService;
 import net.bbenarbia.service.IRoleService;
 import net.bbenarbia.service.IUserCategoryService;
@@ -634,4 +638,23 @@ public class UserController {
 		return "redirect:/users/" + userId;
 	}
 
+	@RequestMapping(value = "/remove-favorite/{userId}/{bienId}", method = RequestMethod.GET)
+	public String removeBienFromFavorites(@PathVariable("userId") Long userId,@PathVariable("bienId") Long bienId, Model model,
+			SessionStatus status, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) {
+
+		User user = userService.get(userId);
+		if (user != null) {
+			BienImmobilier bienToRemove = null; 
+			for (BienImmobilier bien : user.getFavorites()) {
+				if(bien.getId().equals(bienId)){
+					bienToRemove = bien;
+					break;
+				}
+			}
+			user.getFavorites().remove(bienToRemove);
+		}
+		userService.merge(user);
+		return "redirect:/users/my-profile";
+	}
 }

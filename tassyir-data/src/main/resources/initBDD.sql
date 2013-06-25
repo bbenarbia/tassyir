@@ -158,6 +158,8 @@ CREATE TABLE IF NOT EXISTS biens (
   gardien tinyint (1),
   piscine tinyint (1),
   validated tinyint (1) default false,
+  toDelete tinyint (1) default false,
+  whyDelete VARCHAR(200),
   transport VARCHAR(200),
   proximite VARCHAR(200),
   adapteHandicape tinyint (1),

@@ -87,9 +87,20 @@
 					</div>
 				</div>
 			<div id="home_sidebar">
+				<c:if test="${showCustomSearch}">
+					<div class="block advert">
+						<jsp:include page="./../right-side-recherche.jsp" /> 
+					</div>
+				</c:if>
+				
+				<c:if test="${not showCustomSearch}">
 				<div class="block advert">
-					<jsp:include page="./../right-side-recherche.jsp" /> 
+	
+					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
+						alt="Advertise Here" style="width: 315px;" /> 
 				</div>
+				</c:if>
+				
 				<jsp:include page="./../../common/slide-right.jsp" />
 			</div>
 			<div class="clear">&nbsp;</div>

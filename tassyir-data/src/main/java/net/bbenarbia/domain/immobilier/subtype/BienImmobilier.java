@@ -111,6 +111,12 @@ public class BienImmobilier extends NamedEntity {
 	@Column(name = "validated")
 	private boolean validated;
 	
+	@Column(name = "toDelete")
+	private boolean toDelete;
+	
+	@Column(name = "whyDelete")
+	private String whyDelete;
+	
 	@Column(name = "eauPotable")
 	private boolean eauPotable;
 	
@@ -328,6 +334,23 @@ public class BienImmobilier extends NamedEntity {
 
 	public void setGaz(boolean gaz) {
 		this.gaz = gaz;
+	}
+
+
+	public boolean isToDelete() {
+		return toDelete;
+	}
+
+	public void setToDelete(boolean toDelete) {
+		this.toDelete = toDelete;
+	}
+
+	public String getWhyDelete() {
+		return whyDelete;
+	}
+
+	public void setWhyDelete(String whyDelete) {
+		this.whyDelete = whyDelete;
 	}
 
 }

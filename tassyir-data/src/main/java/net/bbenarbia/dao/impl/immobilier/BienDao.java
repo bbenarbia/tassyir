@@ -19,7 +19,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 	@SuppressWarnings("unchecked")
 	public List<BienImmobilier> getEntityByType(String type) {
 		String queryString = "FROM " + getEntityClass().getName()
-				+ " WHERE typeBien = :type AND validated is true order by dateMiseAjour desc";
+				+ " WHERE typeBien = :type AND validated is true AND toDelete is false order by dateMiseAjour desc";
 
 		Query query = getSession().createQuery(queryString);
 		query.setParameter("type", type);
@@ -32,7 +32,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 	@SuppressWarnings("unchecked")
 	public List<BienImmobilier> getLastBiens(int nb) {
 		String queryString = "FROM " + getEntityClass().getName()
-				+ " WHERE validated is true  order by dateMiseAjour desc ";
+				+ " WHERE validated is true  AND toDelete is false order by dateMiseAjour desc ";
 
 		Query query = getSession().createQuery(queryString);
 		query.setMaxResults(nb);
@@ -53,7 +53,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("FROM " + getEntityClass().getName());
-		sb.append(" WHERE validated is true ");
+		sb.append(" WHERE validated is true   AND toDelete is false ");
 		withAnd = true;
 //		sb.append(where);
 		if (typeBien != null) {		
@@ -166,7 +166,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("FROM " + getEntityClass().getName());
-		sb.append(" WHERE validated is true ");
+		sb.append(" WHERE validated is true  AND toDelete is false ");
 		
 		withAnd = true;
 		if (!selectedTypes.isEmpty()) {
@@ -391,7 +391,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 	@Override
 	public BienImmobilier getBienByRef(String refBien) {
 		String queryString = "FROM " + getEntityClass().getName()
-				+ " WHERE reference = :reference AND validated is true order by dateMiseAjour desc ";
+				+ " WHERE reference = :reference AND validated is true  AND toDelete is false order by dateMiseAjour desc ";
 
 		Query query = getSession().createQuery(queryString);
 		query.setParameter("reference", refBien);
@@ -404,7 +404,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 	public List<BienImmobilier> searchBiensByTown(Long townId) {
 		
 		String queryString = "FROM " + getEntityClass().getName()
-				+ " WHERE departement.reference = :referenceTown  AND validated is true";
+				+ " WHERE departement.reference = :referenceTown  AND validated is true  AND toDelete is false ";
 
 		Query query = getSession().createQuery(queryString);
 		query.setParameter("referenceTown", String.valueOf(townId));

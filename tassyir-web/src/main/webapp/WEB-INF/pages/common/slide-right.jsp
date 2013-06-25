@@ -8,8 +8,7 @@
 <c:if test="${fn:length(lastBiensAdded) != 0 }">		
 <div class="hot">
 	<h2 class="sidebar_head">
-		 Les derniers
-		annonces
+		 Les derniers annonces
 	</h2>
 	<ul>
 		<c:forEach var="bien" items="${lastBiensAdded}">

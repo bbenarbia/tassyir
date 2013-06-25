@@ -52,6 +52,7 @@ import net.bbenarbia.web.dto.NavigationDTO;
 import net.bbenarbia.web.dto.UploadItem;
 
 import org.apache.commons.io.IOUtils;
+import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -291,55 +292,6 @@ public class BienController {
 			}
 		}
 		
-		model.addAttribute("page", 1);
-		
-		int nbPages = findBienDto.getListBiens().size()/6 ;
-		if(findBienDto.getListBiens().size()%6 != 0){
-				nbPages++;
-		}
-		model.addAttribute("nbpages", nbPages);
-		model.addAttribute("findBiens", findBienDto);
-		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
-		navigations.add(new NavigationDTO("/", "home"));
-		navigations.add(new NavigationDTO("/biens/find-biens.htm",
-				"biens.listbien"));
-		model.addAttribute("navigations", navigations);
-		return "immobilier/consultation/biensList";
-	}
-
-	@RequestMapping(value = "/my-biens", method = RequestMethod.GET)
-	public String showMyBiens(Model model) throws Exception {
-		User user = null;
-		Authentication auth = SecurityContextHolder.getContext()
-				.getAuthentication();
-		user = userService.getUtilisateurByLogin(auth.getName());
-		FindBienDTO findBienDto = new FindBienDTO();
-		if (user != null) {
-			Set<BienImmobilier> listBiens = user.getBiens();
-			for (BienImmobilier bien : listBiens) {
-				if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Appartement) bien));
-				} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Maison) bien));
-				}else if (bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Terrain) bien));
-				}
-				else if (bien.getTypeBien().equals(EnumTypeBien.AGRICOLE.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Agricole) bien));
-				}
-				else if (bien.getTypeBien().equals(EnumTypeBien.VACANCES.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Vacances) bien));
-				}
-				else if (bien.getTypeBien().equals(EnumTypeBien.CARCASSE.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Carcasse) bien));
-				}
-				else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
-					findBienDto.getListBiens().add(new BienDTO((Commerce) bien));
-				}
-				else throw new Exception("Voir les autres types");
-				//A voir les autres types
-			}
-		}
 		model.addAttribute("page", 1);
 		
 		int nbPages = findBienDto.getListBiens().size()/6 ;
@@ -670,6 +622,8 @@ public class BienController {
 		else
 			return "immobilier/modification/update/updateTerrainForm";
 	}
+	
+	
 
 	@RequestMapping(value = "/{bienId}/edit", method = RequestMethod.POST)
 	public String processUpdateBienForm(@Valid BienDTO bienDto,
@@ -825,7 +779,7 @@ public class BienController {
 		if (user != null) {
 			
 			BienImmobilier bien = bienService.get(bienId);
-			if(bien != null){
+			if(bien != null && !user.getFavorites().contains(bien)){
 				user.getFavorites().add(bien);
 				userService.merge(user);
 				status.setComplete();
@@ -833,4 +787,48 @@ public class BienController {
 		}
 		return "redirect:/biens/" + bienId;
 	}
+
+	
+	
+	@RequestMapping(value = "/{bienId}/delete", method = RequestMethod.GET)
+	public String deleteBienForm(@PathVariable("bienId") Long bienId,
+			SessionStatus status , Model model) {
+		BienImmobilier bien = this.bienService.get(bienId);
+		User user = null;
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		user = userService.getUtilisateurByLogin(auth.getName());
+		if (user != null) {
+			if(user.equals(bien.getProprietaire())){
+				bien.setToDelete(true);
+				bien.setWhyDelete("La raison de suppression");
+				bien.setDateMiseAjour(new LocalDateTime());
+				bienService.merge(bien);
+				status.setComplete();
+			
+			MessageDTO message = new MessageDTO();
+			message.setText("Votre demande de suppression d'annonce vient d'etre enregistrer <br/> "
+							+"Elle ne sera plus en ligne, puis elle sera supprimée definitivement dans 7 jours <br/>"+
+							"Vous pouvez la remettre en ligne pendant cette période la, sinon, elle sera supprimée" 
+							);
+			model.addAttribute("message", message);
+			return "/information";
+			}
+			else {
+				MessageDTO message = new MessageDTO();
+				message.setText("Vous n'avez pas le droit de supprimer cette annonce");
+				model.addAttribute("message", message);
+
+				return "/information";
+			}
+		}
+			else {
+				MessageDTO message = new MessageDTO();
+				message.setText("User not found ");
+				model.addAttribute("message", message);
+
+				return "/information";
+			}	
+			
+		}
 }

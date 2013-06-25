@@ -143,6 +143,9 @@ public class BienDTO {
 	private Boolean eauPotable;
 	
 	private Boolean gaz;
+	private Boolean toDelete;
+	private String whyDelete ;
+	
 
 	public BienDTO() {
 		super();
@@ -173,7 +176,7 @@ public class BienDTO {
 				appartement.getTransport(), appartement.isAdapteHandicape(),
 				appartement.getProximite(), appartement.getHonoraires(),
 				appartement.getDepotGarantie(), appartement.getNbSallesBains(),
-				appartement.getNbCaves(), false, appartement.getPhotos(), appartement.getDateMiseAjour(), appartement.isValidated(), false, appartement.isEauPotable(), appartement.isGaz());
+				appartement.getNbCaves(), false, appartement.getPhotos(), appartement.getDateMiseAjour(), appartement.isValidated(), false, appartement.isEauPotable(), appartement.isGaz(), appartement.isToDelete(), appartement.getWhyDelete());
 	}
 	
 	
@@ -201,7 +204,7 @@ public class BienDTO {
 				terrain.getTransport(), terrain.isAdapteHandicape(),
 				terrain.getProximite(), terrain.getHonoraires(),
 				terrain.getDepotGarantie(), terrain.getNbSallesBains(),
-				terrain.getNbCaves(), false, terrain.getPhotos(), terrain.getDateMiseAjour(), terrain.isValidated(), false, terrain.isEauPotable(), terrain.isGaz());
+				terrain.getNbCaves(), false, terrain.getPhotos(), terrain.getDateMiseAjour(), terrain.isValidated(), false, terrain.isEauPotable(), terrain.isGaz(), terrain.isToDelete(), terrain.getWhyDelete());
 	}
 	
 	public BienDTO(Vacances vacances) {
@@ -227,7 +230,7 @@ public class BienDTO {
 				vacances.getTransport(), vacances.isAdapteHandicape(),
 				vacances.getProximite(), vacances.getHonoraires(),
 				vacances.getDepotGarantie(), vacances.getNbSallesBains(),
-				vacances.getNbCaves(), false, vacances.getPhotos(), vacances.getDateMiseAjour(), vacances.isValidated(), false, vacances.isEauPotable(), vacances.isGaz());
+				vacances.getNbCaves(), false, vacances.getPhotos(), vacances.getDateMiseAjour(), vacances.isValidated(), false, vacances.isEauPotable(), vacances.isGaz(), vacances.isToDelete(), vacances.getWhyDelete());
 	}
 	
 	public BienDTO(Agricole agricole) {
@@ -253,7 +256,7 @@ public class BienDTO {
 				agricole.getTransport(), agricole.isAdapteHandicape(),
 				agricole.getProximite(), agricole.getHonoraires(),
 				agricole.getDepotGarantie(), agricole.getNbSallesBains(),
-				agricole.getNbCaves(), false, agricole.getPhotos(), agricole.getDateMiseAjour(), agricole.isValidated(), agricole.isPuit(), agricole.isEauPotable(), agricole.isGaz());
+				agricole.getNbCaves(), false, agricole.getPhotos(), agricole.getDateMiseAjour(), agricole.isValidated(), agricole.isPuit(), agricole.isEauPotable(), agricole.isGaz(), agricole.isToDelete(), agricole.getWhyDelete());
 	}
 	
 	public BienDTO(Carcasse carcasse) {
@@ -273,7 +276,7 @@ public class BienDTO {
 						.getTransport(), carcasse.isAdapteHandicape(), carcasse
 						.getProximite(), carcasse.getHonoraires(), carcasse
 						.getDepotGarantie(), carcasse.getNbSallesBains(), carcasse
-						.getNbCaves(), false, carcasse.getPhotos(), carcasse.getDateMiseAjour(), carcasse.isValidated(), false, carcasse.isEauPotable(), carcasse.isGaz());
+						.getNbCaves(), false, carcasse.getPhotos(), carcasse.getDateMiseAjour(), carcasse.isValidated(), false, carcasse.isEauPotable(), carcasse.isGaz(), carcasse.isToDelete(), carcasse.getWhyDelete());
 	}
 	
 	public BienDTO(Commerce commerce) {
@@ -292,7 +295,7 @@ public class BienDTO {
 						.getTransport(), commerce.isAdapteHandicape(), commerce
 						.getProximite(), commerce.getHonoraires(), commerce
 						.getDepotGarantie(), commerce.getNbSallesBains(), commerce
-						.getNbCaves(),false, commerce.getPhotos(), commerce.getDateMiseAjour(), commerce.isValidated(), false, commerce.isEauPotable(), commerce.isGaz());
+						.getNbCaves(),false, commerce.getPhotos(), commerce.getDateMiseAjour(), commerce.isValidated(), false, commerce.isEauPotable(), commerce.isGaz(), commerce.isToDelete(), commerce.getWhyDelete());
 	}
 	
 	
@@ -318,7 +321,7 @@ public class BienDTO {
 						.getTransport(), maison.isAdapteHandicape(), maison
 						.getProximite(), maison.getHonoraires(), maison
 						.getDepotGarantie(), maison.getNbSallesBains(), maison
-						.getNbCaves(), maison.isPiscine(), maison.getPhotos(), maison.getDateMiseAjour(), maison.isValidated(), false, maison.isEauPotable(), maison.isGaz());
+						.getNbCaves(), maison.isPiscine(), maison.getPhotos(), maison.getDateMiseAjour(), maison.isValidated(), false, maison.isEauPotable(), maison.isGaz(), maison.isToDelete(), maison.getWhyDelete());
 	}
 
 	public BienDTO(Studio studio) {
@@ -342,7 +345,7 @@ public class BienDTO {
 						.getTransport(), studio.isAdapteHandicape(), studio
 						.getProximite(), studio.getHonoraires(), studio
 						.getDepotGarantie(), studio.getNbSallesBains(), studio
-						.getNbCaves(), false, studio.getPhotos(), studio.getDateMiseAjour(), studio.isValidated(), false, studio.isEauPotable(), studio.isGaz());
+						.getNbCaves(), false, studio.getPhotos(), studio.getDateMiseAjour(), studio.isValidated(), false, studio.isEauPotable(), studio.isGaz(), studio.isToDelete(), studio .getWhyDelete());
 	}
 
 	public BienDTO(Long id, String name, String reference, String adresse,
@@ -358,7 +361,7 @@ public class BienDTO {
 			EnumNatureChauffage natureChauffage, EnumTypeChauffage typeChauffage, Boolean meuble,
 			String transport, Boolean adapteHandicape, String proximite,
 			double honoraires, double depotGarantie, int nbSallesBains,
-			int nbCaves, Boolean piscine, Set<Photo> photos, LocalDateTime dateMiseAjour, boolean validated,Boolean puit,Boolean eauPotable,Boolean gaz) {
+			int nbCaves, Boolean piscine, Set<Photo> photos, LocalDateTime dateMiseAjour, boolean validated,Boolean puit,Boolean eauPotable,Boolean gaz, boolean toDelete,String whyDelete) {
 
 		super();
 		this.name = name;
@@ -421,6 +424,9 @@ public class BienDTO {
 		this.puit = puit;
 		this.eauPotable = eauPotable;
 		this.gaz = gaz;
+		this.toDelete= toDelete;
+		this.whyDelete =whyDelete;
+		
 		}
 
 	public Maison updateMaison(Maison maison) {
@@ -1209,6 +1215,22 @@ public class BienDTO {
 
 	public void setGaz(Boolean gaz) {
 		this.gaz = gaz;
+	}
+
+	public Boolean getToDelete() {
+		return toDelete;
+	}
+
+	public void setToDelete(Boolean toDelete) {
+		this.toDelete = toDelete;
+	}
+
+	public String getWhyDelete() {
+		return whyDelete;
+	}
+
+	public void setWhyDelete(String whyDelete) {
+		this.whyDelete = whyDelete;
 	}
 
 	

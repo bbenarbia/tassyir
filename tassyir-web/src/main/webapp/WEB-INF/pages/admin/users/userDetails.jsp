@@ -13,6 +13,10 @@
 	 <spring:url value="/users/{userId}/edit.htm" var="editUserUrl">
 		<spring:param name="userId" value="${user.id}" />
 	</spring:url>
+	<spring:url value="/users/remove-favorite/{userId}" var="removeFromFavoriteUrl">
+		<spring:param name="userId" value="${user.id}" />
+	</spring:url>
+	
 	<spring:url value="/users/upload/{userId}/show" var="addPhotoUrl">
 		<spring:param name="userId" value="${user.id}" />
 	</spring:url>
@@ -272,7 +276,13 @@
 										<spring:url value="/biens/{bienId}.htm" var="DetailbienUrl">
 											<spring:param name="bienId" value="${bien.id}" />
 										</spring:url> 
-										<li>${status.count} : <a href="${DetailbienUrl}"><c:out value="${bien.name}" /></a></li>
+										
+											<li>${status.count} : 
+												<c:if test="${bien.toDelete}">
+													(toDelete)
+												</c:if>	
+											<a href="${DetailbienUrl}"><c:out value="${bien.name}" /></a></li>
+										
 									</c:forEach>
 									</ul>
 								</td>
@@ -286,7 +296,7 @@
 					<div id="listing_detail">
 						<table>
 							<tr>
-								<td><h3>Mes FAVORIS</h3></td>
+								<td><h3>Mes favoris</h3></td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 							</tr>
@@ -296,7 +306,7 @@
 										<spring:url value="/biens/{bienId}.htm" var="DetailbienUrl">
 											<spring:param name="bienId" value="${bien.id}" />
 										</spring:url> 
-										<li>${status.count} : <a href="${DetailbienUrl}"><c:out value="${bien.name}" /></a></li>
+										<li>${status.count} : <a href="${DetailbienUrl}"><c:out value="${bien.name}" /></a>  <a href="${removeFromFavoriteUrl}/${bien.id}.htm">Remove</a></li>
 									</c:forEach>
 									</ul>
 								</td>

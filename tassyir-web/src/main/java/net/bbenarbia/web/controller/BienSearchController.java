@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.bbenarbia.domain.User;
 import net.bbenarbia.domain.enums.EnumTypeBien;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
 import net.bbenarbia.domain.immobilier.subtype.Agricole;
@@ -27,6 +28,8 @@ import net.bbenarbia.web.dto.NavigationDTO;
 import net.bbenarbia.web.enums.EnumTypeAction;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -98,6 +101,53 @@ public class BienSearchController {
 		return "redirect:/biens/search-result/1.htm";
 	}
 
+	@RequestMapping(value = "/my-biens", method = RequestMethod.GET)
+	public String showMyBiens(Model model) throws Exception {
+		User user = null;
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		user = userService.getUtilisateurByLogin(auth.getName());
+		FindBienDTO findBienDto = new FindBienDTO();
+		if (user != null) {
+			Set<BienImmobilier> listBiens = user.getBiens();
+			for (BienImmobilier bien : listBiens) {
+				if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Appartement) bien));
+				} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Maison) bien));
+				}else if (bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Terrain) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.AGRICOLE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Agricole) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.VACANCES.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Vacances) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.CARCASSE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Carcasse) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Commerce) bien));
+				}
+			}
+		}
+		model.addAttribute("page", 1);
+		model.addAttribute("showCustomSearch", false);
+		int nbPages = findBienDto.getListBiens().size()/6 ;
+		if(findBienDto.getListBiens().size()%6 != 0){
+				nbPages++;
+		}
+		model.addAttribute("nbpages", nbPages);
+		model.addAttribute("findBiens", findBienDto);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/biens/find-biens.htm",
+				"biens.listbien"));
+		model.addAttribute("navigations", navigations);
+		return "immobilier/consultation/biensList";
+	}
+	
 	@RequestMapping(value = "/search-result/{page}", method = RequestMethod.POST)
 	public String rechercheSpecifiqueBiensResultForms(@ModelAttribute("findBiens") FindBienDTO findBienDto,
 			@PathVariable("page") Integer page, Model model,
@@ -113,6 +163,7 @@ public class BienSearchController {
 		}
 		model.addAttribute("nbpages", nbPages);
 		model.addAttribute("findBiens", findBienDto);
+		model.addAttribute("showCustomSearch", true);
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
 		navigations.add(new NavigationDTO("/biens/find-biens.htm",
@@ -126,15 +177,14 @@ public class BienSearchController {
 			HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) {
 
-//		searchBiens(findBienDto);
 		model.addAttribute("page", page);
 		
 		int nbPages = findBienDto.getListBiens().size()/6 ;
 		if(findBienDto.getListBiens().size()%6 != 0){
 			nbPages++;
 		}
+		model.addAttribute("showCustomSearch", true);
 		model.addAttribute("nbpages", nbPages);
-//		model.addAttribute("findBiens", findBienDto);
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
 		navigations.add(new NavigationDTO("/biens/find-biens.htm",
@@ -260,6 +310,7 @@ public class BienSearchController {
 		findBienDto.setTypeOperationBien(mainOperation);
 		model.addAttribute("mainOperation", mainOperation);
 		model.addAttribute("findBiens", findBienDto);
+		model.addAttribute("showCustomSearch", false);
 		return "immobilier/recherche-biens";
 	}
 
