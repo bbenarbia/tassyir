@@ -13,7 +13,6 @@ import net.bbenarbia.service.generic.GenericService;
 import net.bbenarbia.service.immobilier.IBienService;
 import net.bbenarbia.utils.Utils;
 
-import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

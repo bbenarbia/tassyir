@@ -21,6 +21,7 @@ import javax.persistence.Table;
 import net.bbenarbia.domain.Town;
 import net.bbenarbia.domain.User;
 import net.bbenarbia.domain.base.NamedEntity;
+import net.bbenarbia.domain.base.UniteMesure;
 import net.bbenarbia.domain.enums.EnumEtatBien;
 import net.bbenarbia.domain.enums.EnumStatutProperty;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
@@ -62,9 +63,13 @@ public class BienImmobilier extends NamedEntity {
 	private double superficie;
 
 	@ManyToOne
+	@JoinColumn(name = "uniteSuperficie")
+	private UniteMesure uniteSuperficie;
+
+	@ManyToOne
 	@JoinColumn(name = "proprietaire")
 	private User proprietaire;
-	
+
 	@Column(nullable = false)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumStatutProperty status;
@@ -77,6 +82,10 @@ public class BienImmobilier extends NamedEntity {
 
 	@Column(name = "honoraires")
 	private double honoraires;
+
+	@ManyToOne
+	@JoinColumn(name = "unitePrix")
+	private UniteMesure unitePrix;
 
 	@Column(name = "depotGarantie")
 	private double depotGarantie;
@@ -107,19 +116,19 @@ public class BienImmobilier extends NamedEntity {
 
 	@Column(nullable = false, updatable = false, insertable = false)
 	private String typeBien;
-	
+
 	@Column(name = "validated")
 	private boolean validated;
-	
+
 	@Column(name = "toDelete")
 	private boolean toDelete;
-	
+
 	@Column(name = "whyDelete")
 	private String whyDelete;
-	
+
 	@Column(name = "eauPotable")
 	private boolean eauPotable;
-	
+
 	@Column(name = "gaz")
 	private boolean gaz;
 
@@ -130,9 +139,9 @@ public class BienImmobilier extends NamedEntity {
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
-	
+
 	@Column(name = "dateMiseAjour", nullable = false)
-    @Type(type = "org.joda.time.contrib.hibernate.PersistentLocalDateTime")
+	@Type(type = "org.joda.time.contrib.hibernate.PersistentLocalDateTime")
 	private LocalDateTime dateMiseAjour;
 
 	public String getDescription() {
@@ -206,7 +215,6 @@ public class BienImmobilier extends NamedEntity {
 	public void setEtatBien(EnumEtatBien etatBien) {
 		this.etatBien = etatBien;
 	}
-
 
 	public Set<Photo> getPhotos() {
 		return photos;
@@ -336,7 +344,6 @@ public class BienImmobilier extends NamedEntity {
 		this.gaz = gaz;
 	}
 
-
 	public boolean isToDelete() {
 		return toDelete;
 	}
@@ -353,4 +360,21 @@ public class BienImmobilier extends NamedEntity {
 		this.whyDelete = whyDelete;
 	}
 
+	public UniteMesure getUniteSuperficie() {
+		return uniteSuperficie;
+	}
+
+	public void setUniteSuperficie(UniteMesure uniteSuperficie) {
+		this.uniteSuperficie = uniteSuperficie;
+	}
+
+	public UniteMesure getUnitePrix() {
+		return unitePrix;
+	}
+
+	public void setUnitePrix(UniteMesure unitePrix) {
+		this.unitePrix = unitePrix;
+	}
+
+	
 }

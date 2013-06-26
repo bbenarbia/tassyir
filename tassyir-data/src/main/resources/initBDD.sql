@@ -121,13 +121,16 @@ CREATE TABLE IF NOT EXISTS users (
   INDEX(name)
 ) engine=InnoDB  DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS biens_favorites (
-	id_user INT(5) UNSIGNED NOT NULL,
-	id_bien INT(5) UNSIGNED NOT NULL,
-	PRIMARY KEY (id_user,id_bien),        
-    CONSTRAINT FK_USER_ID FOREIGN KEY (id_user) REFERENCES users(id),
-    CONSTRAINT FK_BIEN_ID FOREIGN KEY (id_bien) REFERENCES biens(id)
-   )engine=InnoDB  DEFAULT CHARSET=utf8;
+
+ CREATE TABLE IF NOT EXISTS unites (
+ id INT(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ abreviation VARCHAR(80),
+ typeUnite INT(5) DEFAULT 0,
+ name VARCHAR(80),
+ valeur DOUBLE,
+  INDEX(name)
+) engine=InnoDB  DEFAULT CHARSET=utf8;
+
 
 
 CREATE TABLE IF NOT EXISTS biens (
@@ -182,7 +185,8 @@ CREATE TABLE IF NOT EXISTS biens (
   dateMiseAjour DATETIME,
   eauPotable tinyint (1),
   gaz tinyint (1),
-  
+  uniteSuperficie INT(5)  DEFAULT 2,
+  unitePrix INT(5) UNSIGNED  DEFAULT 7,  
   INDEX(ref, name)
 ) engine=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -197,6 +201,12 @@ CREATE TABLE IF NOT EXISTS photos (
   INDEX(name)
 ) engine=InnoDB  DEFAULT CHARSET=utf8;
 
-
+CREATE TABLE IF NOT EXISTS biens_favorites (
+	id_user INT(5) UNSIGNED NOT NULL,
+	id_bien INT(5) UNSIGNED NOT NULL,
+	PRIMARY KEY (id_user,id_bien),        
+    CONSTRAINT FK_USER_ID FOREIGN KEY (id_user) REFERENCES users(id),
+    CONSTRAINT FK_BIEN_ID FOREIGN KEY (id_bien) REFERENCES biens(id)
+   )engine=InnoDB  DEFAULT CHARSET=utf8;
 --FOREIGN KEY (idDepartement) REFERENCES departements(id),
 --  FOREIGN KEY (bien) REFERENCES biens(id),

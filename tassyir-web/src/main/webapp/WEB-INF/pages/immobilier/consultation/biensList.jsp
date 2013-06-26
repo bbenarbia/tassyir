@@ -49,14 +49,14 @@
 										<img width="120" height="120"
 												src="${photoUrl}/${bien.id}/${1}" class="listingimage">
 									</c:if>
-									<h3>${bien.typeOperation} ${bien.departement}(${bien.codePostal}) ${bien.superficie} m2</h3>
+									<h3>${bien.typeOperation} ${bien.departement}(${bien.codePostal}) ${bien.superficie} ${bien.uniteSuperficie}</h3>
 									<p>${bien.shortDescription} ... <a href="${DetailbienUrl}"> Details </a></p>
 									
 								</div>
 								 <div class="listingbtns">
-								 	<span class="price">${bien.prixVente} M.DA</span> 
-									<span class="pricesmall">loyer:${bien.loyerMensuel} DA</span>
-									<span class="pricesmall">charges:${bien.chargesMensuel} DA</span>
+								 	<span class="price">${bien.prixVente} ${bien.unitePrix}</span> 
+									<span class="pricesmall">loyer:${bien.loyerMensuel} ${bien.unitePrix}</span>
+									<span class="pricesmall">charges:${bien.chargesMensuel} ${bien.unitePrix}</span>
 								 </div>
 								<div class="clear">&nbsp;</div>
 							</li>

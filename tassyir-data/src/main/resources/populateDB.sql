@@ -250,5 +250,35 @@ insert into photos values(6,"photos6", 3,"c:\\Benaissa\\temp\\m3.jpg");
 insert into photos values(7,"photos7", 3,"c:\\Benaissa\\temp\\m4.jpg");
 
 
+INSERT INTO  unites (
+`id` ,
+`abreviation` ,
+`typeUnite` ,
+`name` ,
+`valeur`
+)
+VALUES (
+1 ,  'M',  '2',  'Metre',  '1'
+), (
+2 ,  'M2',  '1',  'Metre caré',  '1'
+),(
+3 ,  'Ha',  '1',  'Hectare',  '10000'
+), (
+4 ,  'are',  '1',  'are',  '100'
+), (
+5 ,  'Centiare',  '1',  'Centiare',  '1'
+), (
+6 ,  '&#8364;',  '0',  'Euro',  '100'
+),(
+7 ,  'DA',  '0',  'Dinar Algérien',  '1'
+), (
+8 ,  'M.DA',  '0',  'Millions de dinar Algérien',  '1000000'
+),(
+9,  '&#36;',  '0',  'Dollar US',  '90'
+);
+
+
+
 ---c:\\Benaissa\\temp\\
 --/opt/work/temp/
+

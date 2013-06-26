@@ -15,7 +15,7 @@ function deleteBien(url){
 </script>
 
 	<jsp:include page="./../../common/head.jsp" />
-	<title>${bien.typeOperation} ${bien.typeBien} ${bien.ville}(${bien.codePostal}) ${bien.superficie} m2</title>
+	<title>${bien.typeOperation} ${bien.typeBien} ${bien.ville}(${bien.codePostal}) ${bien.superficie} ${bien.uniteSuperficie}</title>
 </head>
 <body>
 	<spring:url value="/users/photo" var="userPhotoUrl" />	
@@ -35,20 +35,20 @@ function deleteBien(url){
 					<jsp:include page="../../common/navigator.jsp" />					
 			<div class="group">
 				<h2>
-					${bien.typeOperation} ${bien.typeBien} ${bien.ville}(${bien.codePostal}) ${bien.superficie} m2
+					${bien.typeOperation} ${bien.typeBien} ${bien.ville}(${bien.codePostal}) ${bien.superficie} ${bien.uniteSuperficie}
 				</h2>				
 				<div id="single_item_details">
 						<div>
 							<c:if test="${bien.typeOperation =='OFFRE_VENDRE' || bien.typeOperation =='DEMANDE_ACHAT'}">
 							 	<div class="listingprices">
-								 	<span class="price"><spring:message code="bien.prixVente" /> : ${bien.prixVente} </span> 
-									<span class="pricesmall"><spring:message code="bien.honoraires" /> : ${bien.chargesMensuel} ${currency}</span>
+								 	<span class="price"><spring:message code="bien.prixVente" /> : ${bien.prixVente} ${bien.unitePrix} </span> 
+									<span class="pricesmall"><spring:message code="bien.honoraires" /> : ${bien.chargesMensuel} ${bien.unitePrix}</span>
 								 </div>
 							</c:if> 
 							<c:if test="${bien.typeOperation =='OFFRE_LOCATION' || bien.typeOperation =='DEMANDE_LOCATION' }">
 							<div class="listingprices">
-							 	 <span class="price"><spring:message code="bien.loyerMensuel" /> : ${bien.loyerMensuel} ${currency} </span> 
-								<span class="pricesmall"><spring:message code="bien.chargesMensuel" /> : ${bien.chargesMensuel} ${currency}</span>
+							 	 <span class="price"><spring:message code="bien.loyerMensuel" /> : ${bien.loyerMensuel} ${bien.unitePrix} </span> 
+								<span class="pricesmall"><spring:message code="bien.chargesMensuel" /> : ${bien.chargesMensuel} ${bien.unitePrix}</span>
 								</div>
 							</c:if>
 						</div>
@@ -96,7 +96,7 @@ function deleteBien(url){
 								<tbody>
 									<tr class="auto2010_detTabTR">
 										<td class="auto2010_detTD1First"><spring:message code="bien.superficie" /></td>
-										<td class="auto2010_detTD1First">${bien.superficie} m2</td>
+										<td class="auto2010_detTD1First">${bien.superficie} ${bien.uniteSuperficie}</td>
 									</tr>
 									<c:if test="${not empty bien.proximite}">
 										 <tr class="auto2010_detTabTR">

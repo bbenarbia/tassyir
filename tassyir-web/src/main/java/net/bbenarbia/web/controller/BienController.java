@@ -19,6 +19,7 @@ import javax.validation.Valid;
 
 import net.bbenarbia.domain.Town;
 import net.bbenarbia.domain.User;
+import net.bbenarbia.domain.base.UniteMesure;
 import net.bbenarbia.domain.enums.EnumConsEnergie;
 import net.bbenarbia.domain.enums.EnumEtatBien;
 import net.bbenarbia.domain.enums.EnumImpactConso;
@@ -28,6 +29,7 @@ import net.bbenarbia.domain.enums.EnumTypeBien;
 import net.bbenarbia.domain.enums.EnumTypeChauffage;
 import net.bbenarbia.domain.enums.EnumTypeEauChaude;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
+import net.bbenarbia.domain.enums.EnumTypeUniteMesure;
 import net.bbenarbia.domain.enums.EnumTypeVille;
 import net.bbenarbia.domain.enums.ParameterCode;
 import net.bbenarbia.domain.immobilier.Photo;
@@ -42,6 +44,7 @@ import net.bbenarbia.domain.immobilier.subtype.Vacances;
 import net.bbenarbia.service.IParameterService;
 import net.bbenarbia.service.IPhotoService;
 import net.bbenarbia.service.ITownService;
+import net.bbenarbia.service.IUniteMesureService;
 import net.bbenarbia.service.IUtilisateurService;
 import net.bbenarbia.service.immobilier.IBienService;
 import net.bbenarbia.utils.ImageService;
@@ -90,6 +93,10 @@ public class BienController {
 
 	@Autowired
 	IPhotoService photoService;
+	
+	@Autowired
+	private IUniteMesureService uniteMesureService;
+	
 
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
@@ -144,14 +151,11 @@ public class BienController {
 				else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
 					biensDto.add(new BienDTO((Commerce) bien));
 				}
-				else throw new Exception("Voir les autres types de biens non testés");
-				//A voir les autres types
 			}
 		}
 		
 		return new LinkedList<BienDTO>(biensDto);
 	}
-	
 	
 	@ModelAttribute("typesLogementList")
 	public List<EnumTypeBien> populateLogementTypeList() {
@@ -161,7 +165,17 @@ public class BienController {
 		}
 		return typesLogementList;
 	}
-
+	
+	@ModelAttribute("uniteMesureSuperficie")
+	public Set<UniteMesure> populateUniteMesureSuperficieList() {
+		return  uniteMesureService.getUniteByType(EnumTypeUniteMesure.SUPERFICIE);
+	}
+	
+	@ModelAttribute("uniteMesurePrix")
+	public Set<UniteMesure> populateUniteMesurePrixList() {
+		return  uniteMesureService.getUniteByType(EnumTypeUniteMesure.PRICE);
+	}
+	
 	@ModelAttribute("typesOperationsList")
 	public List<EnumTypeOperation> populateTypeOperationList() {
 		List<EnumTypeOperation> typesOperationsList = new LinkedList<EnumTypeOperation>();
@@ -286,8 +300,6 @@ public class BienController {
 					else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
 						findBienDto.getListBiens().add(new BienDTO((Commerce) bien));
 					}
-					else throw new Exception("Voir les autres types");
-					//A voir les autres types
 				}
 			}
 		}
