@@ -66,8 +66,8 @@
 					            		<form:input label="superficie" path="superficie" class="text smalltext" />
 					            		<form:select path="uniteSuperficie"  class="select_field">
 													<c:forEach var="item" items="${uniteMesureSuperficie}">
-																<form:option  value="${item}">
-										               				 ${item} 
+																<form:option  value="${item.id}">
+										               				 ${item.abreviation} 
 										            			</form:option>
 													</c:forEach>
 										</form:select>
@@ -127,8 +127,8 @@
 					            		<form:input label="honoraires" path="honoraires" class="text smalltext" />
 					            		<form:select path="unitePrix"  class="select_field">
 													<c:forEach var="item" items="${uniteMesurePrix}">
-																<form:option  value="${item}">
-										               				 ${item} 
+																<form:option  value="${item.id}">
+										               				 ${item.abreviation} 
 										            			</form:option>
 													</c:forEach>
 										</form:select>

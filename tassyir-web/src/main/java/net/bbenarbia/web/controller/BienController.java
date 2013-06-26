@@ -382,10 +382,6 @@ public class BienController {
 		BienImmobilier bien = this.bienService.get(bienId);
 		if(bien != null){
 		BienDTO bienDto = null;
-		String currency = parameterService
-				.getParameterName(ParameterCode.MAIN_CURRENCY.toString())
-				.get(0).getValue();
-		model.addAttribute("currency", currency);
 		
 		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 		navigations.add(new NavigationDTO("/", "home"));
@@ -532,6 +528,7 @@ public class BienController {
 			if (listVilles != null && listVilles.size() != 0) {
 				ville = listVilles.get(0);
 			}
+			
 			String newRef = bienService.getNewReferenceBien();
 			bienDto.setReference(newRef);
 			BienImmobilier bienToCreate = null;
@@ -557,7 +554,10 @@ public class BienController {
 				bienToCreate = new Carcasse();
 				bienToCreate = bienDto.updateCarcasse((Carcasse)bienToCreate);
 			}
-			
+			UniteMesure unitePrix = uniteMesureService.get(Long.valueOf(bienDto.getUnitePrix()));
+			UniteMesure uniteSuperfice = uniteMesureService.get(Long.valueOf(bienDto.getUniteSuperficie()));
+			bienToCreate.setUnitePrix(unitePrix);
+			bienToCreate.setUniteSuperficie(uniteSuperfice);
 			User user = null;
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			user = userService.getUtilisateurByLogin(auth.getName());
