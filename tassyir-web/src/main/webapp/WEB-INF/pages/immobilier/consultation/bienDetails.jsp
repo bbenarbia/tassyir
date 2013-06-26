@@ -5,6 +5,15 @@
 
 <html>
 <head>
+<script type="text/javascript">
+function deleteBien(url){
+    var confirmed = confirm('Vous voulez supprimer le bien');
+    if (confirmed) {
+    	window.open (url,'_self',false)
+    }
+}
+</script>
+
 	<jsp:include page="./../../common/head.jsp" />
 	<title>${bien.typeOperation} ${bien.typeBien} ${bien.ville}(${bien.codePostal}) ${bien.superficie} m2</title>
 </head>
@@ -197,9 +206,15 @@
 											</span>
 										</li>
 										<li>
-											<span class="listbuttons"> <spring:url value="/biens/{bienId}/delete.htm" var="bienUrl">
+											<span class="listbuttons"> <spring:url value="/biens/{bienId}/delete.htm" var="deleteBienUrl">
 												<spring:param name="bienId" value="${bien.id}" />
-											</spring:url> <a href="${fn:escapeXml(bienUrl)}">Delete bien</a></span>
+											</spring:url> 
+											
+											<%-- <a href="${fn:escapeXml(deleteBienUrl)}">Delete bien</a> --%>
+											<a href="javascript:deleteBien('${deleteBienUrl}')">DeleteBien</a>
+											</span>
+											
+											
 										</li>
 										<li>
 											<span class="listbuttons"> <a
