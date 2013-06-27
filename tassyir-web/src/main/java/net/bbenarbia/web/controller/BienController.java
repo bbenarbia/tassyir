@@ -124,7 +124,7 @@ public class BienController {
 	}
 
 	@ModelAttribute("lastBiensAdded")
-	public List<BienDTO> findLastBiens() throws Exception {
+	public List<BienDTO> findLastBiens() {
 		
 		List<BienImmobilier> lastBiens = bienService.getLastBiens(3);
 		List<BienDTO> biensDto = new ArrayList<BienDTO>();

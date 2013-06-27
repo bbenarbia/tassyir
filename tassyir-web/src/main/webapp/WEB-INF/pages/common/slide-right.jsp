@@ -5,19 +5,23 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
-<c:if test="${fn:length(lastBiensAdded) != 0 }">		
+<c:if test="${fn:length(lastBiensAdded) > 0 }">		
 <div class="hot">
 	<h2 class="sidebar_head">
 		 Les derniers annonces
 	</h2>
 	<ul>
 		<c:forEach var="bien" items="${lastBiensAdded}">
+				<spring:url value="/biens/{bienId}.htm" var="DetailbienUrl">
+									<spring:param name="bienId" value="${bien.id}" />
+				</spring:url>
+		
 			<li><span class="imageholder"> <img
 				src='<c:url value="/resources/graphics/new.gif"/>' alt="new"
 				width="66" height="66" />
 			</span>
 				<h3>
-					<a href="DetailbienUrl">${bien.typeOperation} ${bien.typeBien} ${bien.ville} ${bien.superficie} m2</a>
+					<a href="${DetailbienUrl}">${bien.typeOperation} ${bien.typeBien} ${bien.ville} ${bien.superficie} m2</a>
 				</h3>
 				<%-- <p class="description">
 						${bien.shortDescription} 

@@ -39,6 +39,9 @@ public class FindBienDTO {
 	private Boolean parking;
 	private Boolean terrassesBalcons;
 	private int typeBien;
+	private int unitePrix;
+	private int uniteSuperficie;
+	
 
 	List<BienDTO> listBiens = new ArrayList<BienDTO>(0);
 
@@ -289,6 +292,22 @@ public class FindBienDTO {
 
 	public void setTypeBien(int typeBien) {
 		this.typeBien = typeBien;
+	}
+
+	public int getUnitePrix() {
+		return unitePrix;
+	}
+
+	public void setUnitePrix(int unitePrix) {
+		this.unitePrix = unitePrix;
+	}
+
+	public int getUniteSuperficie() {
+		return uniteSuperficie;
+	}
+
+	public void setUniteSuperficie(int uniteSuperficie) {
+		this.uniteSuperficie = uniteSuperficie;
 	}
 
 

@@ -2,6 +2,7 @@ package net.bbenarbia.web.controller;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -10,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.bbenarbia.domain.User;
+import net.bbenarbia.domain.base.UniteMesure;
 import net.bbenarbia.domain.enums.EnumTypeBien;
 import net.bbenarbia.domain.enums.EnumTypeOperation;
+import net.bbenarbia.domain.enums.EnumTypeUniteMesure;
 import net.bbenarbia.domain.immobilier.subtype.Agricole;
 import net.bbenarbia.domain.immobilier.subtype.Appartement;
 import net.bbenarbia.domain.immobilier.subtype.BienImmobilier;
@@ -20,6 +23,7 @@ import net.bbenarbia.domain.immobilier.subtype.Commerce;
 import net.bbenarbia.domain.immobilier.subtype.Maison;
 import net.bbenarbia.domain.immobilier.subtype.Terrain;
 import net.bbenarbia.domain.immobilier.subtype.Vacances;
+import net.bbenarbia.service.IUniteMesureService;
 import net.bbenarbia.service.IUtilisateurService;
 import net.bbenarbia.service.immobilier.IBienService;
 import net.bbenarbia.web.dto.BienDTO;
@@ -49,6 +53,8 @@ public class BienSearchController {
 	@Autowired
 	private IUtilisateurService userService;
 	
+	@Autowired
+	private IUniteMesureService uniteMesureService;
 	
 	@RequestMapping(value = "/recherche-logement", method = RequestMethod.GET)
 	public String rechercheBiensGlobal(Model model, HttpServletRequest request,
@@ -64,6 +70,49 @@ public class BienSearchController {
 		model.addAttribute("findBiens", findBienDto);
 		return "immobilier/recherche-biens";
 
+	}
+	@ModelAttribute("lastBiensAdded")
+	public List<BienDTO> findLastBiens() {
+		
+		List<BienImmobilier> lastBiens = bienService.getLastBiens(3);
+		List<BienDTO> biensDto = new ArrayList<BienDTO>();
+		
+		for (BienImmobilier bien : lastBiens) {
+			if (bien != null) {
+				if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
+					biensDto.add(new BienDTO((Appartement) bien));
+				} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
+					biensDto.add(new BienDTO((Maison) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())) {
+					biensDto.add(new BienDTO((Terrain) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.AGRICOLE.toString())) {
+					biensDto.add(new BienDTO((Agricole) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.VACANCES.toString())) {
+					biensDto.add(new BienDTO((Vacances) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.CARCASSE.toString())) {
+					biensDto.add(new BienDTO((Carcasse) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
+					biensDto.add(new BienDTO((Commerce) bien));
+				}
+			}
+		}
+		
+		return new LinkedList<BienDTO>(biensDto);
+	}
+	
+	@ModelAttribute("uniteMesureSuperficie")
+	public Set<UniteMesure> populateUniteMesureSuperficieList() {
+		return  uniteMesureService.getUniteByType(EnumTypeUniteMesure.SUPERFICIE);
+	}
+	
+	@ModelAttribute("uniteMesurePrix")
+	public Set<UniteMesure> populateUniteMesurePrixList() {
+		return  uniteMesureService.getUniteByType(EnumTypeUniteMesure.PRICE);
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
@@ -88,6 +137,22 @@ public class BienSearchController {
 			@PathVariable("typeAction") Integer typeAction, Model model,
 			HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) {
+		
+		UniteMesure unitePrix = uniteMesureService.get(Long.valueOf(findBienDto.getUnitePrix()));
+		UniteMesure uniteSuperfice = uniteMesureService.get(Long.valueOf(findBienDto.getUniteSuperficie()));
+		
+		if(findBienDto.getSurfaceMax() != null){
+			findBienDto.setSurfaceMax(findBienDto.getSurfaceMax()*uniteSuperfice.getValue());
+		}
+		if(findBienDto.getSurfaceMin() != null){
+			findBienDto.setSurfaceMin(findBienDto.getSurfaceMin()*uniteSuperfice.getValue());
+		}
+		if(findBienDto.getLoyerMax() != null){
+			findBienDto.setLoyerMax(findBienDto.getLoyerMax()*unitePrix.getValue());
+		}
+		if(findBienDto.getLoyerMin() != null){
+			findBienDto.setLoyerMin(findBienDto.getLoyerMin()*unitePrix.getValue());
+		}
 		
 		searchBiens(findBienDto);
 		model.addAttribute("page", 1);		
@@ -154,6 +219,21 @@ public class BienSearchController {
 			HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) {
 		
+		UniteMesure unitePrix = uniteMesureService.get(Long.valueOf(findBienDto.getUnitePrix()));
+		UniteMesure uniteSuperfice = uniteMesureService.get(Long.valueOf(findBienDto.getUniteSuperficie()));
+		
+		if(findBienDto.getSurfaceMax() != null){
+			findBienDto.setSurfaceMax(findBienDto.getSurfaceMax()*uniteSuperfice.getValue());
+		}
+		if(findBienDto.getSurfaceMin() != null){
+			findBienDto.setSurfaceMin(findBienDto.getSurfaceMin()*uniteSuperfice.getValue());
+		}
+		if(findBienDto.getLoyerMax() != null){
+			findBienDto.setLoyerMax(findBienDto.getLoyerMax()*unitePrix.getValue());
+		}
+		if(findBienDto.getLoyerMin() != null){
+			findBienDto.setLoyerMin(findBienDto.getLoyerMin()*unitePrix.getValue());
+		}
 		
 		searchBiens(findBienDto);
 		model.addAttribute("page", page);		
@@ -252,6 +332,7 @@ public class BienSearchController {
 			if (findBienDto.getVacances()) {
 				selectedTypes.add(EnumTypeBien.VACANCES.toString());
 			}
+			
 
 			List<BienImmobilier> listBiensFound = bienService.searchBiens(
 					selectedTypes, findBienDto.getDepartementBien(),

@@ -42,7 +42,11 @@
 <c:url var="findStateCommunesURL" value="/biens/communes.htm" />
 <c:url var="findStatesURL" value="/biens/states.htm" />
 
+<spring:message code="biens.max" var="valmax"/>
+<spring:message code="biens.min" var="valmin"/>
+<spring:message code="biens.referenceputit" var="refplaceholder"/>
 
+												
 <script type="text/javascript">
 $(document).ready(function() { 
 	$('#states').change(
@@ -182,50 +186,110 @@ $(document).ready(function() {
 									 <fieldset id="fieldset_select_fields">
 										<legend><spring:message code="biens.optionsbien" /></legend>
 										<table class="search_form">
-											<tr>
+											<%--  <tr>
 												<td class="label"><spring:message code="biens.reference" /></td>
 												<td><label> <form:input label="refBien"
 															path="refBien" class="text mediumtext" />
 												</label></td>
-											 </tr>
+											 </tr>  --%>
+											<tr>
+												<td colspan="3" class="label">
+													<fieldset>
+														<legend>Reference</legend>
+														<table>
+															<tr>
+																<td>
+																<label> <form:input label="refBien" placeholder="${refplaceholder }"
+																			path="refBien" class="text" />
+																</label>
+																</td>
+															</tr>
+														</table>
+													</fieldset>
+													</td>
 											
-											<tr>
-												<td class="label"><spring:message
-														code="biens.superficie.min" /></td>
-												<td><label> <form:input label="surfaceMin"
-															path="surfaceMin" class="text mediumtext" />
-												</label></td>
-												<td class="label"><spring:message
-														code="biens.superficie.max" /></td>
-												<td><label> <form:input label="surfaceMax"
-															path="surfaceMax" class="text mediumtext" />
-												</label></td>
+												<td colspan="3" class="label">
+													<fieldset>
+														<legend>Superficie</legend>
+														<table>
+															<tr>
+																<td>
+																	 <form:input label="surfaceMin"
+																				path="surfaceMin" placeholder="${valmin }" class="text mediumtext" />
+																	</td>
+																	<td><label> <form:input label="surfaceMax"
+																				path="surfaceMax" placeholder="${valmax }" class="text mediumtext" />
+																	</label>
+																	
+																	</td>
+																	<td><form:select style="width: 60px;" path="uniteSuperficie"  class="select_field">
+																		<c:forEach var="item" items="${uniteMesureSuperficie}">
+																					<form:option  value="${item.id}">
+															               				 ${item.abreviation} 
+															            			</form:option>
+																		</c:forEach>
+																	</form:select>
+																	</td>
+															</tr>
+														</table>
+													</fieldset>
+												</td>
 											</tr>
 											<tr>
-												<td class="label"><spring:message code="biens.budget.max" /></td>
-												<td><label> <form:input label="loyerMin"
-															path="loyerMin" class="text mediumtext" />
-												</label></td>
-												<td class="label"><spring:message code="biens.budget.max" />:</td>
-												<td><label> <form:input label="loyerMax"
-															path="loyerMax" class="text mediumtext" />
-												</label></td>
+												<td colspan="3" class="label">
+													<fieldset >
+														<legend>Budget</legend>
+														<table>
+															<tr>
+																<td>
+																	 <form:input label="loyerMin"
+																			path="loyerMin"  placeholder="${valmin }" class="text mediumtext" />
+																</td>
+																<td><label> <form:input label="loyerMax"
+																				path="loyerMax" class="text mediumtext"  placeholder="${valmax }"/>
+																	</label>
+																</td>
+																<td><form:select style="width: 60px;" path="unitePrix"  class="select_field">
+																		<c:forEach var="item" items="${uniteMesurePrix}">
+																				<form:option  value="${item.id}">
+														               				 ${item.abreviation} 
+														            			</form:option>
+																	</c:forEach>
+																	</form:select>
+																</td>
+															</tr>
+														</table>
+													</fieldset>
+												</td>
+												<td colspan="3" class="label">
+													<fieldset>
+														<legend>Nombre de pieces</legend>
+														<table>
+															<tr>
+																<td>
+																	 <label> 
+																	 	<form:input label="nbPiecesMin"
+																				path="nbPiecesMin" class="text mediumtext" placeholder="${valmin }"/>
+																	</label>
+																</td>
+																<td>
+																	<label> <form:input label="nbPiecesMax"
+																				path="nbPiecesMax" class="text mediumtext" placeholder="${valmax }" />
+																	</label>
+																</td>
+															</tr>
+														</table>
+													</fieldset>
+												</td>
 											</tr>
-											<tr>
-												<td   class="label"><spring:message code="biens.pieces.min" /></td>
-												<td   ><label> <form:input label="nbPiecesMin"
-															path="nbPiecesMin" class="text mediumtext" />
-												</label></td>
-												<td   class="label"><spring:message code="biens.pieces.max" /></td>
-												<td  ><label> <form:input label="nbPiecesMax"
-															path="nbPiecesMax" class="text mediumtext" />
-												</label></td>
-											</tr>
+											
 											<tr>
 											<td colspan="4">
 													
 									<!-- <div class="slide-wrapper slidingDiv" >
 									<div id="searchoptions" class="pma_auto_slider slider_init_done" title="Options" style="overflow: auto;"> -->
+													<fieldset>
+														<legend>Plus d'options</legend>
 										<table class="search_form">
 											<tr>
 												<td><label> <form:checkbox path="ascenseur" />
@@ -234,7 +298,6 @@ $(document).ready(function() {
 														for="ascenseur">
 														<spring:message code="biens.ascenseur" />
 													</form:label></td>
-
 												<td><label> <form:checkbox
 															path="cuisineEquipee" />
 												</label></td>
@@ -319,6 +382,8 @@ $(document).ready(function() {
 													</form:label></td>
 											</tr>
 										</table>
+										</fieldset>
+									
 								</td>
 								</tr>
 								</table>

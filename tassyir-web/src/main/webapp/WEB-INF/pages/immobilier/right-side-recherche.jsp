@@ -191,7 +191,7 @@ $(document).ready(function() {
 																	code="biens.superficie.max" />
 																	<label> <form:input label="surfaceMax"
 																		path="surfaceMax" class="text mediumtext1" />
-															</label></td>
+															</label>M2</td>
 														</tr>
 														<tr>
 															<td><spring:message code="biens.budget.max" />
@@ -201,7 +201,7 @@ $(document).ready(function() {
 															<td><spring:message code="biens.budget.max" />
 															<label> <form:input label="loyerMax"
 																		path="loyerMax" class="text mediumtext1" />
-															</label></td>
+															</label>DA</td>
 														</tr>
 														<tr>
 															<td  ><spring:message code="biens.pieces.min" />

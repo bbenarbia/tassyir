@@ -63,6 +63,7 @@
 						</c:forEach>
 					</ul>
 					</div>
+					<c:if test="${fn:length(findBiens.listBiens) > 0 }">
 					<div id="paginations">
 						<ul>
 							<spring:url value="/biens/search-result" var="biensListUrl" />
@@ -85,6 +86,7 @@
 						</ul>
 						<div class="clear">&nbsp;</div>
 					</div>
+					</c:if>
 				</div>
 			<div id="home_sidebar">
 				<c:if test="${showCustomSearch}">
