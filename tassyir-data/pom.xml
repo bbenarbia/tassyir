@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>tassyir</artifactId>
 		<groupId>net.bbenarbia</groupId>
-		<version>1.0-SNAPSHOT</version>
+		<version>${tassyir.version}</version>
 	</parent>
 	<artifactId>tassyir-data</artifactId>
 	<name>data-layer</name>

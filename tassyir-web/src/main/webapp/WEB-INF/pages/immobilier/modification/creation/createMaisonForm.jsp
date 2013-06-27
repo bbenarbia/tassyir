@@ -118,13 +118,13 @@
 					            	<dd>
 					            		<form:input label="honoraires" path="honoraires" class="text smalltext" style="width: 75px;"/>
 									
-									<form:select path="unitePrix"  class="select_field">
-													<c:forEach var="item" items="${uniteMesurePrix}">
-																<form:option  value="${item.id}">
-										               				 ${item.abreviation} 
-										            			</form:option>
-													</c:forEach>
-									</form:select>
+										<form:select path="unitePrix"  class="select_field">
+														<c:forEach var="item" items="${uniteMesurePrix}">
+																	<form:option  value="${item.id}">
+											               				 ${item.abreviation} 
+											            			</form:option>
+														</c:forEach>
+										</form:select>
 									</dd>
 						       </dl>
 							</fieldset>

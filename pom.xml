@@ -5,13 +5,14 @@
 
 	<groupId>net.bbenarbia</groupId>
 	<artifactId>tassyir</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>${tassyir.version}</version>
 	<packaging>pom</packaging>
 
 	<name>tassyir</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
+		<tassyir.version>1.0</tassyir.version>
 		<spring.version>3.0.5.RELEASE</spring.version>
 		<spring.webflow.js>2.3.1.RELEASE</spring.webflow.js>
 		<spring.batch.version>2.1.8.RELEASE</spring.batch.version>
@@ -108,7 +109,6 @@
 				<groupId>javax.mail</groupId>
 				<artifactId>mail</artifactId>
 				<version>1.4</version>
-				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.scannotation</groupId>
