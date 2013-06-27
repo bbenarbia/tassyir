@@ -384,14 +384,14 @@ function deleteBien(url){
 										${bien.natureChauffage}
 									</td>
 								</tr>
-								<tr>
+								<%-- <tr>
 									<td>
 										<spring:message code="bien.typeChauffage" />
 									</td>								
 									<td>
 										${bien.typeChauffage}
 									</td>
-								</tr>
+								</tr> --%>
 							</c:if>
 							<%-- <c:if test="${ bien.eauPotable}">		
 								<tr>

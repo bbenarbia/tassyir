@@ -54,7 +54,14 @@
         						<dl>
         							<dt><form:label path="superficie"><spring:message code="biens.superficie" /></form:label></dt>
 					            	<dd>
-					            		<form:input label="superficie" path="superficie" class="text smalltext" />m2
+					            		<form:input style="width: 75px;" label="superficie" path="superficie" class="text smalltext" />m2
+					            		<form:select  path="uniteSuperficie"  class="select_field">
+													<c:forEach var="item" items="${uniteMesureSuperficie}">
+																<form:option  value="${item.id}">
+										               				 ${item.abreviation} 
+										            			</form:option>
+													</c:forEach>
+										</form:select>
 									</dd>
 									
 						        </dl>
@@ -77,8 +84,8 @@
 							 
         							<dt><form:label path="honoraires"><spring:message code="biens.honoraires" /></form:label></dt>
 					            	<dd>
-					            		<form:input label="honoraires" path="honoraires" class="text smalltext" />
-									</dd>
+					            		<form:input label="honoraires" path="honoraires" class="text smalltext" style="width: 75px;"/>
+								
 									<form:select path="unitePrix"  class="select_field">
 													<c:forEach var="item" items="${uniteMesurePrix}">
 																<form:option  value="${item.id}">
@@ -86,13 +93,7 @@
 										            			</form:option>
 													</c:forEach>
 									</form:select>
-									<form:select path="uniteSuperficie"  class="select_field">
-													<c:forEach var="item" items="${uniteMesureSuperficie}">
-																<form:option  value="${item.id}">
-										               				 ${item.abreviation} 
-										            			</form:option>
-													</c:forEach>
-									</form:select>
+									</dd>
 						       </dl>
 							</fieldset>
 							

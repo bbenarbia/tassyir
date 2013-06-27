@@ -663,6 +663,11 @@ public class BienController {
 			bien = bienDto.updateCommerce((Commerce) bien);
 		}
 
+		UniteMesure unitePrix = uniteMesureService.get(Long.valueOf(bienDto.getUnitePrix()));
+		UniteMesure uniteSuperfice = uniteMesureService.get(Long.valueOf(bienDto.getUniteSuperficie()));
+		bien.setUnitePrix(unitePrix);
+		bien.setUniteSuperficie(uniteSuperfice);
+		
 		bienService.merge(bien);
 		status.setComplete();
 		return "redirect:/biens/" + bienId;
