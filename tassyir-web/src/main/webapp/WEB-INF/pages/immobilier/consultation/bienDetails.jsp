@@ -239,15 +239,6 @@ function deleteBien(url){
 									${bien.status}
 								</td>
 							</tr>
-							<tr>
-								<td>
-									<spring:message code="bien.transport" />
-								</td>
-								<td>
-									${bien.transport}
-								</td>
-							</tr>
-
 							<c:if test="${(bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO') && bien.gardien}">
 								<tr>
 									<td>
@@ -443,7 +434,7 @@ function deleteBien(url){
 				<div class="block advert">
 	
 					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-						alt="Advertise Here" style="width: 315px;" /> 
+						alt="Advertise Here" style="width: 290px;" /> 
 					<%-- <jsp:include page="./../immobilier/right-side-recherche.jsp" /> --%>
 				</div>
 				<jsp:include page="./../../common/slide-right.jsp" />

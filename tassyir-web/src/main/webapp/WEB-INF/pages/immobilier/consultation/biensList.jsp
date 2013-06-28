@@ -23,7 +23,7 @@
 				<jsp:include page="../../common/sub-menu.jsp" />
 				<div id="main">
 					<jsp:include page="../../common/navigator.jsp" />					
-					 <div class="group" style="width: 698px;">
+					 <div class="group" style="width: 725px;">
 					 <h2><spring:message code="biens.list" /> : ${fn:length(findBiens.listBiens)} <spring:message code="biens.nbresult" />  </h2>
 					 <ul class="listing">
     					<c:forEach var="bien" items="${findBiens.listBiens}" varStatus="status" begin="${(page-1)*5 }" end="${(page)*5 }">

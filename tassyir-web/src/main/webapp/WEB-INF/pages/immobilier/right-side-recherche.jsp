@@ -11,6 +11,9 @@
 <c:url var="findStateCommunesURL" value="/biens/communes.htm" />
 <c:url var="findStatesURL" value="/biens/states.htm" />
 
+<spring:message code="biens.max" var="valmax"/>
+<spring:message code="biens.min" var="valmin"/>
+<spring:message code="biens.referenceputit" var="refplaceholder"/>
 
 <script type="text/javascript">
 $(document).ready(function() { 
@@ -123,7 +126,7 @@ $(document).ready(function() {
 									 <tr>
 									 	<td>
 									 	<div  class="group">
-											<table style="font-size: 14px;">
+											<table style="font-size: 12px;">
 											 <tr>
 												<td>
 													<label> <form:checkbox path="appartement" /></label>
@@ -178,40 +181,45 @@ $(document).ready(function() {
 								 <tr>
 									 	<td>
 									 	<div  class="group">
-											<table  style="font-size: 14px;">
+											<table  style="font-size: 12px;">
 												  <tr>
 													<td>
 														<tr>
-														<td><spring:message
-																code="biens.superficie.min" />
-																<label> <form:input label="surfaceMin"
-																	path="surfaceMin" class="text mediumtext1" />
-														</label></td>
-															<td><spring:message
-																	code="biens.superficie.max" />
-																	<label> <form:input label="surfaceMax"
-																		path="surfaceMax" class="text mediumtext1" />
-															</label>M2</td>
+														<td>
+															<spring:message code="biens.superficie"/>(M2)
+														</td>
+														<td><label> <form:input label="surfaceMin" placeholder="${valmin }" class="text verysmall" 
+																	path="surfaceMin" />
+															</label>
+														</td>
+															<td><form:input label="surfaceMax" path="surfaceMax" placeholder="${valmax }" class="text verysmall" />
+															</td>
 														</tr>
 														<tr>
-															<td><spring:message code="biens.budget.max" />
-															<label> <form:input label="loyerMin"
-																		path="loyerMin" class="text mediumtext1" />
+															<td>
+																<spring:message code="biens.budget"/>(DA)
+															</td>
+															
+															<td> <form:input label="loyerMin" path="loyerMin" placeholder="${valmin }" class="text verysmall" />
+															</td>
+															<td>
+															<label> <form:input label="loyerMax" path="loyerMax" placeholder="${valmax }" class="text verysmall" />
 															</label></td>
-															<td><spring:message code="biens.budget.max" />
-															<label> <form:input label="loyerMax"
-																		path="loyerMax" class="text mediumtext1" />
-															</label>DA</td>
 														</tr>
 														<tr>
-															<td  ><spring:message code="biens.pieces.min" />
+															<td>
+																<spring:message code="biens.nBPieces"/>
+															</td>
+															<td >
 															<label> <form:input label="nbPiecesMin"
-																		path="nbPiecesMin" class="text mediumtext1" />
+																		path="nbPiecesMin" placeholder="${valmin }" class="text verysmall" />
 															</label></td>
-															<td  ><spring:message code="biens.pieces.max" />
+															<td  >
 															<label> <form:input label="nbPiecesMax"
-																		path="nbPiecesMax" class="text mediumtext1" />
+																		path="nbPiecesMax" placeholder="${valmax }" class="text verysmall" />
 															</label></td>
+															<td></td>
+															
 														</tr>
 												</table> 	
 											</div>
@@ -220,7 +228,7 @@ $(document).ready(function() {
 								 <tr>
 									 	<td>
 									 		<div  class="group">
-												<table  style="font-size: 14px;">
+												<table  style="font-size: 12px;">
 												  <tr>
 													<td>
 														<tr>
@@ -302,7 +310,7 @@ $(document).ready(function() {
 								</tr>
 								<tr>
 									<td style="text-align: center;">
-										<input type="submit" value="Exécuter" name="submit"/>
+										<input type="submit" value="Rechercher" name="submit"/>
 									</td>
 								</tr>
 								

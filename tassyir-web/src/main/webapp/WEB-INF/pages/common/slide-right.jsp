@@ -20,9 +20,9 @@
 				src='<c:url value="/resources/graphics/new.gif"/>' alt="new"
 				width="66" height="66" />
 			</span>
-				<h3>
+				<h4>
 					<a href="${DetailbienUrl}">${bien.typeOperation} ${bien.typeBien} ${bien.ville} ${bien.superficie} m2</a>
-				</h3>
+				</h4>
 				<%-- <p class="description">
 						${bien.shortDescription} 
 				</p> --%>

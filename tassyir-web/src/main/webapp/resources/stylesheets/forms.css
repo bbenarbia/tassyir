@@ -21,6 +21,10 @@
 .search_form .mediumtext {
 	width: 70px;
 }
+.search_form .verysmall {
+	width: 60px;
+	font-size: 9pt;	
+}
 .search_form .mediumtext1 {
 	width: 120px;
 }
