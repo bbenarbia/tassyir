@@ -18,11 +18,14 @@
 		<jsp:include page="../../../common/menu.jsp" />
 		<div id="content">
 			<jsp:include page="../../../common/sub-menu.jsp" />
+			<div id="home_sidebar_left">
+					<jsp:include page="./../../../common/left-menu.jsp" />
+			</div>
 		<div id="main_bien">
 		   <jsp:include page="../../../common/navigator.jsp" />
 				<div id="search_bien">
 				 <div class="group">
-					<h2><spring:message code="biens.appartement.action.new" /></h2>
+					<h2><spring:message code="biens.agricole.action.new" /></h2>
 					<ul>
 						<li id="li_select_lang">
 						<!-- <div style="margin: 10px; background: none repeat scroll 0px 0px rgb(248, 248, 248); padding: 14px;"> -->
@@ -32,7 +35,7 @@
     							<dl>
         							<dt><form:label path="name"><spring:message code="biens.name" /></form:label></dt>
 					            	<dd>
-					            		<form:input label="name" path="name"	class="text" />
+					            		<form:input label="name" path="name"	style="width: 420px;" class="text" />
 									</dd>
 						        </dl>
 						        <dl>
@@ -75,7 +78,7 @@
 								 </c:if>
 								 <c:if test="${bien.typeOperation =='OFFRE_VENDRE' || bien.typeOperation =='DEMANDE_ACHAT'}">
 										<dt><form:label path="prixVente"><spring:message code="biens.prixVente" /></form:label></dt>
-										<dd> <form:input label="prixVente"
+										<dd> <form:input label="prixVente" style="width: 95px;"
 													path="prixVente" class="text smalltext" />
 								 </c:if>
 							 
@@ -144,11 +147,7 @@
 			<div id="home_sidebar">
 				<div class="block advert">
 					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-						alt="Advertise Here" style="width: 315px;" /> 
-				</div>
-				<div class="block advert">
-					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-						alt="Advertise Here" style="width: 315px;" /> 
+						alt="Advertise Here" style="width: 200px;" /> 
 				</div>
 				
 				<%-- <jsp:include page="./../immobilier/right-side-recherche.jsp" /> --%>

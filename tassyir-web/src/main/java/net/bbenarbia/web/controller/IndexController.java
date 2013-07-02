@@ -126,6 +126,17 @@ public class IndexController {
 		return  uniteMesureService.getUniteByType(EnumTypeUniteMesure.PRICE);
 	}
 	
+	
+	@RequestMapping(value = "/searchrapide", method = RequestMethod.POST)
+	public String rechercheRapide(@ModelAttribute("findBiens") FindBienDTO findBienDto,BindingResult result,
+			 Model model, SessionStatus status,
+				HttpSession session) {
+		
+		return "/";
+	}
+		
+	
+	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String rechercheSpecifiqueBiensInit(@ModelAttribute("findBiens") FindBienDTO findBienDto,BindingResult result,
 			 Model model, SessionStatus status,

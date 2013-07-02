@@ -12,7 +12,9 @@
 		<jsp:include page="../../../common/menu.jsp" />
 		<div id="content">
 			<jsp:include page="../../../common/sub-menu.jsp" />
-
+			<div id="home_sidebar_left">
+					<jsp:include page="./../../../common/left-menu.jsp" />
+			</div>
 			<div id="home_main_edit">
 				<div id="edit">
 					<div class="tab">

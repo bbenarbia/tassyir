@@ -21,9 +21,13 @@
 		<jsp:include page="../../common/menu.jsp" />
 			<div id="content">
 				<jsp:include page="../../common/sub-menu.jsp" />
+				<div id="home_sidebar_left">
+					<jsp:include page="./../../common/left-menu.jsp" />
+					<%-- <jsp:include page="./../../common/slide-right.jsp" /> --%>
+				</div>
 				<div id="main">
 					<jsp:include page="../../common/navigator.jsp" />					
-					 <div class="group" style="width: 725px;">
+					 <div class="group" >
 					 <h2><spring:message code="biens.list" /> : ${fn:length(findBiens.listBiens)} <spring:message code="biens.nbresult" />  </h2>
 					 <ul class="listing">
     					<c:forEach var="bien" items="${findBiens.listBiens}" varStatus="status" begin="${(page-1)*5 }" end="${(page)*5 }">
@@ -89,20 +93,12 @@
 					</c:if>
 				</div>
 			<div id="home_sidebar">
-				<c:if test="${showCustomSearch}">
+				<c:if test="${not showCustomSearch}">
 					<div class="block advert">
-						<jsp:include page="./../right-side-recherche.jsp" /> 
+						 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
+							alt="Advertise Here" style="width: 290px;" /> 
 					</div>
 				</c:if>
-				
-				<c:if test="${not showCustomSearch}">
-				<div class="block advert">
-	
-					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-						alt="Advertise Here" style="width: 315px;" /> 
-				</div>
-				</c:if>
-				
 				<jsp:include page="./../../common/slide-right.jsp" />
 			</div>
 			<div class="clear">&nbsp;</div>

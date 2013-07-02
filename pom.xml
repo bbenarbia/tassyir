@@ -713,7 +713,6 @@
 		</dependencies>
 	</dependencyManagement>
 
-
 	<modules>
 		<module>tassyir-data</module>
 		<module>tassyir-services</module>

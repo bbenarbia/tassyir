@@ -31,6 +31,9 @@ function deleteBien(url){
 		<jsp:include page="../../common/menu.jsp" />
 		<div id="content">
 			<jsp:include page="../../common/sub-menu.jsp" />
+			<div id="home_sidebar_left">
+				<jsp:include page="./../../common/left-menu.jsp" />
+			</div>
 			<div id="main">
 					<jsp:include page="../../common/navigator.jsp" />					
 			<div class="group">
@@ -62,7 +65,7 @@ function deleteBien(url){
 						</div>
 				</div>				
 				<div id="single_item_details">
-					<div id="leftcolumn">
+					<div id="leftcolumndetail">
 						<div id="carrousel">
 							<c:if test="${fn:length(bien.photos) == 0 }">
 								<img width="320" height="230"
@@ -136,7 +139,6 @@ function deleteBien(url){
 									  	  </tr>
 									  	  </c:if>
 									</c:if>
-									
 									<c:if test="${bien.typeBien=='APPARTEMENT' || bien.typeBien=='STUDIO' || bien.typeBien=='COMMERCE'  || bien.typeBien=='MAISON' }">
 										 <tr class="auto2010_detTabTR">
 											 <td class="auto2010_detTD1First"><spring:message code="bien.age" /></td>
@@ -152,7 +154,7 @@ function deleteBien(url){
 							 </table>
 							</div>
 					</div>
-					<div id="rightcolumndetail">
+					<div id="rightcolumndetaildetail">
 							<p class="user">
 								<spring:message code="bien.reference" />: ${bien.reference}
 							</p>
@@ -162,22 +164,22 @@ function deleteBien(url){
 							<p class="decscription">
 								${bien.description}
 							</p>
-							<div id="tabs">
-								<div class="userDetails" >
+					</div>
+					<div class="clear">&nbsp;</div>
+					</div>
+					</div>
+						
+					<div class="group">
+							<h2>User infos</h2>
+						<div class="userDetails" >
 										<c:if test="${empty user.photo }">
-											<img width="130" height="130"  src='<c:url value="/resources/graphics/no-photos.jpg"/>' class="previewimg">
+											<img width="100" height="100"  src='<c:url value="/resources/graphics/no-photos.jpg"/>' class="previewimg">
 										</c:if>
 										<c:if test="${not empty user.photo }">
-											<img width="130" height="130" src="${userPhotoUrl}/${user.id}" class="previewimg">
+											<img width="100" height="100" src="${userPhotoUrl}/${user.id}" class="previewimg">
 										</c:if>
-										<p>
-											${user.firstName} (${user.typeUser})
-										</p>
-										<p>
-											${user.contact.telephoneMobile }
-										</p>
-								</div> 
-								<div id="tabs-1" class="hiddentab">
+						</div> 
+						<div id="tabs-1" style="padding: 10px; float: left;" class="hiddentab">
 									<p>
 										<img src='<c:url value="/resources/graphics/fav.gif"/>'
 											alt="FAv" width="18" height="13" />&nbsp;<a href="${addFavoriteUrl }">Add to my Favorites</a>
@@ -192,42 +194,19 @@ function deleteBien(url){
 											alt="sms" width="18" height="16" />&nbsp;<a href="#">Contact by
 											SMS</a>
 									</p>
-								</div>
-							</div>
+									<div style="float: left; height: 27px; padding: 11px;">
+										<p>
+												${user.firstName} (${user.typeUser})
+										</p>
+										<p>
+												${user.contact.telephoneMobile }
+										</p>
+									</div>
+						</div>		
+						<div class="fin"></div>
 					</div>
-					<div class="clear">&nbsp;</div>
-						<div class="barreoutils">
-									<ul class="barreoutilsgardez flor">
-										<li>
-											<span class="listbuttons"> <spring:url
-													value="/biens/{bienId}/edit.htm" var="bienUrl">
-													<spring:param name="bienId" value="${bien.id}" />
-												</spring:url> <a href="${fn:escapeXml(bienUrl)}">Edit Bien</a>
-											</span>
-										</li>
-										<li>
-											<span class="listbuttons"> <spring:url value="/biens/{bienId}/delete.htm" var="deleteBienUrl">
-												<spring:param name="bienId" value="${bien.id}" />
-											</spring:url> 
-											
-											<%-- <a href="${fn:escapeXml(deleteBienUrl)}">Delete bien</a> --%>
-											<a href="javascript:deleteBien('${deleteBienUrl}')">DeleteBien</a>
-											</span>
-											
-											
-										</li>
-										<li>
-											<span class="listbuttons"> <a
-												href="${fn:escapeXml(bienslistUrl)}"><spring:message code="user.action.showbienlist" /></a>
-											</span>
-										</li>
-									</ul>
-									<div class="fin"></div>
-						</div>
-					</div>
-					</div>
-						
-						<div class="group">
+					
+					<div class="group">
 							<h2>More infos</h2>
 							<div id="listing_details">
 						  <table>
@@ -434,7 +413,7 @@ function deleteBien(url){
 				<div class="block advert">
 	
 					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-						alt="Advertise Here" style="width: 290px;" /> 
+						alt="Advertise Here" style="width: 210px;" /> 
 					<%-- <jsp:include page="./../immobilier/right-side-recherche.jsp" /> --%>
 				</div>
 				<jsp:include page="./../../common/slide-right.jsp" />

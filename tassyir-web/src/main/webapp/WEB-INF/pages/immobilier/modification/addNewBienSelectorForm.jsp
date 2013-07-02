@@ -89,6 +89,9 @@
 		<jsp:include page="./../../common/menu.jsp" />
 		<jsp:include page="./../../common/sub-menu.jsp" />
 		<div id="content">
+			<div id="home_sidebar_left">
+					<jsp:include page="./../../common/left-menu.jsp" />
+			</div>
 			<div id="main_bien">
 
 				<div id="search_bien">
@@ -234,7 +237,7 @@
 				<div class="block advert">
 
 					<img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-						alt="Advertise Here" style="width: 315px;" />
+						alt="Advertise Here" style="width: 200px;" />
 					<%-- <jsp:include page="./../immobilier/right-side-recherche.jsp" /> --%>
 				</div>
 				<jsp:include page="./../../common/slide-right.jsp" />

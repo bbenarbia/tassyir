@@ -780,7 +780,7 @@ public class BienController {
 		navigations.add(new NavigationDTO("/biens/find-biens.htm",
 				"biens.listbien"));
 		model.addAttribute("navigations", navigations);
-		return "immobilier/consultation/biensList";
+		return "immobilier/consultation/";
 	}
 	
 

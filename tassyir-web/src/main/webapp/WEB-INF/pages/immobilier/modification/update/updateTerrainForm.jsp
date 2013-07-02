@@ -18,15 +18,18 @@
 		<jsp:include page="../../../common/menu.jsp" />
 		<div id="content">
 			<jsp:include page="../../../common/sub-menu.jsp" />
+			<div id="home_sidebar_left">
+					<jsp:include page="./../../../common/left-menu.jsp" />
+			</div>
 		<div id="main_bien">
 		   <jsp:include page="../../../common/navigator.jsp" />
 				<div id="search_bien">
 				 <div class="group">
-					<h2><spring:message code="biens.appartement.action.new" /></h2>
+					<h2><spring:message code="biens.terrain.action.update" /></h2>
 					<ul>
 						<li id="li_select_lang">
 						<!-- <div style="margin: 10px; background: none repeat scroll 0px 0px rgb(248, 248, 248); padding: 14px;"> -->
-						<form:form modelAttribute="bien" method="post" id="form1" enctype="multipart/form-data">
+						<form:form modelAttribute="bien" method="put" id="form1" enctype="multipart/form-data">
 						<fieldset>
     						<legend>${bien.typeOperation} ${bien.typeBien} ${bien.ville} (${bien.codePostal})</legend>
     							<dl>
@@ -142,11 +145,7 @@
 			<div id="home_sidebar">
 				<div class="block advert">
 					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-						alt="Advertise Here" style="width: 315px;" /> 
-				</div>
-				<div class="block advert">
-					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-						alt="Advertise Here" style="width: 315px;" /> 
+						alt="Advertise Here" style="width: 200px;" /> 
 				</div>
 				
 				<%-- <jsp:include page="./../immobilier/right-side-recherche.jsp" /> --%>

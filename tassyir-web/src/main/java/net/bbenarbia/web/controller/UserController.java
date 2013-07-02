@@ -231,7 +231,7 @@ public class UserController {
 			model.addAttribute("navigations", navigations);
 
 			model.addAttribute("groupRoles", userRolesOfGroup);
-			return "admin/users/userDetails";
+			return "admin/users/myProfile";
 		} else {
 			throw new Exception("User id not found");
 		}

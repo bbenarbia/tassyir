@@ -18,11 +18,14 @@
 		<jsp:include page="../../../common/menu.jsp" />
 		<div id="content">
 			<jsp:include page="../../../common/sub-menu.jsp" />
+			<div id="home_sidebar_left">
+					<jsp:include page="./../../../common/left-menu.jsp" />
+			</div>
 		<div id="main_bien">
 		   <jsp:include page="../../../common/navigator.jsp" />
 				<div id="search_bien">
 				 <div class="group">
-					<h2><spring:message code="biens.appartement.action.new" /></h2>
+					<h2><spring:message code="biens.commerce.action.update" /></h2>
 					<ul>
 						<li id="li_select_lang">
 						<!-- <div style="margin: 10px; background: none repeat scroll 0px 0px rgb(248, 248, 248); padding: 14px;"> -->
@@ -32,17 +35,9 @@
     							<dl>
         							<dt><form:label path="name"><spring:message code="biens.name" /></form:label></dt>
 					            	<dd>
-					            		<form:input label="name" path="name"	class="text" />
+					            		<form:input label="name" path="name"	class="text" style="width: 420px;"/>
 									</dd>
 									
-									<dt><form:label path="status"><spring:message code="biens.status" /></form:label></dt>
-					            	<dd>
-										<form:select path="status"  class="select_field">
-													<c:forEach var="item" items="${statusList}">
-																<form:option value="${item}"/>
-												</c:forEach>
-										</form:select>
-									</dd>
 						        </dl>
 						         <dl>
 									<dt><form:label path="description"><spring:message code="biens.description" /></form:label></dt>
@@ -62,7 +57,7 @@
         						<dl>
         							<dt><form:label path="superficie"><spring:message code="biens.superficie" /></form:label></dt>
 					            	<dd>
-					            		<form:input  style="width: 75px;" label="superficie" path="superficie" class="text smalltext" />m2
+					            		<form:input  style="width: 75px;" label="superficie" path="superficie" class="text smalltext" />
 					            		<form:select path="uniteSuperficie"  class="select_field">
 													<c:forEach var="item" items="${uniteMesureSuperficie}">
 																<form:option  value="${item.id}">
@@ -88,12 +83,12 @@
 						        <c:if test="${bien.typeOperation =='OFFRE_LOCATION' || bien.typeOperation =='DEMANDE_LOCATION'}">
 	        							<dt><form:label path="loyerMensuel"><spring:message code="biens.loyerMensuel" /></form:label></dt>
 						            	<dd>	
-						            		<form:input label="loyerMensuel"  path="loyerMensuel" class="text smalltext" />
+						            		<form:input label="loyerMensuel"  style="width: 75px;" path="loyerMensuel" class="text smalltext" />
 										</dd>
 								 </c:if>
 								 <c:if test="${bien.typeOperation =='OFFRE_VENDRE' || bien.typeOperation =='DEMANDE_ACHAT'}">
 										<dt><form:label path="prixVente"><spring:message code="biens.prixVente" /></form:label></dt>
-										<dd> <form:input label="prixVente"
+										<dd> <form:input label="prixVente"  style="width: 75px;"
 													path="prixVente" class="text smalltext" />
 								 </c:if>
 							 
@@ -183,11 +178,7 @@
 			<div id="home_sidebar">
 				<div class="block advert">
 					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-						alt="Advertise Here" style="width: 315px;" /> 
-				</div>
-				<div class="block advert">
-					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-						alt="Advertise Here" style="width: 315px;" /> 
+						alt="Advertise Here" style="width: 200px;" /> 
 				</div>
 				
 				<%-- <jsp:include page="./../immobilier/right-side-recherche.jsp" /> --%>

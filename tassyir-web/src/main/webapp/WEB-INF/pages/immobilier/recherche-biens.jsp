@@ -100,6 +100,9 @@ $(document).ready(function() {
 		<jsp:include page="../common/menu.jsp" />
 		<div id="content">
 			<jsp:include page="../common/sub-menu.jsp" />
+			<div id="home_sidebar_left">
+				<jsp:include page="./../common/left-menu.jsp" />
+			</div>
 			<div id="main_bien">
 				<jsp:include page="../common/navigator.jsp" />
 				<div id="search_bien">
@@ -219,12 +222,6 @@ $(document).ready(function() {
 									<fieldset id="fieldset_select_fields">
 										<legend><spring:message code="biens.typebien" /></legend>
 										<table class="search_form">
-											<%-- <tr>
-												<td class="label"><spring:message code="biens.reference" /></td>
-												<td colspan="3"><label> <form:input label="refBien"
-															path="refBien" class="text mediumtext" />
-												</label></td>
-											 </tr> --%>
 											<tr>
 												<td colspan="3" class="label">
 													<fieldset>
@@ -408,7 +405,7 @@ $(document).ready(function() {
 			<div id="home_sidebar">
 				<div class="block advert">
 					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-						alt="Advertise Here" style="width: 290px;" /> 
+						alt="Advertise Here" style="width: 210px;" /> 
 				</div>
 				
 				<%-- <jsp:include page="./../immobilier/right-side-recherche.jsp" /> --%>

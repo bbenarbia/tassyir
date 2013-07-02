@@ -82,9 +82,9 @@ $(document).ready(function() {
 												<table>
 												 <tr>
 												 	<td colspan="2"><label> 
-															<form:select id="states" class="select_field" path="departementBien">
-																</form:select>
-															</label>
+													<form:select id="states" class="select_field" path="departementBien">
+													</form:select>
+													</label>
 													</td>
 												 </tr>
 												 <tr>
@@ -126,51 +126,35 @@ $(document).ready(function() {
 									 <tr>
 									 	<td>
 									 	<div  class="group">
-											<table style="font-size: 12px;">
+											<table style="font-size: 11px;">
 											 <tr>
 												<td>
-													<label> <form:checkbox path="appartement" /></label>
-														 <form:label path="appartement" for="appartement">
-																					<spring:message code="bien.type.recherche.appartement" />
-														 </form:label>
+													<label><form:checkbox path="appartement" />  <spring:message code="bien.type.recherche.appartement" /></label>
 												</td>													
 												<td>
-													<label> <form:checkbox path="maison" /></label>
-													<form:label path="maison" for="maison">
-																			<spring:message code="bien.type.recherche.maison" />
-													</form:label>
+													<label><form:checkbox path="maison" /> <spring:message code="bien.type.recherche.maison" /></label>
 												</td>
 											 </tr>
 											 <tr>
-												<td><label> <form:checkbox path="terrain" /></label>
-												<form:label path="terrain" for="terrain">
-																		<spring:message code="bien.type.recherche.terrain" />
-															  </form:label>
+												<td>
+													<label><form:checkbox path="terrain" /> <spring:message code="bien.type.recherche.terrain" /></label>
 												</td>
-												<td><label> <form:checkbox path="agricole" /></label>
-															  <form:label path="agricole" for="agricole">
-																		<spring:message code="bien.type.recherche.agricole" />
-															  </form:label>
+												<td>
+													<label> <form:checkbox path="agricole" /> <spring:message code="bien.type.recherche.agricole" /></label>
 												</td>
 											</tr>
 											<tr>	
-												<td><label> <form:checkbox path="carcasse" /></label>
-													<form:label path="carcasse" for="carcasse">
-																		<spring:message code="bien.type.recherche.carcasse" />
-													</form:label>
+												<td>
+													<label> <form:checkbox path="carcasse" /> <spring:message code="bien.type.recherche.carcasse" /> </label>
 												</td>
 											
-												<td><label> <form:checkbox path="commercial" /></label>
-															<form:label path="commercial" for="commercial">
-																			<spring:message code="bien.type.recherche.commercial" />
-															</form:label>
+												<td>
+													<label> <form:checkbox path="commercial" /> <spring:message code="bien.type.recherche.commercial" /> </label> 
 												</td>
 											</tr>
 											<tr>
-												<td><label> <form:checkbox path="vacances" /></label>
-												<form:label path="vacances" for="vacances">
-																		<spring:message code="bien.type.recherche.vacances" />
-															  </form:label>
+												<td>
+													<label> <form:checkbox path="vacances" /> <spring:message code="bien.type.recherche.vacances" /> </label>
 												</td>
 											</tr>
 											
@@ -181,25 +165,29 @@ $(document).ready(function() {
 								 <tr>
 									 	<td>
 									 	<div  class="group">
-											<table  style="font-size: 12px;">
+											<table  style="font-size: 11px;">
 												  <tr>
 													<td>
 														<tr>
-														<td>
-															<spring:message code="biens.superficie"/>(M2)
-														</td>
+															<td colspan="2">
+																<spring:message code="biens.superficie"/>(M2):
+															</td>
+														</tr>
+														<tr>
 														<td><label> <form:input label="surfaceMin" placeholder="${valmin }" class="text verysmall" 
 																	path="surfaceMin" />
 															</label>
 														</td>
-															<td><form:input label="surfaceMax" path="surfaceMax" placeholder="${valmax }" class="text verysmall" />
+														<td>
+															<form:input label="surfaceMax" path="surfaceMax" placeholder="${valmax }" class="text verysmall" />
+														</td>
+														</tr>
+														<tr>
+															<td colspan="2">
+																<spring:message code="biens.budget"/>(DA):
 															</td>
 														</tr>
 														<tr>
-															<td>
-																<spring:message code="biens.budget"/>(DA)
-															</td>
-															
 															<td> <form:input label="loyerMin" path="loyerMin" placeholder="${valmin }" class="text verysmall" />
 															</td>
 															<td>
@@ -207,9 +195,11 @@ $(document).ready(function() {
 															</label></td>
 														</tr>
 														<tr>
-															<td>
-																<spring:message code="biens.nBPieces"/>
+															<td colspan="2">
+																<spring:message code="biens.nBPieces"/>:
 															</td>
+														</tr>
+														<tr>
 															<td >
 															<label> <form:input label="nbPiecesMin"
 																		path="nbPiecesMin" placeholder="${valmin }" class="text verysmall" />
@@ -228,7 +218,7 @@ $(document).ready(function() {
 								 <tr>
 									 	<td>
 									 		<div  class="group">
-												<table  style="font-size: 12px;">
+												<table  style="font-size: 11px;">
 												  <tr>
 													<td>
 														<tr>

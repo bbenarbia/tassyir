@@ -18,11 +18,14 @@
 		<jsp:include page="../../../common/menu.jsp" />
 		<div id="content">
 			<jsp:include page="../../../common/sub-menu.jsp" />
+			<div id="home_sidebar_left">
+					<jsp:include page="./../../../common/left-menu.jsp" />
+			</div>
 		<div id="main_bien">
 		   <jsp:include page="../../../common/navigator.jsp" />
 				<div id="search_bien">
 				 <div class="group">
-					<h2><spring:message code="biens.appartement.action.new" /></h2>
+					<h2><spring:message code="biens.carcasse.action.new" /></h2>
 					<ul>
 						<li id="li_select_lang">
 						<!-- <div style="margin: 10px; background: none repeat scroll 0px 0px rgb(248, 248, 248); padding: 14px;"> -->
@@ -32,7 +35,7 @@
     							<dl>
         							<dt><form:label path="name"><spring:message code="biens.name" /></form:label></dt>
 					            	<dd>
-					            		<form:input label="name" path="name"	class="text" />
+					            		<form:input label="name" path="name"	style="width: 420px;" class="text" />
 									</dd>
 						        </dl>
 						        <dl>
@@ -65,14 +68,14 @@
 									</dd>
 									<dt><form:label path="etage"><spring:message code="biens.etage" /></form:label></dt>
 										<dd> 
-											<form:input label="etage" path="etage" class="text smalltext" />										
+											<form:input label="etage" path="etage"  style="width: 75px;"  class="text smalltext" />										
 									</dd>
 						        </dl>
 						         <dl>
 								
 									<dt><form:label path="age"><spring:message code="biens.age" /></form:label></dt>
 									<dd> 
-										<form:input label="age" path="age" class="text smalltext" />
+										<form:input label="age" path="age" class="text smalltext"  style="width: 75px;" />
 									</dd>
 									<dt><form:label path="etatBien"><spring:message code="biens.etatBien" /></form:label></dt>
 										<dd>
@@ -90,12 +93,12 @@
 						        <c:if test="${bien.typeOperation =='OFFRE_LOCATION' || bien.typeOperation =='DEMANDE_LOCATION'}">
 	        							<dt><form:label path="loyerMensuel"><spring:message code="biens.loyerMensuel" /></form:label></dt>
 						            	<dd>	
-						            		<form:input label="loyerMensuel"  path="loyerMensuel" class="text smalltext" />
+						            		<form:input label="loyerMensuel"  style="width: 95px;" path="loyerMensuel" class="text smalltext" />
 										</dd>
 								 </c:if>
 								 <c:if test="${bien.typeOperation =='OFFRE_VENDRE' || bien.typeOperation =='DEMANDE_ACHAT'}">
 										<dt><form:label path="prixVente"><spring:message code="biens.prixVente" /></form:label></dt>
-										<dd> <form:input label="prixVente"
+										<dd> <form:input label="prixVente" style="width: 95px;"
 													path="prixVente" class="text smalltext" />
 								 </c:if>
 							 
@@ -158,11 +161,7 @@
 			<div id="home_sidebar">
 				<div class="block advert">
 					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-						alt="Advertise Here" style="width: 315px;" /> 
-				</div>
-				<div class="block advert">
-					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-						alt="Advertise Here" style="width: 315px;" /> 
+						alt="Advertise Here" style="width: 200px;" /> 
 				</div>
 				
 				<%-- <jsp:include page="./../immobilier/right-side-recherche.jsp" /> --%>

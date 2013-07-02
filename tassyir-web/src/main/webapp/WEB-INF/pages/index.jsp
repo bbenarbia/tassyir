@@ -45,6 +45,8 @@
 <spring:message code="biens.max" var="valmax"/>
 <spring:message code="biens.min" var="valmin"/>
 <spring:message code="biens.referenceputit" var="refplaceholder"/>
+<spring:message code="biens.main.search.quoi" var="searchquoi"/>
+<spring:message code="biens.main.search.ou" var="searchou"/>
 
 												
 <script type="text/javascript">
@@ -108,22 +110,49 @@ $(document).ready(function() {
 
 	<div id="wrap">
 		<jsp:include page="./common/menu.jsp" />
-		<jsp:include page="./common/sub-menu.jsp" />
 		<div id="content">
+			<jsp:include page="./common/sub-menu.jsp" />
+			<div id="home_sidebar_left">
+					<jsp:include page="./common/left-menu.jsp" />
+			</div>
 			<div id="main_bien">
-
 				<div id="search_bien">
 					<div class="group">
-						<h2>Recherche de biens</h2>
+						<h2><spring:message code="biens.rechercherapide" /></h2>
+								<div id="searchoptions" class="pma_auto_slider slider_init_done"
+									title="Options" style="overflow: auto;">
+									<div class="box1 search">
+											<form name="" method="post" action="searchrapide.htm">
+												<h3 style="margin-left: 10px;font-size: 20px">QUI ?</h3>
+												<div class="bg-input">
+													<input type="text" class="textsearch"
+														placeholder="${searchquoi }">
+												</div>
+												<h3 style="margin-top: 10px; margin-left: 10px;font-size: 20px">OÙ ?</h3>
+												<div class="submitBtn right">
+													<input type="submit" style="cursor: pointer;"
+														value="Rechercher" id="rechercher" name="rechercher">
+												</div>
+												<div class="bg-input">
+													<input class="textsearch" type="text"
+														placeholder="${searchou}" class="ac_input">
+												</div>
+											</form>
+										</div>
+								</div>
+					</div>
+					
+					<div class="group">
+						<h2><spring:message code="biens.recherchedetaille" /></h2>
 					 <ul>
 						<li id="li_select_lang">
 						<form:form modelAttribute="findBiens" method="post" id="form1">
 							<table class="search_form" style="width: 100%; border: none;">
 								 <tr>
 								 	<td colspan="4">
-										<div id="searchoptions" class="pma_auto_slider slider_init_done" title="Options" style="overflow: auto;">
+										<%-- <div id="searchoptions" class="pma_auto_slider slider_init_done" title="Options" style="overflow: auto;">
 										<fieldset id="fieldset_select_fields">
-											<legend><spring:message code="biens.zoneRecherche" /> </legend>
+											<legend><spring:message code="biens.recherchedetaille" /> </legend> --%>
 												<table class="search_form">
 													<tr>
 														<td colspan="4">
@@ -172,9 +201,9 @@ $(document).ready(function() {
 														<td><label> <form:checkbox path="vacances" />
 																<spring:message code="bien.type.recherche.vacances" /></label></td>
 													</tr>
-														</table>
-											</fieldset>
-											</div>
+											 			</table>
+										<!--	</fieldset>
+											</div> -->
 								 	</td>
 								</tr>
 								<tr>
@@ -383,7 +412,6 @@ $(document).ready(function() {
 											</tr>
 										</table>
 										</fieldset>
-									
 								</td>
 								</tr>
 								</table>
@@ -417,10 +445,10 @@ $(document).ready(function() {
 				</div>
 			</div>
 			<div id="home_sidebar">
+				
 				<div class="block advert">
-	
 					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-						alt="Advertise Here" style="width: 290px;" /> 
+						alt="Advertise Here" style="width: 200px;" /> 
 					<%-- <jsp:include page="./../immobilier/right-side-recherche.jsp" /> --%>
 				</div>
 				<jsp:include page="./common/slide-right.jsp" />

@@ -18,11 +18,14 @@
 		<jsp:include page="../../../common/menu.jsp" />
 		<div id="content">
 			<jsp:include page="../../../common/sub-menu.jsp" />
+			<div id="home_sidebar_left">
+					<jsp:include page="./../../../common/left-menu.jsp" />
+			</div>
 		<div id="main_bien">
 		   <jsp:include page="../../../common/navigator.jsp" />
 				<div id="search_bien">
 				 <div class="group">
-					<h2><spring:message code="biens.appartement.action.new" /></h2>
+					<h2><spring:message code="biens.appartement.action.update" /></h2>
 					<ul>
 						<li id="li_select_lang">
 						<!-- <div style="margin: 10px; background: none repeat scroll 0px 0px rgb(248, 248, 248); padding: 14px;"> -->
@@ -32,7 +35,7 @@
     							<dl>
         							<dt><form:label path="name"><spring:message code="biens.name" /></form:label></dt>
 					            	<dd>
-					            		<form:input label="name" path="name"	class="text" />
+					            		<form:input label="name" path="name"	class="text" style="width: 420px;"/>
 									</dd>
 						        </dl>
 						        <dl>
@@ -66,26 +69,25 @@
 									</dd>
 									<dt><form:label path="etage"><spring:message code="biens.etage" /></form:label></dt>
 									<dd> 
-										<form:input label="etage" path="etage" class="text smalltext" />										
+										<form:input label="etage" path="etage" class="text smalltext" style="width: 75px;"/>										
 									</dd>
 						        </dl>
 						         <dl>
 									<dt><form:label path="nbPieces"><spring:message code="biens.nbPieces" /></form:label></dt>
 									<dd> 
-										<form:input label="name" path="nbPieces"
+										<form:input label="name" path="nbPieces" style="width: 75px;"
 												class="text" />										
 									</dd>
 								
 									<dt><form:label path="age"><spring:message code="biens.age" /></form:label></dt>
 									<dd> 
-										<form:input label="age" path="age" class="text smalltext" />
+										<form:input label="age" path="age" class="text smalltext" style="width: 75px;"/>
 									</dd>
 								 </dl>
 								<dl>
 									<dt><form:label path="nbParkingInt"><spring:message code="biens.nbParkingInt" /></form:label></dt>
-										<dd> 
-												<form:input label="name" path="nbParkingInt"
-												class="text" />	
+									<dd> 
+										<form:input label="name" path="nbParkingInt" class="text" style="width: 75px;"/>	
 									</dd>
 									
 									<dt><form:label path="etatBien"><spring:message code="biens.etatBien" /></form:label></dt>
@@ -104,18 +106,18 @@
 						        <c:if test="${bien.typeOperation =='OFFRE_LOCATION' || bien.typeOperation =='DEMANDE_LOCATION'}">
 	        							<dt><form:label path="loyerMensuel"><spring:message code="biens.loyerMensuel" /></form:label></dt>
 						            	<dd>	
-						            		<form:input label="loyerMensuel"  path="loyerMensuel" class="text smalltext" />
+						            		<form:input label="loyerMensuel"  path="loyerMensuel" class="text smalltext" style="width: 95px;"/>
 										</dd>
 								 </c:if>
 								 <c:if test="${bien.typeOperation =='OFFRE_VENDRE' || bien.typeOperation =='DEMANDE_ACHAT'}">
 										<dt><form:label path="prixVente"><spring:message code="biens.prixVente" /></form:label></dt>
 										<dd> <form:input label="prixVente"
-													path="prixVente" class="text smalltext" />
+													path="prixVente" class="text smalltext" style="width: 95px;" />
 								 </c:if>
 							 
         							<dt><form:label path="honoraires"><spring:message code="biens.honoraires" /></form:label></dt>
 					            	<dd>
-					            		<form:input label="honoraires" path="honoraires" class="text smalltext" style="width: 75px;"/>
+					            		<form:input label="honoraires" path="honoraires" class="text smalltext" style="width: 95px;"/>
 					            		<form:select path="unitePrix"  class="select_field">
 													<c:forEach var="item" items="${uniteMesurePrix}">
 																<form:option  value="${item.id}">
@@ -188,6 +190,24 @@
 									</tr>
 								</table>			
         					</fieldset>	
+        				
+        					<fieldset>
+        							<legend> Photos </legend>
+        							<c:forEach varStatus="status" begin="1" end="${5}">
+											<dl>
+												<dt> Photo: ${status.count}</dt>
+												<dd><input
+														name="files[${status.count-1}]" type="file" accept="image/*" />
+												</dd>
+											</dl>
+									</c:forEach>
+									<dl hidden="hidden">
+										<form:input  path="ville" />
+										<form:input  path="codePostal" />
+										<form:input  path="departement"  />	
+									</dl>
+									
+        					</fieldset>	
 							<fieldset class="action">
 								<dl>
 									<dd>
@@ -206,11 +226,7 @@
 			<div id="home_sidebar">
 				<div class="block advert">
 					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-						alt="Advertise Here" style="width: 315px;" /> 
-				</div>
-				<div class="block advert">
-					 <img src='<c:url value="/resources/graphics/advertisehere.jpg"/>'
-						alt="Advertise Here" style="width: 315px;" /> 
+						alt="Advertise Here" style="width: 200px;" /> 
 				</div>
 				
 				<%-- <jsp:include page="./../immobilier/right-side-recherche.jsp" /> --%>

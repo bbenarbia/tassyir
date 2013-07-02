@@ -25,57 +25,57 @@ public class UserDTO {
 	private String id;
 	@NotEmpty(message = "Code must not be empty.")
 	@NumberFormat(style = Style.NUMBER)
-	private String code;
+	private String code="";
 	@List({
 	    @Length(min = 2, message = "The first name must be at least 2 characters"),
 	    @Length(max = 50, message = "The first name must be less than 50 characters")
 	})
-	private String firstName;
+	private String firstName="";
 	@List({
 	    @Length(min = 2, message = "The lastName must be at least 5 characters"),
 	    @Length(max = 50, message = "The lastName must be less than 50 characters")
 	})
-	private String lastName;
+	private String lastName="";
 	@List({
 	    @Length(min = 2, message = "The login must be at least 2 characters"),
 	    @Length(max = 50, message = "The login must be less than 50 characters")
 	})
-	private String login;
+	private String login="";
 	@List({
 	    @Length(min = 2, message = "The password must be at least 2 characters"),
 	    @Length(max = 50, message = "The password must be less than 50 characters")
 	})
-	private String password;
-	private String passwordConfirmation;
+	private String password="";
+	private String passwordConfirmation="";
 	private Boolean locked;
 	private Boolean isAdmin;
 	@List({
 	    @Length(min = 2, message = "The adresse must be at least 2 characters"),
 	    @Length(max = 50, message = "The adresse must be less than 50 characters")
 	})
-	private String adresse;
+	private String adresse="";
 	@NotEmpty(message = "code postal must not be empty.")
-	private String codePostal;
+	private String codePostal="";
 	@List({
 	    @Length(min = 2, message = "ville must be at least 2 characters"),
 	    @Length(max = 50, message = "ville must be less than 50 characters")
 	})
-	private String ville;
+	private String ville="";
 	private Boolean alerteSurTelephone1;
 	private Boolean alerteSurTelephone2;
 	@NotEmpty(message = "mail must not be empty.")
 	@Email
-	private String adresseMail;
-	private String siteWeb;
+	private String adresseMail="";
+	private String siteWeb="";
 	@Pattern(regexp="(^$|[0-9]*)")
-	private String telephonePerso;
+	private String telephonePerso="";
 	@Pattern(regexp="(^$|[0-9]*)")
-	private String telephoneProf;
+	private String telephoneProf="";
 	@NotEmpty(message = "mobile must not be empty.")
 	@Pattern(regexp="(^$|[0-9]*)")
-	private String telephoneMobile;
+	private String telephoneMobile="";
 	
-	private String typeUser;
+	private String typeUser="";
 
 	private UserCategoryDTO userCategory;
 

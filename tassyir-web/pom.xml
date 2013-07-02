@@ -118,27 +118,16 @@
 		</dependency>
 
 		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>servlet-api</artifactId>
-		  </dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
 
 		<!-- For Tiles -->
-		<!-- <dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-template</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-jsp</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-servlet</artifactId>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.apache.tiles</groupId> <artifactId>tiles-core</artifactId> 
+			</dependency> <dependency> <groupId>org.apache.tiles</groupId> <artifactId>tiles-template</artifactId> 
+			</dependency> <dependency> <groupId>org.apache.tiles</groupId> <artifactId>tiles-jsp</artifactId> 
+			</dependency> <dependency> <groupId>org.apache.tiles</groupId> <artifactId>tiles-servlet</artifactId> 
+			</dependency> -->
 
 		<dependency>
 			<groupId>commons-digester</groupId>
@@ -168,6 +157,30 @@
 	<build>
 		<finalName>tassyir-mvc</finalName>
 		<plugins>
+			<!-- <plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<configuration>
+					<url>http://localhost:8080/manager/html</url>
+					<server>TomcatServer</server>
+					<path>/${project.build.finalName}</path>
+				</configuration>
+			</plugin> -->
+
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.0-SNAPSHOT</version>
+				<configuration>
+					<url>http://localhost:8080/manager/html</url>
+					<username>tomcat</username>
+					<password>tomcat</password>
+					<path>/${project.build.finalName}</path>
+					<update>true</update>
+				</configuration>
+			</plugin>
+
+
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.1.1</version>
@@ -178,10 +191,6 @@
 			</plugin>
 		</plugins>
 	</build>
+	
 
-	<!-- <build> <finalName>tassyir-mvc</finalName> <plugins> <plugin> <artifactId>maven-compiler-plugin</artifactId> 
-		<configuration> <source>1.6</source> <target>1.6</target> </configuration> 
-		</plugin> <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>tomcat-maven-plugin</artifactId> 
-		<configuration> <url>http://127.0.0.1:8080/manager</url> <server>TomcatServer</server> 
-		<path>/tassyir-mvc</path> </configuration> </plugin> </plugins> </build> -->
 </project>
