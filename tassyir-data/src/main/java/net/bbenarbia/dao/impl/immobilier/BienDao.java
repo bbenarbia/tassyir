@@ -1,5 +1,6 @@
 package net.bbenarbia.dao.impl.immobilier;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,7 +19,8 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<BienImmobilier> getEntityByType(String type) {
-		String queryString = "FROM " + getEntityClass().getName()
+		String queryString = "FROM "
+				+ getEntityClass().getName()
 				+ " WHERE typeBien = :type AND validated is true AND toDelete is false order by dateMiseAjour desc";
 
 		Query query = getSession().createQuery(queryString);
@@ -27,11 +29,11 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 		return query.list();
 	}
 
-	
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<BienImmobilier> getLastBiens(int nb) {
-		String queryString = "FROM " + getEntityClass().getName()
+		String queryString = "FROM "
+				+ getEntityClass().getName()
 				+ " WHERE validated is true  AND toDelete is false order by dateMiseAjour desc ";
 
 		Query query = getSession().createQuery(queryString);
@@ -39,7 +41,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 
 		return query.list();
 	}
-	
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<BienImmobilier> searchBiens(EnumTypeBien typeBien,
@@ -55,10 +57,10 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 		sb.append("FROM " + getEntityClass().getName());
 		sb.append(" WHERE validated is true   AND toDelete is false ");
 		withAnd = true;
-//		sb.append(where);
-		if (typeBien != null) {		
+		// sb.append(where);
+		if (typeBien != null) {
 			sb.append(" AND typeBien = :type ");
-			
+
 		}
 
 		if (typeOperation != null) {
@@ -119,7 +121,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 			withAnd = true;
 			sb.append(" loyerMensuel <= :loyerMax ");
 		}
-		
+
 		sb.append(" order by dateMiseAjour desc ");
 
 		Query query = getSession().createQuery(sb.toString());
@@ -167,12 +169,12 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 		StringBuilder sb = new StringBuilder();
 		sb.append("FROM " + getEntityClass().getName());
 		sb.append(" WHERE validated is true  AND toDelete is false ");
-		
+
 		withAnd = true;
 		if (!selectedTypes.isEmpty()) {
-//			sb.append(where);
+			// sb.append(where);
 			sb.append(" AND typeBien IN (:listTypes) ");
-			
+
 		}
 
 		// if (typeBien != null) {
@@ -355,8 +357,7 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 		}
 
 		sb.append(" order by dateMiseAjour desc ");
-		
-		
+
 		Query query = getSession().createQuery(sb.toString());
 		// if (typeBien != null) {
 		// query.setParameter("type", typeBien.toString());
@@ -390,7 +391,8 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 
 	@Override
 	public BienImmobilier getBienByRef(String refBien) {
-		String queryString = "FROM " + getEntityClass().getName()
+		String queryString = "FROM "
+				+ getEntityClass().getName()
 				+ " WHERE reference = :reference AND validated is true  AND toDelete is false order by dateMiseAjour desc ";
 
 		Query query = getSession().createQuery(queryString);
@@ -402,8 +404,9 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BienImmobilier> searchBiensByTown(Long townId) {
-		
-		String queryString = "FROM " + getEntityClass().getName()
+
+		String queryString = "FROM "
+				+ getEntityClass().getName()
 				+ " WHERE departement.reference = :referenceTown  AND validated is true  AND toDelete is false ";
 
 		Query query = getSession().createQuery(queryString);
@@ -412,16 +415,27 @@ public class BienDao extends GenericDao<BienImmobilier> implements IBienDao {
 		return query.list();
 	}
 
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getAllBiensReference() {
-		
-		String queryString = "SELECT reference FROM BienImmobilier"  ;
+
+		String queryString = "SELECT reference FROM BienImmobilier";
 
 		Query query = getSession().createQuery(queryString);
 
 		return query.list();
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public Set<BienImmobilier> searchBiensNotActivated() {
+
+		String queryString = "FROM " + getEntityClass().getName()
+				+ " WHERE validated is false ";
+
+		Query query = getSession().createQuery(queryString);
+
+		return new HashSet<BienImmobilier>(query.list());
 	}
 
 }

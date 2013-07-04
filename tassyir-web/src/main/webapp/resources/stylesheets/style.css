@@ -517,7 +517,7 @@ h1 {
 
 .listingprices {
 	float: right;
-	width: 300px;
+	width: 290px;
 	padding-right: 5px;
 }
 
@@ -587,7 +587,7 @@ h1 {
 }
 
 .block {
-	padding: 5px;
+	padding-top: 5px;
 }
 
 a {
@@ -1251,7 +1251,8 @@ nav ul ul ul {
     font-family: Arial,Helvetica,FreeSans,sans-serif;
     font: bold 14px "Trebuchet MS", Arial, sans-serif;
     height: 32px;
-    margin: 0 0 50px;
+    /* margin: 0 0 50px; */
+    margin: 0 0 1px;
     padding: 7px 15px;
     
     position: relative;

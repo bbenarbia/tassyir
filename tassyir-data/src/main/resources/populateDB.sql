@@ -182,15 +182,15 @@ insert into contact values (2, 1, "Contact2", "Company 2",  "adresse1",  false, 
 insert into contact values (3, 1, "Contact3", "Company 3",  "adresse1",  false, true, 75001, "Paris", "adresse@yahoo.fr", 
 "www.bbenarbia.fr", "01010101", "0202020202");
 
-insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile,typeUser,  fk_categorieutilisateur)  VALUES
-				(1, 1, "/opt/work/temp/p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, "adresse1","93800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenaissa.fr","01010101","","0625252525",1, 4);
-insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile, typeUser, fk_categorieutilisateur)  VALUES 
-				(2, 2, "/opt/work/temp/p2.jpg", "said", "med","smed","smed",true, false, "adresse2","65800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenarbia.fr","01010101","","0625252525",0, 3);
-insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile, typeUser, fk_categorieutilisateur)  VALUES
-				(3, 3, "/opt/work/temp/p3.jpg", "lakhdar", "omar","lomar","lomar",true, false,"adresse3","95800","Epinay sur seine", true, true, "ben@gmail.com","","01010101","","0625252525",  1, 2);
+insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile,typeUser,  fk_categorieutilisateur,dateMiseAjour)  VALUES
+				(1, 1, "/opt/work/temp/p1.jpg", "kadour", "Yahia","kyahia","kyahia",false, false, "adresse1","93800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenaissa.fr","01010101","","0625252525",1, 4,"2011-08-21 14:11:09");
+insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile, typeUser, fk_categorieutilisateur,dateMiseAjour)  VALUES 
+				(2, 2, "/opt/work/temp/p2.jpg", "said", "med","smed","smed",true, false, "adresse2","65800","Epinay sur seine", false, false, "ben@gmail.com","www.bbenarbia.fr","01010101","","0625252525",0, 3,"2011-08-21 14:11:09");
+insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile, typeUser, fk_categorieutilisateur,dateMiseAjour)  VALUES
+				(3, 3, "/opt/work/temp/p3.jpg", "lakhdar", "omar","lomar","lomar",true, false,"adresse3","95800","Epinay sur seine", true, true, "ben@gmail.com","","01010101","","0625252525",  1, 2,"2011-08-21 14:11:09");
 
-insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile, typeUser, fk_categorieutilisateur)  VALUES 
-                 (4, 4, "/opt/work/temp/p3.jpg", "benaissa", "BENARBIA","bbenaissa","bbenaissa",false, false,"adresse3","95800","Epinay sur seine", false, false, "ben@gmail.com","","01010101","","0625252525", 0, 1);
+insert into users(id,code, photo,first_name,last_name, login, password,locked,is_admin, adresse ,  codePostal,  ville,  alertesurtelephone1 ,  alertesurtelephone2,  adresseMail,  siteWeb,  telephonePerso,  telephoneProf,  mobile, typeUser, fk_categorieutilisateur,dateMiseAjour)  VALUES 
+                 (4, 4, "/opt/work/temp/p3.jpg", "benaissa", "BENARBIA","bbenaissa","bbenaissa",false, false,"adresse3","95800","Epinay sur seine", false, false, "ben@gmail.com","","01010101","","0625252525", 0, 1,"2011-08-21 14:11:09");
   
   
 insert into user_role values (4,1);
@@ -238,6 +238,145 @@ insert into biens (
   ,cuisineEquipee,age,jardin,proprietaire,dateMiseAjour,validated, puit,eauPotable,gaz
 ) values(5, "5", "appartement5","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas. de location",24.4, 1, 700, 
 500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1,"2011-08-21 14:11:09",true,false, true, true);   
+
+
+insert into biens (
+ id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
+  ,cuisineEquipee,age,jardin,proprietaire,dateMiseAjour,validated, puit,eauPotable,gaz
+) values(6, "6", "appartement6","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas. de location",24.4, 1, 700, 
+500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1,"2011-08-21 14:11:09",true,false, true, true);   
+
+
+insert into biens (
+ id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
+  ,cuisineEquipee,age,jardin,proprietaire,dateMiseAjour,validated, puit,eauPotable,gaz
+) values(7, "7", "appartement7","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas. de location",24.4, 1, 700, 
+500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1,"2011-08-21 14:11:09",false,false, true, true);   
+
+insert into biens (
+ id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
+  ,cuisineEquipee,age,jardin,proprietaire,dateMiseAjour,validated, puit,eauPotable,gaz
+) values(8, "8", "appartement8","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas. de location",24.4, 1, 700, 
+500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1,"2011-08-21 14:11:09",false,false, true, true);   
+
+insert into biens (
+ id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
+  ,cuisineEquipee,age,jardin,proprietaire,dateMiseAjour,validated, puit,eauPotable,gaz
+) values(9, "9", "appartement9","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas. de location",24.4, 1, 700, 
+500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1,"2011-08-21 14:11:09",false,false, true, true);   
+
+
+insert into biens (
+ id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
+  ,cuisineEquipee,age,jardin,proprietaire,dateMiseAjour,validated, puit,eauPotable,gaz
+) values(10, "10", "appartement10","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas. de location",24.4, 1, 700, 
+500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1,"2011-08-21 14:11:09",false,false, true, true);   
+
+
+insert into biens (
+ id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
+  ,cuisineEquipee,age,jardin,proprietaire,dateMiseAjour,validated, puit,eauPotable,gaz
+) values(11, "11", "appartement11","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas. de location",24.4, 1, 700, 
+500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1,"2011-08-21 14:11:09",false,false, true, true);   
+
+insert into biens (
+ id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
+  ,cuisineEquipee,age,jardin,proprietaire,dateMiseAjour,validated, puit,eauPotable,gaz
+) values(12, "12", "appartement12","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas. de location",24.4, 1, 700, 
+500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1,"2011-08-21 14:11:09",false,false, true, true);   
+
+
+insert into biens (
+ id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
+  ,cuisineEquipee,age,jardin,proprietaire,dateMiseAjour,validated, puit,eauPotable,gaz
+) values(13, "13", "appartement13","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas. de location",24.4, 1, 700, 
+500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1,"2011-08-21 14:11:09",false,false, true, true);   
+
+
+insert into biens (
+ id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
+  ,cuisineEquipee,age,jardin,proprietaire,dateMiseAjour,validated, puit,eauPotable,gaz
+) values(14, "14", "appartement14","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas. de location",24.4, 1, 700, 
+500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1,"2011-08-21 14:11:09",false,false, true, true);   
+
+insert into biens (
+ id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
+  ,cuisineEquipee,age,jardin,proprietaire,dateMiseAjour,validated, puit,eauPotable,gaz
+) values(15, "15", "appartement15","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas. de location",24.4, 1, 700, 
+500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1,"2011-08-21 14:11:09",false,false, true, true);   
+
+
+insert into biens (
+ id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
+  ,cuisineEquipee,age,jardin,proprietaire,dateMiseAjour,validated, puit,eauPotable,gaz
+) values(16, "16", "appartement13","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas. de location",24.4, 1, 700, 
+500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1,"2011-08-21 14:11:09",false,false, true, true);   
+
+
+insert into biens (
+ id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
+  ,cuisineEquipee,age,jardin,proprietaire,dateMiseAjour,validated, puit,eauPotable,gaz
+) values(17, "17", "appartement17","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas. de location",24.4, 1, 700, 
+500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1,"2011-08-21 14:11:09",false,false, true, true);   
+
+insert into biens (
+ id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
+  ,cuisineEquipee,age,jardin,proprietaire,dateMiseAjour,validated, puit,eauPotable,gaz
+) values(18, "18", "appartement18","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas. de location",24.4, 1, 700, 
+500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1,"2011-08-21 14:11:09",false,false, true, true);   
+
+
+insert into biens (
+ id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
+  ,cuisineEquipee,age,jardin,proprietaire,dateMiseAjour,validated, puit,eauPotable,gaz
+) values(19, "19", "appartement19","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas. de location",24.4, 1, 700, 
+500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1,"2011-08-21 14:11:09",false,false, true, true);   
+
+insert into biens (
+ id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
+  ,cuisineEquipee,age,jardin,proprietaire,dateMiseAjour,validated, puit,eauPotable,gaz
+) values(20, "20", "appartement20","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas. de location",24.4, 1, 700, 
+500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1,"2011-08-21 14:11:09",false,false, true, true);   
+
+
+insert into biens (
+ id, ref ,name, typeBien, adresse,idDepartement,description,superficie,status,prixVente,prixMinVente,loyerMensuel,chargesMensuel,typeOperation
+  ,etatBien,etage,nbPieces,nbChambres, nbTerrasses,nbBalcons,nbParkingInt,nbParkingExt,interphone,digicode,gardien,piscine,transport,proximite,adapteHandicape
+ ,honoraires,depotGarantie,nbSallesBains,nbCaves,consoEnergie,typeEauChaude,impactConso,natureChauffage,typeChauffage,meuble,ascenseur
+  ,cuisineEquipee,age,jardin,proprietaire,dateMiseAjour,validated, puit,eauPotable,gaz
+) values(21, "21", "appartement21","APPARTEMENT","adresse 5", 1, "ANTONY, COUP DE COEUR pour ce magnifique appartement T4 de 2007, � seulement 750m-10mn � pied des RER B et C ! A l�angle du 4� �tage, il est lumineux gr�ce � sa triple exposition et 2 terrasses de 27 m� auxquelles toutes les pi�ces ont acc�s, offrant une vue d�gag�e sur le parc au pied de l�immeuble et Paris � l�horizon ! Les volumes sont spacieux et agr�ables avec 78,21 m� habitables, un s�jour confortable et une superbe cuisine �quip�e ouverte sur bar-repas. de location",24.4, 1, 700, 
+500,100, 100, 0, 1, "2/2", 2,1,0,1,1,0,true,true,true,true, "10 min de RER A", "Proche tout commerce et centre ville",true,100.0,200,2,0,1,1,1,1,1,true, true, true, 2001, true, 1,"2011-08-21 14:11:09",false,false, true, true);   
+
 
 
 insert into photos values(1,"photos1", 2,"/opt/work/temp/app1.jpg");

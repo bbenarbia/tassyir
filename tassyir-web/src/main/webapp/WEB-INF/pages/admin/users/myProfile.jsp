@@ -20,6 +20,9 @@
 		<spring:param name="userId" value="${user.id}" />
 	</spring:url>
 
+	<spring:url value="/biens/activate" var="activateBienUrl"> </spring:url>
+
+
 	<spring:url value="/users/upload/{userId}/show" var="addPhotoUrl">
 		<spring:param name="userId" value="${user.id}" />
 	</spring:url>
@@ -168,8 +171,11 @@
 						<div id="rightcolumndetail" style="width: 190px;">
 							<p class="user">${user.firstName} ${user.lastName}</p>
 							<p class="user">
-								<spring:message code="date.miseajour" />
-								: date
+								<spring:message code="date.miseajour" />:
+							</p>
+							
+							<p class="user">
+								 ${user.dateMiseAjour}
 							</p>
 							<p class="user">
 								<img src='<c:url value="/resources/graphics/usericon.gif"/>'
@@ -248,9 +254,9 @@
 						</table>
 					</div>
 				</sec:authorize>
+				<c:if test="${not empty user.biens }">
 				<div class="group">
 					<h2>User Biens</h2>
-					<c:if test="${not empty user.biens }">
 						<table>
 							<tr>
 								<td><ul>
@@ -275,13 +281,11 @@
 								</td>
 							</tr>
 						</table>
-					</c:if>
 				</div>
+				</c:if>
+				<c:if test="${not empty user.favorites }">
 				<div class="group">
 					<h2>User Favoris</h2>
-					<c:if test="${not empty user.favorites }">
-						<div id="moredetails">
-							<div id="listing_detail">
 								<table>
 									<tr>
 										<td><h3>Mes favoris</h3></td>
@@ -302,10 +306,32 @@
 											</ul></td>
 									</tr>
 								</table>
-							</div>
-						</div>
-					</c:if>
 				</div>
+				</c:if>
+				<c:if test="${not empty toActivatedBiens }">
+				<div class="group">
+					<h2>biens A activer</h2>
+								<table>
+									<tr>
+										<td><h3>biens A activer</h3></td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td><ul>
+												<c:forEach var="bien" items="${toActivatedBiens}"
+													varStatus="status">
+													<spring:url value="/biens/{bienId}.htm" var="DetailbienUrl">
+														<spring:param name="bienId" value="${bien.id}" />
+													</spring:url>
+													<li>${status.count} : <a href="${DetailbienUrl}"><c:out value="${bien.name}" /></a> <a
+														href="${activateBienUrl}/${bien.id}.htm">Activate</a></li>
+												</c:forEach>
+											</ul></td>
+									</tr>
+								</table>
+				</div>
+				</c:if>
 			</div>
 			<div id="home_sidebar">
 				<jsp:include page="./../../common/slide-right.jsp" />

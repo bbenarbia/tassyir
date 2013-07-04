@@ -16,6 +16,9 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Length.List;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.joda.time.LocalDateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 import org.springframework.web.multipart.MultipartFile;
@@ -75,6 +78,8 @@ public class UserDTO {
 	@Pattern(regexp="(^$|[0-9]*)")
 	private String telephoneMobile="";
 	
+	private String dateMiseAjour;
+	
 	private String typeUser="";
 
 	private UserCategoryDTO userCategory;
@@ -112,6 +117,9 @@ public class UserDTO {
 		this.telephoneMobile = user.getContact().getTelephoneMobile();
 		this.userCategory = new UserCategoryDTO(user.getUserCategory());
 		this.typeUser = user.getTypeUser().toString();
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/yyyy  hh:mm");
+		this.dateMiseAjour = user.getDateMiseAjour().toString(fmt);
+		
 		if(user.getBiens() != null){
 			for (BienImmobilier bien : user.getBiens()) {
 				if(bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT)){
@@ -153,6 +161,7 @@ public class UserDTO {
 		user.setLastName(this.lastName.toUpperCase());
 		user.setLocked(this.locked);
 		user.setLogin(this.login);
+		user.setDateMiseAjour(new LocalDateTime());
 		user.setTypeUser(EnumTypeUser.valueOf(this.typeUser));
 		return user;
 	}
@@ -185,7 +194,7 @@ public class UserDTO {
 		user.getContact().setTelephonePerso(telephonePerso);
 		user.getContact().setTelephoneProf(telephoneProf);
 		user.getContact().setTelephoneMobile(telephoneMobile);
-
+		user.setDateMiseAjour(new LocalDateTime());
 		user.setUserCategory(userCategory.updateUserCategory(user
 				.getUserCategory()));
 		return user;
@@ -197,7 +206,7 @@ public class UserDTO {
 			UserCategoryDTO userCategory, String adresse, String codePostal,
 			String ville, Boolean alerteSurTelephone1,
 			Boolean alerteSurTelephone2, String adresseMail, String siteWeb,
-			String telephonePerso, String telephoneProf, String telephoneMobile, EnumTypeUser typeUser) {
+			String telephonePerso, String telephoneProf, String telephoneMobile, EnumTypeUser typeUser, LocalDateTime dateMiseAjour) {
 		super();
 		this.id = String.valueOf(id);
 		this.code = String.valueOf(code);
@@ -219,6 +228,8 @@ public class UserDTO {
 		this.telephoneMobile = telephoneMobile;
 		this.typeUser = typeUser.toString();
 		this.userCategory = userCategory;
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/yyyy  hh:mm");
+		this.dateMiseAjour = dateMiseAjour.toString(fmt);
 	}
 
 	public String getFirstName() {
@@ -411,6 +422,14 @@ public class UserDTO {
 
 	public void setTypeUser(String typeUser) {
 		this.typeUser = typeUser;
+	}
+
+	public String getDateMiseAjour() {
+		return dateMiseAjour;
+	}
+
+	public void setDateMiseAjour(String dateMiseAjour) {
+		this.dateMiseAjour = dateMiseAjour;
 	}
 
 	

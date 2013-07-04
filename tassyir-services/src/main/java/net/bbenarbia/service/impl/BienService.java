@@ -122,4 +122,10 @@ public class BienService extends GenericService<BienImmobilier> implements
 		
 		return newRef;
 	}
+	
+	@Override
+	public Set<BienImmobilier> searchBiensNotActivated(){
+		return bienDao.searchBiensNotActivated();
+	}
+			
 }

@@ -30,6 +30,8 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.Type;
+import org.joda.time.LocalDateTime;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 
@@ -73,6 +75,12 @@ public class User extends BaseUser {
 
 	@Column(name="activationUrl")
 	private String activationUrl; 
+	
+	@Column(name = "dateMiseAjour", nullable = false)
+	@Type(type = "org.joda.time.contrib.hibernate.PersistentLocalDateTime")
+	private LocalDateTime dateMiseAjour;
+	
+	
 	
 	public UserCategory getUserCategory() {
 		return userCategory;
@@ -165,6 +173,14 @@ public class User extends BaseUser {
 
 	public void setFavorites(Set<BienImmobilier> favorites) {
 		this.favorites = favorites;
+	}
+
+	public LocalDateTime getDateMiseAjour() {
+		return dateMiseAjour;
+	}
+
+	public void setDateMiseAjour(LocalDateTime dateMiseAjour) {
+		this.dateMiseAjour = dateMiseAjour;
 	}
 	
 	

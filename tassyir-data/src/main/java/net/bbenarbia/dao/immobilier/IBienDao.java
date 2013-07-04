@@ -31,5 +31,6 @@ public interface IBienDao extends IGenericDao<BienImmobilier>{
 	 List<BienImmobilier> searchBiensByTown(Long townId);
 	 
 	 List<String> getAllBiensReference();
-	 
+
+	 Set<BienImmobilier> searchBiensNotActivated();
 }

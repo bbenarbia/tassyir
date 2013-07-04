@@ -30,6 +30,7 @@ import net.bbenarbia.service.IParameterService;
 import net.bbenarbia.service.IRoleService;
 import net.bbenarbia.service.IUserCategoryService;
 import net.bbenarbia.service.IUtilisateurService;
+import net.bbenarbia.service.immobilier.IBienService;
 import net.bbenarbia.service.utils.MailManager;
 import net.bbenarbia.utils.ImageService;
 import net.bbenarbia.utils.Utils;
@@ -87,6 +88,10 @@ public class UserController {
 
 	@Autowired
 	IParameterService parameterService;
+	
+	@Autowired
+	private IBienService bienService;
+
 	
 	@Autowired
 	TassyirAuthenticationProvider authentificationProvider;
@@ -226,11 +231,13 @@ public class UserController {
 			}
 			List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
 			navigations.add(new NavigationDTO("/", "home"));
-			navigations
-					.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
+			navigations.add(new NavigationDTO("/users.htm", "user.gotolistuser"));
 			model.addAttribute("navigations", navigations);
-
 			model.addAttribute("groupRoles", userRolesOfGroup);
+			
+			Set<BienImmobilier> toActivatedBiens = bienService.searchBiensNotActivated();
+			model.addAttribute("toActivatedBiens", toActivatedBiens);
+			
 			return "admin/users/myProfile";
 		} else {
 			throw new Exception("User id not found");

@@ -23,7 +23,6 @@
 				<jsp:include page="../../common/sub-menu.jsp" />
 				<div id="home_sidebar_left">
 					<jsp:include page="./../../common/left-menu.jsp" />
-					<%-- <jsp:include page="./../../common/slide-right.jsp" /> --%>
 				</div>
 				<div id="main">
 					<jsp:include page="../../common/navigator.jsp" />					
@@ -45,12 +44,12 @@
 	
 								<div class="listinfo">									
 									<c:if test="${fn:length(bien.photos) == 0 }">
-										<img  width="120" height="120" src='<c:url value="/resources/graphics/imageholder.jpg"/>'  alt="Listing Image"
+										<img  width="100" height="100" src='<c:url value="/resources/graphics/imageholder.jpg"/>'  alt="Listing Image"
 										class="listingimage" />
 									</c:if>
 									<c:if test="${fn:length(bien.photos) > 0 }">
 										<spring:url value="/biens/photo" var="photoUrl" />
-										<img width="120" height="120"
+										<img width="100" height="100"
 												src="${photoUrl}/${bien.id}/${1}" class="listingimage">
 									</c:if>
 									<h3>${bien.typeOperation} ${bien.departement}(${bien.codePostal}) ${bien.superficie} ${bien.uniteSuperficie}</h3>

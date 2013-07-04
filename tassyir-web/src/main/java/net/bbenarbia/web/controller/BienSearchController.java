@@ -370,6 +370,58 @@ public class BienSearchController {
 		}
 	}
 	
+	@RequestMapping(value = "/recherche-logement-by-dep/{idTown}", method = RequestMethod.GET)
+	public String rechercherBienByTown(
+			@PathVariable("idTown") Long idTown,
+			 Model model) throws Exception {
+
+			FindBienDTO findBienDto = new FindBienDTO();
+
+			List<BienImmobilier> listBiensFound = bienService.searchBiensByTown(idTown);
+			
+			for (BienImmobilier bien : listBiensFound) {
+				if (bien.getTypeBien().equals(EnumTypeBien.APPARTEMENT.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Appartement) bien));
+				} else if (bien.getTypeBien().equals(EnumTypeBien.MAISON.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Maison) bien));
+				}else if (bien.getTypeBien().equals(EnumTypeBien.TERRAIN.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Terrain) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.AGRICOLE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Agricole) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.VACANCES.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Vacances) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.CARCASSE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Carcasse) bien));
+				}
+				else if (bien.getTypeBien().equals(EnumTypeBien.COMMERCE.toString())) {
+					findBienDto.getListBiens().add(new BienDTO((Commerce) bien));
+				}
+				else throw new Exception("Voir les autres types");
+				//A voir les autres types
+			}
+		
+			
+		model.addAttribute("page", 1);
+			
+		int nbPages = findBienDto.getListBiens().size()/6 ;
+		if(findBienDto.getListBiens().size()%6 != 0){
+				nbPages++;
+		}
+		model.addAttribute("nbpages", nbPages);
+			
+			
+		model.addAttribute("findBiens", findBienDto);
+		List<NavigationDTO> navigations = new ArrayList<NavigationDTO>();
+		navigations.add(new NavigationDTO("/", "home"));
+		navigations.add(new NavigationDTO("/biens/find-biens.htm",
+				"biens.listbien"));
+		model.addAttribute("navigations", navigations);
+		return "immobilier/consultation/biensList";
+	}
+	
 	@RequestMapping(value = "/recherche-logement/{typeAction}", method = RequestMethod.GET)
 	public String rechercheSpecifiqueBiensForm(
 			@PathVariable("typeAction") Integer typeAction, Model model,

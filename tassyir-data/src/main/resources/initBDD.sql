@@ -87,6 +87,7 @@ CREATE TABLE IF NOT EXISTS users (
   adresse VARCHAR(300),
   codePostal VARCHAR(10),
   ville VARCHAR(30),
+  dateMiseAjour DATETIME,
   alertesurtelephone1  tinyint (1),
   alertesurtelephone2  tinyint (1),
   adresseMail VARCHAR(80),
